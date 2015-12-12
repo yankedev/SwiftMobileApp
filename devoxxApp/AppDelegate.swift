@@ -13,10 +13,40 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var tabController : UITabBarController?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        var scheduleController = ScheduleController()
+        var speakerController = SpeakerController()
+        var mapController = MapController()
+        
+        let scheduleTabImage = UIImage(named: "tabIconSchedule.png")
+        let speakerTabImage = UIImage(named: "tabIconSpeaker.png")
+        let mapTabImage = UIImage(named: "tabIconMap.png")
+        
+        scheduleController.tabBarItem = UITabBarItem(title: "Schedule", image: scheduleTabImage, tag:0)
+        speakerController.tabBarItem = UITabBarItem(title: "Speakers", image: speakerTabImage, tag:1)
+        mapController.tabBarItem = UITabBarItem(title: "Map", image: mapTabImage, tag:2)
+        
+        let scheduleNavigationController = UINavigationController(rootViewController: scheduleController)
+        let speakerNavigationController = UINavigationController(rootViewController: speakerController)
+        let mapNavigationController = UINavigationController(rootViewController: mapController)
+        
+        
+        let color = ColorManager.topNavigationBarColor
+        UINavigationBar.appearance().barTintColor = color
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        
+        tabController = UITabBarController()
+        tabController!.viewControllers = [scheduleNavigationController, speakerNavigationController, mapNavigationController]
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window!.rootViewController = tabController
+        self.window!.makeKeyAndVisible()
+        
         return true
     }
 
