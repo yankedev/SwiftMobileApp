@@ -72,7 +72,25 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     }
     
     override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // will push detail view
+        
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        if let scheduleCell = cell as? ScheduleViewCell {
+            if(scheduleCell.scrollView.contentOffset.x == 0) {
+                saveAsFavorite(indexPath)
+                scheduleCell.hideFavorite(animated: true)
+                
+                if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
+                
+                    scheduleCell.btnFavorite.selected = slot.talk.isFavorite.boolValue
+                    scheduleCell.updateBackgroundColor()
+                }
+                
+            }
+            else {
+                println("show detail view")
+            }
+        }
+        
     }
     
     func clicked(sender: UITapGestureRecognizer){
@@ -86,12 +104,13 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
             
         if cell == nil {
             cell = ScheduleViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
+            cell?.selectionStyle = .None
             cell?.delegate = self
             cell!.configureCell()
             cell!.indexPath = indexPath
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("clicked:"))
 
-            cell!.scrollView.addGestureRecognizer(tapGestureRecognizer)
+            //cell!.scrollView.addGestureRecognizer(tapGestureRecognizer)
             
             cell!.updateBackgroundColor()
             
@@ -190,8 +209,8 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         return 50.0
     }
     
-    func saveAsFavorite(sender: ScheduleViewCell) -> Void {
-        if let slot = fetchedResultsController.objectAtIndexPath(sender.indexPath) as? Slot {
+    func saveAsFavorite(indexPath : NSIndexPath) -> Void {
+        if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
             
             slot.talk.isFavorite = NSNumber(bool: !slot.talk.isFavorite.boolValue)
 
@@ -200,7 +219,5 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
             APIManager.save(managedContext)
         }
     }
-    
-    
     
 }

@@ -14,7 +14,6 @@ import QuartzCore
 
 protocol ScheduleViewCellDelegate : NSObjectProtocol {
     func beginScroll(sender: ScheduleViewCell) -> Void
-    func saveAsFavorite(sender: ScheduleViewCell) -> Void
 }
 
 class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
@@ -45,7 +44,13 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
         scrollView.showsHorizontalScrollIndicator = false
         //scrollView.backgroundColor = UIColor.blueColor()
         scrollView.contentSize = CGSizeMake(scrollView.frame.width + 50, scrollView.frame.height)
-        addSubview(scrollView)
+        
+        
+        
+        
+        self.contentView.addSubview(scrollView)
+        
+        self.contentView.addGestureRecognizer(scrollView.panGestureRecognizer)
         
         
         imgView = UIImageView(frame: CGRectMake(22 + leftOffset, 5, 25, 25))
@@ -66,7 +71,7 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
         talkRoom.font = UIFont(name: "Roboto", size: 8)
         scrollView.addSubview(talkRoom)
         
-        
+        scrollView.userInteractionEnabled = false
        
         
         scrollView.scrollRectToVisible(CGRectMake(50, 1, 380, 50), animated: false)
@@ -84,20 +89,13 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
         btnFavorite.setImage(imageOff, forState: .Normal)
         btnFavorite.setImage(imageOn, forState: .Selected)
         
-        btnFavorite.addTarget(self, action: "btnTouched", forControlEvents:.TouchUpInside)
+       
 
         blueSquare.addSubview(btnFavorite)
         
         scrollView.addSubview(blueSquare)
         
 
-    }
-    
-    func btnTouched() {
-        btnFavorite.selected = !btnFavorite.selected
-        updateBackgroundColor()
-        hideFavorite(animated: true)
-        self.delegate.saveAsFavorite(self)
     }
     
     func updateBackgroundColor() {
@@ -111,10 +109,16 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
     }
 
     func hideFavorite(#animated : Bool) {
+        print("hide favorite")
+        println(scrollView.userInteractionEnabled)
+        //scrollView.userInteractionEnabled = false
         scrollView.scrollRectToVisible(CGRectMake(50, 1, 380, 50), animated: animated)
     }
 
     func showFavorite() {
+        print("show favorite")
+        println(scrollView.userInteractionEnabled)
+        //scrollView.userInteractionEnabled = true
         scrollView.scrollRectToVisible(CGRectMake(0, 0, 380, 50), animated: true)
     }
     
@@ -124,11 +128,9 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
     }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
         if(decelerate) {
             return
         }
-        scrollView.userInteractionEnabled = false
         
         if(scrollView.contentOffset.x < leftOffset/2) {
             showFavorite()
@@ -136,15 +138,16 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
         else {
             hideFavorite(animated: true)
         }
-        
-        scrollView.userInteractionEnabled = true
-        
-        
-        
-        
     }
     
-    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        if(scrollView.contentOffset.x == 0) {
+            //scrollView.userInteractionEnabled = true
+        }
+        else {
+            //scrollView.userInteractionEnabled = false
+        }
+    }
     
     
     
