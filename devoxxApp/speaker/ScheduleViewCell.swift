@@ -11,7 +11,13 @@ import Foundation
 import UIKit
 import QuartzCore
 
-class ScheduleViewCell: UITableViewCell {
+
+protocol ScheduleViewCellDelegate : NSObjectProtocol {
+    func beginScroll(sender: ScheduleViewCell) -> Void
+    func saveAsFavorite(sender: ScheduleViewCell) -> Void
+}
+
+class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
     
     var imgView:UIImageView!
     var btnFavorite:UIButton!
@@ -19,6 +25,15 @@ class ScheduleViewCell: UITableViewCell {
     var talkTitle:UILabel!
     var talkRoom:UILabel!
     
+    var delegate: ScheduleViewCellDelegate!
+    
+    var indexPath:NSIndexPath!
+    
+    var scrollView:UIScrollView!
+    
+    let leftOffset:CGFloat = 50.0
+    
+    var current = false
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -26,34 +41,112 @@ class ScheduleViewCell: UITableViewCell {
     
     func configureCell() {
         
-        imgView = UIImageView(frame: CGRectMake(22, 0, 25, 25))
-        addSubview(imgView)
+        scrollView = UIScrollView(frame: CGRectMake(0, 0, 380, 50))
+        scrollView.showsHorizontalScrollIndicator = false
+        //scrollView.backgroundColor = UIColor.blueColor()
+        scrollView.contentSize = CGSizeMake(scrollView.frame.width + 50, scrollView.frame.height)
+        addSubview(scrollView)
         
-        trackLabel = UILabel(frame: CGRectMake(10, 27, 50, 10))
+        
+        imgView = UIImageView(frame: CGRectMake(22 + leftOffset, 5, 25, 25))
+        scrollView.addSubview(imgView)
+        
+        trackLabel = UILabel(frame: CGRectMake(10 + leftOffset, 33, 50, 10))
         trackLabel.font = UIFont(name: "Roboto", size: 8)
         trackLabel.textAlignment = .Center
         trackLabel.layer.masksToBounds = true;
         trackLabel.layer.cornerRadius = 3.0;
-        addSubview(trackLabel)
+        scrollView.addSubview(trackLabel)
         
-        talkTitle = UILabel(frame: CGRect(x: 75, y: 0, width: 257, height: 30))
+        talkTitle = UILabel(frame: CGRect(x: 75 + leftOffset, y: 0, width: 257, height: 30))
         talkTitle.font = UIFont(name: "Roboto", size: 14)
-        addSubview(talkTitle)
+        scrollView.addSubview(talkTitle)
         
-        talkRoom = UILabel(frame: CGRect(x: 75, y: 30, width: 257, height: 10))
+        talkRoom = UILabel(frame: CGRect(x: 75 + leftOffset, y: 30, width: 257, height: 10))
         talkRoom.font = UIFont(name: "Roboto", size: 8)
-        addSubview(talkRoom)
+        scrollView.addSubview(talkRoom)
         
-        let image = UIImage(named: "favoriteOn")
-        btnFavorite = UIButton(frame: CGRectMake(330, 10, 20, 20))
-        btnFavorite.setImage(image, forState: .Normal)
+        
+       
+        
+        scrollView.scrollRectToVisible(CGRectMake(50, 1, 380, 50), animated: false)
+        scrollView.bounces = false
+        
+        scrollView.delegate = self
+        
+        let blueSquare = UIView(frame : CGRectMake(0, 0, 50, 50))
+        //blueSquare.backgroundColor = UIColor.blueColor()
+        
+        
+        let imageOn = UIImage(named: "favoriteOn")
+        let imageOff = UIImage(named: "favoriteOff")
+        btnFavorite = UIButton(frame: CGRectMake(10, 10, 30, 30))
+        btnFavorite.setImage(imageOff, forState: .Normal)
+        btnFavorite.setImage(imageOn, forState: .Selected)
+        
         btnFavorite.addTarget(self, action: "btnTouched", forControlEvents:.TouchUpInside)
-        btnFavorite.alpha = 0.2
+
+        blueSquare.addSubview(btnFavorite)
+        
+        scrollView.addSubview(blueSquare)
+        
 
     }
     
     func btnTouched() {
         btnFavorite.selected = !btnFavorite.selected
+        updateBackgroundColor()
+        hideFavorite(animated: true)
+        self.delegate.saveAsFavorite(self)
     }
+    
+    func updateBackgroundColor() {
+        if(btnFavorite.selected) {
+            scrollView.backgroundColor = ColorManager.favoriteBackgroundColor
+        }
+        else {
+            scrollView.backgroundColor = UIColor.whiteColor()
+        }
+
+    }
+
+    func hideFavorite(#animated : Bool) {
+        scrollView.scrollRectToVisible(CGRectMake(50, 1, 380, 50), animated: animated)
+    }
+
+    func showFavorite() {
+        scrollView.scrollRectToVisible(CGRectMake(0, 0, 380, 50), animated: true)
+    }
+    
+    
+    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        self.delegate.beginScroll(self)
+    }
+    
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        if(decelerate) {
+            return
+        }
+        scrollView.userInteractionEnabled = false
+        
+        if(scrollView.contentOffset.x < leftOffset/2) {
+            showFavorite()
+        }
+        else {
+            hideFavorite(animated: true)
+        }
+        
+        scrollView.userInteractionEnabled = true
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
     
 }

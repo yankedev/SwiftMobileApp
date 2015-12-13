@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-public class SchedulerTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+public class SchedulerTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITableViewDelegate, ScheduleViewCellDelegate {
   
     var seg:UISegmentedControl!
     
@@ -21,6 +21,8 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         
         let fetchRequest = NSFetchRequest(entityName: "Slot")
         let sort = NSSortDescriptor(key: "fromTime", ascending: true)
+        
+        //var lastDragged : ScheduleViewCell!
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.fetchBatchSize = 20
@@ -40,7 +42,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         super.viewDidLoad()
         self.tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
         self.tableView.separatorStyle = .None
-        APIManager.getMockedSlots(postActionParam: fetchAll, clear : true)
+        APIManager.getMockedSlots(postActionParam: fetchAll, clear : false)
     }
     
     public func fetchAll() {
@@ -70,22 +72,12 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     }
     
     override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        println("selected")
-        if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
-            slot.talk.isFavorite = NSNumber(bool: !slot.talk.isFavorite.boolValue)
-            self.tableView.beginUpdates()
-            self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-            self.tableView.endUpdates()
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            let managedContext = appDelegate.managedObjectContext!
-            APIManager.save(managedContext)
-
-        }
-        
-        
+        // will push detail view
     }
     
+    func clicked(sender: UITapGestureRecognizer){
+        println("clicked")
+    }
     
     override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
@@ -94,24 +86,30 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
             
         if cell == nil {
             cell = ScheduleViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
+            cell?.delegate = self
             cell!.configureCell()
-            cell!.accessoryView?.hidden = true
+            cell!.indexPath = indexPath
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("clicked:"))
+
+            cell!.scrollView.addGestureRecognizer(tapGestureRecognizer)
+            
+            cell!.updateBackgroundColor()
+            
+            
         }
         
         
         if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
             
             let talk = slot.talk
+            cell!.indexPath = indexPath
             cell!.imgView.image = UIImage(named: getIconFromTrackId(slot.talk.trackId))
             cell!.trackLabel.text = slot.talk.getShortTalkTypeName()
             cell!.talkTitle.text = "\(slot.talk.title)"
             cell!.trackLabel.backgroundColor = ColorManager.getColorFromTalkType(slot.talk.talkType)
             cell!.talkRoom.text = slot.roomName
-                
-            cell!.accessoryView = UIImageView(image: UIImage(named: "favoriteOn"))
-            cell!.accessoryView!.frame = CGRectMake(330, 10, 20, 20)
-            println(talk.isFavorite)
-            cell!.accessoryView?.hidden = !talk.isFavorite.boolValue
+            cell!.btnFavorite.selected = slot.talk.isFavorite.boolValue
+            cell!.updateBackgroundColor()
             
         } else {
             // should be be here
@@ -155,6 +153,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     
     
     public func changeSchedule(seg : UISegmentedControl) {
+        self.hideAllFavorite(except:nil, animated: false)
         if(seg.selectedSegmentIndex == 0) {
             fetchedResultsController.fetchRequest.predicate = nil
         }
@@ -168,6 +167,40 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     public func getIconFromTrackId(trackId : String) -> String {
         return "icon_\(trackId)"
     }
+    
+    public override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        hideAllFavorite(except: nil, animated: true)
+    }
+    
+    func hideAllFavorite(#except: ScheduleViewCell?, animated: Bool) {
+        for singleCell in self.tableView.visibleCells() {
+            if let singleScheduleViewCell = singleCell as? ScheduleViewCell {
+                if singleScheduleViewCell != except {
+                    singleScheduleViewCell.hideFavorite(animated: animated)
+                }
+            }
+        }
+    }
+    
+    func beginScroll(sender: ScheduleViewCell) -> Void {
+        hideAllFavorite(except: sender, animated: true)
+    }
+    
+    public override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 50.0
+    }
+    
+    func saveAsFavorite(sender: ScheduleViewCell) -> Void {
+        if let slot = fetchedResultsController.objectAtIndexPath(sender.indexPath) as? Slot {
+            
+            slot.talk.isFavorite = NSNumber(bool: !slot.talk.isFavorite.boolValue)
+
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let managedContext = appDelegate.managedObjectContext!
+            APIManager.save(managedContext)
+        }
+    }
+    
     
     
 }
