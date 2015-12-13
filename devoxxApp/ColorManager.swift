@@ -18,9 +18,11 @@ class ColorManager {
     static var keynoteColor = UIColor(red: 212/255, green: 165/255, blue: 113/255, alpha: 1)
     static var handsOnLabColor = UIColor(red: 1/255, green: 210/255, blue: 110/255, alpha: 1)
     static var birdOfAFatherColor = UIColor(red: 243/255, green: 44/255, blue: 44/255, alpha: 1)
-    static var defaultColor = UIColor.whiteColor()
+    static var defaultColor = UIColor.clearColor()
     
     static var topNavigationBarColor = UIColor(red: 246/255, green: 174/255, blue: 53/255, alpha: 1)
+    
+    static var favoriteBackgroundColor = UIColor(red: 251/255, green: 207/255, blue: 148/255, alpha: 0.4)
     
     class func getColorFromTalkType(talkType : String) -> UIColor {
         if(talkType == "Ignite Sessions") {
