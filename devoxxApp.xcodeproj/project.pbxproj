@@ -13,6 +13,7 @@
 		E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACE1C18BF7100F6220B /* LaunchScreen.xib */; };
 		E10E7ADC1C18BF7100F6220B /* devoxxAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */; };
 		E10E7AF01C1957F300F6220B /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E7AEF1C1957F300F6220B /* APIManager.swift */; };
+		E18046011C1DAC99001AAD85 /* favoriteOff.png in Resources */ = {isa = PBXBuildFile; fileRef = E18046001C1DAC99001AAD85 /* favoriteOff.png */; };
 		E1FA9BEE1C1BF4E70077C09A /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */; };
 		E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C0E1C1BFC150077C09A /* icon_archisec.png */; };
 		E1FA9C191C1BFC150077C09A /* icon_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C0F1C1BFC150077C09A /* icon_cloud.png */; };
@@ -63,6 +64,7 @@
 		E10E7ADA1C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = devoxxAppTests.swift; sourceTree = "<group>"; };
 		E10E7AEF1C1957F300F6220B /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		E18046001C1DAC99001AAD85 /* favoriteOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favoriteOff.png; path = icon/favoriteOff.png; sourceTree = "<group>"; };
 		E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		E1FA9C0E1C1BFC150077C09A /* icon_archisec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_archisec.png; path = icon/track/icon_archisec.png; sourceTree = "<group>"; };
 		E1FA9C0F1C1BFC150077C09A /* icon_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_cloud.png; path = icon/track/icon_cloud.png; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		E1FA9C0B1C1BFBE30077C09A /* icon */ = {
 			isa = PBXGroup;
 			children = (
+				E18046001C1DAC99001AAD85 /* favoriteOff.png */,
 				E1FA9C281C1BFC280077C09A /* favoriteOn.png */,
 				E1FA9C0D1C1BFBFE0077C09A /* track */,
 				E1FA9C0C1C1BFBF80077C09A /* tab */,
@@ -369,6 +372,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E18046011C1DAC99001AAD85 /* favoriteOff.png in Resources */,
 				E1FA9C211C1BFC150077C09A /* icon_web.png in Resources */,
 				E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */,
 				E1FA9C191C1BFC150077C09A /* icon_cloud.png in Resources */,
