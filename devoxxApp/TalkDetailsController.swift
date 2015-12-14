@@ -12,10 +12,11 @@ import UIKit
 public class TalkDetailsController : UIViewController {
     
     var talk : Talk!
-    var text : UITextView!
+    var text : UILabel!
     override public func viewDidLoad() {
+        text = UILabel(frame: CGRectMake(50, 50, 300, 300))
+        text.numberOfLines = 0
         self.view.backgroundColor = UIColor.whiteColor()
-        text = UITextView(frame: CGRectMake(50, 50, 300, 300))
         view.addSubview(text)
     }
     

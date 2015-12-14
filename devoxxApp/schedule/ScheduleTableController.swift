@@ -13,6 +13,7 @@ import CoreData
 
 public protocol DevoxxAppScheduleDelegate : NSObjectProtocol {
     func isMySheduleSelected() -> Bool
+    func getNavigationController() -> UINavigationController?
 }
 
 public class SchedulerTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate {
@@ -107,6 +108,8 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     
     override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+        print("did I click?")
+        
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         if let scheduleCell = cell as? ScheduleViewCell {
             if(scheduleCell.scrollView.contentOffset.x == 0) {
@@ -123,9 +126,17 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
             else {
                 if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
                 
+                    print("one")
                     let details = TalkDetailsController()
+                    print("two")
                     details.talk = slot.talk
-                        self.navigationController?.pushViewController(details, animated: true)
+                    print("three")
+                    
+                    print("four")
+                    
+                    
+                    self.delegate.getNavigationController()?.pushViewController(details, animated: true)
+                    
                     
                 }
                 

@@ -107,6 +107,10 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
     public func isMySheduleSelected() -> Bool {
         return (seg.selectedSegmentIndex == 1)
     }
+    
+    public func getNavigationController() -> UINavigationController? {
+        return navigationController
+    }
 
     
 }
