@@ -10,10 +10,17 @@ import Foundation
 import UIKit
 import CoreData
 
+
+public protocol DevoxxAppScheduleDelegate : NSObjectProtocol {
+    func isMySheduleSelected() -> Bool
+}
+
 public class SchedulerTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate {
+    
+    var delegate:DevoxxAppScheduleDelegate!
   
-    var index:NSInteger!
     var navigationItemParam:UINavigationItem!
+    
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
         
@@ -27,7 +34,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.fetchBatchSize = 20
-        let predicate = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.index))
+        let predicate = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
         fetchRequest.predicate = predicate
 
         let frc = NSFetchedResultsController(
@@ -45,7 +52,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        //self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
         self.tableView.separatorStyle = .None
         
     
@@ -60,13 +67,23 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
 
         
         
-        APIManager.getMockedSlots(postActionParam: fetchAll, clear : false, index: index)
+        
         
         
         
     }
     
+    
+    
     public func fetchAll() {
+        let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
+        if(delegate.isMySheduleSelected()) {
+            let predicateFavorite = NSPredicate(format: "talk.isFavorite = %d", 1)
+            fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateDay, predicateFavorite])
+        }
+        else {
+            fetchedResultsController.fetchRequest.predicate = predicateDay
+        }
         var error: NSError? = nil
         do {
             try fetchedResultsController.performFetch()
@@ -80,6 +97,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
 
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        APIManager.getMockedSlots(postActionParam: fetchAll, clear : false, index: self.view.tag)
     }
     
     override public func didReceiveMemoryWarning() {
@@ -188,19 +206,11 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     }
     
     
-    
+  
     
     public func changeSchedule(isMySchedule isMySchedule : Bool) {
-        print("in change index = \(self.index) et bool = \(isMySchedule)")
+        print("changeSchwedule = \(self.view.tag)")
         self.hideAllFavorite(except:nil, animated: false)
-        let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.index))
-        if(isMySchedule) {
-            let predicateFavorite = NSPredicate(format: "talk.isFavorite = %d", 1)
-            fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateDay, predicateFavorite])
-        }
-        else {
-            fetchedResultsController.fetchRequest.predicate = predicateDay
-        }
         self.fetchAll()
     }
     

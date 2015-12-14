@@ -9,16 +9,12 @@
 import Foundation
 import UIKit
 
-public class ScheduleController : UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+public class ScheduleController : UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, DevoxxAppScheduleDelegate {
 
     var seg : UISegmentedControl!
-
     var pageView : UIPageViewController?
     var viewControllers = [UIViewController]()
-    var currentController : SchedulerTableViewController!
-    var globalIndex = 0
-    
-    var a:CustomViewController!
+    var a:UIViewController!
     
     func initPageViewController() {
         pageView = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
@@ -43,7 +39,7 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
     
     
     public func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return a.index
+        return a.view.tag
     }
     
 
@@ -52,19 +48,20 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
     }
    
     public func configure() {
-        a = CustomViewController()
-        viewControllers = [a]
+        a = UIViewController()
+        let childViewController = SchedulerTableViewController()
+        childViewController.delegate = self
+        viewControllers = [childViewController]
         print("set current in configure")
-        currentController = a.childTableController
         initPageViewController()
+        a.view.tag = 0
+        //pageView!.addChildViewController(childViewController)
     }
     
     
 
     public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        var contentView = viewController as! CustomViewController
-        var index = contentView.index as Int
-        globalIndex = index
+        var index = viewController.view.tag as Int
         if(index == NSNotFound) {
             return nil
         }
@@ -76,9 +73,7 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
     }
     
     public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        var contentView = viewController as! CustomViewController
-        var index = contentView.index as Int
-        globalIndex = index
+        var index = viewController.view.tag as Int
         if(index == 0  || index == NSNotFound) {
             return nil
         }
@@ -87,27 +82,30 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         return viewControllerAtIndex(index)
     }
     
-    public func viewControllerAtIndex(index : NSInteger) -> CustomViewController {
-        let child = CustomViewController()
-        child.index = index
-        seg.tag = index
+    public func viewControllerAtIndex(index : NSInteger) -> SchedulerTableViewController {
+        let child = SchedulerTableViewController()
+        child.delegate = self
+        child.view.tag = index
         print("set current in viewControllerAtIndex")
-        currentController = child.childTableController
         return child
     }
     
     
     public func changeSchedule(seg : UISegmentedControl) {
-        let aa = pageView!.viewControllers![0] as! CustomViewController
-        aa.childTableController.changeSchedule(isMySchedule : (seg.selectedSegmentIndex == 1))
+        let aa = pageView!.viewControllers![0] as! SchedulerTableViewController
+        aa.changeSchedule(isMySchedule : (seg.selectedSegmentIndex == 1))
     }
     
     public func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if(!completed) {
             return
         }
-        let aa = pageViewController.viewControllers![0] as! CustomViewController
-        print(aa.childTableController.index)
+        let aa = pageViewController.viewControllers![0] as! SchedulerTableViewController
+        print(aa.view.tag)
+    }
+    
+    public func isMySheduleSelected() -> Bool {
+        return (seg.selectedSegmentIndex == 1)
     }
 
     
