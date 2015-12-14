@@ -33,6 +33,12 @@ class Talk: NSManagedObject {
         if(talkType == "Keynote") {
             return "Keynote"
         }
+        if(talkType == "University") {
+            return "University"
+        }
+        if(talkType == "Tools-in-Action") {
+            return "Tools"
+        }
         if(talkType == "Hand's on Labs") {
             return "HOL"
         }

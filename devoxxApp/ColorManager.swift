@@ -18,6 +18,8 @@ class ColorManager {
     static var keynoteColor = UIColor(red: 212/255, green: 165/255, blue: 113/255, alpha: 1)
     static var handsOnLabColor = UIColor(red: 1/255, green: 210/255, blue: 110/255, alpha: 1)
     static var birdOfAFatherColor = UIColor(red: 243/255, green: 44/255, blue: 44/255, alpha: 1)
+    static var toolsInActionColor = UIColor(red: 245/255, green: 215/255, blue: 51/255, alpha: 1)
+    static var universityColor = UIColor(red: 168/255, green: 80/255, blue: 161/255, alpha: 1)
     static var defaultColor = UIColor.clearColor()
     
     static var topNavigationBarColor = UIColor(red: 246/255, green: 174/255, blue: 53/255, alpha: 1)
@@ -33,6 +35,9 @@ class ColorManager {
         if(talkType == "Conference") {
             return conferenceColor
         }
+        if(talkType == "University") {
+            return universityColor
+        }
         if(talkType == "Quickie") {
             return quickieColor
         }
@@ -45,6 +50,10 @@ class ColorManager {
         if(talkType == "BOF (Bird of a Feather)") {
             return birdOfAFatherColor
         }
+        if(talkType == "Tools-in-Action") {
+            return toolsInActionColor
+        }
+        print(talkType)
         return defaultColor
     }
 
