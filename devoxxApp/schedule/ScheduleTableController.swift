@@ -10,9 +10,10 @@ import Foundation
 import UIKit
 import CoreData
 
-public class SchedulerTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITableViewDelegate, ScheduleViewCellDelegate {
+public class SchedulerTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate {
   
-    var seg:UISegmentedControl!
+    var index:NSInteger!
+    var navigationItemParam:UINavigationItem!
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
         
@@ -26,6 +27,8 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.fetchBatchSize = 20
+        let predicate = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.index))
+        fetchRequest.predicate = predicate
 
         let frc = NSFetchedResultsController(
             fetchRequest: fetchRequest,
@@ -38,32 +41,45 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         return frc
     }()
     
+    
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
+        //self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         self.tableView.separatorStyle = .None
-        APIManager.getMockedSlots(postActionParam: fetchAll, clear : false)
+        
+    
+        
+        let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: Selector("searchSchedule"))
+        searchButton.tintColor = UIColor.whiteColor()
+        
+        
+        
+
+               
+
+        
+        
+        APIManager.getMockedSlots(postActionParam: fetchAll, clear : false, index: index)
+        
+        
+        
     }
     
     public func fetchAll() {
         var error: NSError? = nil
-        if !fetchedResultsController.performFetch(&error) {
-            println("unresolved error \(error), \(error!.userInfo)")
-        }
-        else {
-            println(fetchedResultsController.sections?.count)
+        do {
+            try fetchedResultsController.performFetch()
             
+        } catch let error1 as NSError {
+            error = error1
+            print("unresolved error \(error), \(error!.userInfo)")
         }
         self.tableView.reloadData()
     }
 
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        refresh()
-    }
-    
-    public func refresh() {
-        println("refresh")
     }
     
     override public func didReceiveMemoryWarning() {
@@ -87,14 +103,17 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
                 
             }
             else {
-                println("show detail view")
+                if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
+                
+                    let details = TalkDetailsController()
+                    details.talk = slot.talk
+                        self.navigationController?.pushViewController(details, animated: true)
+                    
+                }
+                
             }
         }
         
-    }
-    
-    func clicked(sender: UITapGestureRecognizer){
-        println("clicked")
     }
     
     override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
@@ -171,14 +190,16 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     
     
     
-    public func changeSchedule(seg : UISegmentedControl) {
+    public func changeSchedule(isMySchedule isMySchedule : Bool) {
+        print("in change index = \(self.index) et bool = \(isMySchedule)")
         self.hideAllFavorite(except:nil, animated: false)
-        if(seg.selectedSegmentIndex == 0) {
-            fetchedResultsController.fetchRequest.predicate = nil
+        let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.index))
+        if(isMySchedule) {
+            let predicateFavorite = NSPredicate(format: "talk.isFavorite = %d", 1)
+            fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateDay, predicateFavorite])
         }
         else {
-            let predicate = NSPredicate(format: "talk.isFavorite = %d", 1)
-            fetchedResultsController.fetchRequest.predicate = predicate
+            fetchedResultsController.fetchRequest.predicate = predicateDay
         }
         self.fetchAll()
     }
@@ -191,8 +212,8 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         hideAllFavorite(except: nil, animated: true)
     }
     
-    func hideAllFavorite(#except: ScheduleViewCell?, animated: Bool) {
-        for singleCell in self.tableView.visibleCells() {
+    func hideAllFavorite(except except: ScheduleViewCell?, animated: Bool) {
+        for singleCell in self.tableView.visibleCells {
             if let singleScheduleViewCell = singleCell as? ScheduleViewCell {
                 if singleScheduleViewCell != except {
                     singleScheduleViewCell.hideFavorite(animated: animated)
@@ -203,8 +224,12 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     
     func beginScroll(sender: ScheduleViewCell) -> Void {
         hideAllFavorite(except: sender, animated: true)
+    
     }
     
+    public override func viewDidAppear(animated: Bool) {
+        print("currentIndex : \(index)")
+    }
     public override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50.0
     }
@@ -220,4 +245,5 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         }
     }
     
+       
 }

@@ -16,7 +16,7 @@ class APIManager {
     
     
     
-    class func getMockedSlots(postActionParam postAction :(Void) -> (Void), clear : Bool) {
+    class func getMockedSlots(postActionParam postAction :(Void) -> (Void), clear : Bool, index : NSInteger) {
     
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
@@ -25,18 +25,18 @@ class APIManager {
             self.deleteAll(managedContext)
         }
         
-        if(isAlreadyLoaded(managedContext)) {
+        if(isAlreadyLoaded(managedContext, index:index)) {
             postAction()
             return
         }
         
         
         let testBundle = NSBundle.mainBundle()
-        let filePath = testBundle.pathForResource("slots", ofType: "json")
-        let checkString = NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding, error: nil) as? String
+        let filePath = testBundle.pathForResource("0\(index)", ofType: "json")
+        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
         
         if(checkString == nil) {
-            print("should not be empty")
+            print("should not be empty", terminator: "")
         }
         
         let data = NSData(contentsOfFile: filePath!)!
@@ -73,11 +73,12 @@ class APIManager {
                 let talkEntityName: String = "Talk"
                 let talkEntity = NSEntityDescription.entityForName(talkEntityName, inManagedObjectContext: managedContext)
                 
-                var coreDataSlotObject = devoxxApp.Slot(entity: slotEntity!, insertIntoManagedObjectContext: managedContext)
-                var coreDataTalkObject = devoxxApp.Talk(entity: talkEntity!, insertIntoManagedObjectContext: managedContext)
+                let coreDataSlotObject = devoxxApp.Slot(entity: slotEntity!, insertIntoManagedObjectContext: managedContext)
+                let coreDataTalkObject = devoxxApp.Talk(entity: talkEntity!, insertIntoManagedObjectContext: managedContext)
                 
                 coreDataSlotObject.fromTime = slot.fromTime
                 coreDataSlotObject.roomName = slot.roomName
+                coreDataSlotObject.day = slot.day
                 
                 coreDataTalkObject.title = talk.title
                 coreDataTalkObject.summary = talk.summary
@@ -100,13 +101,13 @@ class APIManager {
     }
     
     class func loadDataFromURL(url: NSURL, completion:(data: NSData?, error: NSError?) -> Void) {
-        var session = NSURLSession.sharedSession()
-        let loadDataTask = session.dataTaskWithURL(url, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+        let session = NSURLSession.sharedSession()
+        let loadDataTask = session.dataTaskWithURL(url, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             if let responseError = error {
                 completion(data: nil, error: responseError)
             } else if let httpResponse = response as? NSHTTPURLResponse {
                 if httpResponse.statusCode != 200 {
-                    var statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
+                    let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
                     completion(data: nil, error: statusError)
                 } else {
                     completion(data: data, error: nil)
@@ -118,8 +119,11 @@ class APIManager {
     
     class func save(context:NSManagedObjectContext) {
         var error: NSError?
-        if !context.save(&error) {
-            println("Could not save \(error), \(error?.userInfo)")
+        do {
+            try context.save()
+        } catch let error1 as NSError {
+            error = error1
+            print("Could not save \(error), \(error?.userInfo)")
         }
     }
     
@@ -131,21 +135,39 @@ class APIManager {
         
         var error: NSError?
         
-        let items = context.executeFetchRequest(fetchRequest, error: &error)!
+        let items = try! context.executeFetchRequest(fetchRequest)
         
         for item in items {
             context.deleteObject(item as! NSManagedObject)
         }
     }
     
-    class func isAlreadyLoaded(context : NSManagedObjectContext) -> Bool {
+    class func getDayFromIndex(index : NSInteger) -> String {
+        if(index == 0) {
+            return "monday"
+        }
+        if(index == 1) {
+            return "tuesday"
+        }
+        if(index == 2) {
+            return "wednesday"
+        }
+        if(index == 3) {
+            return "thursday"
+        }
+        return "friday"
+    }
+    
+    class func isAlreadyLoaded(context : NSManagedObjectContext, index : NSInteger) -> Bool {
         
         let fetchRequest = NSFetchRequest(entityName: "Slot")
         fetchRequest.includesSubentities = true
         fetchRequest.returnsObjectsAsFaults = false
+        let predicate = NSPredicate(format: "day = %@", getDayFromIndex(index))
+        fetchRequest.predicate = predicate
         
         var error: NSError?
-        let items = context.executeFetchRequest(fetchRequest, error: &error)!
+        let items = try! context.executeFetchRequest(fetchRequest)
         return items.count > 0
     }
     

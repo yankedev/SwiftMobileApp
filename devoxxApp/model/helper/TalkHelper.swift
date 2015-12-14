@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TalkHelper: NSObject, Printable {
+class TalkHelper: NSObject {
     
     let title: String
     let lang: String
@@ -40,12 +40,12 @@ class TalkHelper: NSObject, Printable {
         if(title == nil) {
             title = data["break"]["nameEN"].string
         }
-        var lang: String? = data["talk"]["lang"].string
-        var trackId: String? = data["talk"]["trackId"].string
-        var talkType: String? = data["talk"]["talkType"].string
-        var track: String? = data["talk"]["track"].string
-        var id: String? = data["talk"]["id"].string
-        var summary: String? = data["talk"]["summary"].string
+        let lang: String? = data["talk"]["lang"].string
+        let trackId: String? = data["talk"]["trackId"].string
+        let talkType: String? = data["talk"]["talkType"].string
+        let track: String? = data["talk"]["track"].string
+        let id: String? = data["talk"]["id"].string
+        let summary: String? = data["talk"]["summary"].string
 
         return TalkHelper(title: title, lang: lang, trackId: trackId, talkType: talkType, track: track, id: id, summary: summary)
     }

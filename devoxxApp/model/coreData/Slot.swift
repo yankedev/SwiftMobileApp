@@ -14,6 +14,7 @@ class Slot: NSManagedObject {
     @NSManaged var roomName: String
     @NSManaged var slotId: String
     @NSManaged var fromTime: String
+    @NSManaged var day: String
     @NSManaged var talk: Talk
 
 }

@@ -22,6 +22,8 @@ class ColorManager {
     
     static var topNavigationBarColor = UIColor(red: 246/255, green: 174/255, blue: 53/255, alpha: 1)
     
+    static var bottomDotsPageController = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
+    
     static var favoriteBackgroundColor = UIColor(red: 251/255, green: 207/255, blue: 148/255, alpha: 0.4)
     
     class func getColorFromTalkType(talkType : String) -> UIColor {

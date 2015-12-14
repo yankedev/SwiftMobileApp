@@ -108,17 +108,11 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
 
     }
 
-    func hideFavorite(#animated : Bool) {
-        print("hide favorite")
-        println(scrollView.userInteractionEnabled)
-        //scrollView.userInteractionEnabled = false
+    func hideFavorite(animated animated : Bool) {
         scrollView.scrollRectToVisible(CGRectMake(50, 1, 380, 50), animated: animated)
     }
 
     func showFavorite() {
-        print("show favorite")
-        println(scrollView.userInteractionEnabled)
-        //scrollView.userInteractionEnabled = true
         scrollView.scrollRectToVisible(CGRectMake(0, 0, 380, 50), animated: true)
     }
     

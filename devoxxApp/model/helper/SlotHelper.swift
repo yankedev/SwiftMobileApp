@@ -8,28 +8,31 @@
 
 import Foundation
 
-class SlotHelper: NSObject, Printable {
+class SlotHelper: NSObject {
     let roomName: String
     let slotId: String
     let fromTime: String
+    let day: String
     let talk : TalkHelper
     
     override var description: String {
-        return "roomName: \(roomName)\n slotId: \(slotId)\n fromTime: \(fromTime) \n talk: \(talk)\n"
+        return "roomName: \(roomName)\n slotId: \(slotId)\n fromTime: \(fromTime) \n talk: \(talk)\n day: \(day)\n"
     }
     
-    init(roomName: String?, slotId: String?, fromTime: String?, talk: TalkHelper) {
+    init(roomName: String?, slotId: String?, fromTime: String?, day: String?, talk: TalkHelper) {
         self.roomName = roomName ?? ""
         self.slotId = slotId ?? ""
         self.fromTime = fromTime ?? ""
+        self.day = day ?? ""
         self.talk = talk
     }
     
     class func feed(data: JSON, talk: TalkHelper) -> SlotHelper {
-        var roomName: String? = data["roomName"].string
-        var slotId: String? = data["slotId"].string
-        var fromTime: String? = data["fromTime"].string
+        let roomName: String? = data["roomName"].string
+        let slotId: String? = data["slotId"].string
+        let fromTime: String? = data["fromTime"].string
+        let day: String? = data["day"].string
         
-        return SlotHelper(roomName: roomName, slotId: slotId, fromTime: fromTime, talk: talk)
+        return SlotHelper(roomName: roomName, slotId: slotId, fromTime: fromTime, day: day, talk: talk)
     }
 }

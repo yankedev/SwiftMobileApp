@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15B42" minimumToolsVersion="Automatic">
     <entity name="Slot" representedClassName="devoxxApp.Slot" syncable="YES">
+        <attribute name="day" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fromTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="roomName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="slotId" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,7 +18,7 @@
         <attribute name="trackId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Slot" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Slot" positionX="-63" positionY="-18" width="128" height="120"/>
         <element name="Talk" positionX="-54" positionY="-9" width="128" height="165"/>
     </elements>
 </model>
