@@ -67,7 +67,7 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
         
         talkType = UILabel()
         talkType.translatesAutoresizingMaskIntoConstraints = false
-        talkType.font = UIFont(name: "Roboto", size: 7)
+        talkType.font = UIFont(name: "Roboto", size: 6)
         talkType.textAlignment = .Center
         talkType.layer.masksToBounds = true;
         talkType.layer.cornerRadius = 3.0;
@@ -86,11 +86,6 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
         talkRoom.font = UIFont(name: "Roboto", size: 8)
         //talkRoom.backgroundColor = UIColor.greenColor()
         talkView.addSubview(talkRoom)
-        
-        
-        infoView.translatesAutoresizingMaskIntoConstraints = false
-        talkView.translatesAutoresizingMaskIntoConstraints = false
-        
         
         
         
@@ -159,35 +154,28 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
         // constraints
         
         
-        let topTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.1, constant: 0)
+        let topTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.2, constant: 0)
         topTrackImgConstraint.identifier = "topTrackImgConstraint"
         
         
-        let heightTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.8, constant: 0)
+        let heightTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.6, constant: 0)
         heightTrackImgConstraint.identifier = "heightTrackImgConstraint"
         
-        let widthTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.8, constant: 0)
+        let widthTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.6, constant: 0)
         widthTrackImgConstraint.identifier = "widthTrackImgConstraint"
-        
-        
-        let leadingTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
-        leadingTrackImgConstraint.identifier = "leadingTrackImgConstraint"
-        
+    
         
         let centerXTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
         centerXTrackImgConstraint.identifier = "centerXTrackImgConstraint"
         
+        infoView.addConstraint(centerXTrackImgConstraint)
         
         
         infoView.addConstraint(topTrackImgConstraint)
         infoView.addConstraint(heightTrackImgConstraint)
         infoView.addConstraint(widthTrackImgConstraint)
-        infoView.addConstraint(leadingTrackImgConstraint)
-        infoView.addConstraint(centerXTrackImgConstraint)
-        
-        
-        
-        
+
+
         
         let topTalkTypeConstraint = NSLayoutConstraint(item: talkType, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: talkType.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.8, constant: 0)
         topTalkTypeConstraint.identifier = "topTalkTypeConstraint"
@@ -204,11 +192,12 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
         leadingTalkTypeConstraint.identifier = "leadingTalkTypeConstraint"
         
         
+        
         infoView.addConstraint(topTalkTypeConstraint)
         infoView.addConstraint(heightTalkTypeConstraint)
         infoView.addConstraint(widthTalkTypeConstraint)
         infoView.addConstraint(leadingTalkTypeConstraint)
-        
+
         
     }
     

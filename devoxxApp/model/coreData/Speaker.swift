@@ -1,18 +1,15 @@
 //
-//  Speaker+CoreDataProperties.swift
+//  Speaker.swift
 //  devoxxApp
 //
-//  Created by got2bex on 2015-12-14.
-//  Copyright © 2015 maximedavid. All rights reserved.
-//
-//  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
-//  to delete and recreate this implementation file for your updated model.
+//  Created by maxday on 10.12.15.
+//  Copyright (c) 2015 maximedavid. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
-extension Speaker {
+class Speaker: NSManagedObject {
 
     @NSManaged var uuid: String?
     @NSManaged var firstName: String?
