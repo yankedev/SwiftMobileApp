@@ -1,4 +1,15 @@
 //
+//  SpeakerController.swift
+//  devoxxApp
+//
+//  Created by got2bex on 2015-12-14.
+//  Copyright © 2015 maximedavid. All rights reserved.
+//
+
+import Foundation
+
+
+//
 //  SchedulerTableViewController.swift
 //  devoxxApp
 //
@@ -19,7 +30,7 @@ public protocol DevoxxAppScheduleDelegate : NSObjectProtocol {
 public class SchedulerTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate {
     
     var delegate:DevoxxAppScheduleDelegate!
-  
+    
     var navigationItemParam:UINavigationItem!
     
     
@@ -37,7 +48,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         fetchRequest.fetchBatchSize = 20
         let predicate = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
         fetchRequest.predicate = predicate
-
+        
         let frc = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: managedContext,
@@ -53,19 +64,19 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        //self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
+        self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
         self.tableView.separatorStyle = .None
         
-    
+        
         
         let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: Selector("searchSchedule"))
         searchButton.tintColor = UIColor.whiteColor()
         
         
         
-
-               
-
+        
+        
+        
         
         
         
@@ -95,7 +106,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         }
         self.tableView.reloadData()
     }
-
+    
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         APIManager.getMockedSlots(postActionParam: fetchAll, clear : false, index: self.view.tag)
@@ -112,20 +123,20 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         if let scheduleCell = cell as? ScheduleViewCell {
-            /*if(scheduleCell.scrollView.contentOffset.x == 0) {
+            if(scheduleCell.scrollView.contentOffset.x == 0) {
                 saveAsFavorite(indexPath)
                 scheduleCell.hideFavorite(animated: true)
                 
                 if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
-                
+                    
                     scheduleCell.btnFavorite.selected = slot.talk.isFavorite.boolValue
                     scheduleCell.updateBackgroundColor()
                 }
                 
             }
-            else {*/
+            else {
                 if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
-                
+                    
                     print("one")
                     let details = TalkDetailsController()
                     print("two")
@@ -140,7 +151,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
                     
                 }
                 
-            //}
+            }
         }
         
     }
@@ -149,14 +160,15 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL_1") as? ScheduleViewCell
         
-            
+        
         if cell == nil {
             cell = ScheduleViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
             cell?.selectionStyle = .None
             cell?.delegate = self
             cell!.configureCell()
+            cell!.indexPath = indexPath
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("clicked:"))
-
+            
             //cell!.scrollView.addGestureRecognizer(tapGestureRecognizer)
             
             cell!.updateBackgroundColor()
@@ -166,23 +178,26 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         
         
         if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
-            cell!.trackImg.image = UIImage(named: getIconFromTrackId(slot.talk.trackId))
-            cell!.talkType.text = slot.talk.getShortTalkTypeName()
+            
+            let talk = slot.talk
+            cell!.indexPath = indexPath
+            cell!.imgView.image = UIImage(named: getIconFromTrackId(slot.talk.trackId))
+            cell!.trackLabel.text = slot.talk.getShortTalkTypeName()
             cell!.talkTitle.text = "\(slot.talk.title)"
-            cell!.talkType.backgroundColor = ColorManager.getColorFromTalkType(slot.talk.talkType)
+            cell!.trackLabel.backgroundColor = ColorManager.getColorFromTalkType(slot.talk.talkType)
             cell!.talkRoom.text = slot.roomName
-            //cell!.btnFavorite.selected = slot.talk.isFavorite.boolValue
+            cell!.btnFavorite.selected = slot.talk.isFavorite.boolValue
             cell!.updateBackgroundColor()
             
         } else {
             // should be be here
         }
         
-            
+        
         return cell!
         
     }
-
+    
     
     
     
@@ -213,7 +228,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     }
     
     
-  
+    
     
     public func changeSchedule(isMySchedule isMySchedule : Bool) {
         print("changeSchwedule = \(self.view.tag)")
@@ -241,7 +256,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     
     func beginScroll(sender: ScheduleViewCell) -> Void {
         hideAllFavorite(except: sender, animated: true)
-    
+        
     }
     
     public override func viewDidAppear(animated: Bool) {
@@ -255,12 +270,12 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
             
             slot.talk.isFavorite = NSNumber(bool: !slot.talk.isFavorite.boolValue)
-
+            
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let managedContext = appDelegate.managedObjectContext!
             APIManager.save(managedContext)
         }
     }
     
-       
+    
 }

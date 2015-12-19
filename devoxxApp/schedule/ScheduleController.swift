@@ -16,14 +16,31 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
     var viewControllers = [UIViewController]()
     var a:UIViewController!
     
+    var heightConstant:CGFloat!
+    var constW:[NSLayoutConstraint]!
+    
     func initPageViewController() {
         pageView = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
-        pageView!.view.frame = CGRectMake(0,(self.navigationController?.navigationBar.frame.size.height)!,380,575)
+        //pageView!.view.frame = CGRectMake(0,(self.navigationController?.navigationBar.frame.size.height)!,380,575)
         pageView?.dataSource = self
         pageView?.delegate = self
         pageView?.setViewControllers(viewControllers, direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
         self.view.addSubview(pageView!.view)
         self.view.backgroundColor = ColorManager.bottomDotsPageController
+        
+        pageView!.view.translatesAutoresizingMaskIntoConstraints = false
+        let views = ["pageView": pageView!.view]
+        
+        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|[pageView]|", options: .AlignAllCenterY, metrics: nil, views: views)
+        view.addConstraints(constH)
+        
+        heightConstant = self.navigationController!.navigationBar.frame.size.height + self.navigationController!.navigationBar.frame.origin.y
+        
+        constW = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(heightConstant)-[pageView]-\(self.tabBarController!.tabBar.frame.height)-|", options: .AlignAllTrailing, metrics: nil, views: views)
+        view.addConstraints(constW)
+
+        
+        
     }
     
     override public func viewDidLoad() {
@@ -112,6 +129,14 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         return navigationController
     }
 
-    
+    public override func viewDidLayoutSubviews() {
+        let views = ["pageView": pageView!.view]
+        heightConstant = self.navigationController!.navigationBar.frame.size.height + self.navigationController!.navigationBar.frame.origin.y
+        view.removeConstraints(constW)
+        constW = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(heightConstant)-[pageView]-\(self.tabBarController!.tabBar.frame.height)-|", options: .AlignAllTrailing, metrics: nil, views: views)
+        view.addConstraints(constW)
+
+        
+    }
 }
 

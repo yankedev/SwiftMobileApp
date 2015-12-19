@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5872861B1C1F565C00FC098A /* SpeakerTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861A1C1F565C00FC098A /* SpeakerTableController.swift */; };
+		5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861C1C1F579900FC098A /* SpeakerHelper.swift */; };
+		587286201C1F589400FC098A /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861E1C1F589400FC098A /* Speaker.swift */; };
+		587286231C21E14A00FC098A /* speakers.json in Resources */ = {isa = PBXBuildFile; fileRef = 587286221C21E14A00FC098A /* speakers.json */; };
 		589FB6701C1DFD0C0055CD25 /* 00.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66B1C1DFD0C0055CD25 /* 00.json */; };
 		589FB6711C1DFD0C0055CD25 /* 01.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66C1C1DFD0C0055CD25 /* 01.json */; };
 		589FB6721C1DFD0C0055CD25 /* 02.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66D1C1DFD0C0055CD25 /* 02.json */; };
@@ -62,6 +66,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5872861A1C1F565C00FC098A /* SpeakerTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerTableController.swift; sourceTree = "<group>"; };
+		5872861C1C1F579900FC098A /* SpeakerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerHelper.swift; sourceTree = "<group>"; };
+		5872861E1C1F589400FC098A /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Speaker.swift; path = model/coreData/Speaker.swift; sourceTree = "<group>"; };
+		587286221C21E14A00FC098A /* speakers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = speakers.json; path = mock/speakers.json; sourceTree = "<group>"; };
 		589FB66B1C1DFD0C0055CD25 /* 00.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 00.json; path = mock/00.json; sourceTree = "<group>"; };
 		589FB66C1C1DFD0C0055CD25 /* 01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 01.json; path = mock/01.json; sourceTree = "<group>"; };
 		589FB66D1C1DFD0C0055CD25 /* 02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 02.json; path = mock/02.json; sourceTree = "<group>"; };
@@ -276,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				E1FA9C3C1C1BFD010077C09A /* SpeakerController.swift */,
+				5872861A1C1F565C00FC098A /* SpeakerTableController.swift */,
 			);
 			name = speaker;
 			sourceTree = "<group>";
@@ -292,6 +301,7 @@
 		E1FA9C411C1BFD330077C09A /* coreData */ = {
 			isa = PBXGroup;
 			children = (
+				5872861E1C1F589400FC098A /* Speaker.swift */,
 				E1FA9C421C1BFD400077C09A /* Slot.swift */,
 				E1FA9C431C1BFD400077C09A /* Talk.swift */,
 			);
@@ -303,6 +313,7 @@
 			children = (
 				E1FA9C471C1BFD560077C09A /* SlotHelper.swift */,
 				E1FA9C481C1BFD560077C09A /* TalkHelper.swift */,
+				5872861C1C1F579900FC098A /* SpeakerHelper.swift */,
 			);
 			name = helper;
 			sourceTree = "<group>";
@@ -310,6 +321,7 @@
 		E1FA9C4B1C1BFD6A0077C09A /* mock */ = {
 			isa = PBXGroup;
 			children = (
+				587286221C21E14A00FC098A /* speakers.json */,
 				589FB66B1C1DFD0C0055CD25 /* 00.json */,
 				589FB66C1C1DFD0C0055CD25 /* 01.json */,
 				589FB66D1C1DFD0C0055CD25 /* 02.json */,
@@ -417,6 +429,7 @@
 				589FB6741C1DFD0C0055CD25 /* 04.json in Resources */,
 				E1FA9C1B1C1BFC150077C09A /* icon_java.png in Resources */,
 				E1FA9C261C1BFC1E0077C09A /* tabIconSchedule@2x.png in Resources */,
+				587286231C21E14A00FC098A /* speakers.json in Resources */,
 				589FB6731C1DFD0C0055CD25 /* 03.json in Resources */,
 				E1FA9C201C1BFC150077C09A /* icon_startup.png in Resources */,
 				E1FA9C1A1C1BFC150077C09A /* icon_future.png in Resources */,
@@ -445,11 +458,14 @@
 			files = (
 				E1FA9C3B1C1BFCF80077C09A /* MapController.swift in Sources */,
 				E18046071C1DD77B001AAD85 /* QTouchposeApplication.m in Sources */,
+				587286201C1F589400FC098A /* Speaker.swift in Sources */,
 				E18046091C1DD7B6001AAD85 /* main.swift in Sources */,
 				E1FA9C4A1C1BFD560077C09A /* TalkHelper.swift in Sources */,
 				E10E7AC31C18BF7100F6220B /* AppDelegate.swift in Sources */,
 				E1FA9BEE1C1BF4E70077C09A /* ColorManager.swift in Sources */,
 				E1FA9C491C1BFD560077C09A /* SlotHelper.swift in Sources */,
+				5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */,
+				5872861B1C1F565C00FC098A /* SpeakerTableController.swift in Sources */,
 				E10E7AC61C18BF7100F6220B /* devoxxApp.xcdatamodeld in Sources */,
 				E1FA9C361C1BFCC60077C09A /* ScheduleTableController.swift in Sources */,
 				E1FA9C451C1BFD400077C09A /* Talk.swift in Sources */,

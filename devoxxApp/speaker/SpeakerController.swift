@@ -14,6 +14,9 @@ public class SpeakerController : UIViewController {
     override public func viewDidLoad() {
         self.title = "Speakers"
         self.view.backgroundColor = UIColor.whiteColor()
+        
+        let child = SpeakerTableController()
+        addChildViewController(child)
     }
     
 }

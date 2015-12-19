@@ -7,6 +7,12 @@
         <attribute name="slotId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="talk" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Talk" syncable="YES"/>
     </entity>
+    <entity name="Speaker" representedClassName=".Speaker" syncable="YES">
+        <attribute name="avatarUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Talk" representedClassName="devoxxApp.Talk" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -20,5 +26,6 @@
     <elements>
         <element name="Slot" positionX="-63" positionY="-18" width="128" height="120"/>
         <element name="Talk" positionX="-54" positionY="-9" width="128" height="165"/>
+        <element name="Speaker" positionX="-54" positionY="45" width="128" height="105"/>
     </elements>
 </model>

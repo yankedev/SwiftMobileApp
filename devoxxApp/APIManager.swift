@@ -43,6 +43,39 @@ class APIManager {
         self.handleSlots(data, postAction: postAction);
 
     }
+
+    
+    
+    class func getMockedSpeakers(postActionParam postAction :(Void) -> (Void), clear : Bool) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        if(clear) {
+            self.deleteAll(managedContext)
+        }
+        
+        if(isSpeakerAlreadyLoaded(managedContext)) {
+            postAction()
+            return
+        }
+        
+        
+        let testBundle = NSBundle.mainBundle()
+        let filePath = testBundle.pathForResource("speakers", ofType: "json")
+        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
+        
+        if(checkString == nil) {
+            print("should not be empty", terminator: "")
+        }
+        
+        let data = NSData(contentsOfFile: filePath!)!
+        self.handleSpeakers(data, postAction: postAction);
+        
+    }
+
+    
+    
     
     class func getSlots(postActionParam postAction: (Void) -> (Void)) {
         loadDataFromURL(NSURL(string: topAppURL)!, completion:{(data, error) -> Void in
@@ -99,6 +132,45 @@ class APIManager {
         }
 
     }
+
+    
+    class func handleSpeakers(speakers : NSData, postAction : (Void) -> Void) {
+        
+        let json = JSON(data: speakers)
+        
+        if let appArray = json.array {
+            
+            for appDict in appArray {
+                
+                let speaker = SpeakerHelper.feed(appDict)
+                
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let managedContext = appDelegate.managedObjectContext!
+                
+                
+                let speakerEntityName: String = "Speaker"
+                let speakerEntity = NSEntityDescription.entityForName(speakerEntityName, inManagedObjectContext: managedContext)
+                
+                let coreDataSpeakerObject = devoxxApp.Speaker(entity: speakerEntity!, insertIntoManagedObjectContext: managedContext)
+                
+        
+                coreDataSpeakerObject.uuid = speaker.uuid
+                coreDataSpeakerObject.lastName = speaker.lastName
+                coreDataSpeakerObject.firstName = speaker.firstName
+                coreDataSpeakerObject.avatarUrl = speaker.avatarUrl
+
+                self.save(managedContext)
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                postAction()
+            }
+            
+        }
+        
+    }
+
+    
     
     class func loadDataFromURL(url: NSURL, completion:(data: NSData?, error: NSError?) -> Void) {
         let session = NSURLSession.sharedSession()
@@ -166,7 +238,16 @@ class APIManager {
         let predicate = NSPredicate(format: "day = %@", getDayFromIndex(index))
         fetchRequest.predicate = predicate
         
-        var error: NSError?
+        let items = try! context.executeFetchRequest(fetchRequest)
+        return items.count > 0
+    }
+    
+    class func isSpeakerAlreadyLoaded(context : NSManagedObjectContext) -> Bool {
+        
+        let fetchRequest = NSFetchRequest(entityName: "Speaker")
+        fetchRequest.includesSubentities = true
+        fetchRequest.returnsObjectsAsFaults = false
+
         let items = try! context.executeFetchRequest(fetchRequest)
         return items.count > 0
     }

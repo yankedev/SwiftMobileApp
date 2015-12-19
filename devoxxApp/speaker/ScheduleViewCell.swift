@@ -18,21 +18,13 @@ protocol ScheduleViewCellDelegate : NSObjectProtocol {
 
 class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
     
-    var imgView:UIImageView!
+    var trackImg:UIImageView!
     var btnFavorite:UIButton!
-    var trackLabel:UILabel!
+    var talkType:UILabel!
     var talkTitle:UILabel!
     var talkRoom:UILabel!
     
     var delegate: ScheduleViewCellDelegate!
-    
-    var indexPath:NSIndexPath!
-    
-    var scrollView:UIScrollView!
-    
-    let leftOffset:CGFloat = 50.0
-    
-    var current = false
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -40,80 +32,202 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
     
     func configureCell() {
         
-        scrollView = UIScrollView(frame: CGRectMake(0, 0, 380, 50))
-        scrollView.showsHorizontalScrollIndicator = false
-        //scrollView.backgroundColor = UIColor.blueColor()
-        scrollView.contentSize = CGSizeMake(scrollView.frame.width + 50, scrollView.frame.height)
+        //backgroundColor = UIColor.yellowColor()
+        
+        let infoView = UIView()
+        //infoView.backgroundColor = UIColor.redColor()
+        infoView.translatesAutoresizingMaskIntoConstraints = false
+        let talkView = UIView()
+        //talkView.backgroundColor = UIColor.blueColor()
+        talkView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        addSubview(talkView)
+        addSubview(infoView)
+        
+        let viewsDictionary = ["info":infoView,"talk":talkView]
+        
+        let layout = NSLayoutFormatOptions(rawValue: 0)
+        
+        let horizontalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-5-[info(40)]-5-[talk]-5-|", options: layout, metrics: nil, views: viewsDictionary)
         
         
         
+        let verticalContraint_1:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[info]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
         
-        self.contentView.addSubview(scrollView)
+        let verticalContraint_2:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[talk]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
         
-        self.contentView.addGestureRecognizer(scrollView.panGestureRecognizer)
+        self.addConstraints(verticalContraint_1)
+        self.addConstraints(verticalContraint_2)
+        self.addConstraints(horizontalContraint)
+        
+        trackImg = UIImageView()
+        trackImg.translatesAutoresizingMaskIntoConstraints = false
+        infoView.addSubview(trackImg)
+        
+        talkType = UILabel()
+        talkType.translatesAutoresizingMaskIntoConstraints = false
+        talkType.font = UIFont(name: "Roboto", size: 7)
+        talkType.textAlignment = .Center
+        talkType.layer.masksToBounds = true;
+        talkType.layer.cornerRadius = 3.0;
+        infoView.addSubview(talkType)
         
         
-        imgView = UIImageView(frame: CGRectMake(22 + leftOffset, 5, 25, 25))
-        scrollView.addSubview(imgView)
-        
-        trackLabel = UILabel(frame: CGRectMake(10 + leftOffset, 33, 50, 10))
-        trackLabel.font = UIFont(name: "Roboto", size: 8)
-        trackLabel.textAlignment = .Center
-        trackLabel.layer.masksToBounds = true;
-        trackLabel.layer.cornerRadius = 3.0;
-        scrollView.addSubview(trackLabel)
-        
-        talkTitle = UILabel(frame: CGRect(x: 75 + leftOffset, y: 0, width: 257, height: 30))
+        talkTitle = UILabel()
+        talkTitle.translatesAutoresizingMaskIntoConstraints = false
         talkTitle.font = UIFont(name: "Roboto", size: 14)
-        scrollView.addSubview(talkTitle)
+        //talkTitle.backgroundColor = UIColor.purpleColor()
+        talkView.addSubview(talkTitle)
         
-        talkRoom = UILabel(frame: CGRect(x: 75 + leftOffset, y: 30, width: 257, height: 10))
+        
+        talkRoom = UILabel()
+        talkRoom.translatesAutoresizingMaskIntoConstraints = false
         talkRoom.font = UIFont(name: "Roboto", size: 8)
-        scrollView.addSubview(talkRoom)
-        
-        scrollView.userInteractionEnabled = false
-       
-        
-        scrollView.scrollRectToVisible(CGRectMake(50, 1, 380, 50), animated: false)
-        scrollView.bounces = false
-        
-        scrollView.delegate = self
-        
-        let blueSquare = UIView(frame : CGRectMake(0, 0, 50, 50))
-        //blueSquare.backgroundColor = UIColor.blueColor()
+        //talkRoom.backgroundColor = UIColor.greenColor()
+        talkView.addSubview(talkRoom)
         
         
-        let imageOn = UIImage(named: "favoriteOn")
-        let imageOff = UIImage(named: "favoriteOff")
-        btnFavorite = UIButton(frame: CGRectMake(10, 10, 30, 30))
-        btnFavorite.setImage(imageOff, forState: .Normal)
-        btnFavorite.setImage(imageOn, forState: .Selected)
+        infoView.translatesAutoresizingMaskIntoConstraints = false
+        talkView.translatesAutoresizingMaskIntoConstraints = false
         
-       
-
-        blueSquare.addSubview(btnFavorite)
         
-        scrollView.addSubview(blueSquare)
         
-
+        
+        
+        
+        
+        
+        
+        let widthTalkTitleConstraint = NSLayoutConstraint(item: talkTitle, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: talkView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0)
+        widthTalkTitleConstraint.identifier = "widthTalkTitleConstraint"
+        
+        let heightTalkTitleConstraint = NSLayoutConstraint(item: talkTitle, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: talkView, attribute: NSLayoutAttribute.Height, multiplier: 0.7, constant: 0)
+        heightTalkTitleConstraint.identifier = "heightTalkTitleConstraint"
+        
+        let topTalkTitleConstraint = NSLayoutConstraint(item: talkTitle, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: talkView, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0)
+        topTalkTitleConstraint.identifier = "topTalkTitleConstraint"
+        
+        let leadingTalkTitleConstraint = NSLayoutConstraint(item: talkTitle, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: talkView, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 0)
+        leadingTalkTitleConstraint.identifier = "leadingTalkTitleConstraint"
+        
+        
+        talkView.addConstraint(widthTalkTitleConstraint)
+        talkView.addConstraint(heightTalkTitleConstraint)
+        talkView.addConstraint(topTalkTitleConstraint)
+        talkView.addConstraint(leadingTalkTitleConstraint)
+        
+        
+        
+        
+        
+        /*
+        
+        
+        
+        */
+        
+        
+        
+        
+        
+        
+        let topTalkRoomConstraint = NSLayoutConstraint(item: talkRoom, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: talkRoom.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.7, constant: 0)
+        topTalkRoomConstraint.identifier = "topTalkRoomConstraint"
+        
+        
+        let heightTalkRoomConstraint = NSLayoutConstraint(item: talkRoom, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: talkView, attribute: NSLayoutAttribute.Height, multiplier: 0.3, constant: 0)
+        heightTalkRoomConstraint.identifier = "heightTalkRoomConstraint"
+        
+        let widthTalkRoomConstraint = NSLayoutConstraint(item: talkRoom, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: talkRoom.superview, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
+        widthTalkRoomConstraint.identifier = "widthTalkRoomConstraint"
+        
+        
+        let leadingTalkRoomConstraint = NSLayoutConstraint(item: talkRoom, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: talkView, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 0)
+        leadingTalkRoomConstraint.identifier = "leadingTalkRoomConstraint"
+        
+        
+        talkView.addConstraint(widthTalkRoomConstraint)
+        talkView.addConstraint(heightTalkRoomConstraint)
+        talkView.addConstraint(topTalkRoomConstraint)
+        talkView.addConstraint(leadingTalkRoomConstraint)
+        
+        
+        
+        
+        
+        // constraints
+        
+        
+        let topTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.1, constant: 0)
+        topTrackImgConstraint.identifier = "topTrackImgConstraint"
+        
+        
+        let heightTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.8, constant: 0)
+        heightTrackImgConstraint.identifier = "heightTrackImgConstraint"
+        
+        let widthTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.8, constant: 0)
+        widthTrackImgConstraint.identifier = "widthTrackImgConstraint"
+        
+        
+        let leadingTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0)
+        leadingTrackImgConstraint.identifier = "leadingTrackImgConstraint"
+        
+        
+        let centerXTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+        centerXTrackImgConstraint.identifier = "centerXTrackImgConstraint"
+        
+        
+        
+        infoView.addConstraint(topTrackImgConstraint)
+        infoView.addConstraint(heightTrackImgConstraint)
+        infoView.addConstraint(widthTrackImgConstraint)
+        infoView.addConstraint(leadingTrackImgConstraint)
+        infoView.addConstraint(centerXTrackImgConstraint)
+        
+        
+        
+        
+        
+        let topTalkTypeConstraint = NSLayoutConstraint(item: talkType, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: talkType.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.8, constant: 0)
+        topTalkTypeConstraint.identifier = "topTalkTypeConstraint"
+        
+        
+        let heightTalkTypeConstraint = NSLayoutConstraint(item: talkType, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: talkType.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.2, constant: 0)
+        heightTalkTypeConstraint.identifier = "heightTalkTypeConstraint"
+        
+        let widthTalkTypeConstraint = NSLayoutConstraint(item: talkType, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: talkType.superview, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
+        widthTalkTypeConstraint.identifier = "widthTalkTypeConstraint"
+        
+        
+        let leadingTalkTypeConstraint = NSLayoutConstraint(item: talkType, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: talkType.superview, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 0)
+        leadingTalkTypeConstraint.identifier = "leadingTalkTypeConstraint"
+        
+        
+        infoView.addConstraint(topTalkTypeConstraint)
+        infoView.addConstraint(heightTalkTypeConstraint)
+        infoView.addConstraint(widthTalkTypeConstraint)
+        infoView.addConstraint(leadingTalkTypeConstraint)
+        
+        
     }
     
     func updateBackgroundColor() {
-        if(btnFavorite.selected) {
-            scrollView.backgroundColor = ColorManager.favoriteBackgroundColor
+        /* if(btnFavorite.selected) {
+        backgroundColor = ColorManager.favoriteBackgroundColor
         }
         else {
-            scrollView.backgroundColor = UIColor.whiteColor()
-        }
-
+        backgroundColor = UIColor.whiteColor()
+        }*/
+        
     }
-
+    
     func hideFavorite(animated animated : Bool) {
-        scrollView.scrollRectToVisible(CGRectMake(50, 1, 380, 50), animated: animated)
+        //scrollView.scrollRectToVisible(CGRectMake(50, 1, 380, 50), animated: animated)
     }
-
+    
     func showFavorite() {
-        scrollView.scrollRectToVisible(CGRectMake(0, 0, 380, 50), animated: true)
+        //scrollView.scrollRectToVisible(CGRectMake(0, 0, 380, 50), animated: true)
     }
     
     
@@ -122,16 +236,16 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
     }
     
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if(decelerate) {
-            return
+        /* if(decelerate) {
+        return
         }
         
         if(scrollView.contentOffset.x < leftOffset/2) {
-            showFavorite()
+        showFavorite()
         }
         else {
-            hideFavorite(animated: true)
-        }
+        hideFavorite(animated: true)
+        }*/
     }
     
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
@@ -142,6 +256,8 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
             //scrollView.userInteractionEnabled = false
         }
     }
+    
+    
     
     
     

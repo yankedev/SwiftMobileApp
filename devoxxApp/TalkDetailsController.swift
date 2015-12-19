@@ -14,10 +14,33 @@ public class TalkDetailsController : UIViewController {
     var talk : Talk!
     var text : UILabel!
     override public func viewDidLoad() {
-        text = UILabel(frame: CGRectMake(50, 50, 300, 300))
+        text = UILabel()
+        text.backgroundColor = UIColor.purpleColor()
+        text.translatesAutoresizingMaskIntoConstraints = false
+        text.textAlignment = .Justified
+        view.addSubview(text)
+        
+        
+        let views = ["talkDescription": text]
+        
+        let bar = self.navigationController?.navigationBar
+        let offset = (bar?.frame.size.height)! + (bar?.frame.origin.y)!
+        
+        
+        
+        
+        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[talkDescription]-20-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        
+        self.view.addConstraint(NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: offset + 20))
+        
+        view.addConstraints(constH)
+
+        
+        
+        
         text.numberOfLines = 0
         self.view.backgroundColor = UIColor.whiteColor()
-        view.addSubview(text)
+       
     }
     
     public override func viewWillAppear(animated: Bool) {

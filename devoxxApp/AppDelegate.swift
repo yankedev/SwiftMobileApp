@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         let scheduleController = ScheduleController()
-        let speakerController = SpeakerController()
+        let speakerController = SpeakerTableController()
         let mapController = MapController()
         
         let scheduleTabImage = UIImage(named: "tabIconSchedule.png")
