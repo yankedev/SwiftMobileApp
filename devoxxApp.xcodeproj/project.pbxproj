@@ -16,6 +16,8 @@
 		589FB6721C1DFD0C0055CD25 /* 02.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66D1C1DFD0C0055CD25 /* 02.json */; };
 		589FB6731C1DFD0C0055CD25 /* 03.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66E1C1DFD0C0055CD25 /* 03.json */; };
 		589FB6741C1DFD0C0055CD25 /* 04.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66F1C1DFD0C0055CD25 /* 04.json */; };
+		58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */; };
+		58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */; };
 		E10E7AC31C18BF7100F6220B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E7AC21C18BF7100F6220B /* AppDelegate.swift */; };
 		E10E7AC61C18BF7100F6220B /* devoxxApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E10E7AC41C18BF7100F6220B /* devoxxApp.xcdatamodeld */; };
 		E10E7ACD1C18BF7100F6220B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACC1C18BF7100F6220B /* Images.xcassets */; };
@@ -75,6 +77,8 @@
 		589FB66D1C1DFD0C0055CD25 /* 02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 02.json; path = mock/02.json; sourceTree = "<group>"; };
 		589FB66E1C1DFD0C0055CD25 /* 03.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 03.json; path = mock/03.json; sourceTree = "<group>"; };
 		589FB66F1C1DFD0C0055CD25 /* 04.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 04.json; path = mock/04.json; sourceTree = "<group>"; };
+		58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOn@2x.png"; path = "icon/StarOn@2x.png"; sourceTree = "<group>"; };
+		58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOff@2x.png"; path = "icon/StarOff@2x.png"; sourceTree = "<group>"; };
 		E10E7ABD1C18BF7100F6220B /* devoxxApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = devoxxApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10E7AC11C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10E7AC21C18BF7100F6220B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -218,6 +222,8 @@
 		E1FA9C0B1C1BFBE30077C09A /* icon */ = {
 			isa = PBXGroup;
 			children = (
+				58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */,
+				58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */,
 				E18046001C1DAC99001AAD85 /* favoriteOff.png */,
 				E1FA9C281C1BFC280077C09A /* favoriteOn.png */,
 				E1FA9C0D1C1BFBFE0077C09A /* track */,
@@ -418,6 +424,7 @@
 				E18046011C1DAC99001AAD85 /* favoriteOff.png in Resources */,
 				589FB6721C1DFD0C0055CD25 /* 02.json in Resources */,
 				E1FA9C211C1BFC150077C09A /* icon_web.png in Resources */,
+				58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */,
 				E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */,
 				E1FA9C191C1BFC150077C09A /* icon_cloud.png in Resources */,
 				589FB6701C1DFD0C0055CD25 /* 00.json in Resources */,
@@ -439,6 +446,7 @@
 				E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */,
 				E1FA9C291C1BFC280077C09A /* favoriteOn.png in Resources */,
 				E1FA9C1F1C1BFC150077C09A /* icon_ssj.png in Resources */,
+				58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

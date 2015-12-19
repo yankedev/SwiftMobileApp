@@ -16,7 +16,11 @@ public protocol DevoxxAppScheduleDelegate : NSObjectProtocol {
     func getNavigationController() -> UINavigationController?
 }
 
-public class SchedulerTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate {
+public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
+    func favorite(path : NSIndexPath) -> Bool
+}
+
+public class SchedulerTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate, DevoxxAppFavoriteDelegate {
     
     var delegate:DevoxxAppScheduleDelegate!
   
@@ -106,6 +110,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         // Dispose of any resources that can be recreated.
     }
     
+    
     override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         print("did I click?")
@@ -126,15 +131,12 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
             else {*/
                 if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
                 
-                    print("one")
                     let details = TalkDetailsController()
-                    print("two")
+                    details.indexPath = indexPath
                     details.talk = slot.talk
-                    print("three")
-                    
-                    print("four")
-                    
-                    
+                    details.delegate = self
+                    details.configure()
+                    details.setColor(slot.talk.isFavorite.boolValue)
                     self.delegate.getNavigationController()?.pushViewController(details, animated: true)
                     
                     
@@ -143,6 +145,13 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
             //}
         }
         
+    }
+    
+    public func getTintColorFromTag(tag : Int) -> UIColor {
+        if tag == 0  {
+            return UIColor.blackColor()
+        }
+        return UIColor.whiteColor()
     }
     
     override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
@@ -251,7 +260,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         return 50.0
     }
     
-    func saveAsFavorite(indexPath : NSIndexPath) -> Void {
+    public func favorite(indexPath : NSIndexPath) -> Bool {
         if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
             
             slot.talk.isFavorite = NSNumber(bool: !slot.talk.isFavorite.boolValue)
@@ -259,7 +268,9 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let managedContext = appDelegate.managedObjectContext!
             APIManager.save(managedContext)
+            return slot.talk.isFavorite.boolValue
         }
+        return false
     }
     
        
