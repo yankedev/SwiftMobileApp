@@ -109,6 +109,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         APIManager.getMockedSlots(postActionParam: fetchAll, clear : false, index: self.view.tag)
+        APIManager.getMockedTracks(postActionParam: fetchAll, clear: false)
     }
     
     override public func didReceiveMemoryWarning() {

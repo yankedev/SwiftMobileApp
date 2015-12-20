@@ -16,6 +16,10 @@
 		589FB6721C1DFD0C0055CD25 /* 02.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66D1C1DFD0C0055CD25 /* 02.json */; };
 		589FB6731C1DFD0C0055CD25 /* 03.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66E1C1DFD0C0055CD25 /* 03.json */; };
 		589FB6741C1DFD0C0055CD25 /* 04.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66F1C1DFD0C0055CD25 /* 04.json */; };
+		58A0E8BE1C272F85000C49DD /* tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = 58A0E8BC1C272F85000C49DD /* tracks.json */; };
+		58A0E8BF1C272F85000C49DD /* talks.json in Resources */ = {isa = PBXBuildFile; fileRef = 58A0E8BD1C272F85000C49DD /* talks.json */; };
+		58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A0E8C01C272FF9000C49DD /* TrackHelper.swift */; };
+		58A0E8C41C2730CC000C49DD /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A0E8C21C2730CC000C49DD /* Track.swift */; };
 		58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */; };
 		58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */; };
 		58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */; };
@@ -78,6 +82,10 @@
 		589FB66D1C1DFD0C0055CD25 /* 02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 02.json; path = mock/02.json; sourceTree = "<group>"; };
 		589FB66E1C1DFD0C0055CD25 /* 03.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 03.json; path = mock/03.json; sourceTree = "<group>"; };
 		589FB66F1C1DFD0C0055CD25 /* 04.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 04.json; path = mock/04.json; sourceTree = "<group>"; };
+		58A0E8BC1C272F85000C49DD /* tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = tracks.json; path = mock/tracks.json; sourceTree = "<group>"; };
+		58A0E8BD1C272F85000C49DD /* talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = talks.json; path = mock/talks.json; sourceTree = "<group>"; };
+		58A0E8C01C272FF9000C49DD /* TrackHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackHelper.swift; sourceTree = "<group>"; };
+		58A0E8C21C2730CC000C49DD /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Track.swift; path = model/coreData/Track.swift; sourceTree = "<group>"; };
 		58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOn@2x.png"; path = "icon/StarOn@2x.png"; sourceTree = "<group>"; };
 		58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOff@2x.png"; path = "icon/StarOff@2x.png"; sourceTree = "<group>"; };
@@ -313,6 +321,7 @@
 				5872861E1C1F589400FC098A /* Speaker.swift */,
 				E1FA9C421C1BFD400077C09A /* Slot.swift */,
 				E1FA9C431C1BFD400077C09A /* Talk.swift */,
+				58A0E8C21C2730CC000C49DD /* Track.swift */,
 			);
 			name = coreData;
 			sourceTree = "<group>";
@@ -323,6 +332,7 @@
 				E1FA9C471C1BFD560077C09A /* SlotHelper.swift */,
 				E1FA9C481C1BFD560077C09A /* TalkHelper.swift */,
 				5872861C1C1F579900FC098A /* SpeakerHelper.swift */,
+				58A0E8C01C272FF9000C49DD /* TrackHelper.swift */,
 			);
 			name = helper;
 			sourceTree = "<group>";
@@ -330,6 +340,8 @@
 		E1FA9C4B1C1BFD6A0077C09A /* mock */ = {
 			isa = PBXGroup;
 			children = (
+				58A0E8BC1C272F85000C49DD /* tracks.json */,
+				58A0E8BD1C272F85000C49DD /* talks.json */,
 				587286221C21E14A00FC098A /* speakers.json */,
 				589FB66B1C1DFD0C0055CD25 /* 00.json */,
 				589FB66C1C1DFD0C0055CD25 /* 01.json */,
@@ -428,6 +440,7 @@
 				589FB6721C1DFD0C0055CD25 /* 02.json in Resources */,
 				E1FA9C211C1BFC150077C09A /* icon_web.png in Resources */,
 				58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */,
+				58A0E8BE1C272F85000C49DD /* tracks.json in Resources */,
 				E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */,
 				E1FA9C191C1BFC150077C09A /* icon_cloud.png in Resources */,
 				589FB6701C1DFD0C0055CD25 /* 00.json in Resources */,
@@ -446,6 +459,7 @@
 				E1FA9C1C1C1BFC150077C09A /* icon_lang.png in Resources */,
 				E1FA9C1D1C1BFC150077C09A /* icon_methodevops.png in Resources */,
 				E1FA9C4D1C1BFD740077C09A /* slots.json in Resources */,
+				58A0E8BF1C272F85000C49DD /* talks.json in Resources */,
 				E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */,
 				E1FA9C291C1BFC280077C09A /* favoriteOn.png in Resources */,
 				E1FA9C1F1C1BFC150077C09A /* icon_ssj.png in Resources */,
@@ -468,6 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1FA9C3B1C1BFCF80077C09A /* MapController.swift in Sources */,
+				58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */,
 				E18046071C1DD77B001AAD85 /* QTouchposeApplication.m in Sources */,
 				587286201C1F589400FC098A /* Speaker.swift in Sources */,
 				E18046091C1DD7B6001AAD85 /* main.swift in Sources */,
@@ -484,6 +499,7 @@
 				E1FA9C371C1BFCC60077C09A /* ScheduleController.swift in Sources */,
 				E1FA9C2D1C1BFC690077C09A /* Swifty.swift in Sources */,
 				58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */,
+				58A0E8C41C2730CC000C49DD /* Track.swift in Sources */,
 				E1FA9C3E1C1BFD010077C09A /* SpeakerController.swift in Sources */,
 				E1FA9C3F1C1BFD010077C09A /* ScheduleViewCell.swift in Sources */,
 				E10E7AF01C1957F300F6220B /* APIManager.swift in Sources */,

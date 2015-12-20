@@ -23,9 +23,15 @@
         <attribute name="track" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="trackId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Track" representedClassName=".Track" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="trackDescription" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Slot" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="Talk" positionX="-54" positionY="-9" width="128" height="165"/>
         <element name="Speaker" positionX="-54" positionY="45" width="128" height="105"/>
+        <element name="Talk" positionX="-54" positionY="-9" width="128" height="165"/>
+        <element name="Track" positionX="-54" positionY="45" width="128" height="90"/>
     </elements>
 </model>

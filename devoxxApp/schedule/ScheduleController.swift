@@ -204,7 +204,9 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         print("FILTERNAME RECEIVED")
         print(filterName)
         
-        let predicate = NSPredicate(format: "talk.talkType = %@", filterName)
+        
+        
+        let predicate = NSPredicate(format: "talk.trackId = %@", filterName)
         
         let aa = pageView!.viewControllers![0] as! SchedulerTableViewController
         

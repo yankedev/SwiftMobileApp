@@ -75,6 +75,35 @@ class APIManager {
     }
 
     
+    class func getMockedTracks(postActionParam postAction :(Void) -> (Void), clear : Bool) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        if(clear) {
+            self.deleteAll(managedContext)
+        }
+        
+        if(isTrackAlreadyLoaded(managedContext)) {
+            postAction()
+            return
+        }
+        
+        
+        let testBundle = NSBundle.mainBundle()
+        let filePath = testBundle.pathForResource("tracks", ofType: "json")
+        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
+        
+        if(checkString == nil) {
+            print("should not be empty", terminator: "")
+        }
+        
+        let data = NSData(contentsOfFile: filePath!)!
+        self.handleTracks(data, postAction: postAction);
+        
+    }
+
+    
     
     
     class func getSlots(postActionParam postAction: (Void) -> (Void)) {
@@ -171,6 +200,42 @@ class APIManager {
     }
 
     
+    class func handleTracks(tracks : NSData, postAction : (Void) -> Void) {
+        
+        let json = JSON(data: tracks)
+        
+        if let appArray = json["tracks"].array {
+            
+            for appDict in appArray {
+                
+                let track = TrackHelper.feed(appDict)
+                
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let managedContext = appDelegate.managedObjectContext!
+                
+                
+                let trackEntityName: String = "Track"
+                let trackEntity = NSEntityDescription.entityForName(trackEntityName, inManagedObjectContext: managedContext)
+                
+                let coreDataTrackObject = devoxxApp.Track(entity: trackEntity!, insertIntoManagedObjectContext: managedContext)
+                
+                
+                coreDataTrackObject.id = track.id
+                coreDataTrackObject.title = track.title
+                coreDataTrackObject.trackDescription = track.trackDescription
+                
+                self.save(managedContext)
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                postAction()
+            }
+            
+        }
+        
+    }
+
+    
     
     class func loadDataFromURL(url: NSURL, completion:(data: NSData?, error: NSError?) -> Void) {
         let session = NSURLSession.sharedSession()
@@ -239,6 +304,18 @@ class APIManager {
         let items = try! context.executeFetchRequest(fetchRequest)
         return items.count > 0
     }
+
+    
+    class func isTrackAlreadyLoaded(context : NSManagedObjectContext) -> Bool {
+        
+        let fetchRequest = NSFetchRequest(entityName: "Track")
+        fetchRequest.includesSubentities = true
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        let items = try! context.executeFetchRequest(fetchRequest)
+        return items.count > 0
+    }
+
     
     class func isSpeakerAlreadyLoaded(context : NSManagedObjectContext) -> Bool {
         

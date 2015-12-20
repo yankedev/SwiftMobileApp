@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 import UIKit
 
 
@@ -14,16 +15,52 @@ public protocol DevoxxAppFilter : NSObjectProtocol {
     func filter(filterName : String) -> Void
 }
 
-public class FilterTableViewController: UITableViewController {
+public class FilterTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     
     var delegate:DevoxxAppFilter!
     
     
+    lazy var fetchedResultsController: NSFetchedResultsController = {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        let fetchRequest = NSFetchRequest(entityName: "Track")
+        let sort = NSSortDescriptor(key: "title", ascending: true)
+       
+        fetchRequest.fetchBatchSize = 20
+        fetchRequest.sortDescriptors = [sort]
+     
+        let frc = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: managedContext,
+            sectionNameKeyPath: nil,
+            cacheName: nil)
+        
+        frc.delegate = self
+        
+        return frc
+    }()
+
+    public func fetchAll() {
+        
+        var error: NSError? = nil
+        do {
+            try fetchedResultsController.performFetch()
+            
+        } catch let error1 as NSError {
+            error = error1
+            print("unresolved error \(error), \(error!.userInfo)")
+        }
+        print(fetchedResultsController.fetchedObjects?.count)
+        self.tableView.reloadData()
+    }
+    
     override public func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        
+        fetchAll()
         
         let finalCenter = tableView.center
         let beginCenter = CGPointMake(finalCenter.x - tableView.frame.width, finalCenter.y)
@@ -48,7 +85,9 @@ public class FilterTableViewController: UITableViewController {
  
     
     override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.delegate?.filter("University")
+        if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Track {
+            self.delegate?.filter(track.id!)
+        }
     }
     
   
@@ -61,7 +100,10 @@ public class FilterTableViewController: UITableViewController {
             cell = ScheduleViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
         }
         
-        cell?.textLabel!.text = "HELLO"
+        if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Track {
+            cell?.textLabel!.text = track.title
+        }
+        
         
         return cell!
         
@@ -71,11 +113,20 @@ public class FilterTableViewController: UITableViewController {
     
     
     override public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        if let sections = fetchedResultsController.sections {
+            return sections.count
+        }
+        
+        return 0
     }
     
     public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        if let sections = fetchedResultsController.sections {
+            let currentSection = sections[section]
+            return currentSection.numberOfObjects
+        }
+        
+        return 0
     }
     
     public override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
