@@ -23,6 +23,8 @@ public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
 public class SchedulerTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate, DevoxxAppFavoriteDelegate {
     
     var delegate:DevoxxAppScheduleDelegate!
+    
+    var searchPredicates = [NSPredicate]()
   
     var navigationItemParam:UINavigationItem!
     
@@ -79,16 +81,17 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     }
     
     
-    
     public func fetchAll() {
+        var finalPredicates = searchPredicates
         let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
+        finalPredicates.append(predicateDay)
         if(delegate.isMySheduleSelected()) {
             let predicateFavorite = NSPredicate(format: "talk.isFavorite = %d", 1)
-            fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateDay, predicateFavorite])
+            finalPredicates.append(predicateFavorite)
         }
-        else {
-            fetchedResultsController.fetchRequest.predicate = predicateDay
-        }
+        
+        fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: finalPredicates)
+       
         var error: NSError? = nil
         do {
             try fetchedResultsController.performFetch()
@@ -99,6 +102,9 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         }
         self.tableView.reloadData()
     }
+
+    
+   
 
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -168,7 +174,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
 
             //cell!.scrollView.addGestureRecognizer(tapGestureRecognizer)
             
-            cell!.updateBackgroundColor()
+    
             
             
         }
@@ -181,7 +187,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
             cell!.talkType.backgroundColor = ColorManager.getColorFromTalkType(slot.talk.talkType)
             cell!.talkRoom.text = slot.roomName
             //cell!.btnFavorite.selected = slot.talk.isFavorite.boolValue
-            cell!.updateBackgroundColor()
+            cell!.updateBackgroundColor(slot.talk.isFavorite.boolValue)
             
         } else {
             // should be be here
@@ -259,6 +265,11 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     public override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50.0
     }
+    
+    
+    
+   
+    
     
     public func favorite(indexPath : NSIndexPath) -> Bool {
         if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {

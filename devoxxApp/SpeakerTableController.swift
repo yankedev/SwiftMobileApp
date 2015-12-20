@@ -85,17 +85,15 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             cell = ScheduleViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
             cell?.selectionStyle = .None
             cell!.configureCell()
-            cell!.updateBackgroundColor()
         }
         
         
         
         
-        if let speaker = speakerArray[indexPath.row] as? Speaker {
-            cell!.talkTitle.text = "\(speaker.firstName!.capitalizedString) \(speaker.lastName!.capitalizedString)"
-        } else {
-            // should be be here
-        }
+        let speaker = speakerArray[indexPath.row]
+        cell!.talkTitle.text = "\(speaker.firstName!.capitalizedString) \(speaker.lastName!.capitalizedString)"
+           //TODO is favorited cell!.updateBackgroundColor(speaker)
+       
         
         
         return cell!

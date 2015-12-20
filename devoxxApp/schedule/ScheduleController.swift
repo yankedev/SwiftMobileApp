@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class ScheduleController : UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, DevoxxAppScheduleDelegate {
+public class ScheduleController : UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, DevoxxAppScheduleDelegate, DevoxxAppFilter {
 
     var seg : UISegmentedControl!
     var pageView : UIPageViewController?
@@ -18,6 +18,9 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
     
     var heightConstant:CGFloat!
     var constW:[NSLayoutConstraint]!
+    
+    var menuView = UIView(frame: CGRectMake(0,0,150,500))
+    var t = FilterTableViewController()
     
     func initPageViewController() {
         pageView = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
@@ -43,6 +46,50 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         
     }
     
+    
+    
+    func completionMethod(isFinished:Bool) {
+        if(isFinished) {
+            menuView.removeFromSuperview()
+            let finalCenter = CGPointMake(t.tableView.center.x + t.tableView.frame.width, t.tableView.center.y)
+            t.tableView.center = finalCenter
+        }
+    }
+    
+    func filterMe() {
+        print("FILTERME")
+        
+        if view.tag == 0 {
+            view.tag = 1
+            self.view.addSubview(menuView)
+        }
+        else {
+            
+            
+            
+            let beginCenter = t.tableView.center
+            let finalCenter = CGPointMake(beginCenter.x - t.tableView.frame.width, beginCenter.y)
+            
+            
+            
+            UIView.animateWithDuration(0.2, animations: {
+                self.t.tableView.center = finalCenter
+                }, completion: completionMethod)
+            
+           
+
+            
+            
+            
+            
+            view.tag = 0
+        }
+        
+        
+        
+        
+    }
+    
     override public func viewDidLoad() {
         seg = UISegmentedControl(frame: CGRectMake(0, 0, 200, 30))
         seg.insertSegmentWithTitle("Schedule", atIndex: 0, animated: true)
@@ -50,8 +97,20 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         seg.selectedSegmentIndex = 0
         seg.tintColor = UIColor.whiteColor()
         self.navigationItem.titleView = seg
+        
+        let filterRightButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: Selector("filterMe"))
+        navigationItem.rightBarButtonItem = filterRightButton
+        
+        
         seg.addTarget(self, action: Selector("changeSchedule:"), forControlEvents: .ValueChanged)
         configure()
+        
+        
+        t.tableView.frame = menuView.frame
+        t.delegate = self
+        menuView.addSubview(t.view)
+        view.tag = 0
+        
     }
     
     
@@ -136,6 +195,23 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         constW = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(heightConstant)-[pageView]-\(self.tabBarController!.tabBar.frame.height)-|", options: .AlignAllTrailing, metrics: nil, views: views)
         view.addConstraints(constW)
 
+        
+    }
+    
+    
+    
+    public func filter(filterName : String) -> Void {
+        print("FILTERNAME RECEIVED")
+        print(filterName)
+        
+        let predicate = NSPredicate(format: "talk.talkType = %@", filterName)
+        
+        let aa = pageView!.viewControllers![0] as! SchedulerTableViewController
+        
+        var predicateArray = [NSPredicate]()
+        predicateArray.append(predicate)
+        aa.searchPredicates = predicateArray
+        aa.fetchAll()
         
     }
 }

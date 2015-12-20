@@ -16,6 +16,7 @@
 		589FB6721C1DFD0C0055CD25 /* 02.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66D1C1DFD0C0055CD25 /* 02.json */; };
 		589FB6731C1DFD0C0055CD25 /* 03.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66E1C1DFD0C0055CD25 /* 03.json */; };
 		589FB6741C1DFD0C0055CD25 /* 04.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66F1C1DFD0C0055CD25 /* 04.json */; };
+		58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */; };
 		58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */; };
 		58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */; };
 		E10E7AC31C18BF7100F6220B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E7AC21C18BF7100F6220B /* AppDelegate.swift */; };
@@ -77,6 +78,7 @@
 		589FB66D1C1DFD0C0055CD25 /* 02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 02.json; path = mock/02.json; sourceTree = "<group>"; };
 		589FB66E1C1DFD0C0055CD25 /* 03.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 03.json; path = mock/03.json; sourceTree = "<group>"; };
 		589FB66F1C1DFD0C0055CD25 /* 04.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 04.json; path = mock/04.json; sourceTree = "<group>"; };
+		58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOn@2x.png"; path = "icon/StarOn@2x.png"; sourceTree = "<group>"; };
 		58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOff@2x.png"; path = "icon/StarOff@2x.png"; sourceTree = "<group>"; };
 		E10E7ABD1C18BF7100F6220B /* devoxxApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = devoxxApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +275,7 @@
 				E1FA9C3D1C1BFD010077C09A /* ScheduleViewCell.swift */,
 				E1FA9C341C1BFCC60077C09A /* ScheduleTableController.swift */,
 				E1FA9C351C1BFCC60077C09A /* ScheduleController.swift */,
+				58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */,
 				E18046021C1DD220001AAD85 /* TalkDetailsController.swift */,
 			);
 			name = schedule;
@@ -384,7 +387,7 @@
 			attributes = {
 				LastSwiftMigration = 0720;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = maximedavid;
 				TargetAttributes = {
 					E10E7ABC1C18BF7100F6220B = {
@@ -480,6 +483,7 @@
 				E18046031C1DD220001AAD85 /* TalkDetailsController.swift in Sources */,
 				E1FA9C371C1BFCC60077C09A /* ScheduleController.swift in Sources */,
 				E1FA9C2D1C1BFC690077C09A /* Swifty.swift in Sources */,
+				58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */,
 				E1FA9C3E1C1BFD010077C09A /* SpeakerController.swift in Sources */,
 				E1FA9C3F1C1BFD010077C09A /* ScheduleViewCell.swift in Sources */,
 				E10E7AF01C1957F300F6220B /* APIManager.swift in Sources */,
@@ -538,6 +542,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -607,6 +612,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = devoxxApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "maximedavid.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "devoxxApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -620,6 +626,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = devoxxApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "maximedavid.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "devoxxApp-Bridging-Header.h";
 			};
@@ -639,6 +646,7 @@
 				);
 				INFOPLIST_FILE = devoxxAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "maximedavid.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/devoxxApp.app/devoxxApp";
 			};
@@ -654,6 +662,7 @@
 				);
 				INFOPLIST_FILE = devoxxAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "maximedavid.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/devoxxApp.app/devoxxApp";
 			};

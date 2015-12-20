@@ -205,8 +205,6 @@ class APIManager {
         fetchRequest.includesSubentities = true
         fetchRequest.returnsObjectsAsFaults = false
         
-        var error: NSError?
-        
         let items = try! context.executeFetchRequest(fetchRequest)
         
         for item in items {

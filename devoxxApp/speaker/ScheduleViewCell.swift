@@ -201,14 +201,13 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
         
     }
     
-    func updateBackgroundColor() {
-        /* if(btnFavorite.selected) {
-        backgroundColor = ColorManager.favoriteBackgroundColor
+    func updateBackgroundColor(isFavorited : Bool) {
+        if(isFavorited) {
+            backgroundColor = ColorManager.favoriteBackgroundColor
         }
         else {
-        backgroundColor = UIColor.whiteColor()
-        }*/
-        
+            backgroundColor = UIColor.whiteColor()
+        }
     }
     
     func hideFavorite(animated animated : Bool) {

@@ -28,7 +28,7 @@ class SpeakerHelper: NSObject {
     
     class func feed(data: JSON) -> SpeakerHelper {
         
-        var uuid: String? = data["uuid"].string
+        let uuid: String? = data["uuid"].string
         let lastName: String? = data["lastName"].string
         let firstName: String? = data["firstName"].string
         let avatarUrl: String? = data["avatarUrl"].string
