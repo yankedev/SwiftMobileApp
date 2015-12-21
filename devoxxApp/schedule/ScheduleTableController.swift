@@ -20,13 +20,15 @@ public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
     func favorite(path : NSIndexPath) -> Bool
 }
 
-public class SchedulerTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate, DevoxxAppFavoriteDelegate {
+public class SchedulerTableViewController: UIViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate, DevoxxAppFavoriteDelegate, UITableViewDelegate, UITableViewDataSource {
     
     var delegate:DevoxxAppScheduleDelegate!
     
     var searchPredicates = [NSPredicate]()
   
     var navigationItemParam:UINavigationItem!
+    
+    var tableView = UITableView()
     
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
@@ -59,17 +61,44 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     
     override public func viewDidLoad() {
         super.viewDidLoad()
+        
+       
+        //tableView.frame = view.frame
+        
+      //  self.navigationController!.navigationBar.translucent = false
+        
+        
+        self.view.addSubview(tableView)
+    
+        
+        
+        
+        //let adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(okok.tabBar.frame), 0);
+        //self.tableView.contentInset = adjustForTabbarInsets;
+        //self.tableView.scrollIndicatorInsets = adjustForTabbarInsets;
+       
+        
+        //tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        //let verticalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]-\(self.tabBarController?.tabBar.frame.height)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
+
+        
+        //view.addConstraints(horizontalContraint)
+        //view.addConstraints(verticalContraint)
+        
         //self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
         self.tableView.separatorStyle = .None
         
-    
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
         
         let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: Selector("searchSchedule"))
         searchButton.tintColor = UIColor.whiteColor()
         
         
         
-
+        //view.addSubview(tableView)
                
 
         
@@ -82,6 +111,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     
     
     public func fetchAll() {
+        print("FETCH ALL")
         var finalPredicates = searchPredicates
         let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
         finalPredicates.append(predicateDay)
@@ -108,6 +138,12 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
 
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        print("View will appear")
+        
+        //self.tableView.frame = CGRectMake(0, 0, 100, 557)
+        
+        
+        
         APIManager.getMockedSlots(postActionParam: fetchAll, clear : false, index: self.view.tag)
         APIManager.getMockedTracks(postActionParam: fetchAll, clear: false)
     }
@@ -118,10 +154,10 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     }
     
     
-    override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         print("did I click?")
-        
+        print(tableView.frame)
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         if let scheduleCell = cell as? ScheduleViewCell {
             /*if(scheduleCell.scrollView.contentOffset.x == 0) {
@@ -144,7 +180,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
                     details.delegate = self
                     details.configure()
                     details.setColor(slot.talk.isFavorite.boolValue)
-                    self.delegate.getNavigationController()?.pushViewController(details, animated: true)
+                    //self.delegate.getNavigationController()?.pushViewController(details, animated: true)
                     
                     
                 }
@@ -161,7 +197,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         return UIColor.whiteColor()
     }
     
-    override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL_1") as? ScheduleViewCell
         
@@ -202,7 +238,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     
     
     
-    override public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if let sections = fetchedResultsController.sections {
             return sections.count
         }
@@ -210,7 +246,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         return 0
     }
     
-    public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = fetchedResultsController.sections {
             let currentSection = sections[section]
             return currentSection.numberOfObjects
@@ -219,7 +255,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         return 0
     }
     
-    public override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = fetchedResultsController.sections {
             let currentSection = sections[section]
             return currentSection.name
@@ -241,7 +277,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         return "icon_\(trackId)"
     }
     
-    public override func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         hideAllFavorite(except: nil, animated: true)
     }
     
@@ -263,12 +299,22 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
     public override func viewDidAppear(animated: Bool) {
         print("currentIndex : \(index)")
     }
-    public override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50.0
     }
     
-    
-    
+    /*
+    public override func viewDidLayoutSubviews() {
+    var frame = self.tableView.frame
+    frame.origin.x = 0;
+    frame.origin.y = 0;
+    // sometimes the tableView width is higher then its parent
+    if(frame.size.width > self.view.frame.size.width) {
+    frame.size.width = self.view.frame.size.width;
+    }
+    self.tableView.frame = frame;
+    }
+*/
    
     
     
@@ -284,6 +330,7 @@ public class SchedulerTableViewController: UITableViewController, NSFetchedResul
         }
         return false
     }
+    
     
        
 }

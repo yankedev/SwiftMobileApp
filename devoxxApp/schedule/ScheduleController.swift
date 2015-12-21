@@ -10,16 +10,19 @@ import Foundation
 import UIKit
 
 public class ScheduleController : UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, DevoxxAppScheduleDelegate, DevoxxAppFilter {
-
+    
     var seg : UISegmentedControl!
     var pageView : UIPageViewController?
     var viewControllers = [UIViewController]()
     var a:UIViewController!
     
-    var heightConstant:CGFloat!
-    var constW:[NSLayoutConstraint]!
+    //var heightConstant:CGFloat!
+    //var constW:[NSLayoutConstraint]!
+    //var constW2:[NSLayoutConstraint]!
     
-    var menuView = UIView(frame: CGRectMake(0,0,150,500))
+    //var constH:[NSLayoutConstraint]!
+    
+    
     var t = FilterTableViewController()
     
     func initPageViewController() {
@@ -31,17 +34,21 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         self.view.addSubview(pageView!.view)
         self.view.backgroundColor = ColorManager.bottomDotsPageController
         
-        pageView!.view.translatesAutoresizingMaskIntoConstraints = false
-        let views = ["pageView": pageView!.view]
+        //pageView!.view.translatesAutoresizingMaskIntoConstraints = false
+        let views = ["pageView": pageView!.view, "filterView" : t.tableView]
         
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|[pageView]|", options: .AlignAllCenterY, metrics: nil, views: views)
-        view.addConstraints(constH)
+        //constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[pageView]|", options: .AlignAllCenterY, metrics: nil, views: views)
+        //view.addConstraints(constH)
         
-        heightConstant = self.navigationController!.navigationBar.frame.size.height + self.navigationController!.navigationBar.frame.origin.y
         
-        constW = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(heightConstant)-[pageView]-\(self.tabBarController!.tabBar.frame.height)-|", options: .AlignAllTrailing, metrics: nil, views: views)
-        view.addConstraints(constW)
-
+        
+        //heightConstant = self.navigationController!.navigationBar.frame.size.height + self.navigationController!.navigationBar.frame.origin.y
+        
+        //constW = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(heightConstant)-[pageView]-\(self.tabBarController!.tabBar.frame.height)-|", options: .AlignAllTrailing, metrics: nil, views: views)
+        //constW2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(heightConstant)-[filterView]-\(self.tabBarController!.tabBar.frame.height)-|", options: .AlignAllTrailing, metrics: nil, views: views)
+        //view.addConstraints(constW)
+        //view.addConstraints(constW2)
+        
         
         
     }
@@ -50,7 +57,7 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
     
     func completionMethod(isFinished:Bool) {
         if(isFinished) {
-            menuView.removeFromSuperview()
+            //menuView.removeFromSuperview()
             let finalCenter = CGPointMake(t.tableView.center.x + t.tableView.frame.width, t.tableView.center.y)
             t.tableView.center = finalCenter
         }
@@ -58,28 +65,30 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
     
     func filterMe() {
         print("FILTERME")
-        
+        let views = ["pageView": pageView!.view, "filterView" : t.tableView]
         if view.tag == 0 {
             view.tag = 1
-            self.view.addSubview(menuView)
+            //view.removeConstraints(constH)
+            
+            
+            
+            
+            //constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[filterView(100)]-[pageView]|", options: .AlignAllCenterY, metrics: nil, views: views)
+            
+            UIView.animateWithDuration(0.5) {
+                self.view.layoutIfNeeded()
+            }
+            
+            
         }
         else {
             
             
-            
-            let beginCenter = t.tableView.center
-            let finalCenter = CGPointMake(beginCenter.x - t.tableView.frame.width, beginCenter.y)
-            
-            
-            
-            UIView.animateWithDuration(0.2, animations: {
-                self.t.tableView.center = finalCenter
-                }, completion: completionMethod)
-            
-           
-
-            
-            
+            /*
+            view.removeConstraints(constH)
+            constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[filterView(0)]-[pageView]|", options: .AlignAllCenterY, metrics: nil, views: views)
+            view.addConstraints(constH)
+            */
             
             
             view.tag = 0
@@ -91,7 +100,7 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
     }
     
     override public func viewDidLoad() {
-        seg = UISegmentedControl(frame: CGRectMake(0, 0, 200, 30))
+        /*(seg = UISegmentedControl(frame: CGRectMake(0, 0, 200, 30))
         seg.insertSegmentWithTitle("Schedule", atIndex: 0, animated: true)
         seg.insertSegmentWithTitle("My schedule", atIndex: 1, animated: true)
         seg.selectedSegmentIndex = 0
@@ -103,13 +112,40 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         
         
         seg.addTarget(self, action: Selector("changeSchedule:"), forControlEvents: .ValueChanged)
+        
+        
+        view.addSubview(t.tableView)
+        t.tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        */
         configure()
         
         
-        t.tableView.frame = menuView.frame
-        t.delegate = self
-        menuView.addSubview(t.view)
+        
+        //t.delegate = self
+        
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    public override func viewWillAppear(animated: Bool) {
+        
+        print(self.view.frame)
+        
+        
         view.tag = 0
+        
+        
+        
+        
+        
+        
+        
         
     }
     
@@ -118,24 +154,52 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         return a.view.tag
     }
     
-
+    
     public func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 5
     }
-   
+    
     public func configure() {
         a = UIViewController()
         let childViewController = SchedulerTableViewController()
+        
         childViewController.delegate = self
-        viewControllers = [childViewController]
+        
         print("set current in configure")
+        
+        let views = ["pageView": childViewController.tableView]
+        
+       
+        
+              a.view.tag = 0
+        
+    
+    
+        let nc = UINavigationController(rootViewController: childViewController)
+        viewControllers = [nc]
         initPageViewController()
-        a.view.tag = 0
-        //pageView!.addChildViewController(childViewController)
+        
+        pageView?.addChildViewController(nc)
+        
+      
+        childViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        print(childViewController.tableView)
+        print(childViewController.view)
+        
+        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|[pageView]|", options: .AlignAllCenterY, metrics: nil, views: views)
+        
+        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|[pageView]|", options: .AlignAllCenterX, metrics: nil, views: views)
+       
+        
+        childViewController.view.addConstraints(constH)
+        childViewController.view.addConstraints(constV)
+        
     }
     
     
-
+    
     public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         var index = viewController.view.tag as Int
         if(index == NSNotFound) {
@@ -158,12 +222,15 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         return viewControllerAtIndex(index)
     }
     
-    public func viewControllerAtIndex(index : NSInteger) -> SchedulerTableViewController {
-        let child = SchedulerTableViewController()
-        child.delegate = self
-        child.view.tag = index
-        print("set current in viewControllerAtIndex")
-        return child
+    public func viewControllerAtIndex(index : NSInteger) -> UINavigationController {
+        let childViewController = SchedulerTableViewController()
+        childViewController.delegate = self
+        childViewController.view.tag = index
+        
+        print("set current in viewControllerAtIndex \(index)")
+        let nc = UINavigationController(rootViewController: childViewController)
+        pageView?.addChildViewController(nc)
+        return nc
     }
     
     
@@ -176,25 +243,26 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         if(!completed) {
             return
         }
-        let aa = pageViewController.viewControllers![0] as! SchedulerTableViewController
-        print(aa.view.tag)
+        //let aa = pageViewController.viewControllers![0] as! SchedulerTableViewController
+        //print(aa.view.tag)
     }
     
     public func isMySheduleSelected() -> Bool {
-        return (seg.selectedSegmentIndex == 1)
+        return false
+        //return (seg.selectedSegmentIndex == 1)
     }
     
     public func getNavigationController() -> UINavigationController? {
         return navigationController
     }
-
+    
     public override func viewDidLayoutSubviews() {
-        let views = ["pageView": pageView!.view]
+     /*   let views = ["pageView": pageView!.view]
         heightConstant = self.navigationController!.navigationBar.frame.size.height + self.navigationController!.navigationBar.frame.origin.y
         view.removeConstraints(constW)
         constW = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(heightConstant)-[pageView]-\(self.tabBarController!.tabBar.frame.height)-|", options: .AlignAllTrailing, metrics: nil, views: views)
         view.addConstraints(constW)
-
+        */
         
     }
     
@@ -216,5 +284,8 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         aa.fetchAll()
         
     }
+    
+    public override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
 }
-

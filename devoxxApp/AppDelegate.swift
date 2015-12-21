@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         speakerController.tabBarItem = UITabBarItem(title: "Speakers", image: speakerTabImage, tag:1)
         mapController.tabBarItem = UITabBarItem(title: "Map", image: mapTabImage, tag:2)
         
-        let scheduleNavigationController = UINavigationController(rootViewController: scheduleController)
+        //let scheduleNavigationController = UINavigationController(rootViewController: scheduleController)
         let speakerNavigationController = UINavigationController(rootViewController: speakerController)
         let mapNavigationController = UINavigationController(rootViewController: mapController)
         
@@ -44,7 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.lightGrayColor()
         
         tabController = UITabBarController()
-        tabController!.viewControllers = [scheduleNavigationController, speakerNavigationController, mapNavigationController]
+        tabController!.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController]
+        
+        
+        //self.tabController!.tabBar.translucent = false
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = tabController

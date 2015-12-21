@@ -60,7 +60,7 @@ public class FilterTableViewController: UITableViewController, NSFetchedResultsC
     override public func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        fetchAll()
+        //fetchAll()
         
         let finalCenter = tableView.center
         let beginCenter = CGPointMake(finalCenter.x - tableView.frame.width, finalCenter.y)
