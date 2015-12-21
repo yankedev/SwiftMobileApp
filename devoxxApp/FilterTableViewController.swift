@@ -9,17 +9,35 @@
 import Foundation
 import CoreData
 import UIKit
+import QuartzCore
 
 
-public protocol DevoxxAppFilter : NSObjectProtocol {
-    func filter(filterName : String) -> Void
+protocol DevoxxAppFilter : NSObjectProtocol {
+    func filter(filterName : [Track]) -> Void
 }
 
-public class FilterTableViewController: UITableView, NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate {
-    
-    
 
+extension Array {
     
+    mutating func removeObject<U: AnyObject>(object: U) -> Element? {
+        if count > 0 {
+            for index in startIndex ..< endIndex {
+                if (self[index] as! U) === object { return self.removeAtIndex(index) }
+            }
+        }
+        return nil
+    }
+}
+
+
+public class FilterTableViewController: UIView, NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+    
+    
+    var tableView = UITableView()
+    
+    var selected = [Track]()
+    
+    var devoxxAppFilterDelegate:DevoxxAppFilter!
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
         
@@ -54,15 +72,23 @@ public class FilterTableViewController: UITableView, NSFetchedResultsControllerD
             print("unresolved error \(error), \(error!.userInfo)")
         }
         print(fetchedResultsController.fetchedObjects?.count)
-        reloadData()
+        tableView.reloadData()
     }
     
     
-    override init(frame: CGRect, style: UITableViewStyle) {
-        super.init(frame: frame, style: style)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         print("COUCOU")
-        self.dataSource = self
-        self.delegate = self
+        addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .None
+        tableView.backgroundColor = ColorManager.bottomDotsPageController
+        backgroundColor = ColorManager.bottomDotsPageController
+        
+        //tableView.layer.borderColor = ColorManager.topNavigationBarColor.CGColor
+        //tableView.layer.borderWidth = 3.0
+        
         fetchAll()
     }
 
@@ -71,8 +97,26 @@ public class FilterTableViewController: UITableView, NSFetchedResultsControllerD
     }
     
 
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Track {
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            if selected.contains(track) {
+                selected.removeObject(track)
+                cell?.backgroundColor = ColorManager.defaultColor
+            }
+            else {
+                selected.append(track)
+                cell?.backgroundColor = ColorManager.favoriteBackgroundColor
+            }
+        }
+        devoxxAppFilterDelegate.filter(selected)
+    }
+
     
-  
+   
+    
+
+
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL_1") as? ScheduleViewCell
@@ -80,11 +124,20 @@ public class FilterTableViewController: UITableView, NSFetchedResultsControllerD
         
         if cell == nil {
             cell = ScheduleViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
+            cell?.textLabel!.font = UIFont(name: "Roboto", size: 7)
+            cell?.accessoryView = UIImageView(frame: CGRectMake(0,0,15,15))
+            cell?.selectionStyle = .None
+            cell?.backgroundColor = UIColor.clearColor()
+            
         }
         
         if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Track {
             print(track.title)
             cell?.textLabel!.text = track.title
+            if let cellImg = cell?.accessoryView as? UIImageView {
+                cellImg.image = UIImage(named: getIconFromTrackId(track.id!))
+            }
+            
         }
         
         
@@ -92,7 +145,9 @@ public class FilterTableViewController: UITableView, NSFetchedResultsControllerD
         
     }
     
-    
+    public func getIconFromTrackId(trackId : String) -> String {
+        return "icon_\(trackId)"
+    }
     
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -115,12 +170,13 @@ public class FilterTableViewController: UITableView, NSFetchedResultsControllerD
     }
     
     
-    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 25
     }
+   
     
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "title"
+        return "Filter tracks"
     }
     
     

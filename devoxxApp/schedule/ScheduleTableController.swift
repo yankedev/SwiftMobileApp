@@ -30,7 +30,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     var tableView = UITableView()
     
-    var seg:UISegmentedControl!
+    var isFavorite = false
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
         
@@ -64,14 +64,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         super.viewDidLoad()
         
         
-        seg = UISegmentedControl(frame: CGRectMake(0, 0, 200, 30))
-        seg.insertSegmentWithTitle("Schedule", atIndex: 0, animated: true)
-        seg.insertSegmentWithTitle("My schedule", atIndex: 1, animated: true)
-        seg.selectedSegmentIndex = 0
-        seg.tintColor = UIColor.whiteColor()
-        seg.addTarget(self, action: Selector("fetchAll"), forControlEvents: .ValueChanged)
-        self.navigationItem.titleView = seg
-
+     
       
         
         
@@ -119,15 +112,20 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     public func fetchAll() {
         print("FETCH ALL")
-        var finalPredicates = searchPredicates
+        var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
-        finalPredicates.append(predicateDay)
-        if(seg.selectedSegmentIndex == 1) {
+        andPredicate.append(predicateDay)
+        if(isFavorite) {
             let predicateFavorite = NSPredicate(format: "talk.isFavorite = %d", 1)
-            finalPredicates.append(predicateFavorite)
+            andPredicate.append(predicateFavorite)
         }
-        
-        fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: finalPredicates)
+        var orPredicate = NSPredicate(value: true)
+        if(searchPredicates.count > 0) {
+            orPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: searchPredicates)
+        }
+        andPredicate.append(orPredicate)
+        print("predicate = \(andPredicate)")
+        fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
        
         var error: NSError? = nil
         do {

@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = tabController
         self.window!.makeKeyAndVisible()
         
-        (application as! QTouchposeApplication).alwaysShowTouches = true
+        //(application as! QTouchposeApplication).alwaysShowTouches = true
         
         return true
     }

@@ -16,10 +16,9 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     var pageViewControllers = [UIViewController]()
     
     //var heightConstant:CGFloat!
-    //var constW:[NSLayoutConstraint]!
-    //var constW2:[NSLayoutConstraint]!
-    
-    //var constH:[NSLayoutConstraint]!
+    var constV:[NSLayoutConstraint]!
+    var constV2:[NSLayoutConstraint]!
+    var constH:[NSLayoutConstraint]!
     
     
     var t = FilterTableViewController()
@@ -81,33 +80,69 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
             t.tableView.center = finalCenter
         }
     }
-    
+    */
     func filterMe() {
         print("FILTERME")
-        let views = ["pageView": pageView!.view, "filterView" : t.tableView]
+        
         if view.tag == 0 {
             view.tag = 1
             //view.removeConstraints(constH)
             
             
+            //view.addSubview(t)
+            print("T +")
+            print(t)
+            t.devoxxAppFilterDelegate = self
+            print("super")
+            print(pageViewControllers[0].view)
             
             
-            //constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[filterView(100)]-[pageView]|", options: .AlignAllCenterY, metrics: nil, views: views)
             
-            UIView.animateWithDuration(0.5) {
-                self.view.layoutIfNeeded()
+            
+            
+            
+            pageViewControllers[0].view.addSubview(t.tableView)
+            let schedule = pageViewControllers[0] as! SchedulerTableViewController
+            let views = ["pageView": schedule.tableView, "filterView" : t.tableView]
+            
+            t.tableView.translatesAutoresizingMaskIntoConstraints = false
+            t.translatesAutoresizingMaskIntoConstraints = false
+            schedule.tableView.translatesAutoresizingMaskIntoConstraints = false
+            
+            
+            if(constV != nil) {
+                pageViewControllers[0].view.removeConstraints(constV)
+                pageViewControllers[0].view.removeConstraints(constV2)
+                pageViewControllers[0].view.removeConstraints(constH)
             }
+            
+            
+            constV = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[pageView]-[filterView(150)]-0-|", options: [], metrics: nil, views: views)
+            constV2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[pageView]-|", options: .AlignAllCenterX, metrics: nil, views: views)
+            constH = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[filterView]-|", options: .AlignAllCenterX, metrics: nil, views: views)
+            
+            pageViewControllers[0].view.addConstraints(constV)
+            pageViewControllers[0].view.addConstraints(constV2)
+            pageViewControllers[0].view.addConstraints(constH)
             
             
         }
         else {
+            let schedule = pageViewControllers[0] as! SchedulerTableViewController
+            let views = ["pageView": schedule.tableView, "filterView" : t.tableView]
+            
+            pageViewControllers[0].view.removeConstraints(constV)
+            pageViewControllers[0].view.removeConstraints(constV2)
+            pageViewControllers[0].view.removeConstraints(constH)
             
             
-            /*
-            view.removeConstraints(constH)
-            constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[filterView(0)]-[pageView]|", options: .AlignAllCenterY, metrics: nil, views: views)
-            view.addConstraints(constH)
-            */
+            constV = NSLayoutConstraint.constraintsWithVisualFormat("H:|[filterView(0)]-[pageView]-|", options: [], metrics: nil, views: views)
+            constV2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[pageView]-|", options: .AlignAllCenterX, metrics: nil, views: views)
+            constH = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[filterView]-|", options: .AlignAllCenterX, metrics: nil, views: views)
+            
+            pageViewControllers[0].view.addConstraints(constV)
+            pageViewControllers[0].view.addConstraints(constV2)
+            pageViewControllers[0].view.addConstraints(constH)
             
             
             view.tag = 0
@@ -116,27 +151,28 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         
         
         
-    }*/
+    }
     
     override public func viewDidLoad() {
-        /*(seg = UISegmentedControl(frame: CGRectMake(0, 0, 200, 30))
+        seg = UISegmentedControl(frame: CGRectMake(0, 0, 200, 30))
         seg.insertSegmentWithTitle("Schedule", atIndex: 0, animated: true)
         seg.insertSegmentWithTitle("My schedule", atIndex: 1, animated: true)
         seg.selectedSegmentIndex = 0
         seg.tintColor = UIColor.whiteColor()
-        self.navigationItem.titleView = seg
+      
         
-        let filterRightButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: Selector("filterMe"))
-        navigationItem.rightBarButtonItem = filterRightButton
         
         
         seg.addTarget(self, action: Selector("changeSchedule:"), forControlEvents: .ValueChanged)
         
         
-        view.addSubview(t.tableView)
-        t.tableView.translatesAutoresizingMaskIntoConstraints = false
         
-        */
+        
+        
+        view.addSubview(t)
+        //t.tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
         configure()
         
         
@@ -160,7 +196,11 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         view.tag = 0
         
         
+        let filterRightButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: Selector("filterMe"))
         
+
+        self.topViewController?.navigationItem.rightBarButtonItem = filterRightButton
+        self.topViewController?.navigationItem.titleView = seg
         
         
         
@@ -195,6 +235,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     public func buildConc(index : Int) -> UIViewController {
         let childViewController = SchedulerTableViewController()
     
+        
         
         //let nc = UINavigationController(rootViewController: childViewController)
         childViewController.view.tag = index
@@ -323,21 +364,26 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     
     
     
-    public func filter(filterName : String) -> Void {
+    func filter(filterName : [Track]) -> Void {
         print("FILTERNAME RECEIVED")
         print(filterName)
-        
-        
-        
-        let predicate = NSPredicate(format: "talk.trackId = %@", filterName)
         
         let aa = pageView!.viewControllers![0] as! SchedulerTableViewController
         
         var predicateArray = [NSPredicate]()
-        predicateArray.append(predicate)
+        for item in filterName {
+            let predicate = NSPredicate(format: "talk.trackId = %@", item.id!)
+            predicateArray.append(predicate)
+        }
         aa.searchPredicates = predicateArray
         aa.fetchAll()
         
+    }
+    
+    func changeSchedule(sender : UISegmentedControl) {
+        let aa = pageView!.viewControllers![0] as! SchedulerTableViewController
+        aa.isFavorite = sender.selectedSegmentIndex == 1
+        aa.fetchAll()
     }
     
     public override func prefersStatusBarHidden() -> Bool {

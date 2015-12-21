@@ -57,4 +57,35 @@ class ColorManager {
         return defaultColor
     }
 
+    
+    class func getColorFromTrackTitle(trackTitle : String) -> UIColor {
+        if(trackTitle == "Ignite Sessions") {
+            return igniteColor
+        }
+        if(trackTitle == "Conference") {
+            return conferenceColor
+        }
+        if(trackTitle == "University") {
+            return universityColor
+        }
+        if(trackTitle == "Quickie") {
+            return quickieColor
+        }
+        if(trackTitle == "Keynote") {
+            return keynoteColor
+        }
+        if(trackTitle == "Hand's on Labs") {
+            return handsOnLabColor
+        }
+        if(trackTitle == "BOF (Bird of a Feather)") {
+            return birdOfAFatherColor
+        }
+        if(trackTitle == "Tools-in-Action") {
+            return toolsInActionColor
+        }
+        print(trackTitle)
+        return defaultColor
+    }
+
+    
 }
