@@ -15,10 +15,10 @@ public protocol DevoxxAppFilter : NSObjectProtocol {
     func filter(filterName : String) -> Void
 }
 
-public class FilterTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+public class FilterTableViewController: UITableView, NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
     
-    var delegate:DevoxxAppFilter!
+
     
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
@@ -54,44 +54,26 @@ public class FilterTableViewController: UITableViewController, NSFetchedResultsC
             print("unresolved error \(error), \(error!.userInfo)")
         }
         print(fetchedResultsController.fetchedObjects?.count)
-        self.tableView.reloadData()
+        reloadData()
     }
     
-    override public func viewWillAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        //fetchAll()
-        
-        let finalCenter = tableView.center
-        let beginCenter = CGPointMake(finalCenter.x - tableView.frame.width, finalCenter.y)
-        
-        tableView.center = beginCenter
-        
-       
-        UIView.animateWithDuration(0.2, animations: {
-            self.tableView.center = finalCenter
-        })
+    
+    override init(frame: CGRect, style: UITableViewStyle) {
+        super.init(frame: frame, style: style)
+        print("COUCOU")
+        self.dataSource = self
+        self.delegate = self
+        fetchAll()
     }
+
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+
     
   
-    
-    
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-        //self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
-        
-    view.backgroundColor = UIColor.redColor()
-    }
- 
-    
-    override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Track {
-            self.delegate?.filter(track.id!)
-        }
-    }
-    
-  
-    override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL_1") as? ScheduleViewCell
         
@@ -101,6 +83,7 @@ public class FilterTableViewController: UITableViewController, NSFetchedResultsC
         }
         
         if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Track {
+            print(track.title)
             cell?.textLabel!.text = track.title
         }
         
@@ -112,24 +95,31 @@ public class FilterTableViewController: UITableViewController, NSFetchedResultsC
     
     
     
-    override public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if let sections = fetchedResultsController.sections {
+            print("nomberOfSections\(sections.count)")
             return sections.count
         }
         
         return 0
     }
     
-    public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = fetchedResultsController.sections {
             let currentSection = sections[section]
+            print("numberOfRowsInSection\(sections[section].numberOfObjects)")
             return currentSection.numberOfObjects
         }
         
         return 0
     }
     
-    public override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    
+    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "title"
     }
     

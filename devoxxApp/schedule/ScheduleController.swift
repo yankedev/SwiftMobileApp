@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-public class ScheduleController : UIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, DevoxxAppScheduleDelegate, DevoxxAppFilter {
+public class ScheduleController : UINavigationController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, DevoxxAppScheduleDelegate, DevoxxAppFilter {
     
     var seg : UISegmentedControl!
     var pageView : UIPageViewController?
-    var viewControllers = [UIViewController]()
+    var pageViewControllers = [UIViewController]()
     
     //var heightConstant:CGFloat!
     //var constW:[NSLayoutConstraint]!
@@ -29,8 +29,28 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         //pageView!.view.frame = CGRectMake(0,(self.navigationController?.navigationBar.frame.size.height)!,380,575)
         pageView?.dataSource = self
         pageView?.delegate = self
-        pageView?.setViewControllers(viewControllers, direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
-        self.view.addSubview(pageView!.view)
+        pageView?.setViewControllers(pageViewControllers, direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+        
+        
+        //pageView?.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        self.navigationBar.translucent = false
+        
+        let views = ["pageView": pageView!.view]
+        
+        //let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[pageView]-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        //view.addConstraints(constH)
+        
+        //let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[pageView]-|", options: .AlignAllCenterY, metrics: nil, views: views)
+        //view.addConstraints(constV)
+
+        
+        
+        pushViewController(pageView!, animated: false)
+        
+        
+        //self.view.addSubview(pageView!.view)
         self.view.backgroundColor = ColorManager.bottomDotsPageController
         
         //pageView!.view.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +73,7 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
     }
     
     
-    
+    /*
     func completionMethod(isFinished:Bool) {
         if(isFinished) {
             //menuView.removeFromSuperview()
@@ -96,7 +116,7 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         
         
         
-    }
+    }*/
     
     override public func viewDidLoad() {
         /*(seg = UISegmentedControl(frame: CGRectMake(0, 0, 200, 30))
@@ -155,7 +175,7 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
             return 0
         }
         
-        if let pvc = viewControllers[0] as? UINavigationController {
+        if let pvc = pageViewControllers[0] as? UIViewController {
             return pvc.view.tag
         }
         return 0
@@ -172,29 +192,64 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         initPageViewController()
     }
     
-    public func buildConc(index : Int) -> UINavigationController {
+    public func buildConc(index : Int) -> UIViewController {
         let childViewController = SchedulerTableViewController()
     
-        let views = ["pageView": childViewController.tableView]
-        let nc = UINavigationController(rootViewController: childViewController)
-        nc.view.tag = index
-        viewControllers = [nc]
-        pageView?.addChildViewController(nc)
+        
+        //let nc = UINavigationController(rootViewController: childViewController)
+        childViewController.view.tag = index
+        childViewController.title = "Day \(index+1)"
+        pageViewControllers = [childViewController]
+        pageView?.addChildViewController(childViewController)
     
     
+        //pageView?.view.addSubview(childViewController.tableView)
+        /*let filterView = FilterTableViewController()
+        
         childViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
-    
+        filterView.translatesAutoresizingMaskIntoConstraints = false
+        
     
         print(childViewController.tableView)
         print(childViewController.view)
+      
+        
+        
+        
+        
+        
+        childViewController.view.addSubview(filterView)
+        
+        
+        
     
+        
+     
+        
+        
+        
+        */
+        
+        childViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let views = ["pageView": childViewController.tableView]
+        
         let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|[pageView]|", options: .AlignAllCenterY, metrics: nil, views: views)
         let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|[pageView]|", options: .AlignAllCenterX, metrics: nil, views: views)
+        
+        
+        
+
+        
+        
     
         childViewController.view.addConstraints(constH)
         childViewController.view.addConstraints(constV)
+        
+        
+  
     
-        return nc
+        return childViewController
     }
     
     
@@ -221,7 +276,7 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         return viewControllerAtIndex(index)
     }
     
-    public func viewControllerAtIndex(index : NSInteger) -> UINavigationController {
+    public func viewControllerAtIndex(index : NSInteger) -> UIViewController {
         /*let childViewController = SchedulerTableViewController()
         childViewController.title = "OK \(index)"
         childViewController.delegate = self
@@ -237,10 +292,7 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
     }
     
     
-    public func changeSchedule(seg : UISegmentedControl) {
-        let aa = pageView!.viewControllers![0] as! SchedulerTableViewController
-        aa.changeSchedule(isMySchedule : (seg.selectedSegmentIndex == 1))
-    }
+ 
     
     public func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if(!completed) {

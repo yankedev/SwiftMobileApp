@@ -33,12 +33,7 @@ public class TalkDetailsController : UIViewController {
         
         
         
-        
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[talkDescription]-20-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        self.view.addConstraint(NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: offset + 20))
-        
-        view.addConstraints(constH)
+     
 
         
         

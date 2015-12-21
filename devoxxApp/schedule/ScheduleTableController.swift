@@ -30,6 +30,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     var tableView = UITableView()
     
+    var seg:UISegmentedControl!
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
         
@@ -62,10 +63,16 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-       
-        //tableView.frame = view.frame
         
-      //  self.navigationController!.navigationBar.translucent = false
+        seg = UISegmentedControl(frame: CGRectMake(0, 0, 200, 30))
+        seg.insertSegmentWithTitle("Schedule", atIndex: 0, animated: true)
+        seg.insertSegmentWithTitle("My schedule", atIndex: 1, animated: true)
+        seg.selectedSegmentIndex = 0
+        seg.tintColor = UIColor.whiteColor()
+        seg.addTarget(self, action: Selector("fetchAll"), forControlEvents: .ValueChanged)
+        self.navigationItem.titleView = seg
+
+      
         
         
         self.view.addSubview(tableView)
@@ -113,12 +120,12 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     public func fetchAll() {
         print("FETCH ALL")
         var finalPredicates = searchPredicates
-        let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.navigationController!.view.tag))
+        let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
         finalPredicates.append(predicateDay)
-       // if(delegate.isMySheduleSelected()) {
-        //    let predicateFavorite = NSPredicate(format: "talk.isFavorite = %d", 1)
-        //    finalPredicates.append(predicateFavorite)
-        //}
+        if(seg.selectedSegmentIndex == 1) {
+            let predicateFavorite = NSPredicate(format: "talk.isFavorite = %d", 1)
+            finalPredicates.append(predicateFavorite)
+        }
         
         fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: finalPredicates)
        
@@ -144,7 +151,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         
         
         
-        APIManager.getMockedSlots(postActionParam: fetchAll, clear : false, index: self.navigationController!.view.tag)
+        APIManager.getMockedSlots(postActionParam: fetchAll, clear : false, index: self.view.tag)
         APIManager.getMockedTracks(postActionParam: fetchAll, clear: false)
     }
     
@@ -199,11 +206,11 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_1") as? ScheduleViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? ScheduleViewCell
         
             
         if cell == nil {
-            cell = ScheduleViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
+            cell = ScheduleViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
             cell?.selectionStyle = .None
             cell?.delegate = self
             cell!.configureCell()
@@ -267,8 +274,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
   
     
-    public func changeSchedule(isMySchedule isMySchedule : Bool) {
-        print("changeSchwedule = \(self.view.tag)")
+    public func changeSchedule(sender: UISegmentedControl) {
         self.hideAllFavorite(except:nil, animated: false)
         self.fetchAll()
     }
