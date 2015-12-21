@@ -14,7 +14,6 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
     var seg : UISegmentedControl!
     var pageView : UIPageViewController?
     var viewControllers = [UIViewController]()
-    var a:UIViewController!
     
     //var heightConstant:CGFloat!
     //var constW:[NSLayoutConstraint]!
@@ -35,7 +34,7 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
         self.view.backgroundColor = ColorManager.bottomDotsPageController
         
         //pageView!.view.translatesAutoresizingMaskIntoConstraints = false
-        let views = ["pageView": pageView!.view, "filterView" : t.tableView]
+        //let views = ["pageView": pageView!.view, "filterView" : t.tableView]
         
         //constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[pageView]|", options: .AlignAllCenterY, metrics: nil, views: views)
         //view.addConstraints(constH)
@@ -151,7 +150,16 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
     
     
     public func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return a.view.tag
+        
+        if pageViewController.viewControllers?.count == 0 {
+            return 0
+        }
+        
+        if let pvc = viewControllers[0] as? UINavigationController {
+            return pvc.view.tag
+        }
+        return 0
+        
     }
     
     
@@ -160,42 +168,33 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
     }
     
     public func configure() {
-        a = UIViewController()
-        let childViewController = SchedulerTableViewController()
-        
-        childViewController.delegate = self
-        
-        print("set current in configure")
-        
-        let views = ["pageView": childViewController.tableView]
-        
-       
-        
-              a.view.tag = 0
-        
-    
-    
-        let nc = UINavigationController(rootViewController: childViewController)
-        viewControllers = [nc]
+        buildConc(0)
         initPageViewController()
-        
+    }
+    
+    public func buildConc(index : Int) -> UINavigationController {
+        let childViewController = SchedulerTableViewController()
+    
+        let views = ["pageView": childViewController.tableView]
+        let nc = UINavigationController(rootViewController: childViewController)
+        nc.view.tag = index
+        viewControllers = [nc]
         pageView?.addChildViewController(nc)
-        
-      
+    
+    
         childViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        
+    
+    
         print(childViewController.tableView)
         print(childViewController.view)
-        
+    
         let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|[pageView]|", options: .AlignAllCenterY, metrics: nil, views: views)
-        
         let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|[pageView]|", options: .AlignAllCenterX, metrics: nil, views: views)
-       
-        
+    
         childViewController.view.addConstraints(constH)
         childViewController.view.addConstraints(constV)
-        
+    
+        return nc
     }
     
     
@@ -223,14 +222,18 @@ public class ScheduleController : UIViewController, UIPageViewControllerDataSour
     }
     
     public func viewControllerAtIndex(index : NSInteger) -> UINavigationController {
-        let childViewController = SchedulerTableViewController()
+        /*let childViewController = SchedulerTableViewController()
+        childViewController.title = "OK \(index)"
         childViewController.delegate = self
         childViewController.view.tag = index
         
         print("set current in viewControllerAtIndex \(index)")
         let nc = UINavigationController(rootViewController: childViewController)
         pageView?.addChildViewController(nc)
-        return nc
+        return nc*/
+        
+        return buildConc(index)
+        
     }
     
     

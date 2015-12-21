@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabController!.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController]
         
         
-        //self.tabController!.tabBar.translucent = false
+        self.tabController!.tabBar.translucent = false
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = tabController

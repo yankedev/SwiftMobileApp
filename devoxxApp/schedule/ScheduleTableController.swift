@@ -113,12 +113,12 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     public func fetchAll() {
         print("FETCH ALL")
         var finalPredicates = searchPredicates
-        let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
+        let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.navigationController!.view.tag))
         finalPredicates.append(predicateDay)
-        if(delegate.isMySheduleSelected()) {
-            let predicateFavorite = NSPredicate(format: "talk.isFavorite = %d", 1)
-            finalPredicates.append(predicateFavorite)
-        }
+       // if(delegate.isMySheduleSelected()) {
+        //    let predicateFavorite = NSPredicate(format: "talk.isFavorite = %d", 1)
+        //    finalPredicates.append(predicateFavorite)
+        //}
         
         fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: finalPredicates)
        
@@ -144,7 +144,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         
         
         
-        APIManager.getMockedSlots(postActionParam: fetchAll, clear : false, index: self.view.tag)
+        APIManager.getMockedSlots(postActionParam: fetchAll, clear : false, index: self.navigationController!.view.tag)
         APIManager.getMockedTracks(postActionParam: fetchAll, clear: false)
     }
     
@@ -180,7 +180,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
                     details.delegate = self
                     details.configure()
                     details.setColor(slot.talk.isFavorite.boolValue)
-                    //self.delegate.getNavigationController()?.pushViewController(details, animated: true)
+                    self.navigationController?.pushViewController(details, animated: true)
                     
                     
                 }
