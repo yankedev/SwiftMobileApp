@@ -82,7 +82,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     }
     */
     func filterMe() {
-        print("FILTERME")
+
         
         if view.tag == 0 {
             view.tag = 1
@@ -90,11 +90,9 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
             
             
             //view.addSubview(t)
-            print("T +")
-            print(t)
+           
             t.devoxxAppFilterDelegate = self
-            print("super")
-            print(pageViewControllers[0].view)
+            
             
             
             
@@ -190,8 +188,6 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     
     public override func viewWillAppear(animated: Bool) {
         
-        print(self.view.frame)
-        
         
         view.tag = 0
         
@@ -243,33 +239,6 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         pageViewControllers = [childViewController]
         pageView?.addChildViewController(childViewController)
     
-    
-        //pageView?.view.addSubview(childViewController.tableView)
-        /*let filterView = FilterTableViewController()
-        
-        childViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
-        filterView.translatesAutoresizingMaskIntoConstraints = false
-        
-    
-        print(childViewController.tableView)
-        print(childViewController.view)
-      
-        
-        
-        
-        
-        
-        childViewController.view.addSubview(filterView)
-        
-        
-        
-    
-        
-     
-        
-        
-        
-        */
         
         childViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -365,8 +334,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     
     
     func filter(filterName : [Attribute]) -> Void {
-        print("FILTERNAME RECEIVED")
-        print(filterName)
+      
         
         let aa = pageView!.viewControllers![0] as! SchedulerTableViewController
         

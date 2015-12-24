@@ -167,8 +167,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         print("did I click?")
-        print(tableView.frame)
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
+              let cell = tableView.cellForRowAtIndexPath(indexPath)
         if let scheduleCell = cell as? ScheduleViewCell {
             /*if(scheduleCell.scrollView.contentOffset.x == 0) {
                 saveAsFavorite(indexPath)

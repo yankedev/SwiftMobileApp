@@ -53,7 +53,6 @@ class ColorManager {
         if(talkType == "Tools-in-Action") {
             return toolsInActionColor
         }
-        print(talkType)
         return defaultColor
     }
 
@@ -83,7 +82,6 @@ class ColorManager {
         if(trackTitle == "Tools-in-Action") {
             return toolsInActionColor
         }
-        print(trackTitle)
         return defaultColor
     }
 

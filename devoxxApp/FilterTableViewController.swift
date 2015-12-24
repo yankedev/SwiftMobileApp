@@ -71,14 +71,12 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
             error = error1
             print("unresolved error \(error), \(error!.userInfo)")
         }
-        print(fetchedResultsController.fetchedObjects?.count)
         tableView.reloadData()
     }
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("COUCOU")
         addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
@@ -132,7 +130,6 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
         }
         
         if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Attribute {
-            print(track.label)
             cell?.textLabel!.text = track.label
             if let cellImg = cell?.accessoryView as? UIImageView {
                 cellImg.image = UIImage(named: getIconFromTrackId(track.id!))
@@ -152,7 +149,6 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if let sections = fetchedResultsController.sections {
-            print("nomberOfSections\(sections.count)")
             return sections.count
         }
         
@@ -162,7 +158,6 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = fetchedResultsController.sections {
             let currentSection = sections[section]
-            print("numberOfRowsInSection\(sections[section].numberOfObjects)")
             return currentSection.numberOfObjects
         }
         
@@ -178,7 +173,6 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = fetchedResultsController.sections {
             let currentSection = sections[section]
-            print("numberOfRowsInSection\(sections[section].numberOfObjects)")
             return currentSection.name
         }
         return ""

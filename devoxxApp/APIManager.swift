@@ -137,11 +137,8 @@ class APIManager {
     class func handleData(inputData : NSData, dataHelper: DataHelper.Type, postAction : (Void) -> Void) {
         
         let json = JSON(data: inputData)
-        print(json)
-        
 
         let arrayToParse = dataHelper.prepareArray(json)
-        print(arrayToParse)
         
         if let appArray = arrayToParse {
             
@@ -237,7 +234,6 @@ class APIManager {
         let fetchRequest = NSFetchRequest(entityName: name)
         fetchRequest.includesSubentities = true
         fetchRequest.returnsObjectsAsFaults = false
-        print("name = \(name)")
         return fetchRequest
     }
 
@@ -248,8 +244,6 @@ class APIManager {
     
     class func checkForEmptyness(context: NSManagedObjectContext, request : NSFetchRequest) -> Bool {
         let items = try! context.executeFetchRequest(request)
-        print("count = \(items.count)")
-        print("item0 \(items)" )
         return items.count == 0
     }
     
