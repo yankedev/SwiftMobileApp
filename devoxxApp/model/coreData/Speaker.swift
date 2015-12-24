@@ -9,11 +9,16 @@
 import Foundation
 import CoreData
 
-class Speaker: NSManagedObject {
+class Speaker: CellData {
 
     @NSManaged var uuid: String?
     @NSManaged var firstName: String?
     @NSManaged var lastName: String?
     @NSManaged var avatarUrl: String?
+    
+    override func getFirstInformation() -> String {
+        return "\(firstName!.capitalizedString) \(lastName!.capitalizedString)"
+
+    }
 
 }

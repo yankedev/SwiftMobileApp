@@ -20,6 +20,10 @@ class Talk: NSManagedObject {
     @NSManaged var trackId: String
     @NSManaged var isFavorite: NSNumber
     
+    func getIconFromTrackId() -> String {
+        return "icon_\(trackId)"
+    }
+    
     func getShortTalkTypeName() -> String {
         if(talkType == "Ignite Sessions") {
             return "Ignite"

@@ -23,6 +23,7 @@
 		58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */; };
 		58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */; };
 		58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */; };
+		E10CE19E1C2BB6BE002C9934 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE19D1C2BB6BE002C9934 /* CellData.swift */; };
 		E10E7AC31C18BF7100F6220B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E7AC21C18BF7100F6220B /* AppDelegate.swift */; };
 		E10E7AC61C18BF7100F6220B /* devoxxApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E10E7AC41C18BF7100F6220B /* devoxxApp.xcdatamodeld */; };
 		E10E7ACD1C18BF7100F6220B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACC1C18BF7100F6220B /* Images.xcassets */; };
@@ -89,6 +90,7 @@
 		58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOn@2x.png"; path = "icon/StarOn@2x.png"; sourceTree = "<group>"; };
 		58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOff@2x.png"; path = "icon/StarOff@2x.png"; sourceTree = "<group>"; };
+		E10CE19D1C2BB6BE002C9934 /* CellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellData.swift; path = model/coreData/CellData.swift; sourceTree = "<group>"; };
 		E10E7ABD1C18BF7100F6220B /* devoxxApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = devoxxApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10E7AC11C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10E7AC21C18BF7100F6220B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				E1FA9C421C1BFD400077C09A /* Slot.swift */,
 				E1FA9C431C1BFD400077C09A /* Talk.swift */,
 				58A0E8C21C2730CC000C49DD /* Track.swift */,
+				E10CE19D1C2BB6BE002C9934 /* CellData.swift */,
 			);
 			name = coreData;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				E1FA9C491C1BFD560077C09A /* SlotHelper.swift in Sources */,
 				5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */,
 				5872861B1C1F565C00FC098A /* SpeakerTableController.swift in Sources */,
+				E10CE19E1C2BB6BE002C9934 /* CellData.swift in Sources */,
 				E10E7AC61C18BF7100F6220B /* devoxxApp.xcdatamodeld in Sources */,
 				E1FA9C361C1BFCC60077C09A /* ScheduleTableController.swift in Sources */,
 				E1FA9C451C1BFD400077C09A /* Talk.swift in Sources */,

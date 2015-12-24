@@ -212,24 +212,20 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             cell?.selectionStyle = .None
             cell?.delegate = self
             cell!.configureCell()
-            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("clicked:"))
-
-            //cell!.scrollView.addGestureRecognizer(tapGestureRecognizer)
-            
-    
-            
-            
         }
         
         
-        if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
-            cell!.trackImg.image = UIImage(named: getIconFromTrackId(slot.talk.trackId))
-            cell!.talkType.text = slot.talk.getShortTalkTypeName()
-            cell!.talkTitle.text = "\(slot.talk.title)"
-            cell!.talkType.backgroundColor = ColorManager.getColorFromTalkType(slot.talk.talkType)
-            cell!.talkRoom.text = slot.roomName
-            //cell!.btnFavorite.selected = slot.talk.isFavorite.boolValue
-            cell!.updateBackgroundColor(slot.talk.isFavorite.boolValue)
+        if let cellData = fetchedResultsController.objectAtIndexPath(indexPath) as? CellData {
+            //cell!.trackImg.image = 
+            
+            cell!.trackImg.image = cellData.getPrimaryImage()
+            
+            cell!.talkTitle.text = cellData.getFirstInformation()
+            cell!.talkRoom.text = cellData.getSecondInformation()
+            cell!.talkType.text = cellData.getThirdInformation()
+            cell!.talkType.backgroundColor = cellData.getColor()
+
+            cell!.updateBackgroundColor(cellData.isFavorite())
             
         } else {
             // should be be here
@@ -277,9 +273,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         self.fetchAll()
     }
     
-    public func getIconFromTrackId(trackId : String) -> String {
-        return "icon_\(trackId)"
-    }
+    
     
     public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         hideAllFavorite(except: nil, animated: true)
@@ -307,30 +301,13 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         return 50.0
     }
     
-    /*
-    public override func viewDidLayoutSubviews() {
-    var frame = self.tableView.frame
-    frame.origin.x = 0;
-    frame.origin.y = 0;
-    // sometimes the tableView width is higher then its parent
-    if(frame.size.width > self.view.frame.size.width) {
-    frame.size.width = self.view.frame.size.width;
-    }
-    self.tableView.frame = frame;
-    }
-*/
-   
-    
-    
     public func favorite(indexPath : NSIndexPath) -> Bool {
-        if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
-            
-            slot.talk.isFavorite = NSNumber(bool: !slot.talk.isFavorite.boolValue)
-
+        if let cellData = fetchedResultsController.objectAtIndexPath(indexPath) as? CellData {
+            cellData.invertFavorite()
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let managedContext = appDelegate.managedObjectContext!
             APIManager.save(managedContext)
-            return slot.talk.isFavorite.boolValue
+            return cellData.isFavorite()
         }
         return false
     }

@@ -9,12 +9,42 @@
 import Foundation
 import CoreData
 
-class Slot: NSManagedObject {
+class Slot: CellData {
 
     @NSManaged var roomName: String
     @NSManaged var slotId: String
     @NSManaged var fromTime: String
     @NSManaged var day: String
     @NSManaged var talk: Talk
-
+    
+    
+    override func getPrimaryImage() -> UIImage? {
+        return UIImage(named: talk.getIconFromTrackId())
+    }
+    
+    override func getFirstInformation() -> String {
+        return talk.title
+    }
+    
+    override func getSecondInformation() -> String {
+        return roomName
+    }
+    
+    override func getThirdInformation() -> String {
+        return talk.getShortTalkTypeName()
+    }
+    
+    override func getColor() -> UIColor? {
+        return ColorManager.getColorFromTalkType(talk.talkType)
+    }
+    
+    override func isFavorite() -> Bool {
+        return talk.isFavorite.boolValue
+    }
+    
+    override func invertFavorite() {
+        talk.isFavorite = !talk.isFavorite.boolValue
+    }
+    
+    
 }

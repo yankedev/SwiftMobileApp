@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 import CoreData
 
-
+//TODO make CellData optional
 
 public class SpeakerTableController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    var speakerArray:[Speaker]!
+    var cellDataArray:[CellData]?
     
     func fetchSpeaker() {
 
@@ -30,7 +30,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         fetchRequest.sortDescriptors = [sort]
 
         
-        speakerArray = try! managedContext.executeFetchRequest(fetchRequest) as! [Speaker]
+        cellDataArray = try! managedContext.executeFetchRequest(fetchRequest) as! [CellData]
         
         //print(speakerArray)
     
@@ -91,9 +91,9 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         
         
-        let speaker = speakerArray[indexPath.row]
-        cell!.talkTitle.text = "\(speaker.firstName!.capitalizedString) \(speaker.lastName!.capitalizedString)"
-           //TODO is favorited cell!.updateBackgroundColor(speaker)
+        let cellData = cellDataArray![indexPath.row]
+        cell!.talkTitle.text = cellData.getFirstInformation()
+        //TODO is favorited cell!.updateBackgroundColor(speaker)
        
         
         
@@ -109,7 +109,10 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     }
     
     public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return speakerArray.count
+        if cellDataArray == nil {
+            return 0
+        }
+        return cellDataArray!.count
     }
     
     public override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
