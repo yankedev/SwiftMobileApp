@@ -39,7 +39,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         
         let fetchRequest = NSFetchRequest(entityName: "Slot")
         let sortTime = NSSortDescriptor(key: "fromTime", ascending: true)
-        let sortAlpha = NSSortDescriptor(key: "title", ascending: true)
+        let sortAlpha = NSSortDescriptor(key: "talk.title", ascending: true)
         
         //var lastDragged : ScheduleViewCell!
         
