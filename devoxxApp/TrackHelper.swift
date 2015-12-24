@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import CoreData
 
-class TrackHelper: NSObject {
+class TrackHelper: DataHelper {
     
     let title: String
     let id: String
@@ -24,13 +25,25 @@ class TrackHelper: NSObject {
         self.trackDescription = trackDescription ?? ""
     }
     
-    class func feed(data: JSON) -> TrackHelper {
+    override class func feed(data: JSON) -> TrackHelper? {
         
         let title: String? = data["title"].string
         let id: String? = data["id"].string
         let trackDescription: String? = data["trackDescription"].string
         
         return TrackHelper(title: title, id: id, trackDescription: trackDescription)
+    }
+    
+    override class func entityName() -> String {
+        return "Track"
+    }
+    
+    internal override class func correspondingType() -> NSManagedObject.Type? {
+        return Track.self
+    }
+    
+    override class func prepareArray(json : JSON) -> [JSON]? {
+        return json["tracks"].array
     }
     
 }

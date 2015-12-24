@@ -10,13 +10,13 @@
 		5872861B1C1F565C00FC098A /* SpeakerTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861A1C1F565C00FC098A /* SpeakerTableController.swift */; };
 		5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861C1C1F579900FC098A /* SpeakerHelper.swift */; };
 		587286201C1F589400FC098A /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861E1C1F589400FC098A /* Speaker.swift */; };
-		587286231C21E14A00FC098A /* speakers.json in Resources */ = {isa = PBXBuildFile; fileRef = 587286221C21E14A00FC098A /* speakers.json */; };
+		587286231C21E14A00FC098A /* Speaker.json in Resources */ = {isa = PBXBuildFile; fileRef = 587286221C21E14A00FC098A /* Speaker.json */; };
 		589FB6701C1DFD0C0055CD25 /* 00.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66B1C1DFD0C0055CD25 /* 00.json */; };
 		589FB6711C1DFD0C0055CD25 /* 01.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66C1C1DFD0C0055CD25 /* 01.json */; };
 		589FB6721C1DFD0C0055CD25 /* 02.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66D1C1DFD0C0055CD25 /* 02.json */; };
 		589FB6731C1DFD0C0055CD25 /* 03.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66E1C1DFD0C0055CD25 /* 03.json */; };
 		589FB6741C1DFD0C0055CD25 /* 04.json in Resources */ = {isa = PBXBuildFile; fileRef = 589FB66F1C1DFD0C0055CD25 /* 04.json */; };
-		58A0E8BE1C272F85000C49DD /* tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = 58A0E8BC1C272F85000C49DD /* tracks.json */; };
+		58A0E8BE1C272F85000C49DD /* Track.json in Resources */ = {isa = PBXBuildFile; fileRef = 58A0E8BC1C272F85000C49DD /* Track.json */; };
 		58A0E8BF1C272F85000C49DD /* talks.json in Resources */ = {isa = PBXBuildFile; fileRef = 58A0E8BD1C272F85000C49DD /* talks.json */; };
 		58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A0E8C01C272FF9000C49DD /* TrackHelper.swift */; };
 		58A0E8C41C2730CC000C49DD /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A0E8C21C2730CC000C49DD /* Track.swift */; };
@@ -24,6 +24,10 @@
 		58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */; };
 		58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */; };
 		E10CE19E1C2BB6BE002C9934 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE19D1C2BB6BE002C9934 /* CellData.swift */; };
+		E10CE1A11C2BBEC4002C9934 /* TalkType+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE19F1C2BBEC4002C9934 /* TalkType+CoreDataProperties.swift */; };
+		E10CE1A21C2BBEC4002C9934 /* TalkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1A01C2BBEC4002C9934 /* TalkType.swift */; };
+		E10CE1A41C2BC1F2002C9934 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1A31C2BC1F2002C9934 /* DataHelper.swift */; };
+		E10CE1A61C2BD0CB002C9934 /* Feedable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1A51C2BD0CB002C9934 /* Feedable.swift */; };
 		E10E7AC31C18BF7100F6220B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E7AC21C18BF7100F6220B /* AppDelegate.swift */; };
 		E10E7AC61C18BF7100F6220B /* devoxxApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E10E7AC41C18BF7100F6220B /* devoxxApp.xcdatamodeld */; };
 		E10E7ACD1C18BF7100F6220B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACC1C18BF7100F6220B /* Images.xcassets */; };
@@ -77,13 +81,13 @@
 		5872861A1C1F565C00FC098A /* SpeakerTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerTableController.swift; sourceTree = "<group>"; };
 		5872861C1C1F579900FC098A /* SpeakerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerHelper.swift; sourceTree = "<group>"; };
 		5872861E1C1F589400FC098A /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Speaker.swift; path = model/coreData/Speaker.swift; sourceTree = "<group>"; };
-		587286221C21E14A00FC098A /* speakers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = speakers.json; path = mock/speakers.json; sourceTree = "<group>"; };
+		587286221C21E14A00FC098A /* Speaker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Speaker.json; path = mock/Speaker.json; sourceTree = "<group>"; };
 		589FB66B1C1DFD0C0055CD25 /* 00.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 00.json; path = mock/00.json; sourceTree = "<group>"; };
 		589FB66C1C1DFD0C0055CD25 /* 01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 01.json; path = mock/01.json; sourceTree = "<group>"; };
 		589FB66D1C1DFD0C0055CD25 /* 02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 02.json; path = mock/02.json; sourceTree = "<group>"; };
 		589FB66E1C1DFD0C0055CD25 /* 03.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 03.json; path = mock/03.json; sourceTree = "<group>"; };
 		589FB66F1C1DFD0C0055CD25 /* 04.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 04.json; path = mock/04.json; sourceTree = "<group>"; };
-		58A0E8BC1C272F85000C49DD /* tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = tracks.json; path = mock/tracks.json; sourceTree = "<group>"; };
+		58A0E8BC1C272F85000C49DD /* Track.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Track.json; path = mock/Track.json; sourceTree = "<group>"; };
 		58A0E8BD1C272F85000C49DD /* talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = talks.json; path = mock/talks.json; sourceTree = "<group>"; };
 		58A0E8C01C272FF9000C49DD /* TrackHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackHelper.swift; sourceTree = "<group>"; };
 		58A0E8C21C2730CC000C49DD /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Track.swift; path = model/coreData/Track.swift; sourceTree = "<group>"; };
@@ -91,6 +95,10 @@
 		58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOn@2x.png"; path = "icon/StarOn@2x.png"; sourceTree = "<group>"; };
 		58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOff@2x.png"; path = "icon/StarOff@2x.png"; sourceTree = "<group>"; };
 		E10CE19D1C2BB6BE002C9934 /* CellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellData.swift; path = model/coreData/CellData.swift; sourceTree = "<group>"; };
+		E10CE19F1C2BBEC4002C9934 /* TalkType+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TalkType+CoreDataProperties.swift"; path = "model/coreData/TalkType+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E10CE1A01C2BBEC4002C9934 /* TalkType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TalkType.swift; path = model/coreData/TalkType.swift; sourceTree = "<group>"; };
+		E10CE1A31C2BC1F2002C9934 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataHelper.swift; path = model/helper/DataHelper.swift; sourceTree = "<group>"; };
+		E10CE1A51C2BD0CB002C9934 /* Feedable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feedable.swift; sourceTree = "<group>"; };
 		E10E7ABD1C18BF7100F6220B /* devoxxApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = devoxxApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10E7AC11C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10E7AC21C18BF7100F6220B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +201,8 @@
 				E10E7ACC1C18BF7100F6220B /* Images.xcassets */,
 				E10E7ACE1C18BF7100F6220B /* LaunchScreen.xib */,
 				E10E7AC41C18BF7100F6220B /* devoxxApp.xcdatamodeld */,
+				E10CE19F1C2BBEC4002C9934 /* TalkType+CoreDataProperties.swift */,
+				E10CE1A01C2BBEC4002C9934 /* TalkType.swift */,
 				E10E7AC01C18BF7100F6220B /* Supporting Files */,
 			);
 			path = devoxxApp;
@@ -325,6 +335,7 @@
 				E1FA9C431C1BFD400077C09A /* Talk.swift */,
 				58A0E8C21C2730CC000C49DD /* Track.swift */,
 				E10CE19D1C2BB6BE002C9934 /* CellData.swift */,
+				E10CE1A51C2BD0CB002C9934 /* Feedable.swift */,
 			);
 			name = coreData;
 			sourceTree = "<group>";
@@ -336,6 +347,7 @@
 				E1FA9C481C1BFD560077C09A /* TalkHelper.swift */,
 				5872861C1C1F579900FC098A /* SpeakerHelper.swift */,
 				58A0E8C01C272FF9000C49DD /* TrackHelper.swift */,
+				E10CE1A31C2BC1F2002C9934 /* DataHelper.swift */,
 			);
 			name = helper;
 			sourceTree = "<group>";
@@ -343,9 +355,9 @@
 		E1FA9C4B1C1BFD6A0077C09A /* mock */ = {
 			isa = PBXGroup;
 			children = (
-				58A0E8BC1C272F85000C49DD /* tracks.json */,
+				58A0E8BC1C272F85000C49DD /* Track.json */,
 				58A0E8BD1C272F85000C49DD /* talks.json */,
-				587286221C21E14A00FC098A /* speakers.json */,
+				587286221C21E14A00FC098A /* Speaker.json */,
 				589FB66B1C1DFD0C0055CD25 /* 00.json */,
 				589FB66C1C1DFD0C0055CD25 /* 01.json */,
 				589FB66D1C1DFD0C0055CD25 /* 02.json */,
@@ -443,7 +455,7 @@
 				589FB6721C1DFD0C0055CD25 /* 02.json in Resources */,
 				E1FA9C211C1BFC150077C09A /* icon_web.png in Resources */,
 				58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */,
-				58A0E8BE1C272F85000C49DD /* tracks.json in Resources */,
+				58A0E8BE1C272F85000C49DD /* Track.json in Resources */,
 				E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */,
 				E1FA9C191C1BFC150077C09A /* icon_cloud.png in Resources */,
 				589FB6701C1DFD0C0055CD25 /* 00.json in Resources */,
@@ -455,7 +467,7 @@
 				589FB6741C1DFD0C0055CD25 /* 04.json in Resources */,
 				E1FA9C1B1C1BFC150077C09A /* icon_java.png in Resources */,
 				E1FA9C261C1BFC1E0077C09A /* tabIconSchedule@2x.png in Resources */,
-				587286231C21E14A00FC098A /* speakers.json in Resources */,
+				587286231C21E14A00FC098A /* Speaker.json in Resources */,
 				589FB6731C1DFD0C0055CD25 /* 03.json in Resources */,
 				E1FA9C201C1BFC150077C09A /* icon_startup.png in Resources */,
 				E1FA9C1A1C1BFC150077C09A /* icon_future.png in Resources */,
@@ -484,6 +496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E10CE1A41C2BC1F2002C9934 /* DataHelper.swift in Sources */,
 				E1FA9C3B1C1BFCF80077C09A /* MapController.swift in Sources */,
 				58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */,
 				E18046071C1DD77B001AAD85 /* QTouchposeApplication.m in Sources */,
@@ -500,8 +513,11 @@
 				E1FA9C361C1BFCC60077C09A /* ScheduleTableController.swift in Sources */,
 				E1FA9C451C1BFD400077C09A /* Talk.swift in Sources */,
 				E18046031C1DD220001AAD85 /* TalkDetailsController.swift in Sources */,
+				E10CE1A61C2BD0CB002C9934 /* Feedable.swift in Sources */,
 				E1FA9C371C1BFCC60077C09A /* ScheduleController.swift in Sources */,
+				E10CE1A11C2BBEC4002C9934 /* TalkType+CoreDataProperties.swift in Sources */,
 				E1FA9C2D1C1BFC690077C09A /* Swifty.swift in Sources */,
+				E10CE1A21C2BBEC4002C9934 /* TalkType.swift in Sources */,
 				58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */,
 				58A0E8C41C2730CC000C49DD /* Track.swift in Sources */,
 				E1FA9C3E1C1BFD010077C09A /* SpeakerController.swift in Sources */,

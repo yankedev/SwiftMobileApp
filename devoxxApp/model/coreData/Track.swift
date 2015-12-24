@@ -12,10 +12,19 @@
 import Foundation
 import CoreData
 
-class Track: NSManagedObject {
+class Track: Feedable {
 
     @NSManaged var id: String?
     @NSManaged var title: String?
     @NSManaged var trackDescription: String?
-
+    
+    
+    override func feed(helper: DataHelper) -> Void {
+        if let castHelper = helper as? TrackHelper  {
+            id = castHelper.id
+            title = castHelper.title
+            trackDescription = castHelper.trackDescription
+        }
+    }
+    
 }

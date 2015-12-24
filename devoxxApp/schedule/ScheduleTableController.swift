@@ -150,7 +150,10 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         
         
         APIManager.getMockedSlots(postActionParam: fetchAll, clear : false, index: self.view.tag)
-        APIManager.getMockedTracks(postActionParam: fetchAll, clear: false)
+        
+        APIManager.getMockedObjets(postActionParam: fetchAll, clear: false, dataHelper: TrackHelper.self)
+        
+        
     }
     
     override public func didReceiveMemoryWarning() {

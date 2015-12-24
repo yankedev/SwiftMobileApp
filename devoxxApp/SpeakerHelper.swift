@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import CoreData
 
-class SpeakerHelper: NSObject {
+class SpeakerHelper: DataHelper {
     
     let uuid: String
     let lastName: String
@@ -26,7 +27,7 @@ class SpeakerHelper: NSObject {
         self.avatarUrl = avatarUrl ?? ""
     }
     
-    class func feed(data: JSON) -> SpeakerHelper {
+    override class func feed(data: JSON) -> SpeakerHelper? {
         
         let uuid: String? = data["uuid"].string
         let lastName: String? = data["lastName"].string
@@ -34,6 +35,18 @@ class SpeakerHelper: NSObject {
         let avatarUrl: String? = data["avatarUrl"].string
         
         return SpeakerHelper(uuid: uuid, lastName: lastName, firstName: firstName, avatarUrl: avatarUrl)
+    }
+    
+    override class func entityName() -> String {
+        return "Speaker"
+    }
+    
+    internal override class func correspondingType() -> NSManagedObject.Type? {
+        return Speaker.self
+    }
+    
+    override class func prepareArray(json : JSON) -> [JSON]? {
+        return json.array
     }
     
 }

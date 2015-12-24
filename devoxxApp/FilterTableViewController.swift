@@ -171,7 +171,7 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     
     
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 25
+        return 44
     }
    
     

@@ -50,9 +50,9 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         
         
-        APIManager.getMockedSpeakers(postActionParam: fetchSpeaker, clear: true)
+        //APIManager.getMockedSpeakers(postActionParam: fetchSpeaker, clear: true)
         
-        
+        APIManager.getMockedObjets(postActionParam: fetchSpeaker, clear: true, dataHelper: SpeakerHelper.self)
         
         
         

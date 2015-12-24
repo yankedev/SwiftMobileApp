@@ -16,8 +16,12 @@ class APIManager {
     
     
     
-    class func getMockedSlots(postActionParam postAction :(Void) -> (Void), clear : Bool, index : NSInteger) {
     
+    
+    
+    
+    class func getMockedSlots(postActionParam postAction :(Void) -> (Void), clear : Bool, index : NSInteger) {
+    /*
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         
@@ -41,28 +45,28 @@ class APIManager {
         
         let data = NSData(contentsOfFile: filePath!)!
         self.handleSlots(data, postAction: postAction);
-
+*/
     }
 
     
+    class func getMockedObjets(postActionParam postAction :(Void) -> (Void), clear : Bool, dataHelper: DataHelper.Type) {
     
-    class func getMockedSpeakers(postActionParam postAction :(Void) -> (Void), clear : Bool) {
-        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
+        let context = appDelegate.managedObjectContext!
         
+        //TODO by entity
         if(clear) {
-            self.deleteAll(managedContext)
+            self.deleteAll(context)
         }
         
-        if(isSpeakerAlreadyLoaded(managedContext)) {
+        if(!isEntityEmpty(context, name: dataHelper.entityName())) {
             postAction()
-            return
+            //return
         }
-        
         
         let testBundle = NSBundle.mainBundle()
-        let filePath = testBundle.pathForResource("speakers", ofType: "json")
+        let filePath = testBundle.pathForResource(dataHelper.entityName(), ofType: "json")
+        
         let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
         
         if(checkString == nil) {
@@ -70,42 +74,10 @@ class APIManager {
         }
         
         let data = NSData(contentsOfFile: filePath!)!
-        self.handleSpeakers(data, postAction: postAction);
         
+        self.handleData(data, dataHelper: dataHelper, postAction: postAction)
     }
 
-    
-    class func getMockedTracks(postActionParam postAction :(Void) -> (Void), clear : Bool) {
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        
-        if(clear) {
-            self.deleteAll(managedContext)
-        }
-        
-        if(isTrackAlreadyLoaded(managedContext)) {
-            postAction()
-            return
-        }
-        
-        
-        let testBundle = NSBundle.mainBundle()
-        let filePath = testBundle.pathForResource("tracks", ofType: "json")
-        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
-        
-        if(checkString == nil) {
-            print("should not be empty", terminator: "")
-        }
-        
-        let data = NSData(contentsOfFile: filePath!)!
-        self.handleTracks(data, postAction: postAction);
-        
-    }
-
-    
-    
-    
     class func getSlots(postActionParam postAction: (Void) -> (Void)) {
         loadDataFromURL(NSURL(string: topAppURL)!, completion:{(data, error) -> Void in
             if let slotData = data {
@@ -161,81 +133,41 @@ class APIManager {
         }
 
     }
-
     
-    class func handleSpeakers(speakers : NSData, postAction : (Void) -> Void) {
+    class func handleData(inputData : NSData, dataHelper: DataHelper.Type, postAction : (Void) -> Void) {
         
-        let json = JSON(data: speakers)
+        let json = JSON(data: inputData)
+        print(json)
         
-        if let appArray = json.array {
+
+        let arrayToParse = dataHelper.prepareArray(json)
+        print(arrayToParse)
+        
+        if let appArray = arrayToParse {
+            
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let managedContext = appDelegate.managedObjectContext!
             
             for appDict in appArray {
                 
-                let speaker = SpeakerHelper.feed(appDict)
+                let fedHelper = dataHelper.feed(appDict)
+                let entityName =  dataHelper.entityName()
                 
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                let managedContext = appDelegate.managedObjectContext!
-                
-                
-                let speakerEntityName: String = "Speaker"
-                let speakerEntity = NSEntityDescription.entityForName(speakerEntityName, inManagedObjectContext: managedContext)
-                
-                let coreDataSpeakerObject = devoxxApp.Speaker(entity: speakerEntity!, insertIntoManagedObjectContext: managedContext)
-                
-        
-                coreDataSpeakerObject.uuid = speaker.uuid
-                coreDataSpeakerObject.lastName = speaker.lastName
-                coreDataSpeakerObject.firstName = speaker.firstName
-                coreDataSpeakerObject.avatarUrl = speaker.avatarUrl
+                let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedContext)
 
-                self.save(managedContext)
+                let coreDataObject = CellData(entity: entity!, insertIntoManagedObjectContext: managedContext)
+                
+                coreDataObject.feed(fedHelper!)
             }
+            
+            self.save(managedContext)
             
             dispatch_async(dispatch_get_main_queue()) {
                 postAction()
             }
-            
         }
         
     }
-
-    
-    class func handleTracks(tracks : NSData, postAction : (Void) -> Void) {
-        
-        let json = JSON(data: tracks)
-        
-        if let appArray = json["tracks"].array {
-            
-            for appDict in appArray {
-                
-                let track = TrackHelper.feed(appDict)
-                
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                let managedContext = appDelegate.managedObjectContext!
-                
-                
-                let trackEntityName: String = "Track"
-                let trackEntity = NSEntityDescription.entityForName(trackEntityName, inManagedObjectContext: managedContext)
-                
-                let coreDataTrackObject = devoxxApp.Track(entity: trackEntity!, insertIntoManagedObjectContext: managedContext)
-                
-                
-                coreDataTrackObject.id = track.id
-                coreDataTrackObject.title = track.title
-                coreDataTrackObject.trackDescription = track.trackDescription
-                
-                self.save(managedContext)
-            }
-            
-            dispatch_async(dispatch_get_main_queue()) {
-                postAction()
-            }
-            
-        }
-        
-    }
-
-    
     
     class func loadDataFromURL(url: NSURL, completion:(data: NSData?, error: NSError?) -> Void) {
         let session = NSURLSession.sharedSession()
@@ -293,41 +225,32 @@ class APIManager {
         return "friday"
     }
     
-    class func isAlreadyLoaded(context : NSManagedObjectContext, index : NSInteger) -> Bool {
-        
-        let fetchRequest = NSFetchRequest(entityName: "Slot")
-        fetchRequest.includesSubentities = true
-        fetchRequest.returnsObjectsAsFaults = false
+    class func isAlreadyLoaded(context : NSManagedObjectContext, name: String, index : NSInteger) -> Bool {
+        let fetchRequest = buildFetchRequest(context, name: name)
         let predicate = NSPredicate(format: "day = %@", getDayFromIndex(index))
         fetchRequest.predicate = predicate
-        
-        let items = try! context.executeFetchRequest(fetchRequest)
-        return items.count > 0
+        return checkForEmptyness(context, request: fetchRequest)
     }
 
     
-    class func isTrackAlreadyLoaded(context : NSManagedObjectContext) -> Bool {
-        
-        let fetchRequest = NSFetchRequest(entityName: "Track")
+    class func buildFetchRequest(context: NSManagedObjectContext, name: String) -> NSFetchRequest {
+        let fetchRequest = NSFetchRequest(entityName: name)
         fetchRequest.includesSubentities = true
         fetchRequest.returnsObjectsAsFaults = false
-        
-        let items = try! context.executeFetchRequest(fetchRequest)
-        return items.count > 0
+        print("name = \(name)")
+        return fetchRequest
     }
 
-    
-    class func isSpeakerAlreadyLoaded(context : NSManagedObjectContext) -> Bool {
-        
-        let fetchRequest = NSFetchRequest(entityName: "Speaker")
-        fetchRequest.includesSubentities = true
-        fetchRequest.returnsObjectsAsFaults = false
 
-        let items = try! context.executeFetchRequest(fetchRequest)
-        return items.count > 0
+    class func isEntityEmpty(context: NSManagedObjectContext, name: String) -> Bool {
+        return checkForEmptyness(context, request: buildFetchRequest(context, name: name))
     }
     
-    
+    class func checkForEmptyness(context: NSManagedObjectContext, request : NSFetchRequest) -> Bool {
+        let items = try! context.executeFetchRequest(request)
+        print("count = \(items.count)")
+        return items.count == 0
+    }
     
 }
 

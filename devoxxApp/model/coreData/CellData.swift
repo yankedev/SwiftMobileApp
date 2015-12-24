@@ -10,8 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class CellData: NSManagedObject {
-    
+class CellData: Feedable {
     
     func getFirstInformation() -> String {
         return "Default first information"

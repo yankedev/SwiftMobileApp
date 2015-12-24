@@ -18,7 +18,15 @@ class Speaker: CellData {
     
     override func getFirstInformation() -> String {
         return "\(firstName!.capitalizedString) \(lastName!.capitalizedString)"
-
+    }
+    
+    override func feed(helper: DataHelper) -> Void {
+        if let castHelper = helper as? SpeakerHelper  {
+            uuid = castHelper.uuid
+            firstName = castHelper.firstName
+            lastName = castHelper.lastName
+            avatarUrl = castHelper.avatarUrl
+        }
     }
 
 }
