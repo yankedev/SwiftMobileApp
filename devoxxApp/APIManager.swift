@@ -65,7 +65,7 @@ class APIManager {
         }
         
         let testBundle = NSBundle.mainBundle()
-        let filePath = testBundle.pathForResource(dataHelper.entityName(), ofType: "json")
+        let filePath = testBundle.pathForResource(dataHelper.fileName(), ofType: "json")
         
         let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
         
@@ -249,6 +249,7 @@ class APIManager {
     class func checkForEmptyness(context: NSManagedObjectContext, request : NSFetchRequest) -> Bool {
         let items = try! context.executeFetchRequest(request)
         print("count = \(items.count)")
+        print("item0 \(items)" )
         return items.count == 0
     }
     

@@ -9,32 +9,26 @@
 import Foundation
 import CoreData
 
-class TalkTypeHelper: DataHelper {
+class TalkTypeHelper: AttributeHelper {
     
-    let id: String
-    let label: String
-    let talkTypeDescription: String
-    
-    override var description: String {
-        return "label: \(label)\n id: \(id)\n talkTypeDescription: \(talkTypeDescription)\n"
-    }
     
     init(label: String?, id: String?, talkTypeDescription: String?) {
-        self.label = label ?? ""
-        self.id = id ?? ""
-        self.talkTypeDescription = talkTypeDescription ?? ""
+        super.init(id: id, label: label, attributeDescription: talkTypeDescription, type: "TalkType")
     }
     
     override class func feed(data: JSON) -> TalkTypeHelper? {
-        
-        let id: String? = data["id"].string
-        let label: String? = data["label"].string
-        let talkTypeDescription: String? = data["talkTypeDescription"].string
+        let id = data["id"].string
+        let label = data["label"].string
+        let talkTypeDescription = data["talkTypeDescription"].string
         
         return TalkTypeHelper(label: label, id: id, talkTypeDescription: talkTypeDescription)
     }
     
     override class func entityName() -> String {
+        return "Attribute"
+    }
+    
+    override class func fileName() -> String {
         return "TalkType"
     }
     

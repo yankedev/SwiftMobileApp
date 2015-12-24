@@ -153,6 +153,8 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         
         APIManager.getMockedObjets(postActionParam: fetchAll, clear: false, dataHelper: TrackHelper.self)
         
+        APIManager.getMockedObjets(postActionParam: fetchAll, clear: false, dataHelper: TalkTypeHelper.self)
+        
         
     }
     

@@ -364,7 +364,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     
     
     
-    func filter(filterName : [Track]) -> Void {
+    func filter(filterName : [Attribute]) -> Void {
         print("FILTERNAME RECEIVED")
         print(filterName)
         

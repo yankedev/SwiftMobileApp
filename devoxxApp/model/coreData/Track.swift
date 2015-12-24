@@ -11,7 +11,7 @@
 
 import Foundation
 import CoreData
-
+/*
 class Track: Feedable {
 
     @NSManaged var id: String?
@@ -28,3 +28,4 @@ class Track: Feedable {
     }
     
 }
+*/

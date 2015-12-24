@@ -9,20 +9,11 @@
 import Foundation
 import CoreData
 
-class TrackHelper: DataHelper {
-    
-    let title: String
-    let id: String
-    let trackDescription: String
-    
-    override var description: String {
-        return "title: \(title)\n id: \(id)\n trackDescription: \(trackDescription)\n"
-    }
+class TrackHelper: AttributeHelper {
+  
     
     init(title: String?, id: String?, trackDescription: String?) {
-        self.title = title ?? ""
-        self.id = id ?? ""
-        self.trackDescription = trackDescription ?? ""
+        super.init(id: id, label: title, attributeDescription: trackDescription, type: "Track")
     }
     
     override class func feed(data: JSON) -> TrackHelper? {
@@ -33,8 +24,12 @@ class TrackHelper: DataHelper {
         
         return TrackHelper(title: title, id: id, trackDescription: trackDescription)
     }
-    
+
     override class func entityName() -> String {
+        return "Attribute"
+    }
+    
+    override class func fileName() -> String {
         return "Track"
     }
     

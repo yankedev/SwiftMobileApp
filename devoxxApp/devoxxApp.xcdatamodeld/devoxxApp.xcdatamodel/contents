@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1509" minimumToolsVersion="Automatic">
+    <entity name="Attribute" representedClassName=".Attribute" syncable="YES">
+        <attribute name="attributeDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Slot" representedClassName="devoxxApp.Slot" syncable="YES">
         <attribute name="day" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fromTime" optional="YES" attributeType="String" syncable="YES"/>
@@ -39,5 +45,6 @@
         <element name="Talk" positionX="-54" positionY="-9" width="128" height="165"/>
         <element name="Track" positionX="-54" positionY="45" width="128" height="90"/>
         <element name="TalkType" positionX="-54" positionY="45" width="128" height="90"/>
+        <element name="Attribute" positionX="-45" positionY="54" width="128" height="105"/>
     </elements>
 </model>

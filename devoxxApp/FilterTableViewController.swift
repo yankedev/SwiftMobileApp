@@ -13,7 +13,7 @@ import QuartzCore
 
 
 protocol DevoxxAppFilter : NSObjectProtocol {
-    func filter(filterName : [Track]) -> Void
+    func filter(filterName : [Attribute]) -> Void
 }
 
 
@@ -35,7 +35,7 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     
     var tableView = UITableView()
     
-    var selected = [Track]()
+    var selected = [Attribute]()
     
     var devoxxAppFilterDelegate:DevoxxAppFilter!
     
@@ -44,8 +44,8 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         
-        let fetchRequest = NSFetchRequest(entityName: "Track")
-        let sort = NSSortDescriptor(key: "title", ascending: true)
+        let fetchRequest = NSFetchRequest(entityName: "Attribute")
+        let sort = NSSortDescriptor(key: "label", ascending: true)
        
         fetchRequest.fetchBatchSize = 20
         fetchRequest.sortDescriptors = [sort]
@@ -53,7 +53,7 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
         let frc = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: managedContext,
-            sectionNameKeyPath: nil,
+            sectionNameKeyPath: "type",
             cacheName: nil)
         
         frc.delegate = self
@@ -98,7 +98,7 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     
 
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Track {
+        if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Attribute {
             let cell = tableView.cellForRowAtIndexPath(indexPath)
             if selected.contains(track) {
                 selected.removeObject(track)
@@ -131,9 +131,9 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
             
         }
         
-        if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Track {
-            print(track.title)
-            cell?.textLabel!.text = track.title
+        if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Attribute {
+            print(track.label)
+            cell?.textLabel!.text = track.label
             if let cellImg = cell?.accessoryView as? UIImageView {
                 cellImg.image = UIImage(named: getIconFromTrackId(track.id!))
             }
@@ -176,7 +176,12 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
    
     
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Filter tracks"
+        if let sections = fetchedResultsController.sections {
+            let currentSection = sections[section]
+            print("numberOfRowsInSection\(sections[section].numberOfObjects)")
+            return currentSection.name
+        }
+        return ""
     }
     
     

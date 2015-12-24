@@ -20,6 +20,10 @@ public class DataHelper: NSObject {
         return ""
     }
     
+    public class func fileName() -> String {
+        return entityName()
+    }
+    
     public class func prepareArray(json : JSON) -> [JSON]? {
         return nil
     }
