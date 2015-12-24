@@ -38,11 +38,12 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         let managedContext = appDelegate.managedObjectContext!
         
         let fetchRequest = NSFetchRequest(entityName: "Slot")
-        let sort = NSSortDescriptor(key: "fromTime", ascending: true)
+        let sortTime = NSSortDescriptor(key: "fromTime", ascending: true)
+        let sortAlpha = NSSortDescriptor(key: "title", ascending: true)
         
         //var lastDragged : ScheduleViewCell!
         
-        fetchRequest.sortDescriptors = [sort]
+        fetchRequest.sortDescriptors = [sortTime, sortAlpha]
         fetchRequest.fetchBatchSize = 20
         let predicate = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
         fetchRequest.predicate = predicate

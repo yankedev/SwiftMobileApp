@@ -45,11 +45,14 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
         let managedContext = appDelegate.managedObjectContext!
         
         let fetchRequest = NSFetchRequest(entityName: "Attribute")
-        let sort = NSSortDescriptor(key: "label", ascending: true)
-       
+        let sortSection = NSSortDescriptor(key: "type", ascending: true)
+        let sortAlpha = NSSortDescriptor(key: "label", ascending: true)
+        
+        //var lastDragged : ScheduleViewCell!
+        
+        fetchRequest.sortDescriptors = [sortSection, sortAlpha]
         fetchRequest.fetchBatchSize = 20
-        fetchRequest.sortDescriptors = [sort]
-     
+        
         let frc = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: managedContext,
@@ -60,7 +63,6 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
         
         return frc
     }()
-
     public func fetchAll() {
         
         var error: NSError? = nil
