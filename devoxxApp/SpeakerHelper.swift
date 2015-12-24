@@ -41,10 +41,6 @@ class SpeakerHelper: DataHelper {
         return "Speaker"
     }
     
-    internal override class func correspondingType() -> NSManagedObject.Type? {
-        return Speaker.self
-    }
-    
     override class func prepareArray(json : JSON) -> [JSON]? {
         return json.array
     }

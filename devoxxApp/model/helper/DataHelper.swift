@@ -20,10 +20,6 @@ public class DataHelper: NSObject {
         return ""
     }
     
-    public class func correspondingType() -> NSManagedObject.Type? {
-        return nil
-    }
-    
     public class func prepareArray(json : JSON) -> [JSON]? {
         return nil
     }

@@ -38,10 +38,6 @@ class TrackHelper: DataHelper {
         return "Track"
     }
     
-    internal override class func correspondingType() -> NSManagedObject.Type? {
-        return Track.self
-    }
-    
     override class func prepareArray(json : JSON) -> [JSON]? {
         return json["tracks"].array
     }

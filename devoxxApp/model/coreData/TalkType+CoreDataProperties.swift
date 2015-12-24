@@ -1,5 +1,5 @@
 //
-//  TalkType+CoreDataProperties.swift
+//  TalkType.swift
 //  devoxxApp
 //
 //  Created by maxday on 24.12.15.
@@ -12,7 +12,7 @@
 import Foundation
 import CoreData
 
-extension TalkType {
+class TalkType: CellData {
 
     @NSManaged var id: String?
     @NSManaged var label: String?
