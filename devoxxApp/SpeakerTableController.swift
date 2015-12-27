@@ -92,6 +92,12 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         let cellData = cellDataArray![indexPath.row]
         cell!.talkTitle.text = cellData.getFirstInformation()
+        
+        
+        if let fav = cellData as? FavoriteProtocol {
+            cell!.updateBackgroundColor(fav.favorited())
+        }
+        
         //TODO is favorited cell!.updateBackgroundColor(speaker)
        
         

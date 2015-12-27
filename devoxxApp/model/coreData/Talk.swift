@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class Talk: NSManagedObject {
+class Talk: NSManagedObject, FavoriteProtocol {
 
     @NSManaged var id: String
     @NSManaged var lang: String
@@ -50,6 +50,13 @@ class Talk: NSManagedObject {
             return "BOF"
         }
         return talkType
+    }
+    
+    func getIdentifier() -> String {
+        return id
+    }
+    func favorited() -> Bool {
+        return APIManager.isFavorited("Talk", identifier: getIdentifier())
     }
 
 

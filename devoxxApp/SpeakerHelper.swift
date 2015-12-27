@@ -45,4 +45,9 @@ class SpeakerHelper: DataHelper {
         return json.array
     }
     
+    override class func save(dataHelper : DataHelper) -> Void {
+        print("speaker")
+        super.save(dataHelper)
+    }
+    
 }

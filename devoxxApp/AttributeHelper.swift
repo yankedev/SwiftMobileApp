@@ -27,4 +27,9 @@ public class AttributeHelper: DataHelper {
         return "id: \(id)\n label: \(label)\n attributeDescription: \(attributeDescription)\n type: \(type)\n"
     }
     
+    override public class func save(dataHelper : DataHelper) -> Void {
+        print("attribute")
+        super.save(dataHelper)
+    }
+    
 }

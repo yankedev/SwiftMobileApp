@@ -137,27 +137,14 @@ class APIManager {
     class func handleData(inputData : NSData, dataHelper: DataHelper.Type, postAction : (Void) -> Void) {
         
         let json = JSON(data: inputData)
-
         let arrayToParse = dataHelper.prepareArray(json)
         
         if let appArray = arrayToParse {
             
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            let managedContext = appDelegate.managedObjectContext!
-            
             for appDict in appArray {
-                
                 let fedHelper = dataHelper.feed(appDict)
-                let entityName =  dataHelper.entityName()
-                
-                let entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: managedContext)
-
-                let coreDataObject = CellData(entity: entity!, insertIntoManagedObjectContext: managedContext)
-                
-                coreDataObject.feed(fedHelper!)
+                dataHelper.save(fedHelper!)
             }
-            
-            self.save(managedContext)
             
             dispatch_async(dispatch_get_main_queue()) {
                 postAction()
@@ -245,6 +232,20 @@ class APIManager {
     class func checkForEmptyness(context: NSManagedObjectContext, request : NSFetchRequest) -> Bool {
         let items = try! context.executeFetchRequest(request)
         return items.count == 0
+    }
+    
+    class func isFavorited(type: String, identifier: String) -> Bool {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = buildFetchRequest(context, name: "Favorite")
+        let predicateId = NSPredicate(format: "id = %@", identifier)
+        let predicateType = NSPredicate(format: "type = %@", type)
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateId, predicateType])
+        let items = try! context.executeFetchRequest(fetchRequest)
+        if let fav = items[0] as? Favorite {
+            return (fav.isFavorited?.boolValue)!
+        }
+        return false
     }
     
 }

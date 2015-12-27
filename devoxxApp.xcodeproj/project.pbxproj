@@ -23,6 +23,8 @@
 		58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */; };
 		58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */; };
 		58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */; };
+		58F67CD91C308B8D007D2B97 /* FavoriteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F67CD81C308B8D007D2B97 /* FavoriteProtocol.swift */; };
+		58F67CDD1C308C64007D2B97 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F67CDB1C308C64007D2B97 /* Favorite.swift */; };
 		E10CE19E1C2BB6BE002C9934 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE19D1C2BB6BE002C9934 /* CellData.swift */; };
 		E10CE1A41C2BC1F2002C9934 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1A31C2BC1F2002C9934 /* DataHelper.swift */; };
 		E10CE1A61C2BD0CB002C9934 /* Feedable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1A51C2BD0CB002C9934 /* Feedable.swift */; };
@@ -96,6 +98,8 @@
 		58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOn@2x.png"; path = "icon/StarOn@2x.png"; sourceTree = "<group>"; };
 		58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOff@2x.png"; path = "icon/StarOff@2x.png"; sourceTree = "<group>"; };
+		58F67CD81C308B8D007D2B97 /* FavoriteProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavoriteProtocol.swift; path = devoxxApp/FavoriteProtocol.swift; sourceTree = "<group>"; };
+		58F67CDB1C308C64007D2B97 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		E10CE19D1C2BB6BE002C9934 /* CellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellData.swift; path = model/coreData/CellData.swift; sourceTree = "<group>"; };
 		E10CE1A31C2BC1F2002C9934 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataHelper.swift; path = model/helper/DataHelper.swift; sourceTree = "<group>"; };
 		E10CE1A51C2BD0CB002C9934 /* Feedable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feedable.swift; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 			children = (
 				E18046051C1DD77B001AAD85 /* QTouchposeApplication.h */,
 				E18046061C1DD77B001AAD85 /* QTouchposeApplication.m */,
+				58F67CD81C308B8D007D2B97 /* FavoriteProtocol.swift */,
 				E10E7ABF1C18BF7100F6220B /* devoxxApp */,
 				E10E7AD81C18BF7100F6220B /* devoxxAppTests */,
 				E10E7ABE1C18BF7100F6220B /* Products */,
@@ -332,6 +337,7 @@
 		E1FA9C411C1BFD330077C09A /* coreData */ = {
 			isa = PBXGroup;
 			children = (
+				58F67CDB1C308C64007D2B97 /* Favorite.swift */,
 				E10CE1AC1C2BDAA1002C9934 /* Attribute.swift */,
 				5872861E1C1F589400FC098A /* Speaker.swift */,
 				E1FA9C421C1BFD400077C09A /* Slot.swift */,
@@ -507,6 +513,7 @@
 				E10CE1A81C2BD68D002C9934 /* TalkType.swift in Sources */,
 				E1FA9C3B1C1BFCF80077C09A /* MapController.swift in Sources */,
 				58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */,
+				58F67CDD1C308C64007D2B97 /* Favorite.swift in Sources */,
 				E18046071C1DD77B001AAD85 /* QTouchposeApplication.m in Sources */,
 				E10CE1AA1C2BD6DE002C9934 /* TalkTypeHelper.swift in Sources */,
 				587286201C1F589400FC098A /* Speaker.swift in Sources */,
@@ -522,6 +529,7 @@
 				E10E7AC61C18BF7100F6220B /* devoxxApp.xcdatamodeld in Sources */,
 				E1FA9C361C1BFCC60077C09A /* ScheduleTableController.swift in Sources */,
 				E1FA9C451C1BFD400077C09A /* Talk.swift in Sources */,
+				58F67CD91C308B8D007D2B97 /* FavoriteProtocol.swift in Sources */,
 				E18046031C1DD220001AAD85 /* TalkDetailsController.swift in Sources */,
 				E10CE1A61C2BD0CB002C9934 /* Feedable.swift in Sources */,
 				E1FA9C371C1BFCC60077C09A /* ScheduleController.swift in Sources */,

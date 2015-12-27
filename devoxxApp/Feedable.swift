@@ -15,4 +15,5 @@ class Feedable: NSManagedObject {
     func feed(helper: DataHelper) -> Void {
     }
     
+    
 }

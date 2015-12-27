@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class Speaker: CellData {
+class Speaker: CellData, FavoriteProtocol {
 
     @NSManaged var uuid: String?
     @NSManaged var firstName: String?
@@ -27,6 +27,14 @@ class Speaker: CellData {
             lastName = castHelper.lastName
             avatarUrl = castHelper.avatarUrl
         }
+    }
+    
+    func getIdentifier() -> String {
+        return uuid!
+    }
+    
+    func favorited() -> Bool {
+        return APIManager.isFavorited("Speaker", identifier: getIdentifier())
     }
 
 }
