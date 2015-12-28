@@ -33,8 +33,14 @@ class Speaker: CellData, FavoriteProtocol {
         return uuid!
     }
     
+    func invertFavorite() -> Bool {
+        return APIManager.invertFavorite("Speaker", identifier: getIdentifier())
+    }
+    
     func favorited() -> Bool {
         return APIManager.isFavorited("Speaker", identifier: getIdentifier())
     }
+    
+    
 
 }

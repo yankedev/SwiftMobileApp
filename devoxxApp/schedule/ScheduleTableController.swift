@@ -224,7 +224,9 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             cell!.talkType.text = cellData.getThirdInformation()
             cell!.talkType.backgroundColor = cellData.getColor()
 
-            cell!.updateBackgroundColor(cellData.isFavorite())
+            if let fav = cellData.getElement() as? FavoriteProtocol {
+                cell!.updateBackgroundColor(fav.favorited())
+            }
             
         } else {
             // should be be here
@@ -297,13 +299,13 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         return 50.0
     }
     
+    
     public func favorite(indexPath : NSIndexPath) -> Bool {
         if let cellData = fetchedResultsController.objectAtIndexPath(indexPath) as? CellData {
-            cellData.invertFavorite()
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            let managedContext = appDelegate.managedObjectContext!
-            APIManager.save(managedContext)
-            return cellData.isFavorite()
+        
+            if let cellElement = cellData.getElement() as? FavoriteProtocol  {
+                return cellElement.invertFavorite()
+            }
         }
         return false
     }

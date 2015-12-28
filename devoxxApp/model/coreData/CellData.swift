@@ -36,7 +36,8 @@ class CellData: Feedable {
         return false
     }
     
-    func invertFavorite() -> Void {
+    func getElement() -> NSManagedObject {
+        return self
     }
     
     

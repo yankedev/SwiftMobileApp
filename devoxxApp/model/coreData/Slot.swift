@@ -46,6 +46,10 @@ class Slot: CellData {
             day = castHelper.day
         }
     }
+    
+    override func getElement() -> NSManagedObject {
+        return talk
+    }
 
     
 }

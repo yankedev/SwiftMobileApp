@@ -77,7 +77,7 @@ class SlotHelper: DataHelper {
             
             
             coreDataObject2.feed(slotHelper.talk)
-            
+            generateFavorite(managedContext, object:coreDataObject2, type: "Talk")
             //print(coreDataObject2)
             
             if let coreDataObjectCast = coreDataObject as? Slot {
@@ -90,7 +90,7 @@ class SlotHelper: DataHelper {
         }
         
         
-        generateFavorite(managedContext, object:coreDataObject, type: entityName())
+        
         saveCoreData(managedContext)
  
         

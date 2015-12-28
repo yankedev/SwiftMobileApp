@@ -57,6 +57,10 @@ class Talk: Feedable, FavoriteProtocol {
     func favorited() -> Bool {
         return APIManager.isFavorited("Talk", identifier: getIdentifier())
     }
+    
+    func invertFavorite() -> Bool {
+        return APIManager.invertFavorite("Talk", identifier: getIdentifier())
+    }
 
     override func feed(helper: DataHelper) -> Void {
         if let castHelper = helper as? TalkHelper  {
@@ -69,6 +73,8 @@ class Talk: Feedable, FavoriteProtocol {
             trackId = castHelper.trackId
         }
     }
+    
+    
 
 
 }

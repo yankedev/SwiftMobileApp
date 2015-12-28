@@ -147,8 +147,8 @@ class APIManager {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
         let fetchRequest = buildFetchRequest(context, name: "Slot")
-        //let predicate = NSPredicate(format: "day = %@", 0)
-        //fetchRequest.predicate = predicate
+        let predicate = NSPredicate(format: "day = %@", 0)
+        fetchRequest.predicate = predicate
         return checkForEmptyness(context, request: fetchRequest)
     }
 
@@ -173,16 +173,42 @@ class APIManager {
     class func isFavorited(type: String, identifier: String) -> Bool {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
-        let fetchRequest = buildFetchRequest(context, name: "Favorite")
-        let predicateId = NSPredicate(format: "id = %@", identifier)
-        let predicateType = NSPredicate(format: "type = %@", type)
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateId, predicateType])
+        let fetchRequest = getFavorite(type, identifier: identifier, context: context)
         let items = try! context.executeFetchRequest(fetchRequest)
+        print(items.count)
         if let fav = items[0] as? Favorite {
             return (fav.isFavorited?.boolValue)!
         }
         return false
     }
     
+    class func getFavorite(type: String, identifier: String, context: NSManagedObjectContext) -> NSFetchRequest {
+        let fetchRequest = buildFetchRequest(context, name: "Favorite")
+        let predicateId = NSPredicate(format: "id = %@", identifier)
+        let predicateType = NSPredicate(format: "type = %@", type)
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateId, predicateType])
+        return fetchRequest
+    }
+
+    
+    class func invertFavorite(type: String, identifier: String) -> Bool {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = getFavorite(type, identifier: identifier, context: context)
+        let items = try! context.executeFetchRequest(fetchRequest)
+        print(items.count)
+        if let fav = items[0] as? Favorite {
+            if fav.isFavorited!.boolValue {
+                fav.isFavorited = 0
+            }
+            else {
+                fav.isFavorited = 1
+            }
+            save(context)
+            return fav.isFavorited!.boolValue
+        }
+        return false
+    }
+
 }
 
