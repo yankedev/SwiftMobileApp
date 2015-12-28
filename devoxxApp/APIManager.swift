@@ -12,11 +12,12 @@ import CoreData
 
 let topAppURL = "http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday"
 
-let apiURLS = ["Slot" : "http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/", "TalkType" : "http://cfp.devoxx.be/api/conferences/DV15/proposalTypes", "Track" : "http://cfp.devoxx.be/api/conferences/DV15/tracks"]
+let apiURLS = ["Slot" : ["http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/thursday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/friday/"], "TalkType" : ["http://cfp.devoxx.be/api/conferences/DV15/proposalTypes"], "Track" : ["http://cfp.devoxx.be/api/conferences/DV15/tracks"]]
 
 class APIManager {
     
 
+    
 
     
     class func getMockedObjets(postActionParam postAction :(Void) -> (Void), clear : Bool, dataHelper: DataHelper.Type) {
@@ -46,44 +47,46 @@ class APIManager {
         let data = NSData(contentsOfFile: filePath!)!
         */
         
-        let url = NSURL(string: apiURLS[dataHelper.entityName()]!)
         
         
-        loadDataFromURL(url!, completion:{(data, error) -> Void in
-            print(url)
-            print(data)
+        
+        let count:Int = apiURLS[dataHelper.entityName()]!.count
+        var i:Int = 0
+        
+        
+        
+        for singleUrl in apiURLS[dataHelper.entityName()]! {
             
-            if let slotData = data {
-                self.handleData(slotData, dataHelper: dataHelper, postAction: postAction)
-            }
-            
-            
-        })
-        
-        
+            loadDataFromURL(NSURL(string: singleUrl)!, completion:{(data, error) -> Void in
+                print(singleUrl)
+                if let slotData = data {
+                    self.handleData(slotData, dataHelper: dataHelper, postAction: postAction, currentIndex:i, maxIndex : count)
+                }
+            })
+        }
 
-        
-        
-        
     }
 
     
-    class func handleData(inputData : NSData, dataHelper: DataHelper.Type, postAction : (Void) -> Void) {
+    class func handleData(inputData : NSData, dataHelper: DataHelper.Type, postAction : (Void) -> Void, currentIndex:Int, maxIndex : Int) {
         
         let json = JSON(data: inputData)
         let arrayToParse = dataHelper.prepareArray(json)
-        
+
         if let appArray = arrayToParse {
-            
             for appDict in appArray {
                 let fedHelper = dataHelper.feed(appDict)
                 dataHelper.save(fedHelper!)
-            }
-            
-            dispatch_async(dispatch_get_main_queue()) {
-                postAction()
+                if currentIndex == maxIndex {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        postAction()
+                    }
+                }
             }
         }
+        
+        
+        
         
     }
     
@@ -128,16 +131,16 @@ class APIManager {
     }
     
     class func getDayFromIndex(index : NSInteger) -> String {
+        //if(index == 0) {
+        //    return "monday"
+        //}
+        //if(index == 1) {
+        //    return "tuesday"
+        //}
         if(index == 0) {
-            return "monday"
-        }
-        if(index == 1) {
-            return "tuesday"
-        }
-        if(index == 2) {
             return "wednesday"
         }
-        if(index == 3) {
+        if(index == 1) {
             return "thursday"
         }
         return "friday"
@@ -171,14 +174,28 @@ class APIManager {
     }
     
     class func isFavorited(type: String, identifier: String) -> Bool {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-        let fetchRequest = getFavorite(type, identifier: identifier, context: context)
-        let items = try! context.executeFetchRequest(fetchRequest)
-        print(items.count)
-        if let fav = items[0] as? Favorite {
-            return (fav.isFavorited?.boolValue)!
+        
+        
+        do {
+            
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let context = appDelegate.managedObjectContext!
+            let fetchRequest = buildFetchRequest(context, name: "Favorite")
+            let predicateId = NSPredicate(format: "id = %@", identifier)
+            let predicateType = NSPredicate(format: "type = %@", type)
+            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateId, predicateType])
+
+            if let items = try context.executeFetchRequest(fetchRequest) as? [Favorite] {
+                print(items.count)
+                if items.count > 0 {
+                    return (items[0].isFavorited?.boolValue)!
+                }
+            }
+            
+        } catch let error1 as NSError {
+            print(error1)
         }
+       
         return false
     }
     

@@ -55,7 +55,6 @@ public class DataHelper: NSObject {
             let favCoreData = devoxxApp.Favorite(entity: favEntity!, insertIntoManagedObjectContext: managedContext)
             favCoreData.id = favoritableEntity.getIdentifier()
             favCoreData.isFavorited = 0
-            print(favCoreData.isFavorited)
             favCoreData.type = type
         }
     }

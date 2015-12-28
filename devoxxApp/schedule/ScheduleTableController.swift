@@ -46,7 +46,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         fetchRequest.sortDescriptors = [sortTime, sortAlpha]
         fetchRequest.fetchBatchSize = 20
         let predicate = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
-        //fetchRequest.predicate = predicate
+        fetchRequest.predicate = predicate
 
         let frc = NSFetchedResultsController(
             fetchRequest: fetchRequest,
@@ -114,6 +114,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     public func fetchAll() {
         var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
+        print("day = \(APIManager.getDayFromIndex(self.view.tag))")
         andPredicate.append(predicateDay)
         if(isFavorite) {
             let predicateFavorite = NSPredicate(format: "talk.isFavorite = %d", 1)
@@ -124,8 +125,8 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             orPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: searchPredicates)
         }
         andPredicate.append(orPredicate)
-        //fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
-       
+        fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
+        //fetchedResultsController.fetchRequest.predicate = predicateDay
         var error: NSError? = nil
         do {
             try fetchedResultsController.performFetch()
@@ -160,9 +161,8 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        print("did I click?")
-              let cell = tableView.cellForRowAtIndexPath(indexPath)
+    
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
         if let scheduleCell = cell as? ScheduleViewCell {
             /*if(scheduleCell.scrollView.contentOffset.x == 0) {
                 saveAsFavorite(indexPath)
