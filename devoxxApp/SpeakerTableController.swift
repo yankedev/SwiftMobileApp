@@ -67,7 +67,6 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        APIManager.getMockedSlots(postActionParam: fetchAll, clear : false, index: self.view.tag)
     }
     
     override public func didReceiveMemoryWarning() {

@@ -12,41 +12,11 @@ import CoreData
 
 let topAppURL = "http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday"
 
+let apiURLS = ["Slot" : "http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/", "TalkType" : "http://cfp.devoxx.be/api/conferences/DV15/proposalTypes", "Track" : "http://cfp.devoxx.be/api/conferences/DV15/tracks"]
+
 class APIManager {
     
-    
-    
-    
-    
-    
-    
-    class func getMockedSlots(postActionParam postAction :(Void) -> (Void), clear : Bool, index : NSInteger) {
-    /*
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        
-        if(clear) {
-            self.deleteAll(managedContext)
-        }
-        
-        if(isAlreadyLoaded(managedContext, index:index)) {
-            postAction()
-            return
-        }
-        
-        
-        let testBundle = NSBundle.mainBundle()
-        let filePath = testBundle.pathForResource("0\(index)", ofType: "json")
-        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
-        
-        if(checkString == nil) {
-            print("should not be empty", terminator: "")
-        }
-        
-        let data = NSData(contentsOfFile: filePath!)!
-        self.handleSlots(data, postAction: postAction);
-*/
-    }
+
 
     
     class func getMockedObjets(postActionParam postAction :(Void) -> (Void), clear : Bool, dataHelper: DataHelper.Type) {
@@ -64,7 +34,7 @@ class APIManager {
             return
         }
         
-        let testBundle = NSBundle.mainBundle()
+        /*let testBundle = NSBundle.mainBundle()
         let filePath = testBundle.pathForResource(dataHelper.fileName(), ofType: "json")
         
         let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
@@ -74,64 +44,29 @@ class APIManager {
         }
         
         let data = NSData(contentsOfFile: filePath!)!
+        */
         
-        self.handleData(data, dataHelper: dataHelper, postAction: postAction)
-    }
-
-    class func getSlots(postActionParam postAction: (Void) -> (Void)) {
-        loadDataFromURL(NSURL(string: topAppURL)!, completion:{(data, error) -> Void in
+        let url = NSURL(string: apiURLS[dataHelper.entityName()]!)
+        
+        
+        loadDataFromURL(url!, completion:{(data, error) -> Void in
+            print(url)
+            print(data)
+            
             if let slotData = data {
-                self.handleSlots(slotData, postAction: postAction)
+                self.handleData(slotData, dataHelper: dataHelper, postAction: postAction)
             }
+            
+            
         })
-    }
-    
-    class func handleSlots(slots : NSData, postAction : (Void) -> Void) {
-        /*
-        let json = JSON(data: slots)
         
-        if let appArray = json["slots"].array {
-            
-            for appDict in appArray {
-                
-                let talk = TalkHelper.feed(appDict)
-                let slot = SlotHelper.feed(appDict, talk:talk)
-                
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                let managedContext = appDelegate.managedObjectContext!
-                
+        
 
-                let slotEntityName: String = "Slot"
-                let slotEntity = NSEntityDescription.entityForName(slotEntityName, inManagedObjectContext: managedContext)
-                
-                let talkEntityName: String = "Talk"
-                let talkEntity = NSEntityDescription.entityForName(talkEntityName, inManagedObjectContext: managedContext)
-                
-                let coreDataSlotObject = devoxxApp.Slot(entity: slotEntity!, insertIntoManagedObjectContext: managedContext)
-                let coreDataTalkObject = devoxxApp.Talk(entity: talkEntity!, insertIntoManagedObjectContext: managedContext)
-                
-                coreDataSlotObject.fromTime = slot.fromTime
-                coreDataSlotObject.roomName = slot.roomName
-                coreDataSlotObject.day = slot.day
-                
-                coreDataTalkObject.title = talk.title
-                coreDataTalkObject.summary = talk.summary
-                coreDataTalkObject.track = talk.track
-                coreDataTalkObject.talkType = talk.talkType
-                coreDataTalkObject.trackId = talk.trackId
-                
-                coreDataSlotObject.talk = coreDataTalkObject
-                
-                self.save(managedContext)
-            }
-            
-            dispatch_async(dispatch_get_main_queue()) {
-                postAction()
-            }
-            
-        }
-*/
+        
+        
+        
     }
+
     
     class func handleData(inputData : NSData, dataHelper: DataHelper.Type, postAction : (Void) -> Void) {
         
