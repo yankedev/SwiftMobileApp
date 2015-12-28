@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class Talk: NSManagedObject, FavoriteProtocol {
+class Talk: Feedable, FavoriteProtocol {
 
     @NSManaged var id: String
     @NSManaged var lang: String
@@ -18,7 +18,6 @@ class Talk: NSManagedObject, FavoriteProtocol {
     @NSManaged var title: String
     @NSManaged var track: String
     @NSManaged var trackId: String
-    @NSManaged var isFavorite: NSNumber
     
     func getIconFromTrackId() -> String {
         return "icon_\(trackId)"
@@ -57,6 +56,18 @@ class Talk: NSManagedObject, FavoriteProtocol {
     }
     func favorited() -> Bool {
         return APIManager.isFavorited("Talk", identifier: getIdentifier())
+    }
+
+    override func feed(helper: DataHelper) -> Void {
+        if let castHelper = helper as? TalkHelper  {
+            id = castHelper.id
+            lang = castHelper.lang
+            summary = castHelper.summary
+            talkType = castHelper.talkType
+            title = castHelper.title
+            track = castHelper.track
+            trackId = castHelper.trackId
+        }
     }
 
 

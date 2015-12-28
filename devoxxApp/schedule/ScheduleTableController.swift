@@ -46,7 +46,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         fetchRequest.sortDescriptors = [sortTime, sortAlpha]
         fetchRequest.fetchBatchSize = 20
         let predicate = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
-        fetchRequest.predicate = predicate
+        //fetchRequest.predicate = predicate
 
         let frc = NSFetchedResultsController(
             fetchRequest: fetchRequest,
@@ -112,7 +112,6 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     
     public func fetchAll() {
-        print("FETCH ALL")
         var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
         andPredicate.append(predicateDay)
@@ -125,12 +124,12 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             orPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: searchPredicates)
         }
         andPredicate.append(orPredicate)
-        print("predicate = \(andPredicate)")
-        fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
+        //fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
        
         var error: NSError? = nil
         do {
             try fetchedResultsController.performFetch()
+            
             
         } catch let error1 as NSError {
             error = error1
@@ -144,17 +143,12 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
 
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print("View will appear")
         
-        //self.tableView.frame = CGRectMake(0, 0, 100, 557)
+        APIManager.getMockedObjets(postActionParam: fetchAll, clear : false, dataHelper: SlotHelper.self)
         
+        //APIManager.getMockedObjets(postActionParam: fetchAll, clear: false, dataHelper: TrackHelper.self)
         
-        
-        APIManager.getMockedSlots(postActionParam: fetchAll, clear : false, index: self.view.tag)
-        
-        APIManager.getMockedObjets(postActionParam: fetchAll, clear: false, dataHelper: TrackHelper.self)
-        
-        APIManager.getMockedObjets(postActionParam: fetchAll, clear: false, dataHelper: TalkTypeHelper.self)
+        //APIManager.getMockedObjets(postActionParam: fetchAll, clear: false, dataHelper: TalkTypeHelper.self)
         
         
     }
@@ -189,7 +183,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
                     details.talk = slot.talk
                     details.delegate = self
                     details.configure()
-                    details.setColor(slot.talk.isFavorite.boolValue)
+                    details.setColor(slot.talk.favorited())
                     self.navigationController?.pushViewController(details, animated: true)
                     
                     
@@ -299,9 +293,6 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     }
     
-    public override func viewDidAppear(animated: Bool) {
-        print("currentIndex : \(index)")
-    }
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 50.0
     }

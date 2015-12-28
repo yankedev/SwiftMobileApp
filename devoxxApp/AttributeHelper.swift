@@ -28,7 +28,6 @@ public class AttributeHelper: DataHelper {
     }
     
     override public class func save(dataHelper : DataHelper) -> Void {
-        print("attribute")
         super.save(dataHelper)
     }
     

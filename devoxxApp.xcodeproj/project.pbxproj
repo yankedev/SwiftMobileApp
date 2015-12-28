@@ -68,7 +68,7 @@
 		E1FA9C451C1BFD400077C09A /* Talk.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C431C1BFD400077C09A /* Talk.swift */; };
 		E1FA9C491C1BFD560077C09A /* SlotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C471C1BFD560077C09A /* SlotHelper.swift */; };
 		E1FA9C4A1C1BFD560077C09A /* TalkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C481C1BFD560077C09A /* TalkHelper.swift */; };
-		E1FA9C4D1C1BFD740077C09A /* slots.json in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C4C1C1BFD740077C09A /* slots.json */; };
+		E1FA9C4D1C1BFD740077C09A /* Slot.json in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C4C1C1BFD740077C09A /* Slot.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,7 +149,7 @@
 		E1FA9C431C1BFD400077C09A /* Talk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Talk.swift; path = model/coreData/Talk.swift; sourceTree = "<group>"; };
 		E1FA9C471C1BFD560077C09A /* SlotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlotHelper.swift; path = model/helper/SlotHelper.swift; sourceTree = "<group>"; };
 		E1FA9C481C1BFD560077C09A /* TalkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TalkHelper.swift; path = model/helper/TalkHelper.swift; sourceTree = "<group>"; };
-		E1FA9C4C1C1BFD740077C09A /* slots.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = slots.json; path = mock/slots.json; sourceTree = "<group>"; };
+		E1FA9C4C1C1BFD740077C09A /* Slot.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Slot.json; path = mock/Slot.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -375,7 +375,7 @@
 				589FB66D1C1DFD0C0055CD25 /* 02.json */,
 				589FB66E1C1DFD0C0055CD25 /* 03.json */,
 				589FB66F1C1DFD0C0055CD25 /* 04.json */,
-				E1FA9C4C1C1BFD740077C09A /* slots.json */,
+				E1FA9C4C1C1BFD740077C09A /* Slot.json */,
 			);
 			name = mock;
 			sourceTree = "<group>";
@@ -485,7 +485,7 @@
 				E1FA9C1A1C1BFC150077C09A /* icon_future.png in Resources */,
 				E1FA9C1C1C1BFC150077C09A /* icon_lang.png in Resources */,
 				E1FA9C1D1C1BFC150077C09A /* icon_methodevops.png in Resources */,
-				E1FA9C4D1C1BFD740077C09A /* slots.json in Resources */,
+				E1FA9C4D1C1BFD740077C09A /* Slot.json in Resources */,
 				58A0E8BF1C272F85000C49DD /* TalkType.json in Resources */,
 				E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */,
 				E1FA9C291C1BFC280077C09A /* favoriteOn.png in Resources */,

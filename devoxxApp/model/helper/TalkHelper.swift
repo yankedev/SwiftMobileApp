@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TalkHelper: NSObject {
+class TalkHelper: DataHelper {
     
     let title: String
     let lang: String
@@ -34,18 +34,18 @@ class TalkHelper: NSObject {
         self.isFavorite = false
     }
     
-    class func feed(data: JSON) -> TalkHelper {
+    override class func feed(data: JSON) -> TalkHelper {
       
-        var title: String? = data["talk"]["title"].string
+        var title: String? = data["title"].string
         if(title == nil) {
-            title = data["break"]["nameEN"].string
+            title = "TODO brak"
         }
-        let lang: String? = data["talk"]["lang"].string
-        let trackId: String? = data["talk"]["trackId"].string
-        let talkType: String? = data["talk"]["talkType"].string
-        let track: String? = data["talk"]["track"].string
-        let id: String? = data["talk"]["id"].string
-        let summary: String? = data["talk"]["summary"].string
+        let lang: String? = data["lang"].string
+        let trackId: String? = data["trackId"].string
+        let talkType: String? = data["talkType"].string
+        let track: String? = data["track"].string
+        let id: String? = data["id"].string
+        let summary: String? = data["summary"].string
 
         return TalkHelper(title: title, lang: lang, trackId: trackId, talkType: talkType, track: track, id: id, summary: summary)
     }

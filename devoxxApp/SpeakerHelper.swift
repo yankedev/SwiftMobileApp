@@ -46,7 +46,6 @@ class SpeakerHelper: DataHelper {
     }
     
     override class func save(dataHelper : DataHelper) -> Void {
-        print("speaker")
         super.save(dataHelper)
     }
     

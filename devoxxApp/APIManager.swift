@@ -61,7 +61,7 @@ class APIManager {
         
         if(!isEntityEmpty(context, name: dataHelper.entityName())) {
             postAction()
-            //return
+            return
         }
         
         let testBundle = NSBundle.mainBundle()
@@ -87,7 +87,7 @@ class APIManager {
     }
     
     class func handleSlots(slots : NSData, postAction : (Void) -> Void) {
-        
+        /*
         let json = JSON(data: slots)
         
         if let appArray = json["slots"].array {
@@ -119,7 +119,6 @@ class APIManager {
                 coreDataTalkObject.track = talk.track
                 coreDataTalkObject.talkType = talk.talkType
                 coreDataTalkObject.trackId = talk.trackId
-                coreDataTalkObject.isFavorite = talk.isFavorite
                 
                 coreDataSlotObject.talk = coreDataTalkObject
                 
@@ -131,7 +130,7 @@ class APIManager {
             }
             
         }
-
+*/
     }
     
     class func handleData(inputData : NSData, dataHelper: DataHelper.Type, postAction : (Void) -> Void) {
@@ -209,10 +208,12 @@ class APIManager {
         return "friday"
     }
     
-    class func isAlreadyLoaded(context : NSManagedObjectContext, name: String, index : NSInteger) -> Bool {
-        let fetchRequest = buildFetchRequest(context, name: name)
-        let predicate = NSPredicate(format: "day = %@", getDayFromIndex(index))
-        fetchRequest.predicate = predicate
+    class func isAlreadyLoaded() -> Bool {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = buildFetchRequest(context, name: "Slot")
+        //let predicate = NSPredicate(format: "day = %@", 0)
+        //fetchRequest.predicate = predicate
         return checkForEmptyness(context, request: fetchRequest)
     }
 

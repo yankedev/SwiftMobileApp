@@ -38,13 +38,14 @@ class Slot: CellData {
         return ColorManager.getColorFromTalkType(talk.talkType)
     }
     
-    override func isFavorite() -> Bool {
-        return talk.isFavorite.boolValue
+    override func feed(helper: DataHelper) -> Void {
+        if let castHelper = helper as? SlotHelper  {
+            roomName = castHelper.roomName
+            slotId = castHelper.slotId
+            fromTime = castHelper.fromTime
+            day = castHelper.day
+        }
     }
-    
-    override func invertFavorite() {
-        talk.isFavorite = !talk.isFavorite.boolValue
-    }
-    
+
     
 }
