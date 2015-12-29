@@ -114,6 +114,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     
     public func fetchAll() {
+        print("fetchAllIsCalled")
         var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
 
@@ -149,16 +150,6 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         super.viewWillAppear(animated)
         let slotHelper = SlotHelper()
         APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: slotHelper)
-        
-        self.tableView.reloadData()
-        
-       
-        
-        //APIManager.getMockedObjets(postActionParam: fetchAll, clear: false, dataHelper: TrackHelper.self)
-        
-        //APIManager.getMockedObjets(postActionParam: fetchAll, clear: false, dataHelper: TalkTypeHelper.self)
-        
-        
     }
     
     override public func didReceiveMemoryWarning() {

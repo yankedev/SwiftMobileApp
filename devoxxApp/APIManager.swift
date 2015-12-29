@@ -23,6 +23,44 @@ let apiURLS:[(JSON -> (DataHelper?),[String])] = [(SlotHelper.feed, ["http://cfp
 
 class APIManager {
     
+    
+    
+    class func doesEtagExistForUrl(url : String) -> Bool {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = buildFetchRequest(context, name: "Etag")
+        let predicate = NSPredicate(format: "url = %@", url)
+        fetchRequest.predicate = predicate
+        return checkForEmptyness(context, request: fetchRequest)
+    }
+    
+    class func getEtagForUrl(url : String) ->  Etag {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = buildFetchRequest(context, name: "Etag")
+        let predicate = NSPredicate(format: "url = %@", url)
+        fetchRequest.fetchLimit = 1
+        fetchRequest.predicate = predicate
+        let items = try! context.executeFetchRequest(fetchRequest)
+        if items.count == 1 {
+            return items[0] as! Etag
+        }
+        return createEtagForUrl(url)
+
+    }
+    
+    class func createEtagForUrl(url : String) -> Etag {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        let entity = NSEntityDescription.entityForName("Etag", inManagedObjectContext: managedContext)
+        let coreData = devoxxApp.Etag(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        coreData.url = url
+        coreData.value = ""
+        save(managedContext)
+        return coreData
+    }
+    
+    
     class func deleteAll(context : NSManagedObjectContext) {
         
         let fetchRequest = NSFetchRequest(entityName: "Slot")
@@ -138,6 +176,7 @@ class APIManager {
     
     class func handleData(inputData : NSData, dataHelper: DataHelperProtocol, postAction : (Void) -> Void) {
         
+        print("in handleData")
         let json = JSON(data: inputData)
         let arrayToParse = dataHelper.prepareArray(json)
         
@@ -145,24 +184,54 @@ class APIManager {
             for appDict in appArray {
                 dataHelper.feed(appDict)
                 dataHelper.save()
-
-                dispatch_async(dispatch_get_main_queue()) {
-                    postAction()
-                }
             }
+        }
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            print("update VIEW")
+            postAction()
         }
     }
     
     class func loadDataFromURL(url: NSURL, completion:(data: NSData?, error: NSError?) -> Void) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+
+        var storeEtag = getEtagForUrl(url.absoluteString)
+        print("foundStoreEtag = \(storeEtag.url) and \(storeEtag.value)")
+        
         let session = NSURLSession.sharedSession()
-        let loadDataTask = session.dataTaskWithURL(url, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+        
+        let mutableRequest = NSMutableURLRequest(URL: url)
+        mutableRequest.setValue(storeEtag.value, forHTTPHeaderField: "If-None-Match")
+        
+        print(mutableRequest)
+        
+        let loadDataTask = session.dataTaskWithRequest(mutableRequest, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             if let responseError = error {
+                print("respnseError")
                 completion(data: nil, error: responseError)
             } else if let httpResponse = response as? NSHTTPURLResponse {
+                print("statusCode = \(httpResponse.statusCode)")
                 if httpResponse.statusCode != 200 {
                     let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
                     completion(data: nil, error: statusError)
-                } else {
+                }
+                else if httpResponse.statusCode == 304 {
+                    let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code is 304 -> not modified :)"])
+                    completion(data: nil, error: statusError)
+                }
+                else {
+                    let etagValue = httpResponse.allHeaderFields["Etag"] as! String
+                    print("found etag = \(etagValue)")
+                    storeEtag.value = etagValue
+                    save(context)
+                    
+                    storeEtag = getEtagForUrl(url.absoluteString)
+                    
+                    print("updateEtag = \(storeEtag)")
+                    
                     completion(data: data, error: nil)
                 }
             }
@@ -173,12 +242,15 @@ class APIManager {
     
     class func getMockedObjets(postActionParam postAction :(Void) -> (Void), dataHelper: DataHelperProtocol) {
 
-        if(isAlreadyLoaded()) {
-            return
-        }
-
+       
+        print("in getMockedObjects")
+        print(postAction)
+        
+        
+        
         loadDataFromURL(NSURL(string: "http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday")!, completion:{(data, error) -> Void in
             if let slotData = data {
+                print("ok slotData")
                 self.handleData(slotData, dataHelper: dataHelper, postAction: postAction)
             }
         })
