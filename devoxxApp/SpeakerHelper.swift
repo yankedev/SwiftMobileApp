@@ -9,16 +9,16 @@
 import Foundation
 import CoreData
 
-class SpeakerHelper: DataHelper {
+class SpeakerHelper: DataHelperProtocol {
     
-    let uuid: String
-    let lastName: String
-    let firstName: String
-    let avatarUrl: String
+    var uuid: String?
+    var lastName: String?
+    var firstName: String?
+    var avatarUrl: String?
     
-    override var description: String {
+   /* override var description: String {
         return "uuid: \(uuid)\n lastName: \(lastName)\n firstName: \(firstName)\n avatarUrl: \(avatarUrl)\n"
-    }
+    }*/
     
     init(uuid: String?, lastName: String?, firstName: String?, avatarUrl: String?) {
         self.uuid = uuid ?? ""
@@ -27,26 +27,26 @@ class SpeakerHelper: DataHelper {
         self.avatarUrl = avatarUrl ?? ""
     }
     
-    override class func feed(data: JSON) -> SpeakerHelper? {
-        
-        let uuid: String? = data["uuid"].string
-        let lastName: String? = data["lastName"].string
-        let firstName: String? = data["firstName"].string
-        let avatarUrl: String? = data["avatarUrl"].string
-        
-        return SpeakerHelper(uuid: uuid, lastName: lastName, firstName: firstName, avatarUrl: avatarUrl)
+    func feed(data: JSON) {
+        uuid = data["uuid"].string
+        lastName = data["lastName"].string
+        firstName = data["firstName"].string
+        avatarUrl = data["avatarUrl"].string
     }
     
-    override class func entityName() -> String {
+    func entityName() -> String {
         return "Speaker"
     }
     
-    override class func prepareArray(json : JSON) -> [JSON]? {
+    func prepareArray(json : JSON) -> [JSON]? {
         return json.array
     }
     
-    override class func save(dataHelper : DataHelper) -> Void {
-        super.save(dataHelper)
+    func save() {
     }
     
+    /*func save(dataHelper : DataHelper) -> Void {
+        super.save(dataHelper)
+    }
+    */
 }

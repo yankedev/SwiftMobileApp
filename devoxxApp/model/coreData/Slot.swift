@@ -38,12 +38,12 @@ class Slot: CellData {
         return ColorManager.getColorFromTalkType(talk.talkType)
     }
     
-    override func feed(helper: DataHelper) -> Void {
+    override func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? SlotHelper  {
-            roomName = castHelper.roomName
-            slotId = castHelper.slotId
-            fromTime = castHelper.fromTime
-            day = castHelper.day
+            roomName = castHelper.roomName!
+            slotId = castHelper.slotId!
+            fromTime = castHelper.fromTime!
+            day = castHelper.day!
         }
     }
     

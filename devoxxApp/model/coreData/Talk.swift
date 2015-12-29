@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class Talk: Feedable, FavoriteProtocol {
+class Talk: NSManagedObject, FeedableProtocol{
 
     @NSManaged var id: String
     @NSManaged var lang: String
@@ -62,15 +62,16 @@ class Talk: Feedable, FavoriteProtocol {
         return APIManager.invertFavorite("Talk", identifier: getIdentifier())
     }
 
-    override func feed(helper: DataHelper) -> Void {
+    
+    func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? TalkHelper  {
-            id = castHelper.id
-            lang = castHelper.lang
-            summary = castHelper.summary
-            talkType = castHelper.talkType
-            title = castHelper.title
-            track = castHelper.track
-            trackId = castHelper.trackId
+            id = castHelper.id ?? ""
+            lang = castHelper.lang ?? ""
+            summary = castHelper.summary ?? ""
+            talkType = castHelper.talkType ?? ""
+            title = castHelper.title ?? ""
+            track = castHelper.track ?? ""
+            trackId = castHelper.trackId ?? ""
         }
     }
     

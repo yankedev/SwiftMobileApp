@@ -19,7 +19,7 @@ class Speaker: CellData, FavoriteProtocol {
     override func getFirstInformation() -> String {
         return "\(firstName!.capitalizedString) \(lastName!.capitalizedString)"
     }
-    
+    /*
     override func feed(helper: DataHelper) -> Void {
         if let castHelper = helper as? SpeakerHelper  {
             uuid = castHelper.uuid
@@ -28,7 +28,7 @@ class Speaker: CellData, FavoriteProtocol {
             avatarUrl = castHelper.avatarUrl
         }
     }
-    
+    */
     func getIdentifier() -> String {
         return uuid!
     }

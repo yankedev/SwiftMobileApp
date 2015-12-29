@@ -61,6 +61,8 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     
     
+    
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         
@@ -112,7 +114,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     
     public func fetchAll() {
-        var andPredicate = [NSPredicate]()
+        /*var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
         print("day = \(APIManager.getDayFromIndex(self.view.tag))")
         andPredicate.append(predicateDay)
@@ -136,7 +138,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             error = error1
             print("unresolved error \(error), \(error!.userInfo)")
         }
-        self.tableView.reloadData()
+        self.tableView.reloadData()*/
     }
 
     
@@ -145,7 +147,9 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        APIManager.getMockedObjets(postActionParam: fetchAll, clear : false, dataHelper: SlotHelper.self)
+        let slotHelper = SlotHelper()
+        
+        APIManager.getMockedObjets(postActionParam: fetchAll, clear : false, dataHelper: slotHelper)
         
         //APIManager.getMockedObjets(postActionParam: fetchAll, clear: false, dataHelper: TrackHelper.self)
         

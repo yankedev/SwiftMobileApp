@@ -10,10 +10,6 @@ import Foundation
 import CoreData
 import UIKit
 
-class Feedable: NSManagedObject {
-    
-    func feed(helper: DataHelper) -> Void {
-    }
-    
-    
+public protocol FeedableProtocol {
+    func feedHelper(help: DataHelperProtocol)
 }

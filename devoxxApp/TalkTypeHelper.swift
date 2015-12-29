@@ -16,23 +16,17 @@ class TalkTypeHelper: AttributeHelper {
         super.init(id: id, label: label, attributeDescription: talkTypeDescription, type: "TalkType")
     }
     
-    override class func feed(data: JSON) -> TalkTypeHelper? {
-        let id = data["id"].string
-        let label = data["label"].string
-        let talkTypeDescription = data["talkTypeDescription"].string
-        
-        return TalkTypeHelper(label: label, id: id, talkTypeDescription: talkTypeDescription)
+    override func feed(data: JSON) {
+        id = data["id"].string
+        label = data["label"].string
+        //talkTypeDescription = data["talkTypeDescription"].string
     }
     
-    override class func entityName() -> String {
+    override func entityName() -> String {
         return "Attribute"
     }
     
-    override class func fileName() -> String {
-        return "TalkType"
-    }
-    
-    override class func prepareArray(json : JSON) -> [JSON]? {
+    func prepareArray(json : JSON) -> [JSON]? {
         return json["proposalTypes"].array
     }
     

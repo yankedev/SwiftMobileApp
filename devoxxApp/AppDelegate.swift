@@ -55,6 +55,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //(application as! QTouchposeApplication).alwaysShowTouches = true
         
+        //APIManager.fetchAllURLS()
+        
+        
+        
         return true
     }
 

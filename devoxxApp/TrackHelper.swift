@@ -16,7 +16,7 @@ class TrackHelper: AttributeHelper {
         super.init(id: id, label: title, attributeDescription: trackDescription, type: "Track")
     }
     
-    override class func feed(data: JSON) -> TrackHelper? {
+    class func feed(data: JSON) -> TrackHelper? {
         
         let title: String? = data["title"].string
         let id: String? = data["id"].string
@@ -25,16 +25,20 @@ class TrackHelper: AttributeHelper {
         return TrackHelper(title: title, id: id, trackDescription: trackDescription)
     }
 
-    override class func entityName() -> String {
+    override func entityName() -> String {
         return "Attribute"
     }
     
-    override class func fileName() -> String {
+    func fileName() -> String {
         return "Track"
     }
     
-    override class func prepareArray(json : JSON) -> [JSON]? {
+    func prepareArray(json : JSON) -> [JSON]? {
         return json["tracks"].array
+    }
+    
+    override func save() {
+        //
     }
     
 }

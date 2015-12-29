@@ -10,24 +10,19 @@ import Foundation
 import CoreData
 
 
-public class DataHelper: NSObject {
+
+public protocol DataHelperProtocol {
+    func feed(data: JSON)
+    func entityName() -> String
+    func prepareArray(json : JSON) -> [JSON]?
+    func save() -> Void
+}
+
+
+/*
     
-    public class func feed(data: JSON) -> DataHelper? {
-        return nil
-    }
     
-    public class func entityName() -> String {
-        return ""
-    }
-    
-    public class func fileName() -> String {
-        return entityName()
-    }
-    
-    public class func prepareArray(json : JSON) -> [JSON]? {
-        return nil
-    }
-    
+  
     public class func save(dataHelper : DataHelper) -> Void {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
@@ -58,5 +53,19 @@ public class DataHelper: NSObject {
             favCoreData.type = type
         }
     }
+    
+    init() {
+        self.uid = Int(arc4random_uniform(100))
+    }
+    
+    public var hashValue: Int {
+        return self.uid
+    }
+    
+    
+    /*
+    
+    
 
-}
+    
+*/*/

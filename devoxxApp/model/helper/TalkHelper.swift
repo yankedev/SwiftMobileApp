@@ -8,19 +8,23 @@
 
 import Foundation
 
-class TalkHelper: DataHelper {
+class TalkHelper: DataHelperProtocol {
     
-    let title: String
-    let lang: String
-    let trackId: String
-    let talkType: String
-    let track: String
-    let id: String
-    let summary: String
-    let isFavorite: Bool
+    var title: String?
+    var lang: String?
+    var trackId: String?
+    var talkType: String?
+    var track: String?
+    var id: String?
+    var summary: String?
     
+    /*
     override var description: String {
         return "title: \(title)\n lang: \(lang)\n trackId: \(trackId)\n title: \(talkType)\n talkType: \(title)\n id: \(id)\n title: \(title)\n summary: \(summary)\n"
+    }
+    */
+    
+    init() {
     }
     
     init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?) {
@@ -31,23 +35,33 @@ class TalkHelper: DataHelper {
         self.track = track ?? ""
         self.id = id ?? ""
         self.summary = summary ?? ""
-        self.isFavorite = false
     }
     
-    override class func feed(data: JSON) -> TalkHelper {
+    func feed(data: JSON) {
       
         var title: String? = data["title"].string
         if(title == nil) {
             title = "TODO brak"
         }
-        let lang: String? = data["lang"].string
-        let trackId: String? = data["trackId"].string
-        let talkType: String? = data["talkType"].string
-        let track: String? = data["track"].string
-        let id: String? = data["id"].string
-        let summary: String? = data["summary"].string
+        lang = data["lang"].string
+        trackId = data["trackId"].string
+        talkType = data["talkType"].string
+        track = data["track"].string
+        id = data["id"].string
+        summary = data["summary"].string
 
-        return TalkHelper(title: title, lang: lang, trackId: trackId, talkType: talkType, track: track, id: id, summary: summary)
+    }
+    
+    func entityName() -> String {
+        return "Talk"
+    }
+    
+    func prepareArray(json: JSON) -> [JSON]? {
+        return [json["talk"]]
+    }
+    
+    func save() {
+        //
     }
     
 }

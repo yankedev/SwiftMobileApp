@@ -10,14 +10,15 @@ import Foundation
 import CoreData
 
 
-class Attribute: Feedable {
+class Attribute: FeedableProtocol {
     
     @NSManaged var id: String?
     @NSManaged var label: String?
     @NSManaged var attributeDescription: String?
     @NSManaged var type: String?
     
-    override func feed(helper: DataHelper) -> Void {
+    
+    func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? AttributeHelper  {
             id = castHelper.id
             label = castHelper.label
