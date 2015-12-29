@@ -16,6 +16,8 @@ public protocol DataHelperProtocol {
     func entityName() -> String
     func prepareArray(json : JSON) -> [JSON]?
     func save() -> Void
+    
+    func save2() -> NSManagedObject?
 }
 
 

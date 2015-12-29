@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class TalkHelper: DataHelperProtocol {
     
@@ -39,7 +40,7 @@ class TalkHelper: DataHelperProtocol {
     
     func feed(data: JSON) {
       
-        var title: String? = data["title"].string
+        title = data["title"].string
         if(title == nil) {
             title = "TODO brak"
         }
@@ -58,6 +59,10 @@ class TalkHelper: DataHelperProtocol {
     
     func prepareArray(json: JSON) -> [JSON]? {
         return [json["talk"]]
+    }
+    
+    func save2() -> NSManagedObject? {
+        return nil
     }
     
     func save() {

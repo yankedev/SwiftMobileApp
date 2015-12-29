@@ -114,14 +114,14 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     
     public func fetchAll() {
-        /*var andPredicate = [NSPredicate]()
+        var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
-        print("day = \(APIManager.getDayFromIndex(self.view.tag))")
-        andPredicate.append(predicateDay)
-        if(isFavorite) {
+
+
+        /*if(isFavorite) {
             let predicateFavorite = NSPredicate(format: "talk.isFavorite = %d", 1)
             andPredicate.append(predicateFavorite)
-        }
+        }*/
         var orPredicate = NSPredicate(value: true)
         if(searchPredicates.count > 0) {
             orPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: searchPredicates)
@@ -138,18 +138,21 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             error = error1
             print("unresolved error \(error), \(error!.userInfo)")
         }
-        self.tableView.reloadData()*/
+        self.tableView.reloadData()
     }
 
     
    
 
     override public func viewWillAppear(animated: Bool) {
+        print("VIEW DID APPEAR")
         super.viewWillAppear(animated)
-        
         let slotHelper = SlotHelper()
+        APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: slotHelper)
         
-        APIManager.getMockedObjets(postActionParam: fetchAll, clear : false, dataHelper: slotHelper)
+        self.tableView.reloadData()
+        
+       
         
         //APIManager.getMockedObjets(postActionParam: fetchAll, clear: false, dataHelper: TrackHelper.self)
         
@@ -228,7 +231,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             cell!.talkType.text = cellData.getThirdInformation()
             cell!.talkType.backgroundColor = cellData.getColor()
 
-            if let fav = cellData.getElement() as? FavoriteProtocol {
+            if let fav = cellData as? FavoriteProtocol {
                 cell!.updateBackgroundColor(fav.favorited())
             }
             
@@ -306,8 +309,8 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     public func favorite(indexPath : NSIndexPath) -> Bool {
         if let cellData = fetchedResultsController.objectAtIndexPath(indexPath) as? CellData {
-        
-            if let cellElement = cellData.getElement() as? FavoriteProtocol  {
+            print(cellData.getElement())
+            if let cellElement = cellData as? FavoriteProtocol  {
                 return cellElement.invertFavorite()
             }
         }

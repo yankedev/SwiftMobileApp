@@ -83,6 +83,9 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     */
     func filterMe() {
 
+        print("FILTER")
+        let schedule = pageViewControllers[0] as! SchedulerTableViewController
+        schedule.tableView.reloadData()
         
         if view.tag == 0 {
             view.tag = 1

@@ -35,6 +35,7 @@ class SlotHelper: DataHelperProtocol {
     }
     
     func feed(data: JSON) {
+    
         roomName = data["roomName"].string
         slotId = data["slotId"].string
         fromTime = data["fromTime"].string
@@ -68,6 +69,18 @@ class SlotHelper: DataHelperProtocol {
         return json["slots"].array
     }
     
+    func save2() -> NSManagedObject? {
+        return nil
+    }
+    
+    func generateFavorite(managedContext:NSManagedObjectContext, identifier: String, type: String) {
+        let favEntity = NSEntityDescription.entityForName("Favorite", inManagedObjectContext: managedContext)
+        let favCoreData = devoxxApp.Favorite(entity: favEntity!, insertIntoManagedObjectContext: managedContext)
+        favCoreData.id = identifier
+        favCoreData.isFavorited = 0
+        favCoreData.type = type
+    }
+    
     func save() -> Void {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -76,40 +89,40 @@ class SlotHelper: DataHelperProtocol {
         let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
         let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
-        
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-            
-        
-            
-            
+ 
             coreDataObjectCast.feedHelper(self)
             
-            
-            let entityTalk = NSEntityDescription.entityForName(
-                "Talk", inManagedObjectContext: managedContext)
-            let coreDataObjectTalk = NSManagedObject(entity: entityTalk!, insertIntoManagedObjectContext: managedContext)
-            
-            if let coreDataObjectTalkCast = coreDataObjectTalk as? FeedableProtocol {
-                coreDataObjectTalkCast.feedHelper(self.talk!)
+            for att in (entity?.properties)! {
                 
-                if let currentSlot = coreDataObject as? Slot {
-                    currentSlot.talk = coreDataObjectTalkCast as! Talk
+                if let relation = att as? NSRelationshipDescription  {
+                    let relationName = relation.name
+                    let subEntity = NSEntityDescription.entityForName(relationName.capitalizedString, inManagedObjectContext: managedContext)
+                    let subDataObject = NSManagedObject(entity: subEntity!, insertIntoManagedObjectContext: managedContext) as! FeedableProtocol
                     
-                                    }
-                
+                    subDataObject.feedHelper(self.talk!)
+                    
+                    coreDataObject.setValue(subDataObject as? AnyObject, forKey: relationName)
+                    
+                }
                 
             }
+
             
-           
-            
-            saveCoreData(managedContext)
         }
         
         
-        //coreDataObject.feed(dataHelper)
+        if let coreDataObjectCast = coreDataObject as? FavoriteProtocol {
+            generateFavorite(managedContext, identifier: coreDataObjectCast.getIdentifier(), type: "Talk")
+        }
         
-        //generateFavorite(managedContext, object:coreDataObject, type: entityName())
-        //saveCoreData(managedContext)
+        
+        
+        
+        
+        
+        saveCoreData(managedContext)
+        
     }
     
     func saveCoreData(context:NSManagedObjectContext) {
@@ -122,43 +135,4 @@ class SlotHelper: DataHelperProtocol {
         }
     }
     
-    /*func save(dataHelper : DataHelper) -> Void {
-        
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        
-        let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
-        let coreDataObject = Feedable(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        coreDataObject.feed(dataHelper)
-        
-        if let slotHelper = dataHelper as? SlotHelper {
-            let ent2 = NSEntityDescription.entityForName("Talk", inManagedObjectContext: managedContext)
-            let coreDataObject2 = Feedable(entity: ent2!, insertIntoManagedObjectContext: managedContext)
-            
-            //print(coreDataObject2)
-            
-            
-            //print(slotHelper.talk)
-            
-            
-            coreDataObject2.feed(slotHelper.talk)
-            generateFavorite(managedContext, object:coreDataObject2, type: "Talk")
-            //print(coreDataObject2)
-            
-            if let coreDataObjectCast = coreDataObject as? Slot {
-                if let coreDataObject2Cast = coreDataObject2 as? Talk {
-                    //print(coreDataObject2Cast)
-                    coreDataObjectCast.talk = coreDataObject2Cast
-                }
-                
-            }
-        }
-        
-        
-        
-        saveCoreData(managedContext)
- 
-        
-    }*/
 }

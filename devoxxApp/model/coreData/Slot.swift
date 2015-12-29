@@ -9,13 +9,18 @@
 import Foundation
 import CoreData
 
-class Slot: CellData {
+class Slot: CellData, FavoriteProtocol {
 
     @NSManaged var roomName: String
     @NSManaged var slotId: String
     @NSManaged var fromTime: String
     @NSManaged var day: String
+    
+    @NSManaged var toTimeMillis: NSNumber
+    
     @NSManaged var talk: Talk
+    
+    
     
     
     override func getPrimaryImage() -> UIImage? {
@@ -51,5 +56,16 @@ class Slot: CellData {
         return talk
     }
 
+    func getIdentifier() -> String {
+        return talk.id
+    }
+    
+    func invertFavorite() -> Bool {
+        return APIManager.invertFavorite("Talk", identifier: getIdentifier())
+    }
+    
+    func favorited() -> Bool {
+        return APIManager.isFavorited("Talk", identifier: getIdentifier())
+    }
     
 }

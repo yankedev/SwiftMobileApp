@@ -23,7 +23,30 @@ let apiURLS:[(JSON -> (DataHelper?),[String])] = [(SlotHelper.feed, ["http://cfp
 
 class APIManager {
     
+    class func deleteAll(context : NSManagedObjectContext) {
+        
+        let fetchRequest = NSFetchRequest(entityName: "Slot")
+        fetchRequest.includesSubentities = true
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        let items = try! context.executeFetchRequest(fetchRequest)
+        
+        for item in items {
+            context.deleteObject(item as! NSManagedObject)
+        }
+    }
+
+    class func isAlreadyLoaded() -> Bool {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = buildFetchRequest(context, name: "Slot")
+        return checkForEmptyness(context, request: fetchRequest)
+    }
     
+    class func checkForEmptyness(context: NSManagedObjectContext, request : NSFetchRequest) -> Bool {
+        let items = try! context.executeFetchRequest(request)
+        return items.count > 0
+    }
     
     class func save(context:NSManagedObjectContext) {
         var error: NSError?
@@ -148,11 +171,11 @@ class APIManager {
     }
 
     
-    class func getMockedObjets(postActionParam postAction :(Void) -> (Void), clear : Bool, dataHelper: DataHelperProtocol) {
-    
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
+    class func getMockedObjets(postActionParam postAction :(Void) -> (Void), dataHelper: DataHelperProtocol) {
 
+        if(isAlreadyLoaded()) {
+            return
+        }
 
         loadDataFromURL(NSURL(string: "http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday")!, completion:{(data, error) -> Void in
             if let slotData = data {
