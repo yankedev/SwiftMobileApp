@@ -42,7 +42,7 @@ class TalkHelper: DataHelperProtocol {
       
         title = data["title"].string
         if(title == nil) {
-            title = "TODO brak"
+            title = "\(Int(arc4random_uniform(10000)))"
         }
         lang = data["lang"].string
         trackId = data["trackId"].string

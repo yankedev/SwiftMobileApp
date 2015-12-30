@@ -57,7 +57,7 @@ class Slot: CellData, FavoriteProtocol {
     }
 
     func getIdentifier() -> String {
-        return talk.id
+        return talk.title
     }
     
     func invertFavorite() -> Bool {
