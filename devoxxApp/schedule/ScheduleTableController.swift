@@ -32,6 +32,8 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     var isFavorite = false
     
+    var favoriteSections = [NSFetchedResultsSectionInfo]()
+    
     lazy var fetchedResultsController: NSFetchedResultsController = {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -119,17 +121,16 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
 
 
-        /*if(isFavorite) {
-            let predicateFavorite = NSPredicate(format: "talk.isFavorite = %d", 1)
-            andPredicate.append(predicateFavorite)
-        }*/
+        if(isFavorite) {
+            print("set fav")
+        }
         var orPredicate = NSPredicate(value: true)
         if(searchPredicates.count > 0) {
             orPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: searchPredicates)
         }
         andPredicate.append(orPredicate)
         fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
-        //fetchedResultsController.fetchRequest.predicate = predicateDay
+        fetchedResultsController.fetchRequest.predicate = predicateDay
         var error: NSError? = nil
         do {
             try fetchedResultsController.performFetch()
@@ -146,7 +147,6 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
    
 
     override public func viewWillAppear(animated: Bool) {
-        print("VIEW DID APPEAR")
         super.viewWillAppear(animated)
         let slotHelper = SlotHelper()
         APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: slotHelper)
@@ -212,7 +212,20 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         }
         
         
-        if let cellData = fetchedResultsController.objectAtIndexPath(indexPath) as? CellData {
+        var cellDataTry:CellData?
+        
+        if isFavorite {
+            
+            let curent = favoriteSections[indexPath.section]
+            let obj = (curent.objects)!
+            cellDataTry = filterArray(obj)[indexPath.row] as? CellData
+        }
+        else {
+            cellDataTry = fetchedResultsController.objectAtIndexPath(indexPath) as? CellData
+        }
+        
+        
+        if let cellData = cellDataTry {
             //cell!.trackImg.image = 
             
             cell!.trackImg.image = cellData.getPrimaryImage()
@@ -235,21 +248,73 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         
     }
 
-    
+    func filterArray(currentArray : [AnyObject]) -> [AnyObject] {
+        
+        let filteredArray = currentArray.filter() {
+            if let type = $0 as? FavoriteProtocol {
+                return type.favorited()
+            } else {
+                print($0)
+                return false
+            }
+        }
+        
+        return filteredArray
+        
+    }
+    /*
+    func filterArrayOffset(offset : Int, currentArray : [AnyObject]) -> [AnyObject] {
+        
+        var index = 0
+        
+        for subArray in currentArray {
+            
+        }
+        
+        return filteredArray
+        
+    }
+*/
     
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+
         if let sections = fetchedResultsController.sections {
-            return sections.count
+            if !isFavorite {
+                return sections.count
+            }
+            
+            updateSection()
+            print("cb de sections ? = \(favoriteSections.count)")
+            return favoriteSections.count
+            
         }
         
         return 0
     }
     
+       
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = fetchedResultsController.sections {
+            
             let currentSection = sections[section]
-            return currentSection.numberOfObjects
+            
+            if !isFavorite {
+                return currentSection.numberOfObjects
+            }
+            
+            print("number of rom in \(section) = \(favoriteSections[section].numberOfObjects)")
+            
+            
+            let curent = favoriteSections[section]
+
+            
+            let obj = (curent.objects)!
+            
+            print(filterArray(obj))
+            
+            
+            return filterArray(obj).count
         }
         
         return 0
@@ -257,14 +322,32 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = fetchedResultsController.sections {
-            let currentSection = sections[section]
-            return currentSection.name
+            if !isFavorite {
+                return sections[section].name
+            }
+            return favoriteSections[section].name
         }
         
         return nil
     }
     
-    
+    public func updateSection() {
+        
+        favoriteSections = fetchedResultsController.sections!
+
+        if let sections = fetchedResultsController.sections {
+            for section in sections {
+                
+                print(section.name)
+                
+                let filteredArray = filterArray(section.objects!)
+                if filteredArray.count == 0 {
+                    favoriteSections.removeObject(section)
+                }
+            }
+            
+        }
+    }
   
     
     public func changeSchedule(sender: UISegmentedControl) {
@@ -300,7 +383,6 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     public func favorite(indexPath : NSIndexPath) -> Bool {
         if let cellData = fetchedResultsController.objectAtIndexPath(indexPath) as? CellData {
-            print(cellData.getElement())
             if let cellElement = cellData as? FavoriteProtocol  {
                 return cellElement.invertFavorite()
             }

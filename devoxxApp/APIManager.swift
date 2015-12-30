@@ -175,8 +175,7 @@ class APIManager {
     }
     
     class func handleData(inputData : NSData, dataHelper: DataHelperProtocol, postAction : (Void) -> Void) {
-        
-        print("in handleData")
+
         let json = JSON(data: inputData)
         let arrayToParse = dataHelper.prepareArray(json)
         
@@ -188,7 +187,6 @@ class APIManager {
         }
         
         dispatch_async(dispatch_get_main_queue()) {
-            print("update VIEW")
             postAction()
         }
     }
@@ -199,22 +197,29 @@ class APIManager {
         let context = appDelegate.managedObjectContext!
 
         var storeEtag = getEtagForUrl(url.absoluteString)
-        print("foundStoreEtag = \(storeEtag.url) and \(storeEtag.value)")
         
-        let session = NSURLSession.sharedSession()
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let headers = [
+            "If-None-Match": storeEtag.value!
+        ]
+        config.HTTPAdditionalHeaders = headers
+        config.requestCachePolicy = .ReloadIgnoringLocalCacheData
         
-        let mutableRequest = NSMutableURLRequest(URL: url)
-        mutableRequest.setValue(storeEtag.value, forHTTPHeaderField: "If-None-Match")
+        let session = NSURLSession(configuration: config)
         
-        print(mutableRequest)
         
-        let loadDataTask = session.dataTaskWithRequest(mutableRequest, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+        
+        
+        let loadDataTask = session.dataTaskWithURL(url, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             if let responseError = error {
                 print("respnseError")
                 completion(data: nil, error: responseError)
             } else if let httpResponse = response as? NSHTTPURLResponse {
+            
+                print("response = \(response)")
                 print("statusCode = \(httpResponse.statusCode)")
-                if httpResponse.statusCode != 200 {
+                
+                if httpResponse.statusCode != 200 && httpResponse.statusCode != 304  {
                     let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
                     completion(data: nil, error: statusError)
                 }
@@ -224,14 +229,8 @@ class APIManager {
                 }
                 else {
                     let etagValue = httpResponse.allHeaderFields["Etag"] as! String
-                    print("found etag = \(etagValue)")
                     storeEtag.value = etagValue
                     save(context)
-                    
-                    storeEtag = getEtagForUrl(url.absoluteString)
-                    
-                    print("updateEtag = \(storeEtag)")
-                    
                     completion(data: data, error: nil)
                 }
             }
@@ -252,6 +251,11 @@ class APIManager {
             if let slotData = data {
                 print("ok slotData")
                 self.handleData(slotData, dataHelper: dataHelper, postAction: postAction)
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    postAction()
+                }
             }
         })
     }
