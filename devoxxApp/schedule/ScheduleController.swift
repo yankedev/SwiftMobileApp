@@ -200,7 +200,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     
     
     public func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 5
+        return 3
     }
     
     public func configure() {

@@ -256,16 +256,21 @@ class APIManager {
         print(dataHelper.typeName())
         //print(apiURLS[dataHelper.typeName()]![0])!)
         
-        loadDataFromURL(NSURL(string: apiURLS[dataHelper.typeName()]![0])!, completion:{(data, error) -> Void in
-            if let slotData = data {
-                self.handleData(slotData, dataHelper: dataHelper, postAction: postAction)
-            }
-            else {
-                dispatch_async(dispatch_get_main_queue()) {
-                    postAction()
+        
+        for url in apiURLS[dataHelper.typeName()]! {
+            loadDataFromURL(NSURL(string: url)!, completion:{(data, error) -> Void in
+                if let slotData = data {
+                    self.handleData(slotData, dataHelper: dataHelper, postAction: postAction)
                 }
-            }
-        })
+                else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        postAction()
+                    }
+                }
+            })
+        }
+        
+        
     }
 
 

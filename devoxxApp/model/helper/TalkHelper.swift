@@ -45,7 +45,7 @@ class TalkHelper: DataHelperProtocol {
       
         title = data["title"].string
         if(title == nil) {
-            title = "\(Int(arc4random_uniform(10000)))"
+            title = data["nameEN"].string
         }
         lang = data["lang"].string
         trackId = data["trackId"].string
@@ -61,7 +61,11 @@ class TalkHelper: DataHelperProtocol {
     }
     
     func prepareArray(json: JSON) -> [JSON]? {
-        return [json["talk"]]
+        print(json)
+        if(json["talk"] != nil) {
+            return [json["talk"]]
+        }
+        return [json["break"]]
     }
     
     func save2() -> NSManagedObject? {
