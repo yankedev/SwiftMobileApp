@@ -32,6 +32,8 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     var isFavorite = false
     
+    var areFilterOpened = false
+    
     var favoriteSections = [NSFetchedResultsSectionInfo]()
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
@@ -144,6 +146,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
 
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         let slotHelper = SlotHelper()
         APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: slotHelper)
     }

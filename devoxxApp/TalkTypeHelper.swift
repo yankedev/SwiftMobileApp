@@ -9,25 +9,61 @@
 import Foundation
 import CoreData
 
-class TalkTypeHelper: AttributeHelper {
+
+
+
+class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
     
     
-    init(label: String?, id: String?, talkTypeDescription: String?) {
-        super.init(id: id, label: label, attributeDescription: talkTypeDescription, type: "TalkType")
+    func feed(data: JSON) {
+        
+        
+
+        
+        super.label = data["label"].string
+        super.id = data["id"].string
+        super.attributeDescription = data["description"].string
+        super.type = "TalkType"
     }
     
-    override func feed(data: JSON) {
-        id = data["id"].string
-        label = data["label"].string
-        //talkTypeDescription = data["talkTypeDescription"].string
-    }
-    
-    override func entityName() -> String {
+    func entityName() -> String {
         return "Attribute"
+    }
+    
+    func typeName() -> String {
+        return "TalkType"
     }
     
     func prepareArray(json : JSON) -> [JSON]? {
         return json["proposalTypes"].array
     }
+    
+  
+    
+    func save(managedContext : NSManagedObjectContext) {
+        
+        let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
+        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        
+        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+            coreDataObjectCast.feedHelper(self)
+        }
+        
+        
+        
+        APIManager.save(managedContext)
+        
+    }
+    
+    func save2() -> NSManagedObject? {
+        return nil
+    }
+    
+    required override init() {
+    }
+    @objc func copyWithZone(zone: NSZone) -> AnyObject {
+        return self.dynamicType.init()
+    }
+    
     
 }

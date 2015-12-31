@@ -11,13 +11,16 @@ import CoreData
 
 
 
-public protocol DataHelperProtocol {
+public protocol DataHelperProtocol : NSCopying {
     func feed(data: JSON)
     func entityName() -> String
     func prepareArray(json : JSON) -> [JSON]?
-    func save() -> Void
+    func save(managedContext : NSManagedObjectContext) -> Void
+    
+    func typeName() -> String
     
     func save2() -> NSManagedObject?
+
 }
 
 

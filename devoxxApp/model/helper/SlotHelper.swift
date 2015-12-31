@@ -18,14 +18,14 @@ class SlotHelper: DataHelperProtocol {
     var talk : TalkHelper?
     
     
+    func typeName() -> String {
+        return entityName()
+    }
      func description() -> String {
         return "roomName: \(roomName)\n slotId: \(slotId)\n fromTime: \(fromTime) \n talk: \(talk)\n day: \(day)\n"
     }
     
-    
-    init() {
-    }
-    
+
     init(roomName: String?, slotId: String?, fromTime: String?, day: String?, talk: TalkHelper) {
         self.roomName = roomName ?? ""
         self.slotId = slotId ?? ""
@@ -57,6 +57,7 @@ class SlotHelper: DataHelperProtocol {
     
    
     
+    
     func entityName() -> String {
         return "Slot"
     }
@@ -81,10 +82,7 @@ class SlotHelper: DataHelperProtocol {
         favCoreData.type = type
     }
     
-    func save() -> Void {
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
+    func save(managedContext : NSManagedObjectContext) -> Void {
         
         let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
         let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
@@ -116,23 +114,15 @@ class SlotHelper: DataHelperProtocol {
             generateFavorite(managedContext, identifier: coreDataObjectCast.getIdentifier(), type: "Talk")
         }
         
-        
-        
-        
-        
-        
-        saveCoreData(managedContext)
-        
+        APIManager.save(managedContext)
     }
     
-    func saveCoreData(context:NSManagedObjectContext) {
-        var error: NSError?
-        do {
-            try context.save()
-        } catch let error1 as NSError {
-            error = error1
-            print("Could not save \(error), \(error?.userInfo)")
-        }
+    required init() {
     }
+    @objc func copyWithZone(zone: NSZone) -> AnyObject {
+        return self.dynamicType.init()
+    }
+    
+    
     
 }

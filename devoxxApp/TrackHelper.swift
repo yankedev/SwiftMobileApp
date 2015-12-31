@@ -9,27 +9,24 @@
 import Foundation
 import CoreData
 
-class TrackHelper: AttributeHelper {
+class TrackHelper: AttributeHelper, DataHelperProtocol {
   
+
+    func feed(data: JSON) {
     
-    init(title: String?, id: String?, trackDescription: String?) {
-        super.init(id: id, label: title, attributeDescription: trackDescription, type: "Track")
-    }
-    
-    class func feed(data: JSON) -> TrackHelper? {
         
-        let title: String? = data["title"].string
-        let id: String? = data["id"].string
-        let trackDescription: String? = data["trackDescription"].string
+        super.label = data["title"].string
+        super.id = data["id"].string
+        super.attributeDescription = data["trackDescription"].string
         
-        return TrackHelper(title: title, id: id, trackDescription: trackDescription)
+        super.type = "Track"
     }
 
-    override func entityName() -> String {
+    func entityName() -> String {
         return "Attribute"
     }
     
-    func fileName() -> String {
+    func typeName() -> String {
         return "Track"
     }
     
@@ -37,8 +34,33 @@ class TrackHelper: AttributeHelper {
         return json["tracks"].array
     }
     
-    override func save() {
-        //
+    func save(managedContext : NSManagedObjectContext) {
+      
+        let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
+        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        
+        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+            coreDataObjectCast.feedHelper(self)
+        }
+                
+        print(coreDataObject)
+        APIManager.save(managedContext)
+        
     }
+    
+    func save2() -> NSManagedObject? {
+        return nil
+    }
+    
+    required override init() {
+    }
+    
+    @objc func copyWithZone(zone: NSZone) -> AnyObject {
+        return self.dynamicType.init()
+    }
+    
+
+    
+   
     
 }

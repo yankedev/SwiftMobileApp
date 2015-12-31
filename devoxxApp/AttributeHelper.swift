@@ -16,12 +16,13 @@ public class AttributeHelper {
     public var attributeDescription: String?
     public var type:String?
 
+    /*
     init(id: String?, label: String?, attributeDescription: String?, type: String?) {
         self.id = id ?? ""
         self.label = label ?? ""
         self.attributeDescription = attributeDescription ?? ""
         self.type = type ?? ""
-    }
+    }*/
     /*
     override public var description: String {
         return "id: \(id)\n label: \(label)\n attributeDescription: \(attributeDescription)\n type: \(type)\n"
@@ -32,7 +33,7 @@ public class AttributeHelper {
         super.save(dataHelper)
     }*/
     
-    
+  /*
     public func entityName() -> String {
         return "Attribute"
     }
@@ -45,6 +46,6 @@ public class AttributeHelper {
     
     public func feed(data: JSON) {
         //
-    }
+    }*/
     
 }

@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-class Attribute: FeedableProtocol {
+class Attribute: NSManagedObject, FeedableProtocol {
     
     @NSManaged var id: String?
     @NSManaged var label: String?

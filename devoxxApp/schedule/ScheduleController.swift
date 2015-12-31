@@ -15,9 +15,6 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     var pageView : UIPageViewController?
     var pageViewControllers = [UIViewController]()
     
-    //var heightConstant:CGFloat!
-    var constV:[NSLayoutConstraint]!
-    var constV2:[NSLayoutConstraint]!
     var constH:[NSLayoutConstraint]!
     
     
@@ -86,8 +83,14 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         let schedule = pageViewControllers[0] as! SchedulerTableViewController
         schedule.tableView.reloadData()
         
-        if view.tag == 0 {
-            view.tag = 1
+        
+        if constH != nil  {
+            pageViewControllers[0].view.removeConstraints(constH)
+        }
+        
+        
+        if schedule.areFilterOpened {
+
             //view.removeConstraints(constH)
             
             
@@ -97,59 +100,34 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
             
             
             
-            
-            
-            
-            
-            pageViewControllers[0].view.addSubview(t.tableView)
             let schedule = pageViewControllers[0] as! SchedulerTableViewController
             let views = ["pageView": schedule.tableView, "filterView" : t.tableView]
             
-            t.tableView.translatesAutoresizingMaskIntoConstraints = false
-            t.translatesAutoresizingMaskIntoConstraints = false
-            schedule.tableView.translatesAutoresizingMaskIntoConstraints = false
             
             
-            if(constV != nil) {
-                pageViewControllers[0].view.removeConstraints(constV)
-                pageViewControllers[0].view.removeConstraints(constV2)
-                pageViewControllers[0].view.removeConstraints(constH)
-            }
             
             
-            constV = NSLayoutConstraint.constraintsWithVisualFormat("H:|-[pageView]-[filterView(150)]-0-|", options: [], metrics: nil, views: views)
-            constV2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[pageView]-|", options: .AlignAllCenterX, metrics: nil, views: views)
-            constH = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[filterView]-|", options: .AlignAllCenterX, metrics: nil, views: views)
-            
-            pageViewControllers[0].view.addConstraints(constV)
-            pageViewControllers[0].view.addConstraints(constV2)
-            pageViewControllers[0].view.addConstraints(constH)
-            
+            constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[pageView]-[filterView(150)]-0-|", options: [], metrics: nil, views: views)
             
         }
         else {
             let schedule = pageViewControllers[0] as! SchedulerTableViewController
             let views = ["pageView": schedule.tableView, "filterView" : t.tableView]
             
-            pageViewControllers[0].view.removeConstraints(constV)
-            pageViewControllers[0].view.removeConstraints(constV2)
-            pageViewControllers[0].view.removeConstraints(constH)
+            
+
             
             
-            constV = NSLayoutConstraint.constraintsWithVisualFormat("H:|[filterView(0)]-[pageView]-|", options: [], metrics: nil, views: views)
-            constV2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[pageView]-|", options: .AlignAllCenterX, metrics: nil, views: views)
-            constH = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[filterView]-|", options: .AlignAllCenterX, metrics: nil, views: views)
+            constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[pageView]-0-|", options: [], metrics: nil, views: views)
             
-            pageViewControllers[0].view.addConstraints(constV)
-            pageViewControllers[0].view.addConstraints(constV2)
-            pageViewControllers[0].view.addConstraints(constH)
+          
             
             
-            view.tag = 0
+          
         }
         
-        
-        
+        pageViewControllers[0].view.addConstraints(constH)
+        schedule.areFilterOpened = !schedule.areFilterOpened
         
     }
     
@@ -244,21 +222,26 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         
         childViewController.tableView.translatesAutoresizingMaskIntoConstraints = false
         
-        let views = ["pageView": childViewController.tableView]
         
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|[pageView]|", options: .AlignAllCenterY, metrics: nil, views: views)
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|[pageView]|", options: .AlignAllCenterX, metrics: nil, views: views)
+        pageViewControllers[0].view.addSubview(t.tableView)
+        let schedule = pageViewControllers[0] as! SchedulerTableViewController
+        let views = ["pageView": schedule.tableView, "filterView" : t.tableView]
         
-        
-        
+        t.tableView.translatesAutoresizingMaskIntoConstraints = false
+        t.translatesAutoresizingMaskIntoConstraints = false
+        schedule.tableView.translatesAutoresizingMaskIntoConstraints = false
 
         
         
-    
-        childViewController.view.addConstraints(constH)
-        childViewController.view.addConstraints(constV)
         
+        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[pageView]-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constV2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[filterView]-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
+        pageViewControllers[0].view.addConstraints(constV)
+        pageViewControllers[0].view.addConstraints(constV2)
+
+        
+        filterMe()
   
     
         return childViewController

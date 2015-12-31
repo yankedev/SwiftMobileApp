@@ -25,8 +25,11 @@ class TalkHelper: DataHelperProtocol {
     }
     */
     
-    init() {
+    func typeName() -> String {
+        return entityName()
     }
+    
+
     
     init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?) {
         self.title = title ?? ""
@@ -65,8 +68,14 @@ class TalkHelper: DataHelperProtocol {
         return nil
     }
     
-    func save() {
+    func save(managedContext : NSManagedObjectContext) {
         //
+    }
+    
+    required init() {
+    }
+    @objc func copyWithZone(zone: NSZone) -> AnyObject {
+        return self.dynamicType.init()
     }
     
 }

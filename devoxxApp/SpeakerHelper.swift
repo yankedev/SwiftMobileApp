@@ -34,6 +34,10 @@ class SpeakerHelper: DataHelperProtocol {
         avatarUrl = data["avatarUrl"].string
     }
     
+    func typeName() -> String {
+        return entityName()
+    }
+    
     func entityName() -> String {
         return "Speaker"
     }
@@ -42,11 +46,17 @@ class SpeakerHelper: DataHelperProtocol {
         return json.array
     }
     
-    func save() {
+    func save(managedContext : NSManagedObjectContext) {
     }
     
     func save2() -> NSManagedObject? {
         return nil
+    }
+    
+    required init() {
+    }
+    @objc func copyWithZone(zone: NSZone) -> AnyObject {
+        return self.dynamicType.init()
     }
     
     /*func save(dataHelper : DataHelper) -> Void {

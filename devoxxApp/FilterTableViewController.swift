@@ -85,12 +85,18 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
         tableView.separatorStyle = .None
         tableView.backgroundColor = ColorManager.bottomDotsPageController
         backgroundColor = ColorManager.bottomDotsPageController
+
+
+        let trackHelper = TrackHelper()
+        APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: trackHelper)
         
-        //tableView.layer.borderColor = ColorManager.topNavigationBarColor.CGColor
-        //tableView.layer.borderWidth = 3.0
+        let talkTypeHelper = TalkTypeHelper()
+        APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: talkTypeHelper)
         
-        fetchAll()
+     
     }
+    
+    
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

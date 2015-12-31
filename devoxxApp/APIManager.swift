@@ -14,12 +14,9 @@ let topAppURL = "http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday"
 
 
 
-/*
-let apiURLS:[(JSON -> (DataHelper?),[String])] = [(SlotHelper.feed, ["http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/thursday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/friday/"]),
-(TalkTypeHelper.feed, ["http://cfp.devoxx.be/api/conferences/DV15/proposalTypes"]),
-(TrackHelper.feed, ["http://cfp.devoxx.be/api/conferences/DV15/tracks"])]
 
-*/
+let apiURLS:[String : [String]] = ["Slot" : ["http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/thursday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/friday/"], "TalkType" : ["http://cfp.devoxx.be/api/conferences/DV15/proposalTypes"], "Track" :  ["http://cfp.devoxx.be/api/conferences/DV15/tracks"]]
+
 
 class APIManager {
     
@@ -179,10 +176,29 @@ class APIManager {
         let json = JSON(data: inputData)
         let arrayToParse = dataHelper.prepareArray(json)
         
+        
+        
+        
         if let appArray = arrayToParse {
             for appDict in appArray {
-                dataHelper.feed(appDict)
-                dataHelper.save()
+                
+                let newHelper = dataHelper.copyWithZone(nil) as! DataHelperProtocol
+                
+                newHelper.feed(appDict)
+                
+                
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let context = appDelegate.managedObjectContext!
+                
+                let privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+                privateContext.persistentStoreCoordinator = context.persistentStoreCoordinator
+                
+                // 2
+                privateContext.performBlock { () -> Void in
+                    newHelper.save(privateContext)
+                }
+                
+                
             }
         }
         
@@ -193,10 +209,7 @@ class APIManager {
     
     class func loadDataFromURL(url: NSURL, completion:(data: NSData?, error: NSError?) -> Void) {
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-
-        var storeEtag = getEtagForUrl(url.absoluteString)
+        let storeEtag = getEtagForUrl(url.absoluteString)
         
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         let headers = [
@@ -214,6 +227,8 @@ class APIManager {
             if let responseError = error {
                 completion(data: nil, error: responseError)
             } else if let httpResponse = response as? NSHTTPURLResponse {
+                print(httpResponse)
+                print(storeEtag.value)
                 if httpResponse.statusCode != 200 && httpResponse.statusCode != 304  {
                     let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
                     completion(data: nil, error: statusError)
@@ -225,6 +240,8 @@ class APIManager {
                 else {
                     let etagValue = httpResponse.allHeaderFields["Etag"] as! String
                     storeEtag.value = etagValue
+                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    let context = appDelegate.managedObjectContext!
                     save(context)
                     completion(data: data, error: nil)
                 }
@@ -235,10 +252,12 @@ class APIManager {
 
     
     class func getMockedObjets(postActionParam postAction :(Void) -> (Void), dataHelper: DataHelperProtocol) {
-
-        loadDataFromURL(NSURL(string: "http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday")!, completion:{(data, error) -> Void in
+        
+        print(dataHelper.typeName())
+        //print(apiURLS[dataHelper.typeName()]![0])!)
+        
+        loadDataFromURL(NSURL(string: apiURLS[dataHelper.typeName()]![0])!, completion:{(data, error) -> Void in
             if let slotData = data {
-                print("ok slotData")
                 self.handleData(slotData, dataHelper: dataHelper, postAction: postAction)
             }
             else {
