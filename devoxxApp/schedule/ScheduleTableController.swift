@@ -116,14 +116,10 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     
     public func fetchAll() {
-        print("fetchAllIsCalled")
+
         var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
-
-
-        if(isFavorite) {
-            print("set fav")
-        }
+        
         var orPredicate = NSPredicate(value: true)
         if(searchPredicates.count > 0) {
             orPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: searchPredicates)
@@ -160,37 +156,36 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        if let scheduleCell = cell as? ScheduleViewCell {
-            /*if(scheduleCell.scrollView.contentOffset.x == 0) {
-                saveAsFavorite(indexPath)
-                scheduleCell.hideFavorite(animated: true)
+        if let slot = getCell(indexPath) as? Slot {
                 
-                if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
-                
-                    scheduleCell.btnFavorite.selected = slot.talk.isFavorite.boolValue
-                    scheduleCell.updateBackgroundColor()
-                }
-                
-            }
-            else {*/
-                if let slot = fetchedResultsController.objectAtIndexPath(indexPath) as? Slot {
-                
-                    let details = TalkDetailsController()
-                    details.indexPath = indexPath
-                    details.talk = slot.talk
-                    details.delegate = self
-                    details.configure()
-                    details.setColor(slot.talk.favorited())
-                    self.navigationController?.pushViewController(details, animated: true)
-                    
-                    
-                }
-                
-            //}
+            let details = TalkDetailsController()
+            details.indexPath = indexPath
+            details.talk = slot.talk
+            details.delegate = self
+            details.configure()
+            details.setColor(slot.talk.favorited())
+            self.navigationController?.pushViewController(details, animated: true)
+
         }
-        
     }
+    
+    
+    
+    func getCell(indexPath : NSIndexPath) -> CellData? {
+        var cellDataTry:CellData?
+        if isFavorite {
+            let curent = favoriteSections[indexPath.section]
+            let obj = (curent.objects)!
+            cellDataTry = filterArray(obj)[indexPath.row] as? CellData
+        }
+        else {
+            cellDataTry = fetchedResultsController.objectAtIndexPath(indexPath) as? CellData
+        }
+        return cellDataTry
+    }
+    
+    
+    
     
     public func getTintColorFromTag(tag : Int) -> UIColor {
         if tag == 0  {
@@ -212,20 +207,10 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         }
         
         
-        var cellDataTry:CellData?
-        
-        if isFavorite {
-            
-            let curent = favoriteSections[indexPath.section]
-            let obj = (curent.objects)!
-            cellDataTry = filterArray(obj)[indexPath.row] as? CellData
-        }
-        else {
-            cellDataTry = fetchedResultsController.objectAtIndexPath(indexPath) as? CellData
-        }
         
         
-        if let cellData = cellDataTry {
+        
+        if let cellData = getCell(indexPath) {
             //cell!.trackImg.image = 
             
             cell!.trackImg.image = cellData.getPrimaryImage()
@@ -254,7 +239,6 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             if let type = $0 as? FavoriteProtocol {
                 return type.favorited()
             } else {
-                print($0)
                 return false
             }
         }
@@ -285,7 +269,6 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             }
             
             updateSection()
-            print("cb de sections ? = \(favoriteSections.count)")
             return favoriteSections.count
             
         }
@@ -302,8 +285,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             if !isFavorite {
                 return currentSection.numberOfObjects
             }
-            
-            print("number of rom in \(section) = \(favoriteSections[section].numberOfObjects)")
+
             
             
             let curent = favoriteSections[section]
@@ -311,7 +293,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             
             let obj = (curent.objects)!
             
-            print(filterArray(obj))
+
             
             
             return filterArray(obj).count
@@ -337,8 +319,6 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
 
         if let sections = fetchedResultsController.sections {
             for section in sections {
-                
-                print(section.name)
                 
                 let filteredArray = filterArray(section.objects!)
                 if filteredArray.count == 0 {

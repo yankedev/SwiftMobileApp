@@ -212,13 +212,8 @@ class APIManager {
         
         let loadDataTask = session.dataTaskWithURL(url, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             if let responseError = error {
-                print("respnseError")
                 completion(data: nil, error: responseError)
             } else if let httpResponse = response as? NSHTTPURLResponse {
-            
-                print("response = \(response)")
-                print("statusCode = \(httpResponse.statusCode)")
-                
                 if httpResponse.statusCode != 200 && httpResponse.statusCode != 304  {
                     let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
                     completion(data: nil, error: statusError)
@@ -241,12 +236,6 @@ class APIManager {
     
     class func getMockedObjets(postActionParam postAction :(Void) -> (Void), dataHelper: DataHelperProtocol) {
 
-       
-        print("in getMockedObjects")
-        print(postAction)
-        
-        
-        
         loadDataFromURL(NSURL(string: "http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday")!, completion:{(data, error) -> Void in
             if let slotData = data {
                 print("ok slotData")
