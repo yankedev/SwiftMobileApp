@@ -24,7 +24,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     var delegate:DevoxxAppScheduleDelegate!
     
-    var searchPredicates = [NSPredicate]()
+    var searchPredicates = [String : [NSPredicate]]()
   
     var navigationItemParam:UINavigationItem!
     
@@ -122,11 +122,16 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
         
-        var orPredicate = NSPredicate(value: true)
-        if(searchPredicates.count > 0) {
-            orPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: searchPredicates)
+        andPredicate.append(predicateDay)
+        
+        var attributeOrPredicate = [NSPredicate]()
+        
+        for name in searchPredicates.keys {
+            attributeOrPredicate.append(NSCompoundPredicate(orPredicateWithSubpredicates: searchPredicates[name]!))
         }
-        andPredicate.append(orPredicate)
+        
+        andPredicate.append(NSCompoundPredicate(andPredicateWithSubpredicates: attributeOrPredicate))
+        
         fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
         
         print(fetchedResultsController.fetchRequest.predicate)
@@ -365,7 +370,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     }
     
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 50.0
+        return 44.0
     }
     
     

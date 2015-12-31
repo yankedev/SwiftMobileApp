@@ -13,7 +13,7 @@ import QuartzCore
 
 
 protocol DevoxxAppFilter : NSObjectProtocol {
-    func filter(filterName : [Attribute]) -> Void
+    func filter(filterName : [String : [Attribute]]) -> Void
 }
 
 
@@ -35,7 +35,7 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     
     var tableView = UITableView()
     
-    var selected = [Attribute]()
+    var selected = [String : [Attribute]]()
     
     var devoxxAppFilterDelegate:DevoxxAppFilter!
     
@@ -47,8 +47,6 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
         let fetchRequest = NSFetchRequest(entityName: "Attribute")
         let sortSection = NSSortDescriptor(key: "type", ascending: true)
         let sortAlpha = NSSortDescriptor(key: "label", ascending: true)
-        
-        //var lastDragged : ScheduleViewCell!
         
         fetchRequest.sortDescriptors = [sortSection, sortAlpha]
         fetchRequest.fetchBatchSize = 20
@@ -83,7 +81,7 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .None
-        tableView.backgroundColor = ColorManager.bottomDotsPageController
+        tableView.backgroundColor = ColorManager.filterBackgroundColor
         backgroundColor = ColorManager.bottomDotsPageController
 
 
@@ -97,6 +95,16 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     }
     
     
+    func isFilterSelected(attribute : Attribute) -> Bool {
+        if selected[attribute.filterPredicateLeftValue()] == nil  {
+            return false
+        }
+        if selected[attribute.filterPredicateLeftValue()]!.contains(attribute) {
+            return true
+        }
+        return false
+    }
+    
 
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -105,18 +113,81 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
 
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Attribute {
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            if selected.contains(track) {
-                selected.removeObject(track)
-                cell?.backgroundColor = ColorManager.defaultColor
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as! FilterViewCell
+            
+            
+            
+            cell.userInteractionEnabled = false
+            
+            
+            UIView.animateWithDuration(0.1, delay: 0.0, options: .CurveEaseOut, animations: {
+                
+                let scale = CGAffineTransformMakeScale(0.1, 0.1)
+                let rotate = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+                
+          
+                
+                cell.tickedImg.transform = CGAffineTransformConcat(rotate, scale)
+                }, completion: { finished in
+                    
+                    
+                    let imageToUse = (self.isFilterSelected(track)) ? "checkboxOff" : "checkboxOn"
+                    
+                    cell.tickedImg.image = UIImage(named: imageToUse)
+                    let scale = CGAffineTransformMakeScale(0.1, 0.1)
+                    let rotate = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+                    cell.tickedImg.transform = CGAffineTransformConcat(rotate, scale)
+
+                    
+                    UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseOut, animations: {
+                        
+                        let scale = CGAffineTransformMakeScale(1, 1)
+                        let rotate = CGAffineTransformMakeRotation(CGFloat(0))
+                        
+                        CGAffineTransformConcat(rotate, scale)
+                        
+                        cell.tickedImg.transform = CGAffineTransformConcat(rotate, scale)
+                        }, completion: { finished in
+                            
+                           
+                            let key = track.filterPredicateLeftValue()
+                            
+                            if self.selected[key] != nil  {
+                                if self.selected[key]!.contains(track) {
+                                    self.selected[key]!.removeObject(track)
+                                    if self.selected[key]!.count == 0 {
+                                        self.selected.removeValueForKey(key)
+                                    }
+                                    cell.backgroundColor = ColorManager.defaultColor
+                                }
+                                else {
+                                    self.selected[key]!.append(track)
+                                }
+                            }
+                                
+                            else {
+                                var attributeArray = [Attribute]()
+                                attributeArray.append(track)
+                                self.selected[key] = attributeArray
+                            }
+                            
+                            cell.userInteractionEnabled = true
+                            self.devoxxAppFilterDelegate.filter(self.selected)
+                            
+                            print(self.selected)
+                            
+                        }
+                    )
+
+                    
             }
-            else {
-                selected.append(track)
-                cell?.backgroundColor = ColorManager.favoriteBackgroundColor
-            }
+            )
+            
         }
-        devoxxAppFilterDelegate.filter(selected)
         
+        
+        
+       
     }
 
     
@@ -126,35 +197,31 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_1") as? ScheduleViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_1") as? FilterViewCell
         
         
         if cell == nil {
-            cell = ScheduleViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
-            cell?.textLabel!.font = UIFont(name: "Roboto", size: 7)
-            cell?.accessoryView = UIImageView(frame: CGRectMake(0,0,15,15))
+            cell = FilterViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
             cell?.selectionStyle = .None
-            cell?.backgroundColor = UIColor.clearColor()
-            
+            cell?.configureCell()
         }
         
-        if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Attribute {
-            cell?.textLabel!.text = track.label
-            if let cellImg = cell?.accessoryView as? UIImageView {
-                cellImg.image = UIImage(named: getIconFromTrackId(track.id!))
-            }
+        if let attribute = fetchedResultsController.objectAtIndexPath(indexPath) as? Attribute {
+            cell?.attributeTitle.text = attribute.label
+            cell?.attributeImage.image = attribute.filterMiniIcon()
+            
+            
+            
+            
+            
+            cell?.backgroundColor = ColorManager.defaultColor
+            
+            let imageToUse = (isFilterSelected(attribute)) ? "checkboxOn" : "checkboxOff"
+            cell?.tickedImg.image = UIImage(named: imageToUse)
             
         }
-        
-        
         return cell!
-        
     }
-    
-    public func getIconFromTrackId(trackId : String) -> String {
-        return "icon_\(trackId)"
-    }
-    
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if let sections = fetchedResultsController.sections {
@@ -182,11 +249,13 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = fetchedResultsController.sections {
             let currentSection = sections[section]
-            return currentSection.name
+            if currentSection.objects?.count > 0 {
+                if let currentSectionFilterable = currentSection.objects![0] as? FilterableProtocol {
+                    return currentSectionFilterable.niceLabel()
+                }
+            }
         }
-        return ""
+        return nil
     }
-    
-    
     
 }

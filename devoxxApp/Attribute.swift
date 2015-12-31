@@ -40,4 +40,16 @@ class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
         }
         return label!
     }
+    
+    func filterMiniIcon() -> UIImage {
+        return UIImage(named: "icon_\(id!)")!
+    }
+    
+    func niceLabel() -> String {
+        if(type == "Track") {
+            return "By track"
+        }
+        return "By type"
+    }
+
 }

@@ -11,4 +11,6 @@ import Foundation
 public protocol FilterableProtocol {
     func filterPredicateLeftValue() -> String
     func filterPredicateRightValue() -> String
+    func filterMiniIcon() -> UIImage
+    func niceLabel() -> String
 }

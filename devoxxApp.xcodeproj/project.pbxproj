@@ -8,6 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		58195BFA1C3572ED00F56A30 /* FilterableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58195BF91C3572ED00F56A30 /* FilterableProtocol.swift */; };
+		58195C021C35868400F56A30 /* icon_bof.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195BFC1C35868400F56A30 /* icon_bof.png */; };
+		58195C031C35868400F56A30 /* icon_conf.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195BFD1C35868400F56A30 /* icon_conf.png */; };
+		58195C041C35868400F56A30 /* icon_lab.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195BFE1C35868400F56A30 /* icon_lab.png */; };
+		58195C051C35868400F56A30 /* icon_ignite.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195BFF1C35868400F56A30 /* icon_ignite.png */; };
+		58195C061C35868400F56A30 /* icon_key.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195C001C35868400F56A30 /* icon_key.png */; };
+		58195C071C35868400F56A30 /* icon_quick.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195C011C35868400F56A30 /* icon_quick.png */; };
+		58195C0B1C35871600F56A30 /* icon_other.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195C0A1C35871600F56A30 /* icon_other.png */; };
+		58195C0D1C35877100F56A30 /* icon_start.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195C0C1C35877100F56A30 /* icon_start.png */; };
+		58195C0F1C3587C600F56A30 /* icon_tia.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195C0E1C3587C600F56A30 /* icon_tia.png */; };
+		58195C111C3587EE00F56A30 /* icon_uni.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195C101C3587EE00F56A30 /* icon_uni.png */; };
+		58195C131C359A4E00F56A30 /* FilterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58195C121C359A4E00F56A30 /* FilterViewCell.swift */; };
+		58195C161C359F7500F56A30 /* checkboxOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195C141C359F7500F56A30 /* checkboxOff.png */; };
+		58195C171C359F7500F56A30 /* checkboxOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195C151C359F7500F56A30 /* checkboxOn.png */; };
 		5872861B1C1F565C00FC098A /* SpeakerTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861A1C1F565C00FC098A /* SpeakerTableController.swift */; };
 		5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861C1C1F579900FC098A /* SpeakerHelper.swift */; };
 		587286201C1F589400FC098A /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861E1C1F589400FC098A /* Speaker.swift */; };
@@ -76,6 +89,19 @@
 
 /* Begin PBXFileReference section */
 		58195BF91C3572ED00F56A30 /* FilterableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterableProtocol.swift; sourceTree = "<group>"; };
+		58195BFC1C35868400F56A30 /* icon_bof.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_bof.png; path = icon/talkType/icon_bof.png; sourceTree = "<group>"; };
+		58195BFD1C35868400F56A30 /* icon_conf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_conf.png; path = icon/talkType/icon_conf.png; sourceTree = "<group>"; };
+		58195BFE1C35868400F56A30 /* icon_lab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_lab.png; path = icon/talkType/icon_lab.png; sourceTree = "<group>"; };
+		58195BFF1C35868400F56A30 /* icon_ignite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_ignite.png; path = icon/talkType/icon_ignite.png; sourceTree = "<group>"; };
+		58195C001C35868400F56A30 /* icon_key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_key.png; path = icon/talkType/icon_key.png; sourceTree = "<group>"; };
+		58195C011C35868400F56A30 /* icon_quick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_quick.png; path = icon/talkType/icon_quick.png; sourceTree = "<group>"; };
+		58195C0A1C35871600F56A30 /* icon_other.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_other.png; path = icon/talkType/icon_other.png; sourceTree = "<group>"; };
+		58195C0C1C35877100F56A30 /* icon_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_start.png; path = icon/talkType/icon_start.png; sourceTree = "<group>"; };
+		58195C0E1C3587C600F56A30 /* icon_tia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tia.png; path = icon/talkType/icon_tia.png; sourceTree = "<group>"; };
+		58195C101C3587EE00F56A30 /* icon_uni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_uni.png; path = icon/talkType/icon_uni.png; sourceTree = "<group>"; };
+		58195C121C359A4E00F56A30 /* FilterViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewCell.swift; sourceTree = "<group>"; };
+		58195C141C359F7500F56A30 /* checkboxOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkboxOff.png; path = icon/checkboxOff.png; sourceTree = "<group>"; };
+		58195C151C359F7500F56A30 /* checkboxOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkboxOn.png; path = icon/checkboxOn.png; sourceTree = "<group>"; };
 		5872861A1C1F565C00FC098A /* SpeakerTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerTableController.swift; sourceTree = "<group>"; };
 		5872861C1C1F579900FC098A /* SpeakerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerHelper.swift; sourceTree = "<group>"; };
 		5872861E1C1F589400FC098A /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Speaker.swift; path = model/coreData/Speaker.swift; sourceTree = "<group>"; };
@@ -156,6 +182,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58195BFB1C35867500F56A30 /* talkType */ = {
+			isa = PBXGroup;
+			children = (
+				58195C0E1C3587C600F56A30 /* icon_tia.png */,
+				58195C0C1C35877100F56A30 /* icon_start.png */,
+				58195C0A1C35871600F56A30 /* icon_other.png */,
+				58195BFC1C35868400F56A30 /* icon_bof.png */,
+				58195C101C3587EE00F56A30 /* icon_uni.png */,
+				58195BFD1C35868400F56A30 /* icon_conf.png */,
+				58195BFE1C35868400F56A30 /* icon_lab.png */,
+				58195BFF1C35868400F56A30 /* icon_ignite.png */,
+				58195C001C35868400F56A30 /* icon_key.png */,
+				58195C011C35868400F56A30 /* icon_quick.png */,
+			);
+			name = talkType;
+			sourceTree = "<group>";
+		};
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
@@ -236,6 +279,9 @@
 		E1FA9C0B1C1BFBE30077C09A /* icon */ = {
 			isa = PBXGroup;
 			children = (
+				58195C141C359F7500F56A30 /* checkboxOff.png */,
+				58195C151C359F7500F56A30 /* checkboxOn.png */,
+				58195BFB1C35867500F56A30 /* talkType */,
 				58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */,
 				58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */,
 				E18046001C1DAC99001AAD85 /* favoriteOff.png */,
@@ -285,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				E1FA9C3D1C1BFD010077C09A /* ScheduleViewCell.swift */,
+				58195C121C359A4E00F56A30 /* FilterViewCell.swift */,
 				E1FA9C341C1BFCC60077C09A /* ScheduleTableController.swift */,
 				E1FA9C351C1BFCC60077C09A /* ScheduleController.swift */,
 				58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */,
@@ -433,26 +480,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58195C031C35868400F56A30 /* icon_conf.png in Resources */,
+				58195C111C3587EE00F56A30 /* icon_uni.png in Resources */,
 				E18046011C1DAC99001AAD85 /* favoriteOff.png in Resources */,
 				E1FA9C211C1BFC150077C09A /* icon_web.png in Resources */,
+				58195C0B1C35871600F56A30 /* icon_other.png in Resources */,
+				58195C171C359F7500F56A30 /* checkboxOn.png in Resources */,
 				58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */,
+				58195C161C359F7500F56A30 /* checkboxOff.png in Resources */,
 				E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */,
 				E1FA9C191C1BFC150077C09A /* icon_cloud.png in Resources */,
 				E1FA9C271C1BFC1E0077C09A /* tabIconSpeaker@2x.png in Resources */,
 				E10E7ACD1C18BF7100F6220B /* Images.xcassets in Resources */,
+				58195C0F1C3587C600F56A30 /* icon_tia.png in Resources */,
 				E1FA9C2F1C1BFC730077C09A /* Roboto-Regular.ttf in Resources */,
+				58195C061C35868400F56A30 /* icon_key.png in Resources */,
+				58195C0D1C35877100F56A30 /* icon_start.png in Resources */,
 				E1FA9C251C1BFC1E0077C09A /* tabIconMap@2x.png in Resources */,
+				58195C051C35868400F56A30 /* icon_ignite.png in Resources */,
 				E1FA9C1E1C1BFC150077C09A /* icon_mobile.png in Resources */,
 				E1FA9C1B1C1BFC150077C09A /* icon_java.png in Resources */,
 				E1FA9C261C1BFC1E0077C09A /* tabIconSchedule@2x.png in Resources */,
 				E1FA9C201C1BFC150077C09A /* icon_startup.png in Resources */,
+				58195C021C35868400F56A30 /* icon_bof.png in Resources */,
 				E1FA9C1A1C1BFC150077C09A /* icon_future.png in Resources */,
 				E1FA9C1C1C1BFC150077C09A /* icon_lang.png in Resources */,
 				E1FA9C1D1C1BFC150077C09A /* icon_methodevops.png in Resources */,
 				E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */,
 				E1FA9C291C1BFC280077C09A /* favoriteOn.png in Resources */,
+				58195C071C35868400F56A30 /* icon_quick.png in Resources */,
 				E1FA9C1F1C1BFC150077C09A /* icon_ssj.png in Resources */,
 				58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */,
+				58195C041C35868400F56A30 /* icon_lab.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +543,7 @@
 				E1FA9C4A1C1BFD560077C09A /* TalkHelper.swift in Sources */,
 				E10CE1B01C2BDB72002C9934 /* AttributeHelper.swift in Sources */,
 				E10E7AC31C18BF7100F6220B /* AppDelegate.swift in Sources */,
+				58195C131C359A4E00F56A30 /* FilterViewCell.swift in Sources */,
 				58BA2BFC1C3331EF0031C2E3 /* Etag.swift in Sources */,
 				E1FA9BEE1C1BF4E70077C09A /* ColorManager.swift in Sources */,
 				E1FA9C491C1BFD560077C09A /* SlotHelper.swift in Sources */,

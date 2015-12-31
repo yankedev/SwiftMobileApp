@@ -27,6 +27,10 @@ class ColorManager {
     static var bottomDotsPageController = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
     
     static var favoriteBackgroundColor = UIColor(red: 251/255, green: 207/255, blue: 148/255, alpha: 0.4)
+    static var filterBackgroundColor = UIColor(red: 228/255, green: 228/255, blue: 228/255, alpha: 1)
+    
+    
+    
     
     class func getColorFromTalkType(talkType : String) -> UIColor {
         if(talkType == "Ignite Sessions") {

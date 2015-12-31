@@ -107,7 +107,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
             
             
             
-            constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[pageView]-[filterView(150)]-0-|", options: [], metrics: nil, views: views)
+            constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[pageView]-0-[filterView(150)]-0-|", options: [], metrics: nil, views: views)
             
         }
         else {
@@ -318,19 +318,27 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     
     
     
-    func filter(filterName : [Attribute]) -> Void {
-      
+    func filter(filterName : [String: [Attribute]]) -> Void {
+
+
         
         let aa = pageView!.viewControllers![0] as! SchedulerTableViewController
         
-        var predicateArray = [NSPredicate]()
-        for item in filterName {
-            let predicate = NSPredicate(format: "\(item.filterPredicateLeftValue()) = %@", item.filterPredicateRightValue())
-            predicateArray.append(predicate)
-        }
-        aa.searchPredicates = predicateArray
-        aa.fetchAll()
+        aa.searchPredicates.removeAll()
         
+        for key in filterName.keys {
+            
+            aa.searchPredicates[key] = [NSPredicate]()
+            
+            for attribute in filterName[key]! {
+                let predicate = NSPredicate(format: "\(attribute.filterPredicateLeftValue()) = %@", attribute.filterPredicateRightValue())
+                aa.searchPredicates[key]?.append(predicate)
+            }
+            
+        }
+        
+        aa.fetchAll()
+
     }
     
     func changeSchedule(sender : UISegmentedControl) {

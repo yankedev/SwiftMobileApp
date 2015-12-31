@@ -154,7 +154,7 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
         // constraints
         
         
-        let topTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.2, constant: 0)
+        let topTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.1, constant: 0)
         topTrackImgConstraint.identifier = "topTrackImgConstraint"
         
         
@@ -177,7 +177,7 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
 
 
         
-        let topTalkTypeConstraint = NSLayoutConstraint(item: talkType, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: talkType.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.8, constant: 0)
+        let topTalkTypeConstraint = NSLayoutConstraint(item: talkType, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: talkType.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.7, constant: 0)
         topTalkTypeConstraint.identifier = "topTalkTypeConstraint"
         
         
