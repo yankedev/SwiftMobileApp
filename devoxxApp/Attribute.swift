@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-class Attribute: NSManagedObject, FeedableProtocol {
+class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
     
     @NSManaged var id: String?
     @NSManaged var label: String?
@@ -25,5 +25,19 @@ class Attribute: NSManagedObject, FeedableProtocol {
             attributeDescription = castHelper.attributeDescription
             type = castHelper.type
         }
+    }
+    
+    func filterPredicateLeftValue() -> String {
+        if(type == "Track") {
+            return "talk.trackId"
+        }
+        return "talk.talkType"
+    }
+    
+    func filterPredicateRightValue() -> String {
+        if(type == "Track") {
+            return id!
+        }
+        return label!
     }
 }

@@ -325,7 +325,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         
         var predicateArray = [NSPredicate]()
         for item in filterName {
-            let predicate = NSPredicate(format: "talk.trackId = %@", item.id!)
+            let predicate = NSPredicate(format: "\(item.filterPredicateLeftValue()) = %@", item.filterPredicateRightValue())
             predicateArray.append(predicate)
         }
         aa.searchPredicates = predicateArray

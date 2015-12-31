@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58195BFA1C3572ED00F56A30 /* FilterableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58195BF91C3572ED00F56A30 /* FilterableProtocol.swift */; };
 		5872861B1C1F565C00FC098A /* SpeakerTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861A1C1F565C00FC098A /* SpeakerTableController.swift */; };
 		5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861C1C1F579900FC098A /* SpeakerHelper.swift */; };
 		587286201C1F589400FC098A /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861E1C1F589400FC098A /* Speaker.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		58195BF91C3572ED00F56A30 /* FilterableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterableProtocol.swift; sourceTree = "<group>"; };
 		5872861A1C1F565C00FC098A /* SpeakerTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerTableController.swift; sourceTree = "<group>"; };
 		5872861C1C1F579900FC098A /* SpeakerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerHelper.swift; sourceTree = "<group>"; };
 		5872861E1C1F589400FC098A /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Speaker.swift; path = model/coreData/Speaker.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				E10CE1A31C2BC1F2002C9934 /* DataHelper.swift */,
 				E10CE1A91C2BD6DE002C9934 /* TalkTypeHelper.swift */,
 				E10CE1AF1C2BDB72002C9934 /* AttributeHelper.swift */,
+				58195BF91C3572ED00F56A30 /* FilterableProtocol.swift */,
 			);
 			name = helper;
 			sourceTree = "<group>";
@@ -474,6 +477,7 @@
 				58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */,
 				58F67CDD1C308C64007D2B97 /* Favorite.swift in Sources */,
 				E18046071C1DD77B001AAD85 /* QTouchposeApplication.m in Sources */,
+				58195BFA1C3572ED00F56A30 /* FilterableProtocol.swift in Sources */,
 				E10CE1AA1C2BD6DE002C9934 /* TalkTypeHelper.swift in Sources */,
 				587286201C1F589400FC098A /* Speaker.swift in Sources */,
 				E18046091C1DD7B6001AAD85 /* main.swift in Sources */,

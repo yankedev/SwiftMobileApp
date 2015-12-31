@@ -65,5 +65,4 @@ class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
         return self.dynamicType.init()
     }
     
-    
 }

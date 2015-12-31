@@ -128,10 +128,15 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         }
         andPredicate.append(orPredicate)
         fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
-        fetchedResultsController.fetchRequest.predicate = predicateDay
+        
+        print(fetchedResultsController.fetchRequest.predicate)
+        
+        
+        //fetchedResultsController.fetchRequest.predicate = predicateDay
         var error: NSError? = nil
         do {
             try fetchedResultsController.performFetch()
+            print(fetchedResultsController.fetchedObjects?.count)
             
             
         } catch let error1 as NSError {

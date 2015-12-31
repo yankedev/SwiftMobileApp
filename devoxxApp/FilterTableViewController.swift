@@ -104,7 +104,7 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     
 
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        /*if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Attribute {
+        if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Attribute {
             let cell = tableView.cellForRowAtIndexPath(indexPath)
             if selected.contains(track) {
                 selected.removeObject(track)
@@ -116,7 +116,7 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
             }
         }
         devoxxAppFilterDelegate.filter(selected)
-        */
+        
     }
 
     

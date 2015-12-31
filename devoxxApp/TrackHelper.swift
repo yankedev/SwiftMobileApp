@@ -59,7 +59,9 @@ class TrackHelper: AttributeHelper, DataHelperProtocol {
         return self.dynamicType.init()
     }
     
-
+    func filterPredicate() -> String {
+        return "talk.trackId"
+    }
     
    
     

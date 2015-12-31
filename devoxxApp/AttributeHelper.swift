@@ -15,6 +15,9 @@ public class AttributeHelper {
     public var label: String?
     public var attributeDescription: String?
     public var type:String?
+    
+    
+    
 
     /*
     init(id: String?, label: String?, attributeDescription: String?, type: String?) {
