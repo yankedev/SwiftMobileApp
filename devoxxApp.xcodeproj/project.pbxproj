@@ -51,8 +51,6 @@
 		E127E6601C38313200FB7E4F /* SearchableProcotol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E127E65F1C38313200FB7E4F /* SearchableProcotol.swift */; };
 		E18046011C1DAC99001AAD85 /* favoriteOff.png in Resources */ = {isa = PBXBuildFile; fileRef = E18046001C1DAC99001AAD85 /* favoriteOff.png */; };
 		E18046031C1DD220001AAD85 /* TalkDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18046021C1DD220001AAD85 /* TalkDetailsController.swift */; };
-		E18046071C1DD77B001AAD85 /* QTouchposeApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = E18046061C1DD77B001AAD85 /* QTouchposeApplication.m */; };
-		E18046091C1DD7B6001AAD85 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18046081C1DD7B6001AAD85 /* main.swift */; };
 		E1FA9BEE1C1BF4E70077C09A /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */; };
 		E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C0E1C1BFC150077C09A /* icon_archisec.png */; };
 		E1FA9C191C1BFC150077C09A /* icon_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C0F1C1BFC150077C09A /* icon_cloud.png */; };
@@ -140,10 +138,6 @@
 		E127E65F1C38313200FB7E4F /* SearchableProcotol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableProcotol.swift; sourceTree = "<group>"; };
 		E18046001C1DAC99001AAD85 /* favoriteOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favoriteOff.png; path = icon/favoriteOff.png; sourceTree = "<group>"; };
 		E18046021C1DD220001AAD85 /* TalkDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkDetailsController.swift; sourceTree = "<group>"; };
-		E18046041C1DD77A001AAD85 /* devoxxApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "devoxxApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		E18046051C1DD77B001AAD85 /* QTouchposeApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QTouchposeApplication.h; sourceTree = "<group>"; };
-		E18046061C1DD77B001AAD85 /* QTouchposeApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QTouchposeApplication.m; sourceTree = "<group>"; };
-		E18046081C1DD7B6001AAD85 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		E1FA9C0E1C1BFC150077C09A /* icon_archisec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_archisec.png; path = icon/track/icon_archisec.png; sourceTree = "<group>"; };
 		E1FA9C0F1C1BFC150077C09A /* icon_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_cloud.png; path = icon/track/icon_cloud.png; sourceTree = "<group>"; };
@@ -210,15 +204,11 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
-				E18046051C1DD77B001AAD85 /* QTouchposeApplication.h */,
-				E18046061C1DD77B001AAD85 /* QTouchposeApplication.m */,
 				58F67CD81C308B8D007D2B97 /* FavoriteProtocol.swift */,
 				E127E65F1C38313200FB7E4F /* SearchableProcotol.swift */,
 				E10E7ABF1C18BF7100F6220B /* devoxxApp */,
 				E10E7AD81C18BF7100F6220B /* devoxxAppTests */,
 				E10E7ABE1C18BF7100F6220B /* Products */,
-				E18046041C1DD77A001AAD85 /* devoxxApp-Bridging-Header.h */,
-				E18046081C1DD7B6001AAD85 /* main.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -549,11 +539,9 @@
 				58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */,
 				58F67CDD1C308C64007D2B97 /* Favorite.swift in Sources */,
 				E127E6601C38313200FB7E4F /* SearchableProcotol.swift in Sources */,
-				E18046071C1DD77B001AAD85 /* QTouchposeApplication.m in Sources */,
 				58195BFA1C3572ED00F56A30 /* FilterableProtocol.swift in Sources */,
 				E10CE1AA1C2BD6DE002C9934 /* TalkTypeHelper.swift in Sources */,
 				587286201C1F589400FC098A /* Speaker.swift in Sources */,
-				E18046091C1DD7B6001AAD85 /* main.swift in Sources */,
 				E1FA9C4A1C1BFD560077C09A /* TalkHelper.swift in Sources */,
 				E10CE1B01C2BDB72002C9934 /* AttributeHelper.swift in Sources */,
 				E10E7AC31C18BF7100F6220B /* AppDelegate.swift in Sources */,
@@ -706,7 +694,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "maximedavid.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "devoxxApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -720,7 +707,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "maximedavid.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "devoxxApp-Bridging-Header.h";
 			};
 			name = Release;
 		};

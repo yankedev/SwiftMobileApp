@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class Slot: CellData, FavoriteProtocol, SearchableProcotol {
 
