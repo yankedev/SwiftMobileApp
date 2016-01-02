@@ -66,7 +66,6 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
         var error: NSError? = nil
         do {
             try fetchedResultsController.performFetch()
-            
         } catch let error1 as NSError {
             error = error1
             print("unresolved error \(error), \(error!.userInfo)")
@@ -78,19 +77,22 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(tableView)
+        tableView.frame = frame
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .None
         tableView.backgroundColor = ColorManager.filterBackgroundColor
         backgroundColor = ColorManager.bottomDotsPageController
 
-
+/*
         let trackHelper = TrackHelper()
         APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: trackHelper)
         
         let talkTypeHelper = TalkTypeHelper()
         APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: talkTypeHelper)
+        */
         
+        fetchAll()
      
     }
     
@@ -236,7 +238,6 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
             let currentSection = sections[section]
             return currentSection.numberOfObjects
         }
-        
         return 0
     }
     

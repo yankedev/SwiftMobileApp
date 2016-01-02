@@ -16,6 +16,8 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     var favoriteSwitcher : UISegmentedControl!
     var pageViewController : UIPageViewController?
     
+    var overlay = UIView()
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +27,8 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         favoriteSwitcher.selectedSegmentIndex = 0
         favoriteSwitcher.tintColor = UIColor.whiteColor()
         favoriteSwitcher.addTarget(self, action: Selector("changeSchedule:"), forControlEvents: .ValueChanged)
+        
+        let filterRightButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: Selector("filterMe"))
         
         
         self.navigationBar.translucent = false
@@ -42,9 +46,49 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         
         self.view.backgroundColor = ColorManager.bottomDotsPageController
         self.topViewController?.navigationItem.titleView = favoriteSwitcher
+        self.topViewController?.navigationItem.rightBarButtonItem = filterRightButton
     
         //addChildViewController(pageViewController!)
         //view.addSubview((pageViewController?.view)!)
+    }
+    
+    func filterMe() {
+        if pageViewController != nil && pageViewController!.viewControllers != nil{
+            
+            
+            let t = FilterTableViewController()
+            overlay.backgroundColor = UIColor.redColor()
+            pageViewController!.viewControllers![0].view.addSubview(overlay)
+            //overlay.addSubview(t)
+
+            overlay.translatesAutoresizingMaskIntoConstraints = false
+            
+            
+            
+            let widthTalkTitleConstraint = NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: overlay.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.5, constant: 0)
+            widthTalkTitleConstraint.identifier = "widthTalkTitleConstraint"
+            
+            let heightTalkTitleConstraint = NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: overlay.superview, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
+            heightTalkTitleConstraint.identifier = "heightTalkTitleConstraint"
+            
+            let topTalkTitleConstraint = NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: overlay.superview, attribute: NSLayoutAttribute.Top, multiplier: 0.5, constant: 0)
+            topTalkTitleConstraint.identifier = "topTalkTitleConstraint"
+            
+            let leadingTalkTitleConstraint = NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: overlay.superview, attribute: NSLayoutAttribute.Right, multiplier: 0.5, constant: 0)
+            leadingTalkTitleConstraint.identifier = "leadingTalkTitleConstraint"
+            
+            
+            overlay.superview!.addConstraint(widthTalkTitleConstraint)
+            overlay.superview!.addConstraint(heightTalkTitleConstraint)
+            overlay.superview!.addConstraint(topTalkTitleConstraint)
+            overlay.superview!.addConstraint(leadingTalkTitleConstraint)
+
+            
+            
+            
+        
+            
+        }
     }
     
     func changeSchedule(sender : UISegmentedControl) {
