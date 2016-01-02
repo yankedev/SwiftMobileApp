@@ -20,7 +20,7 @@ public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
     func favorite(path : NSIndexPath) -> Bool
 }
 
-public class SchedulerTableViewController: UIViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate, DevoxxAppFavoriteDelegate, UITableViewDelegate, UITableViewDataSource {
+public class SchedulerTableViewController: UIViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate, DevoxxAppFavoriteDelegate, SwitchableProtocol, UITableViewDelegate, UITableViewDataSource {
     
     var index:NSInteger = 0
     var delegate:DevoxxAppScheduleDelegate!
@@ -65,7 +65,13 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     }()
     
     
+    public func performSwitch() {
+        fetchAll()
+    }
     
+    public func updateSwitch(switchValue: Bool) {
+        isFavorite = switchValue
+    }
     
     
     override public func viewDidLoad() {

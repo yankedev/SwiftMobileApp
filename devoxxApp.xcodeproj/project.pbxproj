@@ -46,6 +46,7 @@
 		E10E7ADC1C18BF7100F6220B /* devoxxAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */; };
 		E10E7AF01C1957F300F6220B /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E7AEF1C1957F300F6220B /* APIManager.swift */; };
 		E127E6561C38029200FB7E4F /* DemoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E127E6551C38029200FB7E4F /* DemoController.swift */; };
+		E127E6581C38117000FB7E4F /* SwitchableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E127E6571C38117000FB7E4F /* SwitchableProtocol.swift */; };
 		E18046011C1DAC99001AAD85 /* favoriteOff.png in Resources */ = {isa = PBXBuildFile; fileRef = E18046001C1DAC99001AAD85 /* favoriteOff.png */; };
 		E18046031C1DD220001AAD85 /* TalkDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18046021C1DD220001AAD85 /* TalkDetailsController.swift */; };
 		E18046071C1DD77B001AAD85 /* QTouchposeApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = E18046061C1DD77B001AAD85 /* QTouchposeApplication.m */; };
@@ -132,6 +133,7 @@
 		E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = devoxxAppTests.swift; sourceTree = "<group>"; };
 		E10E7AEF1C1957F300F6220B /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		E127E6551C38029200FB7E4F /* DemoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoController.swift; sourceTree = "<group>"; };
+		E127E6571C38117000FB7E4F /* SwitchableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchableProtocol.swift; sourceTree = "<group>"; };
 		E18046001C1DAC99001AAD85 /* favoriteOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favoriteOff.png; path = icon/favoriteOff.png; sourceTree = "<group>"; };
 		E18046021C1DD220001AAD85 /* TalkDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkDetailsController.swift; sourceTree = "<group>"; };
 		E18046041C1DD77A001AAD85 /* devoxxApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "devoxxApp-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				E1FA9C341C1BFCC60077C09A /* SchedulerTableViewController.swift */,
 				E1FA9C351C1BFCC60077C09A /* ScheduleController.swift */,
 				58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */,
+				E127E6571C38117000FB7E4F /* SwitchableProtocol.swift */,
 				E18046021C1DD220001AAD85 /* TalkDetailsController.swift */,
 				E127E6551C38029200FB7E4F /* DemoController.swift */,
 			);
@@ -562,6 +565,7 @@
 				E10CE1A61C2BD0CB002C9934 /* Feedable.swift in Sources */,
 				E1FA9C371C1BFCC60077C09A /* ScheduleController.swift in Sources */,
 				E1FA9C2D1C1BFC690077C09A /* Swifty.swift in Sources */,
+				E127E6581C38117000FB7E4F /* SwitchableProtocol.swift in Sources */,
 				58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */,
 				58A0E8C41C2730CC000C49DD /* Track.swift in Sources */,
 				E1FA9C3E1C1BFD010077C09A /* SpeakerController.swift in Sources */,

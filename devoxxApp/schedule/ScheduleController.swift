@@ -13,10 +13,19 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
 //, DevoxxAppScheduleDelegate, DevoxxAppFilter {
     
     
+    var favoriteSwitcher : UISegmentedControl!
     var pageViewController : UIPageViewController?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        favoriteSwitcher = UISegmentedControl(frame: CGRectMake(0, 0, 200, 30))
+        favoriteSwitcher.insertSegmentWithTitle("Schedule", atIndex: 0, animated: true)
+        favoriteSwitcher.insertSegmentWithTitle("My schedule", atIndex: 1, animated: true)
+        favoriteSwitcher.selectedSegmentIndex = 0
+        favoriteSwitcher.tintColor = UIColor.whiteColor()
+        favoriteSwitcher.addTarget(self, action: Selector("changeSchedule:"), forControlEvents: .ValueChanged)
+        
         
         self.navigationBar.translucent = false
         
@@ -32,10 +41,21 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         pushViewController(pageViewController!, animated: false)
         
         self.view.backgroundColor = ColorManager.bottomDotsPageController
+        self.topViewController?.navigationItem.titleView = favoriteSwitcher
+    
         //addChildViewController(pageViewController!)
         //view.addSubview((pageViewController?.view)!)
     }
     
+    func changeSchedule(sender : UISegmentedControl) {
+        if pageViewController != nil && pageViewController!.viewControllers != nil{
+            if let switchable = pageViewController!.viewControllers![0] as? SwitchableProtocol {
+                switchable.updateSwitch(sender.selectedSegmentIndex == 1)
+                switchable.performSwitch()
+            }
+        }
+    }
+
     
     
     public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
@@ -219,10 +239,6 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         seg.insertSegmentWithTitle("My schedule", atIndex: 1, animated: true)
         seg.selectedSegmentIndex = 0
         seg.tintColor = UIColor.whiteColor()
-      
-        
-        
-        
         seg.addTarget(self, action: Selector("changeSchedule:"), forControlEvents: .ValueChanged)
         
         
