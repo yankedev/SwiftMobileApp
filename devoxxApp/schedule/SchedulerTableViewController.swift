@@ -29,8 +29,12 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     var areFilterOpened = false
     
+    var currentFilters:[String : [Attribute]]?
+    
     var favoriteSections = [NSFetchedResultsSectionInfo]()
     var searchedSections = [NSFetchedResultsSectionInfo]()
+    
+    var searchBar:UISearchBar?
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
         
@@ -61,6 +65,13 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     
     public func performSwitch() {
+        if isFavorite {
+            tableView.tableHeaderView = nil
+        }
+        else {
+            tableView.tableHeaderView = searchBar
+        }
+        searchingString = ""
         fetchAll()
     }
     
@@ -116,10 +127,8 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         view.addConstraints(verticalContraint)
         
         
-        let searchBar = UISearchBar(frame: CGRectMake(0,0,44,44))
-        searchBar.delegate = self
-        
-        
+        searchBar = UISearchBar(frame: CGRectMake(0,0,44,44))
+        searchBar?.delegate = self
         tableView.tableHeaderView = searchBar
         
         
@@ -202,9 +211,11 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         var cellDataTry:CellData?
         
         if !searchingString.isEmpty {
+            print(searchedSections[indexPath.section])
             let curent = searchedSections[indexPath.section]
             let obj = (curent.objects)!
             cellDataTry = filterSearchArray(obj)[indexPath.row] as? CellData
+            return cellDataTry
         }
         
         if isFavorite {
@@ -293,6 +304,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             }
         }
         
+        print(filteredArray)
         return filteredArray
         
     }
@@ -329,7 +341,9 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             
             if !searchingString.isEmpty {
                 let curent = searchedSections[section]
+                print(curent)
                 let obj = (curent.objects)!
+                print(obj)
                 return filterSearchArray(obj).count
             }
             
@@ -452,6 +466,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     }
     
     func buildFilter(filters: [String : [Attribute]]) {
+        currentFilters = filters
         for key in filters.keys {
             searchPredicates[key] = [NSPredicate]()
             for attribute in filters[key]! {
@@ -468,6 +483,10 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         searchingString = searchText
         self.tableView.reloadData()
+    }
+    
+    func getCurrentFilters() -> [String : [Attribute]]? {
+        return currentFilters
     }
     
     

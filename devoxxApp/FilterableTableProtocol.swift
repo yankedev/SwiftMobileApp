@@ -12,4 +12,5 @@ protocol FilterableTableProtocol {
     func clearFilter()
     func buildFilter(filters : [String: [Attribute]])
     func filter()
+    func getCurrentFilters() -> [String : [Attribute]]?
 }
