@@ -16,7 +16,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     var favoriteSwitcher : UISegmentedControl!
     var pageViewController : UIPageViewController?
     
-    var overlay = UIView()
+    var overlay = FilterTableViewController()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,36 +55,32 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     func filterMe() {
         if pageViewController != nil && pageViewController!.viewControllers != nil{
             
-            
-            let t = FilterTableViewController()
-            overlay.backgroundColor = UIColor.redColor()
-            pageViewController!.viewControllers![0].view.addSubview(overlay)
+            //overlay.backgroundColor = UIColor.redColor()
+            pageViewController!.viewControllers![0].view.addSubview(overlay.tableView)
             //overlay.addSubview(t)
 
-            overlay.translatesAutoresizingMaskIntoConstraints = false
+            overlay.tableView.translatesAutoresizingMaskIntoConstraints = false
             
             
             
-            let widthTalkTitleConstraint = NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: overlay.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.5, constant: 0)
+            let widthTalkTitleConstraint = NSLayoutConstraint(item: overlay.tableView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: overlay.tableView.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.5, constant: 0)
             widthTalkTitleConstraint.identifier = "widthTalkTitleConstraint"
             
-            let heightTalkTitleConstraint = NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: overlay.superview, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
+            let heightTalkTitleConstraint = NSLayoutConstraint(item: overlay.tableView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: overlay.tableView.superview, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
             heightTalkTitleConstraint.identifier = "heightTalkTitleConstraint"
             
-            let topTalkTitleConstraint = NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: overlay.superview, attribute: NSLayoutAttribute.Top, multiplier: 0.5, constant: 0)
+            let topTalkTitleConstraint = NSLayoutConstraint(item: overlay.tableView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: overlay.tableView.superview, attribute: NSLayoutAttribute.Top, multiplier: 0.5, constant: 0)
             topTalkTitleConstraint.identifier = "topTalkTitleConstraint"
             
-            let leadingTalkTitleConstraint = NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: overlay.superview, attribute: NSLayoutAttribute.Right, multiplier: 0.5, constant: 0)
+            let leadingTalkTitleConstraint = NSLayoutConstraint(item: overlay.tableView, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: overlay.tableView.superview, attribute: NSLayoutAttribute.Right, multiplier: 0.5, constant: 0)
             leadingTalkTitleConstraint.identifier = "leadingTalkTitleConstraint"
             
             
-            overlay.superview!.addConstraint(widthTalkTitleConstraint)
-            overlay.superview!.addConstraint(heightTalkTitleConstraint)
-            overlay.superview!.addConstraint(topTalkTitleConstraint)
-            overlay.superview!.addConstraint(leadingTalkTitleConstraint)
+            overlay.tableView.superview!.addConstraint(widthTalkTitleConstraint)
+            overlay.tableView.superview!.addConstraint(heightTalkTitleConstraint)
+            overlay.tableView.superview!.addConstraint(topTalkTitleConstraint)
+            overlay.tableView.superview!.addConstraint(leadingTalkTitleConstraint)
 
-            
-            
             
         
             

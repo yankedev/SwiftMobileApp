@@ -73,14 +73,16 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
         tableView.reloadData()
     }
     
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(tableView)
-        tableView.frame = frame
+        
+        //tableView.frame = frame
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .None
+        print(frame)
         tableView.backgroundColor = ColorManager.filterBackgroundColor
         backgroundColor = ColorManager.bottomDotsPageController
 
