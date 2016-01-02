@@ -31,6 +31,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         
         pushViewController(pageViewController!, animated: false)
         
+        self.view.backgroundColor = ColorManager.bottomDotsPageController
         //addChildViewController(pageViewController!)
         //view.addSubview((pageViewController?.view)!)
     }
@@ -40,7 +41,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
         var currentIndex = 0
-        if let demoController = viewController as? DemoController {
+        if let demoController = viewController as? SchedulerTableViewController {
             currentIndex = demoController.index
         }
         
@@ -56,14 +57,14 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
         var currentIndex = 0
-        if let demoController = viewController as? DemoController {
+        if let demoController = viewController as? SchedulerTableViewController {
             currentIndex = demoController.index
         }
         
         currentIndex++
         
         
-        if currentIndex == 5 {
+        if currentIndex == 3 {
             return nil
         }
         
@@ -71,15 +72,16 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     }
     
     
-    public func viewControllerAtIndex(index : NSInteger) -> DemoController {
-        let demoController = DemoController()
+    public func viewControllerAtIndex(index : NSInteger) -> SchedulerTableViewController {
+        
+        let demoController = SchedulerTableViewController()
         demoController.index = index
         return demoController
     }
     
     
     public func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 5
+        return 3
     }
     
     public func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {

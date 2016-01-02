@@ -22,6 +22,7 @@ public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
 
 public class SchedulerTableViewController: UIViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate, DevoxxAppFavoriteDelegate, UITableViewDelegate, UITableViewDataSource {
     
+    var index:NSInteger = 0
     var delegate:DevoxxAppScheduleDelegate!
     
     var searchPredicates = [String : [NSPredicate]]()
@@ -49,7 +50,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         
         fetchRequest.sortDescriptors = [sortTime, sortAlpha]
         fetchRequest.fetchBatchSize = 20
-        let predicate = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
+        let predicate = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.index))
         fetchRequest.predicate = predicate
 
         let frc = NSFetchedResultsController(
@@ -69,35 +70,24 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-     
-      
-        
-        
-        self.view.addSubview(tableView)
-    
-        
-        
+
         
         //let adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(okok.tabBar.frame), 0);
         //self.tableView.contentInset = adjustForTabbarInsets;
         //self.tableView.scrollIndicatorInsets = adjustForTabbarInsets;
        
         
-        //tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
         
-        //let verticalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]-\(self.tabBarController?.tabBar.frame.height)-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
-
         
-        //view.addConstraints(horizontalContraint)
-        //view.addConstraints(verticalContraint)
         
         //self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
         self.tableView.separatorStyle = .None
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+  
         
         
         let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: Selector("searchSchedule"))
@@ -111,16 +101,25 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         
         
         
+        self.view.addSubview(tableView)
+        
+        let viewDictionnary = ["tableView": self.tableView]
+
+        
+        let verticalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionnary)
+        
+        let horizontalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionnary)
         
         
-        
+        view.addConstraints(horizontalContraint)
+        view.addConstraints(verticalContraint)
     }
     
     
     public func fetchAll() {
 
         var andPredicate = [NSPredicate]()
-        let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.view.tag))
+        let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.index))
         
         andPredicate.append(predicateDay)
         
@@ -156,7 +155,9 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
 
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        //first, loading from cache
+        fetchAll()
+        //then try to retrieve the potential updates
         let slotHelper = SlotHelper()
         APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: slotHelper)
     }
@@ -278,6 +279,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
 
         if let sections = fetchedResultsController.sections {
             if !isFavorite {
+                print("sectionCount = \(sections.count)")
                 return sections.count
             }
             

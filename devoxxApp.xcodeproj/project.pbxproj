@@ -67,7 +67,7 @@
 		E1FA9C291C1BFC280077C09A /* favoriteOn.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C281C1BFC280077C09A /* favoriteOn.png */; };
 		E1FA9C2D1C1BFC690077C09A /* Swifty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C2C1C1BFC690077C09A /* Swifty.swift */; };
 		E1FA9C2F1C1BFC730077C09A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C2E1C1BFC730077C09A /* Roboto-Regular.ttf */; };
-		E1FA9C361C1BFCC60077C09A /* ScheduleTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C341C1BFCC60077C09A /* ScheduleTableController.swift */; };
+		E1FA9C361C1BFCC60077C09A /* SchedulerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C341C1BFCC60077C09A /* SchedulerTableViewController.swift */; };
 		E1FA9C371C1BFCC60077C09A /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C351C1BFCC60077C09A /* ScheduleController.swift */; };
 		E1FA9C3B1C1BFCF80077C09A /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C3A1C1BFCF80077C09A /* MapController.swift */; };
 		E1FA9C3E1C1BFD010077C09A /* SpeakerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C3C1C1BFD010077C09A /* SpeakerController.swift */; };
@@ -155,7 +155,7 @@
 		E1FA9C281C1BFC280077C09A /* favoriteOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favoriteOn.png; path = icon/favoriteOn.png; sourceTree = "<group>"; };
 		E1FA9C2C1C1BFC690077C09A /* Swifty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Swifty.swift; path = swifty/Swifty.swift; sourceTree = "<group>"; };
 		E1FA9C2E1C1BFC730077C09A /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.ttf"; path = "font/Roboto-Regular.ttf"; sourceTree = "<group>"; };
-		E1FA9C341C1BFCC60077C09A /* ScheduleTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleTableController.swift; path = schedule/ScheduleTableController.swift; sourceTree = "<group>"; };
+		E1FA9C341C1BFCC60077C09A /* SchedulerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchedulerTableViewController.swift; path = schedule/SchedulerTableViewController.swift; sourceTree = "<group>"; };
 		E1FA9C351C1BFCC60077C09A /* ScheduleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleController.swift; path = schedule/ScheduleController.swift; sourceTree = "<group>"; };
 		E1FA9C3A1C1BFCF80077C09A /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapController.swift; path = map/MapController.swift; sourceTree = "<group>"; };
 		E1FA9C3C1C1BFD010077C09A /* SpeakerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpeakerController.swift; path = speaker/SpeakerController.swift; sourceTree = "<group>"; };
@@ -334,7 +334,7 @@
 			children = (
 				E1FA9C3D1C1BFD010077C09A /* ScheduleViewCell.swift */,
 				58195C121C359A4E00F56A30 /* FilterViewCell.swift */,
-				E1FA9C341C1BFCC60077C09A /* ScheduleTableController.swift */,
+				E1FA9C341C1BFCC60077C09A /* SchedulerTableViewController.swift */,
 				E1FA9C351C1BFCC60077C09A /* ScheduleController.swift */,
 				58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */,
 				E18046021C1DD220001AAD85 /* TalkDetailsController.swift */,
@@ -554,7 +554,7 @@
 				5872861B1C1F565C00FC098A /* SpeakerTableController.swift in Sources */,
 				E10CE19E1C2BB6BE002C9934 /* CellData.swift in Sources */,
 				E10E7AC61C18BF7100F6220B /* devoxxApp.xcdatamodeld in Sources */,
-				E1FA9C361C1BFCC60077C09A /* ScheduleTableController.swift in Sources */,
+				E1FA9C361C1BFCC60077C09A /* SchedulerTableViewController.swift in Sources */,
 				E1FA9C451C1BFD400077C09A /* Talk.swift in Sources */,
 				E127E6561C38029200FB7E4F /* DemoController.swift in Sources */,
 				58F67CD91C308B8D007D2B97 /* FavoriteProtocol.swift in Sources */,
