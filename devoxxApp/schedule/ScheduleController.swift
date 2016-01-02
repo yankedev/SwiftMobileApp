@@ -9,8 +9,88 @@
 import Foundation
 import UIKit
 
-public class ScheduleController : UINavigationController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, DevoxxAppScheduleDelegate, DevoxxAppFilter {
+public class ScheduleController : UINavigationController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+//, DevoxxAppScheduleDelegate, DevoxxAppFilter {
     
+    
+    var pageViewController : UIPageViewController?
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.navigationBar.translucent = false
+        
+        pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
+        
+        pageViewController?.dataSource = self
+        
+        let demo = viewControllerAtIndex(0)
+        let controls = [demo]
+        
+        pageViewController?.setViewControllers(controls, direction: .Forward, animated: false, completion: nil)
+        
+        pushViewController(pageViewController!, animated: false)
+        
+        //addChildViewController(pageViewController!)
+        //view.addSubview((pageViewController?.view)!)
+    }
+    
+    
+    
+    public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+        
+        var currentIndex = 0
+        if let demoController = viewController as? DemoController {
+            currentIndex = demoController.index
+        }
+        
+        if currentIndex == 0 {
+            return nil
+        }
+        
+        currentIndex--
+    
+        return viewControllerAtIndex(currentIndex)
+    }
+    
+    public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+        
+        var currentIndex = 0
+        if let demoController = viewController as? DemoController {
+            currentIndex = demoController.index
+        }
+        
+        currentIndex++
+        
+        
+        if currentIndex == 5 {
+            return nil
+        }
+        
+        return viewControllerAtIndex(currentIndex)
+    }
+    
+    
+    public func viewControllerAtIndex(index : NSInteger) -> DemoController {
+        let demoController = DemoController()
+        demoController.index = index
+        return demoController
+    }
+    
+    
+    public func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return 5
+    }
+    
+    public func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return 0
+    }
+
+    
+    
+    
+    
+    /*
     var seg : UISegmentedControl!
     var pageView : UIPageViewController?
     var pageViewControllers = [UIViewController]()
@@ -349,5 +429,5 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     
     public override func prefersStatusBarHidden() -> Bool {
         return true
-    }
+    }*/
 }
