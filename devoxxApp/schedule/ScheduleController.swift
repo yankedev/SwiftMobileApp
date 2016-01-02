@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 
-public class ScheduleController : UINavigationController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
-//, DevoxxAppScheduleDelegate, DevoxxAppFilter {
+public class ScheduleController : UINavigationController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, DevoxxAppFilter {
+//, DevoxxAppScheduleDelegate,  {
     
     
     var favoriteSwitcher : UISegmentedControl!
@@ -52,6 +52,41 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         //view.addSubview((pageViewController?.view)!)
     }
     
+    
+    
+    func filter(filters : [String: [Attribute]]) -> Void {
+        
+        
+        if pageViewController != nil && pageViewController!.viewControllers != nil{
+            if let filterableTable = pageViewController!.viewControllers![0] as? FilterableTableProtocol {
+                filterableTable.clearFilter()
+                filterableTable.buildFilter(filters)
+                filterableTable.filter()
+            }
+        }
+        /*
+        
+        let aa = pageView!.viewControllers![0] as! SchedulerTableViewController
+        
+        aa.searchPredicates.removeAll()
+        
+        for key in filterName.keys {
+            
+            aa.searchPredicates[key] = [NSPredicate]()
+            
+            for attribute in filterName[key]! {
+                let predicate = NSPredicate(format: "\(attribute.filterPredicateLeftValue()) = %@", attribute.filterPredicateRightValue())
+                aa.searchPredicates[key]?.append(predicate)
+            }
+            
+        }
+
+        aa.fetchAll()
+*/
+        
+    }
+
+    
     func filterMe() {
         if pageViewController != nil && pageViewController!.viewControllers != nil{
             
@@ -61,6 +96,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
 
             overlay.tableView.translatesAutoresizingMaskIntoConstraints = false
             
+            overlay.devoxxAppFilterDelegate = self
             
             
             let widthTalkTitleConstraint = NSLayoutConstraint(item: overlay.tableView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: overlay.tableView.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.5, constant: 0)
@@ -456,28 +492,6 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     
     
     
-    func filter(filterName : [String: [Attribute]]) -> Void {
-
-
-        
-        let aa = pageView!.viewControllers![0] as! SchedulerTableViewController
-        
-        aa.searchPredicates.removeAll()
-        
-        for key in filterName.keys {
-            
-            aa.searchPredicates[key] = [NSPredicate]()
-            
-            for attribute in filterName[key]! {
-                let predicate = NSPredicate(format: "\(attribute.filterPredicateLeftValue()) = %@", attribute.filterPredicateRightValue())
-                aa.searchPredicates[key]?.append(predicate)
-            }
-            
-        }
-        
-        aa.fetchAll()
-
-    }
     
     func changeSchedule(sender : UISegmentedControl) {
         let aa = pageView!.viewControllers![0] as! SchedulerTableViewController

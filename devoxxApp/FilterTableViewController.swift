@@ -37,7 +37,7 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     
     var selected = [String : [Attribute]]()
     
-    var devoxxAppFilterDelegate:DevoxxAppFilter!
+    var devoxxAppFilterDelegate:DevoxxAppFilter?
     
     lazy var fetchedResultsController: NSFetchedResultsController = {
         
@@ -176,7 +176,8 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
                             }
                             
                             cell.userInteractionEnabled = true
-                            self.devoxxAppFilterDelegate.filter(self.selected)
+                            print(self.devoxxAppFilterDelegate)
+                            self.devoxxAppFilterDelegate?.filter(self.selected)
                             
                             print(self.selected)
                             

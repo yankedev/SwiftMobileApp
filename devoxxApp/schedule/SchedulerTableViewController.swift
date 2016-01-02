@@ -20,7 +20,7 @@ public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
     func favorite(path : NSIndexPath) -> Bool
 }
 
-public class SchedulerTableViewController: UIViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate, DevoxxAppFavoriteDelegate, SwitchableProtocol, UITableViewDelegate, UITableViewDataSource {
+public class SchedulerTableViewController: UIViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate, DevoxxAppFavoriteDelegate, SwitchableProtocol, FilterableTableProtocol, UITableViewDelegate, UITableViewDataSource {
     
     var index:NSInteger = 0
     var delegate:DevoxxAppScheduleDelegate!
@@ -389,6 +389,25 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             }
         }
         return false
+    }
+    
+    
+    func filter() {
+        fetchAll()
+    }
+    
+    func buildFilter(filters: [String : [Attribute]]) {
+        for key in filters.keys {
+            searchPredicates[key] = [NSPredicate]()
+            for attribute in filters[key]! {
+                let predicate = NSPredicate(format: "\(attribute.filterPredicateLeftValue()) = %@", attribute.filterPredicateRightValue())
+                searchPredicates[key]?.append(predicate)
+            }
+        }
+    }
+    
+    func clearFilter() {
+        searchPredicates.removeAll()
     }
     
     
