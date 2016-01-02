@@ -16,7 +16,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     var favoriteSwitcher : UISegmentedControl!
     var pageViewController : UIPageViewController?
     
-    var overlay = FilterTableViewController()
+    var overlay:FilterTableViewController?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,37 +90,46 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     func filterMe() {
         if pageViewController != nil && pageViewController!.viewControllers != nil{
             
-            //overlay.backgroundColor = UIColor.redColor()
-            pageViewController!.viewControllers![0].view.addSubview(overlay.tableView)
-            //overlay.addSubview(t)
+            
+            if overlay == nil {
+                
+                overlay = FilterTableViewController()
+                pageViewController!.viewControllers![0].view.addSubview((overlay?.tableView)!)
+                overlay?.tableView.translatesAutoresizingMaskIntoConstraints = false
+            
+                overlay?.devoxxAppFilterDelegate = self
+            
+            
+                let widthTalkTitleConstraint = NSLayoutConstraint(item: overlay!.tableView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: overlay?.tableView.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.5, constant: 0)
+                widthTalkTitleConstraint.identifier = "widthTalkTitleConstraint"
+            
+                let heightTalkTitleConstraint = NSLayoutConstraint(item: overlay!.tableView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: overlay?.tableView.superview, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
+                heightTalkTitleConstraint.identifier = "heightTalkTitleConstraint"
+            
+                let topTalkTitleConstraint = NSLayoutConstraint(item: overlay!.tableView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: overlay?.tableView.superview, attribute: NSLayoutAttribute.Top, multiplier: 0.5, constant: 0)
+                topTalkTitleConstraint.identifier = "topTalkTitleConstraint"
+            
+                let leadingTalkTitleConstraint = NSLayoutConstraint(item: overlay!.tableView, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: overlay?.tableView.superview, attribute: NSLayoutAttribute.Right, multiplier: 0.5, constant: 0)
+                leadingTalkTitleConstraint.identifier = "leadingTalkTitleConstraint"
+            
+            
+                overlay?.tableView.superview!.addConstraint(widthTalkTitleConstraint)
+                overlay?.tableView.superview!.addConstraint(heightTalkTitleConstraint)
+                overlay?.tableView.superview!.addConstraint(topTalkTitleConstraint)
+                overlay?.tableView.superview!.addConstraint(leadingTalkTitleConstraint)
 
-            overlay.tableView.translatesAutoresizingMaskIntoConstraints = false
-            
-            overlay.devoxxAppFilterDelegate = self
-            
-            
-            let widthTalkTitleConstraint = NSLayoutConstraint(item: overlay.tableView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: overlay.tableView.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.5, constant: 0)
-            widthTalkTitleConstraint.identifier = "widthTalkTitleConstraint"
-            
-            let heightTalkTitleConstraint = NSLayoutConstraint(item: overlay.tableView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: overlay.tableView.superview, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
-            heightTalkTitleConstraint.identifier = "heightTalkTitleConstraint"
-            
-            let topTalkTitleConstraint = NSLayoutConstraint(item: overlay.tableView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: overlay.tableView.superview, attribute: NSLayoutAttribute.Top, multiplier: 0.5, constant: 0)
-            topTalkTitleConstraint.identifier = "topTalkTitleConstraint"
-            
-            let leadingTalkTitleConstraint = NSLayoutConstraint(item: overlay.tableView, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: overlay.tableView.superview, attribute: NSLayoutAttribute.Right, multiplier: 0.5, constant: 0)
-            leadingTalkTitleConstraint.identifier = "leadingTalkTitleConstraint"
-            
-            
-            overlay.tableView.superview!.addConstraint(widthTalkTitleConstraint)
-            overlay.tableView.superview!.addConstraint(heightTalkTitleConstraint)
-            overlay.tableView.superview!.addConstraint(topTalkTitleConstraint)
-            overlay.tableView.superview!.addConstraint(leadingTalkTitleConstraint)
-
-            
+            }
+            else {
+                removeOverlay()
+            }
         
-            
         }
+    }
+    
+    func removeOverlay() {
+        print("should hide")
+        overlay?.tableView.removeFromSuperview()
+        overlay = nil
     }
     
     func changeSchedule(sender : UISegmentedControl) {
@@ -172,6 +181,9 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         
         let demoController = SchedulerTableViewController()
         demoController.index = index
+        
+        removeOverlay()
+        
         return demoController
     }
     
