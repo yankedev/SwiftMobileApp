@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class Slot: CellData, FavoriteProtocol {
+class Slot: CellData, FavoriteProtocol, SearchableProcotol {
 
     @NSManaged var roomName: String
     @NSManaged var slotId: String
@@ -19,10 +19,7 @@ class Slot: CellData, FavoriteProtocol {
     @NSManaged var toTimeMillis: NSNumber
     
     @NSManaged var talk: Talk
-    
-    
-    
-    
+
     override func getPrimaryImage() -> UIImage? {
         return UIImage(named: talk.getIconFromTrackId())
     }
@@ -66,6 +63,10 @@ class Slot: CellData, FavoriteProtocol {
     
     func favorited() -> Bool {
         return APIManager.isFavorited("Talk", identifier: getIdentifier())
+    }
+    
+    func isMatching(str : String) -> Bool {
+        return getFirstInformation().lowercaseString.containsString(str.lowercaseString)
     }
     
 }
