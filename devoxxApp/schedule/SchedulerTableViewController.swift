@@ -10,12 +10,6 @@ import Foundation
 import UIKit
 import CoreData
 
-
-public protocol DevoxxAppScheduleDelegate : NSObjectProtocol {
-    func isMySheduleSelected() -> Bool
-    func getNavigationController() -> UINavigationController?
-}
-
 public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
     func favorite(path : NSIndexPath) -> Bool
 }
@@ -23,7 +17,6 @@ public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
 public class SchedulerTableViewController: UIViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate, DevoxxAppFavoriteDelegate, SwitchableProtocol, FilterableTableProtocol, UITableViewDelegate, UITableViewDataSource {
     
     var index:NSInteger = 0
-    var delegate:DevoxxAppScheduleDelegate!
     
     var searchPredicates = [String : [NSPredicate]]()
   
@@ -123,6 +116,8 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     
     public func fetchAll() {
+        
+        print("FETCH ALL. is favorite is \(isFavorite)")
 
         var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.index))
@@ -139,7 +134,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         
         fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
         
-        print(fetchedResultsController.fetchRequest.predicate)
+        //print(fetchedResultsController.fetchRequest.predicate)
         
         
         //fetchedResultsController.fetchRequest.predicate = predicateDay
@@ -285,7 +280,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
 
         if let sections = fetchedResultsController.sections {
             if !isFavorite {
-                print("sectionCount = \(sections.count)")
+                //print("sectionCount = \(sections.count)")
                 return sections.count
             }
             
