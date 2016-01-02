@@ -10,9 +10,7 @@ import Foundation
 import UIKit
 
 public class ScheduleController : UINavigationController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, DevoxxAppFilter {
-//, DevoxxAppScheduleDelegate,  {
-    
-    
+
     var favoriteSwitcher : UISegmentedControl!
     var pageViewController : UIPageViewController?
     
@@ -63,26 +61,6 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
                 filterableTable.filter()
             }
         }
-        /*
-        
-        let aa = pageView!.viewControllers![0] as! SchedulerTableViewController
-        
-        aa.searchPredicates.removeAll()
-        
-        for key in filterName.keys {
-            
-            aa.searchPredicates[key] = [NSPredicate]()
-            
-            for attribute in filterName[key]! {
-                let predicate = NSPredicate(format: "\(attribute.filterPredicateLeftValue()) = %@", attribute.filterPredicateRightValue())
-                aa.searchPredicates[key]?.append(predicate)
-            }
-            
-        }
-
-        aa.fetchAll()
-*/
-        
     }
 
     
