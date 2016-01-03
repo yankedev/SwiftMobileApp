@@ -12,6 +12,7 @@ import UIKit
 public class TalkDetailsController : UIViewController {
     
     var talk : Talk!
+    var desc: UIView!
     var text : UILabel!
     var speakers: UIView!
     var addFavoriteButton : UIBarButtonItem!
@@ -21,17 +22,20 @@ public class TalkDetailsController : UIViewController {
     override public func viewDidLoad() {
         text = UILabel()
         speakers = UIView()
+        desc = UIView()
+        desc.backgroundColor = UIColor.blueColor()
         speakers.backgroundColor = UIColor.redColor()
         //text.backgroundColor = UIColor.purpleColor()
-        text.translatesAutoresizingMaskIntoConstraints = false
+        desc.translatesAutoresizingMaskIntoConstraints = false
         speakers.translatesAutoresizingMaskIntoConstraints = false
         text.textAlignment = .Justified
-        view.addSubview(text)
+        view.addSubview(desc)
+        desc.addSubview(text)
         view.addSubview(speakers)
         
         
         
-        let views = ["talkDescription": text, "speakers" : speakers]
+        let views = ["talkDescription": desc, "speakers" : speakers]
                
         let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkDescription]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
