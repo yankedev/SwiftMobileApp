@@ -43,7 +43,9 @@ class TrackHelper: AttributeHelper, DataHelperProtocol {
             coreDataObjectCast.feedHelper(self)
         }
                 
-        print(coreDataObject)
+        
+        
+        //print("saving a track")
         APIManager.save(managedContext)
         
     }

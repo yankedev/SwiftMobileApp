@@ -19,6 +19,8 @@ class TalkHelper: DataHelperProtocol {
     var id: String?
     var summary: String?
     
+    var speakerIds = [String]()
+    
     /*
     override var description: String {
         return "title: \(title)\n lang: \(lang)\n trackId: \(trackId)\n title: \(talkType)\n talkType: \(title)\n id: \(id)\n title: \(title)\n summary: \(summary)\n"
@@ -53,6 +55,16 @@ class TalkHelper: DataHelperProtocol {
         track = data["track"].string
         id = data["id"].string
         summary = data["summary"].string
+        
+        
+        if let speakerArray = data["speakers"].array {
+            for spk in speakerArray {
+        
+                speakerIds.append(spk["link"]["href"].string!)
+            }
+        }
+        
+    
 
     }
     
@@ -61,7 +73,7 @@ class TalkHelper: DataHelperProtocol {
     }
     
     func prepareArray(json: JSON) -> [JSON]? {
-        print(json)
+
         if(json["talk"] != nil) {
             return [json["talk"]]
         }

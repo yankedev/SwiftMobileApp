@@ -25,7 +25,6 @@
 		5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861C1C1F579900FC098A /* SpeakerHelper.swift */; };
 		587286201C1F589400FC098A /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861E1C1F589400FC098A /* Speaker.swift */; };
 		58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A0E8C01C272FF9000C49DD /* TrackHelper.swift */; };
-		58A0E8C41C2730CC000C49DD /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A0E8C21C2730CC000C49DD /* Track.swift */; };
 		58BA2BFC1C3331EF0031C2E3 /* Etag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BA2BFB1C3331EE0031C2E3 /* Etag.swift */; };
 		58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */; };
 		58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */; };
@@ -35,7 +34,6 @@
 		E10CE19E1C2BB6BE002C9934 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE19D1C2BB6BE002C9934 /* CellData.swift */; };
 		E10CE1A41C2BC1F2002C9934 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1A31C2BC1F2002C9934 /* DataHelper.swift */; };
 		E10CE1A61C2BD0CB002C9934 /* Feedable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1A51C2BD0CB002C9934 /* Feedable.swift */; };
-		E10CE1A81C2BD68D002C9934 /* TalkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1A71C2BD68D002C9934 /* TalkType.swift */; };
 		E10CE1AA1C2BD6DE002C9934 /* TalkTypeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1A91C2BD6DE002C9934 /* TalkTypeHelper.swift */; };
 		E10CE1AE1C2BDAA1002C9934 /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1AC1C2BDAA1002C9934 /* Attribute.swift */; };
 		E10CE1B01C2BDB72002C9934 /* AttributeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1AF1C2BDB72002C9934 /* AttributeHelper.swift */; };
@@ -48,6 +46,11 @@
 		E127E6581C38117000FB7E4F /* SwitchableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E127E6571C38117000FB7E4F /* SwitchableProtocol.swift */; };
 		E127E65A1C38212100FB7E4F /* FilterableTableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E127E6591C38212100FB7E4F /* FilterableTableProtocol.swift */; };
 		E127E6601C38313200FB7E4F /* SearchableProcotol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E127E65F1C38313200FB7E4F /* SearchableProcotol.swift */; };
+		E127E66A1C39709400FB7E4F /* 03.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6651C39709300FB7E4F /* 03.json */; };
+		E127E66B1C39709400FB7E4F /* Slot.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6661C39709300FB7E4F /* Slot.json */; };
+		E127E66C1C39709400FB7E4F /* Speaker.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6671C39709300FB7E4F /* Speaker.json */; };
+		E127E66D1C39709400FB7E4F /* TalkType.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6681C39709400FB7E4F /* TalkType.json */; };
+		E127E66E1C39709400FB7E4F /* Track.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6691C39709400FB7E4F /* Track.json */; };
 		E18046011C1DAC99001AAD85 /* favoriteOff.png in Resources */ = {isa = PBXBuildFile; fileRef = E18046001C1DAC99001AAD85 /* favoriteOff.png */; };
 		E18046031C1DD220001AAD85 /* TalkDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18046021C1DD220001AAD85 /* TalkDetailsController.swift */; };
 		E1FA9BEE1C1BF4E70077C09A /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */; };
@@ -107,7 +110,6 @@
 		5872861C1C1F579900FC098A /* SpeakerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerHelper.swift; sourceTree = "<group>"; };
 		5872861E1C1F589400FC098A /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Speaker.swift; path = model/coreData/Speaker.swift; sourceTree = "<group>"; };
 		58A0E8C01C272FF9000C49DD /* TrackHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackHelper.swift; sourceTree = "<group>"; };
-		58A0E8C21C2730CC000C49DD /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Track.swift; path = model/coreData/Track.swift; sourceTree = "<group>"; };
 		58BA2BFB1C3331EE0031C2E3 /* Etag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Etag.swift; sourceTree = "<group>"; };
 		58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOn@2x.png"; path = "icon/StarOn@2x.png"; sourceTree = "<group>"; };
@@ -117,7 +119,6 @@
 		E10CE19D1C2BB6BE002C9934 /* CellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellData.swift; path = model/coreData/CellData.swift; sourceTree = "<group>"; };
 		E10CE1A31C2BC1F2002C9934 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataHelper.swift; path = model/helper/DataHelper.swift; sourceTree = "<group>"; };
 		E10CE1A51C2BD0CB002C9934 /* Feedable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feedable.swift; sourceTree = "<group>"; };
-		E10CE1A71C2BD68D002C9934 /* TalkType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TalkType.swift; path = model/coreData/TalkType.swift; sourceTree = "<group>"; };
 		E10CE1A91C2BD6DE002C9934 /* TalkTypeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkTypeHelper.swift; sourceTree = "<group>"; };
 		E10CE1AC1C2BDAA1002C9934 /* Attribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
 		E10CE1AF1C2BDB72002C9934 /* AttributeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeHelper.swift; sourceTree = "<group>"; };
@@ -134,6 +135,11 @@
 		E127E6571C38117000FB7E4F /* SwitchableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchableProtocol.swift; sourceTree = "<group>"; };
 		E127E6591C38212100FB7E4F /* FilterableTableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterableTableProtocol.swift; sourceTree = "<group>"; };
 		E127E65F1C38313200FB7E4F /* SearchableProcotol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableProcotol.swift; sourceTree = "<group>"; };
+		E127E6651C39709300FB7E4F /* 03.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 03.json; path = devoxxApp/mock/03.json; sourceTree = "<group>"; };
+		E127E6661C39709300FB7E4F /* Slot.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Slot.json; path = devoxxApp/mock/Slot.json; sourceTree = "<group>"; };
+		E127E6671C39709300FB7E4F /* Speaker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Speaker.json; path = devoxxApp/mock/Speaker.json; sourceTree = "<group>"; };
+		E127E6681C39709400FB7E4F /* TalkType.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TalkType.json; path = devoxxApp/mock/TalkType.json; sourceTree = "<group>"; };
+		E127E6691C39709400FB7E4F /* Track.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Track.json; path = devoxxApp/mock/Track.json; sourceTree = "<group>"; };
 		E18046001C1DAC99001AAD85 /* favoriteOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favoriteOff.png; path = icon/favoriteOff.png; sourceTree = "<group>"; };
 		E18046021C1DD220001AAD85 /* TalkDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkDetailsController.swift; sourceTree = "<group>"; };
 		E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
@@ -202,6 +208,11 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				E127E6651C39709300FB7E4F /* 03.json */,
+				E127E6661C39709300FB7E4F /* Slot.json */,
+				E127E6671C39709300FB7E4F /* Speaker.json */,
+				E127E6681C39709400FB7E4F /* TalkType.json */,
+				E127E6691C39709400FB7E4F /* Track.json */,
 				58F67CD81C308B8D007D2B97 /* FavoriteProtocol.swift */,
 				E127E65F1C38313200FB7E4F /* SearchableProcotol.swift */,
 				E10E7ABF1C18BF7100F6220B /* devoxxApp */,
@@ -374,10 +385,8 @@
 				5872861E1C1F589400FC098A /* Speaker.swift */,
 				E1FA9C421C1BFD400077C09A /* Slot.swift */,
 				E1FA9C431C1BFD400077C09A /* Talk.swift */,
-				58A0E8C21C2730CC000C49DD /* Track.swift */,
 				E10CE19D1C2BB6BE002C9934 /* CellData.swift */,
 				E10CE1A51C2BD0CB002C9934 /* Feedable.swift */,
-				E10CE1A71C2BD68D002C9934 /* TalkType.swift */,
 			);
 			name = coreData;
 			sourceTree = "<group>";
@@ -481,6 +490,7 @@
 			files = (
 				58195C031C35868400F56A30 /* icon_conf.png in Resources */,
 				58195C111C3587EE00F56A30 /* icon_uni.png in Resources */,
+				E127E66C1C39709400FB7E4F /* Speaker.json in Resources */,
 				E18046011C1DAC99001AAD85 /* favoriteOff.png in Resources */,
 				E1FA9C211C1BFC150077C09A /* icon_web.png in Resources */,
 				58195C0B1C35871600F56A30 /* icon_other.png in Resources */,
@@ -502,12 +512,16 @@
 				E1FA9C261C1BFC1E0077C09A /* tabIconSchedule@2x.png in Resources */,
 				E1FA9C201C1BFC150077C09A /* icon_startup.png in Resources */,
 				58195C021C35868400F56A30 /* icon_bof.png in Resources */,
+				E127E66B1C39709400FB7E4F /* Slot.json in Resources */,
 				E1FA9C1A1C1BFC150077C09A /* icon_future.png in Resources */,
+				E127E66A1C39709400FB7E4F /* 03.json in Resources */,
+				E127E66D1C39709400FB7E4F /* TalkType.json in Resources */,
 				E1FA9C1C1C1BFC150077C09A /* icon_lang.png in Resources */,
 				E1FA9C1D1C1BFC150077C09A /* icon_methodevops.png in Resources */,
 				E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */,
 				E1FA9C291C1BFC280077C09A /* favoriteOn.png in Resources */,
 				58195C071C35868400F56A30 /* icon_quick.png in Resources */,
+				E127E66E1C39709400FB7E4F /* Track.json in Resources */,
 				E1FA9C1F1C1BFC150077C09A /* icon_ssj.png in Resources */,
 				58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */,
 				58195C041C35868400F56A30 /* icon_lab.png in Resources */,
@@ -530,7 +544,6 @@
 			files = (
 				E10CE1AE1C2BDAA1002C9934 /* Attribute.swift in Sources */,
 				E10CE1A41C2BC1F2002C9934 /* DataHelper.swift in Sources */,
-				E10CE1A81C2BD68D002C9934 /* TalkType.swift in Sources */,
 				E1FA9C3B1C1BFCF80077C09A /* MapController.swift in Sources */,
 				E127E65A1C38212100FB7E4F /* FilterableTableProtocol.swift in Sources */,
 				58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */,
@@ -559,7 +572,6 @@
 				E1FA9C2D1C1BFC690077C09A /* Swifty.swift in Sources */,
 				E127E6581C38117000FB7E4F /* SwitchableProtocol.swift in Sources */,
 				58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */,
-				58A0E8C41C2730CC000C49DD /* Track.swift in Sources */,
 				E1FA9C3E1C1BFD010077C09A /* SpeakerController.swift in Sources */,
 				E1FA9C3F1C1BFD010077C09A /* ScheduleViewCell.swift in Sources */,
 				E10E7AF01C1957F300F6220B /* APIManager.swift in Sources */,

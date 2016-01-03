@@ -50,7 +50,7 @@ class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
         }
         
         
-        
+        //print("saving a talktype")
         APIManager.save(managedContext)
         
     }

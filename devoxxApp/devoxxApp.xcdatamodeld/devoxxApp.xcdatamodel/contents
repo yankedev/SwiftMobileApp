@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15B42" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1509" minimumToolsVersion="Automatic">
     <entity name="Attribute" representedClassName="devoxxApp.Attribute" syncable="YES">
         <attribute name="attributeDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -25,6 +25,7 @@
     <entity name="Speaker" representedClassName="devoxxApp.Speaker" syncable="YES">
         <attribute name="avatarUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="href" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -36,6 +37,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="track" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="trackId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="speakers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Speaker" syncable="YES"/>
     </entity>
     <entity name="TalkType" representedClassName="devoxxApp.TalkType" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -52,8 +54,8 @@
         <element name="Etag" positionX="-54" positionY="45" width="128" height="75"/>
         <element name="Favorite" positionX="-54" positionY="45" width="128" height="90"/>
         <element name="Slot" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="Speaker" positionX="-54" positionY="45" width="128" height="105"/>
-        <element name="Talk" positionX="-54" positionY="-9" width="128" height="150"/>
+        <element name="Speaker" positionX="-54" positionY="45" width="128" height="120"/>
+        <element name="Talk" positionX="-54" positionY="-9" width="128" height="165"/>
         <element name="TalkType" positionX="-54" positionY="45" width="128" height="90"/>
         <element name="Track" positionX="-54" positionY="45" width="128" height="90"/>
     </elements>

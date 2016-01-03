@@ -14,9 +14,11 @@ let topAppURL = "http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday"
 
 
 
+/*
+let apiURLS:[String : [String]] = ["Slot" : ["http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/thursday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/friday/"], "TalkType" : ["http://cfp.devoxx.be/api/conferences/DV15/proposalTypes"], "Track" :  ["http://cfp.devoxx.be/api/conferences/DV15/tracks"], "Speaker" :  ["http://cfp.devoxx.be/api/conferences/DV15/speakers"]]
+*/
 
-let apiURLS:[String : [String]] = ["Slot" : ["http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/thursday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/friday/"], "TalkType" : ["http://cfp.devoxx.be/api/conferences/DV15/proposalTypes"], "Track" :  ["http://cfp.devoxx.be/api/conferences/DV15/tracks"]]
-
+let apiURLS:[String : [String]] = ["Slot" : ["03"], "TalkType" : ["TalkType"], "Track" :  ["Track"], "Speaker" :  ["Speaker"]]
 
 class APIManager {
     
@@ -55,6 +57,22 @@ class APIManager {
         coreData.value = ""
         save(managedContext)
         return coreData
+    }
+    
+    
+    
+    class func clearAll(context : NSManagedObjectContext, entity : String) {
+        let fetchRequest = NSFetchRequest(entityName: entity)
+        fetchRequest.includesSubentities = true
+        fetchRequest.returnsObjectsAsFaults = false
+        
+        let items = try! context.executeFetchRequest(fetchRequest)
+        
+        for item in items {
+            context.deleteObject(item as! NSManagedObject)
+        }
+        
+        //save(context)
     }
     
     
@@ -175,13 +193,10 @@ class APIManager {
 
         let json = JSON(data: inputData)
         let arrayToParse = dataHelper.prepareArray(json)
-        
-        
-        
-        
+
         if let appArray = arrayToParse {
             for appDict in appArray {
-                
+
                 let newHelper = dataHelper.copyWithZone(nil) as! DataHelperProtocol
                 
                 newHelper.feed(appDict)
@@ -198,7 +213,6 @@ class APIManager {
                     newHelper.save(privateContext)
                 }
                 
-                
             }
         }
         
@@ -206,6 +220,8 @@ class APIManager {
             postAction()
         }
     }
+    
+    
     
     class func loadDataFromURL(url: NSURL, completion:(data: NSData?, error: NSError?) -> Void) {
         
@@ -215,7 +231,7 @@ class APIManager {
         let headers = [
             "If-None-Match": storeEtag.value!
         ]
-        config.HTTPAdditionalHeaders = headers
+        //config.HTTPAdditionalHeaders = headers
         config.requestCachePolicy = .ReloadIgnoringLocalCacheData
         
         let session = NSURLSession(configuration: config)
@@ -227,8 +243,6 @@ class APIManager {
             if let responseError = error {
                 completion(data: nil, error: responseError)
             } else if let httpResponse = response as? NSHTTPURLResponse {
-                print(httpResponse)
-                print(storeEtag.value)
                 if httpResponse.statusCode != 200 && httpResponse.statusCode != 304  {
                     let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
                     completion(data: nil, error: statusError)
@@ -252,12 +266,10 @@ class APIManager {
 
     
     class func getMockedObjets(postActionParam postAction :(Void) -> (Void), dataHelper: DataHelperProtocol) {
-        
-        print(dataHelper.typeName())
-        //print(apiURLS[dataHelper.typeName()]![0])!)
-        
-        
+     
         for url in apiURLS[dataHelper.typeName()]! {
+            
+            /*
             loadDataFromURL(NSURL(string: url)!, completion:{(data, error) -> Void in
                 if let slotData = data {
                     self.handleData(slotData, dataHelper: dataHelper, postAction: postAction)
@@ -267,7 +279,17 @@ class APIManager {
                         postAction()
                     }
                 }
-            })
+            })*/
+            
+            
+            let testBundle = NSBundle.mainBundle()
+            let filePath = testBundle.pathForResource(url, ofType: "json")
+            let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
+            if(checkString == nil) {
+                print("should not be empty", terminator: "")
+            }
+            let data = NSData(contentsOfFile: filePath!)!
+            self.handleData(data, dataHelper: dataHelper, postAction: postAction)
         }
         
         
@@ -361,7 +383,7 @@ class APIManager {
         }
     }
     
-    class func getDayFromIndex(index : NSInteger) -> String {
+    class func getDayFromIndex(index : NSIntegeconter) -> String {
         //if(index == 0) {
         //    return "monday"
         //}
@@ -403,5 +425,54 @@ class APIManager {
 
     
     */
+    
+    
+    
+    // FIRT FEED
+    
+    class func end() {
+        print("end")
+    }
+    
+    
+    
+    
+    
+    class func firstFeed() {
+        
+        //let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        //let context = appDelegate.managedObjectContext!
+    
+        singleFeed(SpeakerHelper())
+        singleFeed(SlotHelper())
+        singleFeed(TalkTypeHelper())
+        singleFeed(TrackHelper())
+    }
+    
+    class func singleFeed(helper : DataHelperProtocol) {
+        
+        let url = apiURLS[helper.typeName()]
+
+        let testBundle = NSBundle.mainBundle()
+        
+        for singleUrl in url! {
+
+            let filePath = testBundle.pathForResource(singleUrl, ofType: "json")
+            let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
+            if(checkString == nil) {
+                print("should not be empty", terminator: "")
+            }
+            let data = NSData(contentsOfFile: filePath!)!
+            self.handleData(data, dataHelper: helper, postAction: end)
+        }
+        
+        
+    }
+
+    
+    
+    
+    
+    
 }
 

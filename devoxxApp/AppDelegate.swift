@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        APIManager.firstFeed()
+        
         let scheduleController = ScheduleController()
         let speakerController = SpeakerTableController()
         let mapController = MapController()
@@ -53,9 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = tabController
         self.window!.makeKeyAndVisible()
         
-        //(application as! QTouchposeApplication).alwaysShowTouches = true
         
-        //APIManager.fetchAllURLS()
         
         
         return true

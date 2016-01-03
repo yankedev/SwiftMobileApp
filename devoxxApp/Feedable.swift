@@ -10,6 +10,6 @@ import Foundation
 import CoreData
 import UIKit
 
-public protocol FeedableProtocol {
+public protocol FeedableProtocol  {
     func feedHelper(help: DataHelperProtocol)
 }

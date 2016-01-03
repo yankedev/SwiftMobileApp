@@ -18,6 +18,7 @@ class Talk: NSManagedObject, FeedableProtocol{
     @NSManaged var title: String
     @NSManaged var track: String
     @NSManaged var trackId: String
+    @NSManaged var speakers: NSSet
     
     func getIconFromTrackId() -> String {
         return "icon_\(trackId)"

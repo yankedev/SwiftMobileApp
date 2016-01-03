@@ -49,6 +49,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         
         fetchRequest.sortDescriptors = [sortTime, sortAlpha]
         fetchRequest.fetchBatchSize = 20
+        fetchRequest.returnsObjectsAsFaults = false
         let predicate = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.index))
         fetchRequest.predicate = predicate
 
@@ -138,7 +139,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     public func fetchAll() {
         
-        print("FETCH ALL. is favorite is \(isFavorite)")
+       
 
         var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.index))
@@ -162,7 +163,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         var error: NSError? = nil
         do {
             try fetchedResultsController.performFetch()
-            print(fetchedResultsController.fetchedObjects?.count)
+         
             
             
         } catch let error1 as NSError {
@@ -180,8 +181,8 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         //first, loading from cache
         fetchAll()
         //then try to retrieve the potential updates
-        let slotHelper = SlotHelper()
-        APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: slotHelper)
+        //let slotHelper = SlotHelper()
+        //APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: slotHelper)
     }
     
     override public func didReceiveMemoryWarning() {
@@ -207,24 +208,24 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     
     
-    func getCell(indexPath : NSIndexPath) -> CellData? {
-        var cellDataTry:CellData?
+    func getCell(indexPath : NSIndexPath) -> CellDataPrococol? {
+        var cellDataTry:CellDataPrococol?
         
         if !searchingString.isEmpty {
-            print(searchedSections[indexPath.section])
+          
             let curent = searchedSections[indexPath.section]
             let obj = (curent.objects)!
-            cellDataTry = filterSearchArray(obj)[indexPath.row] as? CellData
+            cellDataTry = filterSearchArray(obj)[indexPath.row] as? CellDataPrococol
             return cellDataTry
         }
         
         if isFavorite {
             let curent = favoriteSections[indexPath.section]
             let obj = (curent.objects)!
-            cellDataTry = filterArray(obj)[indexPath.row] as? CellData
+            cellDataTry = filterArray(obj)[indexPath.row] as? CellDataPrococol
         }
         else {
-            cellDataTry = fetchedResultsController.objectAtIndexPath(indexPath) as? CellData
+            cellDataTry = fetchedResultsController.objectAtIndexPath(indexPath) as? CellDataPrococol
         }
         return cellDataTry
     }
@@ -304,7 +305,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             }
         }
         
-        print(filteredArray)
+     
         return filteredArray
         
     }
@@ -341,9 +342,9 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             
             if !searchingString.isEmpty {
                 let curent = searchedSections[section]
-                print(curent)
+             
                 let obj = (curent.objects)!
-                print(obj)
+             
                 return filterSearchArray(obj).count
             }
             
@@ -452,7 +453,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     
     public func favorite(indexPath : NSIndexPath) -> Bool {
-        if let cellData = fetchedResultsController.objectAtIndexPath(indexPath) as? CellData {
+        if let cellData = fetchedResultsController.objectAtIndexPath(indexPath) as? CellDataPrococol {
             if let cellElement = cellData as? FavoriteProtocol  {
                 return cellElement.invertFavorite()
             }

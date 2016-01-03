@@ -14,7 +14,7 @@ import CoreData
 
 public class SpeakerTableController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    var cellDataArray:[CellData]?
+    var cellDataArray:[CellDataPrococol]?
     
     func fetchSpeaker() {
 
@@ -30,7 +30,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         fetchRequest.sortDescriptors = [sort]
 
         
-        cellDataArray = try! managedContext.executeFetchRequest(fetchRequest) as! [CellData]
+        cellDataArray = try! managedContext.executeFetchRequest(fetchRequest) as! [CellDataPrococol]
         
         //print(speakerArray)
     
@@ -49,13 +49,9 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         searchButton.tintColor = UIColor.whiteColor()
         
         
-        
-        //APIManager.getMockedSpeakers(postActionParam: fetchSpeaker, clear: true)
-        
-        //APIManager.getMockedObjets(postActionParam: fetchSpeaker, clear: true, dataHelper: SpeakerHelper.self)
-        
-        
-        
+        let speakerHelper = SpeakerHelper()
+        //APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: speakerHelper)
+
     }
     
     

@@ -114,7 +114,6 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     }
     
     func removeOverlay() {
-        print("should hide")
         overlay?.tableView.removeFromSuperview()
         overlay = nil
     }

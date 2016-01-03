@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class Slot: CellData, FavoriteProtocol, SearchableProcotol {
+class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, SearchableProcotol {
 
     @NSManaged var roomName: String
     @NSManaged var slotId: String
@@ -21,27 +21,27 @@ class Slot: CellData, FavoriteProtocol, SearchableProcotol {
     
     @NSManaged var talk: Talk
 
-    override func getPrimaryImage() -> UIImage? {
+    func getPrimaryImage() -> UIImage? {
         return UIImage(named: talk.getIconFromTrackId())
     }
     
-    override func getFirstInformation() -> String {
+    func getFirstInformation() -> String {
         return talk.title
     }
     
-    override func getSecondInformation() -> String {
+    func getSecondInformation() -> String {
         return roomName
     }
     
-    override func getThirdInformation() -> String {
+    func getThirdInformation() -> String {
         return talk.getShortTalkTypeName()
     }
     
-    override func getColor() -> UIColor? {
+    func getColor() -> UIColor? {
         return ColorManager.getColorFromTalkType(talk.talkType)
     }
     
-    override func feedHelper(helper: DataHelperProtocol) -> Void {
+    func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? SlotHelper  {
             roomName = castHelper.roomName!
             slotId = castHelper.slotId!
@@ -50,7 +50,7 @@ class Slot: CellData, FavoriteProtocol, SearchableProcotol {
         }
     }
     
-    override func getElement() -> NSManagedObject {
+    func getElement() -> NSManagedObject {
         return talk
     }
 

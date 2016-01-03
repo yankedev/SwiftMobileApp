@@ -78,11 +78,9 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        //tableView.frame = frame
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .None
-        print(frame)
         tableView.backgroundColor = ColorManager.filterBackgroundColor
         backgroundColor = ColorManager.bottomDotsPageController
 
@@ -176,10 +174,10 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
                             }
                             
                             cell.userInteractionEnabled = true
-                            print(self.devoxxAppFilterDelegate)
+                           
                             self.devoxxAppFilterDelegate?.filter(self.selected)
                             
-                            print(self.selected)
+                    
                             
                         }
                     )

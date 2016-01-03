@@ -13,26 +13,40 @@ public class TalkDetailsController : UIViewController {
     
     var talk : Talk!
     var text : UILabel!
+    var speakers: UIView!
     var addFavoriteButton : UIBarButtonItem!
     var indexPath: NSIndexPath!
     var delegate : DevoxxAppFavoriteDelegate!
     
     override public func viewDidLoad() {
         text = UILabel()
+        speakers = UIView()
+        speakers.backgroundColor = UIColor.redColor()
         //text.backgroundColor = UIColor.purpleColor()
         text.translatesAutoresizingMaskIntoConstraints = false
+        speakers.translatesAutoresizingMaskIntoConstraints = false
         text.textAlignment = .Justified
         view.addSubview(text)
+        view.addSubview(speakers)
         
         
         
-        let views = ["talkDescription": text]
+        let views = ["talkDescription": text, "speakers" : speakers]
                
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[talkDescription]-20-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkDescription]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
-        self.view.addConstraint(NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 20))
+        let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[speakers]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
+        
+        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[talkDescription(300)]-10-[speakers]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        
+        
+        /*self.view.addConstraint(NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 20))
+        */
+
         view.addConstraints(constH)
+        view.addConstraints(constH2)
+        view.addConstraints(constV)
 
         
         
@@ -69,6 +83,7 @@ public class TalkDetailsController : UIViewController {
     }
     
     public override func viewWillAppear(animated: Bool) {
+        print(talk.speakers.count)
         self.title = talk.title
         text.text = talk.summary
         self.navigationItem.rightBarButtonItem = addFavoriteButton

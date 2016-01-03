@@ -96,8 +96,33 @@ class SlotHelper: DataHelperProtocol {
                     let subDataObject = NSManagedObject(entity: subEntity!, insertIntoManagedObjectContext: managedContext) as! FeedableProtocol
                     
                     subDataObject.feedHelper(self.talk!)
+
+                              
+                    let fetch = NSFetchRequest(entityName: "Speaker")
+                    let predicate = NSPredicate(format: "href IN %@", self.talk!.speakerIds)
+                    fetch.predicate = predicate
+                    fetch.returnsObjectsAsFaults = false
+                    //fetch.resultType = .ManagedObjectResultType
+                    
+                    
+                    
+                    do {
+                        let items = try managedContext.executeFetchRequest(fetch)
+                        let nsm = subDataObject as! Talk
+                        print("nsm BEFORE = \(nsm)")
+                        let set = nsm.mutableSetValueForKey("speakers")
+                        print("set BEFORE = \(set)")
+                        set.addObjectsFromArray(items)
+                        print("set AFTER = \(set)")
+                    } catch let error as NSError {
+                        print("unresolved error \(error), \(error.userInfo)")
+                    }
+                    
+
+                    
                     
                     coreDataObject.setValue(subDataObject as? AnyObject, forKey: relationName)
+                    
                     
                 }
                 
@@ -111,6 +136,7 @@ class SlotHelper: DataHelperProtocol {
             generateFavorite(managedContext, identifier: coreDataObjectCast.getIdentifier(), type: "Talk")
         }
         
+        //print("saving a a slot ")
         APIManager.save(managedContext)
     }
     

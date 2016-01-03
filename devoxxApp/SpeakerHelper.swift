@@ -15,23 +15,17 @@ class SpeakerHelper: DataHelperProtocol {
     var lastName: String?
     var firstName: String?
     var avatarUrl: String?
-    
-   /* override var description: String {
-        return "uuid: \(uuid)\n lastName: \(lastName)\n firstName: \(firstName)\n avatarUrl: \(avatarUrl)\n"
-    }*/
-    
-    init(uuid: String?, lastName: String?, firstName: String?, avatarUrl: String?) {
-        self.uuid = uuid ?? ""
-        self.lastName = lastName ?? ""
-        self.firstName = firstName ?? ""
-        self.avatarUrl = avatarUrl ?? ""
-    }
-    
+    var href: String?
+
     func feed(data: JSON) {
         uuid = data["uuid"].string
         lastName = data["lastName"].string
         firstName = data["firstName"].string
-        avatarUrl = data["avatarUrl"].string
+        avatarUrl = data["avatarURL"].string
+        
+        
+       
+        href = data["links"][0]["href"].string
     }
     
     func typeName() -> String {
@@ -47,6 +41,21 @@ class SpeakerHelper: DataHelperProtocol {
     }
     
     func save(managedContext : NSManagedObjectContext) {
+        
+        let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
+        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        
+        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+            coreDataObjectCast.feedHelper(self)
+        }
+        
+    
+        //print("saving a speaker")
+        //print(coreDataObject)
+        APIManager.save(managedContext)
+
+        
+        
     }
     
     func save2() -> NSManagedObject? {
