@@ -11,6 +11,7 @@ import UIKit
 
 public class TalkDetailsController : UIViewController {
     
+    var scroll : UIScrollView!
     var talk : Talk!
     var desc: UIView!
     var text : UILabel!
@@ -20,23 +21,38 @@ public class TalkDetailsController : UIViewController {
     var delegate : DevoxxAppFavoriteDelegate!
     
     override public func viewDidLoad() {
+        scroll = UIScrollView()
+        scroll.backgroundColor = UIColor.yellowColor()
+        scroll.contentSize = CGSizeMake(500,500)
         text = UILabel()
         speakers = UIView()
         desc = UIView()
         desc.backgroundColor = UIColor.blueColor()
         speakers.backgroundColor = UIColor.redColor()
         //text.backgroundColor = UIColor.purpleColor()
+        
+        scroll.translatesAutoresizingMaskIntoConstraints = false
         desc.translatesAutoresizingMaskIntoConstraints = false
         speakers.translatesAutoresizingMaskIntoConstraints = false
         text.textAlignment = .Justified
-        view.addSubview(desc)
+        scroll.addSubview(desc)
         desc.addSubview(text)
-        view.addSubview(speakers)
+        scroll.addSubview(speakers)
         
+        view.addSubview(scroll)
         
         
         let views = ["talkDescription": desc, "speakers" : speakers]
-               
+        
+        let viewsS = ["scroll": scroll]
+        
+        
+        let constHS = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: viewsS)
+        
+        let constVS = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: viewsS)
+        
+        
+        
         let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkDescription]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
         let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[speakers]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
@@ -47,6 +63,9 @@ public class TalkDetailsController : UIViewController {
         
         /*self.view.addConstraint(NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 20))
         */
+        
+        view.addConstraints(constHS)
+        view.addConstraints(constVS)
 
         view.addConstraints(constH)
         view.addConstraints(constH2)
