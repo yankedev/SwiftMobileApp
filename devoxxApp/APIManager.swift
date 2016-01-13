@@ -193,22 +193,7 @@ class APIManager {
     
 
     
-    class func getDayFromIndex(index : NSInteger) -> String {
-        //if(index == 0) {
-        //    return "monday"
-        //}
-        //if(index == 1) {
-        //    return "tuesday"
-        //}
-        if(index == 0) {
-            return "wednesday"
-        }
-        if(index == 1) {
-            return "thursday"
-        }
-        return "friday"
-    }
-    
+       
     class func handleData(inputData : NSData, dataHelper: DataHelperProtocol) {
 
         let json = JSON(data: inputData)
