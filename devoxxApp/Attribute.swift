@@ -11,7 +11,7 @@ import CoreData
 import UIKit
 
 
-class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
+class Attribute: NSManagedObject, Feedable, FeedableProtocol, FilterableProtocol {
     
     @NSManaged var id: String?
     @NSManaged var label: String?
@@ -53,14 +53,6 @@ class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
         return "By type"
     }
     
-    func exists(id : String, leftPredicate: String, entity: String) -> Bool {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-        let fetchRequest = NSFetchRequest(entityName: entity)
-        let predicate = NSPredicate(format: "\(leftPredicate) = %@", id)
-        fetchRequest.predicate = predicate
-        let items = try! context.executeFetchRequest(fetchRequest)
-        return items.count > 0
-    }
+    
 
 }

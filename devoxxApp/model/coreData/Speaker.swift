@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol {
+class Speaker: NSManagedObject, CellDataPrococol, Feedable, FeedableProtocol, FavoriteProtocol {
 
     @NSManaged var uuid: String?
     @NSManaged var firstName: String?
@@ -69,15 +69,7 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
         return "\(firstName!) \(lastName!)"
     }
     
-    func exists(id : String, leftPredicate: String, entity: String) -> Bool {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-        let fetchRequest = NSFetchRequest(entityName: entity)
-        let predicate = NSPredicate(format: "\(leftPredicate) = %@", id)
-        fetchRequest.predicate = predicate
-        let items = try! context.executeFetchRequest(fetchRequest)
-        return items.count > 0
-    }
+    
 
 
 }

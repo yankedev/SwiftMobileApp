@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, SearchableProcotol {
+class Slot: NSManagedObject, CellDataPrococol, Feedable, FeedableProtocol, FavoriteProtocol, SearchableProcotol {
 
     @NSManaged var roomName: String
     @NSManaged var slotId: String
@@ -86,15 +86,6 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
         return getFirstInformation().lowercaseString.containsString(str.lowercaseString)
     }
     
-    func exists(id : String, leftPredicate: String, entity: String) -> Bool {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-        let fetchRequest = NSFetchRequest(entityName: entity)
-        let predicate = NSPredicate(format: "\(leftPredicate) = %@", id)
-        fetchRequest.predicate = predicate
-        let items = try! context.executeFetchRequest(fetchRequest)
-        return items.count > 0
-    }
-
+    
     
 }
