@@ -20,6 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         APIManager.firstFeed()
         
+        
+        APIManager.getDistinctDays()
+        
+        
         let scheduleController = ScheduleController()
         let speakerController = SpeakerTableController()
         let mapController = MapController()

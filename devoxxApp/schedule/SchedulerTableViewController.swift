@@ -18,6 +18,8 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     var index:NSInteger = 0
     
+    var currentDate:NSDate!
+    
     var searchPredicates = [String : [NSPredicate]]()
   
     var navigationItemParam:UINavigationItem!
@@ -50,7 +52,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         fetchRequest.sortDescriptors = [sortTime, sortAlpha]
         fetchRequest.fetchBatchSize = 20
         fetchRequest.returnsObjectsAsFaults = false
-        let predicate = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.index))
+        let predicate = NSPredicate(format: "date = %@", self.currentDate)
         fetchRequest.predicate = predicate
 
         let frc = NSFetchedResultsController(
@@ -142,7 +144,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
        
 
         var andPredicate = [NSPredicate]()
-        let predicateDay = NSPredicate(format: "day = %@", APIManager.getDayFromIndex(self.index))
+        let predicateDay = NSPredicate(format: "date = %@", self.currentDate)
         
         andPredicate.append(predicateDay)
         

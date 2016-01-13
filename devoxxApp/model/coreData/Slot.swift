@@ -26,7 +26,7 @@ class Slot: NSManagedObject, CellDataPrococol, Feedable, FeedableProtocol, Favor
     }
     
     func getFirstInformation() -> String {
-        return date.description
+        return talk.title
     }
     
     func getSecondInformation() -> String {

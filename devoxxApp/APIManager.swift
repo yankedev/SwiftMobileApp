@@ -18,7 +18,7 @@ let topAppURL = "http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday"
 let apiURLS:[String : [String]] = ["Slot" : ["http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/thursday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/friday/"], "TalkType" : ["http://cfp.devoxx.be/api/conferences/DV15/proposalTypes"], "Track" :  ["http://cfp.devoxx.be/api/conferences/DV15/tracks"], "Speaker" :  ["http://cfp.devoxx.be/api/conferences/DV15/speakers"]]
 */
 
-let apiURLS:[String : [String]] = ["Slot" : ["03"], "TalkType" : ["TalkType"], "Track" :  ["Track"], "Speaker" :  ["Speaker"]]
+let apiURLS:[String : [String]] = ["Slot" : ["00","01","02","03"], "TalkType" : ["TalkType"], "Track" :  ["Track"], "Speaker" :  ["Speaker"]]
 
 class APIManager {
     
@@ -111,7 +111,24 @@ class APIManager {
         }
     }
     
-    class func getDistinctDays() {
+    class func getDistinctDays() -> NSArray {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = buildFetchRequest(context, name: "Slot")
+        fetchRequest.resultType = .DictionaryResultType
+        fetchRequest.returnsDistinctResults = true
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+        fetchRequest.propertiesToFetch = ["date"]
+        let items = try! context.executeFetchRequest(fetchRequest)
+        return items
+    }
+    
+    class func getDateFromIndex(index : NSInteger, array: NSArray) -> NSDate {
+        if let dict = array.objectAtIndex(index) as? NSDictionary {
+            return (dict.objectForKey("date") as? NSDate)!
+        }
+        //error
+        return NSDate()
     }
     
     class func buildFetchRequest(context: NSManagedObjectContext, name: String) -> NSFetchRequest {
@@ -434,8 +451,8 @@ class APIManager {
         print("---------------------------------FIN SPEAKER")
         singleFeed(SlotHelper())
         print("---------------------------------FIN SLOT")
-        //singleFeed(TalkTypeHelper())
-        //singleFeed(TrackHelper())
+        singleFeed(TalkTypeHelper())
+        singleFeed(TrackHelper())
     }
     
     class func singleFeed(helper : DataHelperProtocol) {

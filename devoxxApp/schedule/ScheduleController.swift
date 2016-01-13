@@ -14,10 +14,13 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     var favoriteSwitcher : UISegmentedControl!
     var pageViewController : UIPageViewController?
     
+    var date:NSArray!
+    
     var overlay:FilterTableViewController?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        date = APIManager.getDistinctDays()
         
         favoriteSwitcher = UISegmentedControl(frame: CGRectMake(0, 0, 200, 30))
         favoriteSwitcher.insertSegmentWithTitle("Schedule", atIndex: 0, animated: true)
@@ -46,6 +49,8 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         self.view.backgroundColor = ColorManager.bottomDotsPageController
         self.topViewController?.navigationItem.titleView = favoriteSwitcher
         self.topViewController?.navigationItem.rightBarButtonItem = filterRightButton
+        
+        
 
     }
     
@@ -155,7 +160,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         currentIndex++
         
         
-        if currentIndex == 3 {
+        if currentIndex == date.count {
             return nil
         }
         
@@ -167,13 +172,14 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         
         let demoController = SchedulerTableViewController()
         demoController.index = index
+        demoController.currentDate = APIManager.getDateFromIndex(index, array: date)
         
         return demoController
     }
     
     
     public func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 3
+        return date.count
     }
     
     public func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {

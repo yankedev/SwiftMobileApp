@@ -51,6 +51,10 @@
 		E127E66C1C39709400FB7E4F /* Speaker.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6671C39709300FB7E4F /* Speaker.json */; };
 		E127E66D1C39709400FB7E4F /* TalkType.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6681C39709400FB7E4F /* TalkType.json */; };
 		E127E66E1C39709400FB7E4F /* Track.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6691C39709400FB7E4F /* Track.json */; };
+		E175F25C1C46FFAD00D7AC0A /* 00.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2581C46FFAD00D7AC0A /* 00.json */; };
+		E175F25D1C46FFAD00D7AC0A /* 01.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2591C46FFAD00D7AC0A /* 01.json */; };
+		E175F25E1C46FFAD00D7AC0A /* 02.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25A1C46FFAD00D7AC0A /* 02.json */; };
+		E175F25F1C46FFAD00D7AC0A /* 04.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25B1C46FFAD00D7AC0A /* 04.json */; };
 		E18046011C1DAC99001AAD85 /* favoriteOff.png in Resources */ = {isa = PBXBuildFile; fileRef = E18046001C1DAC99001AAD85 /* favoriteOff.png */; };
 		E18046031C1DD220001AAD85 /* TalkDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18046021C1DD220001AAD85 /* TalkDetailsController.swift */; };
 		E1FA9BEE1C1BF4E70077C09A /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */; };
@@ -140,6 +144,10 @@
 		E127E6671C39709300FB7E4F /* Speaker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Speaker.json; path = devoxxApp/mock/Speaker.json; sourceTree = "<group>"; };
 		E127E6681C39709400FB7E4F /* TalkType.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TalkType.json; path = devoxxApp/mock/TalkType.json; sourceTree = "<group>"; };
 		E127E6691C39709400FB7E4F /* Track.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Track.json; path = devoxxApp/mock/Track.json; sourceTree = "<group>"; };
+		E175F2581C46FFAD00D7AC0A /* 00.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 00.json; path = devoxxApp/mock/00.json; sourceTree = "<group>"; };
+		E175F2591C46FFAD00D7AC0A /* 01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 01.json; path = devoxxApp/mock/01.json; sourceTree = "<group>"; };
+		E175F25A1C46FFAD00D7AC0A /* 02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 02.json; path = devoxxApp/mock/02.json; sourceTree = "<group>"; };
+		E175F25B1C46FFAD00D7AC0A /* 04.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 04.json; path = devoxxApp/mock/04.json; sourceTree = "<group>"; };
 		E18046001C1DAC99001AAD85 /* favoriteOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favoriteOff.png; path = icon/favoriteOff.png; sourceTree = "<group>"; };
 		E18046021C1DD220001AAD85 /* TalkDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkDetailsController.swift; sourceTree = "<group>"; };
 		E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
@@ -208,6 +216,10 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				E175F2581C46FFAD00D7AC0A /* 00.json */,
+				E175F2591C46FFAD00D7AC0A /* 01.json */,
+				E175F25A1C46FFAD00D7AC0A /* 02.json */,
+				E175F25B1C46FFAD00D7AC0A /* 04.json */,
 				E127E6651C39709300FB7E4F /* 03.json */,
 				E127E6661C39709300FB7E4F /* Slot.json */,
 				E127E6671C39709300FB7E4F /* Speaker.json */,
@@ -493,6 +505,7 @@
 				E127E66C1C39709400FB7E4F /* Speaker.json in Resources */,
 				E18046011C1DAC99001AAD85 /* favoriteOff.png in Resources */,
 				E1FA9C211C1BFC150077C09A /* icon_web.png in Resources */,
+				E175F25F1C46FFAD00D7AC0A /* 04.json in Resources */,
 				58195C0B1C35871600F56A30 /* icon_other.png in Resources */,
 				58195C171C359F7500F56A30 /* checkboxOn.png in Resources */,
 				58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */,
@@ -505,6 +518,7 @@
 				E1FA9C2F1C1BFC730077C09A /* Roboto-Regular.ttf in Resources */,
 				58195C061C35868400F56A30 /* icon_key.png in Resources */,
 				58195C0D1C35877100F56A30 /* icon_start.png in Resources */,
+				E175F25E1C46FFAD00D7AC0A /* 02.json in Resources */,
 				E1FA9C251C1BFC1E0077C09A /* tabIconMap@2x.png in Resources */,
 				58195C051C35868400F56A30 /* icon_ignite.png in Resources */,
 				E1FA9C1E1C1BFC150077C09A /* icon_mobile.png in Resources */,
@@ -515,12 +529,14 @@
 				E127E66B1C39709400FB7E4F /* Slot.json in Resources */,
 				E1FA9C1A1C1BFC150077C09A /* icon_future.png in Resources */,
 				E127E66A1C39709400FB7E4F /* 03.json in Resources */,
+				E175F25D1C46FFAD00D7AC0A /* 01.json in Resources */,
 				E127E66D1C39709400FB7E4F /* TalkType.json in Resources */,
 				E1FA9C1C1C1BFC150077C09A /* icon_lang.png in Resources */,
 				E1FA9C1D1C1BFC150077C09A /* icon_methodevops.png in Resources */,
 				E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */,
 				E1FA9C291C1BFC280077C09A /* favoriteOn.png in Resources */,
 				58195C071C35868400F56A30 /* icon_quick.png in Resources */,
+				E175F25C1C46FFAD00D7AC0A /* 00.json in Resources */,
 				E127E66E1C39709400FB7E4F /* Track.json in Resources */,
 				E1FA9C1F1C1BFC150077C09A /* icon_ssj.png in Resources */,
 				58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */,
