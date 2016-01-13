@@ -16,8 +16,8 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
     @NSManaged var slotId: String
     @NSManaged var fromTime: String
     @NSManaged var day: String
-    
-    @NSManaged var toTimeMillis: NSNumber
+    @NSManaged var date: NSDate
+    @NSManaged var fromTimeMillis: NSNumber
     
     @NSManaged var talk: Talk
 
@@ -26,7 +26,7 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
     }
     
     func getFirstInformation() -> String {
-        return talk.title
+        return date.description
     }
     
     func getSecondInformation() -> String {
@@ -47,6 +47,22 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
             slotId = castHelper.slotId!
             fromTime = castHelper.fromTime!
             day = castHelper.day!
+            fromTimeMillis = castHelper.fromTimeMillis!
+            //millis -> sec
+            let savedDate =  NSDate(timeIntervalSince1970: fromTimeMillis.doubleValue/1000)
+            let calendar = NSCalendar.currentCalendar()
+            let components = calendar.components([.Year, .Month, .Day], fromDate:  savedDate)
+            
+            print(components.description)
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            date = dateFormatter.dateFromString("\(components.year)-\(components.month)-\(components.day) 08:00:00")!
+
+            
+            
+            
         }
     }
     
@@ -69,5 +85,16 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
     func isMatching(str : String) -> Bool {
         return getFirstInformation().lowercaseString.containsString(str.lowercaseString)
     }
+    
+    func exists(id : String, leftPredicate: String, entity: String) -> Bool {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: entity)
+        let predicate = NSPredicate(format: "\(leftPredicate) = %@", id)
+        fetchRequest.predicate = predicate
+        let items = try! context.executeFetchRequest(fetchRequest)
+        return items.count > 0
+    }
+
     
 }

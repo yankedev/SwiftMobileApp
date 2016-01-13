@@ -47,10 +47,13 @@ class SpeakerHelper: DataHelperProtocol {
         
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
             coreDataObjectCast.feedHelper(self)
+            if(coreDataObjectCast.exists(uuid!, leftPredicate:"uuid", entity: entityName())) {
+                return
+            }
         }
         
     
-        //print("saving a speaker")
+        print("saving a speaker")
         //print(coreDataObject)
         APIManager.save(managedContext)
 

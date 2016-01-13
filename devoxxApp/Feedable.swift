@@ -12,4 +12,5 @@ import UIKit
 
 public protocol FeedableProtocol  {
     func feedHelper(help: DataHelperProtocol)
+    func exists(id : String, leftPredicate: String, entity: String) -> Bool
 }

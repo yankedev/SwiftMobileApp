@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class Talk: NSManagedObject, FeedableProtocol{
 
@@ -76,6 +77,16 @@ class Talk: NSManagedObject, FeedableProtocol{
         }
     }
     
+    func exists(id : String, leftPredicate: String, entity: String) -> Bool {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: entity)
+        let predicate = NSPredicate(format: "\(leftPredicate) = %@", id)
+        fetchRequest.predicate = predicate
+        let items = try! context.executeFetchRequest(fetchRequest)
+        return items.count > 0
+    }
+
     
 
 

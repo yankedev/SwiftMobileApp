@@ -111,6 +111,9 @@ class APIManager {
         }
     }
     
+    class func getDistinctDays() {
+    }
+    
     class func buildFetchRequest(context: NSManagedObjectContext, name: String) -> NSFetchRequest {
         let fetchRequest = NSFetchRequest(entityName: name)
         fetchRequest.includesSubentities = true
@@ -189,7 +192,7 @@ class APIManager {
         return "friday"
     }
     
-    class func handleData(inputData : NSData, dataHelper: DataHelperProtocol, postAction : (Void) -> Void) {
+    class func handleData(inputData : NSData, dataHelper: DataHelperProtocol) {
 
         let json = JSON(data: inputData)
         let arrayToParse = dataHelper.prepareArray(json)
@@ -208,17 +211,13 @@ class APIManager {
                 let privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
                 privateContext.persistentStoreCoordinator = context.persistentStoreCoordinator
                 
-                // 2
-                privateContext.performBlock { () -> Void in
-                    newHelper.save(privateContext)
-                }
+
+                newHelper.save(privateContext)
+                
                 
             }
         }
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            postAction()
-        }
+    
     }
     
     
@@ -289,7 +288,7 @@ class APIManager {
                 print("should not be empty", terminator: "")
             }
             let data = NSData(contentsOfFile: filePath!)!
-            self.handleData(data, dataHelper: dataHelper, postAction: postAction)
+            //self.handleData(data, dataHelper: dataHelper, postAction: postAction)
         }
         
         
@@ -428,29 +427,18 @@ class APIManager {
     
     
     
-    // FIRT FEED
-    
-    class func end() {
-        print("end")
-    }
-    
-    
-    
-    
+    // FIRST FEED
     
     class func firstFeed() {
-        
-        //let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        //let context = appDelegate.managedObjectContext!
-    
         singleFeed(SpeakerHelper())
+        print("---------------------------------FIN SPEAKER")
         singleFeed(SlotHelper())
-        singleFeed(TalkTypeHelper())
-        singleFeed(TrackHelper())
+        print("---------------------------------FIN SLOT")
+        //singleFeed(TalkTypeHelper())
+        //singleFeed(TrackHelper())
     }
     
     class func singleFeed(helper : DataHelperProtocol) {
-        
         let url = apiURLS[helper.typeName()]
 
         let testBundle = NSBundle.mainBundle()
@@ -463,7 +451,7 @@ class APIManager {
                 print("should not be empty", terminator: "")
             }
             let data = NSData(contentsOfFile: filePath!)!
-            self.handleData(data, dataHelper: helper, postAction: end)
+            self.handleData(data, dataHelper: helper)
         }
         
         

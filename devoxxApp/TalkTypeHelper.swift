@@ -47,6 +47,9 @@ class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
         
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
             coreDataObjectCast.feedHelper(self)
+            if(coreDataObjectCast.exists(super.id!, leftPredicate:"id", entity: entityName())) {
+                return
+            }
         }
         
         

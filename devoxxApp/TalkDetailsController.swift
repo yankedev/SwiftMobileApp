@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-public class TalkDetailsController : UIViewController {
+public class TalkDetailsController : UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var scroll : UIScrollView!
     var talk : Talk!
     var desc: UIView!
-    var text : UILabel!
-    var speakers: UIView!
+    var text : UITextView!
+    var speakers: UITableView!
     var addFavoriteButton : UIBarButtonItem!
     var indexPath: NSIndexPath!
     var delegate : DevoxxAppFavoriteDelegate!
@@ -24,8 +24,10 @@ public class TalkDetailsController : UIViewController {
         scroll = UIScrollView()
         scroll.backgroundColor = UIColor.yellowColor()
         scroll.contentSize = CGSizeMake(500,500)
-        text = UILabel()
-        speakers = UIView()
+        text = UITextView()
+        speakers = UITableView(frame: CGRectZero, style: .Plain)
+        speakers.dataSource = self
+        speakers.delegate = self
         desc = UIView()
         desc.backgroundColor = UIColor.blueColor()
         speakers.backgroundColor = UIColor.redColor()
@@ -35,21 +37,25 @@ public class TalkDetailsController : UIViewController {
         desc.translatesAutoresizingMaskIntoConstraints = false
         speakers.translatesAutoresizingMaskIntoConstraints = false
         text.textAlignment = .Justified
-        scroll.addSubview(desc)
-        desc.addSubview(text)
-        scroll.addSubview(speakers)
         
-        view.addSubview(scroll)
+        
+        //view.addSubview(desc)
+        view.addSubview(desc)
+        desc.addSubview(text)
+        view.addSubview(speakers)
+        //scroll.addSubview(speakers)
+        
+        //view.addSubview(scroll)
         
         
         let views = ["talkDescription": desc, "speakers" : speakers]
         
-        let viewsS = ["scroll": scroll]
+        //let viewsS = ["scroll": scroll]
         
         
-        let constHS = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: viewsS)
+        //let constHS = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: viewsS)
         
-        let constVS = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: viewsS)
+        //let constVS = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: viewsS)
         
         
         
@@ -58,14 +64,14 @@ public class TalkDetailsController : UIViewController {
         let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[speakers]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
         
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[talkDescription(300)]-10-[speakers]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[talkDescription]-10-[speakers(80)]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
         
         /*self.view.addConstraint(NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 20))
         */
         
-        view.addConstraints(constHS)
-        view.addConstraints(constVS)
+        //view.addConstraints(constHS)
+        //view.addConstraints(constVS)
 
         view.addConstraints(constH)
         view.addConstraints(constH2)
@@ -73,8 +79,28 @@ public class TalkDetailsController : UIViewController {
 
         
         
+        text.translatesAutoresizingMaskIntoConstraints = false
+        text.backgroundColor = UIColor.greenColor()
         
-        text.numberOfLines = 0
+        
+        
+        let widthConstraint = NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: text.superview, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
+        
+        let heightConstraint = NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: text.superview, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
+        
+        let topConstraint = NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: text.superview, attribute: NSLayoutAttribute.Top, multiplier: 0.5, constant: 0)
+        
+        let leftConstraint = NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: text.superview, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0)
+        
+        text.superview!.addConstraint(widthConstraint)
+        text.superview!.addConstraint(heightConstraint)
+        text.superview!.addConstraint(topConstraint)
+        text.superview!.addConstraint(leftConstraint)
+
+        
+        
+        
+        //text.numberOfLines = 0
         self.view.backgroundColor = UIColor.whiteColor()
 
        
@@ -110,8 +136,34 @@ public class TalkDetailsController : UIViewController {
         self.title = talk.title
         text.text = talk.summary
         self.navigationItem.rightBarButtonItem = addFavoriteButton
+        
+        print(talk)
+        
     }
     
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return talk.speakers.count
+    }
+    
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
+        
+        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10")
+        
+        if cell == nil {
+            cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
+            cell?.selectionStyle = .None
+        }
+        
+        
+
+        
+        let speakerArray = talk.speakers.sortedArrayUsingDescriptors([NSSortDescriptor(key: "firstName", ascending: true)]) as! [Speaker]
+        
+        cell?.textLabel?.text = speakerArray[indexPath.row].getFullName()
+        
+        return cell!
+        
+    }
     
     
    

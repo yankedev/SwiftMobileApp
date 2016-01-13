@@ -15,6 +15,7 @@ class SlotHelper: DataHelperProtocol {
     var slotId: String?
     var fromTime: String?
     var day: String?
+    var fromTimeMillis : NSNumber?
     var talk : TalkHelper?
     
     
@@ -40,6 +41,7 @@ class SlotHelper: DataHelperProtocol {
         slotId = data["slotId"].string
         fromTime = data["fromTime"].string
         day = data["day"].string
+        fromTimeMillis = data["fromTimeMillis"].doubleValue
    
         let talkHelper = TalkHelper()
         
@@ -109,15 +111,25 @@ class SlotHelper: DataHelperProtocol {
                     do {
                         let items = try managedContext.executeFetchRequest(fetch)
                         let nsm = subDataObject as! Talk
-                        print("nsm BEFORE = \(nsm)")
-                        let set = nsm.mutableSetValueForKey("speakers")
-                        print("set BEFORE = \(set)")
-                        set.addObjectsFromArray(items)
-                        print("set AFTER = \(set)")
+                       
+                        
+                        if talk?.title == "Advanced Modular Development" {
+                            print("\(items.count) speakers \(talk?.title)")
+                            print(items)
+                        }
+                        
+                        for item in items {
+                            nsm.mutableSetValueForKey("speakers").addObject(item)
+                        }
+                        
+                        
+  
                     } catch let error as NSError {
                         print("unresolved error \(error), \(error.userInfo)")
                     }
                     
+                    
+                    print(relationName)
 
                     
                     
@@ -126,6 +138,9 @@ class SlotHelper: DataHelperProtocol {
                     
                 }
                 
+            }
+            if(coreDataObjectCast.exists(slotId!, leftPredicate:"slotId", entity: entityName())) {
+                return
             }
 
             
@@ -136,7 +151,7 @@ class SlotHelper: DataHelperProtocol {
             generateFavorite(managedContext, identifier: coreDataObjectCast.getIdentifier(), type: "Talk")
         }
         
-        //print("saving a a slot ")
+        print("saving a slot ")
         APIManager.save(managedContext)
     }
     

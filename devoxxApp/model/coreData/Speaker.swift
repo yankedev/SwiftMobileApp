@@ -64,6 +64,20 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
         return APIManager.isFavorited("Speaker", identifier: getIdentifier())
     }
     
+
+    func getFullName() -> String {
+        return "\(firstName!) \(lastName!)"
+    }
     
+    func exists(id : String, leftPredicate: String, entity: String) -> Bool {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: entity)
+        let predicate = NSPredicate(format: "\(leftPredicate) = %@", id)
+        fetchRequest.predicate = predicate
+        let items = try! context.executeFetchRequest(fetchRequest)
+        return items.count > 0
+    }
+
 
 }
