@@ -14,7 +14,7 @@ public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
     func favorite(path : NSIndexPath) -> Bool
 }
 
-public class SchedulerTableViewController: UIViewController, NSFetchedResultsControllerDelegate, ScheduleViewCellDelegate, DevoxxAppFavoriteDelegate, SwitchableProtocol, FilterableTableProtocol, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+public class SchedulerTableViewController: UIViewController, ScheduleViewCellDelegate, DevoxxAppFavoriteDelegate, SwitchableProtocol, FilterableTableDataSource, FilterableTableProtocol, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     var index:NSInteger = 0
     
@@ -38,34 +38,9 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     var searchBar:UISearchBar?
     
-    lazy var fetchedResultsController: NSFetchedResultsController = {
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        
-        let fetchRequest = NSFetchRequest(entityName: "Slot")
-        let sortTime = NSSortDescriptor(key: "fromTime", ascending: true)
-        let sortAlpha = NSSortDescriptor(key: "talk.title", ascending: true)
-        
-        //var lastDragged : ScheduleViewCell!
-        
-        fetchRequest.sortDescriptors = [sortTime, sortAlpha]
-        fetchRequest.fetchBatchSize = 20
-        fetchRequest.returnsObjectsAsFaults = false
-        let predicate = NSPredicate(format: "date = %@", self.currentDate)
-        fetchRequest.predicate = predicate
-
-        let frc = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
-            managedObjectContext: managedContext,
-            sectionNameKeyPath: "fromTime",
-            cacheName: nil)
-        
-        frc.delegate = self
-        
-        return frc
-    }()
+    var filterableTableDataSource: FilterableTableDataSource!
     
+    var frc:NSFetchedResultsController?
     
     public func performSwitch() {
         if isFavorite {
@@ -86,6 +61,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     override public func viewDidLoad() {
         super.viewDidLoad()
 
+        filterableTableDataSource = self
         
         //let adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(okok.tabBar.frame), 0);
         //self.tableView.contentInset = adjustForTabbarInsets;
@@ -156,7 +132,8 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         
         andPredicate.append(NSCompoundPredicate(andPredicateWithSubpredicates: attributeOrPredicate))
         
-        fetchedResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
+
+        self.filterableTableDataSource.fetchedResultsController().fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
         
         //print(fetchedResultsController.fetchRequest.predicate)
         
@@ -164,10 +141,9 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         //fetchedResultsController.fetchRequest.predicate = predicateDay
         var error: NSError? = nil
         do {
-            try fetchedResultsController.performFetch()
-         
-            
-            
+            try self.filterableTableDataSource.fetchedResultsController().performFetch()
+            print(filterableTableDataSource.fetchedResultsController().fetchedObjects?.count)
+            print("FETCHED!")
         } catch let error1 as NSError {
             error = error1
             print("unresolved error \(error), \(error!.userInfo)")
@@ -227,7 +203,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
             cellDataTry = filterArray(obj)[indexPath.row] as? CellDataPrococol
         }
         else {
-            cellDataTry = fetchedResultsController.objectAtIndexPath(indexPath) as? CellDataPrococol
+            cellDataTry = self.filterableTableDataSource.fetchedResultsController().objectAtIndexPath(indexPath) as? CellDataPrococol
         }
         return cellDataTry
     }
@@ -314,7 +290,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
-        if let sections = fetchedResultsController.sections {
+        if let sections = self.filterableTableDataSource.fetchedResultsController().sections {
             
             if !searchingString.isEmpty {
                 updateSectionForSearch()
@@ -337,7 +313,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
        
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = fetchedResultsController.sections {
+        if let sections = self.filterableTableDataSource.fetchedResultsController().sections {
             
             let currentSection = sections[section]
             
@@ -374,7 +350,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     }
     
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let sections = fetchedResultsController.sections {
+        if let sections = self.filterableTableDataSource.fetchedResultsController().sections {
             
             if !searchingString.isEmpty {
                 return searchedSections[section].name
@@ -391,9 +367,9 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     public func updateSection() {
         
-        favoriteSections = fetchedResultsController.sections!
+        favoriteSections = self.filterableTableDataSource.fetchedResultsController().sections!
 
-        if let sections = fetchedResultsController.sections {
+        if let sections = self.filterableTableDataSource.fetchedResultsController().sections {
             for section in sections {
                 
                 let filteredArray = filterArray(section.objects!)
@@ -408,9 +384,9 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     public func updateSectionForSearch() {
         
-        searchedSections = fetchedResultsController.sections!
+        searchedSections = self.filterableTableDataSource.fetchedResultsController().sections!
         
-        if let sections = fetchedResultsController.sections {
+        if let sections = self.filterableTableDataSource.fetchedResultsController().sections {
             for section in sections {
                 
                 let filteredArray = filterSearchArray(section.objects!)
@@ -455,7 +431,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     
     public func favorite(indexPath : NSIndexPath) -> Bool {
-        if let cellData = fetchedResultsController.objectAtIndexPath(indexPath) as? CellDataPrococol {
+        if let cellData = self.filterableTableDataSource.fetchedResultsController().objectAtIndexPath(indexPath) as? CellDataPrococol {
             if let cellElement = cellData as? FavoriteProtocol  {
                 return cellElement.invertFavorite()
             }
@@ -464,9 +440,55 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     }
     
     
-    func filter() {
-        fetchAll()
+    public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        searchingString = searchText
+        self.tableView.reloadData()
     }
+    
+    //FilterableTableDataSource
+    
+    
+    
+    
+    
+    func fetchedResultsController() -> NSFetchedResultsController {
+        
+        if frc != nil {
+            return frc!
+        }
+        
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+            
+        let fetchRequest = NSFetchRequest(entityName: "Slot")
+        let sortTime = NSSortDescriptor(key: "fromTime", ascending: true)
+        let sortAlpha = NSSortDescriptor(key: "talk.title", ascending: true)
+            
+        //var lastDragged : ScheduleViewCell!
+            
+        fetchRequest.sortDescriptors = [sortTime, sortAlpha]
+        fetchRequest.fetchBatchSize = 20
+        fetchRequest.returnsObjectsAsFaults = false
+        let predicate = NSPredicate(format: "date = %@", self.currentDate)
+        fetchRequest.predicate = predicate
+            
+        frc = NSFetchedResultsController(
+            fetchRequest: fetchRequest,
+            managedObjectContext: managedContext,
+            sectionNameKeyPath: "fromTime",
+            cacheName: nil)
+
+        return frc!
+    }
+
+    //FilterableTableProtocol
+    
+    
+    func clearFilter() {
+        searchPredicates.removeAll()
+    }
+
     
     func buildFilter(filters: [String : [FilterableProtocol]]) {
         currentFilters = filters
@@ -479,19 +501,14 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         }
     }
     
-    func clearFilter() {
-        searchPredicates.removeAll()
-    }
-    
-    public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        searchingString = searchText
-        self.tableView.reloadData()
+    func filter() {
+        fetchAll()
     }
     
     func getCurrentFilters() -> [String : [FilterableProtocol]]? {
         return currentFilters
     }
     
-    
+
        
 }

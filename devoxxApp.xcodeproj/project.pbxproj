@@ -352,8 +352,8 @@
 			children = (
 				E1FA9C3D1C1BFD010077C09A /* ScheduleViewCell.swift */,
 				58195C121C359A4E00F56A30 /* FilterViewCell.swift */,
-				E1FA9C341C1BFCC60077C09A /* SchedulerTableViewController.swift */,
 				E127E6591C38212100FB7E4F /* FilterableTableProtocol.swift */,
+				E1FA9C341C1BFCC60077C09A /* SchedulerTableViewController.swift */,
 				E1FA9C351C1BFCC60077C09A /* ScheduleController.swift */,
 				58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */,
 				E127E6571C38117000FB7E4F /* SwitchableProtocol.swift */,

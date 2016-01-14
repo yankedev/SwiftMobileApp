@@ -7,10 +7,17 @@
 //
 
 import Foundation
+import CoreData
 
 protocol FilterableTableProtocol {
     func clearFilter()
     func buildFilter(filters : [String: [FilterableProtocol]])
     func filter()
     func getCurrentFilters() -> [String : [FilterableProtocol]]?
+}
+
+
+protocol FilterableTableDataSource {
+    var frc:NSFetchedResultsController? { set get }
+    func fetchedResultsController() -> NSFetchedResultsController
 }

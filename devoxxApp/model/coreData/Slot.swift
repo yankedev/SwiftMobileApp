@@ -53,7 +53,7 @@ class Slot: NSManagedObject, CellDataPrococol, Feedable, FeedableProtocol, Favor
             let calendar = NSCalendar.currentCalendar()
             let components = calendar.components([.Year, .Month, .Day], fromDate:  savedDate)
             
-            print(components.description)
+           
             
             let dateFormatter = NSDateFormatter()
             dateFormatter
