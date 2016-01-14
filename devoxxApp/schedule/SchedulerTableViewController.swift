@@ -133,7 +133,7 @@ public class SchedulerTableViewController: UIViewController, ScheduleViewCellDel
         andPredicate.append(NSCompoundPredicate(andPredicateWithSubpredicates: attributeOrPredicate))
         
 
-        self.filterableTableDataSource.fetchedResultsController().fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
+        frc?.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
         
         //print(fetchedResultsController.fetchRequest.predicate)
         
@@ -141,7 +141,7 @@ public class SchedulerTableViewController: UIViewController, ScheduleViewCellDel
         //fetchedResultsController.fetchRequest.predicate = predicateDay
         var error: NSError? = nil
         do {
-            try self.filterableTableDataSource.fetchedResultsController().performFetch()
+            try frc?.performFetch()
             print(filterableTableDataSource.fetchedResultsController().fetchedObjects?.count)
             print("FETCHED!")
         } catch let error1 as NSError {
@@ -203,7 +203,7 @@ public class SchedulerTableViewController: UIViewController, ScheduleViewCellDel
             cellDataTry = filterArray(obj)[indexPath.row] as? CellDataPrococol
         }
         else {
-            cellDataTry = self.filterableTableDataSource.fetchedResultsController().objectAtIndexPath(indexPath) as? CellDataPrococol
+            cellDataTry = frc?.objectAtIndexPath(indexPath) as? CellDataPrococol
         }
         return cellDataTry
     }
@@ -290,7 +290,7 @@ public class SchedulerTableViewController: UIViewController, ScheduleViewCellDel
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
-        if let sections = self.filterableTableDataSource.fetchedResultsController().sections {
+        if let sections = frc?.sections {
             
             if !searchingString.isEmpty {
                 updateSectionForSearch()
@@ -313,7 +313,7 @@ public class SchedulerTableViewController: UIViewController, ScheduleViewCellDel
     
        
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = self.filterableTableDataSource.fetchedResultsController().sections {
+        if let sections = frc?.sections {
             
             let currentSection = sections[section]
             
@@ -350,7 +350,7 @@ public class SchedulerTableViewController: UIViewController, ScheduleViewCellDel
     }
     
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let sections = self.filterableTableDataSource.fetchedResultsController().sections {
+        if let sections = frc?.sections {
             
             if !searchingString.isEmpty {
                 return searchedSections[section].name
@@ -367,9 +367,9 @@ public class SchedulerTableViewController: UIViewController, ScheduleViewCellDel
     
     public func updateSection() {
         
-        favoriteSections = self.filterableTableDataSource.fetchedResultsController().sections!
+        favoriteSections = (frc?.sections)!
 
-        if let sections = self.filterableTableDataSource.fetchedResultsController().sections {
+        if let sections = frc?.sections {
             for section in sections {
                 
                 let filteredArray = filterArray(section.objects!)
@@ -384,9 +384,9 @@ public class SchedulerTableViewController: UIViewController, ScheduleViewCellDel
     
     public func updateSectionForSearch() {
         
-        searchedSections = self.filterableTableDataSource.fetchedResultsController().sections!
+        searchedSections = (frc?.sections)!
         
-        if let sections = self.filterableTableDataSource.fetchedResultsController().sections {
+        if let sections = frc?.sections {
             for section in sections {
                 
                 let filteredArray = filterSearchArray(section.objects!)
@@ -431,7 +431,7 @@ public class SchedulerTableViewController: UIViewController, ScheduleViewCellDel
     
     
     public func favorite(indexPath : NSIndexPath) -> Bool {
-        if let cellData = self.filterableTableDataSource.fetchedResultsController().objectAtIndexPath(indexPath) as? CellDataPrococol {
+        if let cellData = frc?.objectAtIndexPath(indexPath) as? CellDataPrococol {
             if let cellElement = cellData as? FavoriteProtocol  {
                 return cellElement.invertFavorite()
             }
