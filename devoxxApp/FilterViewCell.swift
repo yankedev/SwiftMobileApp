@@ -17,7 +17,7 @@ class FilterViewCell: UITableViewCell, UIScrollViewDelegate {
     var attributeTitle:UILabel!
     var tickedImg:UIImageView!
     
-    var delegate: ScheduleViewCellDelegate!
+    
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

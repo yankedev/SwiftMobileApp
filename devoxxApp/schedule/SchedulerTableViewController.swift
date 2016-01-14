@@ -16,7 +16,6 @@ public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
 
 public class SchedulerTableViewController:
         UIViewController,
-        ScheduleViewCellDelegate,
         DevoxxAppFavoriteDelegate,
         SwitchableProtocol,
         FilterableTableDataSource,
@@ -53,53 +52,28 @@ public class SchedulerTableViewController:
     
     var schedulerTableView = SchedulerTableView()
     
-
-    
-    
-    
-    
-    
-    
-    
-    
-    public func resetSearch() {
-        searchingString = ""
-    }
-    
-    
-    public func performSwitch() {
-        schedulerTableView.updateHeaderView(isFavorite)
-        resetSearch()
-        fetchAll()
-    }
-    
-    public func updateSwitch(switchValue: Bool) {
-        isFavorite = switchValue
-    }
-    
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-
+        
         filterableTableDataSource = self
-
+        
         schedulerTableView.delegate = self
         schedulerTableView.dataSource = self
-        
         
         schedulerTableView.searchBar.delegate = self
         schedulerTableView.updateHeaderView(true)
         self.view.addSubview(schedulerTableView)
         schedulerTableView.setupConstraints()
- 
-        
     }
     
-    
-    public func fetchAll() {
-        
-       
+    override public func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchAll()
+    }
 
+    
+    private func computePredicate() -> NSPredicate {
         var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "date = %@", self.currentDate)
         
@@ -113,48 +87,45 @@ public class SchedulerTableViewController:
         
         andPredicate.append(NSCompoundPredicate(andPredicateWithSubpredicates: attributeOrPredicate))
         
-
-        frc?.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
-        
-        //print(fetchedResultsController.fetchRequest.predicate)
-        
-        
-        //fetchedResultsController.fetchRequest.predicate = predicateDay
-        var error: NSError? = nil
+        return NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
+    }
+    
+    public func fetchAll() {
+        fetchedResultsController().fetchRequest.predicate = computePredicate()
+  
         do {
-            try frc?.performFetch()
-            print(filterableTableDataSource.fetchedResultsController().fetchedObjects?.count)
-            print("FETCHED!")
-        } catch let error1 as NSError {
-            error = error1
-            print("unresolved error \(error), \(error!.userInfo)")
+            try fetchedResultsController().performFetch()
+        } catch let error as NSError {
+            //todo
+            print("unresolved error \(error), \(error.userInfo)")
         }
         schedulerTableView.reloadData()
     }
-
     
-   
-
-    override public func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        //first, loading from cache
+    public func resetSearch() {
+        searchingString = ""
+    }
+    
+    public func performSwitch() {
+        schedulerTableView.updateHeaderView(isFavorite)
+        resetSearch()
         fetchAll()
-        //then try to retrieve the potential updates
-        //let slotHelper = SlotHelper()
-        //APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: slotHelper)
     }
     
-    override public func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    public func updateSwitch(switchValue: Bool) {
+        isFavorite = switchValue
     }
     
     
+    
+    //TableView
+
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
         if let slot = getCell(indexPath) as? Slot {
                 
             let details = TalkDetailsController()
+            //todo
             details.indexPath = indexPath
             details.talk = slot.talk
             details.delegate = self
@@ -189,35 +160,20 @@ public class SchedulerTableViewController:
         return cellDataTry
     }
     
-    
-    
-    
-    public func getTintColorFromTag(tag : Int) -> UIColor {
-        if tag == 0  {
-            return UIColor.blackColor()
-        }
-        return UIColor.whiteColor()
-    }
-    
+ 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? ScheduleViewCell
         
-            
+    
         if cell == nil {
             cell = ScheduleViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
             cell?.selectionStyle = .None
-            cell?.delegate = self
             cell!.configureCell()
         }
-        
-        
-        
-        
-        
+
         if let cellData = getCell(indexPath) {
-            //cell!.trackImg.image = 
-            
+
             cell!.trackImg.image = cellData.getPrimaryImage()
             
             cell!.talkTitle.text = cellData.getFirstInformation()
@@ -230,7 +186,7 @@ public class SchedulerTableViewController:
             }
             
         } else {
-            // should be be here
+            // todo should be be here
         }
         
             
@@ -280,7 +236,6 @@ public class SchedulerTableViewController:
             
             
             if !isFavorite {
-                //print("sectionCount = \(sections.count)")
                 return sections.count
             }
             
@@ -381,30 +336,9 @@ public class SchedulerTableViewController:
   
     
     public func changeSchedule(sender: UISegmentedControl) {
-        self.hideAllFavorite(except:nil, animated: false)
         self.fetchAll()
     }
     
-    
-    
-    public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        hideAllFavorite(except: nil, animated: true)
-    }
-    
-    func hideAllFavorite(except except: ScheduleViewCell?, animated: Bool) {
-        for singleCell in self.schedulerTableView.visibleCells {
-            if let singleScheduleViewCell = singleCell as? ScheduleViewCell {
-                if singleScheduleViewCell != except {
-                    singleScheduleViewCell.hideFavorite(animated: animated)
-                }
-            }
-        }
-    }
-    
-    func beginScroll(sender: ScheduleViewCell) -> Void {
-        hideAllFavorite(except: sender, animated: true)
-    
-    }
     
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 44.0

@@ -56,6 +56,7 @@
 		E175F25E1C46FFAD00D7AC0A /* 02.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25A1C46FFAD00D7AC0A /* 02.json */; };
 		E175F25F1C46FFAD00D7AC0A /* 04.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25B1C46FFAD00D7AC0A /* 04.json */; };
 		E175F2651C485B0D00D7AC0A /* SchedulerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F2641C485B0D00D7AC0A /* SchedulerTableView.swift */; };
+		E175F2671C48632A00D7AC0A /* CommonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F2661C48632A00D7AC0A /* CommonHelper.swift */; };
 		E18046011C1DAC99001AAD85 /* favoriteOff.png in Resources */ = {isa = PBXBuildFile; fileRef = E18046001C1DAC99001AAD85 /* favoriteOff.png */; };
 		E18046031C1DD220001AAD85 /* TalkDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18046021C1DD220001AAD85 /* TalkDetailsController.swift */; };
 		E1FA9BEE1C1BF4E70077C09A /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */; };
@@ -150,6 +151,7 @@
 		E175F25A1C46FFAD00D7AC0A /* 02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 02.json; path = devoxxApp/mock/02.json; sourceTree = "<group>"; };
 		E175F25B1C46FFAD00D7AC0A /* 04.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 04.json; path = devoxxApp/mock/04.json; sourceTree = "<group>"; };
 		E175F2641C485B0D00D7AC0A /* SchedulerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerTableView.swift; sourceTree = "<group>"; };
+		E175F2661C48632A00D7AC0A /* CommonHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonHelper.swift; sourceTree = "<group>"; };
 		E18046001C1DAC99001AAD85 /* favoriteOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favoriteOff.png; path = icon/favoriteOff.png; sourceTree = "<group>"; };
 		E18046021C1DD220001AAD85 /* TalkDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkDetailsController.swift; sourceTree = "<group>"; };
 		E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				E1FA9C341C1BFCC60077C09A /* SchedulerTableViewController.swift */,
+				E175F2661C48632A00D7AC0A /* CommonHelper.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 			files = (
 				E10CE1AE1C2BDAA1002C9934 /* Attribute.swift in Sources */,
 				E10CE1A41C2BC1F2002C9934 /* DataHelper.swift in Sources */,
+				E175F2671C48632A00D7AC0A /* CommonHelper.swift in Sources */,
 				E1FA9C3B1C1BFCF80077C09A /* MapController.swift in Sources */,
 				E127E65A1C38212100FB7E4F /* FilterableTableProtocol.swift in Sources */,
 				58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */,

@@ -11,11 +11,6 @@ import Foundation
 import UIKit
 import QuartzCore
 
-
-protocol ScheduleViewCellDelegate : NSObjectProtocol {
-    func beginScroll(sender: ScheduleViewCell) -> Void
-}
-
 class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
     
     var trackImg:UIImageView!
@@ -24,7 +19,6 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
     var talkTitle:UILabel!
     var talkRoom:UILabel!
     
-    var delegate: ScheduleViewCellDelegate!
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -218,11 +212,11 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
         //scrollView.scrollRectToVisible(CGRectMake(0, 0, 380, 50), animated: true)
     }
     
-    
+    /*
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         self.delegate.beginScroll(self)
     }
-    
+    */
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         /* if(decelerate) {
         return
