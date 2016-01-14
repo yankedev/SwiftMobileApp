@@ -15,3 +15,4 @@ public protocol FilterableProtocol {
     func filterMiniIcon() -> UIImage
     func niceLabel() -> String
 }
+

@@ -31,7 +31,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
     
     var areFilterOpened = false
     
-    var currentFilters:[String : [Attribute]]?
+    var currentFilters:[String : [FilterableProtocol]]?
     
     var favoriteSections = [NSFetchedResultsSectionInfo]()
     var searchedSections = [NSFetchedResultsSectionInfo]()
@@ -468,7 +468,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         fetchAll()
     }
     
-    func buildFilter(filters: [String : [Attribute]]) {
+    func buildFilter(filters: [String : [FilterableProtocol]]) {
         currentFilters = filters
         for key in filters.keys {
             searchPredicates[key] = [NSPredicate]()
@@ -488,7 +488,7 @@ public class SchedulerTableViewController: UIViewController, NSFetchedResultsCon
         self.tableView.reloadData()
     }
     
-    func getCurrentFilters() -> [String : [Attribute]]? {
+    func getCurrentFilters() -> [String : [FilterableProtocol]]? {
         return currentFilters
     }
     

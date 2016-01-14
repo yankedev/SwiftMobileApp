@@ -56,7 +56,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     
     
     
-    func filter(filters : [String: [Attribute]]) -> Void {
+    func filter(filters : [String: [FilterableProtocol]]) -> Void {
         
         
         if pageViewController != nil && pageViewController!.viewControllers != nil{

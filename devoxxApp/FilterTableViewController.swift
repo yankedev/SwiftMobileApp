@@ -13,7 +13,7 @@ import QuartzCore
 
 
 protocol DevoxxAppFilter : NSObjectProtocol {
-    func filter(filterName : [String : [Attribute]]) -> Void
+    func filter(filterName : [String : [FilterableProtocol]]) -> Void
 }
 
 
@@ -35,7 +35,7 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     
     var tableView = UITableView()
     
-    var selected = [String : [Attribute]]()
+    var selected = [String : [FilterableProtocol]]()
     
     var devoxxAppFilterDelegate:DevoxxAppFilter?
     
@@ -97,13 +97,21 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     }
     
     
-    func isFilterSelected(attribute : Attribute) -> Bool {
+    func isFilterSelected(attribute : FilterableProtocol) -> Bool {
         if selected[attribute.filterPredicateLeftValue()] == nil  {
             return false
         }
-        if selected[attribute.filterPredicateLeftValue()]!.contains(attribute) {
-            return true
+        
+        
+        if let array = selected[attribute.filterPredicateLeftValue()] {
+            for item in array {
+                if item.filterPredicateLeftValue() == attribute.filterPredicateLeftValue() &&
+                item.filterPredicateRightValue() == attribute.filterPredicateRightValue() {
+                    return true
+                }
+            }
         }
+
         return false
     }
     
@@ -154,8 +162,18 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
                            
                             let key = track.filterPredicateLeftValue()
                             
-                            if self.selected[key] != nil  {
-                                if self.selected[key]!.contains(track) {
+                            
+                            if let array = self.selected[key]  {
+                                var contains = false
+                                
+                                for item in array {
+                                    if item.filterPredicateLeftValue() == track.filterPredicateLeftValue() && item.filterPredicateRightValue() == track.filterPredicateRightValue() {
+                                        contains = true
+                                        break
+                                    }
+                                }
+                                
+                                if contains {
                                     self.selected[key]!.removeObject(track)
                                     if self.selected[key]!.count == 0 {
                                         self.selected.removeValueForKey(key)
@@ -165,14 +183,14 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
                                 else {
                                     self.selected[key]!.append(track)
                                 }
-                            }
                                 
+                            }
                             else {
-                                var attributeArray = [Attribute]()
+                                var attributeArray = [FilterableProtocol]()
                                 attributeArray.append(track)
                                 self.selected[key] = attributeArray
                             }
-                            
+
                             cell.userInteractionEnabled = true
                            
                             self.devoxxAppFilterDelegate?.filter(self.selected)
