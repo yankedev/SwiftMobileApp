@@ -10,6 +10,9 @@ import Foundation
 import CoreData
 
 protocol FilterableTableProtocol {
+    
+    var currentFilters:[String : [FilterableProtocol]]! {get set}
+    
     func clearFilter()
     func buildFilter(filters : [String: [FilterableProtocol]])
     func filter()

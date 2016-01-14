@@ -137,7 +137,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
         var currentIndex = 0
-        if let demoController = viewController as? SchedulerTableViewController {
+        if let demoController = viewController as? ScrollableTableProtocol {
             currentIndex = demoController.index
         }
         
@@ -153,7 +153,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
         var currentIndex = 0
-        if let demoController = viewController as? SchedulerTableViewController {
+        if let demoController = viewController as? ScrollableTableProtocol {
             currentIndex = demoController.index
         }
         
@@ -169,12 +169,10 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     
     
     public func viewControllerAtIndex(index : NSInteger) -> SchedulerTableViewController {
-        
-        let demoController = SchedulerTableViewController()
-        demoController.index = index
-        demoController.currentDate = APIManager.getDateFromIndex(index, array: date)
-        
-        return demoController
+        let scheduleTableController = SchedulerTableViewController()
+        scheduleTableController.index = index
+        scheduleTableController.currentDate = APIManager.getDateFromIndex(index, array: date)
+        return scheduleTableController
     }
     
     

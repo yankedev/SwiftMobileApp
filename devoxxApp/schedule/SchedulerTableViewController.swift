@@ -14,33 +14,56 @@ public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
     func favorite(path : NSIndexPath) -> Bool
 }
 
-public class SchedulerTableViewController: UIViewController, ScheduleViewCellDelegate, DevoxxAppFavoriteDelegate, SwitchableProtocol, FilterableTableDataSource, FilterableTableProtocol, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+public class SchedulerTableViewController:
+        UIViewController,
+        ScheduleViewCellDelegate,
+        DevoxxAppFavoriteDelegate,
+        SwitchableProtocol,
+        FilterableTableDataSource,
+        FilterableTableProtocol,
+        ScrollableTableProtocol,
+        UITableViewDelegate,
+        SearchableTableProtocol,
+        UITableViewDataSource,
+        UISearchBarDelegate {
     
+    //ScrollableProtocol
     var index:NSInteger = 0
-    
     var currentDate:NSDate!
     
+    
+    //SerchableTableProtocol
     var searchPredicates = [String : [NSPredicate]]()
-  
-    var navigationItemParam:UINavigationItem!
-    
-    var tableView = UITableView()
-    
-    var isFavorite = false
     var searchingString = ""
-    
-    var areFilterOpened = false
-    
-    var currentFilters:[String : [FilterableProtocol]]?
-    
-    var favoriteSections = [NSFetchedResultsSectionInfo]()
+    var searchBar = UISearchBar()
     var searchedSections = [NSFetchedResultsSectionInfo]()
     
-    var searchBar:UISearchBar?
+    
+    //FavoriteTableProtocol
+    var isFavorite = false
+    var favoriteSections = [NSFetchedResultsSectionInfo]()
+    
+    //FilterableTableProtocol
+    var currentFilters:[String : [FilterableProtocol]]!
+    
+    //FilterableTableDataSource
+    var frc:NSFetchedResultsController?
     
     var filterableTableDataSource: FilterableTableDataSource!
     
-    var frc:NSFetchedResultsController?
+    var tableView = UITableView()
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     public func performSwitch() {
         if isFavorite {
@@ -107,7 +130,7 @@ public class SchedulerTableViewController: UIViewController, ScheduleViewCellDel
         
         
         searchBar = UISearchBar(frame: CGRectMake(0,0,44,44))
-        searchBar?.delegate = self
+        searchBar.delegate = self
         tableView.tableHeaderView = searchBar
         
         
@@ -446,10 +469,6 @@ public class SchedulerTableViewController: UIViewController, ScheduleViewCellDel
     }
     
     //FilterableTableDataSource
-    
-    
-    
-    
     
     func fetchedResultsController() -> NSFetchedResultsController {
         
