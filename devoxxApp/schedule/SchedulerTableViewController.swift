@@ -35,7 +35,7 @@ public class SchedulerTableViewController:
     //SerchableTableProtocol
     var searchPredicates = [String : [NSPredicate]]()
     var searchingString = ""
-    var searchBar = UISearchBar()
+    
     var searchedSections = [NSFetchedResultsSectionInfo]()
     
     
@@ -51,7 +51,7 @@ public class SchedulerTableViewController:
     
     var filterableTableDataSource: FilterableTableDataSource!
     
-    var tableView = UITableView()
+    var schedulerTableView = SchedulerTableView()
     
 
     
@@ -62,17 +62,14 @@ public class SchedulerTableViewController:
     
     
     
-    
+    public func resetSearch() {
+        searchingString = ""
+    }
     
     
     public func performSwitch() {
-        if isFavorite {
-            tableView.tableHeaderView = nil
-        }
-        else {
-            tableView.tableHeaderView = searchBar
-        }
-        searchingString = ""
+        schedulerTableView.updateHeaderView(isFavorite)
+        resetSearch()
         fetchAll()
     }
     
@@ -85,55 +82,16 @@ public class SchedulerTableViewController:
         super.viewDidLoad()
 
         filterableTableDataSource = self
-        
-        //let adjustForTabbarInsets = UIEdgeInsetsMake(0, 0, CGRectGetHeight(okok.tabBar.frame), 0);
-        //self.tableView.contentInset = adjustForTabbarInsets;
-        //self.tableView.scrollIndicatorInsets = adjustForTabbarInsets;
-       
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        
-        //self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
-        self.tableView.separatorStyle = .None
-        
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        
-  
-        
-        
-        let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: Selector("searchSchedule"))
-        searchButton.tintColor = UIColor.whiteColor()
-        
-        
-        
-        //view.addSubview(tableView)
-               
 
+        schedulerTableView.delegate = self
+        schedulerTableView.dataSource = self
         
         
-        
-        self.view.addSubview(tableView)
-        
-        let viewDictionnary = ["tableView": self.tableView]
-
-        
-        let verticalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionnary)
-        
-        let horizontalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionnary)
-        
-        
-        view.addConstraints(horizontalContraint)
-        view.addConstraints(verticalContraint)
-        
-        
-        searchBar = UISearchBar(frame: CGRectMake(0,0,44,44))
-        searchBar.delegate = self
-        tableView.tableHeaderView = searchBar
-        
-        
+        schedulerTableView.searchBar.delegate = self
+        schedulerTableView.updateHeaderView(true)
+        self.view.addSubview(schedulerTableView)
+        schedulerTableView.setupConstraints()
+ 
         
     }
     
@@ -171,7 +129,7 @@ public class SchedulerTableViewController:
             error = error1
             print("unresolved error \(error), \(error!.userInfo)")
         }
-        self.tableView.reloadData()
+        schedulerTableView.reloadData()
     }
 
     
@@ -434,7 +392,7 @@ public class SchedulerTableViewController:
     }
     
     func hideAllFavorite(except except: ScheduleViewCell?, animated: Bool) {
-        for singleCell in self.tableView.visibleCells {
+        for singleCell in self.schedulerTableView.visibleCells {
             if let singleScheduleViewCell = singleCell as? ScheduleViewCell {
                 if singleScheduleViewCell != except {
                     singleScheduleViewCell.hideFavorite(animated: animated)
@@ -465,7 +423,7 @@ public class SchedulerTableViewController:
     
     public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         searchingString = searchText
-        self.tableView.reloadData()
+        schedulerTableView.reloadData()
     }
     
     //FilterableTableDataSource
