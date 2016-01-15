@@ -31,7 +31,20 @@ class FilterViewCell: UITableViewCell {
         tickedImg.image = UIImage(named: "checkboxOff")
         self.addSubview(tickedImg)
         
+        setupConstraints()
         
+    }
+    
+    func updateBackgroundColor(isFavorited : Bool) {
+        if(isFavorited) {
+            backgroundColor = ColorManager.favoriteBackgroundColor
+        }
+        else {
+            backgroundColor = UIColor.whiteColor()
+        }
+    }
+    
+    private func setupConstraints() {
         let viewsDictionary = ["attributeImage":attributeImage,"attributeTitle":attributeTitle, "tickedImg":tickedImg]
         
         let layout = NSLayoutFormatOptions(rawValue: 0)
@@ -45,18 +58,8 @@ class FilterViewCell: UITableViewCell {
         self.addConstraints(verticalContraint_2)
         self.addConstraints(verticalContraint_3)
         self.addConstraints(horizontalContraint)
-        
+
     }
-    
-    func updateBackgroundColor(isFavorited : Bool) {
-        if(isFavorited) {
-            backgroundColor = ColorManager.favoriteBackgroundColor
-        }
-        else {
-            backgroundColor = UIColor.whiteColor()
-        }
-    }
-    
     
 }
 

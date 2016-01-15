@@ -26,26 +26,28 @@ class CellDataViewCell: UITableViewCell {
         let rightView = UIView()
         rightView.translatesAutoresizingMaskIntoConstraints = false
         
+        primaryImage.translatesAutoresizingMaskIntoConstraints = false
+        leftView.addSubview(primaryImage)
         
         firstInformation.translatesAutoresizingMaskIntoConstraints = false
         firstInformation.font = UIFont(name: "Roboto", size: 14)
         rightView.addSubview(firstInformation)
         
-        
         secondInformation = UILabel()
         secondInformation.translatesAutoresizingMaskIntoConstraints = false
         secondInformation.font = UIFont(name: "Roboto", size: 8)
         rightView.addSubview(secondInformation)
+        
+        thirdInformation.translatesAutoresizingMaskIntoConstraints = false
+        thirdInformation.font = UIFont(name: "Roboto", size: 6)
+        thirdInformation.textAlignment = .Center
+        thirdInformation.layer.masksToBounds = true;
+        thirdInformation.layer.cornerRadius = 3.0;
+        leftView.addSubview(thirdInformation)
 
-        
-        
-        
-        
-        
-        
-        
         addSubview(rightView)
         addSubview(leftView)
+        
         
         let viewsDictionary = ["info":leftView, "talk":rightView]
         
@@ -62,25 +64,6 @@ class CellDataViewCell: UITableViewCell {
         self.addConstraints(verticalContraint_2)
         self.addConstraints(horizontalContraint)
         
-        primaryImage.translatesAutoresizingMaskIntoConstraints = false
-        leftView.addSubview(primaryImage)
-        
-        thirdInformation.translatesAutoresizingMaskIntoConstraints = false
-        thirdInformation.font = UIFont(name: "Roboto", size: 6)
-        thirdInformation.textAlignment = .Center
-        thirdInformation.layer.masksToBounds = true;
-        thirdInformation.layer.cornerRadius = 3.0;
-        leftView.addSubview(thirdInformation)
-        
-        
-
-        
-        
-        
-        
-        
-        
-        
         
         let widthFirstInformationConstraint = NSLayoutConstraint(item: firstInformation, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: rightView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0)
         
@@ -95,39 +78,19 @@ class CellDataViewCell: UITableViewCell {
         rightView.addConstraint(heightFirstInformationConstraint)
         rightView.addConstraint(topFirstInformationConstraint)
         rightView.addConstraint(leadingFirstInformationConstraint)
-        
-        
-        
-        
-        
-        
-        
+
         let topTalkRoomConstraint = NSLayoutConstraint(item: secondInformation, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: secondInformation.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.7, constant: 0)
- 
-        
-        
+
         let heightTalkRoomConstraint = NSLayoutConstraint(item: secondInformation, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: rightView, attribute: NSLayoutAttribute.Height, multiplier: 0.3, constant: 0)
   
-        
         let widthTalkRoomConstraint = NSLayoutConstraint(item: secondInformation, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: secondInformation.superview, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
-      
-        
-        
+
         let leadingTalkRoomConstraint = NSLayoutConstraint(item: secondInformation, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: rightView, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 0)
-       
-        
-        
+
         rightView.addConstraint(widthTalkRoomConstraint)
         rightView.addConstraint(heightTalkRoomConstraint)
         rightView.addConstraint(topTalkRoomConstraint)
         rightView.addConstraint(leadingTalkRoomConstraint)
-        
-        
-        
-        
-        
-        // constraints
-        
         
         let topPrimaryImageConstraint = NSLayoutConstraint(item: primaryImage, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: primaryImage.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.1, constant: 0)
  
@@ -141,9 +104,7 @@ class CellDataViewCell: UITableViewCell {
         leftView.addConstraint(heightPrimaryImageConstraint)
         leftView.addConstraint(widthPrimaryImageConstraint)
         leftView.addConstraint(centerXPrimaryImageConstraint)
-
-
-        
+   
         let topThirdInformationConstraint = NSLayoutConstraint(item: thirdInformation, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: thirdInformation.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.7, constant: 0)
         
         let heightThirdInformationConstraint = NSLayoutConstraint(item: thirdInformation, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: thirdInformation.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.2, constant: 0)
@@ -156,8 +117,6 @@ class CellDataViewCell: UITableViewCell {
         leftView.addConstraint(heightThirdInformationConstraint)
         leftView.addConstraint(widthThirdInformationConstraint)
         leftView.addConstraint(leadingThirdInformationConstraint)
-
-        
     }
     
     func updateBackgroundColor(isFavorited : Bool) {
