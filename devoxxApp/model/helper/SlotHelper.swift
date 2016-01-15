@@ -111,30 +111,12 @@ class SlotHelper: DataHelperProtocol {
                     do {
                         let items = try managedContext.executeFetchRequest(fetch)
                         let nsm = subDataObject as! Talk
-                       
-                        
-                        if talk?.title == "Advanced Modular Development" {
-                            print("\(items.count) speakers \(talk?.title)")
-                            print(items)
-                        }
-                        
-                        for item in items {
-                            nsm.mutableSetValueForKey("speakers").addObject(item)
-                        }
-                        
-                        
-  
+                        nsm.mutableSetValueForKey("speakers").addObjectsFromArray(items)
                     } catch let error as NSError {
                         print("unresolved error \(error), \(error.userInfo)")
                     }
-                    
-                    
-                    print(relationName)
-
-                    
-                    
+                  
                     coreDataObject.setValue(subDataObject as? AnyObject, forKey: relationName)
-                    
                     
                 }
                 

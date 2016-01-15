@@ -1,5 +1,5 @@
 //
-//  ScheduleViewCell.swift
+//  CellDataViewCell.swift
 //  devoxxApp
 //
 //  Created by maxday on 11.12.15.

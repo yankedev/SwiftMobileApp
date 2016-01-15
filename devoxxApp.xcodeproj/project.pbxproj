@@ -56,9 +56,7 @@
 		E175F25E1C46FFAD00D7AC0A /* 02.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25A1C46FFAD00D7AC0A /* 02.json */; };
 		E175F25F1C46FFAD00D7AC0A /* 04.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25B1C46FFAD00D7AC0A /* 04.json */; };
 		E175F2651C485B0D00D7AC0A /* SchedulerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F2641C485B0D00D7AC0A /* SchedulerTableView.swift */; };
-		E175F2671C48632A00D7AC0A /* CommonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F2661C48632A00D7AC0A /* CommonHelper.swift */; };
 		E175F26B1C4867F300D7AC0A /* FilterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F26A1C4867F300D7AC0A /* FilterTableView.swift */; };
-		E18046011C1DAC99001AAD85 /* favoriteOff.png in Resources */ = {isa = PBXBuildFile; fileRef = E18046001C1DAC99001AAD85 /* favoriteOff.png */; };
 		E18046031C1DD220001AAD85 /* TalkDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18046021C1DD220001AAD85 /* TalkDetailsController.swift */; };
 		E1FA9BEE1C1BF4E70077C09A /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */; };
 		E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C0E1C1BFC150077C09A /* icon_archisec.png */; };
@@ -74,14 +72,13 @@
 		E1FA9C251C1BFC1E0077C09A /* tabIconMap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C221C1BFC1E0077C09A /* tabIconMap@2x.png */; };
 		E1FA9C261C1BFC1E0077C09A /* tabIconSchedule@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C231C1BFC1E0077C09A /* tabIconSchedule@2x.png */; };
 		E1FA9C271C1BFC1E0077C09A /* tabIconSpeaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C241C1BFC1E0077C09A /* tabIconSpeaker@2x.png */; };
-		E1FA9C291C1BFC280077C09A /* favoriteOn.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C281C1BFC280077C09A /* favoriteOn.png */; };
 		E1FA9C2D1C1BFC690077C09A /* Swifty.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C2C1C1BFC690077C09A /* Swifty.swift */; };
 		E1FA9C2F1C1BFC730077C09A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C2E1C1BFC730077C09A /* Roboto-Regular.ttf */; };
 		E1FA9C361C1BFCC60077C09A /* SchedulerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C341C1BFCC60077C09A /* SchedulerTableViewController.swift */; };
 		E1FA9C371C1BFCC60077C09A /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C351C1BFCC60077C09A /* ScheduleController.swift */; };
 		E1FA9C3B1C1BFCF80077C09A /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C3A1C1BFCF80077C09A /* MapController.swift */; };
 		E1FA9C3E1C1BFD010077C09A /* SpeakerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C3C1C1BFD010077C09A /* SpeakerController.swift */; };
-		E1FA9C3F1C1BFD010077C09A /* ScheduleViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C3D1C1BFD010077C09A /* ScheduleViewCell.swift */; };
+		E1FA9C3F1C1BFD010077C09A /* CellDataViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C3D1C1BFD010077C09A /* CellDataViewCell.swift */; };
 		E1FA9C441C1BFD400077C09A /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C421C1BFD400077C09A /* Slot.swift */; };
 		E1FA9C451C1BFD400077C09A /* Talk.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C431C1BFD400077C09A /* Talk.swift */; };
 		E1FA9C491C1BFD560077C09A /* SlotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C471C1BFD560077C09A /* SlotHelper.swift */; };
@@ -152,9 +149,7 @@
 		E175F25A1C46FFAD00D7AC0A /* 02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 02.json; path = devoxxApp/mock/02.json; sourceTree = "<group>"; };
 		E175F25B1C46FFAD00D7AC0A /* 04.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 04.json; path = devoxxApp/mock/04.json; sourceTree = "<group>"; };
 		E175F2641C485B0D00D7AC0A /* SchedulerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerTableView.swift; sourceTree = "<group>"; };
-		E175F2661C48632A00D7AC0A /* CommonHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonHelper.swift; sourceTree = "<group>"; };
 		E175F26A1C4867F300D7AC0A /* FilterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableView.swift; sourceTree = "<group>"; };
-		E18046001C1DAC99001AAD85 /* favoriteOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favoriteOff.png; path = icon/favoriteOff.png; sourceTree = "<group>"; };
 		E18046021C1DD220001AAD85 /* TalkDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkDetailsController.swift; sourceTree = "<group>"; };
 		E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		E1FA9C0E1C1BFC150077C09A /* icon_archisec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_archisec.png; path = icon/track/icon_archisec.png; sourceTree = "<group>"; };
@@ -170,14 +165,13 @@
 		E1FA9C221C1BFC1E0077C09A /* tabIconMap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabIconMap@2x.png"; path = "icon/tab/tabIconMap@2x.png"; sourceTree = "<group>"; };
 		E1FA9C231C1BFC1E0077C09A /* tabIconSchedule@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabIconSchedule@2x.png"; path = "icon/tab/tabIconSchedule@2x.png"; sourceTree = "<group>"; };
 		E1FA9C241C1BFC1E0077C09A /* tabIconSpeaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabIconSpeaker@2x.png"; path = "icon/tab/tabIconSpeaker@2x.png"; sourceTree = "<group>"; };
-		E1FA9C281C1BFC280077C09A /* favoriteOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = favoriteOn.png; path = icon/favoriteOn.png; sourceTree = "<group>"; };
 		E1FA9C2C1C1BFC690077C09A /* Swifty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Swifty.swift; path = swifty/Swifty.swift; sourceTree = "<group>"; };
 		E1FA9C2E1C1BFC730077C09A /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.ttf"; path = "font/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		E1FA9C341C1BFCC60077C09A /* SchedulerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchedulerTableViewController.swift; path = schedule/SchedulerTableViewController.swift; sourceTree = "<group>"; };
 		E1FA9C351C1BFCC60077C09A /* ScheduleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleController.swift; path = schedule/ScheduleController.swift; sourceTree = "<group>"; };
 		E1FA9C3A1C1BFCF80077C09A /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapController.swift; path = map/MapController.swift; sourceTree = "<group>"; };
 		E1FA9C3C1C1BFD010077C09A /* SpeakerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpeakerController.swift; path = speaker/SpeakerController.swift; sourceTree = "<group>"; };
-		E1FA9C3D1C1BFD010077C09A /* ScheduleViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleViewCell.swift; path = speaker/ScheduleViewCell.swift; sourceTree = "<group>"; };
+		E1FA9C3D1C1BFD010077C09A /* CellDataViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellDataViewCell.swift; path = speaker/CellDataViewCell.swift; sourceTree = "<group>"; };
 		E1FA9C421C1BFD400077C09A /* Slot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Slot.swift; path = model/coreData/Slot.swift; sourceTree = "<group>"; };
 		E1FA9C431C1BFD400077C09A /* Talk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Talk.swift; path = model/coreData/Talk.swift; sourceTree = "<group>"; };
 		E1FA9C471C1BFD560077C09A /* SlotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlotHelper.swift; path = model/helper/SlotHelper.swift; sourceTree = "<group>"; };
@@ -254,7 +248,7 @@
 				E1FA9C401C1BFD2D0077C09A /* model */,
 				E1FA9C391C1BFCED0077C09A /* speaker */,
 				E1FA9C381C1BFCE90077C09A /* map */,
-				E1FA9BE91C1BE59A0077C09A /* switfy */,
+				E1FA9BE91C1BE59A0077C09A /* thirdPartyLibraries */,
 				E1FA9C2B1C1BFC3D0077C09A /* schedule */,
 				E1FA9C2A1C1BFC360077C09A /* font */,
 				E1FA9C0B1C1BFBE30077C09A /* icon */,
@@ -309,7 +303,6 @@
 			children = (
 				58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */,
 				E1FA9C341C1BFCC60077C09A /* SchedulerTableViewController.swift */,
-				E175F2661C48632A00D7AC0A /* CommonHelper.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -317,30 +310,44 @@
 		E175F26C1C49A42300D7AC0A /* cell */ = {
 			isa = PBXGroup;
 			children = (
-				E1FA9C3D1C1BFD010077C09A /* ScheduleViewCell.swift */,
+				E1FA9C3D1C1BFD010077C09A /* CellDataViewCell.swift */,
 				58195C121C359A4E00F56A30 /* FilterViewCell.swift */,
 			);
 			name = cell;
 			sourceTree = "<group>";
 		};
-		E1FA9BE91C1BE59A0077C09A /* switfy */ = {
+		E175F26D1C49ACEF00D7AC0A /* checkbox */ = {
+			isa = PBXGroup;
+			children = (
+				58195C141C359F7500F56A30 /* checkboxOff.png */,
+				58195C151C359F7500F56A30 /* checkboxOn.png */,
+			);
+			name = checkbox;
+			sourceTree = "<group>";
+		};
+		E175F26E1C49ACFE00D7AC0A /* star */ = {
+			isa = PBXGroup;
+			children = (
+				58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */,
+				58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */,
+			);
+			name = star;
+			sourceTree = "<group>";
+		};
+		E1FA9BE91C1BE59A0077C09A /* thirdPartyLibraries */ = {
 			isa = PBXGroup;
 			children = (
 				E1FA9C2C1C1BFC690077C09A /* Swifty.swift */,
 			);
-			name = switfy;
+			name = thirdPartyLibraries;
 			sourceTree = "<group>";
 		};
 		E1FA9C0B1C1BFBE30077C09A /* icon */ = {
 			isa = PBXGroup;
 			children = (
-				58195C141C359F7500F56A30 /* checkboxOff.png */,
-				58195C151C359F7500F56A30 /* checkboxOn.png */,
+				E175F26E1C49ACFE00D7AC0A /* star */,
+				E175F26D1C49ACEF00D7AC0A /* checkbox */,
 				58195BFB1C35867500F56A30 /* talkType */,
-				58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */,
-				58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */,
-				E18046001C1DAC99001AAD85 /* favoriteOff.png */,
-				E1FA9C281C1BFC280077C09A /* favoriteOn.png */,
 				E1FA9C0D1C1BFBFE0077C09A /* track */,
 				E1FA9C0C1C1BFBF80077C09A /* tab */,
 			);
@@ -536,7 +543,6 @@
 				58195C031C35868400F56A30 /* icon_conf.png in Resources */,
 				58195C111C3587EE00F56A30 /* icon_uni.png in Resources */,
 				E127E66C1C39709400FB7E4F /* Speaker.json in Resources */,
-				E18046011C1DAC99001AAD85 /* favoriteOff.png in Resources */,
 				E1FA9C211C1BFC150077C09A /* icon_web.png in Resources */,
 				E175F25F1C46FFAD00D7AC0A /* 04.json in Resources */,
 				58195C0B1C35871600F56A30 /* icon_other.png in Resources */,
@@ -567,7 +573,6 @@
 				E1FA9C1C1C1BFC150077C09A /* icon_lang.png in Resources */,
 				E1FA9C1D1C1BFC150077C09A /* icon_methodevops.png in Resources */,
 				E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */,
-				E1FA9C291C1BFC280077C09A /* favoriteOn.png in Resources */,
 				58195C071C35868400F56A30 /* icon_quick.png in Resources */,
 				E175F25C1C46FFAD00D7AC0A /* 00.json in Resources */,
 				E127E66E1C39709400FB7E4F /* Track.json in Resources */,
@@ -593,7 +598,6 @@
 			files = (
 				E10CE1AE1C2BDAA1002C9934 /* Attribute.swift in Sources */,
 				E10CE1A41C2BC1F2002C9934 /* DataHelper.swift in Sources */,
-				E175F2671C48632A00D7AC0A /* CommonHelper.swift in Sources */,
 				E1FA9C3B1C1BFCF80077C09A /* MapController.swift in Sources */,
 				E127E65A1C38212100FB7E4F /* FilterableTableProtocol.swift in Sources */,
 				58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */,
@@ -624,7 +628,7 @@
 				E127E6581C38117000FB7E4F /* SwitchableProtocol.swift in Sources */,
 				58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */,
 				E1FA9C3E1C1BFD010077C09A /* SpeakerController.swift in Sources */,
-				E1FA9C3F1C1BFD010077C09A /* ScheduleViewCell.swift in Sources */,
+				E1FA9C3F1C1BFD010077C09A /* CellDataViewCell.swift in Sources */,
 				E10E7AF01C1957F300F6220B /* APIManager.swift in Sources */,
 				E1FA9C441C1BFD400077C09A /* Slot.swift in Sources */,
 				E175F2651C485B0D00D7AC0A /* SchedulerTableView.swift in Sources */,
