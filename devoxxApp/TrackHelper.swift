@@ -53,9 +53,7 @@ class TrackHelper: AttributeHelper, DataHelperProtocol {
         
     }
     
-    func save2() -> NSManagedObject? {
-        return nil
-    }
+  
     
     required override init() {
     }

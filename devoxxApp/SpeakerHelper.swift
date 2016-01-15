@@ -61,9 +61,7 @@ class SpeakerHelper: DataHelperProtocol {
         
     }
     
-    func save2() -> NSManagedObject? {
-        return nil
-    }
+    
     
     required init() {
     }

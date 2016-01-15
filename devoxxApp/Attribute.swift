@@ -11,7 +11,7 @@ import CoreData
 import UIKit
 
 
-class Attribute: NSManagedObject, Feedable, FeedableProtocol, FilterableProtocol {
+class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
     
     @NSManaged var id: String?
     @NSManaged var label: String?

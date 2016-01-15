@@ -1,5 +1,5 @@
 //
-//  CellData.swift
+//  CellDataProtocol.swift
 //  devoxxApp
 //
 //  Created by maxday on 24.12.15.
@@ -17,7 +17,6 @@ import UIKit
     func getThirdInformation() -> String
     func getPrimaryImage() -> UIImage?
     func getColor() -> UIColor?
-    //func isFavorite() -> Bool
     func getElement() -> NSManagedObject
 
 }

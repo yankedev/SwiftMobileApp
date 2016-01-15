@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class Talk: NSManagedObject, Feedable, FeedableProtocol{
+class Talk: NSManagedObject, FeedableProtocol{
 
     @NSManaged var id: String
     @NSManaged var lang: String

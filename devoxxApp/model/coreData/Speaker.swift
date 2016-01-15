@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class Speaker: NSManagedObject, CellDataPrococol, Feedable, FeedableProtocol, FavoriteProtocol {
+class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol {
 
     @NSManaged var uuid: String?
     @NSManaged var firstName: String?

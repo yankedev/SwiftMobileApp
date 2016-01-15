@@ -80,9 +80,7 @@ class TalkHelper: DataHelperProtocol {
         return [json["break"]]
     }
     
-    func save2() -> NSManagedObject? {
-        return nil
-    }
+   
     
     func save(managedContext : NSManagedObjectContext) {
         //

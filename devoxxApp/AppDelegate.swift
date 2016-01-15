@@ -20,10 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         APIManager.firstFeed()
         
-        
-        APIManager.getDistinctDays()
-        
-        
         let scheduleController = ScheduleController()
         let speakerController = SpeakerTableController()
         let mapController = MapController()
@@ -58,10 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = tabController
         self.window!.makeKeyAndVisible()
-        
-        
-        
-        
+
         return true
     }
 

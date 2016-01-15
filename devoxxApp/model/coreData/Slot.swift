@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class Slot: NSManagedObject, CellDataPrococol, Feedable, FeedableProtocol, FavoriteProtocol, SearchableProcotol {
+class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, SearchableItemProtocol {
 
     @NSManaged var roomName: String
     @NSManaged var slotId: String

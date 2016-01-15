@@ -69,9 +69,7 @@ class SlotHelper: DataHelperProtocol {
         return json["slots"].array
     }
     
-    func save2() -> NSManagedObject? {
-        return nil
-    }
+   
     
     func generateFavorite(managedContext:NSManagedObjectContext, identifier: String, type: String) {
         let favEntity = NSEntityDescription.entityForName("Favorite", inManagedObjectContext: managedContext)

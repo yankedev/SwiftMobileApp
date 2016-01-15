@@ -213,7 +213,7 @@ public class SchedulerTableViewController:
     func filterSearchArray(currentArray : [AnyObject]) -> [AnyObject] {
         
         let filteredArray = currentArray.filter() {
-            if let type = $0 as? SearchableProcotol {
+            if let type = $0 as? SearchableItemProtocol {
                 return type.isMatching(searchingString)
             } else {
                 return false

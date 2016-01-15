@@ -1,5 +1,5 @@
 //
-//  Feedable.swift
+//  FeedableProtocol.swift
 //  devoxxApp
 //
 //  Created by maxday on 24.12.15.
@@ -11,18 +11,13 @@ import CoreData
 import UIKit
 
 
-
-public protocol Feedable {
-}
-
 public protocol FeedableProtocol  {
     func feedHelper(help: DataHelperProtocol)
     func exists(id : String, leftPredicate: String, entity: String) -> Bool
 }
 
 
-extension Feedable where Self: FeedableProtocol {
-    // Flyable birds can fly!
+extension FeedableProtocol where Self: FeedableProtocol {
     func exists(id : String, leftPredicate: String, entity: String) -> Bool {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
