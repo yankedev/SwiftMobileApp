@@ -107,7 +107,7 @@ public class SchedulerTableViewController:
     }
     
     public func performSwitch() {
-        schedulerTableView.updateHeaderView(isFavorite)
+        schedulerTableView.updateHeaderView(!isFavorite)
         resetSearch()
         fetchAll()
     }
@@ -375,8 +375,6 @@ public class SchedulerTableViewController:
         let fetchRequest = NSFetchRequest(entityName: "Slot")
         let sortTime = NSSortDescriptor(key: "fromTime", ascending: true)
         let sortAlpha = NSSortDescriptor(key: "talk.title", ascending: true)
-            
-        //var lastDragged : ScheduleViewCell!
             
         fetchRequest.sortDescriptors = [sortTime, sortAlpha]
         fetchRequest.fetchBatchSize = 20
