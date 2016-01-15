@@ -30,10 +30,10 @@ extension Array {
 }
 
 
-public class FilterTableViewController: UIView, NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+public class FilterTableViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
     
-    var tableView = UITableView()
+    var filterTableView = FilterTableView()
     
     var selected = [String : [FilterableProtocol]]()
     
@@ -70,33 +70,27 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
             error = error1
             print("unresolved error \(error), \(error!.userInfo)")
         }
-        tableView.reloadData()
+        filterTableView.reloadData()
     }
     
-
+  
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override public func viewDidLoad() {
+        super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .None
-        tableView.backgroundColor = ColorManager.filterBackgroundColor
-        backgroundColor = ColorManager.bottomDotsPageController
-
-/*
-        let trackHelper = TrackHelper()
-        APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: trackHelper)
+        print(view.frame)
         
-        let talkTypeHelper = TalkTypeHelper()
-        APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: talkTypeHelper)
-        */
+        filterTableView.delegate = self
+        filterTableView.dataSource = self
+        self.view.addSubview(filterTableView)
+        
+        
+        self.view.backgroundColor = ColorManager.bottomDotsPageController
         
         fetchAll()
-     
     }
     
-    
+  
     func isFilterSelected(attribute : FilterableProtocol) -> Bool {
         if selected[attribute.filterPredicateLeftValue()] == nil  {
             return false
@@ -116,9 +110,7 @@ public class FilterTableViewController: UIView, NSFetchedResultsControllerDelega
     }
     
 
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+  
     
 
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

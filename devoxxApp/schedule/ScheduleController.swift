@@ -77,7 +77,13 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
                 
                 overlay = FilterTableViewController()
                 
+                overlay?.viewDidLoad()
                 
+           
+                
+                
+                
+               
                 //
                 
                 if pageViewController != nil && pageViewController!.viewControllers != nil{
@@ -91,24 +97,17 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
                 
                 //
                 
-                pageViewController!.viewControllers![0].view.addSubview((overlay?.tableView)!)
-                overlay?.tableView.translatesAutoresizingMaskIntoConstraints = false
+                pageViewController!.viewControllers![0].view.addSubview((overlay?.filterTableView)!)
+                
+                overlay?.filterTableView.setupConstraints(referenceView : pageViewController!.viewControllers![0].view)
+                
+                
+              
             
                 overlay?.devoxxAppFilterDelegate = self
             
             
-                let widthConstraint = NSLayoutConstraint(item: overlay!.tableView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: overlay?.tableView.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.5, constant: 0)
-            
-                let heightConstraint = NSLayoutConstraint(item: overlay!.tableView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: overlay?.tableView.superview, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
-            
-                let topConstraint = NSLayoutConstraint(item: overlay!.tableView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: overlay?.tableView.superview, attribute: NSLayoutAttribute.Top, multiplier: 0.5, constant: 0)
-            
-                let leftConstraint = NSLayoutConstraint(item: overlay!.tableView, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: overlay?.tableView.superview, attribute: NSLayoutAttribute.Right, multiplier: 0.5, constant: 0)
-            
-                overlay?.tableView.superview!.addConstraint(widthConstraint)
-                overlay?.tableView.superview!.addConstraint(heightConstraint)
-                overlay?.tableView.superview!.addConstraint(topConstraint)
-                overlay?.tableView.superview!.addConstraint(leftConstraint)
+         
 
             }
             else {
@@ -119,7 +118,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     }
     
     func removeOverlay() {
-        overlay?.tableView.removeFromSuperview()
+        overlay?.filterTableView.removeFromSuperview()
         overlay = nil
     }
     
