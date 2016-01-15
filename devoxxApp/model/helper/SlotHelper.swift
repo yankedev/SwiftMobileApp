@@ -131,7 +131,6 @@ class SlotHelper: DataHelperProtocol {
             generateFavorite(managedContext, identifier: coreDataObjectCast.getIdentifier(), type: "Talk")
         }
         
-        print("saving a slot ")
         APIManager.save(managedContext)
     }
     

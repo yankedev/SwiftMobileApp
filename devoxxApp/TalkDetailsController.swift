@@ -132,12 +132,12 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     }
     
     public override func viewWillAppear(animated: Bool) {
-        print(talk.speakers.count)
+
         self.title = talk.title
         text.text = talk.summary
         self.navigationItem.rightBarButtonItem = addFavoriteButton
         
-        print(talk)
+
         
     }
     

@@ -45,12 +45,9 @@ class TrackHelper: AttributeHelper, DataHelperProtocol {
                 return
             }
         }
-                
-        
-        
-        //print("saving a track")
+
         APIManager.save(managedContext)
-        
+    
     }
     
   

@@ -141,15 +141,15 @@
 		E127E6571C38117000FB7E4F /* SwitchableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchableProtocol.swift; sourceTree = "<group>"; };
 		E127E6591C38212100FB7E4F /* FilterableTableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterableTableProtocol.swift; sourceTree = "<group>"; };
 		E127E65F1C38313200FB7E4F /* SearchableTableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchableTableProtocol.swift; path = ../SearchableTableProtocol.swift; sourceTree = "<group>"; };
-		E127E6651C39709300FB7E4F /* 03.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 03.json; path = devoxxApp/mock/03.json; sourceTree = "<group>"; };
-		E127E6661C39709300FB7E4F /* Slot.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Slot.json; path = devoxxApp/mock/Slot.json; sourceTree = "<group>"; };
-		E127E6671C39709300FB7E4F /* Speaker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Speaker.json; path = devoxxApp/mock/Speaker.json; sourceTree = "<group>"; };
-		E127E6681C39709400FB7E4F /* TalkType.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TalkType.json; path = devoxxApp/mock/TalkType.json; sourceTree = "<group>"; };
-		E127E6691C39709400FB7E4F /* Track.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Track.json; path = devoxxApp/mock/Track.json; sourceTree = "<group>"; };
-		E175F2581C46FFAD00D7AC0A /* 00.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 00.json; path = devoxxApp/mock/00.json; sourceTree = "<group>"; };
-		E175F2591C46FFAD00D7AC0A /* 01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 01.json; path = devoxxApp/mock/01.json; sourceTree = "<group>"; };
-		E175F25A1C46FFAD00D7AC0A /* 02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 02.json; path = devoxxApp/mock/02.json; sourceTree = "<group>"; };
-		E175F25B1C46FFAD00D7AC0A /* 04.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 04.json; path = devoxxApp/mock/04.json; sourceTree = "<group>"; };
+		E127E6651C39709300FB7E4F /* 03.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 03.json; path = mock/03.json; sourceTree = "<group>"; };
+		E127E6661C39709300FB7E4F /* Slot.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Slot.json; path = mock/Slot.json; sourceTree = "<group>"; };
+		E127E6671C39709300FB7E4F /* Speaker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Speaker.json; path = mock/Speaker.json; sourceTree = "<group>"; };
+		E127E6681C39709400FB7E4F /* TalkType.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TalkType.json; path = mock/TalkType.json; sourceTree = "<group>"; };
+		E127E6691C39709400FB7E4F /* Track.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Track.json; path = mock/Track.json; sourceTree = "<group>"; };
+		E175F2581C46FFAD00D7AC0A /* 00.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 00.json; path = mock/00.json; sourceTree = "<group>"; };
+		E175F2591C46FFAD00D7AC0A /* 01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 01.json; path = mock/01.json; sourceTree = "<group>"; };
+		E175F25A1C46FFAD00D7AC0A /* 02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 02.json; path = mock/02.json; sourceTree = "<group>"; };
+		E175F25B1C46FFAD00D7AC0A /* 04.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 04.json; path = mock/04.json; sourceTree = "<group>"; };
 		E175F2641C485B0D00D7AC0A /* SchedulerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerTableView.swift; sourceTree = "<group>"; };
 		E175F26A1C4867F300D7AC0A /* FilterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableView.swift; sourceTree = "<group>"; };
 		E175F2701C49AF7B00D7AC0A /* ScrollableTableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableTableProtocol.swift; sourceTree = "<group>"; };
@@ -220,15 +220,6 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
-				E175F2581C46FFAD00D7AC0A /* 00.json */,
-				E175F2591C46FFAD00D7AC0A /* 01.json */,
-				E175F25A1C46FFAD00D7AC0A /* 02.json */,
-				E175F25B1C46FFAD00D7AC0A /* 04.json */,
-				E127E6651C39709300FB7E4F /* 03.json */,
-				E127E6661C39709300FB7E4F /* Slot.json */,
-				E127E6671C39709300FB7E4F /* Speaker.json */,
-				E127E6681C39709400FB7E4F /* TalkType.json */,
-				E127E6691C39709400FB7E4F /* Track.json */,
 				E10E7ABF1C18BF7100F6220B /* devoxxApp */,
 				E10E7AD81C18BF7100F6220B /* devoxxAppTests */,
 				E10E7ABE1C18BF7100F6220B /* Products */,
@@ -247,6 +238,7 @@
 		E10E7ABF1C18BF7100F6220B /* devoxxApp */ = {
 			isa = PBXGroup;
 			children = (
+				E175F2741C49B18E00D7AC0A /* mock */,
 				E175F26F1C49AF4200D7AC0A /* protocol */,
 				E1FA9C401C1BFD2D0077C09A /* model */,
 				E1FA9C391C1BFCED0077C09A /* speaker */,
@@ -349,6 +341,22 @@
 				E10CE19D1C2BB6BE002C9934 /* CellDataProtocol.swift */,
 			);
 			name = protocol;
+			sourceTree = "<group>";
+		};
+		E175F2741C49B18E00D7AC0A /* mock */ = {
+			isa = PBXGroup;
+			children = (
+				E175F2581C46FFAD00D7AC0A /* 00.json */,
+				E175F2591C46FFAD00D7AC0A /* 01.json */,
+				E175F25A1C46FFAD00D7AC0A /* 02.json */,
+				E175F25B1C46FFAD00D7AC0A /* 04.json */,
+				E127E6651C39709300FB7E4F /* 03.json */,
+				E127E6661C39709300FB7E4F /* Slot.json */,
+				E127E6671C39709300FB7E4F /* Speaker.json */,
+				E127E6681C39709400FB7E4F /* TalkType.json */,
+				E127E6691C39709400FB7E4F /* Track.json */,
+			);
+			name = mock;
 			sourceTree = "<group>";
 		};
 		E1FA9BE91C1BE59A0077C09A /* thirdPartyLibrary */ = {

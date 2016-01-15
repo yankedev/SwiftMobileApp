@@ -78,7 +78,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        print(view.frame)
+  
         
         filterTableView.delegate = self
         filterTableView.dataSource = self

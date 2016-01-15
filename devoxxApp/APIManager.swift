@@ -22,8 +22,6 @@ let apiURLS:[String : [String]] = ["Slot" : ["00","01","02","03"], "TalkType" : 
 
 class APIManager {
     
-    
-    
     class func doesEtagExistForUrl(url : String) -> Bool {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
@@ -295,147 +293,13 @@ class APIManager {
         
         
     }
-
-
-
-
-
-
-
-        //TODO by entity
-        /*if(clear) {
-            self.deleteAll(context)
-        }*/
-        /*
-        if(!isEntityEmpty(context, name: dataHelper.entityName())) {
-            postAction()
-            return
-        }
-        */
-        /*let testBundle = NSBundle.mainBundle()
-        let filePath = testBundle.pathForResource(dataHelper.fileName(), ofType: "json")
-        
-        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
-        
-        if(checkString == nil) {
-            print("should not be empty", terminator: "")
-        }
-        
-        let data = NSData(contentsOfFile: filePath!)!
-        */
-        
-        
-        /*
-        
-        let count:Int = apiURLS[dataHelper.entityName()]!.count
-        var i:Int = 0
-        
-        
-        
-        for singleUrl in apiURLS[dataHelper.entityName()]! {
-            
-            loadDataFromURL(NSURL(string: singleUrl)!, completion:{(data, error) -> Void in
-                print(singleUrl)
-                if let slotData = data {
-                    self.handleData(slotData, dataHelper: dataHelper, postAction: postAction, currentIndex:i, maxIndex : count)
-                }
-            })
-     }
-
-    }
-
-    /*
-    class func handleData(inputData : NSData, dataHelper: DataHelper.Type, postAction : (Void) -> Void, currentIndex:Int, maxIndex : Int) {
-        
-        let json = JSON(data: inputData)
-        let arrayToParse = dataHelper.prepareArray(json)
-
-        if let appArray = arrayToParse {
-            for appDict in appArray {
-                let fedHelper = dataHelper.feed(appDict)
-                dataHelper.save(fedHelper!)
-                if currentIndex == maxIndex {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        postAction()
-                    }
-                }
-            }
-        }
-        
-        
-        
-        
-    }
-    */
-    
-
-    
-    
-    class func deleteAll(context : NSManagedObjectContext) {
-        
-        let fetchRequest = NSFetchRequest(entityName: "Slot")
-        fetchRequest.includesSubentities = true
-        fetchRequest.returnsObjectsAsFaults = false
-        
-        let items = try! context.executeFetchRequest(fetchRequest)
-        
-        for item in items {
-            context.deleteObject(item as! NSManagedObject)
-        }
-    }
-    
-    class func getDayFromIndex(index : NSIntegeconter) -> String {
-        //if(index == 0) {
-        //    return "monday"
-        //}
-        //if(index == 1) {
-        //    return "tuesday"
-        //}
-        if(index == 0) {
-            return "wednesday"
-        }
-        if(index == 1) {
-            return "thursday"
-        }
-        return "friday"
-    }
-    
-    class func isAlreadyLoaded() -> Bool {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-        let fetchRequest = buildFetchRequest(context, name: "Slot")
-        let predicate = NSPredicate(format: "day = %@", 0)
-        fetchRequest.predicate = predicate
-        return checkForEmptyness(context, request: fetchRequest)
-    }
-
-    
-   
-
-
-    class func isEntityEmpty(context: NSManagedObjectContext, name: String) -> Bool {
-        return checkForEmptyness(context, request: buildFetchRequest(context, name: name))
-    }
-    
-    class func checkForEmptyness(context: NSManagedObjectContext, request : NSFetchRequest) -> Bool {
-        let items = try! context.executeFetchRequest(request)
-        return items.count == 0
-    }
-    
-    
-
-    
-    */
-    
     
     
     // FIRST FEED
     
     class func firstFeed() {
         singleFeed(SpeakerHelper())
-        print("---------------------------------FIN SPEAKER")
         singleFeed(SlotHelper())
-        print("---------------------------------FIN SLOT")
         singleFeed(TalkTypeHelper())
         singleFeed(TrackHelper())
     }

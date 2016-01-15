@@ -52,9 +52,7 @@ class SpeakerHelper: DataHelperProtocol {
             }
         }
         
-    
-        print("saving a speaker")
-        //print(coreDataObject)
+
         APIManager.save(managedContext)
 
         
