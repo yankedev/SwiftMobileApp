@@ -14,7 +14,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     var scroll : UIScrollView!
     var talk : Talk!
     var desc: UIView!
-    var text : UITextView!
+    var text : UILabel!
     var speakers: UITableView!
     var addFavoriteButton : UIBarButtonItem!
     var indexPath: NSIndexPath!
@@ -24,7 +24,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         scroll = UIScrollView()
         scroll.backgroundColor = UIColor.yellowColor()
         scroll.contentSize = CGSizeMake(500,500)
-        text = UITextView()
+        text = UILabel()
         speakers = UITableView(frame: CGRectZero, style: .Plain)
         speakers.dataSource = self
         speakers.delegate = self
