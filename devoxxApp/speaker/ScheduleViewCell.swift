@@ -11,40 +11,47 @@ import Foundation
 import UIKit
 import QuartzCore
 
-class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
+class CellDataViewCell: UITableViewCell {
     
-    var trackImg:UIImageView!
-    var btnFavorite:UIButton!
-    var talkType:UILabel!
-    var talkTitle:UILabel!
-    var talkRoom:UILabel!
+    var primaryImage = UIImageView()
     
-    
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
+    var firstInformation = UILabel()
+    var secondInformation = UILabel()
+    var thirdInformation = UILabel()
+   
     func configureCell() {
         
-        //backgroundColor = UIColor.yellowColor()
-        
-        let infoView = UIView()
-        //infoView.backgroundColor = UIColor.redColor()
-        infoView.translatesAutoresizingMaskIntoConstraints = false
-        let talkView = UIView()
-        //talkView.backgroundColor = UIColor.blueColor()
-        talkView.translatesAutoresizingMaskIntoConstraints = false
+        let leftView = UIView()
+        leftView.translatesAutoresizingMaskIntoConstraints = false
+        let rightView = UIView()
+        rightView.translatesAutoresizingMaskIntoConstraints = false
         
         
-        addSubview(talkView)
-        addSubview(infoView)
+        firstInformation.translatesAutoresizingMaskIntoConstraints = false
+        firstInformation.font = UIFont(name: "Roboto", size: 14)
+        rightView.addSubview(firstInformation)
         
-        let viewsDictionary = ["info":infoView,"talk":talkView]
+        
+        secondInformation = UILabel()
+        secondInformation.translatesAutoresizingMaskIntoConstraints = false
+        secondInformation.font = UIFont(name: "Roboto", size: 8)
+        rightView.addSubview(secondInformation)
+
+        
+        
+        
+        
+        
+        
+        
+        addSubview(rightView)
+        addSubview(leftView)
+        
+        let viewsDictionary = ["info":leftView, "talk":rightView]
         
         let layout = NSLayoutFormatOptions(rawValue: 0)
         
         let horizontalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-5-[info(40)]-5-[talk]-5-|", options: layout, metrics: nil, views: viewsDictionary)
-        
         
         
         let verticalContraint_1:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[info]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
@@ -55,31 +62,18 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
         self.addConstraints(verticalContraint_2)
         self.addConstraints(horizontalContraint)
         
-        trackImg = UIImageView()
-        trackImg.translatesAutoresizingMaskIntoConstraints = false
-        infoView.addSubview(trackImg)
+        primaryImage.translatesAutoresizingMaskIntoConstraints = false
+        leftView.addSubview(primaryImage)
         
-        talkType = UILabel()
-        talkType.translatesAutoresizingMaskIntoConstraints = false
-        talkType.font = UIFont(name: "Roboto", size: 6)
-        talkType.textAlignment = .Center
-        talkType.layer.masksToBounds = true;
-        talkType.layer.cornerRadius = 3.0;
-        infoView.addSubview(talkType)
+        thirdInformation.translatesAutoresizingMaskIntoConstraints = false
+        thirdInformation.font = UIFont(name: "Roboto", size: 6)
+        thirdInformation.textAlignment = .Center
+        thirdInformation.layer.masksToBounds = true;
+        thirdInformation.layer.cornerRadius = 3.0;
+        leftView.addSubview(thirdInformation)
         
         
-        talkTitle = UILabel()
-        talkTitle.translatesAutoresizingMaskIntoConstraints = false
-        talkTitle.font = UIFont(name: "Roboto", size: 14)
-        //talkTitle.backgroundColor = UIColor.purpleColor()
-        talkView.addSubview(talkTitle)
-        
-        
-        talkRoom = UILabel()
-        talkRoom.translatesAutoresizingMaskIntoConstraints = false
-        talkRoom.font = UIFont(name: "Roboto", size: 8)
-        //talkRoom.backgroundColor = UIColor.greenColor()
-        talkView.addSubview(talkRoom)
+
         
         
         
@@ -88,58 +82,45 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
         
         
         
-        let widthTalkTitleConstraint = NSLayoutConstraint(item: talkTitle, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: talkView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0)
-        widthTalkTitleConstraint.identifier = "widthTalkTitleConstraint"
+        let widthFirstInformationConstraint = NSLayoutConstraint(item: firstInformation, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: rightView, attribute: NSLayoutAttribute.Width, multiplier: 1.0, constant: 0)
         
-        let heightTalkTitleConstraint = NSLayoutConstraint(item: talkTitle, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: talkView, attribute: NSLayoutAttribute.Height, multiplier: 0.7, constant: 0)
-        heightTalkTitleConstraint.identifier = "heightTalkTitleConstraint"
+        let heightFirstInformationConstraint = NSLayoutConstraint(item: firstInformation, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: rightView, attribute: NSLayoutAttribute.Height, multiplier: 0.7, constant: 0)
         
-        let topTalkTitleConstraint = NSLayoutConstraint(item: talkTitle, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: talkView, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0)
-        topTalkTitleConstraint.identifier = "topTalkTitleConstraint"
+        let topFirstInformationConstraint = NSLayoutConstraint(item: firstInformation, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: rightView, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 0)
         
-        let leadingTalkTitleConstraint = NSLayoutConstraint(item: talkTitle, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: talkView, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 0)
-        leadingTalkTitleConstraint.identifier = "leadingTalkTitleConstraint"
+        let leadingFirstInformationConstraint = NSLayoutConstraint(item: firstInformation, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: rightView, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 0)
         
         
-        talkView.addConstraint(widthTalkTitleConstraint)
-        talkView.addConstraint(heightTalkTitleConstraint)
-        talkView.addConstraint(topTalkTitleConstraint)
-        talkView.addConstraint(leadingTalkTitleConstraint)
-        
-        
-        
-        
-        
-        /*
-        
-        
-        
-        */
+        rightView.addConstraint(widthFirstInformationConstraint)
+        rightView.addConstraint(heightFirstInformationConstraint)
+        rightView.addConstraint(topFirstInformationConstraint)
+        rightView.addConstraint(leadingFirstInformationConstraint)
         
         
         
         
         
         
-        let topTalkRoomConstraint = NSLayoutConstraint(item: talkRoom, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: talkRoom.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.7, constant: 0)
-        topTalkRoomConstraint.identifier = "topTalkRoomConstraint"
+        
+        let topTalkRoomConstraint = NSLayoutConstraint(item: secondInformation, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: secondInformation.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.7, constant: 0)
+ 
         
         
-        let heightTalkRoomConstraint = NSLayoutConstraint(item: talkRoom, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: talkView, attribute: NSLayoutAttribute.Height, multiplier: 0.3, constant: 0)
-        heightTalkRoomConstraint.identifier = "heightTalkRoomConstraint"
+        let heightTalkRoomConstraint = NSLayoutConstraint(item: secondInformation, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: rightView, attribute: NSLayoutAttribute.Height, multiplier: 0.3, constant: 0)
+  
         
-        let widthTalkRoomConstraint = NSLayoutConstraint(item: talkRoom, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: talkRoom.superview, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
-        widthTalkRoomConstraint.identifier = "widthTalkRoomConstraint"
-        
-        
-        let leadingTalkRoomConstraint = NSLayoutConstraint(item: talkRoom, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: talkView, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 0)
-        leadingTalkRoomConstraint.identifier = "leadingTalkRoomConstraint"
+        let widthTalkRoomConstraint = NSLayoutConstraint(item: secondInformation, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: secondInformation.superview, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
+      
         
         
-        talkView.addConstraint(widthTalkRoomConstraint)
-        talkView.addConstraint(heightTalkRoomConstraint)
-        talkView.addConstraint(topTalkRoomConstraint)
-        talkView.addConstraint(leadingTalkRoomConstraint)
+        let leadingTalkRoomConstraint = NSLayoutConstraint(item: secondInformation, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: rightView, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 0)
+       
+        
+        
+        rightView.addConstraint(widthTalkRoomConstraint)
+        rightView.addConstraint(heightTalkRoomConstraint)
+        rightView.addConstraint(topTalkRoomConstraint)
+        rightView.addConstraint(leadingTalkRoomConstraint)
         
         
         
@@ -148,49 +129,33 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
         // constraints
         
         
-        let topTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.1, constant: 0)
-        topTrackImgConstraint.identifier = "topTrackImgConstraint"
+        let topPrimaryImageConstraint = NSLayoutConstraint(item: primaryImage, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: primaryImage.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.1, constant: 0)
+ 
+        let heightPrimaryImageConstraint = NSLayoutConstraint(item: primaryImage, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: primaryImage.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.6, constant: 0)
         
+        let widthPrimaryImageConstraint = NSLayoutConstraint(item: primaryImage, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: primaryImage.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.6, constant: 0)
+
+        let centerXPrimaryImageConstraint = NSLayoutConstraint(item: primaryImage, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: primaryImage.superview, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
         
-        let heightTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.6, constant: 0)
-        heightTrackImgConstraint.identifier = "heightTrackImgConstraint"
-        
-        let widthTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.6, constant: 0)
-        widthTrackImgConstraint.identifier = "widthTrackImgConstraint"
-    
-        
-        let centerXTrackImgConstraint = NSLayoutConstraint(item: trackImg, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: trackImg.superview, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
-        centerXTrackImgConstraint.identifier = "centerXTrackImgConstraint"
-        
-        infoView.addConstraint(centerXTrackImgConstraint)
-        
-        
-        infoView.addConstraint(topTrackImgConstraint)
-        infoView.addConstraint(heightTrackImgConstraint)
-        infoView.addConstraint(widthTrackImgConstraint)
+        leftView.addConstraint(topPrimaryImageConstraint)
+        leftView.addConstraint(heightPrimaryImageConstraint)
+        leftView.addConstraint(widthPrimaryImageConstraint)
+        leftView.addConstraint(centerXPrimaryImageConstraint)
 
 
         
-        let topTalkTypeConstraint = NSLayoutConstraint(item: talkType, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: talkType.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.7, constant: 0)
-        topTalkTypeConstraint.identifier = "topTalkTypeConstraint"
+        let topThirdInformationConstraint = NSLayoutConstraint(item: thirdInformation, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: thirdInformation.superview, attribute: NSLayoutAttribute.Bottom, multiplier: 0.7, constant: 0)
         
+        let heightThirdInformationConstraint = NSLayoutConstraint(item: thirdInformation, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: thirdInformation.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.2, constant: 0)
+
+        let widthThirdInformationConstraint = NSLayoutConstraint(item: thirdInformation, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: thirdInformation.superview, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
         
-        let heightTalkTypeConstraint = NSLayoutConstraint(item: talkType, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: talkType.superview, attribute: NSLayoutAttribute.Width, multiplier: 0.2, constant: 0)
-        heightTalkTypeConstraint.identifier = "heightTalkTypeConstraint"
+        let leadingThirdInformationConstraint = NSLayoutConstraint(item: thirdInformation, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: thirdInformation.superview, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 0)
         
-        let widthTalkTypeConstraint = NSLayoutConstraint(item: talkType, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: talkType.superview, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
-        widthTalkTypeConstraint.identifier = "widthTalkTypeConstraint"
-        
-        
-        let leadingTalkTypeConstraint = NSLayoutConstraint(item: talkType, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: talkType.superview, attribute: NSLayoutAttribute.Leading, multiplier: 1.0, constant: 0)
-        leadingTalkTypeConstraint.identifier = "leadingTalkTypeConstraint"
-        
-        
-        
-        infoView.addConstraint(topTalkTypeConstraint)
-        infoView.addConstraint(heightTalkTypeConstraint)
-        infoView.addConstraint(widthTalkTypeConstraint)
-        infoView.addConstraint(leadingTalkTypeConstraint)
+        leftView.addConstraint(topThirdInformationConstraint)
+        leftView.addConstraint(heightThirdInformationConstraint)
+        leftView.addConstraint(widthThirdInformationConstraint)
+        leftView.addConstraint(leadingThirdInformationConstraint)
 
         
     }
@@ -203,45 +168,6 @@ class ScheduleViewCell: UITableViewCell, UIScrollViewDelegate {
             backgroundColor = UIColor.whiteColor()
         }
     }
-    
-    func hideFavorite(animated animated : Bool) {
-        //scrollView.scrollRectToVisible(CGRectMake(50, 1, 380, 50), animated: animated)
-    }
-    
-    func showFavorite() {
-        //scrollView.scrollRectToVisible(CGRectMake(0, 0, 380, 50), animated: true)
-    }
-    
-    /*
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-        self.delegate.beginScroll(self)
-    }
-    */
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        /* if(decelerate) {
-        return
-        }
-        
-        if(scrollView.contentOffset.x < leftOffset/2) {
-        showFavorite()
-        }
-        else {
-        hideFavorite(animated: true)
-        }*/
-    }
-    
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        if(scrollView.contentOffset.x == 0) {
-            //scrollView.userInteractionEnabled = true
-        }
-        else {
-            //scrollView.userInteractionEnabled = false
-        }
-    }
-    
-    
-    
-    
-    
+
     
 }

@@ -73,11 +73,11 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     
     override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_1") as? ScheduleViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_1") as? CellDataViewCell
         
         
         if cell == nil {
-            cell = ScheduleViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
+            cell = CellDataViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
             cell?.selectionStyle = .None
             cell!.configureCell()
         }
@@ -86,7 +86,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         
         let cellData = cellDataArray![indexPath.row]
-        cell!.talkTitle.text = cellData.getFirstInformation()
+        cell!.firstInformation.text = cellData.getFirstInformation()
         
         
         if let fav = cellData as? FavoriteProtocol {

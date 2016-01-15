@@ -297,6 +297,7 @@
 		E175F2621C485AF200D7AC0A /* view */ = {
 			isa = PBXGroup;
 			children = (
+				E175F26C1C49A42300D7AC0A /* cell */,
 				E175F2641C485B0D00D7AC0A /* SchedulerTableView.swift */,
 				E175F26A1C4867F300D7AC0A /* FilterTableView.swift */,
 			);
@@ -311,6 +312,15 @@
 				E175F2661C48632A00D7AC0A /* CommonHelper.swift */,
 			);
 			name = controller;
+			sourceTree = "<group>";
+		};
+		E175F26C1C49A42300D7AC0A /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				E1FA9C3D1C1BFD010077C09A /* ScheduleViewCell.swift */,
+				58195C121C359A4E00F56A30 /* FilterViewCell.swift */,
+			);
+			name = cell;
 			sourceTree = "<group>";
 		};
 		E1FA9BE91C1BE59A0077C09A /* switfy */ = {
@@ -377,8 +387,6 @@
 			children = (
 				E175F2631C485AF800D7AC0A /* controller */,
 				E175F2621C485AF200D7AC0A /* view */,
-				E1FA9C3D1C1BFD010077C09A /* ScheduleViewCell.swift */,
-				58195C121C359A4E00F56A30 /* FilterViewCell.swift */,
 				E127E6591C38212100FB7E4F /* FilterableTableProtocol.swift */,
 				E1FA9C351C1BFCC60077C09A /* ScheduleController.swift */,
 				E127E6571C38117000FB7E4F /* SwitchableProtocol.swift */,

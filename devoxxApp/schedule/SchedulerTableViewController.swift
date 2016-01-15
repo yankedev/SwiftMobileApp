@@ -163,23 +163,23 @@ public class SchedulerTableViewController:
  
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? ScheduleViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? CellDataViewCell
         
     
         if cell == nil {
-            cell = ScheduleViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
+            cell = CellDataViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
             cell?.selectionStyle = .None
             cell!.configureCell()
         }
 
         if let cellData = getCell(indexPath) {
 
-            cell!.trackImg.image = cellData.getPrimaryImage()
+            cell!.primaryImage.image = cellData.getPrimaryImage()
             
-            cell!.talkTitle.text = cellData.getFirstInformation()
-            cell!.talkRoom.text = cellData.getSecondInformation()
-            cell!.talkType.text = cellData.getThirdInformation()
-            cell!.talkType.backgroundColor = cellData.getColor()
+            cell!.firstInformation.text = cellData.getFirstInformation()
+            cell!.secondInformation.text = cellData.getSecondInformation()
+            cell!.thirdInformation.text = cellData.getThirdInformation()
+            cell!.thirdInformation.backgroundColor = cellData.getColor()
 
             if let fav = cellData as? FavoriteProtocol {
                 cell!.updateBackgroundColor(fav.favorited())

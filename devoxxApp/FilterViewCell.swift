@@ -11,41 +11,32 @@ import UIKit
 import QuartzCore
 
 
-class FilterViewCell: UITableViewCell, UIScrollViewDelegate {
+class FilterViewCell: UITableViewCell {
     
-    var attributeImage:UIImageView!
-    var attributeTitle:UILabel!
-    var tickedImg:UIImageView!
+    var attributeImage = UIImageView()
+    var attributeTitle = UILabel()
+    var tickedImg = UIImageView()
     
-    
-    
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
     
     func configureCell() {
         
-        attributeImage = UIImageView()
         attributeImage.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(attributeImage)
         
-        attributeTitle = UILabel()
         attributeTitle.translatesAutoresizingMaskIntoConstraints = false
         attributeTitle.font = UIFont(name: "Roboto", size: 12)
         self.addSubview(attributeTitle)
         
-        tickedImg = UIImageView()
         tickedImg.translatesAutoresizingMaskIntoConstraints = false
+        tickedImg.image = UIImage(named: "checkboxOff")
         self.addSubview(tickedImg)
         
-        tickedImg.image = UIImage(named: "checkboxOff")
         
         let viewsDictionary = ["attributeImage":attributeImage,"attributeTitle":attributeTitle, "tickedImg":tickedImg]
         
         let layout = NSLayoutFormatOptions(rawValue: 0)
         
         let horizontalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-5-[attributeImage(20)]-5-[attributeTitle]-5-[tickedImg(16)]-7-|", options: layout, metrics: nil, views: viewsDictionary)
-        
         let verticalContraint_1:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-12-[attributeImage]-12-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
         let verticalContraint_2:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[attributeTitle]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
         let verticalContraint_3:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-14-[tickedImg]-14-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
