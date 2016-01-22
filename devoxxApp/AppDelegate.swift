@@ -15,12 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var tabController : UITabBarController?
 
+    
+    
+    func generateScheduleTableViewController() -> ScrollableDateProtocol {
+        return SchedulerTableViewController()
+    }
+    
+    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         APIManager.firstFeed()
         
-        let scheduleController = ScheduleController()
+        let scheduleController = ScheduleController<SchedulerTableViewController>(generator:generateScheduleTableViewController)
         let speakerController = SpeakerTableController()
         let mapController = MapController()
         

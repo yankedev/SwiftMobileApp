@@ -20,15 +20,20 @@ public class SchedulerTableViewController:
         SwitchableProtocol,
         FilterableTableDataSource,
         FilterableTableProtocol,
-        ScrollableTableProtocol,
         UITableViewDelegate,
         SearchableTableProtocol,
         UITableViewDataSource,
-        UISearchBarDelegate {
+        UISearchBarDelegate,
+        ScrollableDateProtocol
+{
     
-    //ScrollableProtocol
-    var index:NSInteger = 0
-    var currentDate:NSDate!
+    public func hi() {
+        print("hi")
+    }
+    
+    //ScrollableDateProtocol
+    public var index:Int = 0
+    public var currentDate:NSDate!
     
     
     //SerchableTableProtocol

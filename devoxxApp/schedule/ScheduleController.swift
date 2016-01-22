@@ -9,25 +9,56 @@
 import Foundation
 import UIKit
 
-public class ScheduleController : UINavigationController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, DevoxxAppFilter {
+public protocol ScrollableDateProtocol : NSObjectProtocol {
+    var index:Int { get set }
+    var currentDate:NSDate!  { get set }
+}
 
-    var favoriteSwitcher : UISegmentedControl!
-    var pageViewController : UIPageViewController?
+public class ScheduleController<T : ScrollableDateProtocol> : UINavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
+
+    var generator: () -> ScrollableDateProtocol
     
-    var date:NSArray!
+    //ScrollableDateTableDatasource
+    var scrollableDateTableDatasource: ScrollableDateTableDatasource?
+    var scrollableDateTableDelegate: ScrollableDateTableDelegate?
+    
+    var allDates:NSArray!
+    var pageViewController : UIPageViewController!
+    
     
     var overlay:FilterTableViewController?
     
+    
+    
+    var customView:ScheduleControllerView?
+    
+    init(generator: () -> ScrollableDateProtocol) {
+        self.generator = generator
+        super.init(navigationBarClass: nil, toolbarClass: nil)
+    }
+
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     public override func viewDidLoad() {
-        super.viewDidLoad()
-        date = APIManager.getDistinctDays()
         
-        favoriteSwitcher = UISegmentedControl(frame: CGRectMake(0, 0, 200, 30))
-        favoriteSwitcher.insertSegmentWithTitle("Schedule", atIndex: 0, animated: true)
-        favoriteSwitcher.insertSegmentWithTitle("My schedule", atIndex: 1, animated: true)
-        favoriteSwitcher.selectedSegmentIndex = 0
-        favoriteSwitcher.tintColor = UIColor.whiteColor()
-        favoriteSwitcher.addTarget(self, action: Selector("changeSchedule:"), forControlEvents: .ValueChanged)
+        super.viewDidLoad()
+        
+        
+        customView = ScheduleControllerView()
+        self.view.addSubview(customView!)
+        
+        
+        
+        feedDate()
+        
+        self.scrollableDateTableDatasource = self
+        self.scrollableDateTableDelegate = self
+    
+        
+        customView?.favoriteSwitcher.addTarget(self, action: Selector("changeSchedule:"), forControlEvents: .ValueChanged)
         
         let filterRightButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: Selector("filterMe"))
         
@@ -47,7 +78,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
         pushViewController(pageViewController!, animated: false)
         
         self.view.backgroundColor = ColorManager.bottomDotsPageController
-        self.topViewController?.navigationItem.titleView = favoriteSwitcher
+        self.topViewController?.navigationItem.titleView = customView?.favoriteSwitcher
         self.topViewController?.navigationItem.rightBarButtonItem = filterRightButton
         
         
@@ -136,7 +167,7 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
         var currentIndex = 0
-        if let demoController = viewController as? ScrollableTableProtocol {
+        if let demoController = viewController as? T {
             currentIndex = demoController.index
         }
         
@@ -152,14 +183,14 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
         var currentIndex = 0
-        if let demoController = viewController as? ScrollableTableProtocol {
+        if let demoController = viewController as? T {
             currentIndex = demoController.index
         }
         
         currentIndex++
         
         
-        if currentIndex == date.count {
+        if currentIndex == allDates.count {
             return nil
         }
         
@@ -167,16 +198,24 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
     }
     
     
-    public func viewControllerAtIndex(index : NSInteger) -> SchedulerTableViewController {
-        let scheduleTableController = SchedulerTableViewController()
+    public func viewControllerAtIndex(index : NSInteger) -> UIViewController {
+        
+        let scheduleTableController:T = generator() as! T
         scheduleTableController.index = index
-        scheduleTableController.currentDate = APIManager.getDateFromIndex(index, array: date)
-        return scheduleTableController
+        
+        if let dates = self.scrollableDateTableDatasource?.allDates {
+            scheduleTableController.currentDate = APIManager.getDateFromIndex(index, array: dates)
+        
+        }
+        return (scheduleTableController as? UIViewController)!
     }
     
     
     public func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return date.count
+        if let dates = self.scrollableDateTableDatasource?.allDates {
+            return dates.count
+        }
+        return 0
     }
     
     public func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
@@ -190,12 +229,18 @@ public class ScheduleController : UINavigationController, UIPageViewControllerDa
             if pageViewController.viewControllers != nil {
                 if let fav = pageViewController.viewControllers![0] as? SwitchableProtocol {
                     //not optimal
-                    fav.updateSwitch(favoriteSwitcher.selectedSegmentIndex == 1)
+                    fav.updateSwitch(customView?.favoriteSwitcher.selectedSegmentIndex == 1)
                     fav.performSwitch()
                 }
             }
         }
         
+    }
+    
+
+    //ScrollableDateTableDelegate
+    func feedDate() {
+        allDates = APIManager.getDistinctDays()
     }
     
 }

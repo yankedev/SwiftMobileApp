@@ -7,10 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
-protocol ScrollableTableProtocol {
+protocol ScrollableDateTableDatasource : UIPageViewControllerDelegate {
+
+    var allDates:NSArray! {get set}
     
-    var index:NSInteger { get set }
-    var currentDate:NSDate! { get set}
+}
+
+protocol ScrollableDateTableDelegate : UIPageViewControllerDataSource {
+    
+    var pageViewController : UIPageViewController! { get set}
+    func feedDate()
     
 }

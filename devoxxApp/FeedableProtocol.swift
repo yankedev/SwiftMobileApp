@@ -16,7 +16,6 @@ public protocol FeedableProtocol  {
     func exists(id : String, leftPredicate: String, entity: String) -> Bool
 }
 
-
 extension FeedableProtocol where Self: FeedableProtocol {
     func exists(id : String, leftPredicate: String, entity: String) -> Bool {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

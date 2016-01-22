@@ -100,7 +100,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         
         
         
-        //text.numberOfLines = 0
+        text.numberOfLines = 0
         self.view.backgroundColor = UIColor.whiteColor()
 
        
