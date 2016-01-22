@@ -45,24 +45,18 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     public override func viewDidLoad() {
         
         super.viewDidLoad()
+
+        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"))
+        customView?.favoriteSwitcher.addTarget(self, action: Selector("changeSchedule:"), forControlEvents: .ValueChanged)
         
-        
-        customView = ScheduleControllerView()
         self.view.addSubview(customView!)
-        
-        
         
         feedDate()
         
         self.scrollableDateTableDatasource = self
         self.scrollableDateTableDelegate = self
     
-        
-        customView?.favoriteSwitcher.addTarget(self, action: Selector("changeSchedule:"), forControlEvents: .ValueChanged)
-        
-        let filterRightButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: self, action: Selector("filterMe"))
-        
-        
+
         self.navigationBar.translucent = false
         
         pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
@@ -77,11 +71,9 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
         pushViewController(pageViewController!, animated: false)
         
-        self.view.backgroundColor = ColorManager.bottomDotsPageController
+
         self.topViewController?.navigationItem.titleView = customView?.favoriteSwitcher
-        self.topViewController?.navigationItem.rightBarButtonItem = filterRightButton
-        
-        
+        self.topViewController?.navigationItem.rightBarButtonItem = customView?.filterRightButton
 
     }
     
