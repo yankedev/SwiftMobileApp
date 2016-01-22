@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>Page non trouvée | Devoxx France</title>
+		<link rel="profile" href="http://gmpg.org/xfn/11">
+		<link rel="pingback" href="http://www.devoxx.fr/xmlrpc.php">
+		<link rel="alternate" type="application/rss+xml" title="Devoxx France &raquo; Flux" href="http://www.devoxx.fr/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Devoxx France &raquo; Flux des commentaires" href="http://www.devoxx.fr/comments/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/www.devoxx.fr\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.3.2"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='foundation-icon-css'  href='http://www.devoxx.fr/wp-content/plugins/easy-foundation-shortcodes/styles/foundation-icons.css?ver=4.3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='foundation-norm-css'  href='http://www.devoxx.fr/wp-content/plugins/easy-foundation-shortcodes/styles/5/normalize.css?ver=4.3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='foundation-css'  href='http://www.devoxx.fr/wp-content/plugins/easy-foundation-shortcodes/styles/5/foundation.min.css?ver=4.3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='http://www.devoxx.fr/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=4.3.1' type='text/css' media='all' />
+<link rel='stylesheet' id='easy-query-css'  href='http://www.devoxx.fr/wp-content/plugins/easy-query/core/css/easy-query.css?ver=4.3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='rotatingtweets-css'  href='http://www.devoxx.fr/wp-content/plugins/rotatingtweets/css/style.css?ver=4.3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='mailchimp-for-wp-checkbox-css'  href='http://www.devoxx.fr/wp-content/plugins/mailchimp-for-wp/assets/css/checkbox.min.css?ver=2.3.17' type='text/css' media='all' />
+<link rel='stylesheet' id='athletica-lato-css'  href='http://fonts.googleapis.com/css?family=Lato%3A300%2C400%2C700&#038;ver=4.3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='athletica-sidr-css'  href='http://www.devoxx.fr/wp-content/themes/athletica/css/jquery.sidr.light.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='athletica-prettyphoto-css'  href='http://www.devoxx.fr/wp-content/themes/athletica/css/prettyPhoto.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='athletica-icons-css'  href='http://www.devoxx.fr/wp-content/themes/athletica/css/foundation-icons.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='athletica-bxslider-css'  href='http://www.devoxx.fr/wp-content/themes/athletica/css/jquery.bxslider.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='athletica-app-css'  href='http://www.devoxx.fr/wp-content/themes/athletica/css/app.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='athletica-style-css'  href='http://www.devoxx.fr/wp-content/themes/athletica/style.css?ver=4.3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='athletica-responsive-css'  href='http://www.devoxx.fr/wp-content/themes/athletica/css/responsive.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='athletica-shortcodes-css'  href='http://www.devoxx.fr/wp-content/themes/athletica/css/shortcodes.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='mailchimp-for-wp-form-css'  href='http://www.devoxx.fr/wp-content/plugins/mailchimp-for-wp/assets/css/form.min.css?ver=2.3.17' type='text/css' media='all' />
+<script type='text/javascript' src='http://www.devoxx.fr/wp-includes/js/jquery/jquery.js?ver=1.11.3'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/plugins/easy-foundation-shortcodes/js/5/vendor/custom.modernizr.js?ver=4.3.2'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/themes/athletica/js/vendor/modernizr-2.7.1.min.js?ver=1.0'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.devoxx.fr/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.devoxx.fr/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.3.2" />
+<meta name="generator" content="Custom Login v3.2.4" />
+
+
+	<style>
+	body.error404 {
+		background-image: url(http://www.devoxx.fr/wp-content/uploads/2015/09/Devoxx-France-2016-header2.jpg);	
+	}
+	</style>
+	<style>
+	body.page-template-page-templatescoming-soon-php {
+		background-image: url(http://ava-themes.com/WP/Athletica_XML/wp-content/uploads/2014/04/32.jpg) !important;	
+	}
+	</style>
+	<style>
+		.woocommerce-cart #top-image {
+			background-image: url() !important;
+		}
+	</style>
+	<style>
+		.woocommerce-checkout #top-image {
+			background-image: url() !important;
+		}
+	</style>
+	<style>
+		.tax-product_tag #top-image {
+			background-image: url() !important;
+		}
+	</style>
+	<style>
+		.tax-product_cat #top-image {
+			background-image: url() !important;
+		}
+	</style>
+	<style>
+		.woocommerce-account #top-image, .woocommerce.archive #top-image {
+			background-image: url() !important;
+		}
+	</style>
+	<style>
+		#top-image .top-main-content h4:before {
+    background-image: url("img/before-content.png");
+    right: -50px;
+    margin: 12px;
+}
+#top-image .top-main-content h4:after {
+    background-image: url("img/after-content.png");
+    left: -50px;
+    margin: 12px;
+}
+.clients-new .new-members .new-wrapp ul li .image-holder{
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}	</style>
+
+	<style>
+		.parallax.parallax-lines .lines-wrapper .circle:hover,#section-three .team-member .large-3 .links a,.parallax.parallax-slider-blogs .large-12:last-child > a,.parallax.parallax-slider-shop .large-12:last-child > a,.parallax.parallax-squares .square-container .square-holder:hover,.parallax.parallax-squares .square-container .square-holder:hover:before,#section-five .filter-menu ul li a,.form-section .input-wrap input[type="text"],.form-section .input-wrap input[type="email"],.parallax.parallax-new-facts .facts-container ul li .icon-holder,.shop-link-wrapp a,.js .photostack:after,#mockups-container .large-6 > a,#instafeed a,.parallax.parallax-our-services #service-description ul a,#masonry-latest-posts #masonry-wrapp .latest-entry a h1,#services-new .view-portfolio,.masonry-blog-container .large-12 .view-more,#services-new .new-services ul li:hover .img-holder,.woocommerce #content input.button:hover, .woocommerce #respond input#submit:hover, .woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce input.button:hover, .woocommerce-page #content input.button:hover, .woocommerce-page #respond input#submit:hover, .woocommerce-page a.button:hover, .woocommerce-page button.button:hover, .woocommerce-page input.button:hover,select,.widget_search input[type="search"], .widget_product_search input[type="search"],.widget-area .widget-title,.panel,.woocommerce .woocommerce-message, .woocommerce-page .woocommerce-message, .woocommerce .woocommerce-info, .woocommerce-page .woocommerce-info,#blog-posts .blog-holder .blog-main-content > a.read-more,.parallax.parallax-testimonials .testimonials-slider li {
+			border-color: #8224e3;
+		}
+	</style>
+
+	<style>
+		.intro-text h2:before,.parallax .parallax-slides li h4:before,.parallax.parallax-slider-blogs h4:before, .parallax.parallax-slider-shop h4:before,.parallax.parallax-new-facts h4:before,#contact-section .large-12 h4:before,.parallax.parallax-counters h4:before,#top-image.blog-page .page-title-section h4:before {
+			background-image: url('http://www.devoxx.fr/wp-content/themes/athletica-child/img/divider.png');
+		}
+	</style>
+
+	<style>
+		#section-five #portfolio-container .hover-content .content {
+			background-image: url('http://www.devoxx.fr/wp-content/uploads/2015/09/plus-circle.png');
+		}
+	</style>
+
+
+
+	<style>
+		#section-two .bx-wrapper .bx-next {
+			background-image: url('http://www.devoxx.fr/wp-content/uploads/2015/09/arrow-right.png');
+		}
+	</style>
+
+	<style>
+		#section-two .bx-wrapper .bx-prev {
+			background-image: url('http://www.devoxx.fr/wp-content/uploads/2015/09/arrow-left.png');
+		}
+	</style>
+
+	<style>
+		footer > a {
+			background-image: url('http://www.devoxx.fr/wp-content/themes/athletica-child/img/gotop.png');
+		}
+	</style>
+
+
+
+
+	<style>
+		.parallax .bx-wrapper .bx-pager.bx-default-pager a {
+			background-image: url('http://www.devoxx.fr/wp-content/themes/athletica-child/img/bullets.png');
+		}
+	</style>
+
+<style type="text/css" title="dynamic-css" class="options-output">body{background-color:#ffffff;}#top-image .top-main-content > a:hover,#top-header .skew-wrapper,#section-five .filter-menu ul li a:hover,.product-holder a .onsale,.shop-link-wrapp a:hover,#section-six .member-area .large-3 .flipper .back,#section-seven .blog-section .large-3.blog-posts-info,#section-seven .blog-section .large-3.blog-posts-info .sharings a:hover,#section-seven .blog-section .large-3.blog-holder .post-content .post-title > a,.form-section .input-wrap label,.form-section .submit-wrap input,.parallax.parallax-slider-blogs .large-12:last-child > a:hover, .parallax.parallax-slider-shop .large-12:last-child > a:hover,#section-three .team-member .large-3 .links a:hover,.parallax.parallax-lines .lines-wrapper .circle:before,.parallax.parallax-lines .lines-wrapper .sub-circle,.parallax.parallax-lines .lines-wrapper .sub-circle.sub-circle-one:before,.parallax.parallax-lines .lines-wrapper .circle.circle-2 .connection-1,.parallax.parallax-lines .lines-wrapper .circle.circle-2 .connection-2,.parallax.parallax-lines .lines-wrapper .sub-circle.sub-circle-two:before,.parallax.parallax-lines .lines-wrapper .circle.circle-4 .connection-1,.parallax.parallax-lines .lines-wrapper .circle.circle-4 .connection-2,.parallax.parallax-lines .lines-wrapper .sub-circle.sub-circle-three:before,#section-one .doings .large-4:hover, #new-services .doings .large-4:hover,#blog-posts .blog-holder .blog-main-content > a.read-more:hover,.countdown-content input[type="submit"],#top-header ul > li .sub-menu li,dialog, .reveal-modal,#blog-posts-two .blog-post .post-content-wrapp .blog-info .sharings-and-tags .sharings a:hover,#blog-posts-two .blog-post .post-content-wrapp .blog-content > a:hover,#contact-two-section .contact-map-section .large-10 .wrap:hover,#contact-two-section .contact-map-section .large-10 .wrap ul:before,.tweet-wrapper .tweet-ago .time a,#blog-posts .blog-holder .blog-main-content .bx-wrapper .bx-controls-direction a, .post-content-wrapp .bx-wrapper .bx-controls-direction a,.woocommerce #content input.button, .woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button, .woocommerce-page #content input.button, .woocommerce-page #respond input#submit, .woocommerce-page a.button, .woocommerce-page button.button, .woocommerce-page input.button,.woocommerce span.onsale, .woocommerce-page span.onsale,.widget_search input[type="submit"]:hover, .widget_product_search input[type="submit"]:hover,.woocommerce #content input.button.alt, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce-page #content input.button.alt, .woocommerce-page #respond input#submit.alt, .woocommerce-page a.button.alt, .woocommerce-page button.button.alt, .woocommerce-page input.button.alt, .woocommerce #content input.button.alt:hover, .woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce-page #content input.button.alt:hover, .woocommerce-page #respond input#submit.alt:hover, .woocommerce-page a.button.alt:hover, .woocommerce-page button.button.alt:hover, .woocommerce-page input.button.alt:hover,.woocommerce #content div.product .woocommerce-tabs ul.tabs li.active, .woocommerce div.product .woocommerce-tabs ul.tabs li.active, .woocommerce-page #content div.product .woocommerce-tabs ul.tabs li.active, .woocommerce-page div.product .woocommerce-tabs ul.tabs li.active,.parallax.parallax-squares .square-container .square-holder:hover:before,#section-seven .blog-section .large-3.blog-holder .post-content > span a,#services-new .view-portfolio:hover,.product-full-holder .centered-content > a.buyIt,.product-full-holder .full-product .pricetag,.masonry-blog-container .element:hover .content-section,#mockups-container .large-6 > a:hover,.members-section .amazing-member,#instafeed .large-2 .insta-title,#instafeed .large-2 a.view-more,.parallax.parallax-our-services #services-pager .large-2 a:hover, .parallax.parallax-our-services #services-pager .large-2 a.active,.full-width-wrapper .large-2 .full-width-gallery .sharing-icons ul li a,.full-width-wrapper .large-2 .full-width-gallery .gallery-content h1:before,#section-one .doings h4:before, #new-services .doings h4:before,#section-one .doings .large-4 > a:before, #new-services .doings .large-4 > a:before,.woocommerce #content table.cart a.remove:hover, .woocommerce table.cart a.remove:hover, .woocommerce-page #content table.cart a.remove:hover, .woocommerce-page table.cart a.remove:hover,.woocommerce .woocommerce-message:before, .woocommerce-page .woocommerce-message:before, .woocommerce .woocommerce-info:before, .woocommerce-page .woocommerce-info:before,#mockups-container h4:before,.masonry-blog-container .large-12 .view-more:hover,#blog-posts .blog-holder .blog-main-content p:before,#blog-posts .blog-holder .blog-main-content > a.read-more:hover,.parallax.parallax-testimonials .testimonials-slider li span:before{background-color:#12043d;}#top-header .logo-holder a:hover,#blog-posts .blog-holder .blog-main-content h1 a:hover,#blog-posts .blog-holder .blog-side .sharings-and-tags .tags a:hover,a,a:hover, a:focus,#socials li a:hover,.parallax.parallax-slider-blogs .blog-slides li a:hover h1, .parallax.parallax-slider-blogs .blog-slides li a:hover span, .parallax.parallax-slider-shop .products-slider-shop li a:hover h1, .parallax.parallax-slider-shop .products-slider-shop li a:hover span,.product-holder > a:hover h2,.product-holder a p,.parallax.parallax-new-facts .facts-container ul li:hover p,#section-seven .blog-section .large-3.blog-holder:hover .post-title h1 a, #section-seven .blog-section .large-3.blog-holder:hover .post-title > a,#mockups-container h4 span,#mockups-container h4 span,.parallax.parallax-counters .count-holder div,.parallax.parallax-our-services #service-description ul a:hover,.masonry-blog-container .element .content-section h6,.widget-area aside a:hover,#top-header .logo-holder a:hover, #blog-posts .blog-holder .blog-main-content h1 a:hover, #blog-posts .blog-holder .blog-side .sharings-and-tags .tags a:hover, a, a:hover, a:focus, #socials li a:hover, .parallax.parallax-slider-blogs .blog-slides li a:hover h1, .parallax.parallax-slider-blogs .blog-slides li a:hover span, .parallax.parallax-slider-shop .products-slider-shop li a:hover h1, .parallax.parallax-slider-shop .products-slider-shop li a:hover span, .product-holder > a:hover h2, .product-holder a p, .parallax.parallax-new-facts .facts-container ul li:hover p, #section-seven .blog-section .large-3.blog-holder:hover .post-title h1 a, #section-seven .blog-section .large-3.blog-holder:hover .post-title > a, #mockups-container h4 span, #mockups-container h4 span, .parallax.parallax-counters .count-holder div, .parallax.parallax-our-services #service-description ul a:hover, .masonry-blog-container .element .content-section h6,.woocommerce #content table.cart a.remove, .woocommerce table.cart a.remove, .woocommerce-page #content table.cart a.remove, .woocommerce-page table.cart a.remove,#comments input[type="submit"]:hover,#comments article a,#comments code,#section-seven .blog-section .large-3.blog-posts-info .top-holder span,#section-seven .blog-section .large-3.blog-posts-info .sharings a,#masonry-latest-posts #masonry-wrapp .latest-entry a:hover h1,.woocommerce ul.cart_list li a:hover, .woocommerce ul.product_list_widget li a:hover, .woocommerce-page ul.cart_list li a:hover, .woocommerce-page ul.product_list_widget li a:hover,.woocommerce ul.products li.product .price, .woocommerce-page ul.products li.product .price, .woocommerce #content div.product p.price, .woocommerce #content div.product span.price, .woocommerce div.product p.price, .woocommerce div.product span.price, .woocommerce-page #content div.product p.price, .woocommerce-page #content div.product span.price, .woocommerce-page div.product p.price, .woocommerce-page div.product span.price,.woocommerce #content input.button:hover, .woocommerce #respond input#submit:hover, .woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce input.button:hover, .woocommerce-page #content input.button:hover, .woocommerce-page #respond input#submit:hover, .woocommerce-page a.button:hover, .woocommerce-page button.button:hover, .woocommerce-page input.button:hover,.company-facts .large-3 h6 span{color:#8224e3;}body{font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;line-height:16px;font-weight:400;font-style:normal;color:#000000;font-size:14px;}h1, h2, h3, h4, h5, h6,#blog-posts .blog-holder .blog-main-content h1{font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;font-weight:700;font-style:normal;color:#23005b;}#top-image .top-main-content h1,.parallax.parallax-twitter .twitter-feed h3,#section-four.homepage-two .holder-logo h1{font-family:'Lucida Sans Unicode', 'Lucida Grande', sans-serif;line-height:55px;font-weight:700;font-style:normal;color:#d36b2e;font-size:50px;}</style>	</head>
+	<body class="error404 group-blog">
+						<!-- Include Header -->
+												
+<!-- Error Content -->
+<div class="error-content">
+    <div class="row">
+        <div class="large-12 columns">
+            <h1>
+            	            		Devoxx France            	            </h1>
+            <h4>
+            	            		404 Error            	            </h4>
+            <p>
+            	            		La page demandée n'existe pas ou a été déplacée.            	            </p>
+            <a href="javascript:history.back()">Go Back</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Footer -->
+<footer id="sticky-footer">
+        <div class="row">
+                    <div class="large-6 columns">
+                <p>Devoxx France, une conférence organisée par Quantixx</p>            </div>
+                            <div class="large-6 columns">
+                <p><a href="http://www.devoxx.fr/mentions-legales/" target="_blank">Tous droits réservés - Devoxx est une marque déposée</a></p>
+            </div>
+            </div>
+</footer>
+
+
+
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 977809941;
+var google_conversion_label = "CvV1CNSdsVkQleSg0gM";
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/977809941/?value=1.00&amp;currency_code=EUR&amp;label=CvV1CNSdsVkQleSg0gM&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/plugins/contact-form-7/includes/js/jquery.form.min.js?ver=3.51.0-2014.06.20'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/www.devoxx.fr\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","recaptchaEmpty":"Please verify that you are not a robot.","sending":"Envoi en cours ...","cached":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=4.3.1'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/themes/athletica/bower_components/foundation/js/foundation.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/themes/athletica/js/min/app.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/themes/athletica/js/min/classie.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/themes/athletica/js/min/waypoints.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/themes/athletica/js/min/smoothScroll.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/themes/athletica/js/min/jquery.parallax-1.1.3.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/themes/athletica/js/min/jquery.bxslider.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/themes/athletica/js/min/jquery.prettyPhoto.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/themes/athletica/js/min/jquery.sidr.min.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/themes/athletica/js/custom-scripts.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/themes/athletica/js/navigation.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/themes/athletica/js/skip-link-focus-fix.js?ver=1.0'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/plugins/easy-foundation-shortcodes/js/5/foundation.min.js?ver=4.3.2'></script>
+<script type='text/javascript' src='http://www.devoxx.fr/wp-content/plugins/easy-foundation-shortcodes/js/script.js?ver=4.3.2'></script>
+
+<script type='text/javascript'>
+	(function($) {
+
+		$('form').find('br').remove();
+
+		$('.feed ul').bxSlider({
+		    controls: false,
+		    adaptiveHeight: true,
+		    useCSS : false,
+		    infiniteLoop: false,
+		    hideControlOnEnd: true
+		});
+
+	})(jQuery);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script type="text/javascript">
+		(function($) {
+
+		    $(document).ready(function() {
+		      $('#simple-menu').sidr();
+
+		      $('#sidr button').click(function(event) {
+		        $.sidr('close', 'sidr');
+		      });
+		    });
+
+		    $('.tweetList').bxSlider({
+		        pager       : false,
+		        adaptiveHeight : true,
+		        infiniteLoop : false,
+		        hideControlOnEnd : true,
+		        controls: false
+		    });
+
+
+		    // Bx Post Images
+		    $('.post-images').bxSlider({
+		        pager : false,
+		        infiniteLoop : false,
+		        useCSS : false
+		    });
+
+
+
+		    var isMobile = {
+		        Android: function() {
+		            return navigator.userAgent.match(/Android/i);
+		        },
+		        BlackBerry: function() {
+		            return navigator.userAgent.match(/BlackBerry/i);
+		        },
+		        iOS: function() {
+		            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+		        },
+		        Opera: function() {
+		            return navigator.userAgent.match(/Opera Mini/i);
+		        },
+		        Windows: function() {
+		            return navigator.userAgent.match(/IEMobile/i);
+		        },
+		        any: function() {
+		            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+		        }
+		    };
+
+		    function parallaxInit() {
+		        var testMobile = isMobile.any();
+		        if (testMobile == null) {
+		            $(".parallax-twitter").parallax("50%", 0.3)
+		        }
+		    }
+
+		    $(window).bind("load", function() {
+		        parallaxInit()
+		    });
+
+		})(jQuery);
+	</script>
+
+
+
+
+	<script type="text/javascript">
+	    (function($) {
+	    	function positionFooter() {
+	    	    var mFoo = $("#sticky-footer");
+	    	    if ((($(document.body).height() + mFoo.outerHeight()) < $(window).height() && mFoo.css("position") == "fixed") || ($(document.body).height() < $(window).height() && mFoo.css("position") != "fixed")) {
+	    	        mFoo.css({
+	    	            position: "fixed",
+	    	            bottom: "0px",
+	    	            width: '100%'
+	    	        });
+	    	    } else {
+	    	        mFoo.css({
+	    	            position: "static"
+	    	        });
+	    	    }
+	    	}
+	    	$(document).ready(function () {
+	    	    positionFooter();
+	    	    $(window).scroll(positionFooter);
+	    	    $(window).resize(positionFooter);
+	    	    $(window).load(positionFooter);
+	    	});
+	    })(jQuery);
+	</script>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

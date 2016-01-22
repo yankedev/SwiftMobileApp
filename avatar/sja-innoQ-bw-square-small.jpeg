@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie6" lang="de"><![endif]-->
+<!--[if IE 7 ]><html class="ie7" lang="de"><![endif]-->
+<!--[if IE 8 ]><html class="ie8" lang="de"><![endif]-->
+<!--[if IE 9 ]><html class="ie9" lang="de"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html class="no-js" lang="de"><!--<![endif]-->
+<head>
+    <title>innoQ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="DwR1+Pi0KHY8Jk7foUn1u0ub+rYZry3rWnjfJAb33NXPJ2V7Nm+jO9t/p33CFxY0eutaOWDf3QbUDQH6FL615g==" />
+      <link rel="stylesheet" media="all" href="/assets/frontend/content-d731815b443dcbc68561a4bdcb95ad0e.css" />
+
+    <!--[if lte IE 8]>
+      <script src="/assets/frontend/ie-ee8c0251e96f6484bbcd80d812431679.js"></script>
+    <![endif]-->
+    <script src="/assets/modernizr-3d1f3626fa48f88bf580c021cdaddd1a.js"></script>
+    
+    
+    <link rel="alternate" type="application/atom+xml" title="innoQ — Timeline" href="https://www.innoq.com/de/timeline.atom" />
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/innoq_icon_32x32-40b9823e12634b33aa35a9e3cb16bdcd.ico" />
+    <link rel="apple-touch-icon" type="image/png" href="/assets/apple-touch-icon-precomposed-feb1b0dbbc2cb35a975d0fc819ca6fee.png" />
+</head>
+
+<body class="content-page">
+<nav class="navbar l-navbar" role="navigation">
+  <div class="l-navbar-wrapper">
+    <div class="navbar-logo l-navbar-logo">
+      <a class="navbar-logo-link" href="/de/"><img width="136" alt="Logo" src="/assets/logo_172@2x-05dac3474db50da2a41d44e7fc061e85.png" /></a>
+    </div>
+
+    <div class="navbar-menus l-navbar-menus">
+      <ul class="navbar-mainmenu l-navbar-menu">
+        <li class="navbar-menuitem is-collapsible has-submenu"><a class="navbar-menuitem-link animate-scroll" href="/de/#topic-teasers">Expertise</a>
+          <ul class="navbar-submenu">
+                <li class="navbar-menuitem">
+                  <a class="navbar-menuitem-link" href="/de/topics/architecture/">Architektur</a>
+                </li>
+                <li class="navbar-menuitem">
+                  <a class="navbar-menuitem-link" href="/de/topics/automation/">Automatisierung</a>
+                </li>
+                <li class="navbar-menuitem">
+                  <a class="navbar-menuitem-link" href="/de/topics/bpme/">BPM/E</a>
+                </li>
+                <li class="navbar-menuitem">
+                  <a class="navbar-menuitem-link" href="/de/topics/development/">Software-Entwicklung</a>
+                </li>
+                <li class="navbar-menuitem">
+                  <a class="navbar-menuitem-link" href="/de/topics/mobile/">Mobile</a>
+                </li>
+                <li class="navbar-menuitem">
+                  <a class="navbar-menuitem-link" href="/de/topics/web/">Web-Architekturen</a>
+                </li>
+                <li class="navbar-menuitem">
+                  <a class="navbar-menuitem-link" href="/de/topics/iot/">IoT/Smart Home</a>
+                </li>
+                <li class="navbar-menuitem">
+                  <a class="navbar-menuitem-link" href="/de/topics/modernization/">Software-Modernisierung</a>
+                </li>
+          </ul>
+</li>        <li class="navbar-menuitem"><a class="navbar-menuitem-link animate-scroll" href="/de/#customers">Kunden</a></li>
+        <li class="navbar-menuitem"><a class="navbar-menuitem-link animate-scroll" href="/de/trainings/">Schulungen</a></li>
+        <li class="navbar-menuitem"><a class="navbar-menuitem-link animate-scroll" href="/de/podcast/">Podcast</a></li>
+        <li class="navbar-menuitem"><a class="navbar-menuitem-link animate-scroll" href="/de/timeline/?type=blog_posts">Blog</a></li>
+        <li class="navbar-menuitem"><a class="navbar-menuitem-link animate-scroll" href="/de/#contact">Kontakt</a></li>
+      </ul>
+
+      <ul class="navbar-toolsmenu l-navbar-menu">
+        <li class="navbar-menuitem">
+          <a class="navbar-language is-active" href="/404/?locale=de">DE</a>
+          <span class="navbar-tools-spacer">|</span>
+          <a class="navbar-language" href="/404/?locale=en">EN</a>
+        </li>
+      </ul>
+
+      <div class="navbar-search l-navbar-menu l-navbar-search">
+        <form action="/de/search/" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+          <input type="search" name="q" id="q" class="navbar-search-input" title="Suche" placeholder="Suchen" />
+          <button name="submit" class="navbar-search-button" title="Suche"></button>
+</form>      </div>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container">
+    <main role="main" class="content timeline" itemscope itemtype="">
+        
+
+
+<header>
+  <h1>Sehr schade!</h1>
+  <h2>Wir konnten die gesuchte Seite leider nicht finden.</h2>
+</header>
+<p>Das tut uns sehr leid. Wenn Sie die Information nicht in einer anderen Stelle finden oder sicher sind, dass diese URL funktionieren sollte, kontaktieren Sie uns bitte.</p>
+
+
+    </main>
+</div>
+
+<footer role="contentinfo" class="content-footer">
+    <div class="highlighted-line"></div>
+    <div class="footer-box">
+        <div class="footer-logo"><img width="136" src="/assets/logo-inverted_136@2x-2a047e2fc22fd3147a85cef6ce256f77.png" alt="Logo inverted 136@2x" /></div>
+        <p class="footer-text">
+  Suchen Sie weitere Informationen? Schauen Sie doch mal in unsere <a class="external" href="/de/timeline/">Timeline</a>.
+  Oder nehmen Sie <a class="external" href="/de/kontakt/">Kontakt</a>
+  auf, wenn Sie auf der Suche nach Unterstützung bei Ihren Projekten sind.
+</p>
+
+    </div>
+</footer>
+
+<script src="/assets/frontend/application-e4a9b0c0d49e39af53448779915c6af7.js"></script>
+
+</body>
+</html>
