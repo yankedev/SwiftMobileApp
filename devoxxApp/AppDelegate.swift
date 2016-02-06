@@ -13,36 +13,10 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var tabController : UITabBarController?
-
-    
-    
-    func generateScheduleTableViewController() -> ScrollableDateProtocol {
-        return SchedulerTableViewController()
-    }
-    
-    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         APIManager.firstFeed()
-        
-        let scheduleController = ScheduleController<SchedulerTableViewController>(generator:generateScheduleTableViewController)
-        let speakerController = SpeakerTableController()
-        let mapController = MapController()
-        
-        let scheduleTabImage = UIImage(named: "tabIconSchedule.png")
-        let speakerTabImage = UIImage(named: "tabIconSpeaker.png")
-        let mapTabImage = UIImage(named: "tabIconMap.png")
-        
-        scheduleController.tabBarItem = UITabBarItem(title: "Schedule", image: scheduleTabImage, tag:0)
-        speakerController.tabBarItem = UITabBarItem(title: "Speakers", image: speakerTabImage, tag:1)
-        mapController.tabBarItem = UITabBarItem(title: "Map", image: mapTabImage, tag:2)
-        
-        //let scheduleNavigationController = UINavigationController(rootViewController: scheduleController)
-        let speakerNavigationController = UINavigationController(rootViewController: speakerController)
-        let mapNavigationController = UINavigationController(rootViewController: mapController)
-        
         
         let color = ColorManager.topNavigationBarColor
         UINavigationBar.appearance().barTintColor = color
@@ -51,13 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIPageControl.appearance().pageIndicatorTintColor = ColorManager.topNavigationBarColor
         UIPageControl.appearance().currentPageIndicatorTintColor = UIColor.lightGrayColor()
-        
-        tabController = UITabBarController()
-        tabController!.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController]
-        
-        
-        self.tabController!.tabBar.translucent = false
-        
+
+
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         //self.window!.rootViewController = tabController
         
