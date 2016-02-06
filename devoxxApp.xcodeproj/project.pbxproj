@@ -24,6 +24,7 @@
 		5872861B1C1F565C00FC098A /* SpeakerTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861A1C1F565C00FC098A /* SpeakerTableController.swift */; };
 		5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861C1C1F579900FC098A /* SpeakerHelper.swift */; };
 		587286201C1F589400FC098A /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861E1C1F589400FC098A /* Speaker.swift */; };
+		5895EB7D1C6662F300229780 /* Cfp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5895EB7B1C6662F300229780 /* Cfp.swift */; };
 		58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A0E8C01C272FF9000C49DD /* TrackHelper.swift */; };
 		58BA2BFC1C3331EF0031C2E3 /* Etag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BA2BFB1C3331EE0031C2E3 /* Etag.swift */; };
 		58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */; };
@@ -116,6 +117,7 @@
 		5872861A1C1F565C00FC098A /* SpeakerTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerTableController.swift; sourceTree = "<group>"; };
 		5872861C1C1F579900FC098A /* SpeakerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerHelper.swift; sourceTree = "<group>"; };
 		5872861E1C1F589400FC098A /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Speaker.swift; path = model/coreData/Speaker.swift; sourceTree = "<group>"; };
+		5895EB7B1C6662F300229780 /* Cfp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cfp.swift; sourceTree = "<group>"; };
 		58A0E8C01C272FF9000C49DD /* TrackHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackHelper.swift; sourceTree = "<group>"; };
 		58BA2BFB1C3331EE0031C2E3 /* Etag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Etag.swift; sourceTree = "<group>"; };
 		58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
@@ -479,6 +481,7 @@
 				E10CE1A31C2BC1F2002C9934 /* DataHelper.swift */,
 				E10CE1A91C2BD6DE002C9934 /* TalkTypeHelper.swift */,
 				E10CE1AF1C2BDB72002C9934 /* AttributeHelper.swift */,
+				5895EB7B1C6662F300229780 /* Cfp.swift */,
 			);
 			name = helper;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 				E175F2731C49B01A00D7AC0A /* SearchableItemProtocol.swift in Sources */,
 				E175F2761C52A50C00D7AC0A /* ScheduleControllerView.swift in Sources */,
 				58BA2BFC1C3331EF0031C2E3 /* Etag.swift in Sources */,
+				5895EB7D1C6662F300229780 /* Cfp.swift in Sources */,
 				E1FA9BEE1C1BF4E70077C09A /* ColorManager.swift in Sources */,
 				E1FA9C491C1BFD560077C09A /* SlotHelper.swift in Sources */,
 				5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */,
