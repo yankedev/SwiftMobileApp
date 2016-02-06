@@ -16,10 +16,6 @@ class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
     
     
     func feed(data: JSON) {
-        
-        
-
-        
         super.label = data["label"].string
         super.id = data["id"].string
         super.attributeDescription = data["description"].string

@@ -59,7 +59,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.tabController!.tabBar.translucent = false
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window!.rootViewController = tabController
+        //self.window!.rootViewController = tabController
+        
+        let nav = UINavigationController(rootViewController: ViewController())
+        nav.navigationBarHidden = true
+        self.window!.rootViewController = nav
         self.window!.makeKeyAndVisible()
 
         return true

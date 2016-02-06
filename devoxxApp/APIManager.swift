@@ -18,7 +18,10 @@ let topAppURL = "http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday"
 let apiURLS:[String : [String]] = ["Slot" : ["http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/thursday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/friday/"], "TalkType" : ["http://cfp.devoxx.be/api/conferences/DV15/proposalTypes"], "Track" :  ["http://cfp.devoxx.be/api/conferences/DV15/tracks"], "Speaker" :  ["http://cfp.devoxx.be/api/conferences/DV15/speakers"]]
 */
 
-let apiURLS:[String : [String]] = ["Slot" : ["00","01","02","03"], "TalkType" : ["TalkType"], "Track" :  ["Track"], "Speaker" :  ["Speaker"]]
+
+
+
+let apiURLS:[String : [String]] = ["Cfp" : ["Cfp"], "Slot" : ["00","01","02","03"], "TalkType" : ["TalkType"], "Track" :  ["Track"], "Speaker" :  ["Speaker"]]
 
 class APIManager {
     
@@ -117,6 +120,19 @@ class APIManager {
         fetchRequest.returnsDistinctResults = true
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
         fetchRequest.propertiesToFetch = ["date"]
+        let items = try! context.executeFetchRequest(fetchRequest)
+        return items
+    }
+    
+    
+    
+    class func getAllEvents() -> NSArray {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = buildFetchRequest(context, name: "Cfp")
+        fetchRequest.resultType = .ManagedObjectResultType
+        fetchRequest.returnsDistinctResults = true
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
         let items = try! context.executeFetchRequest(fetchRequest)
         return items
     }
@@ -298,6 +314,7 @@ class APIManager {
     // FIRST FEED
     
     class func firstFeed() {
+        singleFeed(CfpHelper())
         singleFeed(SpeakerHelper())
         singleFeed(SlotHelper())
         singleFeed(TalkTypeHelper())
