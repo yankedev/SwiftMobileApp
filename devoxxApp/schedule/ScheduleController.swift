@@ -71,9 +71,8 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
         pushViewController(pageViewController!, animated: false)
         
-
-        self.topViewController?.navigationItem.titleView = customView?.favoriteSwitcher
-        self.topViewController?.navigationItem.rightBarButtonItem = customView?.filterRightButton
+        self.parentViewController?.navigationItem.titleView = customView?.favoriteSwitcher
+        self.parentViewController?.navigationItem.rightBarButtonItem = customView?.filterRightButton
 
     }
     

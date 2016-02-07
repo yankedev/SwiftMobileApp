@@ -135,7 +135,8 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
 
         self.title = talk.title
         text.text = talk.summary
-        self.navigationItem.rightBarButtonItem = addFavoriteButton
+        //TODO
+        self.parentViewController?.parentViewController?.navigationController?.navigationItem.rightBarButtonItem = addFavoriteButton
         
 
         
