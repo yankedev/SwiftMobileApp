@@ -45,14 +45,17 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         tabController.tabBar.translucent = false
         tabController.view.backgroundColor = UIColor.whiteColor()
         //TODO BACK BUTTON
-        self.navigationController?.navigationBarHidden = false
-        self.navigationController?.pushViewController(tabController, animated: true)
+        //self.navigationController?.navigationBarHidden = false
+        
+        addChildViewController(tabController)
+        view.addSubview(tabController.view)
+        //self.navigationController?.pushViewController(tabController, animated: true)
 
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBarHidden = true
+        //self.navigationController?.navigationBarHidden = true
     }
     
     override func viewDidLoad() {

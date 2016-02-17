@@ -16,20 +16,27 @@ protocol TopFilterableProtocol {
 
 class ScheduleControllerView : UIView, TopFilterableProtocol {
     
-    var favoriteSwitcher = UISegmentedControl(frame: CGRectMake(0, 0, 200, 30))
+    var favoriteSwitcher:UIBarButtonItem
     var filterRightButton:UIBarButtonItem
     
+
     
-    
-    
-    init(target: AnyObject?, filterSelector:Selector) {
+    init(target: AnyObject?, filterSelector:Selector, favoriteSelector:Selector) {
         
         
         let img = UIImage(named: "filter.png")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         filterRightButton = UIBarButtonItem(image: img, style: UIBarButtonItemStyle.Plain, target: target, action: filterSelector)
-     
         
-        //self.filterRightButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: target, action: filterSelector)
+        favoriteSwitcher = UIBarButtonItem(barButtonSystemItem: .Compose, target: target, action: favoriteSelector)
+
+        
+        
+        
+        
+       
+        
+        
+        
         super.init(frame: CGRectZero)
         self.initialize()
     }
@@ -37,6 +44,8 @@ class ScheduleControllerView : UIView, TopFilterableProtocol {
     
     override init(frame: CGRect) {
         self.filterRightButton = UIBarButtonItem()
+        self.favoriteSwitcher = UIBarButtonItem()
+        
         super.init(frame: frame)
         self.initialize()
     }
@@ -49,11 +58,6 @@ class ScheduleControllerView : UIView, TopFilterableProtocol {
     }
     
     func initialize() {
-        favoriteSwitcher.insertSegmentWithTitle("Schedule", atIndex: 0, animated: true)
-        favoriteSwitcher.insertSegmentWithTitle("My schedule", atIndex: 1, animated: true)
-        favoriteSwitcher.selectedSegmentIndex = 0
-        favoriteSwitcher.tintColor = UIColor.whiteColor()
-        
         backgroundColor = ColorManager.bottomDotsPageController
     }
     

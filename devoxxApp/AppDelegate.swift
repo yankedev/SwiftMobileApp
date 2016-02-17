@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         //self.window!.rootViewController = tabController
         
-        let nav = UINavigationController(rootViewController: ViewController())
+        let nav = ViewController()
 
         self.window!.rootViewController = nav
         self.window!.makeKeyAndVisible()

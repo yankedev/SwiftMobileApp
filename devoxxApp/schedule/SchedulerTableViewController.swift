@@ -35,6 +35,10 @@ public class SchedulerTableViewController:
     public var index:Int = 0
     public var currentDate:NSDate!
     
+    public func updateTitle() {
+        navigationItem.title = currentDate.description
+    }
+    
     
     //SerchableTableProtocol
     var searchPredicates = [String : [NSPredicate]]()

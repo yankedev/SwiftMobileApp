@@ -12,6 +12,8 @@ import UIKit
 public protocol ScrollableDateProtocol : NSObjectProtocol {
     var index:Int { get set }
     var currentDate:NSDate!  { get set }
+    
+    func updateTitle()
 }
 
 public class ScheduleController<T : ScrollableDateProtocol> : UINavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
@@ -46,9 +48,8 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
         super.viewDidLoad()
 
-        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"))
-        customView?.favoriteSwitcher.addTarget(self, action: Selector("changeSchedule:"), forControlEvents: .ValueChanged)
-        
+        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"), favoriteSelector : Selector("changeSchedule:"))
+
         self.view.addSubview(customView!)
         
         feedDate()
@@ -70,9 +71,11 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         pageViewController?.setViewControllers(controls, direction: .Forward, animated: false, completion: nil)
         
         pushViewController(pageViewController!, animated: false)
+
         
-        self.parentViewController?.navigationItem.titleView = customView?.favoriteSwitcher
-        self.parentViewController?.navigationItem.rightBarButtonItem = customView?.filterRightButton
+        
+        
+        self.navigationItem.rightBarButtonItems = [(customView?.filterRightButton)!, (customView?.favoriteSwitcher)!]
 
     }
     
@@ -144,10 +147,11 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         overlay = nil
     }
     
-    func changeSchedule(sender : UISegmentedControl) {
+    func changeSchedule(sender : UIBarButtonItem) {
+        sender.tag == (sender.tag + 1) % 2
         if pageViewController != nil && pageViewController!.viewControllers != nil{
             if let switchable = pageViewController!.viewControllers![0] as? SwitchableProtocol {
-                switchable.updateSwitch(sender.selectedSegmentIndex == 1)
+                switchable.updateSwitch(sender.tag == 1)
                 switchable.performSwitch()
             }
         }
@@ -196,6 +200,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
         if let dates = self.scrollableDateTableDatasource?.allDates {
             scheduleTableController.currentDate = APIManager.getDateFromIndex(index, array: dates)
+            scheduleTableController.updateTitle()
         
         }
         return (scheduleTableController as? UIViewController)!
@@ -220,7 +225,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
             if pageViewController.viewControllers != nil {
                 if let fav = pageViewController.viewControllers![0] as? SwitchableProtocol {
                     //not optimal
-                    fav.updateSwitch(customView?.favoriteSwitcher.selectedSegmentIndex == 1)
+                    fav.updateSwitch(customView?.favoriteSwitcher.tag == 1)
                     fav.performSwitch()
                 }
             }
