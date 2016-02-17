@@ -80,6 +80,7 @@
 		E175F2711C49AF7B00D7AC0A /* ScrollableTableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F2701C49AF7B00D7AC0A /* ScrollableTableProtocol.swift */; };
 		E175F2731C49B01A00D7AC0A /* SearchableItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F2721C49B01A00D7AC0A /* SearchableItemProtocol.swift */; };
 		E175F2761C52A50C00D7AC0A /* ScheduleControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F2751C52A50C00D7AC0A /* ScheduleControllerView.swift */; };
+		E17DFF3D1C72884F00A09547 /* filter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17DFF3C1C72884F00A09547 /* filter@2x.png */; };
 		E18046031C1DD220001AAD85 /* TalkDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18046021C1DD220001AAD85 /* TalkDetailsController.swift */; };
 		E1FA9BEE1C1BF4E70077C09A /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */; };
 		E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C0E1C1BFC150077C09A /* icon_archisec.png */; };
@@ -196,6 +197,7 @@
 		E175F2701C49AF7B00D7AC0A /* ScrollableTableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableTableProtocol.swift; sourceTree = "<group>"; };
 		E175F2721C49B01A00D7AC0A /* SearchableItemProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableItemProtocol.swift; sourceTree = "<group>"; };
 		E175F2751C52A50C00D7AC0A /* ScheduleControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleControllerView.swift; path = ../ScheduleControllerView.swift; sourceTree = "<group>"; };
+		E17DFF3C1C72884F00A09547 /* filter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filter@2x.png"; sourceTree = "<group>"; };
 		E18046021C1DD220001AAD85 /* TalkDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkDetailsController.swift; sourceTree = "<group>"; };
 		E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		E1FA9C0E1C1BFC150077C09A /* icon_archisec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_archisec.png; path = icon/track/icon_archisec.png; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 		E175F2741C49B18E00D7AC0A /* mock */ = {
 			isa = PBXGroup;
 			children = (
+				E17DFF3C1C72884F00A09547 /* filter@2x.png */,
 				E175F2581C46FFAD00D7AC0A /* 00.json */,
 				E175F2591C46FFAD00D7AC0A /* 01.json */,
 				E175F25A1C46FFAD00D7AC0A /* 02.json */,
@@ -653,6 +656,7 @@
 				E175F25E1C46FFAD00D7AC0A /* 02.json in Resources */,
 				5895EB7F1C66635100229780 /* Cfp.json in Resources */,
 				5895EB921C66683600229780 /* splash_btn_DV15.png in Resources */,
+				E17DFF3D1C72884F00A09547 /* filter@2x.png in Resources */,
 				E1FA9C251C1BFC1E0077C09A /* tabIconMap@2x.png in Resources */,
 				58195C051C35868400F56A30 /* icon_ignite.png in Resources */,
 				E1FA9C1E1C1BFC150077C09A /* icon_mobile.png in Resources */,

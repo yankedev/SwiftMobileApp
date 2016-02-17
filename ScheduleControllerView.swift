@@ -23,7 +23,13 @@ class ScheduleControllerView : UIView, TopFilterableProtocol {
     
     
     init(target: AnyObject?, filterSelector:Selector) {
-        self.filterRightButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: target, action: filterSelector)
+        
+        
+        let img = UIImage(named: "filter.png")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        filterRightButton = UIBarButtonItem(image: img, style: UIBarButtonItemStyle.Plain, target: target, action: filterSelector)
+     
+        
+        //self.filterRightButton = UIBarButtonItem(barButtonSystemItem: .Compose, target: target, action: filterSelector)
         super.init(frame: CGRectZero)
         self.initialize()
     }

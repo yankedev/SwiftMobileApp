@@ -32,7 +32,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         cellDataArray = try! managedContext.executeFetchRequest(fetchRequest) as! [CellDataPrococol]
         
-        //print(speakerArray)
+        print(cellDataArray)
     
     }
     
@@ -49,8 +49,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         searchButton.tintColor = UIColor.whiteColor()
         
         
-        let speakerHelper = SpeakerHelper()
-        //APIManager.getMockedObjets(postActionParam: fetchAll, dataHelper: speakerHelper)
+        fetchAll()
 
     }
     

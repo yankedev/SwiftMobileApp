@@ -42,14 +42,14 @@ class ContainerController: UIViewController {
         pieChartView.addSubview(pieChart)
         
         let globe = UIImageView(frame: CGRectMake(0, 0, 130, 130))
-        globe.center = CGPointMake(pieChart.center.x, pieChart.center.y + 100)
+        globe.center = CGPointMake(pieChart.center.x, pieChart.center.y)
         globe.image = UIImage(named: "globe")
         
         
         
         
         self.view.addSubview(pieChartView)
-        self.view.addSubview(globe)
+        pieChart.addSubview(globe)
         
         goButton = UIButton(frame: CGRectMake(40, 500, 300, 40))
         goButton.backgroundColor = color

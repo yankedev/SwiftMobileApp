@@ -43,6 +43,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         let tabController = UITabBarController()
         tabController.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController]
         tabController.tabBar.translucent = false
+        tabController.view.backgroundColor = UIColor.whiteColor()
         //TODO BACK BUTTON
         self.navigationController?.navigationBarHidden = false
         self.navigationController?.pushViewController(tabController, animated: true)
