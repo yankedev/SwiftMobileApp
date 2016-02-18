@@ -12,8 +12,7 @@ import UIKit
 public protocol ScrollableDateProtocol : NSObjectProtocol {
     var index:Int { get set }
     var currentDate:NSDate!  { get set }
-    
-    func updateTitle()
+    func getNavigationItem() -> UINavigationItem
 }
 
 public class ScheduleController<T : ScrollableDateProtocol> : UINavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
@@ -48,9 +47,9 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
         super.viewDidLoad()
 
-        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"), favoriteSelector : Selector("changeSchedule:"))
+        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"), favoriteSelector : Selector("changeSchedule:"), backTarget: self, backSelector : Selector("back"))
 
-        self.view.addSubview(customView!)
+        
         
         feedDate()
         
@@ -73,13 +72,30 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         pushViewController(pageViewController!, animated: false)
 
         
+        //self.pageViewController.navigationItem.rightBarButtonItems = [customView!.filterRightButton, customView!.favoriteSwitcher]
+        self.pageViewController.navigationItem.rightBarButtonItem = customView!.filterRightButton
+  
         
         
-        self.navigationItem.rightBarButtonItems = [(customView?.filterRightButton)!, (customView?.favoriteSwitcher)!]
+        
+        
+        
+        
+        
+        self.pageViewController.navigationItem.leftBarButtonItem = customView!.backLeftButton
+
+        
+        self.pageViewController.navigationItem.title = humanReadableDateFromNSDate(allDates[0].objectForKey("date") as! NSDate)
+       
+        
+      
+        self.view.addSubview(customView!)
+        
 
     }
     
     
+ 
     
     func filter(filters : [String: [FilterableProtocol]]) -> Void {
         
@@ -116,7 +132,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
                         if filterableTable.getCurrentFilters() != nil {
                             overlay?.selected = filterableTable.getCurrentFilters()!
                         }
-                    }
+                                            }
                 }
                 
                 
@@ -200,7 +216,8 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
         if let dates = self.scrollableDateTableDatasource?.allDates {
             scheduleTableController.currentDate = APIManager.getDateFromIndex(index, array: dates)
-            scheduleTableController.updateTitle()
+            
+            
         
         }
         return (scheduleTableController as? UIViewController)!
@@ -228,6 +245,14 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
                     fav.updateSwitch(customView?.favoriteSwitcher.tag == 1)
                     fav.performSwitch()
                 }
+                
+               
+                if let fav = pageViewController.viewControllers![0] as? ScrollableDateProtocol {
+                    self.pageViewController.navigationItem.title = humanReadableDateFromNSDate(fav.currentDate)
+                }
+                    
+                
+                
             }
         }
         
@@ -237,6 +262,19 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     //ScrollableDateTableDelegate
     func feedDate() {
         allDates = APIManager.getDistinctDays()
+    }
+    
+    func humanReadableDateFromNSDate(date : NSDate) -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .LongStyle
+        return dateFormatter.stringFromDate(date)
+    }
+    
+    
+    func back() {
+        print("BACK")
+        self.parentViewController!.view.removeFromSuperview()
+        self.parentViewController?.removeFromParentViewController()
     }
     
 }

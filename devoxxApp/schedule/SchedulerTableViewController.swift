@@ -35,9 +35,10 @@ public class SchedulerTableViewController:
     public var index:Int = 0
     public var currentDate:NSDate!
     
-    public func updateTitle() {
-        navigationItem.title = currentDate.description
+    public func getNavigationItem() -> UINavigationItem {
+        return (self.navigationController?.navigationItem)!
     }
+
     
     
     //SerchableTableProtocol

@@ -13,7 +13,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
     
     var slicesData:NSArray!
     let color = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)
-    
+    let tabController = UITabBarController()
     
     var imgView:UIImageView!
 
@@ -40,7 +40,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         let speakerNavigationController = UINavigationController(rootViewController: speakerController)
         let mapNavigationController = UINavigationController(rootViewController: mapController)
         
-        let tabController = UITabBarController()
+        
         tabController.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController]
         tabController.tabBar.translucent = false
         tabController.view.backgroundColor = UIColor.whiteColor()
@@ -51,6 +51,10 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         view.addSubview(tabController.view)
         //self.navigationController?.pushViewController(tabController, animated: true)
 
+    }
+    
+    func remove() {
+        tabController.view.removeFromSuperview()
     }
     
     override func viewWillAppear(animated: Bool) {

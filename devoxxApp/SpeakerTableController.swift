@@ -50,6 +50,8 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         
         fetchAll()
+        
+        self.navigationItem.title = "Speakers"
 
     }
     
@@ -72,11 +74,11 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     
     override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_1") as? CellDataViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_1") as? SpeakerCell
         
         
         if cell == nil {
-            cell = CellDataViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
+            cell = SpeakerCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
             cell?.selectionStyle = .None
             cell!.configureCell()
         }
@@ -87,13 +89,40 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         let cellData = cellDataArray![indexPath.row]
         cell!.firstInformation.text = cellData.getFirstInformation()
         
-        
-        if let fav = cellData as? FavoriteProtocol {
-            cell!.updateBackgroundColor(fav.favorited())
+        var shouldDisplay = false
+        if indexPath.row == 0 {
+            shouldDisplay = true
+        }
+        else {
+            let previousCellDataInfo = cellDataArray![indexPath.row - 1].getFirstInformation()
+            if cellData.getFirstInformation().characters.first == previousCellDataInfo.characters.first {
+                shouldDisplay = false
+            }
+            else {
+                 shouldDisplay = true
+            }
         }
         
-        //TODO is favorited cell!.updateBackgroundColor(speaker)
-       
+        
+        
+      
+        if shouldDisplay {
+            cell!.initiale.text = "\(cellData.getFirstInformation().characters.first!)"
+        }
+        else {
+            cell!.initiale.text = ""
+        }
+        
+        cell!.initiale.textColor = ColorManager.topNavigationBarColor
+        cell!.initiale.font = UIFont(name: "Pirulen", size: 25)
+        
+        cell!.accessoryView = UIImageView(image: UIImage(named: "speaker.png"))
+        cell!.accessoryView!.layer.cornerRadius = cell!.accessoryView!.frame.size.width/2
+        cell!.accessoryView!.layer.masksToBounds = true
+        
+        
+        
+        
         
         
         return cell!

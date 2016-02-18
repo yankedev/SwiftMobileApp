@@ -19,18 +19,20 @@ class ScheduleControllerView : UIView, TopFilterableProtocol {
     var favoriteSwitcher:UIBarButtonItem
     var filterRightButton:UIBarButtonItem
     
+    var backLeftButton:UIBarButtonItem
+    
 
     
-    init(target: AnyObject?, filterSelector:Selector, favoriteSelector:Selector) {
+    init(target: AnyObject?, filterSelector:Selector, favoriteSelector:Selector, backTarget: AnyObject?, backSelector:Selector) {
         
         
-        let img = UIImage(named: "filter.png")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        let img = UIImage(named: "filterWhite.png")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         filterRightButton = UIBarButtonItem(image: img, style: UIBarButtonItemStyle.Plain, target: target, action: filterSelector)
         
         favoriteSwitcher = UIBarButtonItem(barButtonSystemItem: .Compose, target: target, action: favoriteSelector)
 
         
-        
+        backLeftButton = UIBarButtonItem(barButtonSystemItem: .Reply, target: backTarget, action: backSelector)
         
         
        
@@ -45,6 +47,7 @@ class ScheduleControllerView : UIView, TopFilterableProtocol {
     override init(frame: CGRect) {
         self.filterRightButton = UIBarButtonItem()
         self.favoriteSwitcher = UIBarButtonItem()
+        self.backLeftButton = UIBarButtonItem()
         
         super.init(frame: frame)
         self.initialize()

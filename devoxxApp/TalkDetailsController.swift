@@ -13,7 +13,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     
     var scroll : UIScrollView!
     var talk : Talk!
-    var desc: UIView!
+    var desc: UIImageView!
     var text : UILabel!
     var speakers: UITableView!
     var addFavoriteButton : UIBarButtonItem!
@@ -28,8 +28,9 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         speakers = UITableView(frame: CGRectZero, style: .Plain)
         speakers.dataSource = self
         speakers.delegate = self
-        desc = UIView()
-        desc.backgroundColor = UIColor.blueColor()
+        desc = UIImageView(image: UIImage(named: "DevoxxUKHomePage.jpg"))
+        desc.alpha = 0.8
+
         speakers.backgroundColor = UIColor.redColor()
         //text.backgroundColor = UIColor.purpleColor()
         
@@ -37,7 +38,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         desc.translatesAutoresizingMaskIntoConstraints = false
         speakers.translatesAutoresizingMaskIntoConstraints = false
         text.textAlignment = .Justified
-        
+        text.textColor = UIColor.whiteColor()
         
         //view.addSubview(desc)
         view.addSubview(desc)
@@ -59,12 +60,13 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         
         
         
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkDescription]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[talkDescription]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
         let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[speakers]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
+        print(self.view.frame.size.height)
         
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[talkDescription]-10-[speakers(80)]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[talkDescription(200)]-10-[speakers(440)]-17-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
         
         /*self.view.addConstraint(NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 20))
@@ -80,7 +82,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         
         
         text.translatesAutoresizingMaskIntoConstraints = false
-        text.backgroundColor = UIColor.greenColor()
+    
         
         
         
@@ -88,9 +90,9 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         
         let heightConstraint = NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: text.superview, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
         
-        let topConstraint = NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: text.superview, attribute: NSLayoutAttribute.Top, multiplier: 0.5, constant: 0)
+        let topConstraint = NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: text.superview, attribute: NSLayoutAttribute.Top, multiplier: 0.75, constant: 0)
         
-        let leftConstraint = NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: text.superview, attribute: NSLayoutAttribute.Left, multiplier: 1, constant: 0)
+        let leftConstraint = NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: text.superview, attribute: NSLayoutAttribute.Left, multiplier: 0.25, constant: 0)
         
         text.superview!.addConstraint(widthConstraint)
         text.superview!.addConstraint(heightConstraint)
@@ -133,8 +135,8 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     
     public override func viewWillAppear(animated: Bool) {
 
-        self.title = talk.title
-        text.text = talk.summary
+        //self.title = talk.title
+        text.text = talk.title
         //TODO
         self.parentViewController?.parentViewController?.navigationController?.navigationItem.rightBarButtonItem = addFavoriteButton
         
