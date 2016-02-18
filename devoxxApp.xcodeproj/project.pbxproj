@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		580B786B1C74FD9A00060C00 /* SpeakerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B786A1C74FD9A00060C00 /* SpeakerCell.swift */; };
-		580B786D1C74FF5F00060C00 /* speaker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 580B786C1C74FF5F00060C00 /* speaker@2x.png */; };
 		580B786F1C76688400060C00 /* GenericPageScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B786E1C76688400060C00 /* GenericPageScrollController.swift */; };
 		580B78711C766BDD00060C00 /* MapTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B78701C766BDD00060C00 /* MapTabController.swift */; };
 		580B78731C766EC600060C00 /* devoxx2015_floor_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 580B78721C766EC600060C00 /* devoxx2015_floor_1.jpg */; };
 		580B78751C766ECC00060C00 /* devoxx2015_floor_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 580B78741C766ECC00060C00 /* devoxx2015_floor_2.jpg */; };
 		580B78771C7671FA00060C00 /* DevoxxFRExhibitionPhone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 580B78761C7671FA00060C00 /* DevoxxFRExhibitionPhone.jpg */; };
+		580B78791C76771800060C00 /* speaker@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 580B78781C76771800060C00 /* speaker@2x.jpg */; };
 		58195BFA1C3572ED00F56A30 /* FilterableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58195BF91C3572ED00F56A30 /* FilterableProtocol.swift */; };
 		58195C021C35868400F56A30 /* icon_bof.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195BFC1C35868400F56A30 /* icon_bof.png */; };
 		58195C031C35868400F56A30 /* icon_conf.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195BFD1C35868400F56A30 /* icon_conf.png */; };
@@ -129,12 +129,12 @@
 
 /* Begin PBXFileReference section */
 		580B786A1C74FD9A00060C00 /* SpeakerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerCell.swift; sourceTree = "<group>"; };
-		580B786C1C74FF5F00060C00 /* speaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speaker@2x.png"; sourceTree = "<group>"; };
 		580B786E1C76688400060C00 /* GenericPageScrollController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericPageScrollController.swift; sourceTree = "<group>"; };
 		580B78701C766BDD00060C00 /* MapTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTabController.swift; sourceTree = "<group>"; };
 		580B78721C766EC600060C00 /* devoxx2015_floor_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = devoxx2015_floor_1.jpg; sourceTree = "<group>"; };
 		580B78741C766ECC00060C00 /* devoxx2015_floor_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = devoxx2015_floor_2.jpg; sourceTree = "<group>"; };
 		580B78761C7671FA00060C00 /* DevoxxFRExhibitionPhone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxFRExhibitionPhone.jpg; sourceTree = "<group>"; };
+		580B78781C76771800060C00 /* speaker@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "speaker@2x.jpg"; sourceTree = "<group>"; };
 		58195BF91C3572ED00F56A30 /* FilterableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterableProtocol.swift; sourceTree = "<group>"; };
 		58195BFC1C35868400F56A30 /* icon_bof.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_bof.png; path = icon/talkType/icon_bof.png; sourceTree = "<group>"; };
 		58195BFD1C35868400F56A30 /* icon_conf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_conf.png; path = icon/talkType/icon_conf.png; sourceTree = "<group>"; };
@@ -409,8 +409,8 @@
 		E175F2741C49B18E00D7AC0A /* mock */ = {
 			isa = PBXGroup;
 			children = (
+				580B78781C76771800060C00 /* speaker@2x.jpg */,
 				580B78761C7671FA00060C00 /* DevoxxFRExhibitionPhone.jpg */,
-				580B786C1C74FF5F00060C00 /* speaker@2x.png */,
 				58C6A8171C74A171005CDCA1 /* filterWhite@2x.png */,
 				E17DFF3C1C72884F00A09547 /* filter@2x.png */,
 				580B78721C766EC600060C00 /* devoxx2015_floor_1.jpg */,
@@ -672,7 +672,6 @@
 				E1FA9C271C1BFC1E0077C09A /* tabIconSpeaker@2x.png in Resources */,
 				5895EB9C1C66684000229780 /* globe.png in Resources */,
 				5895EB981C66683600229780 /* DevoxxPolandHomePage.jpg in Resources */,
-				580B786D1C74FF5F00060C00 /* speaker@2x.png in Resources */,
 				E10E7ACD1C18BF7100F6220B /* Images.xcassets in Resources */,
 				5895EB961C66683600229780 /* DevoxxFranceHomePage.jpg in Resources */,
 				58195C0F1C3587C600F56A30 /* icon_tia.png in Resources */,
@@ -702,6 +701,7 @@
 				E1FA9C1D1C1BFC150077C09A /* icon_methodevops.png in Resources */,
 				5895EB8F1C66683600229780 /* splash_btn_DevoxxPL2015.png in Resources */,
 				5895EB971C66683600229780 /* DevoxxUKHomePage.jpg in Resources */,
+				580B78791C76771800060C00 /* speaker@2x.jpg in Resources */,
 				E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */,
 				58195C071C35868400F56A30 /* icon_quick.png in Resources */,
 				5895EB991C66683600229780 /* DevoxxBelgiumHomePage.jpg in Resources */,
