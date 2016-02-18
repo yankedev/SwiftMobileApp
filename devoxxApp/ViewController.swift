@@ -20,13 +20,17 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
     func generateScheduleTableViewController() -> ScrollableDateProtocol {
         return SchedulerTableViewController()
     }
+    
+    func generate() -> ScrollableItemProtocol {
+        return MapController()
+    }
 
     
     
     func prepareNext() {
         let scheduleController = ScheduleController<SchedulerTableViewController>(generator:generateScheduleTableViewController)
         let speakerController = SpeakerTableController()
-        let mapController = MapController()
+        let mapController = MapTabController()
         
         let scheduleTabImage = UIImage(named: "tabIconSchedule.png")
         let speakerTabImage = UIImage(named: "tabIconSpeaker.png")
@@ -38,7 +42,13 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         
         //let scheduleNavigationController = UINavigationController(rootViewController: scheduleController)
         let speakerNavigationController = UINavigationController(rootViewController: speakerController)
-        let mapNavigationController = UINavigationController(rootViewController: mapController)
+        
+        
+        
+        
+        let scroll = GenericPageScrollController<MapController>(generator:generate)
+        
+       let mapNavigationController = UINavigationController(rootViewController: mapController)
         
         
         tabController.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController]

@@ -13,132 +13,178 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     
     var scroll : UIScrollView!
     var talk : Talk!
-    var desc: UIImageView!
-    var text : UILabel!
-    var speakers: UITableView!
-    var addFavoriteButton : UIBarButtonItem!
+    var header: UIImageView!
+    var talkTitle : UILabel!
+    var talkTrack : UILabel!
+    var talkDescription : UILabel!
+   // var speakers: UITableView!
+    //var addFavoriteButton : UIBarButtonItem!
     var indexPath: NSIndexPath!
     var delegate : DevoxxAppFavoriteDelegate!
     
     override public func viewDidLoad() {
         scroll = UIScrollView()
-        scroll.backgroundColor = UIColor.yellowColor()
-        scroll.contentSize = CGSizeMake(500,500)
-        text = UILabel()
-        speakers = UITableView(frame: CGRectZero, style: .Plain)
-        speakers.dataSource = self
-        speakers.delegate = self
-        desc = UIImageView(image: UIImage(named: "DevoxxUKHomePage.jpg"))
-        desc.alpha = 0.8
-
-        speakers.backgroundColor = UIColor.redColor()
-        //text.backgroundColor = UIColor.purpleColor()
-        
+        scroll.backgroundColor = UIColor.whiteColor()
+        scroll.contentSize = CGSizeMake(320,500)
         scroll.translatesAutoresizingMaskIntoConstraints = false
-        desc.translatesAutoresizingMaskIntoConstraints = false
-        speakers.translatesAutoresizingMaskIntoConstraints = false
-        text.textAlignment = .Justified
-        text.textColor = UIColor.whiteColor()
         
-        //view.addSubview(desc)
-        view.addSubview(desc)
-        desc.addSubview(text)
-        view.addSubview(speakers)
-        //scroll.addSubview(speakers)
+        talkTitle = UILabel()
+        talkTitle.textAlignment = .Justified
+        talkTitle.textColor = UIColor.whiteColor()
+        //talkTitle.backgroundColor = UIColor.redColor()
+        talkTitle.font = UIFont(name: "Arial", size: 20)
+        talkTitle.translatesAutoresizingMaskIntoConstraints = false
+        talkTitle.numberOfLines = 0
         
-        //view.addSubview(scroll)
+
         
+        talkTrack = UILabel()
+        talkTrack.textAlignment = .Justified
+        talkTrack.textColor = UIColor.whiteColor()
+        //talkTrack.backgroundColor = UIColor.greenColor()
+        talkTrack.font = UIFont(name: "Arial", size: 15)
+        talkTrack.translatesAutoresizingMaskIntoConstraints = false
+        talkTrack.numberOfLines = 0
+
         
-        let views = ["talkDescription": desc, "speakers" : speakers]
-        
-        //let viewsS = ["scroll": scroll]
-        
-        
-        //let constHS = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: viewsS)
-        
-        //let constVS = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: viewsS)
-        
-        
-        
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[talkDescription]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[speakers]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        print(self.view.frame.size.height)
-        
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[talkDescription(200)]-10-[speakers(440)]-17-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        header = UIImageView(image: UIImage(named: "DevoxxUKHomePage.jpg"))
+        header.alpha = 0.8
+        header.translatesAutoresizingMaskIntoConstraints = false
         
         
-        /*self.view.addConstraint(NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1.0, constant: 20))
-        */
+        talkDescription = UILabel(frame: CGRectMake(0,0,320,500))
+        talkDescription.numberOfLines = 0
+        scroll.addSubview(talkDescription)
+   
+        view.addSubview(header)
+        view.addSubview(scroll)
+        header.addSubview(talkTitle)
+        header.addSubview(talkTrack)
+
         
-        //view.addConstraints(constHS)
-        //view.addConstraints(constVS)
+     
+        
+        
+        let views = ["header": header, "scroll" : scroll, "talkTitle" : talkTitle, "talkTrack" : talkTrack]
+        
+        
+        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[header]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH3 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkTitle]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH4 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkTrack]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        
+        
+        let headerHeight = NSLayoutConstraint(item: header,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.33,
+            constant: 0)
+        
+        let scrollTop = NSLayoutConstraint(item: scroll,
+            attribute: NSLayoutAttribute.Top,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: header,
+            attribute: NSLayoutAttribute.Bottom,
+            multiplier: 1,
+            constant: 0)
+        
+        let scrollHeight = NSLayoutConstraint(item: scroll,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 1-0.33,
+            constant: 0)
+        
+        view.addConstraint(headerHeight)
+        view.addConstraint(scrollTop)
+        view.addConstraint(scrollHeight)
+        
 
         view.addConstraints(constH)
         view.addConstraints(constH2)
-        view.addConstraints(constV)
+        view.addConstraints(constH3)
+        view.addConstraints(constH4)
 
         
+        let talkTitleHeight = NSLayoutConstraint(item: talkTitle,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: header,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.33,
+            constant: 0)
         
-        text.translatesAutoresizingMaskIntoConstraints = false
-    
+        let talkTitleTop = NSLayoutConstraint(item: talkTitle,
+            attribute: NSLayoutAttribute.Top,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: header,
+            attribute: NSLayoutAttribute.Bottom,
+            multiplier: 1-0.5,
+            constant: 0)
         
+        header.addConstraint(talkTitleHeight)
+        header.addConstraint(talkTitleTop)
         
+        let talkTrackHeight = NSLayoutConstraint(item: talkTrack,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: header,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.5-0.33,
+            constant: 0)
         
-        let widthConstraint = NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: text.superview, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0)
-        
-        let heightConstraint = NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: text.superview, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
-        
-        let topConstraint = NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: text.superview, attribute: NSLayoutAttribute.Top, multiplier: 0.75, constant: 0)
-        
-        let leftConstraint = NSLayoutConstraint(item: text, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: text.superview, attribute: NSLayoutAttribute.Left, multiplier: 0.25, constant: 0)
-        
-        text.superview!.addConstraint(widthConstraint)
-        text.superview!.addConstraint(heightConstraint)
-        text.superview!.addConstraint(topConstraint)
-        text.superview!.addConstraint(leftConstraint)
+        let talkTrackTop = NSLayoutConstraint(item: talkTrack,
+            attribute: NSLayoutAttribute.Top,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: header,
+            attribute: NSLayoutAttribute.Bottom,
+            multiplier: 0.5+0.33,
+            constant: 0)
 
-        
-        
-        
-        text.numberOfLines = 0
-        self.view.backgroundColor = UIColor.whiteColor()
+
+        header.addConstraint(talkTrackHeight)
+        header.addConstraint(talkTrackTop)
+       
+        talkTitle.text = talk.title
+        talkTrack.text = talk.track
+        talkDescription.text = talk.summary
 
        
     }
     
     public func clicked() {
-       let response = delegate.favorite(indexPath)
-        setColor(response)
+       //let response = delegate.favorite(indexPath)
+        //setColor(response)
     }
     
     public func setColor(isFavorited: Bool) {
-        if isFavorited {
+        /*if isFavorited {
             addFavoriteButton.tintColor = UIColor.whiteColor()
         }
         else {
             addFavoriteButton.tintColor = UIColor.blackColor()
-        }
+        }*/
     }
     
     public func configure() {
-        let button = UIButton(type: UIButtonType.Custom)
-        button.frame = CGRectMake(0, 0, 30, 30)
-        button.setBackgroundImage(UIImage(named: "StarOn"), forState: UIControlState.Selected)
-        button.setBackgroundImage(UIImage(named: "StarOff"), forState: UIControlState.Normal)
+        //let button = UIButton(type: UIButtonType.Custom)
+       // button.frame = CGRectMake(0, 0, 30, 30)
+        //button.setBackgroundImage(UIImage(named: "StarOn"), forState: UIControlState.Selected)
+        //button.setBackgroundImage(UIImage(named: "StarOff"), forState: UIControlState.Normal)
 
-        addFavoriteButton = UIBarButtonItem(customView: button)
-        addFavoriteButton = UIBarButtonItem(image: UIImage(named: "StarOff"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("clicked"))
+        //addFavoriteButton = UIBarButtonItem(customView: button)
+        //addFavoriteButton = UIBarButtonItem(image: UIImage(named: "StarOff"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("clicked"))
         //addFavoriteButton.tintColor = getTintColorFromTag(details.addFavoriteButton.tag)
     }
     
     public override func viewWillAppear(animated: Bool) {
 
-        //self.title = talk.title
-        text.text = talk.title
+        
         //TODO
-        self.parentViewController?.parentViewController?.navigationController?.navigationItem.rightBarButtonItem = addFavoriteButton
+        //self.parentViewController?.parentViewController?.navigationController?.navigationItem.rightBarButtonItem = addFavoriteButton
         
 
         

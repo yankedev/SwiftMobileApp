@@ -32,11 +32,18 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         cellDataArray = try! managedContext.executeFetchRequest(fetchRequest) as! [CellDataPrococol]
         
-        print(cellDataArray)
+
+        
+        
+       
     
     }
     
-    
+    func back() {
+        print("BACK")
+        self.parentViewController!.parentViewController?.view!.removeFromSuperview()
+        self.parentViewController?.parentViewController?.removeFromParentViewController()
+    }
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +58,14 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         fetchAll()
         
+        
+        
+        
         self.navigationItem.title = "Speakers"
+        
+        
+        let backLeftButton = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: Selector("back"))
+        self.navigationItem.leftBarButtonItem = backLeftButton
 
     }
     
