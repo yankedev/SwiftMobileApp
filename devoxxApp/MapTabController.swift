@@ -66,21 +66,30 @@ public class MapTabController : UIViewController {
         }
         
         if(sender.selectedSegmentIndex == 1) {
-            currentView?.removeFromSuperview()
+
+            let decodedData = APIManager.getDataFromName("DevoxxFRExhibitionPhone.jpg")
+            
+                      currentView?.removeFromSuperview()
             let v = UIImageView(frame: CGRectMake(0, 0, accessView.frame.width, accessView.frame.height))
-            v.image = UIImage(named: "DevoxxFRExhibitionPhone.jpg")
+            v.image = UIImage(data: decodedData)
             currentView = v
             accessView.addSubview(currentView!)
         }
-        
+        /*
         if(sender.selectedSegmentIndex == 2) {
             currentView?.removeFromSuperview()
             let v = UIImageView(frame: CGRectMake(0, 0, accessView.frame.width, accessView.frame.height))
             v.image = UIImage(named: "devoxx2015_floor_2.jpg")
             currentView = v
             accessView.addSubview(currentView!)
+            
+            
+            let imgData = UIImageJPEGRepresentation(v.image!, 1.0)
+            let str = imgData?.base64EncodedDataWithOptions(NSDataBase64EncodingOptions.init(rawValue: 0))
+            
+            
         }
-        
+        */
         
 
         

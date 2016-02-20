@@ -21,7 +21,7 @@ let apiURLS:[String : [String]] = ["Slot" : ["http://cfp.devoxx.be/api/conferenc
 
 
 
-let apiURLS:[String : [String]] = ["Cfp" : ["Cfp"], "Slot" : ["00","01","02","03"], "TalkType" : ["TalkType"], "Track" :  ["Track"], "Speaker" :  ["Speaker"]]
+let apiURLS:[String : [String]] = ["Image" : ["ImageMap"], "Cfp" : ["Cfp"], "Slot" : ["00","01","02","03"], "TalkType" : ["TalkType"], "Track" :  ["Track"], "Speaker" :  ["Speaker"]]
 
 class APIManager {
     
@@ -314,6 +314,7 @@ class APIManager {
     // FIRST FEED
     
     class func firstFeed() {
+        singleFeed(ImageHelper())
         singleFeed(CfpHelper())
         singleFeed(SpeakerHelper())
         singleFeed(SlotHelper())
@@ -339,7 +340,40 @@ class APIManager {
         
         
     }
-
+    
+    
+    
+    
+    
+    class func dataFromImage(imageName : String) -> NSData? {
+        let image = UIImage(named: imageName)
+        let nsData = UIImageJPEGRepresentation(image!, 1.0)
+        return nsData
+    }
+    
+    
+    
+    
+    class func getDataFromName(imageName : String) -> NSData {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = buildFetchRequest(context, name: "Image")
+        let predicate = NSPredicate(format: "img = %@", imageName)
+        fetchRequest.resultType = .ManagedObjectResultType
+        fetchRequest.returnsDistinctResults = true
+        fetchRequest.predicate = predicate
+        let items = try! context.executeFetchRequest(fetchRequest)
+        if let img = items[0] as? Image {
+            
+            
+            //base64EncodedDataWithOptions(NSDataBase64EncodingOptions.init(rawValue: 0))
+            print("OK IF")
+            
+            return img.data
+        }
+        return NSData()
+    }
+  
     
     
     

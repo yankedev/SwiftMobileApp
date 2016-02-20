@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 maximedavid. All rights reserved.
 //
 
-import UIKit
+import UIKit    
 import CoreData
 
 @UIApplicationMain
