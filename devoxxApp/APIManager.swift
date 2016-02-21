@@ -357,9 +357,13 @@ class APIManager {
     
     
     class func getDataFromName(imageName : String) -> NSData {
-        print(imageName)
+
         let lastPartImageName = imageName.characters.split{$0 == "/"}.map(String.init)
  
+        //check if well formed URL
+        if lastPartImageName.count < 2 {
+            return NSData()
+        }
         let localImageName = lastPartImageName[lastPartImageName.count-1]
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

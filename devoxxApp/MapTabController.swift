@@ -54,7 +54,7 @@ public class MapTabController : UIViewController {
         self.view.addSubview(accessView)
         
         
-        self.title = "Palais des Congres, porte Maillot"
+        self.navigationItem.title = APIManager.currentEvent.address
         
         
         let backLeftButton = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: Selector("back"))
