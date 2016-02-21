@@ -12,10 +12,10 @@ import UIKit
 class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPieChartDataSource {
     
     var slicesData:NSArray!
-    var ctrl:ContainerController!
+  
     let color = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)
     let tabController = UITabBarController()
-    
+    var currentSelectedIndex = 0
     var imgView:UIImageView!
 
     func generateScheduleTableViewController() -> ScrollableDateProtocol {
@@ -32,7 +32,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         
         
         //selectedEvent
-        APIManager.setEvent(slicesData.objectAtIndex(ctrl.pieChart.currentSelected) as! Cfp)
+        APIManager.setEvent(slicesData.objectAtIndex(currentSelectedIndex) as! Cfp)
         
         
         
@@ -142,65 +142,13 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         
                
         wheelView.pieChart.datasource = self
+        wheelView.pieChart.delegate = self
         wheelView.pieChart.build()
 
                
-        
+        goView.goButton.addTarget(self, action: Selector("prepareNext"), forControlEvents: .TouchUpInside)
         
       
-    /*
-        
-        
-        ctrl = ContainerController()
-        
-        ctrl.initi()
-        
-
-        ctrl.goButton.addTarget(self, action: Selector("prepareNext"), forControlEvents: .TouchUpInside)
-        
-        
-        
-        
-        ctrl.pieChart.delegate = self
-        ctrl.pieChart.datasource = self
-    
-        view.addSubview(ctrl.view)
-        
-        
-        
-        ctrl.pieChart.build()
-        /* 
-        Here you can dig into some properties
-        -------------------------------------
-        
-        var properties = Properties()
-
-        properties.smallRadius = 50
-        properties.bigRadius = 120
-        properties.expand = 25
-    
-        
-        properties.displayValueTypeInSlices = .Percent
-        properties.displayValueTypeCenter = .Label
-        
-        properties.fontTextInSlices = UIFont(name: "Arial", size: 12)!
-        properties.fontTextCenter = UIFont(name: "Arial", size: 10)!
-
-        properties.enableAnimation = true
-        properties.animationDuration = 0.5
-        
-        
-        var nf = NSNumberFormatter()
-        nf.groupingSize = 3
-        nf.maximumSignificantDigits = 2
-        nf.minimumSignificantDigits = 2
-        
-        properties.nf = nf
-        
-        pieChart.properties = properties
-        */
-        */
-
     }
     
     //Delegate
@@ -217,6 +165,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         if let currentData = slicesData[index] as? EventProtocol {
             imgView.image = UIImage(data: currentData.backgroundImage())
         }
+        currentSelectedIndex = index
     }
     
     func willCloseSliceAtIndex(index: Int) {
