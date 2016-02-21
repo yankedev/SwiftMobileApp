@@ -400,6 +400,15 @@ class APIManager {
     }
     
     
+    class func debugAllFloors(context : NSManagedObjectContext, withId : String) -> NSArray {
+        let fetchRequest = buildFetchRequest(context, name: "Floor")
+        let predicate = NSPredicate(format: "id = %@", withId)
+        fetchRequest.predicate = predicate
+        let items = try! context.executeFetchRequest(fetchRequest)
+        return items
+    }
+    
+    
     
 }
 

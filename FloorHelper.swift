@@ -45,17 +45,18 @@ class FloorHelper: DataHelperProtocol {
         return json.array
     }
     
+    
     func save(managedContext : NSManagedObjectContext) {
         let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
         let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-            print(coreDataObjectCast)
             coreDataObjectCast.feedHelper(self)
+
             if(coreDataObjectCast.exists(img!, leftPredicate:"img", entity: entityName())) {
-                print("exists")
                 return
             }
+           
         }
    
    

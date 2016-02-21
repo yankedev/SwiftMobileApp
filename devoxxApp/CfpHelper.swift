@@ -25,6 +25,8 @@ class CfpHelper: DataHelperProtocol {
     var longitude: String?
     var splashImgURL: String?
     
+    var fedFloorsArray:Array<FloorHelper>!
+    
     func typeName() -> String {
         return entityName()
     }
@@ -45,6 +47,7 @@ class CfpHelper: DataHelperProtocol {
     }
     
     func feed(data: JSON) {
+        
         id = data["id"].string
         confType = data["confType"].string
         confDescription = data["confDescription"].string
@@ -57,19 +60,17 @@ class CfpHelper: DataHelperProtocol {
         longitude = data["longitude"].string
         splashImgURL = data["splashImgURL"].string
    
+        fedFloorsArray = Array<FloorHelper>()
+        
         if let floorArray = data["floors"].array {
-            
-            
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            let context = appDelegate.managedObjectContext!
-            
-            
+
             for spk in floorArray {
                 let floorHelper = FloorHelper()
                 floorHelper.feed(spk)
                 floorHelper.id = id
-                floorHelper.save(context)
+                fedFloorsArray.append(floorHelper)
             }
+            
         }
 
         
@@ -87,11 +88,31 @@ class CfpHelper: DataHelperProtocol {
     
     
     func save(managedContext : NSManagedObjectContext) {
+        
+        for floor in fedFloorsArray {
+            floor.save(managedContext)
+        }
         let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
         let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
             coreDataObjectCast.feedHelper(self)
+            
+            let fetch = NSFetchRequest(entityName: "Floor")
+            //let predicate = NSPredicate(format: "id = %@", self.id!)
+            //fetch.predicate = predicate
+            fetch.returnsObjectsAsFaults = false
+            
+            
+            
+            let items = APIManager.debugAllFloors(managedContext, withId:self.id!)
+            print("setting these items to cfp")
+            print(items)
+            
+            coreDataObject.mutableSetValueForKey("floors").addObjectsFromArray(items as [AnyObject])
+
+          
+            
             if(coreDataObjectCast.exists(id!, leftPredicate:"id", entity: entityName())) {
                 return
             }

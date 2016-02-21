@@ -128,8 +128,8 @@
     "venue": "Studio des Arts Vivants",
     "address": "Route d'Azemmour, Casablanca",
     "country": "Morocco",
-    "latitude": "33.574319",
-    "longitude": "-7.7535457",
+    "latitude": "33.5743432",
+    "longitude": "-7.6840528",
     "floors": [
        {"img": "todo provide image", "title": "First floor", "tabpos": "1", "target": "phone"},
        {"img": "todo provide image", "title": "Second floor", "tabpos": "2", "target": "phone"},
