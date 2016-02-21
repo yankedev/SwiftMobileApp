@@ -14,6 +14,7 @@ class SlotHelper: DataHelperProtocol {
     var roomName: String?
     var slotId: String?
     var fromTime: String?
+    var toTime: String?
     var day: String?
     var fromTimeMillis : NSNumber?
     var talk : TalkHelper?
@@ -27,10 +28,11 @@ class SlotHelper: DataHelperProtocol {
     }
     
 
-    init(roomName: String?, slotId: String?, fromTime: String?, day: String?, talk: TalkHelper) {
+    init(roomName: String?, slotId: String?, fromTime: String?, toTime:String?, day: String?, talk: TalkHelper) {
         self.roomName = roomName ?? ""
         self.slotId = slotId ?? ""
         self.fromTime = fromTime ?? ""
+        self.toTime = toTime ?? ""
         self.day = day ?? ""
         self.talk = talk
     }
@@ -40,12 +42,11 @@ class SlotHelper: DataHelperProtocol {
         roomName = data["roomName"].string
         slotId = data["slotId"].string
         fromTime = data["fromTime"].string
+        toTime = data["toTime"].string
         day = data["day"].string
         fromTimeMillis = data["fromTimeMillis"].doubleValue
    
         let talkHelper = TalkHelper()
-        
-       
         
         let subData = talkHelper.prepareArray(data)
         

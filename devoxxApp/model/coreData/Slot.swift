@@ -15,6 +15,7 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
     @NSManaged var roomName: String
     @NSManaged var slotId: String
     @NSManaged var fromTime: String
+    @NSManaged var toTime: String
     @NSManaged var day: String
     @NSManaged var date: NSDate
     @NSManaged var fromTimeMillis: NSNumber
@@ -46,6 +47,7 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
             roomName = castHelper.roomName!
             slotId = castHelper.slotId!
             fromTime = castHelper.fromTime!
+            toTime = castHelper.toTime!
             day = castHelper.day!
             fromTimeMillis = castHelper.fromTimeMillis!
             //millis -> sec

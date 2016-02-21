@@ -40,6 +40,9 @@ public class SchedulerTableViewController:
     }
 
     
+    var openedSections = [Bool]()
+
+    
     
     //SerchableTableProtocol
     var searchPredicates = [String : [NSPredicate]]()
@@ -80,6 +83,16 @@ public class SchedulerTableViewController:
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         fetchAll()
+        
+        
+        
+        self.schedulerTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        
+        
+        
+        
+        
     }
 
     
@@ -109,6 +122,13 @@ public class SchedulerTableViewController:
             //todo
             print("unresolved error \(error), \(error.userInfo)")
         }
+        
+        if let sections = frc?.sections {
+            for _ in sections {
+                openedSections.append(true)
+            }
+        }
+        
         schedulerTableView.reloadData()
     }
     
@@ -261,6 +281,15 @@ public class SchedulerTableViewController:
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = frc?.sections {
             
+            
+            if(openedSections[section]) {
+                let currentSection = sections[section]
+                return currentSection.numberOfObjects
+            }
+            return 0;
+            
+            
+            /*
             let currentSection = sections[section]
             
             
@@ -290,11 +319,12 @@ public class SchedulerTableViewController:
             
             
             return filterArray(obj).count
+            */
         }
         
         return 0
     }
-    
+    /*
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = frc?.sections {
             
@@ -310,7 +340,7 @@ public class SchedulerTableViewController:
         
         return nil
     }
-    
+    */
     public func updateSection() {
         
         favoriteSections = (frc?.sections)!
@@ -350,9 +380,7 @@ public class SchedulerTableViewController:
     }
     
     
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 44.0
-    }
+    
     
     
     public func favorite(indexPath : NSIndexPath) -> Bool {
@@ -428,6 +456,55 @@ public class SchedulerTableViewController:
         return currentFilters
     }
     
+    
+    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        /*if let sections = frc?.sections {
+            let currentSection = sections[section]
+            if currentSection.numberOfObjects == 1 {
+                return 0
+            }
+        }*/
+        return 44.0
+        
+        
+    }
+    
+    
+    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        var title = ""
+        if let sections = frc?.sections {
+            let currentSection = sections[section]
+            if let slot = currentSection.objects![0] as? Slot {
+                title = "\(currentSection.name) - \(slot.toTime)"
+            }
+            
+        }
+        
+        
+        let headerView = HeaderView(frame: CGRectMake(0,0,schedulerTableView.frame.width, 50))
+        headerView.headerString.text = title
+        headerView.upDown.tag = section
+        headerView.upDown.addTarget(self, action: Selector("openClose:"), forControlEvents: .TouchUpInside)
+        headerView.upDown.selected = openedSections[section]
+        return headerView
+    }
+    
+    
+    func openClose(sender: UIButton) {
+        let indexPath : NSIndexPath = NSIndexPath(forRow: 0, inSection:(sender.tag as Int!)!)
+        if (indexPath.row == 0) {
+            
+            openedSections[indexPath.section] =  !openedSections[indexPath.section]
+     
+            let range = NSMakeRange(indexPath.section, 1)
+            let sectionToReload = NSIndexSet(indexesInRange: range)
+            self.schedulerTableView .reloadSections(sectionToReload, withRowAnimation:UITableViewRowAnimation.Fade)
+        }
+        sender.selected = !sender.selected
+    }
+
 
        
 }
