@@ -1,6 +1,26 @@
 [
-	{	
-		"img" : "DevoxxFRExhibitionPhone.jpg",
+{
+		"img" : "https://s3-eu-west-1.amazonaws.com/cfpdevoxx/france/DevoxxFRExhibitionPhone.jpg",
 		"etag" : "ae97bf5977531091daf60b111741d29a"
+	},
+ {
+ "img" : "https://s3-eu-west-1.amazonaws.com/cfpdevoxx/france/DevoxxFRExhibitionTablet.jpg",
+ "etag" : "82fa71d3d97a540f3f527309c8d8bd12"
+	},
+ {
+ "img" : "https://s3-eu-west-1.amazonaws.com/cfpdevoxx/belgium/devoxxExhibitionFloorPhone.jpg",
+ "etag" : "4ffb00687be8a187c9920b9f0c49751d"
+	},
+ {
+ "img" : "https://s3-eu-west-1.amazonaws.com/cfpdevoxx/belgium/devoxxCinameFloorPhone.jpg",
+ "etag" : "7d6befefc4b12c46bf0770824a2aa8ea"
+	},
+ {
+ "img" : "https://s3-eu-west-1.amazonaws.com/cfpdevoxx/belgium/devoxxExhibitionFloorTablet.jpg",
+ "etag" : "5767ec5322c2b7ac5218e8f3ac8d6308"
+	},
+ {
+ "img" : "https://s3-eu-west-1.amazonaws.com/cfpdevoxx/belgium/devoxxCinameFloorTablet.jpg",
+ "etag" : "e4d84c5a32887a242d7a6f6afa7b3f26"
 	}
 ]

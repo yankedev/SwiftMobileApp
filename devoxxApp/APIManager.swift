@@ -358,22 +358,19 @@ class APIManager {
     
     class func getDataFromName(imageName : String) -> NSData {
 
-        let lastPartImageName = imageName.characters.split{$0 == "/"}.map(String.init)
- 
-        //check if well formed URL
-        if lastPartImageName.count < 2 {
-            return NSData()
-        }
-        let localImageName = lastPartImageName[lastPartImageName.count-1]
-        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
         let fetchRequest = buildFetchRequest(context, name: "Image")
-        let predicate = NSPredicate(format: "img = %@", localImageName)
+        let predicate = NSPredicate(format: "img = %@", imageName)
         fetchRequest.resultType = .ManagedObjectResultType
         fetchRequest.returnsDistinctResults = true
         fetchRequest.predicate = predicate
         let items = try! context.executeFetchRequest(fetchRequest)
+        
+        if items.count == 0 {
+            return NSData()
+        }
+        
         if let img = items[0] as? Image {
             
             
@@ -417,6 +414,15 @@ class APIManager {
         return items
     }
     
+    class func getLastFromUrl(url : String) -> String {
+        let lastPartImageName = url.characters.split{$0 == "/"}.map(String.init)
+        
+        //check if well formed URL
+        if lastPartImageName.count < 2 {
+            return ""
+        }
+        return lastPartImageName[lastPartImageName.count-1]
+    }
     
     
 }

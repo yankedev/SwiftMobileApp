@@ -20,7 +20,7 @@ class Image: NSManagedObject, FeedableProtocol {
         if let castHelper = helper as? ImageHelper  {
             img = castHelper.imgName ?? ""
             etag = castHelper.etag ?? ""
-            data = APIManager.dataFromImage(img)!
+            data = APIManager.dataFromImage(APIManager.getLastFromUrl(img))!
         }
     }
     
