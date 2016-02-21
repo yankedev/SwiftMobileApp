@@ -25,6 +25,8 @@ let apiURLS:[String : [String]] = ["Image" : ["ImageMap"], "Cfp" : ["Cfp"], "Slo
 
 class APIManager {
     
+    static var currentEvent : Cfp!
+    
     class func doesEtagExistForUrl(url : String) -> Bool {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
@@ -367,15 +369,35 @@ class APIManager {
             
             
             //base64EncodedDataWithOptions(NSDataBase64EncodingOptions.init(rawValue: 0))
-            print("OK IF")
+            
             
             return img.data
         }
         return NSData()
     }
+    
+    class func getStringDevice() -> String{
+        switch UIDevice.currentDevice().userInterfaceIdiom {
+        case .Phone:
+            return "phone"
+        case .Pad:
+            return "tablet"
+        default :
+            return ""
+        }
+    }
   
+    class func setEvent(event : Cfp) {
+        currentEvent = event
+    }
     
+    class func getEvent() -> Cfp {
+        return currentEvent
+    }
     
+    class func getSegments() {
+        
+    }
     
     
     

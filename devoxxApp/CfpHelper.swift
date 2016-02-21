@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class CfpHelper: DataHelperProtocol {
     
@@ -20,13 +21,15 @@ class CfpHelper: DataHelperProtocol {
     var country: String?
     var capacity: String?
     var sessions: String?
+    var latitude: String?
+    var longitude: String?
     var splashImgURL: String?
     
     func typeName() -> String {
         return entityName()
     }
     
-    init(id: String?, confType: String?, confDescription: String?, venue: String?, address: String?, country: String?, capacity: String?, sessions: String?, splashImgURL: String?) {
+    init(id: String?, confType: String?, confDescription: String?, venue: String?, address: String?, country: String?, capacity: String?, sessions: String?, latitude:String?, longitude:String?, splashImgURL: String?) {
         self.id = id ?? ""
         self.confType = confType ?? ""
         self.confDescription = confDescription ?? ""
@@ -35,7 +38,10 @@ class CfpHelper: DataHelperProtocol {
         self.country = country ?? ""
         self.capacity = capacity ?? ""
         self.sessions = sessions ?? ""
+        self.latitude = latitude ?? ""
+        self.longitude = longitude ?? ""
         self.splashImgURL = splashImgURL ?? ""
+
     }
     
     func feed(data: JSON) {
@@ -47,7 +53,27 @@ class CfpHelper: DataHelperProtocol {
         country = data["country"].string
         capacity = data["capacity"].string
         sessions = data["sessions"].string
+        latitude = data["latitude"].string
+        longitude = data["longitude"].string
         splashImgURL = data["splashImgURL"].string
+   
+        if let floorArray = data["floors"].array {
+            
+            
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            let context = appDelegate.managedObjectContext!
+            
+            
+            for spk in floorArray {
+                let floorHelper = FloorHelper()
+                floorHelper.feed(spk)
+                floorHelper.id = id
+                floorHelper.save(context)
+            }
+        }
+
+        
+        //floors = data["floors"].array?.description
     }
     
     func entityName() -> String {

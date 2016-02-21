@@ -28,8 +28,12 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     @NSManaged var country: String?
     @NSManaged var capacity: String?
     @NSManaged var sessions: String?
+    @NSManaged var latitude: String?
+    @NSManaged var longitude: String?
     @NSManaged var splashImgURL: String?
     @NSManaged var backgroundImageData: NSData?
+    @NSManaged var floors: NSSet
+    
 
     func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? CfpHelper  {
@@ -42,10 +46,10 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
             country = castHelper.country
             capacity = castHelper.capacity
             sessions = castHelper.sessions
+            latitude = castHelper.latitude
+            longitude = castHelper.longitude
             splashImgURL = castHelper.splashImgURL
-            
-            
-            
+
             if let path = NSBundle.mainBundle().pathForResource(splashImgURL, ofType: "jpg") {
                 if let data = NSData(contentsOfFile: path) {
                     backgroundImageData = data

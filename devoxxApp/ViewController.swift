@@ -12,6 +12,7 @@ import UIKit
 class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPieChartDataSource {
     
     var slicesData:NSArray!
+    var ctrl:ContainerController!
     let color = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)
     let tabController = UITabBarController()
     
@@ -28,6 +29,15 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
     
     
     func prepareNext() {
+        
+        
+        //selectedEvent
+        APIManager.setEvent(slicesData.objectAtIndex(ctrl.pieChart.currentSelected) as! Cfp)
+        
+        
+        
+        
+        
         let scheduleController = ScheduleController<SchedulerTableViewController>(generator:generateScheduleTableViewController)
         let speakerController = SpeakerTableController()
         let mapController = MapTabController()
@@ -81,7 +91,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         self.view.addSubview(imgView)
         
         
-        let ctrl = ContainerController()
+        ctrl = ContainerController()
         
         ctrl.initi()
         

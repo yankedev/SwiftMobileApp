@@ -1,8 +1,8 @@
 //
-//  ImageHelper.swift
+//  FloorHelper.swift
 //  devoxxApp
 //
-//  Created by got2bex on 2016-02-20.
+//  Created by maxday on 21.02.16.
 //  Copyright © 2016 maximedavid. All rights reserved.
 //
 
@@ -10,28 +10,35 @@
 import Foundation
 import CoreData
 
-class ImageHelper: DataHelperProtocol {
+class FloorHelper: DataHelperProtocol {
     
-    
-    var imgName: String?
-    var etag: String?
+    var id: String?
+    var img: String?
+    var title: String?
+    var tabpos: String?
+    var target: String?
     
     func typeName() -> String {
         return entityName()
     }
     
     init(img: String?, etag: String?) {
-        self.imgName = imgName ?? ""
-        self.etag = etag ?? ""
+        self.id = id ?? ""
+        self.img = img ?? ""
+        self.title = title ?? ""
+        self.tabpos = tabpos ?? ""
+        self.target = target ?? ""
     }
     
     func feed(data: JSON) {
-        imgName = data["img"].string
-        etag = data["etag"].string
+        img = data["img"].string
+        title = data["title"].string
+        tabpos = data["tabpos"].string
+        target = data["target"].string
     }
     
     func entityName() -> String {
-        return "Image"
+        return "Floor"
     }
     
     func prepareArray(json: JSON) -> [JSON]? {
@@ -43,15 +50,15 @@ class ImageHelper: DataHelperProtocol {
         let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-          
+            print(coreDataObjectCast)
             coreDataObjectCast.feedHelper(self)
-            if(coreDataObjectCast.exists(imgName!, leftPredicate:"img", entity: entityName())) {
-            
+            if(coreDataObjectCast.exists(img!, leftPredicate:"img", entity: entityName())) {
+                print("exists")
                 return
             }
         }
-      
-        
+   
+   
         APIManager.save(managedContext)
     }
     

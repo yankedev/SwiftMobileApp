@@ -370,7 +370,7 @@ class MDRotatingPieChart: UIControl {
             return
         }
         
-        print("\(self.currentSelected) et \(index)")
+       
         
         
         

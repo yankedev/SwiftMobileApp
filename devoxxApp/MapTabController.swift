@@ -16,8 +16,14 @@ public class MapTabController : UIViewController {
     var currentView : UIView?
     var accessView:UIView!
     
+    
+    func setupSegments() {
+        print(APIManager.getStringDevice())
+    }
+    
     override public func viewDidLoad() {
         
+        setupSegments()
         
         seg = UISegmentedControl(frame: CGRectMake(40,80,300,25))
 

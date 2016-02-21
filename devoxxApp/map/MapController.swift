@@ -36,8 +36,9 @@ public class MapController : UIViewController, MKMapViewDelegate, ScrollableItem
 
         
         var newRegion = MKCoordinateRegion()
-        newRegion.center.latitude = 48.8794887
-        newRegion.center.longitude = 2.2812642
+       
+        newRegion.center.latitude = Double(APIManager.getEvent().latitude!)!
+        newRegion.center.longitude = Double(APIManager.getEvent().longitude!)!
         
         
         
@@ -46,10 +47,10 @@ public class MapController : UIViewController, MKMapViewDelegate, ScrollableItem
         newRegion.span.longitudeDelta = 0.01;
         
         
-        let coord = CLLocationCoordinate2D(latitude: 48.8794887, longitude: 2.2812642)
+        let coord = CLLocationCoordinate2D(latitude: newRegion.center.latitude, longitude: newRegion.center.longitude)
         let annotation = MKPointAnnotation()
         annotation.coordinate = coord
-        annotation.title = "Devoxx France 2016"
+        annotation.title = APIManager.getEvent().id
         
         mapView.addAnnotation(annotation)
         mapView.setRegion(newRegion, animated: false)

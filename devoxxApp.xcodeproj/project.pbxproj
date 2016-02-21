@@ -92,6 +92,8 @@
 		E175F2731C49B01A00D7AC0A /* SearchableItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F2721C49B01A00D7AC0A /* SearchableItemProtocol.swift */; };
 		E175F2761C52A50C00D7AC0A /* ScheduleControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F2751C52A50C00D7AC0A /* ScheduleControllerView.swift */; };
 		E17DFF3D1C72884F00A09547 /* filter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17DFF3C1C72884F00A09547 /* filter@2x.png */; };
+		E17DFF411C79D7FB00A09547 /* Floor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17DFF401C79D7FA00A09547 /* Floor.swift */; };
+		E17DFF431C79D85800A09547 /* FloorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17DFF421C79D85800A09547 /* FloorHelper.swift */; };
 		E18046031C1DD220001AAD85 /* TalkDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18046021C1DD220001AAD85 /* TalkDetailsController.swift */; };
 		E1FA9BEE1C1BF4E70077C09A /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */; };
 		E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */ = {isa = PBXBuildFile; fileRef = E1FA9C0E1C1BFC150077C09A /* icon_archisec.png */; };
@@ -220,6 +222,8 @@
 		E175F2721C49B01A00D7AC0A /* SearchableItemProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableItemProtocol.swift; sourceTree = "<group>"; };
 		E175F2751C52A50C00D7AC0A /* ScheduleControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleControllerView.swift; path = ../ScheduleControllerView.swift; sourceTree = "<group>"; };
 		E17DFF3C1C72884F00A09547 /* filter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filter@2x.png"; sourceTree = "<group>"; };
+		E17DFF401C79D7FA00A09547 /* Floor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Floor.swift; sourceTree = "<group>"; };
+		E17DFF421C79D85800A09547 /* FloorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorHelper.swift; sourceTree = "<group>"; };
 		E18046021C1DD220001AAD85 /* TalkDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkDetailsController.swift; sourceTree = "<group>"; };
 		E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		E1FA9C0E1C1BFC150077C09A /* icon_archisec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_archisec.png; path = icon/track/icon_archisec.png; sourceTree = "<group>"; };
@@ -290,6 +294,7 @@
 				E10E7ABF1C18BF7100F6220B /* devoxxApp */,
 				E10E7AD81C18BF7100F6220B /* devoxxAppTests */,
 				E10E7ABE1C18BF7100F6220B /* Products */,
+				E17DFF421C79D85800A09547 /* FloorHelper.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -559,6 +564,7 @@
 				E1FA9C421C1BFD400077C09A /* Slot.swift */,
 				E1FA9C431C1BFD400077C09A /* Talk.swift */,
 				580B78841C78988500060C00 /* Image.swift */,
+				E17DFF401C79D7FA00A09547 /* Floor.swift */,
 			);
 			name = coreData;
 			sourceTree = "<group>";
@@ -757,10 +763,12 @@
 				E1FA9C4A1C1BFD560077C09A /* TalkHelper.swift in Sources */,
 				E10CE1B01C2BDB72002C9934 /* AttributeHelper.swift in Sources */,
 				E10E7AC31C18BF7100F6220B /* AppDelegate.swift in Sources */,
+				E17DFF431C79D85800A09547 /* FloorHelper.swift in Sources */,
 				58195C131C359A4E00F56A30 /* FilterViewCell.swift in Sources */,
 				E175F2731C49B01A00D7AC0A /* SearchableItemProtocol.swift in Sources */,
 				580B78711C766BDD00060C00 /* MapTabController.swift in Sources */,
 				E175F2761C52A50C00D7AC0A /* ScheduleControllerView.swift in Sources */,
+				E17DFF411C79D7FB00A09547 /* Floor.swift in Sources */,
 				5895EBA11C66698800229780 /* ViewController.swift in Sources */,
 				58BA2BFC1C3331EF0031C2E3 /* Etag.swift in Sources */,
 				5895EB7D1C6662F300229780 /* Cfp.swift in Sources */,
