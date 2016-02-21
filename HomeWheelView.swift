@@ -15,27 +15,14 @@ class HomeWheelView : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.greenColor()
         translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        
+    }
+    
+    func setConstraints() {
         pieChart = MDRotatingPieChart(frame: CGRectZero)
         pieChart.textLabel = UILabel()
         
         addSubview(pieChart)
-
-       
-        
-        let globe = UIImageView(frame: CGRectMake(0, 0, 130, 130))
-        globe.center = CGPointMake(pieChart.center.x, pieChart.center.y)
-        globe.image = UIImage(named: "globe")
-        
-        
-        
-
-        
-        pieChart.addSubview(globe)
         
         
         
@@ -43,15 +30,27 @@ class HomeWheelView : UIView {
         
         
         
-        goButton.translatesAutoresizingMaskIntoConstraints = false
         
         
-        let widthLogo = NSLayoutConstraint(item: goButton, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Width, multiplier: 0.9, constant: 0)
-        let heightLogo = NSLayoutConstraint(item: goButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Height, multiplier:0.6, constant: 0)
-        let centerXLogo = NSLayoutConstraint(item: goButton, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+        //pieChart.addSubview(globe)
         
         
-        let centerYLogo = NSLayoutConstraint(item: goButton, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0)
+        
+        
+        
+        
+        
+        pieChart.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        let widthLogo = NSLayoutConstraint(item: pieChart, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Width, multiplier: 0.8, constant: 0)
+        let heightLogo = NSLayoutConstraint(item: pieChart, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Width, multiplier:0.8, constant: 0)
+        let centerXLogo = NSLayoutConstraint(item: pieChart, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+        
+        
+        let centerYLogo = NSLayoutConstraint(item: pieChart, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0)
+        
+     
         
         
         
@@ -59,8 +58,19 @@ class HomeWheelView : UIView {
         self.addConstraint(widthLogo)
         self.addConstraint(heightLogo)
         self.addConstraint(centerXLogo)
+        
+        self.layoutIfNeeded()
+        
+        
+        let globe = UIImageView(frame: CGRectMake(0, 0, 130, 130))
+        
+        globe.image = UIImage(named: "globe")
+        pieChart.addSubview(globe)
 
-
+        
+        pieChart.pieChartCenter = CGPointMake(pieChart.frame.size.height/2, pieChart.frame.size.height/2)
+        
+        globe.center = pieChart.pieChartCenter
     }
     
     

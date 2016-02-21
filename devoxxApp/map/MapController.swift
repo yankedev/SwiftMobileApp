@@ -29,7 +29,7 @@ public class MapController : UIViewController, MKMapViewDelegate, ScrollableItem
     
     func reset() {
         
-        print(APIManager.currentEvent.getImages())
+
         
         mapView = MKMapView(frame: view.frame)
         self.view.backgroundColor = UIColor.whiteColor()

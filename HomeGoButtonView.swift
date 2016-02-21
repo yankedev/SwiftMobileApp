@@ -15,7 +15,6 @@ class HomeGoButtonView : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.blueColor()
         translatesAutoresizingMaskIntoConstraints = false
         
         goButton.backgroundColor = ColorManager.homeFontColor

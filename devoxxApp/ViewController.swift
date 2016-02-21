@@ -86,6 +86,8 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         
         super.viewDidLoad()
         
+        imgView = UIImageView(image: UIImage(named: "DevoxxMoroccoHomePage.jpg")!)
+        self.view.addSubview(imgView)
         
         let headerView = HomeHeaderView()
         let wheelView = HomeWheelView()
@@ -121,15 +123,32 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         
         self.view.addConstraints(verticalContraint)
         
+        
+        
+    
+        numberView.applyConstraint()
+        
+        
+        
+        
+        
         slicesData = APIManager.getAllEvents()
         
+        
+        
+        
+        
+        wheelView.setConstraints()
+        
+               
         wheelView.pieChart.datasource = self
         wheelView.pieChart.build()
+
                
         
-        /*
-        imgView = UIImageView(image: UIImage(named: "DevoxxMoroccoHomePage.jpg")!)
-        self.view.addSubview(imgView)
+        
+      
+    /*
         
         
         ctrl = ContainerController()
