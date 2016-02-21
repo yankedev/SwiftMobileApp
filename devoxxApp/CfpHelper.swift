@@ -106,9 +106,7 @@ class CfpHelper: DataHelperProtocol {
             
             
             let items = APIManager.debugAllFloors(managedContext, withId:self.id!)
-            print("setting these items to cfp")
-            print(items)
-            
+
             coreDataObject.mutableSetValueForKey("floors").addObjectsFromArray(items as [AnyObject])
 
           

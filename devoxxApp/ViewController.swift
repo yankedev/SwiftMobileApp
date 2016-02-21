@@ -87,6 +87,50 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         super.viewDidLoad()
         
         
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.redColor()
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        let wheelView = UIView()
+        wheelView.backgroundColor = UIColor.greenColor()
+        wheelView.translatesAutoresizingMaskIntoConstraints = false
+        let goView = UIView()
+        goView.backgroundColor = UIColor.blueColor()
+        goView.translatesAutoresizingMaskIntoConstraints = false
+        let numberView = UIView()
+        numberView.backgroundColor = UIColor.yellowColor()
+        numberView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(headerView)
+        view.addSubview(wheelView)
+        view.addSubview(goView)
+        view.addSubview(numberView)
+        
+        
+        let viewsDictionary = ["headerView":headerView, "wheelView":wheelView, "goView":goView, "numberView":numberView]
+        
+        let layout = NSLayoutFormatOptions(rawValue: 0)
+        
+        let horizontalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[headerView]-0-|", options: layout, metrics: nil, views: viewsDictionary)
+        let horizontalContraint1:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[wheelView]-0-|", options: layout, metrics: nil, views: viewsDictionary)
+        let horizontalContraint2:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[goView]-0-|", options: layout, metrics: nil, views: viewsDictionary)
+        let horizontalContraint3:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[numberView]-0-|", options: layout, metrics: nil, views: viewsDictionary)
+        
+        
+        let height = view.frame.size.height
+        
+        let verticalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[headerView(\(0.15*height))]-0-[wheelView(\(0.6*height))]-0-[goView(\(0.1*height))]-0-[numberView(\(0.15*height))]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
+        
+        
+        self.view.addConstraints(horizontalContraint0)
+        self.view.addConstraints(horizontalContraint1)
+        self.view.addConstraints(horizontalContraint2)
+        self.view.addConstraints(horizontalContraint3)
+        
+        self.view.addConstraints(verticalContraint)
+        
+        
+        
+        /*
         imgView = UIImageView(image: UIImage(named: "DevoxxMoroccoHomePage.jpg")!)
         self.view.addSubview(imgView)
         
@@ -139,7 +183,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         
         pieChart.properties = properties
         */
-        
+        */
 
     }
     
