@@ -357,10 +357,15 @@ class APIManager {
     
     
     class func getDataFromName(imageName : String) -> NSData {
+        print(imageName)
+        let lastPartImageName = imageName.characters.split{$0 == "/"}.map(String.init)
+ 
+        let localImageName = lastPartImageName[lastPartImageName.count-1]
+        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
         let fetchRequest = buildFetchRequest(context, name: "Image")
-        let predicate = NSPredicate(format: "img = %@", imageName)
+        let predicate = NSPredicate(format: "img = %@", localImageName)
         fetchRequest.resultType = .ManagedObjectResultType
         fetchRequest.returnsDistinctResults = true
         fetchRequest.predicate = predicate

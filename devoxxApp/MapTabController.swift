@@ -16,19 +16,25 @@ public class MapTabController : UIViewController {
     var currentView : UIView?
     var accessView:UIView!
     
+    var floors:[Floor]!
     
     func setupSegments() {
-        print(APIManager.getStringDevice())
+        floors = APIManager.currentEvent.getImages()
+        for floor in floors {
+            seg.insertSegmentWithTitle(floor.title, atIndex: seg.numberOfSegments, animated: false)
+        }
     }
     
     override public func viewDidLoad() {
         
-        setupSegments()
+        
         
         seg = UISegmentedControl(frame: CGRectMake(40,80,300,25))
 
         seg.insertSegmentWithTitle("Venue map", atIndex: 0, animated: false)
-        seg.insertSegmentWithTitle("First floor", atIndex: 1, animated: false)
+        
+        setupSegments()
+        
         seg.addTarget(self, action: Selector("change:"), forControlEvents: .ValueChanged)
         
         seg.tintColor = ColorManager.topNavigationBarColor
@@ -71,34 +77,17 @@ public class MapTabController : UIViewController {
             accessView.addSubview(currentView!)
         }
         
-        if(sender.selectedSegmentIndex == 1) {
+        if(sender.selectedSegmentIndex > 0) {
 
-            let decodedData = APIManager.getDataFromName("DevoxxFRExhibitionPhone.jpg")
+            let imageName = floors[sender.selectedSegmentIndex - 1].img
+            let decodedData = APIManager.getDataFromName(imageName)
             
-                      currentView?.removeFromSuperview()
+            currentView?.removeFromSuperview()
             let v = UIImageView(frame: CGRectMake(0, 0, accessView.frame.width, accessView.frame.height))
             v.image = UIImage(data: decodedData)
             currentView = v
             accessView.addSubview(currentView!)
         }
-        /*
-        if(sender.selectedSegmentIndex == 2) {
-            currentView?.removeFromSuperview()
-            let v = UIImageView(frame: CGRectMake(0, 0, accessView.frame.width, accessView.frame.height))
-            v.image = UIImage(named: "devoxx2015_floor_2.jpg")
-            currentView = v
-            accessView.addSubview(currentView!)
-            
-            
-            let imgData = UIImageJPEGRepresentation(v.image!, 1.0)
-            let str = imgData?.base64EncodedDataWithOptions(NSDataBase64EncodingOptions.init(rawValue: 0))
-            
-            
-        }
-        */
-        
-
-        
     }
     
     func back() {
