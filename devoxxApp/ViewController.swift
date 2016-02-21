@@ -87,18 +87,11 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         super.viewDidLoad()
         
         
-        let headerView = UIView()
-        headerView.backgroundColor = UIColor.redColor()
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        let wheelView = UIView()
-        wheelView.backgroundColor = UIColor.greenColor()
-        wheelView.translatesAutoresizingMaskIntoConstraints = false
-        let goView = UIView()
-        goView.backgroundColor = UIColor.blueColor()
-        goView.translatesAutoresizingMaskIntoConstraints = false
-        let numberView = UIView()
-        numberView.backgroundColor = UIColor.yellowColor()
-        numberView.translatesAutoresizingMaskIntoConstraints = false
+        let headerView = HomeHeaderView()
+        let wheelView = HomeWheelView()
+        let goView = HomeGoButtonView()
+        let numberView = HomeNumberView()
+
         
         view.addSubview(headerView)
         view.addSubview(wheelView)
@@ -128,7 +121,11 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         
         self.view.addConstraints(verticalContraint)
         
+        slicesData = APIManager.getAllEvents()
         
+        wheelView.pieChart.datasource = self
+        wheelView.pieChart.build()
+               
         
         /*
         imgView = UIImageView(image: UIImage(named: "DevoxxMoroccoHomePage.jpg")!)
@@ -142,7 +139,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
 
         ctrl.goButton.addTarget(self, action: Selector("prepareNext"), forControlEvents: .TouchUpInside)
         
-        slicesData = APIManager.getAllEvents()
+        
         
         
         ctrl.pieChart.delegate = self

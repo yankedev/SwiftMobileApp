@@ -35,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = nav
         self.window!.makeKeyAndVisible()
 
+        application.statusBarHidden = true
+        
         return true
     }
 
@@ -135,6 +137,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+
 
 }
 

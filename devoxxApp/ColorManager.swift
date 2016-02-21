@@ -20,6 +20,7 @@ class ColorManager {
     static var birdOfAFatherColor = UIColor(red: 243/255, green: 44/255, blue: 44/255, alpha: 1)
     static var toolsInActionColor = UIColor(red: 245/255, green: 215/255, blue: 51/255, alpha: 1)
     static var universityColor = UIColor(red: 168/255, green: 80/255, blue: 161/255, alpha: 1)
+    static var homeFontColor = UIColor(red: 248/255, green: 185/255, blue: 17/255, alpha: 1)
     static var defaultColor = UIColor.clearColor()
     
     static var topNavigationBarColor = UIColor(red: 246/255, green: 174/255, blue: 53/255, alpha: 1)

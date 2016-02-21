@@ -20,6 +20,10 @@
 		580B78921C7A07AF00060C00 /* devoxxExhibitionFloorTablet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 580B788C1C7A07AF00060C00 /* devoxxExhibitionFloorTablet.jpg */; };
 		580B78931C7A07AF00060C00 /* devoxxCinameFloorPhone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 580B788D1C7A07AF00060C00 /* devoxxCinameFloorPhone.jpg */; };
 		580B78941C7A07AF00060C00 /* devoxxExhibitionFloorPhone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 580B788E1C7A07AF00060C00 /* devoxxExhibitionFloorPhone.jpg */; };
+		580B78961C7A10E100060C00 /* HomeHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B78951C7A10E100060C00 /* HomeHeaderView.swift */; };
+		580B78981C7A11A800060C00 /* HomeWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B78971C7A11A800060C00 /* HomeWheelView.swift */; };
+		580B789A1C7A11B700060C00 /* HomeGoButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B78991C7A11B700060C00 /* HomeGoButtonView.swift */; };
+		580B789C1C7A11DD00060C00 /* HomeNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B789B1C7A11DD00060C00 /* HomeNumberView.swift */; };
 		58195BFA1C3572ED00F56A30 /* FilterableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58195BF91C3572ED00F56A30 /* FilterableProtocol.swift */; };
 		58195C021C35868400F56A30 /* icon_bof.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195BFC1C35868400F56A30 /* icon_bof.png */; };
 		58195C031C35868400F56A30 /* icon_conf.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195BFD1C35868400F56A30 /* icon_conf.png */; };
@@ -149,6 +153,10 @@
 		580B788C1C7A07AF00060C00 /* devoxxExhibitionFloorTablet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = devoxxExhibitionFloorTablet.jpg; path = bundledImages/devoxxExhibitionFloorTablet.jpg; sourceTree = "<group>"; };
 		580B788D1C7A07AF00060C00 /* devoxxCinameFloorPhone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = devoxxCinameFloorPhone.jpg; path = bundledImages/devoxxCinameFloorPhone.jpg; sourceTree = "<group>"; };
 		580B788E1C7A07AF00060C00 /* devoxxExhibitionFloorPhone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = devoxxExhibitionFloorPhone.jpg; path = bundledImages/devoxxExhibitionFloorPhone.jpg; sourceTree = "<group>"; };
+		580B78951C7A10E100060C00 /* HomeHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeHeaderView.swift; path = devoxxApp/HomeHeaderView.swift; sourceTree = "<group>"; };
+		580B78971C7A11A800060C00 /* HomeWheelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWheelView.swift; sourceTree = "<group>"; };
+		580B78991C7A11B700060C00 /* HomeGoButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeGoButtonView.swift; sourceTree = "<group>"; };
+		580B789B1C7A11DD00060C00 /* HomeNumberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNumberView.swift; sourceTree = "<group>"; };
 		58195BF91C3572ED00F56A30 /* FilterableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterableProtocol.swift; sourceTree = "<group>"; };
 		58195BFC1C35868400F56A30 /* icon_bof.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_bof.png; path = icon/talkType/icon_bof.png; sourceTree = "<group>"; };
 		58195BFD1C35868400F56A30 /* icon_conf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_conf.png; path = icon/talkType/icon_conf.png; sourceTree = "<group>"; };
@@ -183,7 +191,7 @@
 		5895EB8D1C66683600229780 /* DevoxxBelgiumHomePage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxBelgiumHomePage.jpg; sourceTree = "<group>"; };
 		5895EB9A1C66684000229780 /* globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = globe.png; sourceTree = "<group>"; };
 		5895EB9B1C66684000229780 /* pirulen.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pirulen.ttf; sourceTree = "<group>"; };
-		5895EB9E1C66698800229780 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5895EB9E1C66698800229780 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = devoxxApp/ViewController.swift; sourceTree = "<group>"; };
 		5895EB9F1C66698800229780 /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		5895EBA01C66698800229780 /* MDRotatingPieChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDRotatingPieChart.swift; sourceTree = "<group>"; };
 		58A0E8C01C272FF9000C49DD /* TrackHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackHelper.swift; sourceTree = "<group>"; };
@@ -310,6 +318,11 @@
 			isa = PBXGroup;
 			children = (
 				580B786A1C74FD9A00060C00 /* SpeakerCell.swift */,
+				580B78951C7A10E100060C00 /* HomeHeaderView.swift */,
+				580B78971C7A11A800060C00 /* HomeWheelView.swift */,
+				580B78991C7A11B700060C00 /* HomeGoButtonView.swift */,
+				580B789B1C7A11DD00060C00 /* HomeNumberView.swift */,
+				5895EB9E1C66698800229780 /* ViewController.swift */,
 				E10E7ABF1C18BF7100F6220B /* devoxxApp */,
 				E10E7AD81C18BF7100F6220B /* devoxxAppTests */,
 				E10E7ABE1C18BF7100F6220B /* Products */,
@@ -468,7 +481,6 @@
 				5895EB8D1C66683600229780 /* DevoxxBelgiumHomePage.jpg */,
 				5895EB9A1C66684000229780 /* globe.png */,
 				5895EB9B1C66684000229780 /* pirulen.ttf */,
-				5895EB9E1C66698800229780 /* ViewController.swift */,
 				5895EB9F1C66698800229780 /* ContainerController.swift */,
 				5895EBA01C66698800229780 /* MDRotatingPieChart.swift */,
 			);
@@ -778,7 +790,9 @@
 				E175F26B1C4867F300D7AC0A /* FilterTableView.swift in Sources */,
 				E10CE1AA1C2BD6DE002C9934 /* TalkTypeHelper.swift in Sources */,
 				587286201C1F589400FC098A /* Speaker.swift in Sources */,
+				580B789C1C7A11DD00060C00 /* HomeNumberView.swift in Sources */,
 				E175F2711C49AF7B00D7AC0A /* ScrollableTableProtocol.swift in Sources */,
+				580B78981C7A11A800060C00 /* HomeWheelView.swift in Sources */,
 				5895EBA31C66698800229780 /* MDRotatingPieChart.swift in Sources */,
 				E1FA9C4A1C1BFD560077C09A /* TalkHelper.swift in Sources */,
 				E10CE1B01C2BDB72002C9934 /* AttributeHelper.swift in Sources */,
@@ -793,6 +807,7 @@
 				58BA2BFC1C3331EF0031C2E3 /* Etag.swift in Sources */,
 				5895EB7D1C6662F300229780 /* Cfp.swift in Sources */,
 				E1FA9BEE1C1BF4E70077C09A /* ColorManager.swift in Sources */,
+				580B78961C7A10E100060C00 /* HomeHeaderView.swift in Sources */,
 				E1FA9C491C1BFD560077C09A /* SlotHelper.swift in Sources */,
 				5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */,
 				5872861B1C1F565C00FC098A /* SpeakerTableController.swift in Sources */,
@@ -806,6 +821,7 @@
 				E10CE1A61C2BD0CB002C9934 /* FeedableProtocol.swift in Sources */,
 				E1FA9C371C1BFCC60077C09A /* ScheduleController.swift in Sources */,
 				E1FA9C2D1C1BFC690077C09A /* Swifty.swift in Sources */,
+				580B789A1C7A11B700060C00 /* HomeGoButtonView.swift in Sources */,
 				580B786F1C76688400060C00 /* GenericPageScrollController.swift in Sources */,
 				5895EBA21C66698800229780 /* ContainerController.swift in Sources */,
 				E127E6581C38117000FB7E4F /* SwitchableProtocol.swift in Sources */,

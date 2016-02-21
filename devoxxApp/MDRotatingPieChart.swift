@@ -221,10 +221,10 @@ class MDRotatingPieChart: UIControl {
         let zoom = CATransform3DMakeScale(properties.zoomIn, properties.zoomIn, 1)
         currentLayer.transform = CATransform3DConcat(currentTransform, zoom)
         
-        let arrayInt = self.datasource.numbersForSliceAtIndex(currentSelected)
-        self.number1.text = "\(arrayInt[0])"
-        self.number2.text = "\(arrayInt[1])"
-        self.number3.text = "\(arrayInt[2])"
+        //let arrayInt = self.datasource.numbersForSliceAtIndex(currentSelected)
+        //self.number1.text = "\(arrayInt[0])"
+        //self.number2.text = "\(arrayInt[1])"
+        //self.number3.text = "\(arrayInt[2])"
         
     }
     
@@ -398,9 +398,9 @@ class MDRotatingPieChart: UIControl {
             self.textLabel.text = self.slicesArray[index].label
     
             let arrayInt = self.datasource.numbersForSliceAtIndex(index)
-            self.number1.text = "\(arrayInt[0])"
-            self.number2.text = "\(arrayInt[1])"
-            self.number3.text = "\(arrayInt[2])"
+            //self.number1.text = "\(arrayInt[0])"
+            //self.number2.text = "\(arrayInt[1])"
+            //self.number3.text = "\(arrayInt[2])"
                 
               
             

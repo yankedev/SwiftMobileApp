@@ -24,19 +24,9 @@ class ContainerController: UIViewController {
         let color = UIColor(red: 248/255, green: 185/255, blue: 17/255, alpha: 1)
         
 
-        let title = UIImageView(frame: CGRectMake(40, 30, 300, 40))
-        title.image = UIImage(named: "logo.png")
-        view.addSubview(title)
-        
-        
-        let devoxxTitle = UILabel(frame: CGRectMake(40, 75, 300, 40))
-        devoxxTitle.textAlignment = .Center
-        devoxxTitle.font = UIFont(name: "Pirulen", size: 25)
-        devoxxTitle.textColor = color
-        view.addSubview(devoxxTitle)
         
         pieChart = MDRotatingPieChart(frame: CGRectMake(0, 0, 380, 380))
-        pieChart.textLabel = devoxxTitle
+        pieChart.textLabel = UILabel()
     
         let pieChartView = UIView(frame: CGRectMake(0, 100, 380, 380))
         pieChartView.addSubview(pieChart)
