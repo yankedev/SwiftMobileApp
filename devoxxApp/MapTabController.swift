@@ -99,7 +99,7 @@ public class MapTabController : UIViewController {
     }
     
     func change(sender : UISegmentedControl) {
-        print("changed")
+       
         
         if(sender.selectedSegmentIndex == 0) {
             segZero()
