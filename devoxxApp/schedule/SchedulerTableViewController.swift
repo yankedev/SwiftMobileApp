@@ -164,7 +164,7 @@ public class SchedulerTableViewController:
       
             details.configure()
             details.setColor(slot.favorited())
-            print(slot.talk.favorited())
+         
             self.navigationController?.pushViewController(details, animated: true)
             
 

@@ -53,7 +53,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         APIManager.setEvent(self.slicesData.objectAtIndex(self.currentSelectedIndex) as! Cfp)
         
         
-        print(APIManager.currentEvent)
+       
         
         APIManager.eventFeed()
         
