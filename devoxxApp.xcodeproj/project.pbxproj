@@ -49,15 +49,15 @@
 		5895EB7F1C66635100229780 /* Cfp.json in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB7E1C66635100229780 /* Cfp.json */; };
 		5895EB811C66642A00229780 /* CfpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5895EB801C66642A00229780 /* CfpHelper.swift */; };
 		5895EB8E1C66683600229780 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB821C66683600229780 /* logo.png */; };
-		5895EB8F1C66683600229780 /* splash_btn_DevoxxPL2015.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB831C66683600229780 /* splash_btn_DevoxxPL2015.png */; };
-		5895EB901C66683600229780 /* splash_btn_DevoxxFR2016.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB841C66683600229780 /* splash_btn_DevoxxFR2016.png */; };
-		5895EB911C66683600229780 /* splash_btn_DevoxxUK2016.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB851C66683600229780 /* splash_btn_DevoxxUK2016.png */; };
-		5895EB921C66683600229780 /* splash_btn_DV15.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB861C66683600229780 /* splash_btn_DV15.png */; };
+		5895EB8F1C66683600229780 /* splash_btn_DevoxxPL2015@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB831C66683600229780 /* splash_btn_DevoxxPL2015@2x.png */; };
+		5895EB901C66683600229780 /* splash_btn_DevoxxFR2016@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB841C66683600229780 /* splash_btn_DevoxxFR2016@2x.png */; };
+		5895EB911C66683600229780 /* splash_btn_DevoxxUK2016@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB851C66683600229780 /* splash_btn_DevoxxUK2016@2x.png */; };
+		5895EB921C66683600229780 /* splash_btn_DV15@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB861C66683600229780 /* splash_btn_DV15@2x.png */; };
 		5895EB931C66683600229780 /* devoxx.svg.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB871C66683600229780 /* devoxx.svg.png */; };
-		5895EB941C66683600229780 /* splash_btn_DevoxxMA2015.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB881C66683600229780 /* splash_btn_DevoxxMA2015.png */; };
+		5895EB941C66683600229780 /* splash_btn_DevoxxMA2015@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB881C66683600229780 /* splash_btn_DevoxxMA2015@2x.png */; };
 		5895EB951C66683600229780 /* DevoxxMoroccoHomePage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB891C66683600229780 /* DevoxxMoroccoHomePage.jpg */; };
 		5895EB961C66683600229780 /* DevoxxFranceHomePage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB8A1C66683600229780 /* DevoxxFranceHomePage.jpg */; };
-		5895EB971C66683600229780 /* DevoxxUKHomePage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB8B1C66683600229780 /* DevoxxUKHomePage.jpg */; };
+		5895EB971C66683600229780 /* DevoxxUKHomePage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB8B1C66683600229780 /* DevoxxUKHomePage@2x.jpg */; };
 		5895EB981C66683600229780 /* DevoxxPolandHomePage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB8C1C66683600229780 /* DevoxxPolandHomePage.jpg */; };
 		5895EB991C66683600229780 /* DevoxxBelgiumHomePage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB8D1C66683600229780 /* DevoxxBelgiumHomePage.jpg */; };
 		5895EB9C1C66684000229780 /* globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB9A1C66684000229780 /* globe.png */; };
@@ -186,15 +186,15 @@
 		5895EB7E1C66635100229780 /* Cfp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cfp.json; sourceTree = "<group>"; };
 		5895EB801C66642A00229780 /* CfpHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CfpHelper.swift; sourceTree = "<group>"; };
 		5895EB821C66683600229780 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
-		5895EB831C66683600229780 /* splash_btn_DevoxxPL2015.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_btn_DevoxxPL2015.png; sourceTree = "<group>"; };
-		5895EB841C66683600229780 /* splash_btn_DevoxxFR2016.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_btn_DevoxxFR2016.png; sourceTree = "<group>"; };
-		5895EB851C66683600229780 /* splash_btn_DevoxxUK2016.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_btn_DevoxxUK2016.png; sourceTree = "<group>"; };
-		5895EB861C66683600229780 /* splash_btn_DV15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_btn_DV15.png; sourceTree = "<group>"; };
+		5895EB831C66683600229780 /* splash_btn_DevoxxPL2015@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_btn_DevoxxPL2015@2x.png"; sourceTree = "<group>"; };
+		5895EB841C66683600229780 /* splash_btn_DevoxxFR2016@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_btn_DevoxxFR2016@2x.png"; sourceTree = "<group>"; };
+		5895EB851C66683600229780 /* splash_btn_DevoxxUK2016@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_btn_DevoxxUK2016@2x.png"; sourceTree = "<group>"; };
+		5895EB861C66683600229780 /* splash_btn_DV15@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_btn_DV15@2x.png"; sourceTree = "<group>"; };
 		5895EB871C66683600229780 /* devoxx.svg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = devoxx.svg.png; sourceTree = "<group>"; };
-		5895EB881C66683600229780 /* splash_btn_DevoxxMA2015.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_btn_DevoxxMA2015.png; sourceTree = "<group>"; };
+		5895EB881C66683600229780 /* splash_btn_DevoxxMA2015@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_btn_DevoxxMA2015@2x.png"; sourceTree = "<group>"; };
 		5895EB891C66683600229780 /* DevoxxMoroccoHomePage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxMoroccoHomePage.jpg; sourceTree = "<group>"; };
 		5895EB8A1C66683600229780 /* DevoxxFranceHomePage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxFranceHomePage.jpg; sourceTree = "<group>"; };
-		5895EB8B1C66683600229780 /* DevoxxUKHomePage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxUKHomePage.jpg; sourceTree = "<group>"; };
+		5895EB8B1C66683600229780 /* DevoxxUKHomePage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "DevoxxUKHomePage@2x.jpg"; sourceTree = "<group>"; };
 		5895EB8C1C66683600229780 /* DevoxxPolandHomePage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxPolandHomePage.jpg; sourceTree = "<group>"; };
 		5895EB8D1C66683600229780 /* DevoxxBelgiumHomePage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxBelgiumHomePage.jpg; sourceTree = "<group>"; };
 		5895EB9A1C66684000229780 /* globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = globe.png; sourceTree = "<group>"; };
@@ -480,15 +480,15 @@
 				E127E6691C39709400FB7E4F /* Track.json */,
 				5895EB7E1C66635100229780 /* Cfp.json */,
 				5895EB821C66683600229780 /* logo.png */,
-				5895EB831C66683600229780 /* splash_btn_DevoxxPL2015.png */,
-				5895EB841C66683600229780 /* splash_btn_DevoxxFR2016.png */,
-				5895EB851C66683600229780 /* splash_btn_DevoxxUK2016.png */,
-				5895EB861C66683600229780 /* splash_btn_DV15.png */,
+				5895EB831C66683600229780 /* splash_btn_DevoxxPL2015@2x.png */,
+				5895EB841C66683600229780 /* splash_btn_DevoxxFR2016@2x.png */,
+				5895EB851C66683600229780 /* splash_btn_DevoxxUK2016@2x.png */,
+				5895EB861C66683600229780 /* splash_btn_DV15@2x.png */,
 				5895EB871C66683600229780 /* devoxx.svg.png */,
-				5895EB881C66683600229780 /* splash_btn_DevoxxMA2015.png */,
+				5895EB881C66683600229780 /* splash_btn_DevoxxMA2015@2x.png */,
 				5895EB891C66683600229780 /* DevoxxMoroccoHomePage.jpg */,
 				5895EB8A1C66683600229780 /* DevoxxFranceHomePage.jpg */,
-				5895EB8B1C66683600229780 /* DevoxxUKHomePage.jpg */,
+				5895EB8B1C66683600229780 /* DevoxxUKHomePage@2x.jpg */,
 				5895EB8C1C66683600229780 /* DevoxxPolandHomePage.jpg */,
 				5895EB8D1C66683600229780 /* DevoxxBelgiumHomePage.jpg */,
 				5895EB9A1C66684000229780 /* globe.png */,
@@ -709,10 +709,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				58195C031C35868400F56A30 /* icon_conf.png in Resources */,
-				5895EB901C66683600229780 /* splash_btn_DevoxxFR2016.png in Resources */,
+				5895EB901C66683600229780 /* splash_btn_DevoxxFR2016@2x.png in Resources */,
 				580B78901C7A07AF00060C00 /* DevoxxFRExhibitionPhone.jpg in Resources */,
 				58195C111C3587EE00F56A30 /* icon_uni.png in Resources */,
-				5895EB941C66683600229780 /* splash_btn_DevoxxMA2015.png in Resources */,
+				5895EB941C66683600229780 /* splash_btn_DevoxxMA2015@2x.png in Resources */,
 				5895EB9D1C66684000229780 /* pirulen.ttf in Resources */,
 				E127E66C1C39709400FB7E4F /* Speaker.json in Resources */,
 				580B788F1C7A07AF00060C00 /* DevoxxFRExhibitionTablet.jpg in Resources */,
@@ -728,7 +728,7 @@
 				E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */,
 				E1FA9C191C1BFC150077C09A /* icon_cloud.png in Resources */,
 				580B78911C7A07AF00060C00 /* devoxxCinameFloorTablet.jpg in Resources */,
-				5895EB911C66683600229780 /* splash_btn_DevoxxUK2016.png in Resources */,
+				5895EB911C66683600229780 /* splash_btn_DevoxxUK2016@2x.png in Resources */,
 				E1FA9C271C1BFC1E0077C09A /* tabIconSpeaker@2x.png in Resources */,
 				5895EB9C1C66684000229780 /* globe.png in Resources */,
 				5895EB981C66683600229780 /* DevoxxPolandHomePage.jpg in Resources */,
@@ -742,7 +742,7 @@
 				E175F25E1C46FFAD00D7AC0A /* 02.json in Resources */,
 				580B78931C7A07AF00060C00 /* devoxxCinameFloorPhone.jpg in Resources */,
 				5895EB7F1C66635100229780 /* Cfp.json in Resources */,
-				5895EB921C66683600229780 /* splash_btn_DV15.png in Resources */,
+				5895EB921C66683600229780 /* splash_btn_DV15@2x.png in Resources */,
 				E17DFF3D1C72884F00A09547 /* filter@2x.png in Resources */,
 				E1FA9C251C1BFC1E0077C09A /* tabIconMap@2x.png in Resources */,
 				58195C051C35868400F56A30 /* icon_ignite.png in Resources */,
@@ -761,8 +761,8 @@
 				E1FA9C1C1C1BFC150077C09A /* icon_lang.png in Resources */,
 				E1FA9C1D1C1BFC150077C09A /* icon_methodevops.png in Resources */,
 				580B78AA1C7A884800060C00 /* event.png in Resources */,
-				5895EB8F1C66683600229780 /* splash_btn_DevoxxPL2015.png in Resources */,
-				5895EB971C66683600229780 /* DevoxxUKHomePage.jpg in Resources */,
+				5895EB8F1C66683600229780 /* splash_btn_DevoxxPL2015@2x.png in Resources */,
+				5895EB971C66683600229780 /* DevoxxUKHomePage@2x.jpg in Resources */,
 				580B78791C76771800060C00 /* speaker@2x.jpg in Resources */,
 				E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */,
 				58195C071C35868400F56A30 /* icon_quick.png in Resources */,
