@@ -11,6 +11,7 @@ import UIKit
 
 class HomeHeaderView : UIView {
 
+    let eventLocation = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,7 +22,7 @@ class HomeHeaderView : UIView {
         title.image = UIImage(named: "logo.png")
         addSubview(title)
         
-        let eventLocation = UILabel()
+        
         eventLocation.textAlignment = .Center
         eventLocation.font = UIFont(name: "Pirulen", size: 25)
         eventLocation.textColor = ColorManager.homeFontColor

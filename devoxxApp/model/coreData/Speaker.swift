@@ -17,6 +17,7 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
     @NSManaged var lastName: String?
     @NSManaged var avatarUrl: String?
     @NSManaged var href: String?
+    @NSManaged var eventId: String?
     
     func getFirstInformation() -> String {
         return "\(firstName!.capitalizedString) \(lastName!.capitalizedString)"
@@ -49,6 +50,7 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
             lastName = castHelper.lastName
             avatarUrl = castHelper.avatarUrl
             href = castHelper.href
+            eventId = APIManager.currentEvent.id!
         }
     }
     

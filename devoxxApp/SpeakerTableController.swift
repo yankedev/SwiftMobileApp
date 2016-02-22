@@ -21,11 +21,11 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
-        
+        let predicateEvent = NSPredicate(format: "eventId = %@", APIManager.currentEvent.id!)
         let fetchRequest = NSFetchRequest(entityName: "Speaker")
         fetchRequest.includesSubentities = true
         fetchRequest.returnsObjectsAsFaults = false
-
+        fetchRequest.predicate = predicateEvent
         let sort = NSSortDescriptor(key: "firstName", ascending: true)
         fetchRequest.sortDescriptors = [sort]
 

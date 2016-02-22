@@ -29,9 +29,10 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
   
     let color = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)
     let tabController = UITabBarController()
-    var currentSelectedIndex = 4
+    var currentSelectedIndex = 0
     var imgView:UIImageView!
     var globeView:UIView!
+    var eventLocation:UILabel!
 
     func generateScheduleTableViewController() -> ScrollableDateProtocol {
         return SchedulerTableViewController()
@@ -116,6 +117,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         let numberView = HomeNumberView()
 
         globeView = wheelView.globe
+        eventLocation = headerView.eventLocation
         
         view.addSubview(headerView)
         view.addSubview(wheelView)
@@ -170,6 +172,8 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
                
         goView.goButton.addTarget(self, action: Selector("prepareNext"), forControlEvents: .TouchUpInside)
         
+        
+        willOpenSliceAtIndex(4)
       
     }
     
@@ -186,8 +190,10 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
     func willOpenSliceAtIndex(index: Int) {
         if let currentData = slicesData[index] as? EventProtocol {
             imgView.image = UIImage(data: currentData.backgroundImage())
+            eventLocation.text = currentData.title()
         }
         currentSelectedIndex = index
+        
     }
     
     func willCloseSliceAtIndex(index: Int) {
