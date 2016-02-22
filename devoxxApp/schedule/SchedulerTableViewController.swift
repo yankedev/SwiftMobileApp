@@ -220,9 +220,12 @@ public class SchedulerTableViewController:
             if cell!.thirdInformation.text == "" {
                 cell!.backgroundColor = cellData.getColor()
                 cell!.thirdInformation.backgroundColor = UIColor.clearColor()
+                cell?.secondInformation.hidden = true
+                cell?.primaryImage.image = UIImage(named: "cofeeCup.png")
             }
             else {
                 cell!.thirdInformation.backgroundColor = cellData.getColor()
+                cell?.secondInformation.hidden = false
             }
             
             

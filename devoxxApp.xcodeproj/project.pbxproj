@@ -28,6 +28,7 @@
 		580B78AA1C7A884800060C00 /* event.png in Resources */ = {isa = PBXBuildFile; fileRef = 580B78A91C7A884800060C00 /* event.png */; };
 		580B78AE1C7A8B9600060C00 /* down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 580B78AD1C7A8B9600060C00 /* down@2x.png */; };
 		580B78B01C7A8BE100060C00 /* up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 580B78AF1C7A8BE100060C00 /* up@2x.png */; };
+		580B78B21C7BA8AB00060C00 /* cofeeCup.png in Resources */ = {isa = PBXBuildFile; fileRef = 580B78B11C7BA8AB00060C00 /* cofeeCup.png */; };
 		58195BFA1C3572ED00F56A30 /* FilterableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58195BF91C3572ED00F56A30 /* FilterableProtocol.swift */; };
 		58195C021C35868400F56A30 /* icon_bof.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195BFC1C35868400F56A30 /* icon_bof.png */; };
 		58195C031C35868400F56A30 /* icon_conf.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195BFD1C35868400F56A30 /* icon_conf.png */; };
@@ -165,6 +166,7 @@
 		580B78A91C7A884800060C00 /* event.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event.png; sourceTree = "<group>"; };
 		580B78AD1C7A8B9600060C00 /* down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "down@2x.png"; path = "devoxxApp/down@2x.png"; sourceTree = "<group>"; };
 		580B78AF1C7A8BE100060C00 /* up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "up@2x.png"; path = "devoxxApp/up@2x.png"; sourceTree = "<group>"; };
+		580B78B11C7BA8AB00060C00 /* cofeeCup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cofeeCup.png; sourceTree = "<group>"; };
 		58195BF91C3572ED00F56A30 /* FilterableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterableProtocol.swift; sourceTree = "<group>"; };
 		58195BFC1C35868400F56A30 /* icon_bof.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_bof.png; path = icon/talkType/icon_bof.png; sourceTree = "<group>"; };
 		58195BFD1C35868400F56A30 /* icon_conf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_conf.png; path = icon/talkType/icon_conf.png; sourceTree = "<group>"; };
@@ -465,6 +467,7 @@
 		E175F2741C49B18E00D7AC0A /* mock */ = {
 			isa = PBXGroup;
 			children = (
+				580B78B11C7BA8AB00060C00 /* cofeeCup.png */,
 				580B78801C78956F00060C00 /* ImageMap.json */,
 				580B78781C76771800060C00 /* speaker@2x.jpg */,
 				58C6A8171C74A171005CDCA1 /* filterWhite@2x.png */,
@@ -769,6 +772,7 @@
 				5895EB991C66683600229780 /* DevoxxBelgiumHomePage.jpg in Resources */,
 				E175F25C1C46FFAD00D7AC0A /* 00.json in Resources */,
 				E127E66E1C39709400FB7E4F /* Track.json in Resources */,
+				580B78B21C7BA8AB00060C00 /* cofeeCup.png in Resources */,
 				E1FA9C1F1C1BFC150077C09A /* icon_ssj.png in Resources */,
 				5895EB931C66683600229780 /* devoxx.svg.png in Resources */,
 				58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */,
