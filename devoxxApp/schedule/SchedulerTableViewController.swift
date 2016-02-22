@@ -161,9 +161,12 @@ public class SchedulerTableViewController:
             details.indexPath = indexPath
             details.talk = slot.talk
             details.delegate = self
-            //details.configure()
-            details.setColor(slot.talk.favorited())
+      
+            details.configure()
+            details.setColor(slot.favorited())
+            print(slot.talk.favorited())
             self.navigationController?.pushViewController(details, animated: true)
+            
 
         }
     }

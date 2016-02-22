@@ -18,7 +18,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     var talkTrack : UILabel!
     var talkDescription : UILabel!
    // var speakers: UITableView!
-    //var addFavoriteButton : UIBarButtonItem!
+    var addFavoriteButton : UIBarButtonItem!
     var indexPath: NSIndexPath!
     var delegate : DevoxxAppFavoriteDelegate!
     
@@ -156,39 +156,32 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     }
     
     public func clicked() {
-       //let response = delegate.favorite(indexPath)
-        //setColor(response)
+       let response = delegate.favorite(indexPath)
+       setColor(response)
     }
     
     public func setColor(isFavorited: Bool) {
-        /*if isFavorited {
+        if isFavorited {
             addFavoriteButton.tintColor = UIColor.whiteColor()
         }
         else {
             addFavoriteButton.tintColor = UIColor.blackColor()
-        }*/
+        }
     }
     
     public func configure() {
-        //let button = UIButton(type: UIButtonType.Custom)
-       // button.frame = CGRectMake(0, 0, 30, 30)
-        //button.setBackgroundImage(UIImage(named: "StarOn"), forState: UIControlState.Selected)
-        //button.setBackgroundImage(UIImage(named: "StarOff"), forState: UIControlState.Normal)
+        let button = UIButton(type: UIButtonType.Custom)
+        button.frame = CGRectMake(0, 0, 30, 30)
+        button.setBackgroundImage(UIImage(named: "StarOn"), forState: UIControlState.Selected)
+        button.setBackgroundImage(UIImage(named: "StarOff"), forState: UIControlState.Normal)
 
-        //addFavoriteButton = UIBarButtonItem(customView: button)
-        //addFavoriteButton = UIBarButtonItem(image: UIImage(named: "StarOff"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("clicked"))
+        addFavoriteButton = UIBarButtonItem(customView: button)
+        addFavoriteButton = UIBarButtonItem(image: UIImage(named: "StarOff"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("clicked"))
         //addFavoriteButton.tintColor = getTintColorFromTag(details.addFavoriteButton.tag)
+        
+        self.navigationItem.rightBarButtonItem = addFavoriteButton
     }
     
-    public override func viewWillAppear(animated: Bool) {
-
-        
-        //TODO
-        //self.parentViewController?.parentViewController?.navigationController?.navigationItem.rightBarButtonItem = addFavoriteButton
-        
-
-        
-    }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return talk.speakers.count
