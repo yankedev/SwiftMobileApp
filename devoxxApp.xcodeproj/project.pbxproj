@@ -24,9 +24,10 @@
 		580B78981C7A11A800060C00 /* HomeWheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B78971C7A11A800060C00 /* HomeWheelView.swift */; };
 		580B789A1C7A11B700060C00 /* HomeGoButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B78991C7A11B700060C00 /* HomeGoButtonView.swift */; };
 		580B789C1C7A11DD00060C00 /* HomeNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B789B1C7A11DD00060C00 /* HomeNumberView.swift */; };
-		580B78A51C7A769400060C00 /* down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 580B78A31C7A769400060C00 /* down@2x.png */; };
-		580B78A61C7A769400060C00 /* up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 580B78A41C7A769400060C00 /* up@2x.png */; };
 		580B78A81C7A78A200060C00 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B78A71C7A78A200060C00 /* HeaderView.swift */; };
+		580B78AA1C7A884800060C00 /* event.png in Resources */ = {isa = PBXBuildFile; fileRef = 580B78A91C7A884800060C00 /* event.png */; };
+		580B78AE1C7A8B9600060C00 /* down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 580B78AD1C7A8B9600060C00 /* down@2x.png */; };
+		580B78B01C7A8BE100060C00 /* up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 580B78AF1C7A8BE100060C00 /* up@2x.png */; };
 		58195BFA1C3572ED00F56A30 /* FilterableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58195BF91C3572ED00F56A30 /* FilterableProtocol.swift */; };
 		58195C021C35868400F56A30 /* icon_bof.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195BFC1C35868400F56A30 /* icon_bof.png */; };
 		58195C031C35868400F56A30 /* icon_conf.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195BFD1C35868400F56A30 /* icon_conf.png */; };
@@ -160,9 +161,10 @@
 		580B78971C7A11A800060C00 /* HomeWheelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWheelView.swift; sourceTree = "<group>"; };
 		580B78991C7A11B700060C00 /* HomeGoButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeGoButtonView.swift; sourceTree = "<group>"; };
 		580B789B1C7A11DD00060C00 /* HomeNumberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeNumberView.swift; sourceTree = "<group>"; };
-		580B78A31C7A769400060C00 /* down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down@2x.png"; sourceTree = "<group>"; };
-		580B78A41C7A769400060C00 /* up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "up@2x.png"; sourceTree = "<group>"; };
 		580B78A71C7A78A200060C00 /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		580B78A91C7A884800060C00 /* event.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = event.png; sourceTree = "<group>"; };
+		580B78AD1C7A8B9600060C00 /* down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "down@2x.png"; path = "devoxxApp/down@2x.png"; sourceTree = "<group>"; };
+		580B78AF1C7A8BE100060C00 /* up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "up@2x.png"; path = "devoxxApp/up@2x.png"; sourceTree = "<group>"; };
 		58195BF91C3572ED00F56A30 /* FilterableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterableProtocol.swift; sourceTree = "<group>"; };
 		58195BFC1C35868400F56A30 /* icon_bof.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_bof.png; path = icon/talkType/icon_bof.png; sourceTree = "<group>"; };
 		58195BFD1C35868400F56A30 /* icon_conf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_conf.png; path = icon/talkType/icon_conf.png; sourceTree = "<group>"; };
@@ -323,9 +325,9 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				580B78AF1C7A8BE100060C00 /* up@2x.png */,
+				580B78AD1C7A8B9600060C00 /* down@2x.png */,
 				580B78A71C7A78A200060C00 /* HeaderView.swift */,
-				580B78A31C7A769400060C00 /* down@2x.png */,
-				580B78A41C7A769400060C00 /* up@2x.png */,
 				580B786A1C74FD9A00060C00 /* SpeakerCell.swift */,
 				580B78951C7A10E100060C00 /* HomeHeaderView.swift */,
 				580B78971C7A11A800060C00 /* HomeWheelView.swift */,
@@ -351,6 +353,7 @@
 		E10E7ABF1C18BF7100F6220B /* devoxxApp */ = {
 			isa = PBXGroup;
 			children = (
+				580B78A91C7A884800060C00 /* event.png */,
 				580B78881C7A07A100060C00 /* bundledImages */,
 				E175F2741C49B18E00D7AC0A /* mock */,
 				E175F26F1C49AF4200D7AC0A /* protocol */,
@@ -721,9 +724,7 @@
 				58195C171C359F7500F56A30 /* checkboxOn.png in Resources */,
 				58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */,
 				580B78811C78956F00060C00 /* ImageMap.json in Resources */,
-				580B78A51C7A769400060C00 /* down@2x.png in Resources */,
 				58195C161C359F7500F56A30 /* checkboxOff.png in Resources */,
-				580B78A61C7A769400060C00 /* up@2x.png in Resources */,
 				E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */,
 				E1FA9C191C1BFC150077C09A /* icon_cloud.png in Resources */,
 				580B78911C7A07AF00060C00 /* devoxxCinameFloorTablet.jpg in Resources */,
@@ -733,6 +734,7 @@
 				5895EB981C66683600229780 /* DevoxxPolandHomePage.jpg in Resources */,
 				E10E7ACD1C18BF7100F6220B /* Images.xcassets in Resources */,
 				5895EB961C66683600229780 /* DevoxxFranceHomePage.jpg in Resources */,
+				580B78AE1C7A8B9600060C00 /* down@2x.png in Resources */,
 				58195C0F1C3587C600F56A30 /* icon_tia.png in Resources */,
 				E1FA9C2F1C1BFC730077C09A /* Roboto-Regular.ttf in Resources */,
 				58195C061C35868400F56A30 /* icon_key.png in Resources */,
@@ -758,6 +760,7 @@
 				E127E66D1C39709400FB7E4F /* TalkType.json in Resources */,
 				E1FA9C1C1C1BFC150077C09A /* icon_lang.png in Resources */,
 				E1FA9C1D1C1BFC150077C09A /* icon_methodevops.png in Resources */,
+				580B78AA1C7A884800060C00 /* event.png in Resources */,
 				5895EB8F1C66683600229780 /* splash_btn_DevoxxPL2015.png in Resources */,
 				5895EB971C66683600229780 /* DevoxxUKHomePage.jpg in Resources */,
 				580B78791C76771800060C00 /* speaker@2x.jpg in Resources */,
@@ -770,6 +773,7 @@
 				5895EB931C66683600229780 /* devoxx.svg.png in Resources */,
 				58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */,
 				58C6A8181C74A171005CDCA1 /* filterWhite@2x.png in Resources */,
+				580B78B01C7A8BE100060C00 /* up@2x.png in Resources */,
 				58195C041C35868400F56A30 /* icon_lab.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

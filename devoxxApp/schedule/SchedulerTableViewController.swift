@@ -474,25 +474,56 @@ public class SchedulerTableViewController:
     public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         var title = ""
+        var nbTalks = 0
+    
+        var set = Set<String>()
         if let sections = frc?.sections {
             let currentSection = sections[section]
             if let slot = currentSection.objects![0] as? Slot {
                 title = "\(currentSection.name) - \(slot.toTime)"
             }
+            nbTalks = currentSection.objects!.count
+            for slot in currentSection.objects! {
+                if let currentSlot = slot as? Slot {
+                    print("Jajoute \(currentSlot.talk.track)")
+                    set.insert(currentSlot.talk.track)
+                }
+            }
             
         }
         
+        let breakSlot = (set.count == 1 && set.first == "")
         
         let headerView = HeaderView(frame: CGRectMake(0,0,schedulerTableView.frame.width, 50))
         headerView.headerString.text = title
+        
+        
+        headerView.tag = section
         headerView.upDown.tag = section
-        headerView.upDown.addTarget(self, action: Selector("openClose:"), forControlEvents: .TouchUpInside)
+        headerView.upDown.addTarget(self, action: Selector("openCloseButton:"), forControlEvents: .TouchUpInside)
         headerView.upDown.selected = openedSections[section]
+        
+        if breakSlot {
+            headerView.upDown.hidden = breakSlot
+            headerView.eventImg.hidden = breakSlot
+            headerView.numberOfTalkString.text = ""
+        }
+        else {
+            let pluralTracks = (set.count > 1) ? "tracks" : "track"
+            let pluralTalks = (nbTalks > 1) ? "talks" : "talk"
+            
+            headerView.numberOfTalkString.text = "\(nbTalks) \(pluralTalks) in \(set.count) \(pluralTracks)"
+            
+            let tap = UITapGestureRecognizer(target: self, action: Selector("openCloseView:"))
+            headerView.addGestureRecognizer(tap)
+        }
+        
+
         return headerView
     }
     
     
-    func openClose(sender: UIButton) {
+    func openCloseButton(sender: UIButton) {
         let indexPath : NSIndexPath = NSIndexPath(forRow: 0, inSection:(sender.tag as Int!)!)
         if (indexPath.row == 0) {
             
@@ -503,6 +534,24 @@ public class SchedulerTableViewController:
             self.schedulerTableView .reloadSections(sectionToReload, withRowAnimation:UITableViewRowAnimation.Fade)
         }
         sender.selected = !sender.selected
+    }
+
+    
+    func openCloseView(sender: UITapGestureRecognizer) {
+        let indexPath : NSIndexPath = NSIndexPath(forRow: 0, inSection:(sender.view!.tag as Int!)!)
+        if (indexPath.row == 0) {
+            
+            openedSections[indexPath.section] =  !openedSections[indexPath.section]
+            
+            let range = NSMakeRange(indexPath.section, 1)
+            let sectionToReload = NSIndexSet(indexesInRange: range)
+            self.schedulerTableView .reloadSections(sectionToReload, withRowAnimation:UITableViewRowAnimation.Fade)
+        }
+        
+        if let view = sender.view as? HeaderView {
+            view.upDown.selected = !view.upDown.selected
+        }
+        
     }
 
 
