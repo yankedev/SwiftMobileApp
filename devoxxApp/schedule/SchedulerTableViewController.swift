@@ -300,14 +300,13 @@ public class SchedulerTableViewController:
         if let sections = frc?.sections {
             
             
-            if(openedSections[section]) {
-                let currentSection = sections[section]
-                return currentSection.numberOfObjects
+            if(searchingString.isEmpty && !openedSections[section]) {
+                return 0
             }
-            return 0;
             
             
-            /*
+            
+            
             let currentSection = sections[section]
             
             
@@ -337,28 +336,27 @@ public class SchedulerTableViewController:
             
             
             return filterArray(obj).count
-            */
+
         }
         
         return 0
     }
-    /*
-    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    
+    public func getSection(section: Int) -> NSFetchedResultsSectionInfo? {
         if let sections = frc?.sections {
             
             if !searchingString.isEmpty {
-                return searchedSections[section].name
+                return searchedSections[section]
             }
             
             if !isFavorite {
-                return sections[section].name
+                return sections[section]
             }
-            return favoriteSections[section].name
+            return favoriteSections[section]
         }
-        
         return nil
     }
-    */
+    
     public func updateSection() {
         
         favoriteSections = (frc?.sections)!
@@ -489,25 +487,33 @@ public class SchedulerTableViewController:
     }
     
     
+    
     public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         var title = ""
         var nbTalks = 0
     
         var set = Set<String>()
-        if let sections = frc?.sections {
-            let currentSection = sections[section]
-            if let slot = currentSection.objects![0] as? Slot {
-                title = "\(currentSection.name) - \(slot.toTime)"
-            }
-            nbTalks = currentSection.objects!.count
-            for slot in currentSection.objects! {
-                if let currentSlot = slot as? Slot {
-                    set.insert(currentSlot.talk.track)
-                }
-            }
-            
+        
+        let currentSection = getSection(section)!
+        
+        
+        var obj = currentSection.objects!
+        if !searchingString.isEmpty {
+            obj = filterSearchArray(obj)
         }
+
+        if let slot = obj[0] as? Slot {
+            title = "\(currentSection.name) - \(slot.toTime)"
+        }
+        nbTalks = obj.count
+        for slot in obj {
+            if let currentSlot = slot as? Slot {
+                set.insert(currentSlot.talk.track)
+            }
+        }
+            
+        
         
         let breakSlot = (set.count == 1 && set.first == "")
         
