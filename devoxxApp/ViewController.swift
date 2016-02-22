@@ -9,6 +9,20 @@
 import UIKit
 
 
+extension UIView {
+    func rotate360Degrees(duration: CFTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
+        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotateAnimation.fromValue = 0.0
+        rotateAnimation.toValue = CGFloat(M_PI * 2.0)
+        rotateAnimation.duration = duration
+        
+        if let delegate: AnyObject = completionDelegate {
+            rotateAnimation.delegate = delegate
+        }
+        self.layer.addAnimation(rotateAnimation, forKey: nil)
+    }
+}
+
 class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPieChartDataSource {
     
     var slicesData:NSArray!
@@ -17,6 +31,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
     let tabController = UITabBarController()
     var currentSelectedIndex = 4
     var imgView:UIImageView!
+    var globeView:UIView!
 
     func generateScheduleTableViewController() -> ScrollableDateProtocol {
         return SchedulerTableViewController()
@@ -30,9 +45,11 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
     
     func prepareNext() {
         
+        globeView.rotate360Degrees()
         
+        dispatch_async(dispatch_get_main_queue()) {
         //selectedEvent
-        APIManager.setEvent(slicesData.objectAtIndex(currentSelectedIndex) as! Cfp)
+        APIManager.setEvent(self.slicesData.objectAtIndex(self.currentSelectedIndex) as! Cfp)
         
         
         print(APIManager.currentEvent)
@@ -41,7 +58,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         
         
         
-        let scheduleController = ScheduleController<SchedulerTableViewController>(generator:generateScheduleTableViewController)
+        let scheduleController = ScheduleController<SchedulerTableViewController>(generator:self.generateScheduleTableViewController)
         let speakerController = SpeakerTableController()
         let mapController = MapTabController()
         
@@ -59,19 +76,20 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         
         
         
-        let scroll = GenericPageScrollController<MapController>(generator:generate)
+        //let scroll = GenericPageScrollController<MapController>(generator:generate)
         
        let mapNavigationController = UINavigationController(rootViewController: mapController)
         
         
-        tabController.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController]
-        tabController.tabBar.translucent = false
-        tabController.view.backgroundColor = UIColor.whiteColor()
+        self.tabController.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController]
+        self.tabController.tabBar.translucent = false
+        self.tabController.view.backgroundColor = UIColor.whiteColor()
         //TODO BACK BUTTON
         //self.navigationController?.navigationBarHidden = false
         
-        addChildViewController(tabController)
-        view.addSubview(tabController.view)
+        self.addChildViewController(self.tabController)
+        self.view.addSubview(self.tabController.view)
+        }
         //self.navigationController?.pushViewController(tabController, animated: true)
 
     }
@@ -97,6 +115,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         let goView = HomeGoButtonView()
         let numberView = HomeNumberView()
 
+        globeView = wheelView.globe
         
         view.addSubview(headerView)
         view.addSubview(wheelView)

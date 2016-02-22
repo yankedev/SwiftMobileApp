@@ -12,10 +12,14 @@ import UIKit
 class HomeWheelView : UIView {
     
     var pieChart:MDRotatingPieChart!
+    var globe:UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
+        globe = UIImageView(frame: CGRectMake(0, 0, 130, 130))
+        globe.image = UIImage(named: "globe")
+        
     }
     
     func setConstraints() {
@@ -62,9 +66,6 @@ class HomeWheelView : UIView {
         self.layoutIfNeeded()
         
         
-        let globe = UIImageView(frame: CGRectMake(0, 0, 130, 130))
-        
-        globe.image = UIImage(named: "globe")
         pieChart.addSubview(globe)
 
         
