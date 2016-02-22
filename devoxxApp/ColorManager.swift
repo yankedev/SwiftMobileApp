@@ -30,6 +30,8 @@ class ColorManager {
     static var favoriteBackgroundColor = UIColor(red: 251/255, green: 207/255, blue: 148/255, alpha: 0.4)
     static var filterBackgroundColor = UIColor(red: 228/255, green: 228/255, blue: 228/255, alpha: 1)
     
+    static var breakColor = UIColor(red: 233/255, green: 233/255, blue: 233/255, alpha: 1)
+    
     
     
     
@@ -58,7 +60,7 @@ class ColorManager {
         if(talkType == "Tools-in-Action") {
             return toolsInActionColor
         }
-        return defaultColor
+        return breakColor
     }
 
     

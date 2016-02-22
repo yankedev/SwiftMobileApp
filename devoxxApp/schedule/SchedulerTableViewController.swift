@@ -209,11 +209,21 @@ public class SchedulerTableViewController:
             cell!.firstInformation.text = cellData.getFirstInformation()
             cell!.secondInformation.text = cellData.getSecondInformation()
             cell!.thirdInformation.text = cellData.getThirdInformation()
-            cell!.thirdInformation.backgroundColor = cellData.getColor()
 
+            
             if let fav = cellData as? FavoriteProtocol {
                 cell!.updateBackgroundColor(fav.favorited())
             }
+            
+            if cell!.thirdInformation.text == "" {
+                cell!.backgroundColor = cellData.getColor()
+                cell!.thirdInformation.backgroundColor = UIColor.clearColor()
+            }
+            else {
+                cell!.thirdInformation.backgroundColor = cellData.getColor()
+            }
+            
+            
             
         } else {
             // todo should be be here
@@ -507,6 +517,7 @@ public class SchedulerTableViewController:
             headerView.upDown.hidden = breakSlot
             headerView.eventImg.hidden = breakSlot
             headerView.numberOfTalkString.text = ""
+            headerView.backgroundColor = ColorManager.breakColor
         }
         else {
             let pluralTracks = (set.count > 1) ? "tracks" : "track"
