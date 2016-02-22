@@ -85,7 +85,14 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         self.pageViewController.navigationItem.leftBarButtonItem = customView!.backLeftButton
 
         
-        self.pageViewController.navigationItem.title = humanReadableDateFromNSDate(allDates[0].objectForKey("date") as! NSDate)
+        
+        if allDates.count == 0 {
+            self.pageViewController.navigationItem.title = "No data yet"
+        }
+        else {
+            self.pageViewController.navigationItem.title = humanReadableDateFromNSDate(allDates[0].objectForKey("date") as! NSDate)
+        }
+        
        
         
       
@@ -272,7 +279,6 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     
     
     func back() {
-        print("BACK")
         self.parentViewController!.view.removeFromSuperview()
         self.parentViewController?.removeFromParentViewController()
     }

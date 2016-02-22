@@ -99,8 +99,10 @@ public class SchedulerTableViewController:
     private func computePredicate() -> NSPredicate {
         var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "date = %@", self.currentDate)
+        let predicateEvent = NSPredicate(format: "eventId = %@", APIManager.currentEvent.id!)
         
         andPredicate.append(predicateDay)
+        andPredicate.append(predicateEvent)
         
         var attributeOrPredicate = [NSPredicate]()
         
@@ -495,7 +497,6 @@ public class SchedulerTableViewController:
             nbTalks = currentSection.objects!.count
             for slot in currentSection.objects! {
                 if let currentSlot = slot as? Slot {
-                    print("Jajoute \(currentSlot.talk.track)")
                     set.insert(currentSlot.talk.track)
                 }
             }

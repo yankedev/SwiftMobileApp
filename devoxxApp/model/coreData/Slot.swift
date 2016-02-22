@@ -19,6 +19,7 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
     @NSManaged var day: String
     @NSManaged var date: NSDate
     @NSManaged var fromTimeMillis: NSNumber
+    @NSManaged var eventId: String
     
     @NSManaged var talk: Talk
 
@@ -50,6 +51,7 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
             toTime = castHelper.toTime!
             day = castHelper.day!
             fromTimeMillis = castHelper.fromTimeMillis!
+            eventId = APIManager.currentEvent.id!
             //millis -> sec
             let savedDate =  NSDate(timeIntervalSince1970: fromTimeMillis.doubleValue/1000)
             let calendar = NSCalendar.currentCalendar()

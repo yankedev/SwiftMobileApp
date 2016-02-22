@@ -57,7 +57,7 @@
 		5895EB941C66683600229780 /* splash_btn_DevoxxMA2015@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB881C66683600229780 /* splash_btn_DevoxxMA2015@2x.png */; };
 		5895EB951C66683600229780 /* DevoxxMoroccoHomePage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB891C66683600229780 /* DevoxxMoroccoHomePage.jpg */; };
 		5895EB961C66683600229780 /* DevoxxFranceHomePage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB8A1C66683600229780 /* DevoxxFranceHomePage.jpg */; };
-		5895EB971C66683600229780 /* DevoxxUKHomePage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB8B1C66683600229780 /* DevoxxUKHomePage@2x.jpg */; };
+		5895EB971C66683600229780 /* DevoxxUKHomePage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB8B1C66683600229780 /* DevoxxUKHomePage.jpg */; };
 		5895EB981C66683600229780 /* DevoxxPolandHomePage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB8C1C66683600229780 /* DevoxxPolandHomePage.jpg */; };
 		5895EB991C66683600229780 /* DevoxxBelgiumHomePage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB8D1C66683600229780 /* DevoxxBelgiumHomePage.jpg */; };
 		5895EB9C1C66684000229780 /* globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB9A1C66684000229780 /* globe.png */; };
@@ -194,7 +194,7 @@
 		5895EB881C66683600229780 /* splash_btn_DevoxxMA2015@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_btn_DevoxxMA2015@2x.png"; sourceTree = "<group>"; };
 		5895EB891C66683600229780 /* DevoxxMoroccoHomePage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxMoroccoHomePage.jpg; sourceTree = "<group>"; };
 		5895EB8A1C66683600229780 /* DevoxxFranceHomePage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxFranceHomePage.jpg; sourceTree = "<group>"; };
-		5895EB8B1C66683600229780 /* DevoxxUKHomePage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "DevoxxUKHomePage@2x.jpg"; sourceTree = "<group>"; };
+		5895EB8B1C66683600229780 /* DevoxxUKHomePage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxUKHomePage.jpg; sourceTree = "<group>"; };
 		5895EB8C1C66683600229780 /* DevoxxPolandHomePage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxPolandHomePage.jpg; sourceTree = "<group>"; };
 		5895EB8D1C66683600229780 /* DevoxxBelgiumHomePage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxBelgiumHomePage.jpg; sourceTree = "<group>"; };
 		5895EB9A1C66684000229780 /* globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = globe.png; sourceTree = "<group>"; };
@@ -488,7 +488,7 @@
 				5895EB881C66683600229780 /* splash_btn_DevoxxMA2015@2x.png */,
 				5895EB891C66683600229780 /* DevoxxMoroccoHomePage.jpg */,
 				5895EB8A1C66683600229780 /* DevoxxFranceHomePage.jpg */,
-				5895EB8B1C66683600229780 /* DevoxxUKHomePage@2x.jpg */,
+				5895EB8B1C66683600229780 /* DevoxxUKHomePage.jpg */,
 				5895EB8C1C66683600229780 /* DevoxxPolandHomePage.jpg */,
 				5895EB8D1C66683600229780 /* DevoxxBelgiumHomePage.jpg */,
 				5895EB9A1C66684000229780 /* globe.png */,
@@ -762,7 +762,7 @@
 				E1FA9C1D1C1BFC150077C09A /* icon_methodevops.png in Resources */,
 				580B78AA1C7A884800060C00 /* event.png in Resources */,
 				5895EB8F1C66683600229780 /* splash_btn_DevoxxPL2015@2x.png in Resources */,
-				5895EB971C66683600229780 /* DevoxxUKHomePage@2x.jpg in Resources */,
+				5895EB971C66683600229780 /* DevoxxUKHomePage.jpg in Resources */,
 				580B78791C76771800060C00 /* speaker@2x.jpg in Resources */,
 				E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */,
 				58195C071C35868400F56A30 /* icon_quick.png in Resources */,

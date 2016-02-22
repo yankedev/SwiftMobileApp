@@ -119,7 +119,6 @@ public class MapTabController : UIViewController {
     }
     
     func back() {
-        print("BACK")
         self.parentViewController!.parentViewController?.view!.removeFromSuperview()
         self.parentViewController?.parentViewController?.removeFromParentViewController()
     }

@@ -20,8 +20,14 @@ let apiURLS:[String : [String]] = ["Slot" : ["http://cfp.devoxx.be/api/conferenc
 
 
 
+let commonUrl:[String : [String]] = ["Image" : ["ImageMap"], "Cfp" : ["Cfp"]]
+let apiURLS:[String : [String]] =  ["Slot" : ["00","01","02","03"], "TalkType" : ["TalkType"], "Track" :  ["Track"], "Speaker" :  ["Speaker"]]
+let otherUrls:[String : [String]] = ["Slot" : [], "TalkType" : [], "Track" :  [], "Speaker" :  []]
 
-let apiURLS:[String : [String]] = ["Image" : ["ImageMap"], "Cfp" : ["Cfp"], "Slot" : ["00","01","02","03"], "TalkType" : ["TalkType"], "Track" :  ["Track"], "Speaker" :  ["Speaker"]]
+
+let allData = ["DV15" : apiURLS, "DevoxxMA2015" : otherUrls, "DevoxxPL2015" : otherUrls, "DevoxxUK2016" : otherUrls, "DevoxxFR2016" : otherUrls]
+
+
 
 class APIManager {
     
@@ -118,10 +124,12 @@ class APIManager {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
         let fetchRequest = buildFetchRequest(context, name: "Slot")
+        let predicateEvent = NSPredicate(format: "eventId = %@", APIManager.currentEvent.id!)
         fetchRequest.resultType = .DictionaryResultType
         fetchRequest.returnsDistinctResults = true
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
         fetchRequest.propertiesToFetch = ["date"]
+        fetchRequest.predicate = predicateEvent
         let items = try! context.executeFetchRequest(fetchRequest)
         return items
     }
@@ -140,8 +148,10 @@ class APIManager {
     }
     
     class func getDateFromIndex(index : NSInteger, array: NSArray) -> NSDate {
-        if let dict = array.objectAtIndex(index) as? NSDictionary {
-            return (dict.objectForKey("date") as? NSDate)!
+        if index < array.count  {
+            if let dict = array.objectAtIndex(index) as? NSDictionary {
+                return (dict.objectForKey("date") as? NSDate)!
+            }
         }
         //error
         return NSDate()
@@ -316,17 +326,47 @@ class APIManager {
     // FIRST FEED
     
     class func firstFeed() {
-        singleFeed(ImageHelper())
-        singleFeed(CfpHelper())
+        singleCommonFeed(ImageHelper())
+        singleCommonFeed(CfpHelper())
+    }
+    
+    class func eventFeed() {
         singleFeed(SpeakerHelper())
         singleFeed(SlotHelper())
         singleFeed(TalkTypeHelper())
         singleFeed(TrackHelper())
     }
     
+    
+    class func singleCommonFeed(helper : DataHelperProtocol) {
+        
+        let url = commonUrl[helper.entityName()]
+        
+        let testBundle = NSBundle.mainBundle()
+        
+        for singleUrl in url! {
+            
+            let filePath = testBundle.pathForResource(singleUrl, ofType: "json")
+            let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
+            if(checkString == nil) {
+                print("should not be empty", terminator: "")
+            }
+            let data = NSData(contentsOfFile: filePath!)!
+            self.handleData(data, dataHelper: helper)
+        }
+        
+        
+    }
+    
+    
     class func singleFeed(helper : DataHelperProtocol) {
-        let url = apiURLS[helper.typeName()]
-
+        
+        
+        
+        let s = allData[currentEvent!.id!]
+        let url = s![helper.typeName()]
+        
+        
         let testBundle = NSBundle.mainBundle()
         
         for singleUrl in url! {

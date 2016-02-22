@@ -15,7 +15,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
   
     let color = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)
     let tabController = UITabBarController()
-    var currentSelectedIndex = 0
+    var currentSelectedIndex = 4
     var imgView:UIImageView!
 
     func generateScheduleTableViewController() -> ScrollableDateProtocol {
@@ -35,6 +35,9 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         APIManager.setEvent(slicesData.objectAtIndex(currentSelectedIndex) as! Cfp)
         
         
+        print(APIManager.currentEvent)
+        
+        APIManager.eventFeed()
         
         
         

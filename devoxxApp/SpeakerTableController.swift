@@ -40,7 +40,6 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     }
     
     func back() {
-        print("BACK")
         self.parentViewController!.parentViewController?.view!.removeFromSuperview()
         self.parentViewController?.parentViewController?.removeFromParentViewController()
     }
