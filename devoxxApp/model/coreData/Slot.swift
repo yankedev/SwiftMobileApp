@@ -23,6 +23,12 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
     
     @NSManaged var talk: Talk
 
+    
+    func getFriendlyTime() -> String {
+        return ("\(fromTime)-\(toTime)")
+    }
+    
+    
     func getPrimaryImage() -> UIImage? {
         return UIImage(named: talk.getIconFromTrackId())
     }

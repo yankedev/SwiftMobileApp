@@ -33,6 +33,9 @@ class ColorManager {
     static var breakColor = UIColor(red: 233/255, green: 233/255, blue: 233/255, alpha: 1)
     
     
+    static var grayImageColor = UIColor(red: 67/255, green: 67/255, blue: 67/255, alpha: 1)
+    
+    
     
     
     class func getColorFromTalkType(talkType : String) -> UIColor {

@@ -159,7 +159,7 @@ public class SchedulerTableViewController:
             let details = TalkDetailsController()
             //todo
             details.indexPath = indexPath
-            details.talk = slot.talk
+            details.slot = slot
             details.delegate = self
       
             details.configure()

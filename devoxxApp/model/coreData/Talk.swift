@@ -25,6 +25,23 @@ class Talk: NSManagedObject, FeedableProtocol{
         return "icon_\(trackId)"
     }
     
+    func getFriendlySpeaker() -> String {
+        var returnString = ""
+        var isFirst = true
+        for spk in speakers {
+            if let castSpk = spk as? Speaker {
+                if(isFirst)  {
+                    returnString = returnString + castSpk.getFirstInformation()
+                    isFirst = false
+                }
+                else {
+                    returnString = returnString + "\n" + castSpk.getFirstInformation()
+                }
+            }
+        }
+        return returnString
+    }
+    
     func getShortTalkTypeName() -> String {
         if(talkType == "Ignite Sessions") {
             return "Ignite"
