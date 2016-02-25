@@ -38,9 +38,9 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         talkTitle.textAlignment = .Justified
         talkTitle.textColor = UIColor.whiteColor()
         //talkTitle.backgroundColor = UIColor.redColor()
-        talkTitle.font = UIFont(name: "Arial", size: 20)
+        talkTitle.font = UIFont(name: "Arial", size: 17)
         talkTitle.translatesAutoresizingMaskIntoConstraints = false
-        talkTitle.numberOfLines = 0
+        talkTitle.numberOfLines = 2
         
 
         
@@ -131,8 +131,8 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         
         let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[header]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        //let constH3 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkTitle]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        //let constH4 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkTrack]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH3 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkTitle]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH4 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkTrack]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         let constH5 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[details]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
      
@@ -148,8 +148,8 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
 
         view.addConstraints(constH)
         view.addConstraints(constH2)
-        //view.addConstraints(constH3)
-       // view.addConstraints(constH4)
+        view.addConstraints(constH3)
+        view.addConstraints(constH4)
         view.addConstraints(constH5)
         
         view.addConstraints(constV)
@@ -162,7 +162,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         
         
         
-        header.bounds = CGRectInset(view.frame, -10.0, 0.0)
+        
         
         details.layoutIfNeeded()
         
@@ -172,7 +172,13 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         details.simpleDetailView2.textView.firstInfo.text = "Format"
         details.simpleDetailView2.textView.secondInfo.text = slot.talk.getShortTalkTypeName()
         
-        details.simpleDetailView3.textView.firstInfo.text = "Presentor"
+        if slot.talk.speakers.count == 1 {
+            details.simpleDetailView3.textView.firstInfo.text = "Presentor"
+        }
+        else {
+            details.simpleDetailView3.textView.firstInfo.text = "Presentors"
+        }
+        
         details.simpleDetailView3.textView.secondInfo.text = slot.talk.getFriendlySpeaker()
         
         details.simpleDetailView4.textView.firstInfo.text = "Date and time"
