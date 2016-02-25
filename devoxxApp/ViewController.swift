@@ -27,6 +27,8 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
     
     var slicesData:NSArray!
   
+    let wheelView = HomeWheelView()
+    
     let color = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)
     let tabController = UITabBarController()
     var currentSelectedIndex = 0
@@ -46,7 +48,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
     
     func prepareNext() {
         
-        globeView.rotate360Degrees()
+        //globeView.rotate360Degrees()
         
         dispatch_async(dispatch_get_main_queue()) {
         //selectedEvent
@@ -112,7 +114,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         self.view.addSubview(imgView)
         
         let headerView = HomeHeaderView()
-        let wheelView = HomeWheelView()
+        
         let goView = HomeGoButtonView()
         let numberView = HomeNumberView()
 
@@ -135,9 +137,13 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         let horizontalContraint3:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[numberView]-0-|", options: layout, metrics: nil, views: viewsDictionary)
         
         
-        let height = view.frame.size.height
+        let v1 = NSLayoutConstraint(item: headerView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Height, multiplier: 0.15, constant: 0)
+        let v2 = NSLayoutConstraint(item: wheelView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Height, multiplier: 0.6, constant: 0)
+        let v3 = NSLayoutConstraint(item: goView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Height, multiplier: 0.1, constant: 0)
+        let v4 = NSLayoutConstraint(item: numberView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Height, multiplier: 0.15, constant: 0)
+      
         
-        let verticalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[headerView(\(0.15*height))]-0-[wheelView(\(0.6*height))]-0-[goView(\(0.1*height))]-0-[numberView(\(0.15*height))]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
+        let verticalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[headerView]-0-[wheelView]-0-[goView]-0-[numberView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
         
         
         self.view.addConstraints(horizontalContraint0)
@@ -148,6 +154,10 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         self.view.addConstraints(verticalContraint)
         
         
+        self.view.addConstraint(v1)
+        self.view.addConstraint(v2)
+        self.view.addConstraint(v3)
+        self.view.addConstraint(v4)
         
     
         numberView.applyConstraint()
@@ -176,6 +186,8 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         willOpenSliceAtIndex(4)
       
     }
+    
+ 
     
     //Delegate
     //some sample messages when actions are triggered (open/close slices)

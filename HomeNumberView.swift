@@ -91,34 +91,24 @@ class HomeNumberView : UIView {
         
         let layout = NSLayoutFormatOptions(rawValue: 0)
         
-        let width = frame.size.width
-        let height = frame.size.height
-        
-        
-        let labelSize = width/4
-        let spaceSize = width/16
-        
-        let vNumberSize = 0.4*height
-        let vSpaceSize = 0.15*height
-        
-        
+               
  
         
-        let horizontalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-\(spaceSize)-[number1(\(labelSize))]-\(spaceSize)-[number2(\(labelSize))]-\(spaceSize)-[number3(\(labelSize))]-\(spaceSize)-|", options: layout, metrics: nil, views: viewDictionary)
+        let horizontalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[number1(100)]-20-[number2(100)]-20-[number3]-0-|", options: layout, metrics: nil, views: viewDictionary)
         
         
         
-        let horizontalContraint1:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-\(spaceSize)-[label1(\(labelSize))]-\(spaceSize)-[label2(\(labelSize))]-\(spaceSize)-[label3(\(labelSize))]-\(spaceSize)-|", options: layout, metrics: nil, views: viewDictionary)
+        let horizontalContraint1:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[label1(100)]-0-[label2(100)]-0-[label3]-0-|", options: layout, metrics: nil, views: viewDictionary)
         
         
         
-        let verticalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(vSpaceSize)-[number1(\(vNumberSize))]-0-[label1]-\(vSpaceSize)-|", options: layout, metrics: nil, views: viewDictionary)
+        let verticalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[number1(100)]-0-[label1]-0-|", options: layout, metrics: nil, views: viewDictionary)
 
         
-        let verticalContraint1:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(vSpaceSize)-[number2(\(vNumberSize))]-0-[label2]-\(vSpaceSize)-|", options: layout, metrics: nil, views: viewDictionary)
+        let verticalContraint1:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[number2(100)]-0-[label2]-0-|", options: layout, metrics: nil, views: viewDictionary)
 
         
-        let verticalContraint2:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(vSpaceSize)-[number3(\(vNumberSize))]-0-[label3]-\(vSpaceSize)-|", options: layout, metrics: nil, views: viewDictionary)
+        let verticalContraint2:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[number3(100)]-0-[label3]-0-|", options: layout, metrics: nil, views: viewDictionary)
 
     
         
