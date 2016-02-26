@@ -40,7 +40,6 @@
 		580CD2B01C7E65AC00152E4C /* ic_place@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 580CD2AF1C7E65AC00152E4C /* ic_place@2x.png */; };
 		580CD2B21C7E65E300152E4C /* ic_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 580CD2B11C7E65E300152E4C /* ic_star@2x.png */; };
 		580CD2B41C7E665300152E4C /* ic_time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 580CD2B31C7E665300152E4C /* ic_time@2x.png */; };
-		580CD2B81C7E6F0100152E4C /* BottomDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580CD2B71C7E6F0100152E4C /* BottomDetailView.swift */; };
 		58195BFA1C3572ED00F56A30 /* FilterableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58195BF91C3572ED00F56A30 /* FilterableProtocol.swift */; };
 		58195C021C35868400F56A30 /* icon_bof.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195BFC1C35868400F56A30 /* icon_bof.png */; };
 		58195C031C35868400F56A30 /* icon_conf.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195BFD1C35868400F56A30 /* icon_conf.png */; };
@@ -58,7 +57,9 @@
 		5872861B1C1F565C00FC098A /* SpeakerTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861A1C1F565C00FC098A /* SpeakerTableController.swift */; };
 		5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861C1C1F579900FC098A /* SpeakerHelper.swift */; };
 		587286201C1F589400FC098A /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861E1C1F589400FC098A /* Speaker.swift */; };
-		588CFDCE1C7E6FEB00DEC1E6 /* InfoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588CFDCD1C7E6FEB00DEC1E6 /* InfoDetailView.swift */; };
+		588CFDD01C80C77100DEC1E6 /* talk_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 588CFDCF1C80C77100DEC1E6 /* talk_background.png */; };
+		588CFDD21C80F9A400DEC1E6 /* SpeakerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588CFDD11C80F9A400DEC1E6 /* SpeakerListView.swift */; };
+		588CFDD41C80F9FC00DEC1E6 /* GobalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588CFDD31C80F9FC00DEC1E6 /* GobalDetailView.swift */; };
 		5895EB7D1C6662F300229780 /* Cfp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5895EB7B1C6662F300229780 /* Cfp.swift */; };
 		5895EB7F1C66635100229780 /* Cfp.json in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB7E1C66635100229780 /* Cfp.json */; };
 		5895EB811C66642A00229780 /* CfpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5895EB801C66642A00229780 /* CfpHelper.swift */; };
@@ -191,7 +192,6 @@
 		580CD2AF1C7E65AC00152E4C /* ic_place@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_place@2x.png"; sourceTree = "<group>"; };
 		580CD2B11C7E65E300152E4C /* ic_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_star@2x.png"; sourceTree = "<group>"; };
 		580CD2B31C7E665300152E4C /* ic_time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_time@2x.png"; sourceTree = "<group>"; };
-		580CD2B71C7E6F0100152E4C /* BottomDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomDetailView.swift; sourceTree = "<group>"; };
 		58195BF91C3572ED00F56A30 /* FilterableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterableProtocol.swift; sourceTree = "<group>"; };
 		58195BFC1C35868400F56A30 /* icon_bof.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_bof.png; path = icon/talkType/icon_bof.png; sourceTree = "<group>"; };
 		58195BFD1C35868400F56A30 /* icon_conf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_conf.png; path = icon/talkType/icon_conf.png; sourceTree = "<group>"; };
@@ -209,7 +209,9 @@
 		5872861A1C1F565C00FC098A /* SpeakerTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerTableController.swift; sourceTree = "<group>"; };
 		5872861C1C1F579900FC098A /* SpeakerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerHelper.swift; sourceTree = "<group>"; };
 		5872861E1C1F589400FC098A /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Speaker.swift; path = model/coreData/Speaker.swift; sourceTree = "<group>"; };
-		588CFDCD1C7E6FEB00DEC1E6 /* InfoDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDetailView.swift; sourceTree = "<group>"; };
+		588CFDCF1C80C77100DEC1E6 /* talk_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = talk_background.png; sourceTree = "<group>"; };
+		588CFDD11C80F9A400DEC1E6 /* SpeakerListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerListView.swift; sourceTree = "<group>"; };
+		588CFDD31C80F9FC00DEC1E6 /* GobalDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GobalDetailView.swift; path = devoxxApp/GobalDetailView.swift; sourceTree = "<group>"; };
 		5895EB7B1C6662F300229780 /* Cfp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cfp.swift; sourceTree = "<group>"; };
 		5895EB7E1C66635100229780 /* Cfp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cfp.json; sourceTree = "<group>"; };
 		5895EB801C66642A00229780 /* CfpHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CfpHelper.swift; sourceTree = "<group>"; };
@@ -353,6 +355,8 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				588CFDD11C80F9A400DEC1E6 /* SpeakerListView.swift */,
+				588CFDCF1C80C77100DEC1E6 /* talk_background.png */,
 				580CD2AB1C7E613300152E4C /* star@2x.png */,
 				580CD2A91C7E5F9400152E4C /* micro@2x.png */,
 				580CD2AD1C7E653C00152E4C /* ic_microphone@2x.png */,
@@ -361,8 +365,6 @@
 				580CD2B11C7E65E300152E4C /* ic_star@2x.png */,
 				580CD2A71C7E5E3900152E4C /* location@2x.png */,
 				580CD2A51C7E5A4100152E4C /* TopInfoDetailView.swift */,
-				580CD2B71C7E6F0100152E4C /* BottomDetailView.swift */,
-				588CFDCD1C7E6FEB00DEC1E6 /* InfoDetailView.swift */,
 				580CD2A31C7E51DC00152E4C /* topRed.png */,
 				580CD2A11C7DDA7900152E4C /* AllDetailsView.swift */,
 				580CD29F1C7DCFD900152E4C /* SimpleDetailView.swift */,
@@ -375,6 +377,7 @@
 				580B78991C7A11B700060C00 /* HomeGoButtonView.swift */,
 				580B789B1C7A11DD00060C00 /* HomeNumberView.swift */,
 				5895EB9E1C66698800229780 /* ViewController.swift */,
+				588CFDD31C80F9FC00DEC1E6 /* GobalDetailView.swift */,
 				E10E7ABF1C18BF7100F6220B /* devoxxApp */,
 				E10E7AD81C18BF7100F6220B /* devoxxAppTests */,
 				E10E7ABE1C18BF7100F6220B /* Products */,
@@ -820,6 +823,7 @@
 				5895EB991C66683600229780 /* DevoxxBelgiumHomePage.jpg in Resources */,
 				E175F25C1C46FFAD00D7AC0A /* 00.json in Resources */,
 				E127E66E1C39709400FB7E4F /* Track.json in Resources */,
+				588CFDD01C80C77100DEC1E6 /* talk_background.png in Resources */,
 				580B78B21C7BA8AB00060C00 /* cofeeCup.png in Resources */,
 				E1FA9C1F1C1BFC150077C09A /* icon_ssj.png in Resources */,
 				5895EB931C66683600229780 /* devoxx.svg.png in Resources */,
@@ -852,14 +856,13 @@
 				58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */,
 				58F67CDD1C308C64007D2B97 /* Favorite.swift in Sources */,
 				580B78851C78988500060C00 /* Image.swift in Sources */,
-				580CD2B81C7E6F0100152E4C /* BottomDetailView.swift in Sources */,
 				E127E6601C38313200FB7E4F /* SearchableTableProtocol.swift in Sources */,
 				580CD2A21C7DDA7900152E4C /* AllDetailsView.swift in Sources */,
 				58195BFA1C3572ED00F56A30 /* FilterableProtocol.swift in Sources */,
 				E175F26B1C4867F300D7AC0A /* FilterTableView.swift in Sources */,
 				E10CE1AA1C2BD6DE002C9934 /* TalkTypeHelper.swift in Sources */,
-				588CFDCE1C7E6FEB00DEC1E6 /* InfoDetailView.swift in Sources */,
 				587286201C1F589400FC098A /* Speaker.swift in Sources */,
+				588CFDD21C80F9A400DEC1E6 /* SpeakerListView.swift in Sources */,
 				580B789C1C7A11DD00060C00 /* HomeNumberView.swift in Sources */,
 				E175F2711C49AF7B00D7AC0A /* ScrollableTableProtocol.swift in Sources */,
 				580B78981C7A11A800060C00 /* HomeWheelView.swift in Sources */,
@@ -871,6 +874,7 @@
 				58195C131C359A4E00F56A30 /* FilterViewCell.swift in Sources */,
 				E175F2731C49B01A00D7AC0A /* SearchableItemProtocol.swift in Sources */,
 				580B78711C766BDD00060C00 /* MapTabController.swift in Sources */,
+				588CFDD41C80F9FC00DEC1E6 /* GobalDetailView.swift in Sources */,
 				E175F2761C52A50C00D7AC0A /* ScheduleControllerView.swift in Sources */,
 				E17DFF411C79D7FB00A09547 /* Floor.swift in Sources */,
 				5895EBA11C66698800229780 /* ViewController.swift in Sources */,

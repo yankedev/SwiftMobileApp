@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-class SimpleDetailView<T : InfoDetailView> : UIView {
+class SimpleDetailView : UIView {
     
     let iconView = UIImageView()
-    let textView = T()
+    let textView = TopInfoDetailView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,7 +40,7 @@ class SimpleDetailView<T : InfoDetailView> : UIView {
         let views = ["iconView": iconView, "textView" : textView]
         
         
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[iconView(50)]-0-[textView]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
+        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[iconView(50)]-0-[textView]-0-|", options: .AlignAllCenterY, metrics: nil, views: views)
         let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[iconView]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         let constV1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[textView]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
 
@@ -50,8 +50,8 @@ class SimpleDetailView<T : InfoDetailView> : UIView {
         
 
         
-        self.layoutIfNeeded()
-        textView.configure()
+        //self.layoutIfNeeded()
+        //textView.configure()
         
         
         

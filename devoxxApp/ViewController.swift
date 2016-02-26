@@ -177,7 +177,29 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
                
         wheelView.pieChart.datasource = self
         wheelView.pieChart.delegate = self
-        wheelView.pieChart.build()
+        
+        
+        view.layoutIfNeeded()
+        wheelView.layoutIfNeeded()
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       
+        print(wheelView.pieChart.frame)
+        let point = self.wheelView.convertPoint(wheelView.pieChart.center, toView: wheelView)
+        print(point)
+        let point2 = CGPointMake(point.x-wheelView.pieChart.frame.origin.x, point.y-wheelView.pieChart.frame.origin.y)
+        print(point2)
+        
+        wheelView.pieChart.build(point2)
+        
+      
 
                
         goView.goButton.addTarget(self, action: Selector("prepareNext"), forControlEvents: .TouchUpInside)
@@ -186,6 +208,21 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         willOpenSliceAtIndex(4)
       
     }
+    
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        print("wheellos")
+        
+        print(wheelView.pieChart.frame)
+        let point = self.wheelView.convertPoint(wheelView.pieChart.center, toView: wheelView)
+        print(point)
+        let point2 = CGPointMake(point.x-wheelView.pieChart.frame.origin.x, point.y-wheelView.pieChart.frame.origin.y)
+        print(point2)
+        
+        wheelView.pieChart.build(point2)
+    }
+    
+    
     
  
     

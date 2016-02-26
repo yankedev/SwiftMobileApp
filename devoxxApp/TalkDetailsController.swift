@@ -55,7 +55,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         
        
         
-        let inputImage = UIImage(named: "topRed.png")
+        let inputImage = UIImage(named: "talk_background.png")
         header = UIImageView(image: inputImage)
         header.contentMode = .ScaleAspectFill
         header.clipsToBounds = true
@@ -68,7 +68,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         
         
         
-        let details = AllDetailsView()
+        let details = GobalDetailView()
         details.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(details)
         
@@ -95,7 +95,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
                     relatedBy: NSLayoutRelation.Equal,
                     toItem: header,
                     attribute: NSLayoutAttribute.Bottom,
-                    multiplier: 1-0.5,
+                    multiplier: 1-0.6,
                     constant: 0)
         
                 header.addConstraint(talkTitleHeight)
@@ -106,7 +106,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
                     relatedBy: NSLayoutRelation.Equal,
                 toItem: header,
                     attribute: NSLayoutAttribute.Height,
-                    multiplier: 0.5-0.33,
+                    multiplier: 0.2,
                     constant: 0)
         
                 let talkTrackTop = NSLayoutConstraint(item: talkTrack,
@@ -114,7 +114,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
                         relatedBy: NSLayoutRelation.Equal,
                         toItem: header,
                         attribute: NSLayoutAttribute.Bottom,
-                        multiplier: 0.5+0.33,
+                        multiplier: 0.8,
                         constant: 0)
             
             
@@ -122,9 +122,6 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
                     header.addConstraint(talkTrackTop)
 
 
-        
-     
-        
         
         let views = ["header": header, "scroll" : scroll, "talkTitle" : talkTitle, "talkTrack" : talkTrack, "details" : details]
         
@@ -138,7 +135,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
      
  
         
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(120)]-[details(140)]-[scroll]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(120)]-[details(150)]-[scroll]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
    
 
         
@@ -155,7 +152,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         view.addConstraints(constV)
         
 
-            talkTitle.text = slot.talk.title
+        talkTitle.text = slot.talk.title
         talkTrack.text = slot.talk.track
         scroll.text = slot.talk.summary
         //scroll.backgroundColor = UIColor.yellowColor()
@@ -165,29 +162,34 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         
         
         details.layoutIfNeeded()
+       
+        details.left.simpleDetailView1.textView.firstInfo.text = "Room"
+        details.left.simpleDetailView1.textView.secondInfo.text = slot.roomName
         
-        details.simpleDetailView1.textView.firstInfo.text = "Room"
-        details.simpleDetailView1.textView.secondInfo.text = slot.roomName
+        details.left.simpleDetailView2.textView.firstInfo.text = "Format"
+        details.left.simpleDetailView2.textView.secondInfo.text = slot.talk.getShortTalkTypeName()
         
-        details.simpleDetailView2.textView.firstInfo.text = "Format"
-        details.simpleDetailView2.textView.secondInfo.text = slot.talk.getShortTalkTypeName()
-        
-        if slot.talk.speakers.count == 1 {
-            details.simpleDetailView3.textView.firstInfo.text = "Presentor"
+       /* if slot.talk.speakers.count == 1 {
+            details.left.simpleDetailView3.textView.firstInfo.text = "Presentor"
         }
         else {
-            details.simpleDetailView3.textView.firstInfo.text = "Presentors"
+            details.left.simpleDetailView3.textView.firstInfo.text = "Presentors"
         }
+
+        details.left.simpleDetailView3.textView.secondInfo.text = slot.talk.getFriendlySpeaker()
         
-        details.simpleDetailView3.textView.secondInfo.text = slot.talk.getFriendlySpeaker()
+*/
         
-        details.simpleDetailView4.textView.firstInfo.text = "Date and time"
-        details.simpleDetailView4.textView.secondInfo.text = slot.getFriendlyTime()
+        details.left.simpleDetailView3.textView.firstInfo.text = "Date and time"
+        details.left.simpleDetailView3.textView.secondInfo.text = slot.getFriendlyTime()
         
         scroll.font = UIFont(name: "Roboto", size:  15)
         
         scroll.editable = false
         
+        
+        details.right.dataSource = self
+        details.right.delegate = self
 
        
     }
@@ -227,6 +229,33 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         self.navigationItem.rightBarButtonItem = addFavoriteButton
     }
     
+    
+   
+    
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    
+    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+    
+    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let label = UILabel(frame: CGRectMake(0,0,20,1000))
+        label.font = UIFont(name: "Roboto", size: 12)
+        label.textColor = UIColor.lightGrayColor()
+        label.text = "Speakers"
+        return label
+
+        
+    }
+    
+    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Speakers"
+    }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return slot.talk.speakers.count

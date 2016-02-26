@@ -184,12 +184,15 @@ class MDRotatingPieChart: UIControl {
     /**
     Contructs the pie chart
     */
-    func build() {
+    func build(superCenter : CGPoint) {
 
+        
         if(datasource == nil) {
             print("Did you forget to set your datasource ?")
             return
         }
+        
+        pieChartCenter = superCenter
         
         reset()
         

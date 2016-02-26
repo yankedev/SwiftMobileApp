@@ -11,10 +11,11 @@ import UIKit
 
 class AllDetailsView : UIView {
     
-    let simpleDetailView1 = SimpleDetailView<TopInfoDetailView>()
-    let simpleDetailView2 = SimpleDetailView<TopInfoDetailView>()
-    let simpleDetailView3 = SimpleDetailView<BottomInfoDetailView>()
-    let simpleDetailView4 = SimpleDetailView<BottomInfoDetailView>()
+    
+    let simpleDetailView1 = SimpleDetailView()
+    let simpleDetailView2 = SimpleDetailView()
+    let simpleDetailView3 = SimpleDetailView()
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,114 +46,77 @@ class AllDetailsView : UIView {
         simpleDetailView3.iconView.image = UIImage(named: "ic_star.png")?.imageWithRenderingMode(.AlwaysTemplate)
         addSubview(simpleDetailView3)
         
-        
-        simpleDetailView4.translatesAutoresizingMaskIntoConstraints = false
-        //simpleDetailView4.backgroundColor = UIColor.yellowColor()
-        simpleDetailView4.iconView.image = UIImage(named: "ic_time.png")?.imageWithRenderingMode(.AlwaysTemplate)
-        addSubview(simpleDetailView4)
+
 
         
-        let views = ["simpleDetailView1": simpleDetailView1, "simpleDetailView2" : simpleDetailView2, "simpleDetailView3" : simpleDetailView3, "simpleDetailView4" : simpleDetailView4]
+        let views = ["simpleDetailView1": simpleDetailView1, "simpleDetailView2" : simpleDetailView2, "simpleDetailView3" : simpleDetailView3]
         
-        
-        let width = NSLayoutConstraint(item: simpleDetailView1,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self,
-            attribute: NSLayoutAttribute.Width,
-            multiplier: 0.5,
-            constant: 0)
-        
-        addConstraint(width)
-        
-        let width2 = NSLayoutConstraint(item: simpleDetailView2,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self,
-            attribute: NSLayoutAttribute.Width,
-            multiplier: 0.5,
-            constant: 0)
         
         let height = NSLayoutConstraint(item: simpleDetailView1,
             attribute: NSLayoutAttribute.Height,
             relatedBy: NSLayoutRelation.Equal,
             toItem: self,
             attribute: NSLayoutAttribute.Height,
-            multiplier: 0.4,
+            multiplier: 0.33,
             constant: 0)
         
-        addConstraint(width)
+               addConstraint(height)
+        
+        //view 2
+        
+        
         
         let height2 = NSLayoutConstraint(item: simpleDetailView2,
             attribute: NSLayoutAttribute.Height,
             relatedBy: NSLayoutRelation.Equal,
             toItem: self,
             attribute: NSLayoutAttribute.Height,
-            multiplier: 0.4,
+            multiplier: 0.33,
             constant: 0)
 
         
-        let width3 = NSLayoutConstraint(item: simpleDetailView3,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self,
-            attribute: NSLayoutAttribute.Width,
-            multiplier: 0.5,
-            constant: 0)
+     
+        addConstraint(height2)
         
-        addConstraint(width)
+        //view 3
         
-        let width4 = NSLayoutConstraint(item: simpleDetailView4,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self,
-            attribute: NSLayoutAttribute.Width,
-            multiplier: 0.5,
-            constant: 0)
         
+    
         let height3 = NSLayoutConstraint(item: simpleDetailView3,
             attribute: NSLayoutAttribute.Height,
             relatedBy: NSLayoutRelation.Equal,
             toItem: self,
             attribute: NSLayoutAttribute.Height,
-            multiplier: 0.6,
+            multiplier: 0.34,
             constant: 0)
         
-        addConstraint(width)
+   
+        addConstraint(height3)
         
-        let height4 = NSLayoutConstraint(item: simpleDetailView4,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self,
-            attribute: NSLayoutAttribute.Height,
-            multiplier: 0.6,
-            constant: 0)
+      
+        
+        
+       
+         let constH1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[simpleDetailView1]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
+         let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[simpleDetailView2]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
+         let constH3 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[simpleDetailView3]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
+        
+        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[simpleDetailView1]-0-[simpleDetailView2]-0-[simpleDetailView3]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
 
         
-        addConstraint(width)
-        addConstraint(width2)
-        addConstraint(height)
-        addConstraint(height2)
-        
-        addConstraint(width3)
-        addConstraint(width4)
-        addConstraint(height3)
-        addConstraint(height4)
-        
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[simpleDetailView1]-0-[simpleDetailView2]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
-        let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[simpleDetailView3]-0-[simpleDetailView4]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[simpleDetailView1]-0-[simpleDetailView3]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        let constV2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[simpleDetailView2]-0-[simpleDetailView4]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        addConstraints(constH)
+        addConstraints(constH1)
         addConstraints(constH2)
+        addConstraints(constH3)
+
         addConstraints(constV)
-        addConstraints(constV2)
-        //addConstraints(constH2)
+
         
         
-        
-        
+        /*
+        simpleDetailView1.backgroundColor = UIColor.redColor()
+        simpleDetailView2.backgroundColor = UIColor.yellowColor()
+        simpleDetailView3.backgroundColor = UIColor.purpleColor()
+        */
        
         
         
