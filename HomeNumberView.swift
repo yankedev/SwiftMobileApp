@@ -60,7 +60,7 @@ class HomeNumberView : UIView {
         label2.textAlignment = .Center
         label2.translatesAutoresizingMaskIntoConstraints = false
 
-        label3.text = "% REGISTRATION"
+        label3.text = "CAPACITY"
         label3.font = UIFont(name: "Pirulen", size: 8)!
         label3.textColor = UIColor.whiteColor()
         label3.textAlignment = .Center

@@ -55,8 +55,6 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         APIManager.setEvent(self.slicesData.objectAtIndex(self.currentSelectedIndex) as! Cfp)
         
         
-       
-        
         APIManager.eventFeed()
         
         if(APIManager.isCurrentEventEmpty()) {
@@ -116,8 +114,13 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         super.viewDidLoad()
         
-        imgView = UIImageView(image: UIImage(named: "DevoxxMoroccoHomePage.jpg")!)
+        slicesData = APIManager.getAllEvents()
+        
+        imgView = UIImageView()
         imgView.contentMode = .ScaleAspectFit
+        
+        
+        
         self.view.addSubview(imgView)
         
         let headerView = HomeHeaderView()
@@ -173,7 +176,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         
-        slicesData = APIManager.getAllEvents()
+        
         
         
         
@@ -216,7 +219,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         wheelView.delegate = self
       
         wheelView.setup()
-      
+        updateIndex(currentSelectedIndex)
     }
     
      
@@ -286,7 +289,10 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     func updateIndex(index:Int) {
         currentSelectedIndex = index
         if let currentData = slicesData[index] as? EventProtocol {
-            imgView.image = UIImage(data: currentData.backgroundImage())
+            let img = UIImage(data: currentData.backgroundImage())
+            let tmpImageView = UIImageView(image: img)
+            imgView.image = img
+            imgView.frame = tmpImageView.frame
             eventLocation.text = currentData.title()
         }
         currentSelectedIndex = index
