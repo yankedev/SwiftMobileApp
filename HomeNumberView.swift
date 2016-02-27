@@ -82,47 +82,79 @@ class HomeNumberView : UIView {
         
     }
     
+    
+    
+    
+    func createConstraint(label : UILabel, centerXFactor : CGFloat, centerYConstant : CGFloat)  {
+        
+        let number2Height = NSLayoutConstraint(item: label,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0,
+            constant: 60)
+        
+        let number2Width = NSLayoutConstraint(item: label,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self,
+            attribute: NSLayoutAttribute.Width,
+            multiplier: 4/16,
+            constant: 0)
+        
+        let number2CenterX = NSLayoutConstraint(item: label,
+            attribute: NSLayoutAttribute.CenterX,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self,
+            attribute: NSLayoutAttribute.CenterX,
+            multiplier: centerXFactor,
+            constant: 0)
+        
+        let number2CenterY = NSLayoutConstraint(item: label,
+            attribute: NSLayoutAttribute.CenterY,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self,
+            attribute: NSLayoutAttribute.Top,
+            multiplier: 1,
+            constant: centerYConstant)
+        
+        addConstraint(number2Height)
+        addConstraint(number2Width)
+        
+        addConstraint(number2CenterX)
+        addConstraint(number2CenterY)
+    }
+    
     func applyConstraint() {
         
         self.layoutIfNeeded()
         
-        
-        let viewDictionary = ["number1":number1, "number2":number2, "number3":number3, "label1":label1, "label2":label2, "label3":label3]
-        
-        let layout = NSLayoutFormatOptions(rawValue: 0)
-        
-               
- 
-        
-        let horizontalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[number1(100)]-20-[number2(100)]-20-[number3]-0-|", options: layout, metrics: nil, views: viewDictionary)
-        
-        
-        
-        let horizontalContraint1:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[label1(100)]-0-[label2(100)]-0-[label3]-0-|", options: layout, metrics: nil, views: viewDictionary)
-        
-        
-        
-        let verticalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[number1(100)]-0-[label1]-0-|", options: layout, metrics: nil, views: viewDictionary)
 
         
-        let verticalContraint1:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[number2(100)]-0-[label2]-0-|", options: layout, metrics: nil, views: viewDictionary)
-
-        
-        let verticalContraint2:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[number3(100)]-0-[label3]-0-|", options: layout, metrics: nil, views: viewDictionary)
 
     
-        
-        
-        
-        addConstraints(horizontalContraint0)
-        addConstraints(horizontalContraint1)
-        
-        self.layoutIfNeeded()
+        createConstraint(number1, centerXFactor: 0.25, centerYConstant : 30)
+        createConstraint(number2, centerXFactor: 1, centerYConstant : 30)
+        createConstraint(number3, centerXFactor: 1.75, centerYConstant : 30)
 
         
-        addConstraints(verticalContraint0)
-        addConstraints(verticalContraint1)
-        addConstraints(verticalContraint2)
+        
+        createConstraint(label1, centerXFactor: 0.25, centerYConstant : 60)
+        createConstraint(label2, centerXFactor: 1, centerYConstant : 60)
+        createConstraint(label3, centerXFactor: 1.75, centerYConstant : 60)
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
 
     }

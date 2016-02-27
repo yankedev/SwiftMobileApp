@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        //APIManager.fetchSpeakerDetail("super")
+  
         
         
         UITextView()
@@ -42,6 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.statusBarHidden = true
         
         return true
+    }
+    
+   
+    func application(application: UIApplication, supportedInterfaceOrientationsForWindow window: UIWindow?) -> UIInterfaceOrientationMask {
+        return [.Portrait, .PortraitUpsideDown]
     }
 
     func applicationWillResignActive(application: UIApplication) {

@@ -17,11 +17,14 @@ public class SpeakerDetailsController : UIViewController {
     
     
     // var speakers: UITableView!
-    var addFavoriteButton : UIBarButtonItem!
+    
     var indexPath: NSIndexPath!
     var delegate : DevoxxAppFavoriteDelegate!
     
     
+    var actionButtonView1 = ActionButtonView()
+    var actionButtonView0 = ActionButtonView()
+    var actionButtonViewBack = ActionButtonView()
     
     
     override public func viewDidLoad() {
@@ -54,6 +57,10 @@ public class SpeakerDetailsController : UIViewController {
         
         
         
+        view.addSubview(actionButtonViewBack)
+        view.addSubview(actionButtonView0)
+        view.addSubview(actionButtonView1)
+
         
         
         let views = ["header": header, "scroll" : scroll]
@@ -65,7 +72,7 @@ public class SpeakerDetailsController : UIViewController {
         
         
         
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(165)]-[scroll]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(150)]-[scroll]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
         
         
@@ -82,6 +89,7 @@ public class SpeakerDetailsController : UIViewController {
         
         header.talkTitle.text = speaker.getFullName()
         header.talkTrack.text = speaker.speakerDetail.company
+        scroll.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
         scroll.text = speaker.speakerDetail.bio
         //scroll.backgroundColor = UIColor.yellowColor()
         
@@ -94,22 +102,153 @@ public class SpeakerDetailsController : UIViewController {
         scroll.editable = false
         
         
+        
+        
+        let actionButtonViewHeight = NSLayoutConstraint(item: actionButtonView0,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0,
+            constant: 60)
+        
+        let actionButtonViewWidth = NSLayoutConstraint(item: actionButtonView0,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Width,
+            multiplier: 0,
+            constant: 60)
+        
+        let actionButtonViewCenterX = NSLayoutConstraint(item: actionButtonView0,
+            attribute: NSLayoutAttribute.CenterX,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.CenterX,
+            multiplier: 2,
+            constant: -110)
+        
+        let actionButtonViewCenterY = NSLayoutConstraint(item: actionButtonView0,
+            attribute: NSLayoutAttribute.CenterY,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Top,
+            multiplier: 1,
+            constant: 150)
+        
+        view.addConstraint(actionButtonViewWidth)
+        view.addConstraint(actionButtonViewHeight)
+        
+        view.addConstraint(actionButtonViewCenterX)
+        view.addConstraint(actionButtonViewCenterY)
+        
+        
+        let actionButtonViewHeight1 = NSLayoutConstraint(item: actionButtonView1,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0,
+            constant: 60)
+        
+        let actionButtonViewWidth1 = NSLayoutConstraint(item: actionButtonView1,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Width,
+            multiplier: 0,
+            constant: 60)
+        
+        let actionButtonViewCenterX1 = NSLayoutConstraint(item: actionButtonView1,
+            attribute: NSLayoutAttribute.CenterX,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.CenterX,
+            multiplier: 2,
+            constant: -40)
+        
+        let actionButtonViewCenterY1 = NSLayoutConstraint(item: actionButtonView1,
+            attribute: NSLayoutAttribute.CenterY,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Top,
+            multiplier: 1,
+            constant: 150)
+        
+        view.addConstraint(actionButtonViewWidth1)
+        view.addConstraint(actionButtonViewHeight1)
+        
+        view.addConstraint(actionButtonViewCenterX1)
+        view.addConstraint(actionButtonViewCenterY1)
+        
+        
+        
+        
+        let actionButtonViewBackHeight = NSLayoutConstraint(item: actionButtonViewBack,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0,
+            constant: 60)
+        
+        let actionButtonViewBackWidth = NSLayoutConstraint(item: actionButtonViewBack,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Width,
+            multiplier: 0,
+            constant: 60)
+        
+        view.addConstraint(actionButtonViewBackHeight)
+        view.addConstraint(actionButtonViewBackWidth)
+        view.layoutIfNeeded()
+        
+        
+        actionButtonViewBack.setup(false)
+        let imageBack = UIImage(named: "ic_back")?.imageWithRenderingMode(.AlwaysTemplate)
+        actionButtonViewBack.button.setImage(imageBack, forState: .Normal)
+        actionButtonViewBack.tintColor = UIColor.whiteColor()
+        
+        
+        actionButtonView0.setup(true)
+        let image0 = UIImage(named: "ic_twitter")?.imageWithRenderingMode(.AlwaysTemplate)
+        actionButtonView0.button.setImage(image0, forState: .Normal)
+        actionButtonView0.tintColor = UIColor.whiteColor()
+        
+        
+        actionButtonView1.setup(true)
+        let image1 = UIImage(named: "ic_star")?.imageWithRenderingMode(.AlwaysTemplate)
+        actionButtonView1.button.setImage(image1, forState: .Normal)
+        actionButtonView1.tintColor = UIColor.whiteColor()
+        
+
+        
+        actionButtonView0.button.addTarget(self, action: Selector("twitter"), forControlEvents: .TouchUpInside)
+        actionButtonView1.button.addTarget(self, action: Selector("clicked"), forControlEvents: .TouchUpInside)
+        
+        actionButtonViewBack.button.addTarget(self, action: Selector("back"), forControlEvents: .TouchUpInside)
+
  
     }
     
   
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBarHidden = true
+    }
     
     public func clicked() {
-        let response = delegate.favorite(indexPath)
-        setColor(response)
+        //let response = delegate.favorite(indexPath)
+        //setColor(response)
     }
     
     public func setColor(isFavorited: Bool) {
         if isFavorited {
-            addFavoriteButton.tintColor = UIColor.whiteColor()
+            actionButtonView1.button.tintColor = ColorManager.grayImageColor
         }
         else {
-            addFavoriteButton.tintColor = UIColor.blackColor()
+            actionButtonView1.button.tintColor = UIColor.blackColor()
         }
     }
     
@@ -118,12 +257,7 @@ public class SpeakerDetailsController : UIViewController {
         button.frame = CGRectMake(0, 0, 30, 30)
         button.setBackgroundImage(UIImage(named: "StarOn"), forState: UIControlState.Selected)
         button.setBackgroundImage(UIImage(named: "StarOff"), forState: UIControlState.Normal)
-        
-        addFavoriteButton = UIBarButtonItem(customView: button)
-        addFavoriteButton = UIBarButtonItem(image: UIImage(named: "StarOff"), style: UIBarButtonItemStyle.Plain, target: self, action: Selector("clicked"))
-        //addFavoriteButton.tintColor = getTintColorFromTag(details.addFavoriteButton.tag)
-        
-        self.navigationItem.rightBarButtonItem = addFavoriteButton
+      
     }
     
     
@@ -153,6 +287,30 @@ public class SpeakerDetailsController : UIViewController {
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Speakers"
     }
+    
+    
+    
+    
+    
+    public func back() {
+        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    
+    public func twitter() {
+        let alert = UIAlertController(title: "Tweet", message: "Action to tweet about \(speaker.getFullName())", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+
+   
+    
+    
+    
+    
+    
     /*
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return slot.talk.speakers.count

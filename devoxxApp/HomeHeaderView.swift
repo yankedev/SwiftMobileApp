@@ -26,7 +26,7 @@ class HomeHeaderView : UIView {
         eventLocation.textAlignment = .Center
         eventLocation.font = UIFont(name: "Pirulen", size: 25)
         eventLocation.textColor = ColorManager.homeFontColor
-        eventLocation.text = "Paris"
+        eventLocation.text = "Belgium"
         addSubview(eventLocation)
         
         

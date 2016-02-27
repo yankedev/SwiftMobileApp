@@ -45,7 +45,7 @@ public class MapTabController : UIViewController {
         accessView.translatesAutoresizingMaskIntoConstraints = false
         
         currentView?.removeFromSuperview()
-        let controller = MapController()
+     
         currentView = UIView()
         accessView.addSubview(currentView!)
         
@@ -75,7 +75,7 @@ public class MapTabController : UIViewController {
         let paddingTop = (self.navigationController?.navigationBar.frame.size.height)! + 10
         
         
-        let verticalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(paddingTop)-[seg(20)]-10-[accessView]-0-|", options: layout, metrics: nil, views: viewDictionary)
+        let verticalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(paddingTop)-[seg(30)]-10-[accessView]-0-|", options: layout, metrics: nil, views: viewDictionary)
         
         
         view.addConstraints(horizontalContraint0)

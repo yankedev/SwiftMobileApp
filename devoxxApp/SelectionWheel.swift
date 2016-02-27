@@ -114,9 +114,8 @@ class SelectionWheel: UIView {
             addSubview(imgV)
            
             
-            shapeLayer.strokeColor = color.CGColor
             shapeLayer.fillColor = UIColor.clearColor().CGColor
-            shapeLayer.lineWidth = 1.0
+
             
             
             /*
@@ -139,12 +138,12 @@ class SelectionWheel: UIView {
         
         else {
             
-            shapeLayer.strokeColor = color.CGColor
+            
             shapeLayer.fillColor = color.CGColor
-            shapeLayer.lineWidth = 3.0
+            
         
         }
-       
+        shapeLayer.strokeColor = UIColor.clearColor().CGColor
         
         return shapeLayer
         
@@ -164,7 +163,8 @@ class SelectionWheel: UIView {
         
         reset()
         
-        let radius = (frame.size.width - 100)/2
+        let radius = min((frame.size.width - 100)/2, 200)
+        print(radius)
         
         let centerPoint = CGPointMake(center.x - frame.origin.x, center.y - self.frame.origin.y)
         

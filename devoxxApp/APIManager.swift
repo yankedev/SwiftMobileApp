@@ -299,57 +299,9 @@ class APIManager {
     
     
     
-    class func fetchSpeakerDetail(url : String) {
-        
-        let staticUrl = "https://cfp.devoxx.be/api/conferences/DV15/speakers/9634e0f87900f45552e0e78dac818f2dfacd3a7d"
-        
-        loadDataFromURL(NSURL(string: staticUrl)!, completion:{(data, error) -> Void in
-            if let slotData = data {
-                print(slotData)
-                self.handleData(slotData, dataHelper: CfpHelper())
-            }
-            else {
-                dispatch_async(dispatch_get_main_queue()) {
-                    sayHi()
-                }
-            }
-        })
-        
-        
-        
-    }
+  
     
     
-    
-    class func getMockedObjets(postActionParam postAction :(Void) -> (Void), dataHelper: DataHelperProtocol) {
-     
-        for url in apiURLS[dataHelper.typeName()]! {
-            
-            /*
-            loadDataFromURL(NSURL(string: url)!, completion:{(data, error) -> Void in
-                if let slotData = data {
-                    self.handleData(slotData, dataHelper: dataHelper, postAction: postAction)
-                }
-                else {
-                    dispatch_async(dispatch_get_main_queue()) {
-                        postAction()
-                    }
-                }
-            })*/
-            
-            
-            let testBundle = NSBundle.mainBundle()
-            let filePath = testBundle.pathForResource(url, ofType: "json")
-            let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
-            if(checkString == nil) {
-                print("should not be empty", terminator: "")
-            }
-            let data = NSData(contentsOfFile: filePath!)!
-            //self.handleData(data, dataHelper: dataHelper, postAction: postAction)
-        }
-        
-        
-    }
     
     
     // FIRST FEED
@@ -510,6 +462,12 @@ class APIManager {
         fetchRequest.predicate = predicate
         let items = try! context.executeFetchRequest(fetchRequest)
         return items.count > 0
+    }
+    
+    
+    class func isCurrentEventEmpty() -> Bool {
+        return getDistinctDays().count == 0
+
     }
     
     

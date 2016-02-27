@@ -17,6 +17,7 @@ class SpeakerListView : UITableView {
         super.init(frame: frame, style: style)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.separatorStyle = .None
+        contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
     }
     
     required init?(coder aDecoder: NSCoder) {
