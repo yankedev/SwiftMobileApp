@@ -189,6 +189,37 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         
     }
     
+    
+    
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+            let speakerArray = slot.talk.speakers.sortedArrayUsingDescriptors([NSSortDescriptor(key: "firstName", ascending: true)]) as! [Speaker]
+            
+            let speaker = speakerArray[indexPath.row]
+            
+            
+            
+            let details = SpeakerDetailsController()
+            //todo
+            details.indexPath = indexPath
+            details.speaker = speaker
+            //details.delegate = self
+            
+            details.configure()
+            // details.setColor(slot.favorited())
+            
+            self.navigationController?.pushViewController(details, animated: true)
+            
+            
+            
+        
+    }
+    
+    
+   
+    
+
+    
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Speakers"
     }

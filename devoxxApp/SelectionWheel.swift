@@ -45,6 +45,8 @@ class SelectionWheel: UIView {
         addGestureRecognizer(tap)
         
        
+        
+       
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -106,7 +108,7 @@ class SelectionWheel: UIView {
             
             let imgV = UIImageView(frame : CGRectMake(0,0, 159/2, 191/2))
             imgV.image = image
-            imgV.center = CGPointMake(circlePath.bounds.midX, circlePath.bounds.midY)
+            
            
             
             addSubview(imgV)
@@ -125,6 +127,9 @@ class SelectionWheel: UIView {
             
             
             let rotate = CGAffineTransformMakeRotation(CGFloat(M_PI_2) + angle)
+            
+            imgV.center = CGPointMake(circlePath.bounds.midX + cos(angle) * 10, circlePath.bounds.midY + sin(angle) * 10)
+            
             imgV.transform = rotate
             
             
@@ -166,6 +171,13 @@ class SelectionWheel: UIView {
         layer.addSublayer(createCenterCircle(centerPoint, radius: radius, color : ColorManager.centerWheelColor, angle: 0, index: 0))
         
 
+        let width = radius - 25
+        let globe = UIImageView(frame: CGRectMake(0, 0, width*2, width*2))
+        globe.center = centerPoint
+        globe.image = UIImage(named: "globe")
+        
+        addSubview(globe)
+
         
         for i in 0...4 {
             
@@ -186,13 +198,11 @@ class SelectionWheel: UIView {
         }
         
         
-        let width = radius - 50
-        let globe = UIImageView(frame: CGRectMake(0, 0, width*2, width*2))
-        globe.center = centerPoint
-        globe.image = UIImage(named: "globe")
         
-        addSubview(globe)
+       
 
+        
+        
         
         
         rotate90()
