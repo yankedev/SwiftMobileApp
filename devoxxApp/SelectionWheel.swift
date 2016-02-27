@@ -12,6 +12,8 @@ import UIKit
 class SelectionWheel: UIView {
     
     var layers = [CAShapeLayer]()
+    var currentIndex = 0
+    
     
     func rotate90() {
         transform = CGAffineTransformRotate(transform, CGFloat(-M_PI_2))
@@ -44,7 +46,7 @@ class SelectionWheel: UIView {
         for shape in layers {
             print("loop")
             if CGPathContainsPoint(shape.path, nil, point, false) {
-                print(i)
+                click(i)
                 return
             }
             ++i
@@ -52,23 +54,77 @@ class SelectionWheel: UIView {
     }
     
     
+    func createCenterCircle(center : CGPoint, radius : CGFloat, color : UIColor, angle : CGFloat)  -> CAShapeLayer {
+        return createCircle(center, radius: radius, color: color, angle : angle, isCenter : true)
+    }
     
-    func createCircle(center : CGPoint, radius : CGFloat, color : UIColor) -> CAShapeLayer {
+    func createEventCircle(center : CGPoint, radius : CGFloat, color : UIColor, angle : CGFloat)  -> CAShapeLayer {
+        return createCircle(center, radius: radius, color: color, angle : angle, isCenter : false)
+    }
+    
+    
+    
+    func createCircle(center : CGPoint, radius : CGFloat, color : UIColor, angle : CGFloat, isCenter : Bool) -> CAShapeLayer {
         
         let circlePath = UIBezierPath(arcCenter: center, radius: radius, startAngle: CGFloat(0), endAngle:CGFloat(M_PI * 2), clockwise: true)
         
+        
+        
+        
+       
+        
+        
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = circlePath.CGPath
-        //shapeLayer.bounds = CGPathGetBoundingBox(shapeLayer.path)
-        //change the fill color
-        shapeLayer.fillColor = color.CGColor
-        //you can change the stroke color
-        shapeLayer.strokeColor = color.CGColor
-        //you can change the line width
-        shapeLayer.lineWidth = 3.0
+
         
         
-        layers.append(shapeLayer)
+        
+        if !isCenter {
+            
+            
+            shapeLayer.anchorPoint = CGPointMake(0.5, 0.5)
+            
+            
+            let image = UIImage(named: "splash_btn_DevoxxFR2016.png")
+            let colorImg = UIColor(patternImage: image!)
+            //shapeLayer.fillColor = colorImg.CGColor
+            
+            let imgV = UIImageView(frame : CGRectMake(0,0, 159/2, 191/2))
+            imgV.image = image
+            imgV.center = CGPointMake(circlePath.bounds.midX, circlePath.bounds.midY)
+           
+            print("bounds = \(CGPointMake(shapeLayer.bounds.origin.x, shapeLayer.bounds.origin.y))")
+            addSubview(imgV)
+           
+            
+            shapeLayer.strokeColor = color.CGColor
+            shapeLayer.fillColor = UIColor.clearColor().CGColor
+            shapeLayer.lineWidth = 1.0
+            
+            
+            /*
+            let scale = CGAffineTransformMakeScale(0.1, 0.1)
+            let rotate = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+            cell.tickedImg.transform = CGAffineTransformConcat(rotate, scale)
+            */
+            
+            
+            let rotate = CGAffineTransformMakeRotation(CGFloat(M_PI_2) + angle)
+            imgV.transform = rotate
+            
+            
+            layers.append(shapeLayer)
+        }
+        
+        else {
+            
+            shapeLayer.strokeColor = color.CGColor
+            shapeLayer.fillColor = color.CGColor
+            shapeLayer.lineWidth = 3.0
+        
+        }
+       
         
         return shapeLayer
         
@@ -88,11 +144,11 @@ class SelectionWheel: UIView {
         
         reset()
         
-        let radius = 0.3*frame.size.width
+        let radius = (frame.size.width - 100)/2
         
         let centerPoint = CGPointMake(center.x - frame.origin.x, center.y - self.frame.origin.y)
         
-        layer.addSublayer(createCircle(centerPoint, radius: radius, color : UIColor.redColor()))
+        layer.addSublayer(createCenterCircle(centerPoint, radius: radius, color : UIColor.redColor(), angle: 0))
         
 
         
@@ -113,7 +169,7 @@ class SelectionWheel: UIView {
             
             print(firstPoint)
             
-            layer.addSublayer(createCircle(firstPoint, radius: 30, color : UIColor.greenColor()))
+            layer.addSublayer(createEventCircle(firstPoint, radius: CGFloat(191/4), color : UIColor.greenColor(), angle : a*b*c))
             
         }
         
@@ -121,5 +177,20 @@ class SelectionWheel: UIView {
     
     }
     
+    func click(index : Int) {
+        
+        
+        
+        let a:CGFloat = CGFloat(M_PI)
+        let b:CGFloat = CGFloat(2)
+        let fakeC = CGFloat(currentIndex - index)/CGFloat(layers.count)
+        
+        
+        let rotate = CGAffineTransformMakeRotation(a*b*fakeC)
+        transform = rotate
+        
+        currentIndex = index
+        
+    }
     
 }
