@@ -23,7 +23,7 @@ extension UIView {
     }
 }
 
-class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPieChartDataSource {
+class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheelDelegate {
     
     var slicesData:NSArray!
   
@@ -205,6 +205,8 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         goView.goButton.addTarget(self, action: Selector("prepareNext"), forControlEvents: .TouchUpInside)
         
         
+        wheelView.datasource = self
+        wheelView.delegate = self
       
         wheelView.setup()
       
@@ -226,11 +228,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
     }
     
     func willOpenSliceAtIndex(index: Int) {
-        if let currentData = slicesData[index] as? EventProtocol {
-            imgView.image = UIImage(data: currentData.backgroundImage())
-            eventLocation.text = currentData.title()
-        }
-        currentSelectedIndex = index
+        
         
     }
     
@@ -276,6 +274,15 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func updateIndex(index:Int) {
+        currentSelectedIndex = index
+        if let currentData = slicesData[index] as? EventProtocol {
+            imgView.image = UIImage(data: currentData.backgroundImage())
+            eventLocation.text = currentData.title()
+        }
+        currentSelectedIndex = index
     }
 }
 

@@ -35,6 +35,8 @@ class ColorManager {
     
     static var grayImageColor = UIColor(red: 67/255, green: 67/255, blue: 67/255, alpha: 1)
     
+    static var centerWheelColor = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)
+    
     
     
     

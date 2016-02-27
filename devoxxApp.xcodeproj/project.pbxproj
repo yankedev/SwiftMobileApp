@@ -315,7 +315,6 @@
 		5895EB9C1C66684000229780 /* globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB9A1C66684000229780 /* globe.png */; };
 		5895EB9D1C66684000229780 /* pirulen.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB9B1C66684000229780 /* pirulen.ttf */; };
 		5895EBA11C66698800229780 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5895EB9E1C66698800229780 /* ViewController.swift */; };
-		5895EBA21C66698800229780 /* ContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5895EB9F1C66698800229780 /* ContainerController.swift */; };
 		5895EBA31C66698800229780 /* MDRotatingPieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5895EBA01C66698800229780 /* MDRotatingPieChart.swift */; };
 		58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A0E8C01C272FF9000C49DD /* TrackHelper.swift */; };
 		58BA2BFC1C3331EF0031C2E3 /* Etag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BA2BFB1C3331EE0031C2E3 /* Etag.swift */; };
@@ -704,7 +703,6 @@
 		5895EB9A1C66684000229780 /* globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = globe.png; sourceTree = "<group>"; };
 		5895EB9B1C66684000229780 /* pirulen.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pirulen.ttf; sourceTree = "<group>"; };
 		5895EB9E1C66698800229780 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = devoxxApp/ViewController.swift; sourceTree = "<group>"; };
-		5895EB9F1C66698800229780 /* ContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerController.swift; sourceTree = "<group>"; };
 		5895EBA01C66698800229780 /* MDRotatingPieChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDRotatingPieChart.swift; sourceTree = "<group>"; };
 		58A0E8C01C272FF9000C49DD /* TrackHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackHelper.swift; sourceTree = "<group>"; };
 		58BA2BFB1C3331EE0031C2E3 /* Etag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Etag.swift; sourceTree = "<group>"; };
@@ -1252,7 +1250,6 @@
 				5895EB8D1C66683600229780 /* DevoxxBelgiumHomePage.jpg */,
 				5895EB9A1C66684000229780 /* globe.png */,
 				5895EB9B1C66684000229780 /* pirulen.ttf */,
-				5895EB9F1C66698800229780 /* ContainerController.swift */,
 				5895EBA01C66698800229780 /* MDRotatingPieChart.swift */,
 				587797391C81345A00A1A7D5 /* SelectionWheel.swift */,
 			);
@@ -1853,7 +1850,6 @@
 				580B789A1C7A11B700060C00 /* HomeGoButtonView.swift in Sources */,
 				580B786F1C76688400060C00 /* GenericPageScrollController.swift in Sources */,
 				588CFFA71C81069600DEC1E6 /* SpeakerDetail.swift in Sources */,
-				5895EBA21C66698800229780 /* ContainerController.swift in Sources */,
 				E127E6581C38117000FB7E4F /* SwitchableProtocol.swift in Sources */,
 				58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */,
 				E1FA9C3E1C1BFD010077C09A /* SpeakerController.swift in Sources */,
