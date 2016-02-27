@@ -15,7 +15,7 @@ public protocol DataHelperProtocol : NSCopying {
     func feed(data: JSON)
     func entityName() -> String
     func prepareArray(json : JSON) -> [JSON]?
-    func save(managedContext : NSManagedObjectContext) -> Void
+    func save(managedContext : NSManagedObjectContext) -> Bool
     func typeName() -> String
 }
 

@@ -143,6 +143,25 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     }
     
     
+    override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if let speaker = cellDataArray![indexPath.row] as? Speaker {
+            
+            let details = SpeakerDetailsController()
+            //todo
+            details.indexPath = indexPath
+            details.speaker = speaker
+            //details.delegate = self
+            
+            details.configure()
+           // details.setColor(slot.favorited())
+            
+            self.navigationController?.pushViewController(details, animated: true)
+            
+            
+        }
+    }
+
     
     
     override public func numberOfSectionsInTableView(tableView: UITableView) -> Int {

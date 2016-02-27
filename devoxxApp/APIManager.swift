@@ -225,26 +225,26 @@ class APIManager {
         let json = JSON(data: inputData)
         let arrayToParse = dataHelper.prepareArray(json)
 
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+
+        let privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        privateContext.persistentStoreCoordinator = context.persistentStoreCoordinator
+        
         if let appArray = arrayToParse {
             for appDict in appArray {
 
                 let newHelper = dataHelper.copyWithZone(nil) as! DataHelperProtocol
                 
                 newHelper.feed(appDict)
-                
-                
-                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                let context = appDelegate.managedObjectContext!
-                
-                let privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-                privateContext.persistentStoreCoordinator = context.persistentStoreCoordinator
-                
-
                 newHelper.save(privateContext)
-                
                 
             }
         }
+        
+        APIManager.save(privateContext)
+        
     
     }
     
@@ -291,6 +291,35 @@ class APIManager {
         loadDataTask.resume()
     }
 
+    
+    
+    class func sayHi() {
+        print("hiiii")
+    }
+    
+    
+    
+    class func fetchSpeakerDetail(url : String) {
+        
+        let staticUrl = "https://cfp.devoxx.be/api/conferences/DV15/speakers/9634e0f87900f45552e0e78dac818f2dfacd3a7d"
+        
+        loadDataFromURL(NSURL(string: staticUrl)!, completion:{(data, error) -> Void in
+            if let slotData = data {
+                print(slotData)
+                self.handleData(slotData, dataHelper: CfpHelper())
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    sayHi()
+                }
+            }
+        })
+        
+        
+        
+    }
+    
+    
     
     class func getMockedObjets(postActionParam postAction :(Void) -> (Void), dataHelper: DataHelperProtocol) {
      
@@ -339,6 +368,9 @@ class APIManager {
     
     
     class func singleCommonFeed(helper : DataHelperProtocol) {
+
+        print(helper.entityName())
+
         
         let url = commonUrl[helper.entityName()]
         
@@ -359,6 +391,17 @@ class APIManager {
     }
     
     
+    class func innerFeed(bundle : NSBundle, url : String, helper : DataHelperProtocol) {
+        let filePath = bundle.pathForResource(url, ofType: "json")
+        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
+        if(checkString == nil) {
+            print("should not be empty", terminator: "")
+        }
+        let data = NSData(contentsOfFile: filePath!)!
+        self.handleData(data, dataHelper: helper)
+    }
+    
+    
     class func singleFeed(helper : DataHelperProtocol) {
         
         
@@ -370,14 +413,7 @@ class APIManager {
         let testBundle = NSBundle.mainBundle()
         
         for singleUrl in url! {
-
-            let filePath = testBundle.pathForResource(singleUrl, ofType: "json")
-            let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
-            if(checkString == nil) {
-                print("should not be empty", terminator: "")
-            }
-            let data = NSData(contentsOfFile: filePath!)!
-            self.handleData(data, dataHelper: helper)
+            innerFeed(testBundle, url: singleUrl, helper: helper)
         }
         
         
@@ -462,6 +498,18 @@ class APIManager {
             return ""
         }
         return lastPartImageName[lastPartImageName.count-1]
+    }
+    
+    
+    
+    class func exists(id : String, leftPredicate: String, entity: String) -> Bool {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: entity)
+        let predicate = NSPredicate(format: "\(leftPredicate) = %@", id)
+        fetchRequest.predicate = predicate
+        let items = try! context.executeFetchRequest(fetchRequest)
+        return items.count > 0
     }
     
     

@@ -60,7 +60,15 @@
         <attribute name="href" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="speakerDetail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpeakerDetail" syncable="YES"/>
         <relationship name="talks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Talk" inverseName="speakers" inverseEntity="Talk" syncable="YES"/>
+    </entity>
+    <entity name="SpeakerDetail" representedClassName="devoxxApp.SpeakerDetail" syncable="YES">
+        <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bioAsHtml" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="twitter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Talk" representedClassName="devoxxApp.Talk" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -90,9 +98,10 @@
         <element name="Floor" positionX="-45" positionY="126" width="128" height="120"/>
         <element name="Image" positionX="-45" positionY="108" width="128" height="90"/>
         <element name="Slot" positionX="-63" positionY="-18" width="128" height="180"/>
-        <element name="Speaker" positionX="-54" positionY="45" width="128" height="150"/>
+        <element name="Speaker" positionX="-54" positionY="45" width="128" height="165"/>
         <element name="Talk" positionX="-54" positionY="-9" width="128" height="165"/>
         <element name="TalkType" positionX="-54" positionY="45" width="128" height="90"/>
         <element name="Track" positionX="-54" positionY="45" width="128" height="90"/>
+        <element name="SpeakerDetail" positionX="-45" positionY="135" width="128" height="120"/>
     </elements>
 </model>

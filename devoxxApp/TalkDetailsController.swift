@@ -13,9 +13,8 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     
     var scroll : UITextView!
     var slot : Slot!
-    var header: UIImageView!
-    var talkTitle : UILabel!
-    var talkTrack : UILabel!
+    var header = ColoredHeaderView(frame: CGRectZero)
+
 
    // var speakers: UITableView!
     var addFavoriteButton : UIBarButtonItem!
@@ -34,32 +33,13 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         scroll.translatesAutoresizingMaskIntoConstraints = false
         scroll.backgroundColor = UIColor.whiteColor()
         
-        talkTitle = UILabel()
-        talkTitle.textAlignment = .Justified
-        talkTitle.textColor = UIColor.whiteColor()
-        //talkTitle.backgroundColor = UIColor.redColor()
-        talkTitle.font = UIFont(name: "Arial", size: 17)
-        talkTitle.translatesAutoresizingMaskIntoConstraints = false
-        talkTitle.numberOfLines = 2
-        
-
-        
-        talkTrack = UILabel()
-        talkTrack.textAlignment = .Justified
-        talkTrack.textColor = UIColor.whiteColor()
-        //talkTrack.backgroundColor = UIColor.greenColor()
-        talkTrack.font = UIFont(name: "Arial", size: 15)
-        talkTrack.translatesAutoresizingMaskIntoConstraints = false
-        talkTrack.numberOfLines = 0
-        
+              
         
        
         
         let inputImage = UIImage(named: "talk_background.png")
-        header = UIImageView(image: inputImage)
-        header.contentMode = .ScaleAspectFill
-        header.clipsToBounds = true
-        header.translatesAutoresizingMaskIntoConstraints = false
+        header.image = inputImage
+
         
       
         
@@ -76,60 +56,18 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
 
         view.addSubview(header)
         view.addSubview(scroll)
-        header.addSubview(talkTitle)
-        header.addSubview(talkTrack)
-        
-        
-        
-        
-        let talkTitleHeight = NSLayoutConstraint(item: talkTitle,
-                    attribute: NSLayoutAttribute.Height,
-                    relatedBy: NSLayoutRelation.Equal,
-                   toItem: header,
-                attribute: NSLayoutAttribute.Height,
-                    multiplier: 0.33,
-                    constant: 0)
-        
-               let talkTitleTop = NSLayoutConstraint(item: talkTitle,
-                   attribute: NSLayoutAttribute.Top,
-                    relatedBy: NSLayoutRelation.Equal,
-                    toItem: header,
-                    attribute: NSLayoutAttribute.Bottom,
-                    multiplier: 1-0.6,
-                    constant: 0)
-        
-                header.addConstraint(talkTitleHeight)
-                header.addConstraint(talkTitleTop)
-        
-                let talkTrackHeight = NSLayoutConstraint(item: talkTrack,
-                    attribute: NSLayoutAttribute.Height,
-                    relatedBy: NSLayoutRelation.Equal,
-                toItem: header,
-                    attribute: NSLayoutAttribute.Height,
-                    multiplier: 0.2,
-                    constant: 0)
-        
-                let talkTrackTop = NSLayoutConstraint(item: talkTrack,
-                        attribute: NSLayoutAttribute.Top,
-                        relatedBy: NSLayoutRelation.Equal,
-                        toItem: header,
-                        attribute: NSLayoutAttribute.Bottom,
-                        multiplier: 0.8,
-                        constant: 0)
-            
-            
-                    header.addConstraint(talkTrackHeight)
-                    header.addConstraint(talkTrackTop)
-
 
         
-        let views = ["header": header, "scroll" : scroll, "talkTitle" : talkTitle, "talkTrack" : talkTrack, "details" : details]
+        
+        
+        
+        
+        let views = ["header": header, "scroll" : scroll, "details" : details]
         
         
         let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[header]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        let constH3 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkTitle]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        let constH4 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkTrack]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        
         let constH5 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[details]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
      
@@ -145,15 +83,13 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
 
         view.addConstraints(constH)
         view.addConstraints(constH2)
-        view.addConstraints(constH3)
-        view.addConstraints(constH4)
         view.addConstraints(constH5)
         
         view.addConstraints(constV)
         
 
-        talkTitle.text = slot.talk.title
-        talkTrack.text = slot.talk.track
+        header.talkTitle.text = slot.talk.title
+        header.talkTrack.text = slot.talk.track
         scroll.text = slot.talk.summary
         //scroll.backgroundColor = UIColor.yellowColor()
         

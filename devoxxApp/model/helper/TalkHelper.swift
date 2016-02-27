@@ -82,8 +82,8 @@ class TalkHelper: DataHelperProtocol {
     
    
     
-    func save(managedContext : NSManagedObjectContext) {
-        //
+    func save(managedContext : NSManagedObjectContext)->Bool {
+        return false
     }
     
     required init() {

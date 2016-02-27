@@ -46,21 +46,25 @@ class FloorHelper: DataHelperProtocol {
     }
     
     
-    func save(managedContext : NSManagedObjectContext) {
+    func save(managedContext : NSManagedObjectContext) -> Bool {
+        
+        if APIManager.exists(img!, leftPredicate:"img", entity: entityName()) {
+            return false
+        }
+        
         let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
         let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
             coreDataObjectCast.feedHelper(self)
 
-            if(coreDataObjectCast.exists(img!, leftPredicate:"img", entity: entityName())) {
-                return
-            }
+            
            
         }
    
+        return true
    
-        APIManager.save(managedContext)
+        //APIManager.save(managedContext)
     }
     
     required init() {

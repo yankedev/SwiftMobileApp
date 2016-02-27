@@ -7,3 +7,26 @@
 //
 
 import Foundation
+import CoreData
+import UIKit
+
+class SpeakerDetail: NSManagedObject, FeedableProtocol {
+    
+    @NSManaged var bio: String
+    @NSManaged var bioAsHtml: String
+    @NSManaged var company: String
+    @NSManaged var twitter: String
+    @NSManaged var uuid: String
+    
+    func feedHelper(helper: DataHelperProtocol) -> Void {
+        if let castHelper = helper as? SpeakerDetailHelper  {
+            bio = castHelper.bio ?? ""
+            bioAsHtml = castHelper.bioAsHtml ?? ""
+            company = castHelper.company ?? ""
+            twitter = castHelper.twitter ?? ""
+            uuid = castHelper.uuid ?? ""
+        }
+    }
+    
+    
+}

@@ -87,7 +87,11 @@ class CfpHelper: DataHelperProtocol {
     
     
     
-    func save(managedContext : NSManagedObjectContext) {
+    func save(managedContext : NSManagedObjectContext) ->Bool {
+        
+        if APIManager.exists(id!, leftPredicate:"id", entity: entityName()) {
+            return false
+        }
         
         for floor in fedFloorsArray {
             floor.save(managedContext)
@@ -111,12 +115,10 @@ class CfpHelper: DataHelperProtocol {
 
           
             
-            if(coreDataObjectCast.exists(id!, leftPredicate:"id", entity: entityName())) {
-                return
-            }
+            
         }
         
-        APIManager.save(managedContext)
+        return true
     }
     
     required init() {

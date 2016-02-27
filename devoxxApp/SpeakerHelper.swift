@@ -17,14 +17,12 @@ class SpeakerHelper: DataHelperProtocol {
     var avatarUrl: String?
     var href: String?
 
+
     func feed(data: JSON) {
         uuid = data["uuid"].string
         lastName = data["lastName"].string
         firstName = data["firstName"].string
         avatarUrl = data["avatarURL"].string
-        
-        
-       
         href = data["links"][0]["href"].string
     }
     
@@ -40,23 +38,47 @@ class SpeakerHelper: DataHelperProtocol {
         return json.array
     }
     
-    func save(managedContext : NSManagedObjectContext) {
+    func save(managedContext : NSManagedObjectContext) -> Bool {
+        
+        if APIManager.exists(uuid!, leftPredicate:"uuid", entity: entityName()) {
+            return false
+        }
         
         let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
         let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
             coreDataObjectCast.feedHelper(self)
-            if(coreDataObjectCast.exists(uuid!, leftPredicate:"uuid", entity: entityName())) {
-                return
-            }
+            
         }
         
+        let testBundle = NSBundle.mainBundle()
 
-        APIManager.save(managedContext)
-
+        APIManager.innerFeed(testBundle, url: uuid!, helper: SpeakerDetailHelper())
         
         
+        
+        
+        let fetch = NSFetchRequest(entityName: "SpeakerDetail")
+        let predicate = NSPredicate(format: "uuid = %@", uuid!)
+        fetch.predicate = predicate
+        fetch.returnsObjectsAsFaults = false
+        
+        do {
+            let items = try managedContext.executeFetchRequest(fetch)
+            if items.count > 0 {
+                coreDataObject.setValue(items[0], forKey: "speakerDetail")
+            }
+            
+            
+        } catch let error as NSError {
+            print("unresolved error \(error), \(error.userInfo)")
+        }
+        
+        
+        
+        
+        return true
     }
     
     

@@ -80,7 +80,12 @@ class SlotHelper: DataHelperProtocol {
         favCoreData.type = type
     }
     
-    func save(managedContext : NSManagedObjectContext) -> Void {
+    func save(managedContext : NSManagedObjectContext) -> Bool {
+        
+        if APIManager.exists(slotId!, leftPredicate:"slotId", entity: entityName()) {
+            return false
+        }
+
         
         let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
         let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
@@ -120,10 +125,7 @@ class SlotHelper: DataHelperProtocol {
                 }
                 
             }
-            if(coreDataObjectCast.exists(slotId!, leftPredicate:"slotId", entity: entityName())) {
-                return
-            }
-
+            
             
         }
         
@@ -132,7 +134,7 @@ class SlotHelper: DataHelperProtocol {
             generateFavorite(managedContext, identifier: coreDataObjectCast.getIdentifier(), type: "Talk")
         }
         
-        APIManager.save(managedContext)
+        return true
     }
     
     required init() {

@@ -36,21 +36,21 @@ class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
     
   
     
-    func save(managedContext : NSManagedObjectContext) {
+    func save(managedContext : NSManagedObjectContext) -> Bool {
+        
+        if APIManager.exists(super.id!, leftPredicate:"id", entity: entityName()) {
+            return true
+        }
         
         let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
         let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
             coreDataObjectCast.feedHelper(self)
-            if(coreDataObjectCast.exists(super.id!, leftPredicate:"id", entity: entityName())) {
-                return
-            }
+            
         }
         
-        
-
-        APIManager.save(managedContext)
+        return false
         
     }
     

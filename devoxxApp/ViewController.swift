@@ -27,7 +27,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
     
     var slicesData:NSArray!
   
-    let wheelView = HomeWheelView()
+    let wheelView = SelectionWheel()
     
     let color = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)
     let tabController = UITabBarController()
@@ -118,7 +118,7 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         let goView = HomeGoButtonView()
         let numberView = HomeNumberView()
 
-        globeView = wheelView.globe
+        //globeView = wheelView.globe
         eventLocation = headerView.eventLocation
         
         view.addSubview(headerView)
@@ -172,11 +172,11 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         
         
         
-        wheelView.setConstraints()
+      //  wheelView.setConstraints()
         
                
-        wheelView.pieChart.datasource = self
-        wheelView.pieChart.delegate = self
+        //wheelView.pieChart.datasource = self
+        //wheelView.pieChart.delegate = self
         
         
         view.layoutIfNeeded()
@@ -191,13 +191,13 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         
         
        
-        print(wheelView.pieChart.frame)
-        let point = self.wheelView.convertPoint(wheelView.pieChart.center, toView: wheelView)
-        print(point)
-        let point2 = CGPointMake(point.x-wheelView.pieChart.frame.origin.x, point.y-wheelView.pieChart.frame.origin.y)
-        print(point2)
+       // print(wheelView.pieChart.frame)
+      //  let point = self.wheelView.convertPoint(wheelView.pieChart.center, toView: wheelView)
+       // print(point)
+       // let point2 = CGPointMake(point.x-wheelView.pieChart.frame.origin.x, point.y-wheelView.pieChart.frame.origin.y)
+       // print(point2)
         
-        wheelView.pieChart.build(point2)
+       // wheelView.pieChart.build(point2)
         
       
 
@@ -205,23 +205,12 @@ class ViewController: UIViewController, MDRotatingPieChartDelegate, MDRotatingPi
         goView.goButton.addTarget(self, action: Selector("prepareNext"), forControlEvents: .TouchUpInside)
         
         
-        willOpenSliceAtIndex(4)
+      
+        wheelView.setup()
       
     }
     
-    
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        print("wheellos")
-        
-        print(wheelView.pieChart.frame)
-        let point = self.wheelView.convertPoint(wheelView.pieChart.center, toView: wheelView)
-        print(point)
-        let point2 = CGPointMake(point.x-wheelView.pieChart.frame.origin.x, point.y-wheelView.pieChart.frame.origin.y)
-        print(point2)
-        
-        wheelView.pieChart.build(point2)
-    }
-    
+     
     
     
  
