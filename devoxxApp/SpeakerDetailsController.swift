@@ -17,7 +17,7 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
     
     
     
-    var talkList = SpeakerListView()
+    var talkList = SpeakerListView(frame: CGRectZero, style: .Grouped)
     
     
     // var speakers: UITableView!
@@ -41,6 +41,7 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
         scroll.backgroundColor = UIColor.whiteColor()
         
         
+        talkList.backgroundColor = UIColor.whiteColor()
         
         
         
@@ -320,23 +321,35 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10")
+        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? ScheduleCellView
         
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
-            cell?.selectionStyle = .None
+            cell = ScheduleCellView(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
+   
         }
         
-        
-        
-        
-        cell?.textLabel?.font = UIFont(name: "Roboto", size: 15)
-        
-
         
         if let talk = speaker.talks.allObjects[indexPath.row] as? Talk {
-            cell?.textLabel?.text = talk.title
+            
+            
+            
+            cell!.leftIconView.imageView.image = talk.slot.getPrimaryImage()
+            
+            cell!.rightTextView.topTitleView.talkTrackName.text = talk.slot.getThirdInformation()
+            cell!.rightTextView.topTitleView.talkTitle.text = talk.slot.getFirstInformation()
+            
+            cell!.rightTextView.locationView.label.text = talk.slot.getSecondInformation()
+            cell!.rightTextView.speakerView.label.text = talk.slot.getForthInformation()
+            
+            
+            if let fav = talk as? FavoriteProtocol {
+                cell!.updateBackgroundColor(fav.favorited())
+            }
+
         }
+        
+        
+        
         
         
         
@@ -349,6 +362,10 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
         return speaker.talks.count
     }
 
+    
+    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100
+    }
     
     
     

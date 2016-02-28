@@ -253,20 +253,7 @@ public class SchedulerTableViewController:
                     cell!.updateBackgroundColor(fav.favorited())
                 }
 
-                if cellData.getForthInformation() == "" {
-                    cell!.backgroundColor = cellData.getColor()
-        
-                    cell!.rightTextView.locationView.hidden = true
-                    cell!.rightTextView.speakerView.hidden = true
-                
-                    cell!.leftIconView.imageView.image = UIImage(named: "cofeeCup.png")
-                }
-                else {
-
-                    cell!.rightTextView.locationView.hidden = false
-                    cell!.rightTextView.speakerView.hidden = false
-
-                }
+               
             
                 return cell!
             

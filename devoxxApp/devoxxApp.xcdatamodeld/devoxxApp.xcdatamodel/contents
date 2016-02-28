@@ -51,7 +51,7 @@
         <attribute name="roomName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="slotId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="toTime" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="talk" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Talk" syncable="YES"/>
+        <relationship name="talk" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Talk" inverseName="slot" inverseEntity="Talk" syncable="YES"/>
     </entity>
     <entity name="Speaker" representedClassName="devoxxApp.Speaker" syncable="YES">
         <attribute name="avatarUrl" optional="YES" attributeType="String" syncable="YES"/>
@@ -78,6 +78,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="track" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="trackId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="slot" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Slot" inverseName="talk" inverseEntity="Slot" syncable="YES"/>
         <relationship name="speakers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Speaker" inverseName="talks" inverseEntity="Speaker" syncable="YES"/>
     </entity>
     <entity name="TalkType" representedClassName="devoxxApp.TalkType" syncable="YES">
@@ -99,9 +100,9 @@
         <element name="Image" positionX="-45" positionY="108" width="128" height="90"/>
         <element name="Slot" positionX="-63" positionY="-18" width="128" height="180"/>
         <element name="Speaker" positionX="-54" positionY="45" width="128" height="165"/>
-        <element name="Talk" positionX="-54" positionY="-9" width="128" height="165"/>
+        <element name="SpeakerDetail" positionX="-45" positionY="135" width="128" height="120"/>
+        <element name="Talk" positionX="-54" positionY="-9" width="128" height="180"/>
         <element name="TalkType" positionX="-54" positionY="45" width="128" height="90"/>
         <element name="Track" positionX="-54" positionY="45" width="128" height="90"/>
-        <element name="SpeakerDetail" positionX="-45" positionY="135" width="128" height="120"/>
     </elements>
 </model>
