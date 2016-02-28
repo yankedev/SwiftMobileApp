@@ -22,7 +22,7 @@ class BottomDetailsView : UIView {
 
         translatesAutoresizingMaskIntoConstraints = false
         
-        backgroundColor = UIColor.greenColor()
+        //backgroundColor = UIColor.greenColor()
         
         
         
@@ -33,12 +33,12 @@ class BottomDetailsView : UIView {
         label.font = UIFont(name: "Roboto", size: 11)
         label.textColor = ColorManager.grayImageColor
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = UIColor.redColor()
+        //label.backgroundColor = UIColor.redColor()
         
         
         image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.backgroundColor = UIColor.yellowColor()
+        //image.backgroundColor = UIColor.yellowColor()
         image.tintColor = ColorManager.grayImageColor
         
         

@@ -38,7 +38,7 @@ class SchedulerTableView : UITableView {
     
     func initialize() {
         translatesAutoresizingMaskIntoConstraints = false
-        separatorStyle = .None
+        //separatorStyle = .None
     }
     
     func setupConstraints() {

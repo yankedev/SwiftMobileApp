@@ -203,59 +203,80 @@ public class SchedulerTableViewController:
  
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? ScheduleCellView
+        let cellData = getCell(indexPath)
         
-        if cell == nil {
-            cell = ScheduleCellView(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
-        }
-        
-        /*
-    
-        if cell == nil {
-            cell = CellDataViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
-            cell?.selectionStyle = .None
-            cell!.configureCell()
-        }
-        
-        */
-
-        if let cellData = getCell(indexPath) {
-
-            cell!.leftIconView.imageView.image = cellData.getPrimaryImage()
+        if cellData?.getForthInformation() == "" {
             
-            cell!.rightTextView.topTitleView.talkTrackName.text = cellData.getThirdInformation()
-            cell!.rightTextView.topTitleView.talkTitle.text = cellData.getFirstInformation()
+            var cell = tableView.dequeueReusableCellWithIdentifier("BREAK_CELL") as? ScheduleBreakCell
             
-            cell!.rightTextView.locationView.label.text = cellData.getSecondInformation()
-            cell!.rightTextView.speakerView.label.text = cellData.getForthInformation()
-            
-            
-            /*cell!.rightTextView.locationView.text = cellData.getThirdInformation()
-
-            
-            if let fav = cellData as? FavoriteProtocol {
-                cell!.updateBackgroundColor(fav.favorited())
+            if cell == nil {
+                cell = ScheduleBreakCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "BREAK_CELL")
             }
             
-            if cell!.thirdInformation.text == "" {
-                cell!.backgroundColor = cellData.getColor()
-                cell!.thirdInformation.backgroundColor = UIColor.clearColor()
-                cell?.secondInformation.hidden = true
-                cell?.primaryImage.image = UIImage(named: "cofeeCup.png")
+            cell?.rightTextView.text = cellData?.getFirstInformation()
+           
+            cell?.leftIconView.setup()
+            
+            cell?.leftIconView.imageView.frame = CGRectInset(CGRectMake(0, 5, 50, 60), 8, 8);
+            cell?.leftIconView.imageView.contentMode = .ScaleAspectFit
+            
+            cell?.leftIconView.imageView.image = UIImage(named: "cofeeCup.png")
+            
+            cell?.backgroundColor = cellData!.getColor()
+
+
+            return cell!
+            
+        }
+        else {
+       
+            var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? ScheduleCellView
+     
+            if cell == nil {
+                cell = ScheduleCellView(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
             }
-            else {
-                cell!.thirdInformation.backgroundColor = cellData.getColor()
-                cell?.secondInformation.hidden = false
-            }
-            */
+        
+        
+       
+            if let cellData = getCell(indexPath) {
+
+                cell!.leftIconView.imageView.image = cellData.getPrimaryImage()
+            
+                cell!.rightTextView.topTitleView.talkTrackName.text = cellData.getThirdInformation()
+                cell!.rightTextView.topTitleView.talkTitle.text = cellData.getFirstInformation()
+            
+                cell!.rightTextView.locationView.label.text = cellData.getSecondInformation()
+                cell!.rightTextView.speakerView.label.text = cellData.getForthInformation()
             
             
-        } else {
-            // todo should be be here
+                if let fav = cellData as? FavoriteProtocol {
+                    cell!.updateBackgroundColor(fav.favorited())
+                }
+
+                if cellData.getForthInformation() == "" {
+                    cell!.backgroundColor = cellData.getColor()
+        
+                    cell!.rightTextView.locationView.hidden = true
+                    cell!.rightTextView.speakerView.hidden = true
+                
+                    cell!.leftIconView.imageView.image = UIImage(named: "cofeeCup.png")
+                }
+                else {
+
+                    cell!.rightTextView.locationView.hidden = false
+                    cell!.rightTextView.speakerView.hidden = false
+
+                }
+            
+                return cell!
+            
+            } else {
+                // todo should be be here
+            }
         }
         
             
-        return cell!
+        return UITableViewCell()
         
     }
 
@@ -504,6 +525,16 @@ public class SchedulerTableViewController:
     }
     
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        
+        let cellData = getCell(indexPath)
+        
+        if cellData?.getForthInformation() == "" {
+            return 60
+        }
+
+        
+        
         return 100
     }
     

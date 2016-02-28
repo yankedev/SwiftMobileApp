@@ -29,7 +29,7 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
     }
     
     func getForthInformation() -> String {
-        return talk.getFriendlySpeaker()
+        return talk.getFriendlySpeaker(", ")
     }
     
     func getPrimaryImage() -> UIImage? {

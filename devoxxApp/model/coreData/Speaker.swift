@@ -19,6 +19,7 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
     @NSManaged var href: String?
     @NSManaged var eventId: String?
     @NSManaged var speakerDetail: SpeakerDetail
+    @NSManaged var talks: NSSet
 
     func getFirstInformation() -> String {
         return "\(firstName!.capitalizedString) \(lastName!.capitalizedString)"

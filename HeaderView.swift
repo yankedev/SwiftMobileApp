@@ -31,7 +31,7 @@ class HeaderView : UIView {
         addSubview(headerString)
         
         numberOfTalkString = UILabel(frame: CGRect(x: 180, y: 10, width: frame.size.width-180, height: 30)) as UILabel
-        numberOfTalkString.textColor = UIColor.darkGrayColor()
+       //numberOfTalkString.textColor = UIColor.darkGrayColor()
         
         eventImg = UIImageView(frame: CGRect(x: 155, y: 14, width: 18, height: 20))
         eventImg.image = UIImage(named: "event.png")

@@ -59,7 +59,7 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
         view.addSubview(scroll)
         view.addSubview(talkList)
         
-        talkList.backgroundColor = UIColor.redColor()
+        //talkList.backgroundColor = UIColor.redColor()
         talkList.delegate = self
         talkList.dataSource = self
         
@@ -331,7 +331,14 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
         
         
         cell?.textLabel?.font = UIFont(name: "Roboto", size: 15)
-        cell?.textLabel?.text = "hi"
+        
+
+        
+        if let talk = speaker.talks.allObjects[indexPath.row] as? Talk {
+            cell?.textLabel?.text = talk.title
+        }
+        
+        
         
         cell?.accessoryType = .DisclosureIndicator
         
@@ -339,8 +346,7 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-        //speaker.talks.
+        return speaker.talks.count
     }
 
     

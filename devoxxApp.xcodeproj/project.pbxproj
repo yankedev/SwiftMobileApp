@@ -328,6 +328,7 @@
 		58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */; };
 		58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */; };
 		58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */; };
+		58EC131A1C83A7D700958070 /* ScheduleBreakCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC13191C83A7D700958070 /* ScheduleBreakCell.swift */; };
 		58F67CD91C308B8D007D2B97 /* FavoriteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F67CD81C308B8D007D2B97 /* FavoriteProtocol.swift */; };
 		58F67CDD1C308C64007D2B97 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F67CDB1C308C64007D2B97 /* Favorite.swift */; };
 		E10CE19E1C2BB6BE002C9934 /* CellDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE19D1C2BB6BE002C9934 /* CellDataProtocol.swift */; };
@@ -721,6 +722,7 @@
 		58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
 		58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOn@2x.png"; path = "icon/StarOn@2x.png"; sourceTree = "<group>"; };
 		58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOff@2x.png"; path = "icon/StarOff@2x.png"; sourceTree = "<group>"; };
+		58EC13191C83A7D700958070 /* ScheduleBreakCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleBreakCell.swift; path = devoxxApp/ScheduleBreakCell.swift; sourceTree = "<group>"; };
 		58F67CD81C308B8D007D2B97 /* FavoriteProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteProtocol.swift; sourceTree = "<group>"; };
 		58F67CDB1C308C64007D2B97 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		E10CE19D1C2BB6BE002C9934 /* CellDataProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellDataProtocol.swift; path = model/coreData/CellDataProtocol.swift; sourceTree = "<group>"; };
@@ -1156,6 +1158,7 @@
 				58A38EA51C8371F900C2DFE2 /* BottomDetailsView.swift */,
 				58A38EA71C83727000C2DFE2 /* RightTextView.swift */,
 				5842E4361C83734400998F9C /* ScheduleCellView.swift */,
+				58EC13191C83A7D700958070 /* ScheduleBreakCell.swift */,
 			);
 			name = ScheduleCellView;
 			sourceTree = "<group>";
@@ -1914,6 +1917,7 @@
 				E18046031C1DD220001AAD85 /* TalkDetailsController.swift in Sources */,
 				E10CE1A61C2BD0CB002C9934 /* FeedableProtocol.swift in Sources */,
 				E1FA9C371C1BFCC60077C09A /* ScheduleController.swift in Sources */,
+				58EC131A1C83A7D700958070 /* ScheduleBreakCell.swift in Sources */,
 				E1FA9C2D1C1BFC690077C09A /* Swifty.swift in Sources */,
 				580B789A1C7A11B700060C00 /* HomeGoButtonView.swift in Sources */,
 				580B786F1C76688400060C00 /* GenericPageScrollController.swift in Sources */,

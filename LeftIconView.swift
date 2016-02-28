@@ -18,12 +18,12 @@ class LeftIconView : UIView {
         
   
         
-        contentMode = .ScaleAspectFit
+       
 
         translatesAutoresizingMaskIntoConstraints = false
         
         
-        backgroundColor = UIColor.redColor()
+        //backgroundColor = UIColor.redColor()
         
         addSubview(imageView)
     }
@@ -31,8 +31,9 @@ class LeftIconView : UIView {
     func setup() {
         layoutIfNeeded()
         print(frame)
-        imageView.frame = CGRectInset(frame, 5, 5);
+        imageView.frame = CGRectInset(frame, 8, 8);
         imageView.image = UIImage(named: "icon_archisec.png")
+      
     }
     
     

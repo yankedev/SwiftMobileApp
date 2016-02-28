@@ -25,7 +25,7 @@ class Talk: NSManagedObject, FeedableProtocol{
         return "icon_\(trackId)"
     }
     
-    func getFriendlySpeaker() -> String {
+    func getFriendlySpeaker(delimiter : String) -> String {
         var returnString = ""
         var isFirst = true
         for spk in speakers {
@@ -35,7 +35,7 @@ class Talk: NSManagedObject, FeedableProtocol{
                     isFirst = false
                 }
                 else {
-                    returnString = returnString + "\n" + castSpk.getFirstInformation()
+                    returnString = returnString + delimiter + castSpk.getFirstInformation()
                 }
             }
         }
