@@ -37,6 +37,8 @@ class ColorManager {
     
     static var centerWheelColor = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)
     
+    static var darkOrangeColor = UIColor(red: 219/255, green: 71/255, blue: 0/255, alpha: 1)
+    
     
     
     

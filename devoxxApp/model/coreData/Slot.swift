@@ -28,6 +28,9 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
         return ("\(fromTime)-\(toTime)")
     }
     
+    func getForthInformation() -> String {
+        return talk.getFriendlySpeaker()
+    }
     
     func getPrimaryImage() -> UIImage? {
         return UIImage(named: talk.getIconFromTrackId())
@@ -42,7 +45,7 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
     }
     
     func getThirdInformation() -> String {
-        return talk.getShortTalkTypeName()
+        return talk.track
     }
     
     func getColor() -> UIColor? {

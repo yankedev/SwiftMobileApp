@@ -21,11 +21,15 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
     @NSManaged var speakerDetail: SpeakerDetail
 
     func getFirstInformation() -> String {
-        return "\(firstName!.capitalizedString) \(lastName!.capitalizedString) \(speakerDetail.twitter)"
+        return "\(firstName!.capitalizedString) \(lastName!.capitalizedString)"
     }
     
     
     func getSecondInformation() -> String {
+        return ""
+    }
+    
+    func getForthInformation() -> String {
         return ""
     }
     

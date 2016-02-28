@@ -15,6 +15,7 @@ import UIKit
     func getFirstInformation() -> String
     func getSecondInformation() -> String
     func getThirdInformation() -> String
+    func getForthInformation() -> String
     func getPrimaryImage() -> UIImage?
     func getColor() -> UIColor?
     func getElement() -> NSManagedObject

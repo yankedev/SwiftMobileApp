@@ -11,6 +11,10 @@ import UIKit
 
 class TopTitleView : UIView {
     
+    let talkTrackName = UILabel()
+    let talkTitle = UILabel()
+
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -19,6 +23,61 @@ class TopTitleView : UIView {
         translatesAutoresizingMaskIntoConstraints = false
         
         backgroundColor = UIColor.yellowColor()
+        
+        
+        
+        talkTrackName.font = UIFont(name: "Roboto", size: 11)
+        talkTrackName.textColor = ColorManager.darkOrangeColor
+        talkTitle.font = UIFont(name: "Roboto", size: 13)
+        talkTitle.numberOfLines = 2
+        
+        talkTitle.translatesAutoresizingMaskIntoConstraints = false
+        talkTrackName.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        addSubview(talkTitle)
+        addSubview(talkTrackName)
+        
+        let views = ["talkTitle": talkTitle, "talkTrackName" : talkTrackName]
+        
+        
+        let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[talkTitle]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
+        let constH1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[talkTrackName]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
+        
+        let constV0 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[talkTrackName]-0-[talkTitle]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        
+        
+        addConstraints(constH0)
+        addConstraints(constH1)
+        addConstraints(constV0)
+        
+        
+        let talkTrackNameHeight = NSLayoutConstraint(item: talkTrackName,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.4,
+            constant: 0)
+
+        
+        let talkTitleHeight = NSLayoutConstraint(item: talkTitle,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0.6,
+            constant: 0)
+        
+        
+
+        addConstraint(talkTitleHeight)
+        addConstraint(talkTrackNameHeight)
+        
+        talkTitle.backgroundColor = UIColor.purpleColor()
+        talkTrackName.backgroundColor = UIColor.grayColor()
+        
+        
     }
     
     

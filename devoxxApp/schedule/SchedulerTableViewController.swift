@@ -216,14 +216,21 @@ public class SchedulerTableViewController:
             cell?.selectionStyle = .None
             cell!.configureCell()
         }
+        
+        */
 
         if let cellData = getCell(indexPath) {
 
-            cell!.primaryImage.image = cellData.getPrimaryImage()
+            cell!.leftIconView.imageView.image = cellData.getPrimaryImage()
             
-            cell!.firstInformation.text = cellData.getFirstInformation()
-            cell!.secondInformation.text = cellData.getSecondInformation()
-            cell!.thirdInformation.text = cellData.getThirdInformation()
+            cell!.rightTextView.topTitleView.talkTrackName.text = cellData.getThirdInformation()
+            cell!.rightTextView.topTitleView.talkTitle.text = cellData.getFirstInformation()
+            
+            cell!.rightTextView.locationView.label.text = cellData.getSecondInformation()
+            cell!.rightTextView.speakerView.label.text = cellData.getForthInformation()
+            
+            
+            /*cell!.rightTextView.locationView.text = cellData.getThirdInformation()
 
             
             if let fav = cellData as? FavoriteProtocol {
@@ -240,13 +247,13 @@ public class SchedulerTableViewController:
                 cell!.thirdInformation.backgroundColor = cellData.getColor()
                 cell?.secondInformation.hidden = false
             }
-            
+            */
             
             
         } else {
             // todo should be be here
         }
-        */
+        
             
         return cell!
         
@@ -491,11 +498,14 @@ public class SchedulerTableViewController:
                 return 0
             }
         }*/
-        return 44.0
+        return 44
         
         
     }
     
+    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 100
+    }
     
     
     public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
