@@ -203,8 +203,13 @@ public class SchedulerTableViewController:
  
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? CellDataViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? ScheduleCellView
         
+        if cell == nil {
+            cell = ScheduleCellView(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
+        }
+        
+        /*
     
         if cell == nil {
             cell = CellDataViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
@@ -241,7 +246,7 @@ public class SchedulerTableViewController:
         } else {
             // todo should be be here
         }
-        
+        */
             
         return cell!
         

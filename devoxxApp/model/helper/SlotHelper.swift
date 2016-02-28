@@ -116,6 +116,15 @@ class SlotHelper: DataHelperProtocol {
                         let items = try managedContext.executeFetchRequest(fetch)
                         let nsm = subDataObject as! Talk
                         nsm.mutableSetValueForKey("speakers").addObjectsFromArray(items)
+                        
+                        //iterate over speaker and set talk
+                        
+                        /*for item in items {
+                            if let itemSpeaker = item as? Speaker {
+                                itemSpeaker.
+                            }
+                        }*/
+                        
                     } catch let error as NSError {
                         print("unresolved error \(error), \(error.userInfo)")
                     }

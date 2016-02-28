@@ -53,6 +53,7 @@
 		58195C131C359A4E00F56A30 /* FilterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58195C121C359A4E00F56A30 /* FilterViewCell.swift */; };
 		58195C161C359F7500F56A30 /* checkboxOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195C141C359F7500F56A30 /* checkboxOff.png */; };
 		58195C171C359F7500F56A30 /* checkboxOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195C151C359F7500F56A30 /* checkboxOn.png */; };
+		5842E4371C83734400998F9C /* ScheduleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842E4361C83734400998F9C /* ScheduleCellView.swift */; };
 		5872861B1C1F565C00FC098A /* SpeakerTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861A1C1F565C00FC098A /* SpeakerTableController.swift */; };
 		5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861C1C1F579900FC098A /* SpeakerHelper.swift */; };
 		587286201C1F589400FC098A /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861E1C1F589400FC098A /* Speaker.swift */; };
@@ -318,6 +319,10 @@
 		5895EB9D1C66684000229780 /* pirulen.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5895EB9B1C66684000229780 /* pirulen.ttf */; };
 		5895EBA11C66698800229780 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5895EB9E1C66698800229780 /* ViewController.swift */; };
 		58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A0E8C01C272FF9000C49DD /* TrackHelper.swift */; };
+		58A38EA21C8371C800C2DFE2 /* LeftIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A38EA11C8371C800C2DFE2 /* LeftIconView.swift */; };
+		58A38EA41C8371D800C2DFE2 /* TopTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A38EA31C8371D800C2DFE2 /* TopTitleView.swift */; };
+		58A38EA61C8371F900C2DFE2 /* BottomDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A38EA51C8371F900C2DFE2 /* BottomDetailsView.swift */; };
+		58A38EA81C83727000C2DFE2 /* RightTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A38EA71C83727000C2DFE2 /* RightTextView.swift */; };
 		58BA2BFC1C3331EF0031C2E3 /* Etag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BA2BFB1C3331EE0031C2E3 /* Etag.swift */; };
 		58C6A8181C74A171005CDCA1 /* filterWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58C6A8171C74A171005CDCA1 /* filterWhite@2x.png */; };
 		58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */; };
@@ -441,6 +446,7 @@
 		58195C121C359A4E00F56A30 /* FilterViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewCell.swift; sourceTree = "<group>"; };
 		58195C141C359F7500F56A30 /* checkboxOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkboxOff.png; path = icon/checkboxOff.png; sourceTree = "<group>"; };
 		58195C151C359F7500F56A30 /* checkboxOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkboxOn.png; path = icon/checkboxOn.png; sourceTree = "<group>"; };
+		5842E4361C83734400998F9C /* ScheduleCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCellView.swift; sourceTree = "<group>"; };
 		5872861A1C1F565C00FC098A /* SpeakerTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerTableController.swift; sourceTree = "<group>"; };
 		5872861C1C1F579900FC098A /* SpeakerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerHelper.swift; sourceTree = "<group>"; };
 		5872861E1C1F589400FC098A /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Speaker.swift; path = model/coreData/Speaker.swift; sourceTree = "<group>"; };
@@ -706,6 +712,10 @@
 		5895EB9B1C66684000229780 /* pirulen.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pirulen.ttf; sourceTree = "<group>"; };
 		5895EB9E1C66698800229780 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = devoxxApp/ViewController.swift; sourceTree = "<group>"; };
 		58A0E8C01C272FF9000C49DD /* TrackHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackHelper.swift; sourceTree = "<group>"; };
+		58A38EA11C8371C800C2DFE2 /* LeftIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftIconView.swift; sourceTree = "<group>"; };
+		58A38EA31C8371D800C2DFE2 /* TopTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopTitleView.swift; sourceTree = "<group>"; };
+		58A38EA51C8371F900C2DFE2 /* BottomDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomDetailsView.swift; sourceTree = "<group>"; };
+		58A38EA71C83727000C2DFE2 /* RightTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightTextView.swift; sourceTree = "<group>"; };
 		58BA2BFB1C3331EE0031C2E3 /* Etag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Etag.swift; sourceTree = "<group>"; };
 		58C6A8171C74A171005CDCA1 /* filterWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filterWhite@2x.png"; sourceTree = "<group>"; };
 		58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
@@ -1138,9 +1148,22 @@
 			name = speakerDetails;
 			sourceTree = "<group>";
 		};
+		58A38EA01C8371B500C2DFE2 /* ScheduleCellView */ = {
+			isa = PBXGroup;
+			children = (
+				58A38EA11C8371C800C2DFE2 /* LeftIconView.swift */,
+				58A38EA31C8371D800C2DFE2 /* TopTitleView.swift */,
+				58A38EA51C8371F900C2DFE2 /* BottomDetailsView.swift */,
+				58A38EA71C83727000C2DFE2 /* RightTextView.swift */,
+				5842E4361C83734400998F9C /* ScheduleCellView.swift */,
+			);
+			name = ScheduleCellView;
+			sourceTree = "<group>";
+		};
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				58A38EA01C8371B500C2DFE2 /* ScheduleCellView */,
 				E18046021C1DD220001AAD85 /* TalkDetailsController.swift */,
 				5877973B1C81C38A00A1A7D5 /* ActionButtonView.swift */,
 				588CFFAA1C811C5200DEC1E6 /* ColoredHeaderView.swift */,
@@ -1360,7 +1383,6 @@
 				E175F2621C485AF200D7AC0A /* view */,
 				E127E6591C38212100FB7E4F /* FilterableTableProtocol.swift */,
 				E127E6571C38117000FB7E4F /* SwitchableProtocol.swift */,
-				587796FA1C81207B00A1A7D5 /* SpeakerDetailsController.swift */,
 			);
 			name = schedule;
 			sourceTree = "<group>";
@@ -1379,6 +1401,7 @@
 			isa = PBXGroup;
 			children = (
 				5872861A1C1F565C00FC098A /* SpeakerTableController.swift */,
+				587796FA1C81207B00A1A7D5 /* SpeakerDetailsController.swift */,
 			);
 			name = speaker;
 			sourceTree = "<group>";
@@ -1840,6 +1863,7 @@
 				580B786B1C74FD9A00060C00 /* SpeakerCell.swift in Sources */,
 				E10CE1AE1C2BDAA1002C9934 /* Attribute.swift in Sources */,
 				E10CE1A41C2BC1F2002C9934 /* DataHelper.swift in Sources */,
+				58A38EA21C8371C800C2DFE2 /* LeftIconView.swift in Sources */,
 				E1FA9C3B1C1BFCF80077C09A /* MapController.swift in Sources */,
 				E127E65A1C38212100FB7E4F /* FilterableTableProtocol.swift in Sources */,
 				58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */,
@@ -1848,7 +1872,9 @@
 				580B78851C78988500060C00 /* Image.swift in Sources */,
 				E127E6601C38313200FB7E4F /* SearchableTableProtocol.swift in Sources */,
 				580CD2A21C7DDA7900152E4C /* AllDetailsView.swift in Sources */,
+				58A38EA61C8371F900C2DFE2 /* BottomDetailsView.swift in Sources */,
 				58195BFA1C3572ED00F56A30 /* FilterableProtocol.swift in Sources */,
+				58A38EA41C8371D800C2DFE2 /* TopTitleView.swift in Sources */,
 				E175F26B1C4867F300D7AC0A /* FilterTableView.swift in Sources */,
 				E10CE1AA1C2BD6DE002C9934 /* TalkTypeHelper.swift in Sources */,
 				587286201C1F589400FC098A /* Speaker.swift in Sources */,
@@ -1871,6 +1897,7 @@
 				58BA2BFC1C3331EF0031C2E3 /* Etag.swift in Sources */,
 				5895EB7D1C6662F300229780 /* Cfp.swift in Sources */,
 				E1FA9BEE1C1BF4E70077C09A /* ColorManager.swift in Sources */,
+				5842E4371C83734400998F9C /* ScheduleCellView.swift in Sources */,
 				580B78961C7A10E100060C00 /* HomeHeaderView.swift in Sources */,
 				E1FA9C491C1BFD560077C09A /* SlotHelper.swift in Sources */,
 				5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */,
@@ -1878,6 +1905,7 @@
 				5895EB811C66642A00229780 /* CfpHelper.swift in Sources */,
 				E10CE19E1C2BB6BE002C9934 /* CellDataProtocol.swift in Sources */,
 				E10E7AC61C18BF7100F6220B /* devoxxApp.xcdatamodeld in Sources */,
+				58A38EA81C83727000C2DFE2 /* RightTextView.swift in Sources */,
 				E1FA9C361C1BFCC60077C09A /* SchedulerTableViewController.swift in Sources */,
 				E1FA9C451C1BFD400077C09A /* Talk.swift in Sources */,
 				580CD2A61C7E5A4100152E4C /* TopInfoDetailView.swift in Sources */,

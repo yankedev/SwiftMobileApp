@@ -9,11 +9,15 @@
 import Foundation
 import UIKit
 
-public class SpeakerDetailsController : UIViewController {
+public class SpeakerDetailsController : UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var scroll : UITextView!
     var speaker : Speaker!
     var header = ColoredHeaderView(frame: CGRectZero)
+    
+    
+    
+    var talkList = SpeakerListView()
     
     
     // var speakers: UITableView!
@@ -53,8 +57,11 @@ public class SpeakerDetailsController : UIViewController {
         
         view.addSubview(header)
         view.addSubview(scroll)
+        view.addSubview(talkList)
         
-        
+        talkList.backgroundColor = UIColor.redColor()
+        talkList.delegate = self
+        talkList.dataSource = self
         
         
         view.addSubview(actionButtonViewBack)
@@ -63,16 +70,18 @@ public class SpeakerDetailsController : UIViewController {
 
         
         
-        let views = ["header": header, "scroll" : scroll]
+        let views = ["header": header, "scroll" : scroll, "talkList" : talkList]
         
         
         let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[header]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
+        let constH3 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkList]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
         
         
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(150)]-[scroll]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        
+        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(150)]-[scroll]-[talkList(200)]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
         
         
@@ -82,6 +91,7 @@ public class SpeakerDetailsController : UIViewController {
         
         view.addConstraints(constH)
         view.addConstraints(constH2)
+        view.addConstraints(constH3)
 
         
         view.addConstraints(constV)
@@ -261,33 +271,7 @@ public class SpeakerDetailsController : UIViewController {
     }
     
     
-    
-    
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    
-    
-    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
-    }
-    
-    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let label = UILabel(frame: CGRectMake(0,0,20,1000))
-        label.font = UIFont(name: "Roboto", size: 12)
-        label.textColor = UIColor.lightGrayColor()
-        label.text = "Speakers"
-        return label
-        
-        
-    }
-    
-    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Speakers"
-    }
-    
+
     
     
     
@@ -305,15 +289,33 @@ public class SpeakerDetailsController : UIViewController {
     }
     
 
-   
+    
+    //DATASOUTCE
     
     
     
     
     
-    /*
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return slot.talk.speakers.count
+    
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    
+    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+    
+    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let label = UILabel(frame: CGRectMake(0,0,20,1000))
+        label.font = UIFont(name: "Roboto", size: 12)
+        label.textColor = UIColor.lightGrayColor()
+        label.text = "Talks"
+        return label
+        
+        
     }
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
@@ -328,15 +330,45 @@ public class SpeakerDetailsController : UIViewController {
         
         
         
-        let speakerArray = slot.talk.speakers.sortedArrayUsingDescriptors([NSSortDescriptor(key: "firstName", ascending: true)]) as! [Speaker]
+        cell?.textLabel?.font = UIFont(name: "Roboto", size: 15)
+        cell?.textLabel?.text = "hi"
         
-        cell?.textLabel?.text = speakerArray[indexPath.row].getFullName()
+        cell?.accessoryType = .DisclosureIndicator
         
         return cell!
-        
     }
     
-    */
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+        //speaker.talks.
+    }
+
+    
+    
+    
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        /*
+        let speakerArray = speakers.sortedArrayUsingDescriptors([NSSortDescriptor(key: "firstName", ascending: true)]) as! [Speaker]
+        
+        let speaker = speakerArray[indexPath.row]
+        
+        
+        
+        let details = SpeakerDetailsController()
+        //todo
+        details.indexPath = indexPath
+        details.speaker = speaker
+        //details.delegate = self
+        
+        details.configure()
+        // details.setColor(slot.favorited())
+        
+        self.navigationController?.pushViewController(details, animated: true)
+        
+        
+        */
+        
+    }
     
     
 }

@@ -470,6 +470,17 @@ class APIManager {
 
     }
     
+   /*
+    class func getTalksFromSpeaker(speaker : Speaker) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: "Talk")
+        let predicate = NSPredicate(format: " = %@", id)
+        fetchRequest.predicate = predicate
+        let items = try! context.executeFetchRequest(fetchRequest)
+
+    }
+    */
     
 }
 

@@ -20,7 +20,6 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
     @NSManaged var eventId: String?
     @NSManaged var speakerDetail: SpeakerDetail
 
-
     func getFirstInformation() -> String {
         return "\(firstName!.capitalizedString) \(lastName!.capitalizedString) \(speakerDetail.twitter)"
     }
@@ -73,6 +72,9 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
         return "\(firstName!) \(lastName!)"
     }
     
+    func getTalks() -> Void {
+        //return APIManager.getTalksFromSpeaker(self)
+    }
     
 
 
