@@ -521,7 +521,7 @@ public class SchedulerTableViewController:
 
         
         
-        return 100
+        return 130
     }
     
     

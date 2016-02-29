@@ -14,7 +14,9 @@ import UIKit
 public protocol EventProtocol  {
     func title() -> String
     func splashImageName() -> String
-    func numbers() -> Array<Int>
+    func capacityCount() -> String
+    func sessionsCount() -> String
+    func daysLeft() -> String
     func backgroundImage() -> NSData
 }
 
@@ -26,6 +28,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     @NSManaged var venue: String?
     @NSManaged var address: String?
     @NSManaged var country: String?
+    @NSManaged var fromDate: String?
     @NSManaged var capacity: String?
     @NSManaged var sessions: String?
     @NSManaged var latitude: String?
@@ -46,6 +49,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
             address = castHelper.address
             country = castHelper.country
             capacity = castHelper.capacity
+            fromDate = castHelper.fromDate
             sessions = castHelper.sessions
             latitude = castHelper.latitude
             longitude = castHelper.longitude
@@ -61,8 +65,56 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
         }
     }
     
+    func daysLeft() -> String {
+        
+       
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        let date = dateFormatter.dateFromString(fromDate!)
+        let now = NSDate()
+        
+        let string = "\(differenceInDaysWithDate(now, secondDate: date!))"
+        
+        
+        return string
+        
+
+    }
+    
+  
+    func differenceInDaysWithDate(firstDate : NSDate, secondDate: NSDate) -> Int {
+        
+        if firstDate.timeIntervalSince1970 >= secondDate.timeIntervalSince1970 {
+            return 0
+        }
+        
+        let calendar: NSCalendar = NSCalendar.currentCalendar()
+        
+        let date1 = calendar.startOfDayForDate(firstDate)
+        let date2 = calendar.startOfDayForDate(secondDate)
+        
+        let components = calendar.components(.Day, fromDate: date1, toDate: date2, options: [])
+        return components.day
+    }
+    
+    
     func title() -> String {
         return country!
+    }
+    
+    func capacityCount() -> String {
+        if capacity == nil {
+            return "0"
+        }
+        return capacity!
+    }
+    
+    func sessionsCount() -> String {
+        if sessions == nil {
+            return "0"
+        }
+        return sessions!
     }
     
     func splashImageName() -> String {

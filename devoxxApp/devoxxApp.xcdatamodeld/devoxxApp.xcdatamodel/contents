@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1509" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15B42" minimumToolsVersion="Automatic">
     <entity name="Attribute" representedClassName="devoxxApp.Attribute" syncable="YES">
         <attribute name="attributeDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -13,6 +13,7 @@
         <attribute name="confDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="confType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fromDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hashtag" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
@@ -94,7 +95,7 @@
     </entity>
     <elements>
         <element name="Attribute" positionX="-45" positionY="54" width="128" height="105"/>
-        <element name="Cfp" positionX="-36" positionY="81" width="128" height="255"/>
+        <element name="Cfp" positionX="-36" positionY="81" width="128" height="270"/>
         <element name="Etag" positionX="-54" positionY="45" width="128" height="75"/>
         <element name="Favorite" positionX="-54" positionY="45" width="128" height="90"/>
         <element name="Floor" positionX="-45" positionY="126" width="128" height="120"/>

@@ -22,22 +22,18 @@ class HomeNumberView : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-        
-
-        number1.text = "102"
-        number1.font = UIFont(name: "Pirulen", size: 30)!
+    
+        number1.font = UIFont(name: "Pirulen", size: 26)!
         number1.textColor = UIColor.whiteColor()
         number1.textAlignment = .Center
         number1.translatesAutoresizingMaskIntoConstraints = false
-
-        number2.text = "230"
-        number2.font = UIFont(name: "Pirulen", size: 30)!
+        
+        number2.font = UIFont(name: "Pirulen", size: 26)!
         number2.textColor = UIColor.whiteColor()
         number2.textAlignment = .Center
         number2.translatesAutoresizingMaskIntoConstraints = false
       
-        number3.text = "100"
-        number3.font = UIFont(name: "Pirulen", size: 30)!
+        number3.font = UIFont(name: "Pirulen", size: 26)!
         number3.textColor = UIColor.whiteColor()
         number3.textAlignment = .Center
         number3.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +50,7 @@ class HomeNumberView : UIView {
         label1.textAlignment = .Center
         label1.translatesAutoresizingMaskIntoConstraints = false
 
-        label2.text = "PROPOSALS"
+        label2.text = "TALKS"
         label2.font = UIFont(name: "Pirulen", size: 8)!
         label2.textColor = UIColor.whiteColor()
         label2.textAlignment = .Center
@@ -100,7 +96,7 @@ class HomeNumberView : UIView {
             relatedBy: NSLayoutRelation.Equal,
             toItem: self,
             attribute: NSLayoutAttribute.Width,
-            multiplier: 4/16,
+            multiplier: 5/19,
             constant: 0)
         
         let number2CenterX = NSLayoutConstraint(item: label,
@@ -134,15 +130,15 @@ class HomeNumberView : UIView {
         
 
     
-        createConstraint(number1, centerXFactor: 0.25, centerYConstant : 30)
+        createConstraint(number1, centerXFactor: 0.4, centerYConstant : 30)
         createConstraint(number2, centerXFactor: 1, centerYConstant : 30)
-        createConstraint(number3, centerXFactor: 1.75, centerYConstant : 30)
+        createConstraint(number3, centerXFactor: 1.6, centerYConstant : 30)
 
         
         
-        createConstraint(label1, centerXFactor: 0.25, centerYConstant : 60)
+        createConstraint(label1, centerXFactor: 0.4, centerYConstant : 60)
         createConstraint(label2, centerXFactor: 1, centerYConstant : 60)
-        createConstraint(label3, centerXFactor: 1.75, centerYConstant : 60)
+        createConstraint(label3, centerXFactor: 1.6, centerYConstant : 60)
 
         
         

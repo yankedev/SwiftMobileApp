@@ -329,6 +329,8 @@
 		58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */; };
 		58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */; };
 		58EC131A1C83A7D700958070 /* ScheduleBreakCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC13191C83A7D700958070 /* ScheduleBreakCell.swift */; };
+		58EC131C1C8464E000958070 /* tabIconSettings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EC131B1C8464E000958070 /* tabIconSettings@2x.png */; };
+		58EC131E1C846F2100958070 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC131D1C846F2100958070 /* SettingsController.swift */; };
 		58F67CD91C308B8D007D2B97 /* FavoriteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F67CD81C308B8D007D2B97 /* FavoriteProtocol.swift */; };
 		58F67CDD1C308C64007D2B97 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F67CDB1C308C64007D2B97 /* Favorite.swift */; };
 		E10CE19E1C2BB6BE002C9934 /* CellDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE19D1C2BB6BE002C9934 /* CellDataProtocol.swift */; };
@@ -723,6 +725,8 @@
 		58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOn@2x.png"; path = "icon/StarOn@2x.png"; sourceTree = "<group>"; };
 		58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOff@2x.png"; path = "icon/StarOff@2x.png"; sourceTree = "<group>"; };
 		58EC13191C83A7D700958070 /* ScheduleBreakCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleBreakCell.swift; path = devoxxApp/ScheduleBreakCell.swift; sourceTree = "<group>"; };
+		58EC131B1C8464E000958070 /* tabIconSettings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabIconSettings@2x.png"; path = "icon/tab/tabIconSettings@2x.png"; sourceTree = "<group>"; };
+		58EC131D1C846F2100958070 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		58F67CD81C308B8D007D2B97 /* FavoriteProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteProtocol.swift; sourceTree = "<group>"; };
 		58F67CDB1C308C64007D2B97 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		E10CE19D1C2BB6BE002C9934 /* CellDataProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellDataProtocol.swift; path = model/coreData/CellDataProtocol.swift; sourceTree = "<group>"; };
@@ -852,6 +856,7 @@
 		587797441C82063A00A1A7D5 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				58EC131B1C8464E000958070 /* tabIconSettings@2x.png */,
 				580B78A91C7A884800060C00 /* event.png */,
 				58C6A8171C74A171005CDCA1 /* filterWhite@2x.png */,
 				E17DFF3C1C72884F00A09547 /* filter@2x.png */,
@@ -1166,6 +1171,7 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				58EC131D1C846F2100958070 /* SettingsController.swift */,
 				58A38EA01C8371B500C2DFE2 /* ScheduleCellView */,
 				E18046021C1DD220001AAD85 /* TalkDetailsController.swift */,
 				5877973B1C81C38A00A1A7D5 /* ActionButtonView.swift */,
@@ -1707,6 +1713,7 @@
 				588CFED51C8105DB00DEC1E6 /* 286c8e3ad0804742a1c2fd4c624cf0a0aeeb53ef.json in Resources */,
 				580CD2A81C7E5E3900152E4C /* location@2x.png in Resources */,
 				E175F25E1C46FFAD00D7AC0A /* 02.json in Resources */,
+				58EC131C1C8464E000958070 /* tabIconSettings@2x.png in Resources */,
 				588CFF271C8105DB00DEC1E6 /* 348194fdbb33b1566781134d2717ba0aa14231c1.json in Resources */,
 				588CFF011C8105DB00DEC1E6 /* c6c08ad06fc697fc17e626edc3018af523545ddb.json in Resources */,
 				580B78931C7A07AF00060C00 /* devoxxCinameFloorPhone.jpg in Resources */,
@@ -1895,6 +1902,7 @@
 				588CFDD41C80F9FC00DEC1E6 /* GobalDetailView.swift in Sources */,
 				E175F2761C52A50C00D7AC0A /* ScheduleControllerView.swift in Sources */,
 				E17DFF411C79D7FB00A09547 /* Floor.swift in Sources */,
+				58EC131E1C846F2100958070 /* SettingsController.swift in Sources */,
 				588CFFAB1C811C5200DEC1E6 /* ColoredHeaderView.swift in Sources */,
 				5895EBA11C66698800229780 /* ViewController.swift in Sources */,
 				58BA2BFC1C3331EF0031C2E3 /* Etag.swift in Sources */,

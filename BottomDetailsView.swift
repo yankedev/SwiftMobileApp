@@ -30,7 +30,7 @@ class BottomDetailsView : UIView {
         
         
         label = UILabel()
-        label.font = UIFont(name: "Roboto", size: 11)
+        label.font = UIFont(name: "Roboto", size: 12)
         label.textColor = ColorManager.grayImageColor
         label.translatesAutoresizingMaskIntoConstraints = false
         //label.backgroundColor = UIColor.redColor()

@@ -108,7 +108,7 @@ class SelectionWheel: UIView {
            
 
             
-            let imgV = UIImageView(frame : CGRectMake(0,0, 159/2, 191/2))
+            let imgV = UIImageView(frame : CGRectMake(0,0, 159/3, 191/3))
             imgV.image = image
             
            
@@ -165,7 +165,7 @@ class SelectionWheel: UIView {
         
         reset()
         
-        let radius = min((frame.size.width - 100)/2, 200)
+        let radius = min((frame.size.width - 200)/2, 200)
 
         
         let centerPoint = CGPointMake(center.x - frame.origin.x, center.y - self.frame.origin.y)

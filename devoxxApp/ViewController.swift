@@ -21,6 +21,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     let tabController = UITabBarController()
     var currentSelectedIndex = 0
     var imgView:UIImageView!
+    var numberView:HomeNumberView!
     var globeView:UIView!
     var eventLocation:UILabel!
     var rotating = false
@@ -103,17 +104,24 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                         let scheduleController = ScheduleController<SchedulerTableViewController>(generator:self.generateScheduleTableViewController)
                         let speakerController = SpeakerTableController()
                         let mapController = MapTabController()
+                        let settingsController = SettingsController()
                         
                         let scheduleTabImage = UIImage(named: "tabIconSchedule.png")
                         let speakerTabImage = UIImage(named: "tabIconSpeaker.png")
                         let mapTabImage = UIImage(named: "tabIconMap.png")
+                        let settingsTabImage = UIImage(named: "tabIconSettings.png")
                         
                         scheduleController.tabBarItem = UITabBarItem(title: "Schedule", image: scheduleTabImage, tag:0)
                         speakerController.tabBarItem = UITabBarItem(title: "Speakers", image: speakerTabImage, tag:1)
                         mapController.tabBarItem = UITabBarItem(title: "Map", image: mapTabImage, tag:2)
+                        settingsController.tabBarItem = UITabBarItem(title: "Settings", image: settingsTabImage, tag:3)
                         
                         //let scheduleNavigationController = UINavigationController(rootViewController: scheduleController)
                         let speakerNavigationController = UINavigationController(rootViewController: speakerController)
+                        
+                        
+                        
+                        let settingsNavigationController = UINavigationController(rootViewController: settingsController)
                         
                         
                         
@@ -123,7 +131,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                         let mapNavigationController = UINavigationController(rootViewController: mapController)
                         
                         
-                        self.tabController.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController]
+                        self.tabController.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController, settingsNavigationController]
                         self.tabController.tabBar.translucent = false
                         self.tabController.view.backgroundColor = UIColor.whiteColor()
                         //TODO BACK BUTTON
@@ -176,7 +184,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         let headerView = HomeHeaderView()
         
         let goView = HomeGoButtonView()
-        let numberView = HomeNumberView()
+        numberView = HomeNumberView()
 
         
         eventLocation = headerView.eventLocation
@@ -306,13 +314,6 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         return CGFloat(100/slicesData.count)
     }
     
-    func numbersForSliceAtIndex(index:Int) -> Array<Int> {
-        if let currentData = slicesData[index] as? EventProtocol {
-            return currentData.numbers()
-        }
-        return [0,0,0]
-    }
-    
     func labelForSliceAtIndex(index:Int) -> String {
         if let currentData = slicesData[index] as? EventProtocol {
             return currentData.title()
@@ -345,6 +346,11 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             imgView.image = img
             imgView.frame = tmpImageView.frame
             eventLocation.text = currentData.title()
+            
+            numberView.number1.text = currentData.daysLeft()
+            numberView.number2.text = currentData.sessionsCount()
+            numberView.number3.text = currentData.capacityCount()
+            
         }
         currentSelectedIndex = index
     }
