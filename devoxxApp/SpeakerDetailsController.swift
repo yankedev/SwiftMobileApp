@@ -284,9 +284,13 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
     
     
     public func twitter() {
-        let alert = UIAlertController(title: "Tweet", message: "Action to tweet about \(speaker.getFullName())", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        
+        let originalString = "\(APIManager.currentEvent.hashtag!) \(speaker.getFullName())"
+        let escapedString = originalString.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+        
+        let url = "https://twitter.com/intent/tweet?text=\(escapedString!)"
+        
+        UIApplication.sharedApplication().openURL(NSURL(string: url)!)
     }
     
 

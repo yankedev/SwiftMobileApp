@@ -371,9 +371,13 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     
     
     public func twitter() {
-        let alert = UIAlertController(title: "Tweet", message: "Action to tweet about \(slot.talk.title)", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+    
+        let originalString = "\(APIManager.currentEvent.hashtag!) \(slot.talk.title) by \(slot.getForthInformation())"
+        let escapedString = originalString.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+        
+        let url = "https://twitter.com/intent/tweet?text=\(escapedString!)"
+        
+        UIApplication.sharedApplication().openURL(NSURL(string: url)!)
     }
     
 

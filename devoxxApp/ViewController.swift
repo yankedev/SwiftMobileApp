@@ -94,6 +94,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                         if(APIManager.isCurrentEventEmpty()) {
                             let alert = UIAlertController(title: "No data", message: "No data for this event, select Belgium to test", preferredStyle: UIAlertControllerStyle.Alert)
                             alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
+                            self.rotating = false
                             self.presentViewController(alert, animated: true, completion: nil)
                             return
                         }

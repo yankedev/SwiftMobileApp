@@ -24,6 +24,7 @@ class CfpHelper: DataHelperProtocol {
     var latitude: String?
     var longitude: String?
     var splashImgURL: String?
+    var hashtag: String?
     
     var fedFloorsArray:Array<FloorHelper>!
     
@@ -31,7 +32,7 @@ class CfpHelper: DataHelperProtocol {
         return entityName()
     }
     
-    init(id: String?, confType: String?, confDescription: String?, venue: String?, address: String?, country: String?, capacity: String?, sessions: String?, latitude:String?, longitude:String?, splashImgURL: String?) {
+    init(id: String?, confType: String?, confDescription: String?, venue: String?, address: String?, country: String?, capacity: String?, sessions: String?, latitude:String?, longitude:String?, splashImgURL: String?, hashtag: String?) {
         self.id = id ?? ""
         self.confType = confType ?? ""
         self.confDescription = confDescription ?? ""
@@ -43,6 +44,7 @@ class CfpHelper: DataHelperProtocol {
         self.latitude = latitude ?? ""
         self.longitude = longitude ?? ""
         self.splashImgURL = splashImgURL ?? ""
+        self.hashtag = hashtag ?? ""
 
     }
     
@@ -59,6 +61,7 @@ class CfpHelper: DataHelperProtocol {
         latitude = data["latitude"].string
         longitude = data["longitude"].string
         splashImgURL = data["splashImgURL"].string
+        hashtag = data["hashtag"].string
    
         fedFloorsArray = Array<FloorHelper>()
         

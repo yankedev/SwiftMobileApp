@@ -31,6 +31,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     @NSManaged var latitude: String?
     @NSManaged var longitude: String?
     @NSManaged var splashImgURL: String?
+    @NSManaged var hashtag: String?
     @NSManaged var backgroundImageData: NSData?
     @NSManaged var floors: NSSet
     
@@ -49,6 +50,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
             latitude = castHelper.latitude
             longitude = castHelper.longitude
             splashImgURL = castHelper.splashImgURL
+            hashtag = castHelper.hashtag
 
             if let path = NSBundle.mainBundle().pathForResource(splashImgURL, ofType: "jpg") {
                 if let data = NSData(contentsOfFile: path) {
