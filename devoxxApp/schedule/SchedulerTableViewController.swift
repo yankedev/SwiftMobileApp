@@ -204,7 +204,7 @@ public class SchedulerTableViewController:
         
         let cellData = getCell(indexPath)
         
-        if cellData?.getForthInformation() == "" {
+        if cellData?.getForthInformation(false) == "" {
             
             var cell = tableView.dequeueReusableCellWithIdentifier("BREAK_CELL") as? ScheduleBreakCell
             
@@ -245,7 +245,7 @@ public class SchedulerTableViewController:
                 cell!.rightTextView.topTitleView.talkTitle.text = cellData.getFirstInformation()
             
                 cell!.rightTextView.locationView.label.text = cellData.getSecondInformation()
-                cell!.rightTextView.speakerView.label.text = cellData.getForthInformation()
+                cell!.rightTextView.speakerView.label.text = cellData.getForthInformation(false)
             
             
                 if let fav = cellData as? FavoriteProtocol {
@@ -515,7 +515,7 @@ public class SchedulerTableViewController:
         
         let cellData = getCell(indexPath)
         
-        if cellData?.getForthInformation() == "" {
+        if cellData?.getForthInformation(false) == "" {
             return 60
         }
 

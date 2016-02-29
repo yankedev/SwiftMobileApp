@@ -26,17 +26,16 @@ class ColoredHeaderView : UIImageView {
         talkTitle.textAlignment = .Justified
         talkTitle.textColor = UIColor.whiteColor()
         //talkTitle.backgroundColor = UIColor.redColor()
-        talkTitle.font = UIFont(name: "Arial", size: 17)
+        talkTitle.font = UIFont(name: "Roboto", size: 20)
         talkTitle.translatesAutoresizingMaskIntoConstraints = false
         talkTitle.numberOfLines = 2
-        
         
         
         talkTrack = UILabel()
         talkTrack.textAlignment = .Justified
         talkTrack.textColor = UIColor.whiteColor()
         //talkTrack.backgroundColor = UIColor.greenColor()
-        talkTrack.font = UIFont(name: "Arial", size: 15)
+        talkTrack.font = UIFont(name: "Roboto", size: 17)
         talkTrack.translatesAutoresizingMaskIntoConstraints = false
         talkTrack.numberOfLines = 0
         
@@ -53,7 +52,7 @@ class ColoredHeaderView : UIImageView {
             relatedBy: NSLayoutRelation.Equal,
             toItem: self,
             attribute: NSLayoutAttribute.Height,
-            multiplier: 0.33,
+            multiplier: 0.5,
             constant: 0)
         
         let talkTitleTop = NSLayoutConstraint(item: talkTitle,
@@ -61,7 +60,7 @@ class ColoredHeaderView : UIImageView {
             relatedBy: NSLayoutRelation.Equal,
             toItem: self,
             attribute: NSLayoutAttribute.Bottom,
-            multiplier: 1-0.6,
+            multiplier: 0.3,
             constant: 0)
         
         addConstraint(talkTitleHeight)

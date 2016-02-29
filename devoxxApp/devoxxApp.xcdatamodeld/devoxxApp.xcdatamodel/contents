@@ -20,6 +20,7 @@
         <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sessions" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="splashImgURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="talkURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="venue" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="floors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Floor" syncable="YES"/>
     </entity>
@@ -95,7 +96,7 @@
     </entity>
     <elements>
         <element name="Attribute" positionX="-45" positionY="54" width="128" height="105"/>
-        <element name="Cfp" positionX="-36" positionY="81" width="128" height="270"/>
+        <element name="Cfp" positionX="-36" positionY="81" width="128" height="285"/>
         <element name="Etag" positionX="-54" positionY="45" width="128" height="75"/>
         <element name="Favorite" positionX="-54" positionY="45" width="128" height="90"/>
         <element name="Floor" positionX="-45" positionY="126" width="128" height="120"/>

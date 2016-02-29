@@ -108,7 +108,7 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
         
         
         
-        scroll.font = UIFont(name: "Roboto", size:  15)
+        scroll.font = UIFont(name: "Roboto", size:  18)
         
         scroll.editable = false
         
@@ -315,7 +315,7 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
     public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let label = UILabel(frame: CGRectMake(0,0,20,1000))
-        label.font = UIFont(name: "Roboto", size: 12)
+        label.font = UIFont(name: "Roboto", size: 18)
         label.textColor = UIColor.lightGrayColor()
         label.text = "Talks"
         return label
@@ -343,7 +343,7 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
             cell!.rightTextView.topTitleView.talkTitle.text = talk.slot.getFirstInformation()
             
             cell!.rightTextView.locationView.label.text = talk.slot.getSecondInformation()
-            cell!.rightTextView.speakerView.label.text = talk.slot.getForthInformation()
+            cell!.rightTextView.speakerView.label.text = talk.slot.getForthInformation(false)
             
             
             if let fav = talk as? FavoriteProtocol {

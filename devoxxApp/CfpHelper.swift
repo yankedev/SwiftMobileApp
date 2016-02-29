@@ -23,6 +23,7 @@ class CfpHelper: DataHelperProtocol {
     var sessions: String?
     var latitude: String?
     var longitude: String?
+    var talkURL: String?
     var splashImgURL: String?
     var hashtag: String?
     var fromDate: String?
@@ -33,7 +34,7 @@ class CfpHelper: DataHelperProtocol {
         return entityName()
     }
     
-    init(id: String?, confType: String?, confDescription: String?, venue: String?, address: String?, country: String?, capacity: String?, sessions: String?, latitude:String?, longitude:String?, splashImgURL: String?, hashtag: String?, fromDate: String?) {
+    init(id: String?, confType: String?, confDescription: String?, venue: String?, address: String?, country: String?, capacity: String?, sessions: String?, latitude:String?, longitude:String?, splashImgURL: String?, hashtag: String?, fromDate: String?, talkURL: String?) {
         self.id = id ?? ""
         self.confType = confType ?? ""
         self.confDescription = confDescription ?? ""
@@ -41,6 +42,7 @@ class CfpHelper: DataHelperProtocol {
         self.address = address ?? ""
         self.country = country ?? ""
         self.fromDate = fromDate ?? ""
+        self.talkURL = talkURL ?? ""
         self.capacity = capacity ?? ""
         self.sessions = sessions ?? ""
         self.latitude = latitude ?? ""
@@ -58,6 +60,7 @@ class CfpHelper: DataHelperProtocol {
         venue = data["venue"].string
         address = data["address"].string
         country = data["country"].string
+        talkURL = data["talkURL"].string
         capacity = data["capacity"].string
         fromDate = data["fromDate"].string
         sessions = data["sessions"].string

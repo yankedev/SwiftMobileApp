@@ -278,7 +278,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
       
         wheelView.setup()
         globeView = wheelView.globe
-        updateIndex(currentSelectedIndex)
+        wheelView.click(0)
     }
     
      

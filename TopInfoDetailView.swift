@@ -20,9 +20,9 @@ class TopInfoDetailView : UIView {
         
         
         
-        firstInfo.font = UIFont(name: "Roboto", size: 12)
+        firstInfo.font = UIFont(name: "Roboto", size: 14)
         firstInfo.textColor = UIColor.lightGrayColor()
-        secondInfo.font = UIFont(name: "Roboto", size: 13)
+        secondInfo.font = UIFont(name: "Roboto", size: 15)
         secondInfo.textColor = UIColor.darkGrayColor()
         
         

@@ -26,21 +26,26 @@ class Talk: NSManagedObject, FeedableProtocol{
         return "icon_\(trackId)"
     }
     
-    func getFriendlySpeaker(delimiter : String) -> String {
+    func getFriendlySpeaker(delimiter : String, useTwitter : Bool) -> String {
         var returnString = ""
         var isFirst = true
         for spk in speakers {
             if let castSpk = spk as? Speaker {
+                let display = (useTwitter && castSpk.speakerDetail.twitter != "") ? castSpk.speakerDetail.twitter : castSpk.getFirstInformation()
                 if(isFirst)  {
-                    returnString = returnString + castSpk.getFirstInformation()
+                    returnString = returnString + display
                     isFirst = false
                 }
                 else {
-                    returnString = returnString + delimiter + castSpk.getFirstInformation()
+                    returnString = returnString + delimiter + display
                 }
             }
         }
         return returnString
+    }
+    
+    func getFullLink() -> String {
+        return "\(APIManager.currentEvent.talkURL!)\(id)"
     }
     
     func getShortTalkTypeName() -> String {

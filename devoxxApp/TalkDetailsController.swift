@@ -139,7 +139,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         details.left.simpleDetailView3.textView.firstInfo.text = "Date and time"
         details.left.simpleDetailView3.textView.secondInfo.text = slot.getFriendlyTime()
         
-        scroll.font = UIFont(name: "Roboto", size:  15)
+        scroll.font = UIFont(name: "Roboto", size:  18)
         
         scroll.editable = false
         
@@ -330,7 +330,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let label = UILabel(frame: CGRectMake(0,0,20,1000))
-        label.font = UIFont(name: "Roboto", size: 12)
+        label.font = UIFont(name: "Roboto", size: 15)
         label.textColor = UIColor.lightGrayColor()
         label.text = "Speakers"
         return label
@@ -372,7 +372,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     
     public func twitter() {
     
-        let originalString = "\(APIManager.currentEvent.hashtag!) \(slot.talk.title) by \(slot.getForthInformation())"
+        let originalString = "\(APIManager.currentEvent.hashtag!) \(slot.talk.title) by \(slot.getForthInformation(true)) \(slot.talk.getFullLink())"
         let escapedString = originalString.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         
         let url = "https://twitter.com/intent/tweet?text=\(escapedString!)"

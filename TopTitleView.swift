@@ -26,9 +26,9 @@ class TopTitleView : UIView {
         
         
         
-        talkTrackName.font = UIFont(name: "Roboto", size: 13)
+        talkTrackName.font = UIFont(name: "Roboto", size: 15)
         talkTrackName.textColor = ColorManager.darkOrangeColor
-        talkTitle.font = UIFont(name: "Roboto", size: 15)
+        talkTitle.font = UIFont(name: "Roboto", size: 17)
         //talkTitle.contentInset = UIEdgeInsetsMake(-6,-4,0,0);
         //talkTitle.userInteractionEnabled = false
         talkTitle.numberOfLines = 0

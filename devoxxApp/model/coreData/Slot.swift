@@ -28,8 +28,8 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
         return ("\(fromTime)-\(toTime)")
     }
     
-    func getForthInformation() -> String {
-        return talk.getFriendlySpeaker(", ")
+    func getForthInformation(useTwitter : Bool) -> String {
+        return talk.getFriendlySpeaker(", ", useTwitter : useTwitter)
     }
     
     func getPrimaryImage() -> UIImage? {

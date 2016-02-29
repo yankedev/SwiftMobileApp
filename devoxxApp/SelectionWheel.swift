@@ -21,7 +21,8 @@ protocol SelectionWheelDelegate {
 class SelectionWheel: UIView {
     
     var layers = [CAShapeLayer]()
-    var currentIndex = 0
+    var imgViews = [UIImageView]()
+    var currentIndex = -1
     var orig : CGAffineTransform!
     
     var globe : UIImageView!
@@ -108,7 +109,7 @@ class SelectionWheel: UIView {
            
 
             
-            let imgV = UIImageView(frame : CGRectMake(0,0, 159/3, 191/3))
+            let imgV = UIImageView(frame : CGRectMake(0,0, 159/2, 191/2))
             imgV.image = image
             
            
@@ -133,7 +134,7 @@ class SelectionWheel: UIView {
             
             imgV.transform = rotate
             
-            
+            imgViews.append(imgV)
             layers.append(shapeLayer)
            
         }
@@ -165,7 +166,7 @@ class SelectionWheel: UIView {
         
         reset()
         
-        let radius = min((frame.size.width - 200)/2, 200)
+        let radius = min((frame.size.width - 150)/2, 200)
 
         
         let centerPoint = CGPointMake(center.x - frame.origin.x, center.y - self.frame.origin.y)
@@ -217,9 +218,10 @@ class SelectionWheel: UIView {
             return
         }
         
+        
+        
         let oneSlice = CGFloat(-M_PI) * CGFloat(2) / CGFloat(layers.count)
         let diff = CGFloat(index)
-        
         
         
         
@@ -228,6 +230,16 @@ class SelectionWheel: UIView {
         UIView.animateWithDuration(0.3, animations: {
             
             let r = CGAffineTransformConcat(self.orig, rotate)
+            
+            if self.currentIndex != -1 {
+                let zoomCurrent = CGAffineTransformMakeScale(1/1.4, 1/1.4)
+                let saveTransformCurrent = self.imgViews[self.currentIndex].transform
+                self.imgViews[self.currentIndex].transform = CGAffineTransformConcat(saveTransformCurrent, zoomCurrent)
+            }
+            
+            let zoom = CGAffineTransformMakeScale(1.4, 1.4)
+            let saveTransform = self.imgViews[index].transform
+            self.imgViews[index].transform = CGAffineTransformConcat(saveTransform, zoom)
             
             self.transform = r
         })

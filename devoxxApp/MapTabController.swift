@@ -32,6 +32,7 @@ public class MapTabController : UIViewController {
         seg.translatesAutoresizingMaskIntoConstraints = false
         seg.insertSegmentWithTitle("Venue map", atIndex: 0, animated: false)
         
+        navigationController?.navigationBar.translucent = false
         
         setupSegments()
         
@@ -72,10 +73,7 @@ public class MapTabController : UIViewController {
         
         let horizontalContraint1:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[accessView]-0-|", options: layout, metrics: nil, views: viewDictionary)
         
-        let paddingTop = (self.navigationController?.navigationBar.frame.size.height)! + 10
-        
-        
-        let verticalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-\(paddingTop)-[seg(30)]-10-[accessView]-0-|", options: layout, metrics: nil, views: viewDictionary)
+        let verticalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[seg(30)]-10-[accessView]-0-|", options: layout, metrics: nil, views: viewDictionary)
         
         
         view.addConstraints(horizontalContraint0)

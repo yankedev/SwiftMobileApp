@@ -30,7 +30,7 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
         return ""
     }
     
-    func getForthInformation() -> String {
+    func getForthInformation(useTwitter : Bool) -> String {
         return ""
     }
     
