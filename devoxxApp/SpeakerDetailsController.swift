@@ -370,26 +370,24 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
     
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        /*
-        let speakerArray = speakers.sortedArrayUsingDescriptors([NSSortDescriptor(key: "firstName", ascending: true)]) as! [Speaker]
         
-        let speaker = speakerArray[indexPath.row]
-        
-        
-        
-        let details = SpeakerDetailsController()
+        if let talk = speaker.talks.allObjects[indexPath.row] as? Talk {
+            
+            let details = TalkDetailsController()
         //todo
-        details.indexPath = indexPath
-        details.speaker = speaker
-        //details.delegate = self
-        
-        details.configure()
-        // details.setColor(slot.favorited())
-        
-        self.navigationController?.pushViewController(details, animated: true)
+            details.indexPath = indexPath
+            details.slot = talk.slot
+
         
         
-        */
+        
+        
+            details.configure()
+        
+            details.setColor(talk.slot.favorited())
+        
+            self.navigationController?.pushViewController(details, animated: true)
+        }
         
     }
     

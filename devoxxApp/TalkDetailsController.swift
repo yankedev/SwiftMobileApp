@@ -282,7 +282,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     
     public func clicked() {
        let response = delegate.favorite(indexPath)
-       print(response)
+     
        setColor(response)
     }
     

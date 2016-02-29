@@ -24,6 +24,8 @@ class SelectionWheel: UIView {
     var currentIndex = 0
     var orig : CGAffineTransform!
     
+    var globe : UIImageView!
+    
     var datasource : SelectionWheelDatasource!
     var delegate : SelectionWheelDelegate!
 
@@ -58,9 +60,9 @@ class SelectionWheel: UIView {
     func check(sender : UITapGestureRecognizer) {
         let point = sender.locationInView(self)
         var i = 0
-        print(layers.count)
+   
         for shape in layers {
-            print("loop")
+
             if CGPathContainsPoint(shape.path, nil, point, false) {
                 click(i)
                 return
@@ -164,7 +166,7 @@ class SelectionWheel: UIView {
         reset()
         
         let radius = min((frame.size.width - 100)/2, 200)
-        print(radius)
+
         
         let centerPoint = CGPointMake(center.x - frame.origin.x, center.y - self.frame.origin.y)
         
@@ -172,7 +174,7 @@ class SelectionWheel: UIView {
         
 
         let width = radius - 25
-        let globe = UIImageView(frame: CGRectMake(0, 0, width*2, width*2))
+        globe = UIImageView(frame: CGRectMake(0, 0, width*2, width*2))
         globe.center = centerPoint
         globe.image = UIImage(named: "globe")
         
@@ -210,7 +212,7 @@ class SelectionWheel: UIView {
     }
     
     func click(index : Int) {
-        print("index = \(index) et currentIndex = \(currentIndex)")
+
         if(currentIndex == index)  {
             return
         }
@@ -219,8 +221,6 @@ class SelectionWheel: UIView {
         let diff = CGFloat(index)
         
         
-        
-        print("diff = \(diff) donc rotation angle = \(diff*oneSlice)")
         
         
         let rotate = CGAffineTransformMakeRotation(diff*oneSlice)

@@ -166,8 +166,7 @@ public class SchedulerTableViewController:
             
             
             details.configure()
-            
-            print("is favorited ? = \(slot.favorited())")
+
             details.setColor(slot.favorited())
          
             self.navigationController?.pushViewController(details, animated: true)

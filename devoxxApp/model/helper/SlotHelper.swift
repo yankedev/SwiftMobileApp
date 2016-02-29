@@ -119,25 +119,7 @@ class SlotHelper: DataHelperProtocol {
                         
                         //iterate over speaker and set talk
                         
-                        for item in items {
-                            if let itemSpeaker = item as? Speaker {
-                                
-                           
-                                
-                                let set = itemSpeaker.mutableSetValueForKey("talks")
-                                
-                              
-                                print("\(nsm.title) - \(set.count)")
-                                
-                                
-                                
-                                
-                                print (set.allObjects)
-                                
-                                
-                            }
-                        }
-                        
+                                               
                     } catch let error as NSError {
                         print("unresolved error \(error), \(error.userInfo)")
                     }

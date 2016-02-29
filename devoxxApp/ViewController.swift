@@ -9,19 +9,7 @@
 import UIKit
 
 
-extension UIView {
-    func rotate360Degrees(duration: CFTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
-        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
-        rotateAnimation.fromValue = 0.0
-        rotateAnimation.toValue = CGFloat(M_PI * 2.0)
-        rotateAnimation.duration = duration
-        
-        if let delegate: AnyObject = completionDelegate {
-            rotateAnimation.delegate = delegate
-        }
-        self.layer.addAnimation(rotateAnimation, forKey: nil)
-    }
-}
+
 
 class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheelDelegate {
     
@@ -35,6 +23,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     var imgView:UIImageView!
     var globeView:UIView!
     var eventLocation:UILabel!
+    var rotating = false
 
     func generateScheduleTableViewController() -> ScrollableDateProtocol {
         return SchedulerTableViewController()
@@ -43,61 +32,121 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     func generate() -> ScrollableItemProtocol {
         return MapController()
     }
+    
+    
+    
+    func run_on_background_thread(code: () -> Void) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), code)
+    }
+    
+    func run_on_main_thread(code: () -> Void) {
+        dispatch_async(dispatch_get_main_queue(), code)
+    }
+    
+    
 
     
+    func rotateOnce() {
+      
+        UIView.animateWithDuration(1.0,
+            delay: 0.0,
+            options: .CurveLinear,
+            animations: {
+                self.globeView.transform = CGAffineTransformRotate(self.globeView.transform, 3.1415926)
+            },
+            completion: {finished in self.rotateAgain()})
+    }
+    
+    func rotateAgain() {
+        UIView.animateWithDuration(1.0,
+            delay: 0.0,
+            options: .CurveLinear,
+            animations: {
+                                    self.globeView.transform = CGAffineTransformRotate(self.globeView.transform, 3.1415926)
+            },
+            completion: {finished in if self.rotating { self.rotateOnce() }})
+    }
     
     func prepareNext() {
         
-        //globeView.rotate360Degrees()
+       rotating = true
+       rotateOnce()
         
-        dispatch_async(dispatch_get_main_queue()) {
+        
+        
+        
+        
+        run_on_background_thread
+            {
+                
+                
+                
+                APIManager.setEvent(self.slicesData.objectAtIndex(self.currentSelectedIndex) as! Cfp)
+                
+                
+                APIManager.eventFeed()
+                
+                
+                
+                self.run_on_main_thread
+                    {
+                    self.rotateOnce()
+                        if(APIManager.isCurrentEventEmpty()) {
+                            let alert = UIAlertController(title: "No data", message: "No data for this event, select Belgium to test", preferredStyle: UIAlertControllerStyle.Alert)
+                            alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
+                            self.presentViewController(alert, animated: true, completion: nil)
+                            return
+                        }
+                        
+                        
+                        let scheduleController = ScheduleController<SchedulerTableViewController>(generator:self.generateScheduleTableViewController)
+                        let speakerController = SpeakerTableController()
+                        let mapController = MapTabController()
+                        
+                        let scheduleTabImage = UIImage(named: "tabIconSchedule.png")
+                        let speakerTabImage = UIImage(named: "tabIconSpeaker.png")
+                        let mapTabImage = UIImage(named: "tabIconMap.png")
+                        
+                        scheduleController.tabBarItem = UITabBarItem(title: "Schedule", image: scheduleTabImage, tag:0)
+                        speakerController.tabBarItem = UITabBarItem(title: "Speakers", image: speakerTabImage, tag:1)
+                        mapController.tabBarItem = UITabBarItem(title: "Map", image: mapTabImage, tag:2)
+                        
+                        //let scheduleNavigationController = UINavigationController(rootViewController: scheduleController)
+                        let speakerNavigationController = UINavigationController(rootViewController: speakerController)
+                        
+                        
+                        
+                        
+                        //let scroll = GenericPageScrollController<MapController>(generator:generate)
+                        
+                        let mapNavigationController = UINavigationController(rootViewController: mapController)
+                        
+                        
+                        self.tabController.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController]
+                        self.tabController.tabBar.translucent = false
+                        self.tabController.view.backgroundColor = UIColor.whiteColor()
+                        //TODO BACK BUTTON
+                        //self.navigationController?.navigationBarHidden = false
+                        
+                        self.addChildViewController(self.tabController)
+                        self.view.addSubview(self.tabController.view)
+                        
+                        self.rotating = false
+                        self.navigationController?.pushViewController(self.tabController, animated: true)
+                        
+
+                }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
         //selectedEvent
-        APIManager.setEvent(self.slicesData.objectAtIndex(self.currentSelectedIndex) as! Cfp)
         
-        
-        APIManager.eventFeed()
-        
-        if(APIManager.isCurrentEventEmpty()) {
-            let alert = UIAlertController(title: "No data", message: "No data for this event, select Belgium to test", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
-            return
-        }
-        
-        
-        let scheduleController = ScheduleController<SchedulerTableViewController>(generator:self.generateScheduleTableViewController)
-        let speakerController = SpeakerTableController()
-        let mapController = MapTabController()
-        
-        let scheduleTabImage = UIImage(named: "tabIconSchedule.png")
-        let speakerTabImage = UIImage(named: "tabIconSpeaker.png")
-        let mapTabImage = UIImage(named: "tabIconMap.png")
-        
-        scheduleController.tabBarItem = UITabBarItem(title: "Schedule", image: scheduleTabImage, tag:0)
-        speakerController.tabBarItem = UITabBarItem(title: "Speakers", image: speakerTabImage, tag:1)
-        mapController.tabBarItem = UITabBarItem(title: "Map", image: mapTabImage, tag:2)
-        
-        //let scheduleNavigationController = UINavigationController(rootViewController: scheduleController)
-        let speakerNavigationController = UINavigationController(rootViewController: speakerController)
-        
-        
-        
-        
-        //let scroll = GenericPageScrollController<MapController>(generator:generate)
-        
-       let mapNavigationController = UINavigationController(rootViewController: mapController)
-        
-        
-        self.tabController.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController]
-        self.tabController.tabBar.translucent = false
-        self.tabController.view.backgroundColor = UIColor.whiteColor()
-        //TODO BACK BUTTON
-        //self.navigationController?.navigationBarHidden = false
-        
-        self.addChildViewController(self.tabController)
-        self.view.addSubview(self.tabController.view)
-        }
-        //self.navigationController?.pushViewController(tabController, animated: true)
 
     }
     
@@ -128,7 +177,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         let goView = HomeGoButtonView()
         let numberView = HomeNumberView()
 
-        //globeView = wheelView.globe
+        
         eventLocation = headerView.eventLocation
         
         view.addSubview(headerView)
@@ -219,6 +268,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         wheelView.delegate = self
       
         wheelView.setup()
+        globeView = wheelView.globe
         updateIndex(currentSelectedIndex)
     }
     

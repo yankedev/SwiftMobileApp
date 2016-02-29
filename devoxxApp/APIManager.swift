@@ -321,7 +321,7 @@ class APIManager {
     
     class func singleCommonFeed(helper : DataHelperProtocol) {
 
-        print(helper.entityName())
+
 
         
         let url = commonUrl[helper.entityName()]
