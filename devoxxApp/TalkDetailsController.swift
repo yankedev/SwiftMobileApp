@@ -248,8 +248,19 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
             multiplier: 0,
             constant: 60)
         
+        
+        let actionButtonViewBackTop = NSLayoutConstraint(item: actionButtonViewBack,
+            attribute: NSLayoutAttribute.Top,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Top,
+            multiplier: 1,
+            constant: 10)
+
+        
         view.addConstraint(actionButtonViewBackHeight)
         view.addConstraint(actionButtonViewBackWidth)
+        view.addConstraint(actionButtonViewBackTop)
         view.layoutIfNeeded()
         
         
@@ -269,6 +280,10 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         let image1 = UIImage(named: "ic_star")?.imageWithRenderingMode(.AlwaysTemplate)
         actionButtonView1.button.setImage(image1, forState: .Normal)
         actionButtonView1.tintColor = UIColor.whiteColor()
+        
+        
+        actionButtonViewBack.button.addTarget(self, action: Selector("back"), forControlEvents: .TouchUpInside)
+        
 
     }
     

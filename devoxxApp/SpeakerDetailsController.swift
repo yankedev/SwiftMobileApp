@@ -211,8 +211,17 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
             multiplier: 0,
             constant: 60)
         
+        let actionButtonViewBackTop = NSLayoutConstraint(item: actionButtonViewBack,
+            attribute: NSLayoutAttribute.Top,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Top,
+            multiplier: 1,
+            constant: 10)
+        
         view.addConstraint(actionButtonViewBackHeight)
         view.addConstraint(actionButtonViewBackWidth)
+        view.addConstraint(actionButtonViewBackTop)
         view.layoutIfNeeded()
         
         
@@ -238,6 +247,7 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
         actionButtonView0.button.addTarget(self, action: Selector("twitter"), forControlEvents: .TouchUpInside)
         actionButtonView1.button.addTarget(self, action: Selector("clicked"), forControlEvents: .TouchUpInside)
       
+        actionButtonViewBack.button.addTarget(self, action: Selector("back"), forControlEvents: .TouchUpInside)
  
     }
     
@@ -291,6 +301,10 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
     //DATASOUTCE
     
     
+    public func back() {
+        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     
     
     
