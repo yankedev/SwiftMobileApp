@@ -400,6 +400,8 @@
 		E1FA9C451C1BFD400077C09A /* Talk.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C431C1BFD400077C09A /* Talk.swift */; };
 		E1FA9C491C1BFD560077C09A /* SlotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C471C1BFD560077C09A /* SlotHelper.swift */; };
 		E1FA9C4A1C1BFD560077C09A /* TalkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C481C1BFD560077C09A /* TalkHelper.swift */; };
+		E1FB6D601C865FD700D13082 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D5F1C865FD700D13082 /* Day.swift */; };
+		E1FB6D621C86601800D13082 /* DayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D611C86601800D13082 /* DayHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -810,6 +812,8 @@
 		E1FA9C431C1BFD400077C09A /* Talk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Talk.swift; path = model/coreData/Talk.swift; sourceTree = "<group>"; };
 		E1FA9C471C1BFD560077C09A /* SlotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlotHelper.swift; path = model/helper/SlotHelper.swift; sourceTree = "<group>"; };
 		E1FA9C481C1BFD560077C09A /* TalkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TalkHelper.swift; path = model/helper/TalkHelper.swift; sourceTree = "<group>"; };
+		E1FB6D5F1C865FD700D13082 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		E1FB6D611C86601800D13082 /* DayHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1466,6 +1470,7 @@
 				E17DFF401C79D7FA00A09547 /* Floor.swift */,
 				588CFFA61C81069600DEC1E6 /* SpeakerDetail.swift */,
 				58EC13231C8640FE00958070 /* StoredResource.swift */,
+				E1FB6D5F1C865FD700D13082 /* Day.swift */,
 			);
 			name = coreData;
 			sourceTree = "<group>";
@@ -1485,6 +1490,7 @@
 				E17DFF421C79D85800A09547 /* FloorHelper.swift */,
 				588CFFA81C81070A00DEC1E6 /* SpeakerDetailHelper.swift */,
 				58EC13251C86423700958070 /* StoredResourceHelper.swift */,
+				E1FB6D611C86601800D13082 /* DayHelper.swift */,
 			);
 			name = helper;
 			sourceTree = "<group>";
@@ -1923,6 +1929,7 @@
 				580CD2A21C7DDA7900152E4C /* AllDetailsView.swift in Sources */,
 				58A38EA61C8371F900C2DFE2 /* BottomDetailsView.swift in Sources */,
 				58195BFA1C3572ED00F56A30 /* FilterableProtocol.swift in Sources */,
+				E1FB6D621C86601800D13082 /* DayHelper.swift in Sources */,
 				58A38EA41C8371D800C2DFE2 /* TopTitleView.swift in Sources */,
 				E175F26B1C4867F300D7AC0A /* FilterTableView.swift in Sources */,
 				E10CE1AA1C2BD6DE002C9934 /* TalkTypeHelper.swift in Sources */,
@@ -1975,6 +1982,7 @@
 				E1FA9C3F1C1BFD010077C09A /* CellDataViewCell.swift in Sources */,
 				E10E7AF01C1957F300F6220B /* APIManager.swift in Sources */,
 				E1FA9C441C1BFD400077C09A /* Slot.swift in Sources */,
+				E1FB6D601C865FD700D13082 /* Day.swift in Sources */,
 				5877973C1C81C38A00A1A7D5 /* ActionButtonView.swift in Sources */,
 				E175F2651C485B0D00D7AC0A /* SchedulerTableView.swift in Sources */,
 				580CD2A01C7DCFD900152E4C /* SimpleDetailView.swift in Sources */,

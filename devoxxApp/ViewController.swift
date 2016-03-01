@@ -95,7 +95,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                 
                 
                 //APIManager.eventFeed()
-                APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint())
+                APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint(), dataHelper: DayHelper())
                 
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setInteger(self.currentSelectedIndex, forKey: "currentEvent")
