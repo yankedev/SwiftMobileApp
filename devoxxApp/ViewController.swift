@@ -94,7 +94,9 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                 APIManager.setEvent(self.slicesData.objectAtIndex(self.currentSelectedIndex) as! Cfp)
                 
                 
-                APIManager.eventFeed()
+                //APIManager.eventFeed()
+                APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint())
+                
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setInteger(self.currentSelectedIndex, forKey: "currentEvent")
                 

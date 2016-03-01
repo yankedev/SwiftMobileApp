@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITextView()
         APIManager.firstFeed()
         
+        
+        
         let color = ColorManager.topNavigationBarColor
         UINavigationBar.appearance().barTintColor = color
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()

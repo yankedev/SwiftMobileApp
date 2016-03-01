@@ -20,7 +20,7 @@ let apiURLS:[String : [String]] = ["Slot" : ["http://cfp.devoxx.be/api/conferenc
 
 
 
-let commonUrl:[String : [String]] = ["Image" : ["ImageMap"], "Cfp" : ["Cfp"]]
+let commonUrl:[String : [String]] = ["StoredResource" : ["StoredResource"], "Cfp" : ["Cfp"]]
 let apiURLS:[String : [String]] =  ["Slot" : ["00","01","02","03"], "TalkType" : ["TalkType"], "Track" :  ["Track"], "Speaker" :  ["Speaker"]]
 let otherUrls:[String : [String]] = ["Slot" : [], "TalkType" : [], "Track" :  [], "Speaker" :  []]
 
@@ -307,7 +307,8 @@ class APIManager {
     // FIRST FEED
     
     class func firstFeed() {
-        singleCommonFeed(ImageHelper())
+        singleCommonFeed(StoredResourceHelper())
+        //singleCommonFeed(ImageHelper())
         singleCommonFeed(CfpHelper())
     }
     
@@ -323,6 +324,8 @@ class APIManager {
 
 
 
+        print(commonUrl)
+        print(helper.entityName())
         
         let url = commonUrl[helper.entityName()]
         

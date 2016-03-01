@@ -11,7 +11,7 @@
 		580B786F1C76688400060C00 /* GenericPageScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B786E1C76688400060C00 /* GenericPageScrollController.swift */; };
 		580B78711C766BDD00060C00 /* MapTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B78701C766BDD00060C00 /* MapTabController.swift */; };
 		580B78791C76771800060C00 /* speaker@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 580B78781C76771800060C00 /* speaker@2x.jpg */; };
-		580B78811C78956F00060C00 /* ImageMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 580B78801C78956F00060C00 /* ImageMap.json */; };
+		580B78811C78956F00060C00 /* StoredResource.json in Resources */ = {isa = PBXBuildFile; fileRef = 580B78801C78956F00060C00 /* StoredResource.json */; };
 		580B78831C78972C00060C00 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B78821C78972C00060C00 /* ImageHelper.swift */; };
 		580B78851C78988500060C00 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B78841C78988500060C00 /* Image.swift */; };
 		580B788F1C7A07AF00060C00 /* DevoxxFRExhibitionTablet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 580B78891C7A07AF00060C00 /* DevoxxFRExhibitionTablet.jpg */; };
@@ -331,6 +331,16 @@
 		58EC131A1C83A7D700958070 /* ScheduleBreakCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC13191C83A7D700958070 /* ScheduleBreakCell.swift */; };
 		58EC131C1C8464E000958070 /* tabIconSettings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EC131B1C8464E000958070 /* tabIconSettings@2x.png */; };
 		58EC131E1C846F2100958070 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC131D1C846F2100958070 /* SettingsController.swift */; };
+		58EC13201C863E5700958070 /* APIDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC131F1C863E5700958070 /* APIDataManager.swift */; };
+		58EC13221C86400800958070 /* DV15-conferences.json in Resources */ = {isa = PBXBuildFile; fileRef = 58EC13211C86400800958070 /* DV15-conferences.json */; };
+		58EC13241C8640FE00958070 /* StoredResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC13231C8640FE00958070 /* StoredResource.swift */; };
+		58EC13261C86423700958070 /* StoredResourceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC13251C86423700958070 /* StoredResourceHelper.swift */; };
+		58EC13281C86576D00958070 /* DevoxxFR2016-conferences.json in Resources */ = {isa = PBXBuildFile; fileRef = 58EC13271C86576D00958070 /* DevoxxFR2016-conferences.json */; };
+		58EC132E1C865A8A00958070 /* DevoxxFR2016-friday.json in Resources */ = {isa = PBXBuildFile; fileRef = 58EC13291C865A8A00958070 /* DevoxxFR2016-friday.json */; };
+		58EC132F1C865A8A00958070 /* DevoxxFR2016-thursday.json in Resources */ = {isa = PBXBuildFile; fileRef = 58EC132A1C865A8A00958070 /* DevoxxFR2016-thursday.json */; };
+		58EC13301C865A8A00958070 /* DevoxxFR2016-wednesday.json in Resources */ = {isa = PBXBuildFile; fileRef = 58EC132B1C865A8A00958070 /* DevoxxFR2016-wednesday.json */; };
+		58EC13311C865A8A00958070 /* DevoxxFR2016-tuesday.json in Resources */ = {isa = PBXBuildFile; fileRef = 58EC132C1C865A8A00958070 /* DevoxxFR2016-tuesday.json */; };
+		58EC13321C865A8A00958070 /* DevoxxFR2016-monday.json in Resources */ = {isa = PBXBuildFile; fileRef = 58EC132D1C865A8A00958070 /* DevoxxFR2016-monday.json */; };
 		58F67CD91C308B8D007D2B97 /* FavoriteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F67CD81C308B8D007D2B97 /* FavoriteProtocol.swift */; };
 		58F67CDD1C308C64007D2B97 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F67CDB1C308C64007D2B97 /* Favorite.swift */; };
 		E10CE19E1C2BB6BE002C9934 /* CellDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE19D1C2BB6BE002C9934 /* CellDataProtocol.swift */; };
@@ -348,15 +358,15 @@
 		E127E6581C38117000FB7E4F /* SwitchableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E127E6571C38117000FB7E4F /* SwitchableProtocol.swift */; };
 		E127E65A1C38212100FB7E4F /* FilterableTableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E127E6591C38212100FB7E4F /* FilterableTableProtocol.swift */; };
 		E127E6601C38313200FB7E4F /* SearchableTableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E127E65F1C38313200FB7E4F /* SearchableTableProtocol.swift */; };
-		E127E66A1C39709400FB7E4F /* 03.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6651C39709300FB7E4F /* 03.json */; };
+		E127E66A1C39709400FB7E4F /* DV15-friday.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6651C39709300FB7E4F /* DV15-friday.json */; };
 		E127E66B1C39709400FB7E4F /* Slot.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6661C39709300FB7E4F /* Slot.json */; };
 		E127E66C1C39709400FB7E4F /* Speaker.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6671C39709300FB7E4F /* Speaker.json */; };
 		E127E66D1C39709400FB7E4F /* TalkType.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6681C39709400FB7E4F /* TalkType.json */; };
 		E127E66E1C39709400FB7E4F /* Track.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6691C39709400FB7E4F /* Track.json */; };
-		E175F25C1C46FFAD00D7AC0A /* 00.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2581C46FFAD00D7AC0A /* 00.json */; };
-		E175F25D1C46FFAD00D7AC0A /* 01.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2591C46FFAD00D7AC0A /* 01.json */; };
-		E175F25E1C46FFAD00D7AC0A /* 02.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25A1C46FFAD00D7AC0A /* 02.json */; };
-		E175F25F1C46FFAD00D7AC0A /* 04.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25B1C46FFAD00D7AC0A /* 04.json */; };
+		E175F25C1C46FFAD00D7AC0A /* DV15-monday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2581C46FFAD00D7AC0A /* DV15-monday.json */; };
+		E175F25D1C46FFAD00D7AC0A /* DV15-tuesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */; };
+		E175F25E1C46FFAD00D7AC0A /* DV15-wednesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */; };
+		E175F25F1C46FFAD00D7AC0A /* DV15-thursday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25B1C46FFAD00D7AC0A /* DV15-thursday.json */; };
 		E175F2651C485B0D00D7AC0A /* SchedulerTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F2641C485B0D00D7AC0A /* SchedulerTableView.swift */; };
 		E175F26B1C4867F300D7AC0A /* FilterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F26A1C4867F300D7AC0A /* FilterTableView.swift */; };
 		E175F2711C49AF7B00D7AC0A /* ScrollableTableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F2701C49AF7B00D7AC0A /* ScrollableTableProtocol.swift */; };
@@ -407,7 +417,7 @@
 		580B786E1C76688400060C00 /* GenericPageScrollController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericPageScrollController.swift; sourceTree = "<group>"; };
 		580B78701C766BDD00060C00 /* MapTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTabController.swift; sourceTree = "<group>"; };
 		580B78781C76771800060C00 /* speaker@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "speaker@2x.jpg"; sourceTree = "<group>"; };
-		580B78801C78956F00060C00 /* ImageMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ImageMap.json; sourceTree = "<group>"; };
+		580B78801C78956F00060C00 /* StoredResource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoredResource.json; sourceTree = "<group>"; };
 		580B78821C78972C00060C00 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		580B78841C78988500060C00 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		580B78891C7A07AF00060C00 /* DevoxxFRExhibitionTablet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = DevoxxFRExhibitionTablet.jpg; path = bundledImages/DevoxxFRExhibitionTablet.jpg; sourceTree = "<group>"; };
@@ -727,6 +737,16 @@
 		58EC13191C83A7D700958070 /* ScheduleBreakCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleBreakCell.swift; path = devoxxApp/ScheduleBreakCell.swift; sourceTree = "<group>"; };
 		58EC131B1C8464E000958070 /* tabIconSettings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabIconSettings@2x.png"; path = "icon/tab/tabIconSettings@2x.png"; sourceTree = "<group>"; };
 		58EC131D1C846F2100958070 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		58EC131F1C863E5700958070 /* APIDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIDataManager.swift; path = devoxxApp/APIDataManager.swift; sourceTree = "<group>"; };
+		58EC13211C86400800958070 /* DV15-conferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-conferences.json"; path = "mock/DV15-conferences.json"; sourceTree = "<group>"; };
+		58EC13231C8640FE00958070 /* StoredResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredResource.swift; sourceTree = "<group>"; };
+		58EC13251C86423700958070 /* StoredResourceHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredResourceHelper.swift; sourceTree = "<group>"; };
+		58EC13271C86576D00958070 /* DevoxxFR2016-conferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DevoxxFR2016-conferences.json"; path = "mock/DevoxxFR2016-conferences.json"; sourceTree = "<group>"; };
+		58EC13291C865A8A00958070 /* DevoxxFR2016-friday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DevoxxFR2016-friday.json"; path = "mock/DevoxxFR2016-friday.json"; sourceTree = "<group>"; };
+		58EC132A1C865A8A00958070 /* DevoxxFR2016-thursday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DevoxxFR2016-thursday.json"; path = "mock/DevoxxFR2016-thursday.json"; sourceTree = "<group>"; };
+		58EC132B1C865A8A00958070 /* DevoxxFR2016-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DevoxxFR2016-wednesday.json"; path = "mock/DevoxxFR2016-wednesday.json"; sourceTree = "<group>"; };
+		58EC132C1C865A8A00958070 /* DevoxxFR2016-tuesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DevoxxFR2016-tuesday.json"; path = "mock/DevoxxFR2016-tuesday.json"; sourceTree = "<group>"; };
+		58EC132D1C865A8A00958070 /* DevoxxFR2016-monday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DevoxxFR2016-monday.json"; path = "mock/DevoxxFR2016-monday.json"; sourceTree = "<group>"; };
 		58F67CD81C308B8D007D2B97 /* FavoriteProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteProtocol.swift; sourceTree = "<group>"; };
 		58F67CDB1C308C64007D2B97 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		E10CE19D1C2BB6BE002C9934 /* CellDataProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellDataProtocol.swift; path = model/coreData/CellDataProtocol.swift; sourceTree = "<group>"; };
@@ -737,26 +757,26 @@
 		E10CE1AF1C2BDB72002C9934 /* AttributeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeHelper.swift; sourceTree = "<group>"; };
 		E10E7ABD1C18BF7100F6220B /* devoxxApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = devoxxApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10E7AC11C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E10E7AC21C18BF7100F6220B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E10E7AC21C18BF7100F6220B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = devoxxApp/AppDelegate.swift; sourceTree = "<group>"; };
 		E10E7AC51C18BF7100F6220B /* devoxxApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = devoxxApp.xcdatamodel; sourceTree = "<group>"; };
 		E10E7ACC1C18BF7100F6220B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E10E7ACF1C18BF7100F6220B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E10E7AD51C18BF7100F6220B /* devoxxAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = devoxxAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10E7ADA1C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = devoxxAppTests.swift; sourceTree = "<group>"; };
-		E10E7AEF1C1957F300F6220B /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		E10E7AEF1C1957F300F6220B /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIManager.swift; path = devoxxApp/APIManager.swift; sourceTree = "<group>"; };
 		E127E6571C38117000FB7E4F /* SwitchableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchableProtocol.swift; sourceTree = "<group>"; };
 		E127E6591C38212100FB7E4F /* FilterableTableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterableTableProtocol.swift; sourceTree = "<group>"; };
 		E127E65F1C38313200FB7E4F /* SearchableTableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchableTableProtocol.swift; path = ../SearchableTableProtocol.swift; sourceTree = "<group>"; };
-		E127E6651C39709300FB7E4F /* 03.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 03.json; path = mock/03.json; sourceTree = "<group>"; };
+		E127E6651C39709300FB7E4F /* DV15-friday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-friday.json"; path = "mock/DV15-friday.json"; sourceTree = "<group>"; };
 		E127E6661C39709300FB7E4F /* Slot.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Slot.json; path = mock/Slot.json; sourceTree = "<group>"; };
 		E127E6671C39709300FB7E4F /* Speaker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Speaker.json; path = mock/Speaker.json; sourceTree = "<group>"; };
 		E127E6681C39709400FB7E4F /* TalkType.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TalkType.json; path = mock/TalkType.json; sourceTree = "<group>"; };
 		E127E6691C39709400FB7E4F /* Track.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Track.json; path = mock/Track.json; sourceTree = "<group>"; };
-		E175F2581C46FFAD00D7AC0A /* 00.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 00.json; path = mock/00.json; sourceTree = "<group>"; };
-		E175F2591C46FFAD00D7AC0A /* 01.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 01.json; path = mock/01.json; sourceTree = "<group>"; };
-		E175F25A1C46FFAD00D7AC0A /* 02.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 02.json; path = mock/02.json; sourceTree = "<group>"; };
-		E175F25B1C46FFAD00D7AC0A /* 04.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = 04.json; path = mock/04.json; sourceTree = "<group>"; };
+		E175F2581C46FFAD00D7AC0A /* DV15-monday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-monday.json"; path = "mock/DV15-monday.json"; sourceTree = "<group>"; };
+		E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-tuesday.json"; path = "mock/DV15-tuesday.json"; sourceTree = "<group>"; };
+		E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-wednesday.json"; path = "mock/DV15-wednesday.json"; sourceTree = "<group>"; };
+		E175F25B1C46FFAD00D7AC0A /* DV15-thursday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-thursday.json"; path = "mock/DV15-thursday.json"; sourceTree = "<group>"; };
 		E175F2641C485B0D00D7AC0A /* SchedulerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerTableView.swift; sourceTree = "<group>"; };
 		E175F26A1C4867F300D7AC0A /* FilterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableView.swift; sourceTree = "<group>"; };
 		E175F2701C49AF7B00D7AC0A /* ScrollableTableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableTableProtocol.swift; sourceTree = "<group>"; };
@@ -1171,6 +1191,9 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				E10E7AC21C18BF7100F6220B /* AppDelegate.swift */,
+				58EC131F1C863E5700958070 /* APIDataManager.swift */,
+				E10E7AEF1C1957F300F6220B /* APIManager.swift */,
 				58EC131D1C846F2100958070 /* SettingsController.swift */,
 				58A38EA01C8371B500C2DFE2 /* ScheduleCellView */,
 				E18046021C1DD220001AAD85 /* TalkDetailsController.swift */,
@@ -1216,8 +1239,6 @@
 				E1FA9C381C1BFCE90077C09A /* map */,
 				E1FA9BE91C1BE59A0077C09A /* thirdPartyLibrary */,
 				E1FA9C2B1C1BFC3D0077C09A /* schedule */,
-				E10E7AC21C18BF7100F6220B /* AppDelegate.swift */,
-				E10E7AEF1C1957F300F6220B /* APIManager.swift */,
 				E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */,
 				E10E7ACC1C18BF7100F6220B /* Images.xcassets */,
 				E10E7ACE1C18BF7100F6220B /* LaunchScreen.xib */,
@@ -1317,13 +1338,20 @@
 		E175F2741C49B18E00D7AC0A /* mock */ = {
 			isa = PBXGroup;
 			children = (
+				58EC13291C865A8A00958070 /* DevoxxFR2016-friday.json */,
+				58EC132A1C865A8A00958070 /* DevoxxFR2016-thursday.json */,
+				58EC132B1C865A8A00958070 /* DevoxxFR2016-wednesday.json */,
+				58EC132C1C865A8A00958070 /* DevoxxFR2016-tuesday.json */,
+				58EC132D1C865A8A00958070 /* DevoxxFR2016-monday.json */,
+				58EC13271C86576D00958070 /* DevoxxFR2016-conferences.json */,
+				58EC13211C86400800958070 /* DV15-conferences.json */,
 				588CFDD51C8105C600DEC1E6 /* speakerDetails */,
-				580B78801C78956F00060C00 /* ImageMap.json */,
-				E175F2581C46FFAD00D7AC0A /* 00.json */,
-				E175F2591C46FFAD00D7AC0A /* 01.json */,
-				E175F25A1C46FFAD00D7AC0A /* 02.json */,
-				E175F25B1C46FFAD00D7AC0A /* 04.json */,
-				E127E6651C39709300FB7E4F /* 03.json */,
+				580B78801C78956F00060C00 /* StoredResource.json */,
+				E175F2581C46FFAD00D7AC0A /* DV15-monday.json */,
+				E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */,
+				E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */,
+				E175F25B1C46FFAD00D7AC0A /* DV15-thursday.json */,
+				E127E6651C39709300FB7E4F /* DV15-friday.json */,
 				E127E6661C39709300FB7E4F /* Slot.json */,
 				E127E6671C39709300FB7E4F /* Speaker.json */,
 				E127E6681C39709400FB7E4F /* TalkType.json */,
@@ -1437,6 +1465,7 @@
 				580B78841C78988500060C00 /* Image.swift */,
 				E17DFF401C79D7FA00A09547 /* Floor.swift */,
 				588CFFA61C81069600DEC1E6 /* SpeakerDetail.swift */,
+				58EC13231C8640FE00958070 /* StoredResource.swift */,
 			);
 			name = coreData;
 			sourceTree = "<group>";
@@ -1455,6 +1484,7 @@
 				580B78821C78972C00060C00 /* ImageHelper.swift */,
 				E17DFF421C79D85800A09547 /* FloorHelper.swift */,
 				588CFFA81C81070A00DEC1E6 /* SpeakerDetailHelper.swift */,
+				58EC13251C86423700958070 /* StoredResourceHelper.swift */,
 			);
 			name = helper;
 			sourceTree = "<group>";
@@ -1578,7 +1608,7 @@
 				588CFF2E1C8105DB00DEC1E6 /* 8a7d68a8a2b09105c969cbae7b37019d4fa470a5.json in Resources */,
 				5895EB8E1C66683600229780 /* logo.png in Resources */,
 				588CFF581C8105DB00DEC1E6 /* 4d405855f0babb61d73bfe0a1835c60936922c11.json in Resources */,
-				E175F25F1C46FFAD00D7AC0A /* 04.json in Resources */,
+				E175F25F1C46FFAD00D7AC0A /* DV15-thursday.json in Resources */,
 				588CFF561C8105DB00DEC1E6 /* 3d3fdff9990e194e6f066406399d876cb21c4d9e.json in Resources */,
 				588CFF121C8105DB00DEC1E6 /* bb432b5185ba9edac4785814569fa51e15cf5463.json in Resources */,
 				588CFEC11C8105DB00DEC1E6 /* 9f4ba114aab2c4ea651e3fce6c0256237dd6e76e.json in Resources */,
@@ -1605,7 +1635,7 @@
 				588CFF5D1C8105DB00DEC1E6 /* 496f3e151aa7ca171452d3b7a4af51bce423cd51.json in Resources */,
 				588CFFA01C8105DB00DEC1E6 /* 4e895cab5d13c3a731255ef32381419c6901a51d.json in Resources */,
 				588CFF951C8105DB00DEC1E6 /* 83d1426d4e8bf25aa637685cd3ee987493b9d537.json in Resources */,
-				580B78811C78956F00060C00 /* ImageMap.json in Resources */,
+				580B78811C78956F00060C00 /* StoredResource.json in Resources */,
 				588CFF9E1C8105DB00DEC1E6 /* f5fa19b45b83c6df8b096fe7aad9e81fd067ce1a.json in Resources */,
 				587797401C81CC8000A1A7D5 /* ic_twitter@2x.png in Resources */,
 				588CFF4E1C8105DB00DEC1E6 /* cc2c6ab224470d30244bb459efb4124c375f09ee.json in Resources */,
@@ -1672,12 +1702,14 @@
 				588CFED91C8105DB00DEC1E6 /* 164114ba25b3214b5f991bbf828bfc8cb4e23a97.json in Resources */,
 				588CFF521C8105DB00DEC1E6 /* e2515b19e19082dc51d53052929a2b9cc3475eff.json in Resources */,
 				588CFECB1C8105DB00DEC1E6 /* e9e2ff0a451cf6394daf443d5633fe35cd8d97b4.json in Resources */,
+				58EC13321C865A8A00958070 /* DevoxxFR2016-monday.json in Resources */,
 				588CFF221C8105DB00DEC1E6 /* 115f16d3b40e20d557718320e43ca5ff56d25d10.json in Resources */,
 				588CFF021C8105DB00DEC1E6 /* c99ee21778e7ec156fce4eee930afcef6b225daa.json in Resources */,
 				588CFEDD1C8105DB00DEC1E6 /* c2ee64edb1b19c359da64f43a14658bf75a580c0.json in Resources */,
 				588CFECC1C8105DB00DEC1E6 /* e57e6b354d5ce29e351907afe367c41986c99e2e.json in Resources */,
 				588CFEC21C8105DB00DEC1E6 /* 13b637cf1f9daaa7551c4a2203038a7dd2b2c42d.json in Resources */,
 				588CFF711C8105DB00DEC1E6 /* 7782514f19d3c0681edeaf0035fb4c2d13d33485.json in Resources */,
+				58EC13281C86576D00958070 /* DevoxxFR2016-conferences.json in Resources */,
 				588CFF471C8105DB00DEC1E6 /* 35a6797008ce8295fcc76c03dcf0a58a07ab3070.json in Resources */,
 				580B78AE1C7A8B9600060C00 /* down@2x.png in Resources */,
 				588CFF921C8105DB00DEC1E6 /* 57d34c71dfb2d1c172d6da39e1ba39aa1ea7aa42.json in Resources */,
@@ -1712,7 +1744,7 @@
 				588CFF061C8105DB00DEC1E6 /* 1d8b617975560cb6159d3e2bd49c7cc39fe22330.json in Resources */,
 				588CFED51C8105DB00DEC1E6 /* 286c8e3ad0804742a1c2fd4c624cf0a0aeeb53ef.json in Resources */,
 				580CD2A81C7E5E3900152E4C /* location@2x.png in Resources */,
-				E175F25E1C46FFAD00D7AC0A /* 02.json in Resources */,
+				E175F25E1C46FFAD00D7AC0A /* DV15-wednesday.json in Resources */,
 				58EC131C1C8464E000958070 /* tabIconSettings@2x.png in Resources */,
 				588CFF271C8105DB00DEC1E6 /* 348194fdbb33b1566781134d2717ba0aa14231c1.json in Resources */,
 				588CFF011C8105DB00DEC1E6 /* c6c08ad06fc697fc17e626edc3018af523545ddb.json in Resources */,
@@ -1720,6 +1752,7 @@
 				588CFED01C8105DB00DEC1E6 /* 08dc485e0c43e3fa3b12506ac110ee85ecd916cc.json in Resources */,
 				588CFF801C8105DB00DEC1E6 /* 43ce34bea56fe72ae8953bb9d0fb435d8c9d0640.json in Resources */,
 				5895EB7F1C66635100229780 /* Cfp.json in Resources */,
+				58EC132E1C865A8A00958070 /* DevoxxFR2016-friday.json in Resources */,
 				588CFEE51C8105DB00DEC1E6 /* 086ed32aee23c7f0782bf01ed1129aab11c83449.json in Resources */,
 				5895EB921C66683600229780 /* splash_btn_DV15@2x.png in Resources */,
 				E17DFF3D1C72884F00A09547 /* filter@2x.png in Resources */,
@@ -1728,9 +1761,11 @@
 				588CFF541C8105DB00DEC1E6 /* 00cc2b259b5a0c29f7b2e7ff7faf59acea8904c3.json in Resources */,
 				588CFF001C8105DB00DEC1E6 /* 2218229da8896c661f7f847206b93a018a82b78f.json in Resources */,
 				588CFF7E1C8105DB00DEC1E6 /* 30c6d4365affc33941c45ef6345ff7952e317ce6.json in Resources */,
+				58EC132F1C865A8A00958070 /* DevoxxFR2016-thursday.json in Resources */,
 				58195C051C35868400F56A30 /* icon_ignite.png in Resources */,
 				588CFF891C8105DB00DEC1E6 /* ba57c7cb5cd9438a5e3e4e4b445829c9b8df18cd.json in Resources */,
 				588CFF4B1C8105DB00DEC1E6 /* a298ec44a3134ca0575b33a9a241cce5b5e3c189.json in Resources */,
+				58EC13221C86400800958070 /* DV15-conferences.json in Resources */,
 				580B78941C7A07AF00060C00 /* devoxxExhibitionFloorPhone.jpg in Resources */,
 				588CFF451C8105DB00DEC1E6 /* 4e62c0f0259f44f50d9d6e99222587bf7beb30e1.json in Resources */,
 				588CFF6C1C8105DB00DEC1E6 /* 85eb850bb5c8fc040bbd1b2b8fb87a45b6edbcb8.json in Resources */,
@@ -1767,12 +1802,12 @@
 				588CFF411C8105DB00DEC1E6 /* 2decff942d552132195af88986bd384233036c4d.json in Resources */,
 				588CFEF91C8105DB00DEC1E6 /* 77d5f90c2a3481eec125b7b8e3e0cb5602f65c23.json in Resources */,
 				588CFF161C8105DB00DEC1E6 /* e678e155b2b2876bec44fb5e5557d43aa5eae097.json in Resources */,
-				E127E66A1C39709400FB7E4F /* 03.json in Resources */,
+				E127E66A1C39709400FB7E4F /* DV15-friday.json in Resources */,
 				588CFF0F1C8105DB00DEC1E6 /* 96113f437d0ab135b3ed8585aa657341ac87f089.json in Resources */,
 				588CFEC91C8105DB00DEC1E6 /* baf3d377114955da00f01af683b4461f359a3199.json in Resources */,
 				588CFF751C8105DB00DEC1E6 /* bc76e6a7e689aef6550eb4b01e651ae0b4fa3f30.json in Resources */,
 				588CFF961C8105DB00DEC1E6 /* 86e7ccf15b3b4c9f91af3ad24d6253e1771d9829.json in Resources */,
-				E175F25D1C46FFAD00D7AC0A /* 01.json in Resources */,
+				E175F25D1C46FFAD00D7AC0A /* DV15-tuesday.json in Resources */,
 				587797421C81D82300A1A7D5 /* ic_back@2x.png in Resources */,
 				588CFF5B1C8105DB00DEC1E6 /* 45f704377f504f2f5696fa38d27fcb123c1cf1fe.json in Resources */,
 				588CFF4C1C8105DB00DEC1E6 /* b340d00830ebfff2caea79c400331edaeee32759.json in Resources */,
@@ -1813,12 +1848,13 @@
 				588CFF2A1C8105DB00DEC1E6 /* c0c1790ff7e49d3bdd6c87236ed0a6dd46e97fc1.json in Resources */,
 				588CFF661C8105DB00DEC1E6 /* 4d4e0b394874de8b83b1d78d13aeb3879d3763b8.json in Resources */,
 				5895EB991C66683600229780 /* DevoxxBelgiumHomePage.jpg in Resources */,
-				E175F25C1C46FFAD00D7AC0A /* 00.json in Resources */,
+				E175F25C1C46FFAD00D7AC0A /* DV15-monday.json in Resources */,
 				588CFF571C8105DB00DEC1E6 /* 03e373a7eb6756dafeccad225bff7576d6f2d86b.json in Resources */,
 				588CFF421C8105DB00DEC1E6 /* 2ffe07662d15004faa36eb58ed6b22de7db2968e.json in Resources */,
 				588CFF331C8105DB00DEC1E6 /* 91fd808dc0701cf06e671697c79573cd536eb04e.json in Resources */,
 				588CFEF31C8105DB00DEC1E6 /* 6e991376ac3f2793841d2ed9990a7d82ea2233b6.json in Resources */,
 				E127E66E1C39709400FB7E4F /* Track.json in Resources */,
+				58EC13311C865A8A00958070 /* DevoxxFR2016-tuesday.json in Resources */,
 				588CFF261C8105DB00DEC1E6 /* 25323e302131807a9252676d313a3196a183fc3e.json in Resources */,
 				588CFF7C1C8105DB00DEC1E6 /* 8bf8f6515f3fd305649d60658339ff6303dc6bf4.json in Resources */,
 				588CFF941C8105DB00DEC1E6 /* 76bdc535d7b5f37cb73584f78dc40939af74ca16.json in Resources */,
@@ -1853,6 +1889,7 @@
 				588CFF1A1C8105DB00DEC1E6 /* 3fba21b44cd0bffadc47087951980a7fb1916df9.json in Resources */,
 				588CFF6B1C8105DB00DEC1E6 /* 8ce20b7419146783a7992c29cafadfcba3316df4.json in Resources */,
 				588CFF8C1C8105DB00DEC1E6 /* fe013e6b8075a360bd8a19277143eb8515a5264c.json in Resources */,
+				58EC13301C865A8A00958070 /* DevoxxFR2016-wednesday.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1870,6 +1907,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58EC13261C86423700958070 /* StoredResourceHelper.swift in Sources */,
 				580B786B1C74FD9A00060C00 /* SpeakerCell.swift in Sources */,
 				E10CE1AE1C2BDAA1002C9934 /* Attribute.swift in Sources */,
 				E10CE1A41C2BC1F2002C9934 /* DataHelper.swift in Sources */,
@@ -1879,6 +1917,7 @@
 				58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */,
 				58F67CDD1C308C64007D2B97 /* Favorite.swift in Sources */,
 				588CFFA91C81070A00DEC1E6 /* SpeakerDetailHelper.swift in Sources */,
+				58EC13241C8640FE00958070 /* StoredResource.swift in Sources */,
 				580B78851C78988500060C00 /* Image.swift in Sources */,
 				E127E6601C38313200FB7E4F /* SearchableTableProtocol.swift in Sources */,
 				580CD2A21C7DDA7900152E4C /* AllDetailsView.swift in Sources */,
@@ -1916,6 +1955,7 @@
 				5895EB811C66642A00229780 /* CfpHelper.swift in Sources */,
 				E10CE19E1C2BB6BE002C9934 /* CellDataProtocol.swift in Sources */,
 				E10E7AC61C18BF7100F6220B /* devoxxApp.xcdatamodeld in Sources */,
+				58EC13201C863E5700958070 /* APIDataManager.swift in Sources */,
 				58A38EA81C83727000C2DFE2 /* RightTextView.swift in Sources */,
 				E1FA9C361C1BFCC60077C09A /* SchedulerTableViewController.swift in Sources */,
 				E1FA9C451C1BFD400077C09A /* Talk.swift in Sources */,
