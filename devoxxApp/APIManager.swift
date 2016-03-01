@@ -250,48 +250,7 @@ class APIManager {
     
     
     
-    class func loadDataFromURL(url: NSURL, completion:(data: NSData?, error: NSError?) -> Void) {
-        
-        let storeEtag = getEtagForUrl(url.absoluteString)
-        
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let headers = [
-            "If-None-Match": storeEtag.value!
-        ]
-        //config.HTTPAdditionalHeaders = headers
-        config.requestCachePolicy = .ReloadIgnoringLocalCacheData
-        
-        let session = NSURLSession(configuration: config)
-        
-        
-        
-        
-        let loadDataTask = session.dataTaskWithURL(url, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-            if let responseError = error {
-                completion(data: nil, error: responseError)
-            } else if let httpResponse = response as? NSHTTPURLResponse {
-                if httpResponse.statusCode != 200 && httpResponse.statusCode != 304  {
-                    let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
-                    completion(data: nil, error: statusError)
-                }
-                else if httpResponse.statusCode == 304 {
-                    let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code is 304 -> not modified :)"])
-                    completion(data: nil, error: statusError)
-                }
-                else {
-                    let etagValue = httpResponse.allHeaderFields["Etag"] as! String
-                    storeEtag.value = etagValue
-                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    let context = appDelegate.managedObjectContext!
-                    save(context)
-                    completion(data: data, error: nil)
-                }
-            }
-        })
-        loadDataTask.resume()
-    }
-
-    
+   
     
     class func sayHi() {
         print("hiiii")

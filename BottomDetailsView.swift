@@ -45,12 +45,7 @@ class BottomDetailsView : UIView {
         addSubview(image)
         addSubview(label)
         
-        
-        let views = ["image": image, "label" : label]
-        
-       
-
-        
+               
         //let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[image]-0-[label]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
         //addConstraints(constH0)
    
