@@ -51,11 +51,6 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
     
     
     
-    let alertView = UIAlertView(title: "Head's up !", message: nil, delegate: nil, cancelButtonTitle: nil)
-    
-    
-    
-    
     
     
     
@@ -72,18 +67,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         self.tableView = UITableView(frame: self.tableView.frame, style: .Grouped)
         
         
-        
-        alertView.addButtonWithTitle("Sure !")
-        
-        alertView.addButtonWithTitle("Oops no !")
-        
-        
-        
-        
-        
-        alertView.delegate = self
-        
-        
+               
         
         self.navigationItem.title = "Settings"
         
@@ -140,78 +124,36 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
     
     
     override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        
-        /*
-        
-        
-        if(indexPath.section == KindOfSection.FETCH_NUMBER.hashValue) {
-            
-            let defaults = NSUserDefaults.standardUserDefaults()
-            
-            defaults.setInteger(indexPath.row, forKey: "nbOfTweetsToFetch")
-            
-            self.tableView.reloadData()
-            
-        }
-            
-            
-            
-        else if(indexPath.section == KindOfSection.CLEAR.hashValue) {
-            
-            
-            
-            alertView.tag = indexPath.row
-            
-            
-            
-            if(indexPath.row == KindOfClear.NON_SELECTED_TWEETS.hashValue) {
-                
-                alertView.message = "Are you sure you want to delete \n ALL NON SELECTED \n Tweets ?"
-                
+        if indexPath.section == KindOfSection.QUICK_ACCESS.hashValue {
+            if indexPath.row == 0 {
+                let url = APIManager.currentEvent.regURL!
+                UIApplication.sharedApplication().openURL(NSURL(string: url)!)
             }
-                
-                
-                
-            else if(indexPath.row == KindOfClear.SELECTED_TWEETS.hashValue) {
-                
-                alertView.message = "Are you sure you want to delete \n ALL SELECTED \n Tweets ?"
-                
+            if indexPath.row == 1 {
+                let alert = UIAlertController(title: "Report Issue", message: "go to report issue", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
             }
-                
-                
-                
-            else {
-                
-                alertView.message = "Are you sure you want to delete \n ALL Tweets ?"
-                
+            if indexPath.row == 2 {
+                let alert = UIAlertController(title: "About", message: "go to about", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
             }
-            
-            
-            
-            alertView.show()
-            
-        }
-            
-            
-            
-            
-            
-        else {
-            
-            let defaults = NSUserDefaults.standardUserDefaults()
-            
-            defaults.setInteger(indexPath.row, forKey: "shouldLoadImages")
-            
-            self.tableView.reloadData()
-            
         }
         
-        
-        
-        
-        */
-        
+        if indexPath.section == KindOfSection.SETTINGS.hashValue {
+            if indexPath.row == 0 {
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setInteger(-1, forKey: "currentEvent")
+                self.parentViewController!.parentViewController?.view!.removeFromSuperview()
+                self.parentViewController?.parentViewController?.removeFromParentViewController()
+            }
+            if indexPath.row == 1 {
+                let alert = UIAlertController(title: "Clear QR Code", message: "go to clear QR CODE", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        }
         
     }
     
@@ -262,30 +204,9 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
     
     
     
-    public func alertView(alertView: UIAlertView, didDismissWithButtonIndex buttonIndex: Int) {
-        
-        print("\(alertView.tag) -> \(buttonIndex)")
-        
-        
-        
-        
-        
-        
-        
-    }
     
     
     
     
     
 }
-
-/*
-
-func ==(a:Settings.KindOfSection, b:Settings.KindOfSection) -> Bool {
-
-return a.hashValue == b.hashValue
-
-}
-
-*/

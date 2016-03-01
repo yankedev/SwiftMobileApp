@@ -57,11 +57,7 @@ public class MapTabController : UIViewController {
         self.navigationItem.title = APIManager.currentEvent.address
         
         
-        let backLeftButton = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: Selector("back"))
-        
-        self.navigationItem.leftBarButtonItem = backLeftButton
-        
-        
+            
         
         
         
@@ -116,11 +112,7 @@ public class MapTabController : UIViewController {
         }
     }
     
-    func back() {
-        self.parentViewController!.parentViewController?.view!.removeFromSuperview()
-        self.parentViewController?.parentViewController?.removeFromParentViewController()
-    }
-    
+  
     func segZero() {
         currentView?.removeFromSuperview()
         let controller = MapController()

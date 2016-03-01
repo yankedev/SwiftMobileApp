@@ -36,6 +36,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     @NSManaged var splashImgURL: String?
     @NSManaged var talkURL: String?
     @NSManaged var hashtag: String?
+    @NSManaged var regURL: String?
     @NSManaged var backgroundImageData: NSData?
     @NSManaged var floors: NSSet
     
@@ -51,6 +52,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
             talkURL = castHelper.talkURL
             country = castHelper.country
             capacity = castHelper.capacity
+            regURL = castHelper.regURL
             fromDate = castHelper.fromDate
             sessions = castHelper.sessions
             latitude = castHelper.latitude

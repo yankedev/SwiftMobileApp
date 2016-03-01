@@ -237,9 +237,7 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
         
         actionButtonView0.button.addTarget(self, action: Selector("twitter"), forControlEvents: .TouchUpInside)
         actionButtonView1.button.addTarget(self, action: Selector("clicked"), forControlEvents: .TouchUpInside)
-        
-        actionButtonViewBack.button.addTarget(self, action: Selector("back"), forControlEvents: .TouchUpInside)
-
+      
  
     }
     
@@ -276,11 +274,6 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
     
     
     
-    
-    public func back() {
-        self.navigationController?.navigationBarHidden = false
-        self.navigationController?.popViewControllerAnimated(true)
-    }
     
     
     public func twitter() {

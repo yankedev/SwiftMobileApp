@@ -47,7 +47,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
         super.viewDidLoad()
 
-        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"), favoriteSelector : Selector("changeSchedule:"), backTarget: self, backSelector : Selector("back"))
+        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"), favoriteSelector : Selector("changeSchedule:"))
 
         
         
@@ -79,12 +79,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
         
         
-        
-        
-        
-        self.pageViewController.navigationItem.leftBarButtonItem = customView!.backLeftButton
-
-        
+             
         
         if allDates.count == 0 {
             self.pageViewController.navigationItem.title = "No data yet"
@@ -277,10 +272,5 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         return dateFormatter.stringFromDate(date)
     }
     
-    
-    func back() {
-        self.parentViewController!.view.removeFromSuperview()
-        self.parentViewController?.removeFromParentViewController()
-    }
-    
+   
 }

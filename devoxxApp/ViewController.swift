@@ -18,10 +18,11 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     let wheelView = SelectionWheel()
     
     let color = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)
-    let tabController = UITabBarController()
+    let customTabController = UITabBarController()
     var currentSelectedIndex = 0
     var imgView:UIImageView!
     var numberView:HomeNumberView!
+    var goView:HomeGoButtonView!
     var globeView:UIView!
     var eventLocation:UILabel!
     var rotating = false
@@ -48,8 +49,12 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
 
     
     func rotateOnce() {
+        
+        if self.globeView == nil {
+            return
+        }
       
-        UIView.animateWithDuration(1.0,
+        UIView.animateWithDuration(0.5,
             delay: 0.0,
             options: .CurveLinear,
             animations: {
@@ -59,7 +64,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     func rotateAgain() {
-        UIView.animateWithDuration(1.0,
+        UIView.animateWithDuration(0.5,
             delay: 0.0,
             options: .CurveLinear,
             animations: {
@@ -67,6 +72,10 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             },
             completion: {finished in if self.rotating { self.rotateOnce() }})
     }
+    
+    
+
+    
     
     func prepareNext() {
         
@@ -86,8 +95,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                 
                 
                 APIManager.eventFeed()
-                
-                
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setInteger(self.currentSelectedIndex, forKey: "currentEvent")
                 
                 self.run_on_main_thread
                     {
@@ -131,19 +140,25 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                         let mapNavigationController = UINavigationController(rootViewController: mapController)
                         
                         
-                        self.tabController.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController, settingsNavigationController]
-                        self.tabController.tabBar.translucent = false
-                        self.tabController.view.backgroundColor = UIColor.whiteColor()
+                        self.customTabController.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController, settingsNavigationController]
+                        self.customTabController.tabBar.translucent = false
+                        self.customTabController.view.backgroundColor = UIColor.whiteColor()
                         //TODO BACK BUTTON
                         //self.navigationController?.navigationBarHidden = false
                         
-                        self.addChildViewController(self.tabController)
-                        self.view.addSubview(self.tabController.view)
+                        
                         
                         self.rotating = false
-                        self.navigationController?.pushViewController(self.tabController, animated: true)
                         
+                        self.customTabController.selectedIndex = 0
+                        
+                        self.navigationController?.pushViewController(self.customTabController, animated: true)
+                        
+                        self.showStaticView(false)
 
+                        self.addChildViewController(self.customTabController)
+                        self.view.addSubview(self.customTabController.view)
+                        
                 }
         }
         
@@ -159,20 +174,30 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
 
     }
     
+    func showStaticView(show : Bool) {
+        self.wheelView.hidden = show
+        self.goView.hidden = show
+    }
+    
     func remove() {
-        tabController.view.removeFromSuperview()
+        customTabController.view.removeFromSuperview()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        //self.navigationController?.navigationBarHidden = true
     }
+    
+    
+    
     
     override func viewDidLoad() {
         
-        super.viewDidLoad()
         
+        
+        super.viewDidLoad()
+
         slicesData = APIManager.getAllEvents()
+        
         
         imgView = UIImageView()
         imgView.contentMode = .ScaleAspectFit
@@ -183,12 +208,14 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         let headerView = HomeHeaderView()
         
-        let goView = HomeGoButtonView()
+        goView = HomeGoButtonView()
         numberView = HomeNumberView()
 
         
         eventLocation = headerView.eventLocation
         
+        self.showStaticView(true)
+        shouldByPass()
         view.addSubview(headerView)
         view.addSubview(wheelView)
         view.addSubview(goView)
@@ -279,11 +306,32 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         wheelView.setup()
         globeView = wheelView.globe
         wheelView.click(0)
+        
+        
+        
+        
     }
-    
-     
-    
-    
+
+    func shouldByPass() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        
+        if let currentEventIndex = NSUserDefaults.standardUserDefaults().objectForKey("currentEvent") as? Int {
+            if currentEventIndex == -1 {
+                self.showStaticView(false)
+                return
+            }
+            else {
+                currentSelectedIndex = currentEventIndex
+                prepareNext()
+            }
+        }
+        else {
+            self.showStaticView(false)
+            defaults.setInteger(-1, forKey: "currentEvent")
+            return
+        }
+    }
  
     
     //Delegate

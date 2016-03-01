@@ -38,7 +38,7 @@ public class GenericPageScrollController<T : ScrollableItemProtocol> : UINavigat
         
         super.viewDidLoad()
         
-        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"), favoriteSelector : Selector("changeSchedule:"), backTarget: self, backSelector : Selector("back"))
+        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"), favoriteSelector : Selector("changeSchedule:"))
         
         
         
@@ -66,12 +66,7 @@ public class GenericPageScrollController<T : ScrollableItemProtocol> : UINavigat
         
         
         
-        
-        
-        
-        self.pageViewController.navigationItem.leftBarButtonItem = customView!.backLeftButton
-        
-        
+     
         
         self.view.addSubview(customView!)
         
