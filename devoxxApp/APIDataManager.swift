@@ -31,13 +31,25 @@ class APIDataManager {
         let predicateEvent = NSPredicate(format: "id = %@", APIManager.currentEvent!.id!)
         fetchRequest.predicate = predicateEvent
         let items = try! context.executeFetchRequest(fetchRequest)
+        
+        
+        let res = items[0] as! Cfp
+        print("get res.count = \(res.days.count)")
+        
         APIManager.setEvent(items[0] as! Cfp)
-        print("updated")
     }
 
     
     class func getEntryPointPoint() -> String {
         return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/schedules"
+    }
+    
+    class func getProposalTypes() -> String {
+        return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/proposalTypes"
+    }
+    
+    class func getTracks() -> String {
+        return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/tracks"
     }
     
     class func getSpeakerEntryPoint() -> String {
@@ -61,8 +73,8 @@ class APIDataManager {
       
         
         
-        
-        print("Looking for \(httpsUrl) and found ")
+        print("lookin for : \(httpsUrl)")
+      
         let toReturn = items[0] as! StoredResource
  
         
@@ -74,10 +86,9 @@ class APIDataManager {
 
     }
 
-    class func tryToFetch(resource : StoredResource, dataHelper : DataHelperProtocol, completion:(data: NSData?, error: NSError?) -> Void, sync : Bool) {
+    class func tryToFetch(resource : StoredResource, dataHelper : DataHelperProtocol, completion:(data: NSData?, error: NSError?) -> Void, sync : Bool) -> NSURLSessionDataTask{
         
-        
-        let semaphore: dispatch_semaphore_t = dispatch_semaphore_create(0)
+       
         
         print("try to fetch \(resource.url)")
         
@@ -155,47 +166,161 @@ class APIDataManager {
                     completion(data: data, error: nil)
                 }
             }
-            if sync  {
-                dispatch_semaphore_signal(semaphore)
-            }
             
         })
-        loadDataTask.resume()
         
-        if sync  {
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-        }
+        
+        
+        return loadDataTask
         
     }
     
     
     
-    class func loadDataFromURL(url: String, dataHelper : DataHelperProtocol, sync : Bool) {
+    class func loadDataFromURL(url: String, dataHelper : DataHelperProtocol, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
-        print(url)
-        
-        
+     
         let storedResource = APIDataManager.findResource(url)
         
         if storedResource.hasBeenFedOnce {
-        
+
         }
         else {
-            tryToFetch(storedResource, dataHelper: dataHelper, completion: handleData, sync : sync)
+            return makeRequest(storedResource, dataHelper : dataHelper, onSuccess: onSuccess, onError: onError)
         }
     }
 
     
-    class func loadDataFromURLS(urls: NSSet, dataHelper : DataHelperProtocol, sync : Bool) {
-        
-        print("urls count = \(urls.count)")
+    class func loadDataFromURLS(urls: NSSet, dataHelper : DataHelperProtocol, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
         for singleUrl in urls {
             if let singleUrlString = singleUrl as? Day {
-                loadDataFromURL(singleUrlString.url, dataHelper: dataHelper, sync : sync)
+                loadDataFromURL(singleUrlString.url, dataHelper: dataHelper, onSuccess: onSuccess, onError: onError)
             }
         }
+        
     }
 
+    
+    
+    
+    class func makeRequest(storedResource : StoredResource, dataHelper : DataHelperProtocol, onSuccess : (value:String) -> Void, onError: (value:String)->Void){
+        
+        
+        
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        
+        let headers = [
+            "If-None-Match": storedResource.etag
+        ]
+        
+        config.HTTPAdditionalHeaders = headers
+        config.requestCachePolicy = .ReloadIgnoringLocalCacheData
+        
+        let session = NSURLSession(configuration: config)
+        
+        
+        
+
+        
+        
+        let task = session.dataTaskWithURL(NSURL(string: storedResource.url)!) {
+            data, response1, error in
+            
+            
+            
+            
+            if let responseError = error {
+              
+                print("responseError")
+                
+                if storedResource.hasBeenFedOnce == false {
+                    
+                    let testBundle = NSBundle.mainBundle()
+                    let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
+                    let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
+                    if(checkString == nil) {
+                        print("should not be empty", terminator: "")
+                    }
+                    let fallbackData = NSData(contentsOfFile: filePath!)!
+                    
+                    
+                    
+                    dispatch_async(dispatch_get_main_queue(),{
+                        APIManager.handleData(fallbackData, dataHelper: dataHelper)
+                        onError(value: storedResource.url)
+                    })
+                }
+                
+                
+            } else if let httpResponse = response1 as? NSHTTPURLResponse {
+                if httpResponse.statusCode != 200 && httpResponse.statusCode != 304  {
+                    let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
+                    
+                    print("ni 304 ni 200")
+                    if storedResource.hasBeenFedOnce == false {
+                        
+                        let testBundle = NSBundle.mainBundle()
+                        let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
+                        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
+                        if(checkString == nil) {
+                            print("should not be empty", terminator: "")
+                        }
+                        let fallbackData = NSData(contentsOfFile: filePath!)!
+                        
+                        APIManager.handleData(fallbackData, dataHelper: dataHelper)
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue(),{
+                        onSuccess(value: storedResource.url)
+                    })
+                    
+                    
+                }
+                else if httpResponse.statusCode == 304 {
+                    
+                    print("304 detected")
+                    
+                    if storedResource.hasBeenFedOnce == false {
+                        
+                        let testBundle = NSBundle.mainBundle()
+                        let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
+                        
+                        print("seqrhing in bundle : \(storedResource.fallback)")
+                        
+                        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
+                        if(checkString == nil) {
+                            print("should not be empty", terminator: "")
+                        }
+                        let fallbackData = NSData(contentsOfFile: filePath!)!
+                        
+                        APIManager.handleData(fallbackData, dataHelper: dataHelper)
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue(),{
+                        onSuccess(value: storedResource.url)
+                    })
+                    
+                }
+                else {
+                    
+                    print("should be 200")
+                    
+                    let etagValue = httpResponse.allHeaderFields["Etag"] as! String
+                    storedResource.etag = etagValue
+                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    let context = appDelegate.managedObjectContext!
+                    APIManager.save(context)
+                    
+                    dispatch_async(dispatch_get_main_queue(),{
+                        onSuccess(value: storedResource.url)
+                    })
+                }
+            }
+        }
+
+   
+        task.resume()
+    }
     
 }

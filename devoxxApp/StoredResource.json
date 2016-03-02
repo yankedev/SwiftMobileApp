@@ -34,6 +34,16 @@
 		"fallback": "DV15-conferences.json"
   },
   {
+		"url": "https://cfp.devoxx.be/api/conferences/DV15/speakers",
+		"etag": "1912069962",
+		"fallback": "DV15-speakers.json"
+  },
+  
+  
+  
+
+  
+  {
 		"url": "https://cfp.devoxx.be/api/conferences/DV15/schedules/monday/",
 		"etag": "v2_353178962",
 		"fallback": "DV15-monday.json"
@@ -54,6 +64,25 @@
 		"etag": "v2_1628047944",
 		"fallback": "DV15-friday.json"
   },
+  
+  
+  
+  {
+		"url": "https://cfp.devoxx.be/api/conferences/DV15/tracks",
+		"etag": "-872291949",
+		"fallback": "DV15-tracks.json"
+  },
+  
+  
+  {
+		"url": "https://cfp.devoxx.be/api/conferences/DV15/proposalTypes",
+		"etag": "-1027407896",
+		"fallback": "DV15-proposalTypes.json"
+  },
+  
+  
+  
+  
     {
 		"url": "https://cfp.devoxx.fr/api/conferences/DevoxxFR2016/schedules",
 		"etag": "1565948479",
@@ -89,6 +118,8 @@
 		"fallback": "DevoxxFR2016-speaker.json"
   }
   
+  
+
   
   
   

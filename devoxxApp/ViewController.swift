@@ -17,6 +17,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
   
     let wheelView = SelectionWheel()
     
+    var serviceGroup = dispatch_group_create()
+    
     let color = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)
     let customTabController = UITabBarController()
     var currentSelectedIndex = 0
@@ -76,6 +78,128 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
 
     
+    func loadIsFinihsed() {
+    
+        if(APIManager.isCurrentEventEmpty()) {
+            let alert = UIAlertController(title: "No data", message: "No data for this event, select Belgium to test", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
+            self.rotating = false
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+        
+        
+        let scheduleController = ScheduleController<SchedulerTableViewController>(generator:self.generateScheduleTableViewController)
+        let speakerController = SpeakerTableController()
+        let mapController = MapTabController()
+        let settingsController = SettingsController()
+        
+        let scheduleTabImage = UIImage(named: "tabIconSchedule.png")
+        let speakerTabImage = UIImage(named: "tabIconSpeaker.png")
+        let mapTabImage = UIImage(named: "tabIconMap.png")
+        let settingsTabImage = UIImage(named: "tabIconSettings.png")
+        
+        scheduleController.tabBarItem = UITabBarItem(title: "Schedule", image: scheduleTabImage, tag:0)
+        speakerController.tabBarItem = UITabBarItem(title: "Speakers", image: speakerTabImage, tag:1)
+        mapController.tabBarItem = UITabBarItem(title: "Map", image: mapTabImage, tag:2)
+        settingsController.tabBarItem = UITabBarItem(title: "Settings", image: settingsTabImage, tag:3)
+        
+        //let scheduleNavigationController = UINavigationController(rootViewController: scheduleController)
+        let speakerNavigationController = UINavigationController(rootViewController: speakerController)
+        
+        
+        
+        let settingsNavigationController = UINavigationController(rootViewController: settingsController)
+        
+        
+        
+        
+        //let scroll = GenericPageScrollController<MapController>(generator:generate)
+        
+        let mapNavigationController = UINavigationController(rootViewController: mapController)
+        
+        
+        self.customTabController.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController, settingsNavigationController]
+        self.customTabController.tabBar.translucent = false
+        self.customTabController.view.backgroundColor = UIColor.whiteColor()
+        //TODO BACK BUTTON
+        //self.navigationController?.navigationBarHidden = false
+        
+        
+        
+        self.rotating = false
+        
+        self.customTabController.selectedIndex = 0
+        
+        self.navigationController?.pushViewController(self.customTabController, animated: true)
+        
+        self.showStaticView(false)
+        
+        self.addChildViewController(self.customTabController)
+        self.view.addSubview(self.customTabController.view)
+    
+    }
+    
+    
+    func fetchFirst() {
+        dispatch_group_enter(serviceGroup)
+        dispatch_group_enter(serviceGroup)
+        APIDataManager.loadDataFromURL(APIDataManager.getSpeakerEntryPoint(), dataHelper: SpeakerHelper(), onSuccess: self.successGroup0, onError: self.onError)
+        APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint(), dataHelper: DayHelper(), onSuccess: self.successGroup0, onError: self.onError)
+        
+        dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
+            print("OK EVERYTHING IS LOADED FROM GROUP 0")
+            self.serviceGroup = dispatch_group_create()
+            self.fetchSecond("GO")
+        })
+    }
+    
+    
+    
+    func successGroup0(value : String) {
+        dispatch_group_leave(serviceGroup)
+    }
+    
+    func fetchSecond(value : String) {
+        
+        print("fetch first completed \(value)")
+        
+        APIDataManager.updateCurrentEvent()
+        
+     
+        dispatch_group_enter(serviceGroup)
+        dispatch_group_enter(serviceGroup)
+        for _ in 0...APIManager.currentEvent!.days.count-1 {
+            dispatch_group_enter(serviceGroup)
+        }
+        
+        
+        
+        APIDataManager.loadDataFromURL(APIDataManager.getTracks(), dataHelper: TrackHelper(), onSuccess: self.successGroup, onError: self.onError)
+        
+        APIDataManager.loadDataFromURL(APIDataManager.getProposalTypes(), dataHelper: TalkTypeHelper(), onSuccess: self.successGroup, onError: self.onError)
+        
+        
+        
+        
+        
+        
+        APIDataManager.loadDataFromURLS(APIManager.currentEvent!.days, dataHelper: SlotHelper(), onSuccess: self.successGroup, onError: self.onError)
+        
+        dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
+                print("OK EVERYTHING IS LOADED FROM GROUP1")
+                self.rotating = false
+                self.loadIsFinihsed()
+        })
+    }
+    
+    func successGroup(ok : String) {
+        print("block finished \(ok)")
+        dispatch_group_leave(serviceGroup)
+    }
+    
+  
+    
     
     func prepareNext() {
         
@@ -91,87 +215,29 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                 
                 
                 
-                
                 APIManager.setEvent(self.slicesData.objectAtIndex(self.currentSelectedIndex) as! Cfp)
                 
       
-                APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint(), dataHelper: DayHelper(), sync : true)
-        
-                
-                APIDataManager.updateCurrentEvent()
+               
+                self.fetchFirst()
                 
                 
-                APIDataManager.loadDataFromURL(APIDataManager.getSpeakerEntryPoint(), dataHelper: SpeakerHelper(), sync : false)
                 
-                APIDataManager.loadDataFromURLS(APIManager.currentEvent!.days, dataHelper: SlotHelper(), sync : false)
                 
                 
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setInteger(self.currentSelectedIndex, forKey: "currentEvent")
                 
+                
+               
+                
+                
                 self.run_on_main_thread
                     {
                     self.rotateOnce()
-                        if(APIManager.isCurrentEventEmpty()) {
-                            let alert = UIAlertController(title: "No data", message: "No data for this event, select Belgium to test", preferredStyle: UIAlertControllerStyle.Alert)
-                            alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
-                            self.rotating = false
-                            self.presentViewController(alert, animated: true, completion: nil)
-                            return
-                        }
-                        
-                        
-                        let scheduleController = ScheduleController<SchedulerTableViewController>(generator:self.generateScheduleTableViewController)
-                        let speakerController = SpeakerTableController()
-                        let mapController = MapTabController()
-                        let settingsController = SettingsController()
-                        
-                        let scheduleTabImage = UIImage(named: "tabIconSchedule.png")
-                        let speakerTabImage = UIImage(named: "tabIconSpeaker.png")
-                        let mapTabImage = UIImage(named: "tabIconMap.png")
-                        let settingsTabImage = UIImage(named: "tabIconSettings.png")
-                        
-                        scheduleController.tabBarItem = UITabBarItem(title: "Schedule", image: scheduleTabImage, tag:0)
-                        speakerController.tabBarItem = UITabBarItem(title: "Speakers", image: speakerTabImage, tag:1)
-                        mapController.tabBarItem = UITabBarItem(title: "Map", image: mapTabImage, tag:2)
-                        settingsController.tabBarItem = UITabBarItem(title: "Settings", image: settingsTabImage, tag:3)
-                        
-                        //let scheduleNavigationController = UINavigationController(rootViewController: scheduleController)
-                        let speakerNavigationController = UINavigationController(rootViewController: speakerController)
-                        
-                        
-                        
-                        let settingsNavigationController = UINavigationController(rootViewController: settingsController)
-                        
-                        
-                        
-                        
-                        //let scroll = GenericPageScrollController<MapController>(generator:generate)
-                        
-                        let mapNavigationController = UINavigationController(rootViewController: mapController)
-                        
-                        
-                        self.customTabController.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController, settingsNavigationController]
-                        self.customTabController.tabBar.translucent = false
-                        self.customTabController.view.backgroundColor = UIColor.whiteColor()
-                        //TODO BACK BUTTON
-                        //self.navigationController?.navigationBarHidden = false
-                        
-                        
-                        
-                        self.rotating = false
-                        
-                        self.customTabController.selectedIndex = 0
-                        
-                        self.navigationController?.pushViewController(self.customTabController, animated: true)
-                        
-                        self.showStaticView(false)
-
-                        self.addChildViewController(self.customTabController)
-                        self.view.addSubview(self.customTabController.view)
-                        
                 }
         }
+        
         
         
         
@@ -183,6 +249,15 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         //selectedEvent
         
 
+    }
+    
+    
+    func onSuccess(value : String) {
+        print("OnSucess = \(value)")
+    }
+    
+    func onError(value : String) {
+        print("OnError = \(value)")
     }
     
     func showStaticView(show : Bool) {
