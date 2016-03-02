@@ -72,9 +72,7 @@ class APIDataManager {
         
       
         
-        
-        print("lookin for : \(httpsUrl)")
-      
+          
         let toReturn = items[0] as! StoredResource
  
         
@@ -195,6 +193,7 @@ class APIDataManager {
         
         for singleUrl in urls {
             if let singleUrlString = singleUrl as? Day {
+                print(singleUrlString.url)
                 loadDataFromURL(singleUrlString.url, dataHelper: dataHelper, onSuccess: onSuccess, onError: onError)
             }
         }
@@ -236,6 +235,8 @@ class APIDataManager {
                 
                 if storedResource.hasBeenFedOnce == false {
                     
+                    
+                    
                     let testBundle = NSBundle.mainBundle()
                     let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
                     let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
@@ -247,6 +248,7 @@ class APIDataManager {
                     
                     
                     dispatch_async(dispatch_get_main_queue(),{
+                        
                         APIManager.handleData(fallbackData, dataHelper: dataHelper)
                         onError(value: storedResource.url)
                     })
@@ -268,7 +270,10 @@ class APIDataManager {
                         }
                         let fallbackData = NSData(contentsOfFile: filePath!)!
                         
-                        APIManager.handleData(fallbackData, dataHelper: dataHelper)
+                        dispatch_async(dispatch_get_main_queue(),{
+                            APIManager.handleData(fallbackData, dataHelper: dataHelper)
+                        })
+                        
                     }
                     
                     dispatch_async(dispatch_get_main_queue(),{
@@ -281,12 +286,15 @@ class APIDataManager {
                     
                     print("304 detected")
                     
+                    if storedResource.fallback == "DV15-friday.json" {
+                        print(storedResource.fallback)
+                    }
+                    
                     if storedResource.hasBeenFedOnce == false {
                         
                         let testBundle = NSBundle.mainBundle()
                         let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
                         
-                        print("seqrhing in bundle : \(storedResource.fallback)")
                         
                         let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
                         if(checkString == nil) {
@@ -294,7 +302,9 @@ class APIDataManager {
                         }
                         let fallbackData = NSData(contentsOfFile: filePath!)!
                         
-                        APIManager.handleData(fallbackData, dataHelper: dataHelper)
+                        dispatch_async(dispatch_get_main_queue(),{
+                            APIManager.handleData(fallbackData, dataHelper: dataHelper)
+                        })
                     }
                     
                     dispatch_async(dispatch_get_main_queue(),{
@@ -306,12 +316,7 @@ class APIDataManager {
                     
                     print("should be 200")
                     
-                    let etagValue = httpResponse.allHeaderFields["Etag"] as! String
-                    storedResource.etag = etagValue
-                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    let context = appDelegate.managedObjectContext!
-                    APIManager.save(context)
-                    
+                                        
                     dispatch_async(dispatch_get_main_queue(),{
                         onSuccess(value: storedResource.url)
                     })

@@ -328,6 +328,10 @@
 		58A465BA1C879755006B6D46 /* DEVOXXFR2016-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 58A465B61C879755006B6D46 /* DEVOXXFR2016-proposalTypes.json */; };
 		58A465BB1C879755006B6D46 /* DV15-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = 58A465B71C879755006B6D46 /* DV15-proposalTypes.json */; };
 		58A465BC1C879755006B6D46 /* DV15-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = 58A465B81C879755006B6D46 /* DV15-tracks.json */; };
+		58A465C01C87AC85006B6D46 /* icon_bigd.png in Resources */ = {isa = PBXBuildFile; fileRef = 58A465BD1C87AC85006B6D46 /* icon_bigd.png */; };
+		58A465C11C87AC85006B6D46 /* icon_cldops.png in Resources */ = {isa = PBXBuildFile; fileRef = 58A465BE1C87AC85006B6D46 /* icon_cldops.png */; };
+		58A465C21C87AC85006B6D46 /* icon_agTest.png in Resources */ = {isa = PBXBuildFile; fileRef = 58A465BF1C87AC85006B6D46 /* icon_agTest.png */; };
+		58A465C41C87AD12006B6D46 /* icon_wm.png in Resources */ = {isa = PBXBuildFile; fileRef = 58A465C31C87AD12006B6D46 /* icon_wm.png */; };
 		58BA2BFC1C3331EF0031C2E3 /* Etag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BA2BFB1C3331EE0031C2E3 /* Etag.swift */; };
 		58C6A8181C74A171005CDCA1 /* filterWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58C6A8171C74A171005CDCA1 /* filterWhite@2x.png */; };
 		58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */; };
@@ -741,6 +745,10 @@
 		58A465B61C879755006B6D46 /* DEVOXXFR2016-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DEVOXXFR2016-proposalTypes.json"; path = "mock/DEVOXXFR2016-proposalTypes.json"; sourceTree = "<group>"; };
 		58A465B71C879755006B6D46 /* DV15-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-proposalTypes.json"; path = "mock/DV15-proposalTypes.json"; sourceTree = "<group>"; };
 		58A465B81C879755006B6D46 /* DV15-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-tracks.json"; path = "mock/DV15-tracks.json"; sourceTree = "<group>"; };
+		58A465BD1C87AC85006B6D46 /* icon_bigd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_bigd.png; path = icon/track/icon_bigd.png; sourceTree = "<group>"; };
+		58A465BE1C87AC85006B6D46 /* icon_cldops.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_cldops.png; path = icon/track/icon_cldops.png; sourceTree = "<group>"; };
+		58A465BF1C87AC85006B6D46 /* icon_agTest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_agTest.png; path = icon/track/icon_agTest.png; sourceTree = "<group>"; };
+		58A465C31C87AD12006B6D46 /* icon_wm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_wm.png; path = icon/track/icon_wm.png; sourceTree = "<group>"; };
 		58BA2BFB1C3331EE0031C2E3 /* Etag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Etag.swift; sourceTree = "<group>"; };
 		58C6A8171C74A171005CDCA1 /* filterWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filterWhite@2x.png"; sourceTree = "<group>"; };
 		58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
@@ -860,6 +868,7 @@
 		58195BFB1C35867500F56A30 /* talkType */ = {
 			isa = PBXGroup;
 			children = (
+				58A465C31C87AD12006B6D46 /* icon_wm.png */,
 				58195C0E1C3587C600F56A30 /* icon_tia.png */,
 				58195C0C1C35877100F56A30 /* icon_start.png */,
 				58195C0A1C35871600F56A30 /* icon_other.png */,
@@ -1418,6 +1427,9 @@
 		E1FA9C0D1C1BFBFE0077C09A /* track */ = {
 			isa = PBXGroup;
 			children = (
+				58A465BD1C87AC85006B6D46 /* icon_bigd.png */,
+				58A465BE1C87AC85006B6D46 /* icon_cldops.png */,
+				58A465BF1C87AC85006B6D46 /* icon_agTest.png */,
 				E1FA9C0E1C1BFC150077C09A /* icon_archisec.png */,
 				E1FA9C0F1C1BFC150077C09A /* icon_cloud.png */,
 				E1FA9C101C1BFC150077C09A /* icon_future.png */,
@@ -1791,6 +1803,8 @@
 				58EC13221C86400800958070 /* DV15-conferences.json in Resources */,
 				580B78941C7A07AF00060C00 /* devoxxExhibitionFloorPhone.jpg in Resources */,
 				588CFF451C8105DB00DEC1E6 /* 4e62c0f0259f44f50d9d6e99222587bf7beb30e1.json in Resources */,
+				58A465C21C87AC85006B6D46 /* icon_agTest.png in Resources */,
+				58A465C01C87AC85006B6D46 /* icon_bigd.png in Resources */,
 				588CFF6C1C8105DB00DEC1E6 /* 85eb850bb5c8fc040bbd1b2b8fb87a45b6edbcb8.json in Resources */,
 				588CFEFE1C8105DB00DEC1E6 /* 67293fc8447a8d32cbf1b4becc5c5edec9bfa424.json in Resources */,
 				588CFED31C8105DB00DEC1E6 /* 66f7d06a47218aef81eca9862915959465c4c6d1.json in Resources */,
@@ -1868,6 +1882,7 @@
 				588CFF8D1C8105DB00DEC1E6 /* fed6873b4581344cde6db1314efe0a5ac021be8d.json in Resources */,
 				588CFF4A1C8105DB00DEC1E6 /* 974ad68f053d38f75f4799ded6ffaafc03cfa591.json in Resources */,
 				588CFF0A1C8105DB00DEC1E6 /* 7ce1efb326c6e3869c964409e4f1ec21a9fab13b.json in Resources */,
+				58A465C41C87AD12006B6D46 /* icon_wm.png in Resources */,
 				588CFEFB1C8105DB00DEC1E6 /* 167c1353e6bd5fe0a4605168d979a5e2f9e17445.json in Resources */,
 				588CFF9C1C8105DB00DEC1E6 /* dc61d5c028dceb9ce4fd55623c6f725f3666ab46.json in Resources */,
 				588CFF2A1C8105DB00DEC1E6 /* c0c1790ff7e49d3bdd6c87236ed0a6dd46e97fc1.json in Resources */,
@@ -1912,6 +1927,7 @@
 				580B78B01C7A8BE100060C00 /* up@2x.png in Resources */,
 				58195C041C35868400F56A30 /* icon_lab.png in Resources */,
 				588CFF5A1C8105DB00DEC1E6 /* 9d62326640a048a4fed036ef084a04bf7a06651e.json in Resources */,
+				58A465C11C87AC85006B6D46 /* icon_cldops.png in Resources */,
 				588CFF1A1C8105DB00DEC1E6 /* 3fba21b44cd0bffadc47087951980a7fb1916df9.json in Resources */,
 				588CFF6B1C8105DB00DEC1E6 /* 8ce20b7419146783a7992c29cafadfcba3316df4.json in Resources */,
 				588CFF8C1C8105DB00DEC1E6 /* fe013e6b8075a360bd8a19277143eb8515a5264c.json in Resources */,

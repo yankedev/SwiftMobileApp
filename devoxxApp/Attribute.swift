@@ -43,6 +43,9 @@ class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
     }
     
     func filterMiniIcon() -> UIImage {
+        
+        print("icon_\(id!)")
+        
         return UIImage(named: "icon_\(id!)")!
     }
     

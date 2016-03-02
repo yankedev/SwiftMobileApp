@@ -217,6 +217,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                 
                 APIManager.setEvent(self.slicesData.objectAtIndex(self.currentSelectedIndex) as! Cfp)
                 
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setInteger(self.currentSelectedIndex, forKey: "currentEvent")
       
                
                 self.fetchFirst()
@@ -225,8 +227,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                 
                 
                 
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setInteger(self.currentSelectedIndex, forKey: "currentEvent")
+                
                 
                 
                

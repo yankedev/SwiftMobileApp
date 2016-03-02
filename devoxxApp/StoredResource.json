@@ -83,6 +83,23 @@
   
   
   
+  
+  {
+		"url": "https://cfp.devoxx.fr/api/conferences/DevoxxFR2016/tracks",
+		"etag": "1370925856",
+		"fallback": "DEVOXXFR2016-tracks.json"
+  },
+  
+  
+  {
+		"url": "https://cfp.devoxx.fr/api/conferences/DevoxxFR2016/proposalTypes",
+		"etag": "-1196935546",
+		"fallback": "DEVOXXFR2016-proposalTypes.json"
+  },
+  
+  
+  
+  
     {
 		"url": "https://cfp.devoxx.fr/api/conferences/DevoxxFR2016/schedules",
 		"etag": "1565948479",
