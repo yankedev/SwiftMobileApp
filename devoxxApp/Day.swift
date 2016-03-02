@@ -13,6 +13,7 @@ import UIKit
 class Day: NSManagedObject, FeedableProtocol {
     
     @NSManaged var url: String
+    @NSManaged var cfp: Cfp
     
     func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? DayHelper  {

@@ -283,8 +283,6 @@ class APIManager {
 
 
 
-        print(commonUrl)
-        print(helper.entityName())
         
         let url = commonUrl[helper.entityName()]
         

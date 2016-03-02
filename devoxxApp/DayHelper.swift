@@ -17,12 +17,13 @@ class DayHelper: DataHelperProtocol {
         return entityName()
     }
     
-    init(img: String?, etag: String?) {
+    init(url: String?) {
         self.url = url ?? ""
     }
     
     func feed(data: JSON) {
-        url = data["url"].string
+        url = data["href"].string
+        
     }
     
     func entityName() -> String {
@@ -46,9 +47,16 @@ class DayHelper: DataHelperProtocol {
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
             coreDataObjectCast.feedHelper(self)
             
-            print(coreDataObjectCast)
+            let currentEvent = APIDataManager.findEventFromId(managedContext)
+            
+            coreDataObject.setValue(currentEvent, forKey: "cfp")
+
+            print(currentEvent.id)
+            
             
         }
+        
+       
         
         return true
         

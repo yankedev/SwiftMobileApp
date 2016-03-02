@@ -15,6 +15,27 @@ import CoreData
 class APIDataManager {
 
     
+    class func findEventFromId(context : NSManagedObjectContext) -> Cfp {
+        let fetchRequest = APIManager.buildFetchRequest(context, name: "Cfp")
+        let predicateEvent = NSPredicate(format: "id = %@", APIManager.currentEvent!.id!)
+        fetchRequest.predicate = predicateEvent
+        let items = try! context.executeFetchRequest(fetchRequest)
+        return items[0] as! Cfp
+    }
+    
+    class func updateCurrentEvent() -> Void {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        
+        let fetchRequest = APIManager.buildFetchRequest(context, name: "Cfp")
+        let predicateEvent = NSPredicate(format: "id = %@", APIManager.currentEvent!.id!)
+        fetchRequest.predicate = predicateEvent
+        let items = try! context.executeFetchRequest(fetchRequest)
+        APIManager.setEvent(items[0] as! Cfp)
+        print("updated")
+    }
+
+    
     class func getEntryPointPoint() -> String {
         return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/schedules"
     }
@@ -33,24 +54,29 @@ class APIDataManager {
         fetchRequest.predicate = predicateEvent
         let items = try! context.executeFetchRequest(fetchRequest)
         
-        print(items)
+      
         
         
         
         print("Looking for \(httpsUrl) and found ")
         let toReturn = items[0] as! StoredResource
-        print(toReturn)
+ 
         
         return toReturn
     }
    
     
     class func handleData(data : NSData?, error: NSError?) -> Void {
-        print("data = \(data)")
-        print("error = \(error)")
+
     }
 
     class func tryToFetch(resource : StoredResource, dataHelper : DataHelperProtocol, completion:(data: NSData?, error: NSError?) -> Void) {
+        
+        
+        let semaphore: dispatch_semaphore_t
+        
+        print("try to fetch \(resource.url)")
+        
         
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         
@@ -64,6 +90,7 @@ class APIDataManager {
         let session = NSURLSession(configuration: config)
         
         
+        semaphore = dispatch_semaphore_create(0)
         
         let loadDataTask = session.dataTaskWithURL(NSURL(string: resource.url)!, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             if let responseError = error {
@@ -85,7 +112,7 @@ class APIDataManager {
                         let fallbackData = NSData(contentsOfFile: filePath!)!
                         
                         APIManager.handleData(fallbackData, dataHelper: dataHelper)
-    
+                        dispatch_semaphore_signal(semaphore)
                     }
                     
                 }
@@ -98,8 +125,11 @@ class APIDataManager {
                     completion(data: data, error: nil)
                 }
             }
+            dispatch_semaphore_signal(semaphore)
         })
         loadDataTask.resume()
+        
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
     }
     
     
@@ -115,6 +145,18 @@ class APIDataManager {
             tryToFetch(storedResource, dataHelper: dataHelper, completion: handleData)
         }
     }
+
     
+    class func loadDataFromURLS(urls: NSSet, dataHelper : DataHelperProtocol) {
+        
+        print("urls count = \(urls.count)")
+        
+        for singleUrl in urls {
+            if let singleUrlString = singleUrl as? Day {
+                loadDataFromURL(singleUrlString.url, dataHelper: dataHelper)
+            }
+        }
+    }
+
     
 }

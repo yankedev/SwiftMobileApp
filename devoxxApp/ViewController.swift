@@ -91,11 +91,17 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                 
                 
                 
+                
                 APIManager.setEvent(self.slicesData.objectAtIndex(self.currentSelectedIndex) as! Cfp)
                 
-                
-                //APIManager.eventFeed()
+      
                 APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint(), dataHelper: DayHelper())
+        
+                
+                APIDataManager.updateCurrentEvent()
+                
+                APIDataManager.loadDataFromURLS(APIManager.currentEvent!.days, dataHelper: SlotHelper())
+                
                 
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setInteger(self.currentSelectedIndex, forKey: "currentEvent")
