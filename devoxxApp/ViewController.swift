@@ -95,12 +95,15 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                 APIManager.setEvent(self.slicesData.objectAtIndex(self.currentSelectedIndex) as! Cfp)
                 
       
-                APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint(), dataHelper: DayHelper())
+                APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint(), dataHelper: DayHelper(), sync : true)
         
                 
                 APIDataManager.updateCurrentEvent()
                 
-                APIDataManager.loadDataFromURLS(APIManager.currentEvent!.days, dataHelper: SlotHelper())
+                
+                APIDataManager.loadDataFromURL(APIDataManager.getSpeakerEntryPoint(), dataHelper: SpeakerHelper(), sync : false)
+                
+                APIDataManager.loadDataFromURLS(APIManager.currentEvent!.days, dataHelper: SlotHelper(), sync : false)
                 
                 
                 let defaults = NSUserDefaults.standardUserDefaults()

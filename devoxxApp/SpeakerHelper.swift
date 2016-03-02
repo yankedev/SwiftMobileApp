@@ -54,7 +54,7 @@ class SpeakerHelper: DataHelperProtocol {
         
         let testBundle = NSBundle.mainBundle()
 
-        APIManager.innerFeed(testBundle, url: uuid!, helper: SpeakerDetailHelper())
+        //APIManager.innerFeed(testBundle, url: uuid!, helper: SpeakerDetailHelper())
         
         
         

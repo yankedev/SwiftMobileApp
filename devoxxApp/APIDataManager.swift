@@ -40,6 +40,10 @@ class APIDataManager {
         return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/schedules"
     }
     
+    class func getSpeakerEntryPoint() -> String {
+        return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/speakers"
+    }
+    
     class func findResource(url : String) -> StoredResource {
         
         
@@ -70,10 +74,10 @@ class APIDataManager {
 
     }
 
-    class func tryToFetch(resource : StoredResource, dataHelper : DataHelperProtocol, completion:(data: NSData?, error: NSError?) -> Void) {
+    class func tryToFetch(resource : StoredResource, dataHelper : DataHelperProtocol, completion:(data: NSData?, error: NSError?) -> Void, sync : Bool) {
         
         
-        let semaphore: dispatch_semaphore_t
+        let semaphore: dispatch_semaphore_t = dispatch_semaphore_create(0)
         
         print("try to fetch \(resource.url)")
         
@@ -90,15 +94,42 @@ class APIDataManager {
         let session = NSURLSession(configuration: config)
         
         
-        semaphore = dispatch_semaphore_create(0)
-        
         let loadDataTask = session.dataTaskWithURL(NSURL(string: resource.url)!, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             if let responseError = error {
                 completion(data: nil, error: responseError)
+                
+                if resource.hasBeenFedOnce == false {
+                    
+                    let testBundle = NSBundle.mainBundle()
+                    let filePath = testBundle.pathForResource(resource.fallback, ofType: "")
+                    let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
+                    if(checkString == nil) {
+                        print("should not be empty", terminator: "")
+                    }
+                    let fallbackData = NSData(contentsOfFile: filePath!)!
+                    
+                    APIManager.handleData(fallbackData, dataHelper: dataHelper)
+                }
+
+                
             } else if let httpResponse = response as? NSHTTPURLResponse {
                 if httpResponse.statusCode != 200 && httpResponse.statusCode != 304  {
                     let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
-                    completion(data: nil, error: statusError)
+                    
+                  if resource.hasBeenFedOnce == false {
+                        
+                        let testBundle = NSBundle.mainBundle()
+                        let filePath = testBundle.pathForResource(resource.fallback, ofType: "")
+                        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
+                        if(checkString == nil) {
+                            print("should not be empty", terminator: "")
+                        }
+                        let fallbackData = NSData(contentsOfFile: filePath!)!
+                        
+                        APIManager.handleData(fallbackData, dataHelper: dataHelper)
+                    }
+
+                    
                 }
                 else if httpResponse.statusCode == 304 {
                     if resource.hasBeenFedOnce == false {
@@ -112,7 +143,6 @@ class APIDataManager {
                         let fallbackData = NSData(contentsOfFile: filePath!)!
                         
                         APIManager.handleData(fallbackData, dataHelper: dataHelper)
-                        dispatch_semaphore_signal(semaphore)
                     }
                     
                 }
@@ -125,16 +155,25 @@ class APIDataManager {
                     completion(data: data, error: nil)
                 }
             }
-            dispatch_semaphore_signal(semaphore)
+            if sync  {
+                dispatch_semaphore_signal(semaphore)
+            }
+            
         })
         loadDataTask.resume()
         
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+        if sync  {
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+        }
+        
     }
     
     
     
-    class func loadDataFromURL(url: String, dataHelper : DataHelperProtocol) {
+    class func loadDataFromURL(url: String, dataHelper : DataHelperProtocol, sync : Bool) {
+        
+        print(url)
+        
         
         let storedResource = APIDataManager.findResource(url)
         
@@ -142,18 +181,18 @@ class APIDataManager {
         
         }
         else {
-            tryToFetch(storedResource, dataHelper: dataHelper, completion: handleData)
+            tryToFetch(storedResource, dataHelper: dataHelper, completion: handleData, sync : sync)
         }
     }
 
     
-    class func loadDataFromURLS(urls: NSSet, dataHelper : DataHelperProtocol) {
+    class func loadDataFromURLS(urls: NSSet, dataHelper : DataHelperProtocol, sync : Bool) {
         
         print("urls count = \(urls.count)")
         
         for singleUrl in urls {
             if let singleUrlString = singleUrl as? Day {
-                loadDataFromURL(singleUrlString.url, dataHelper: dataHelper)
+                loadDataFromURL(singleUrlString.url, dataHelper: dataHelper, sync : sync)
             }
         }
     }
