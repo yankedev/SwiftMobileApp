@@ -17,6 +17,7 @@ class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
     @NSManaged var label: String?
     @NSManaged var attributeDescription: String?
     @NSManaged var type: String?
+    @NSManaged var cfp: Cfp?
     
     
     func feedHelper(helper: DataHelperProtocol) -> Void {
@@ -42,11 +43,8 @@ class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
         return label!
     }
     
-    func filterMiniIcon() -> UIImage {
-        
-        print("icon_\(id!)")
-        
-        return UIImage(named: "icon_\(id!)")!
+    func filterMiniIcon() -> UIImage? {
+        return UIImage(named: "icon_\(id!)")
     }
     
     func niceLabel() -> String {

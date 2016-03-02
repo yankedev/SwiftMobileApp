@@ -48,10 +48,9 @@ class DayHelper: DataHelperProtocol {
             coreDataObjectCast.feedHelper(self)
             
             let currentEvent = APIDataManager.findEventFromId(managedContext)
-            
             coreDataObject.setValue(currentEvent, forKey: "cfp")
 
-            print(currentEvent.id)
+   
             
             
         }

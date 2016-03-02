@@ -39,11 +39,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     
     }
     
-    func back() {
-        self.parentViewController!.parentViewController?.view!.removeFromSuperview()
-        self.parentViewController?.parentViewController?.removeFromParentViewController()
-    }
-    
+  
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
@@ -63,8 +59,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         self.navigationItem.title = "Speakers"
         
         
-        let backLeftButton = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: Selector("back"))
-        self.navigationItem.leftBarButtonItem = backLeftButton
+    
 
     }
     

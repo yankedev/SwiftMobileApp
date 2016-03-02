@@ -38,7 +38,7 @@ class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
     
     func save(managedContext : NSManagedObjectContext) -> Bool {
         
-        if APIManager.exists(super.id!, leftPredicate:"id", entity: entityName()) {
+        if APIManager.exists(super.id!, leftPredicate:"id", entity: entityName(), checkAgainCurrentEvent: true) {
             return true
         }
         
@@ -47,6 +47,10 @@ class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
         
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
             coreDataObjectCast.feedHelper(self)
+            
+            let currentEvent = APIDataManager.findEventFromId(managedContext)
+            coreDataObject.setValue(currentEvent, forKey: "cfp")
+            
             
         }
         

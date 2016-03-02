@@ -41,6 +41,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     @NSManaged var backgroundImageData: NSData?
     @NSManaged var floors: NSSet
     @NSManaged var days: NSSet
+    @NSManaged var attributes: NSSet
     
 
     func feedHelper(helper: DataHelperProtocol) -> Void {

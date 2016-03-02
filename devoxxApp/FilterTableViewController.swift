@@ -48,8 +48,12 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
         let sortSection = NSSortDescriptor(key: "type", ascending: true)
         let sortAlpha = NSSortDescriptor(key: "label", ascending: true)
         
+        let predicateEvent = NSPredicate(format: "cfp.id = %@", APIManager.currentEvent.id!)
+        
         fetchRequest.sortDescriptors = [sortSection, sortAlpha]
         fetchRequest.fetchBatchSize = 20
+        
+        fetchRequest.predicate = predicateEvent
         
         let frc = NSFetchedResultsController(
             fetchRequest: fetchRequest,

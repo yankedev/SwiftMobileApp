@@ -12,7 +12,7 @@ import UIKit
 public protocol FilterableProtocol {
     func filterPredicateLeftValue() -> String
     func filterPredicateRightValue() -> String
-    func filterMiniIcon() -> UIImage
+    func filterMiniIcon() -> UIImage?
     func niceLabel() -> String
 }
 
