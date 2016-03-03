@@ -80,13 +80,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     func loadIsFinihsed() {
     
-        if(APIManager.isCurrentEventEmpty()) {
-            let alert = UIAlertController(title: "No data", message: "No data for this event, select Belgium to test", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
-            self.rotating = false
-            self.presentViewController(alert, animated: true, completion: nil)
-            return
-        }
+        
         
         
         let scheduleController = ScheduleController<SchedulerTableViewController>(generator:self.generateScheduleTableViewController)
@@ -258,7 +252,18 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     func onError(value : String) {
+        
+        showStaticView(false)
+        
         print("OnError = \(value)")
+        
+        if(APIManager.isCurrentEventEmpty()) {
+            let alert = UIAlertController(title: "No data", message: "No data for this event, select Belgium to test", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
+            self.rotating = false
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
     }
     
     func showStaticView(show : Bool) {

@@ -56,7 +56,7 @@ class APIDataManager {
         return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/speakers"
     }
     
-    class func findResource(url : String) -> StoredResource {
+    class func findResource(url : String) -> StoredResource? {
         
         
         let httpsUrl = url.stringByReplacingOccurrencesOfString("http:", withString: "https:")
@@ -70,13 +70,11 @@ class APIDataManager {
         fetchRequest.predicate = predicateEvent
         let items = try! context.executeFetchRequest(fetchRequest)
         
-      
+        if items.count == 0 {
+            return nil
+        }
         
-          
-        let toReturn = items[0] as! StoredResource
- 
-        
-        return toReturn
+        return items[0] as? StoredResource
     }
    
     
@@ -177,15 +175,25 @@ class APIDataManager {
     
     class func loadDataFromURL(url: String, dataHelper : DataHelperProtocol, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
-     
-        let storedResource = APIDataManager.findResource(url)
         
-        if storedResource.hasBeenFedOnce {
-
+        if let storedResource = APIDataManager.findResource(url) {
+            
+            if storedResource.hasBeenFedOnce {
+                
+            }
+            else {
+                return makeRequest(storedResource, dataHelper : dataHelper, onSuccess: onSuccess, onError: onError)
+            }
+        
         }
+        
         else {
-            return makeRequest(storedResource, dataHelper : dataHelper, onSuccess: onSuccess, onError: onError)
+            dispatch_async(dispatch_get_main_queue(),{
+                onError(value: url)
+            })
         }
+        
+        
     }
 
     
@@ -314,7 +322,7 @@ class APIDataManager {
                 }
                 else {
                     
-                    print("should be 200")
+                    print("should be 200 \(storedResource.url)")
                     
                                         
                     dispatch_async(dispatch_get_main_queue(),{

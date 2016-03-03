@@ -131,7 +131,7 @@
   },
   {
 		"url": "https://cfp.devoxx.fr/api/conferences/DevoxxFR2016/speakers",
-		"etag": "-1929194255",
+		"etag": "1834998537",
 		"fallback": "DevoxxFR2016-speaker.json"
   }
   
