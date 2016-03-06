@@ -412,6 +412,8 @@
 		E1FB6D601C865FD700D13082 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D5F1C865FD700D13082 /* Day.swift */; };
 		E1FB6D621C86601800D13082 /* DayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D611C86601800D13082 /* DayHelper.swift */; };
 		E1FB6D661C8C3DA200D13082 /* AbstractDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */; };
+		E1FB6D681C8C45C600D13082 /* HotReloadProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D671C8C45C600D13082 /* HotReloadProtocol.swift */; };
+		E1FB6D6A1C8C47CD00D13082 /* APIReloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D691C8C47CD00D13082 /* APIReloadManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -834,6 +836,8 @@
 		E1FB6D5F1C865FD700D13082 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		E1FB6D611C86601800D13082 /* DayHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayHelper.swift; sourceTree = "<group>"; };
 		E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDetailsController.swift; sourceTree = "<group>"; };
+		E1FB6D671C8C45C600D13082 /* HotReloadProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotReloadProtocol.swift; sourceTree = "<group>"; };
+		E1FB6D691C8C47CD00D13082 /* APIReloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIReloadManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1216,14 +1220,16 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
-				E10E7AC21C18BF7100F6220B /* AppDelegate.swift */,
 				58EC131F1C863E5700958070 /* APIDataManager.swift */,
+				E10E7AC21C18BF7100F6220B /* AppDelegate.swift */,
 				E10E7AEF1C1957F300F6220B /* APIManager.swift */,
 				58EC131D1C846F2100958070 /* SettingsController.swift */,
 				58A38EA01C8371B500C2DFE2 /* ScheduleCellView */,
 				E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */,
 				E18046021C1DD220001AAD85 /* TalkDetailsController.swift */,
+				E1FB6D691C8C47CD00D13082 /* APIReloadManager.swift */,
 				587796FA1C81207B00A1A7D5 /* SpeakerDetailsController.swift */,
+				E1FB6D671C8C45C600D13082 /* HotReloadProtocol.swift */,
 				5877973B1C81C38A00A1A7D5 /* ActionButtonView.swift */,
 				588CFFAA1C811C5200DEC1E6 /* ColoredHeaderView.swift */,
 				588CFDD11C80F9A400DEC1E6 /* SpeakerListView.swift */,
@@ -1956,6 +1962,7 @@
 				580B786B1C74FD9A00060C00 /* SpeakerCell.swift in Sources */,
 				E10CE1AE1C2BDAA1002C9934 /* Attribute.swift in Sources */,
 				E10CE1A41C2BC1F2002C9934 /* DataHelper.swift in Sources */,
+				E1FB6D6A1C8C47CD00D13082 /* APIReloadManager.swift in Sources */,
 				58A38EA21C8371C800C2DFE2 /* LeftIconView.swift in Sources */,
 				E1FA9C3B1C1BFCF80077C09A /* MapController.swift in Sources */,
 				E127E65A1C38212100FB7E4F /* FilterableTableProtocol.swift in Sources */,
@@ -1990,6 +1997,7 @@
 				E17DFF411C79D7FB00A09547 /* Floor.swift in Sources */,
 				58EC131E1C846F2100958070 /* SettingsController.swift in Sources */,
 				588CFFAB1C811C5200DEC1E6 /* ColoredHeaderView.swift in Sources */,
+				E1FB6D681C8C45C600D13082 /* HotReloadProtocol.swift in Sources */,
 				5895EBA11C66698800229780 /* ViewController.swift in Sources */,
 				58BA2BFC1C3331EF0031C2E3 /* Etag.swift in Sources */,
 				5895EB7D1C6662F300229780 /* Cfp.swift in Sources */,

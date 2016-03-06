@@ -36,7 +36,6 @@ class ActionButtonView : UIView {
         
        
         button.frame = CGRectMake(0, 0, frame.size.width, frame.size.height)
-        print(button.frame)
         button.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
         
     }

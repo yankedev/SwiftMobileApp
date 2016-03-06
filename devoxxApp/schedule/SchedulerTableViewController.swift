@@ -24,7 +24,8 @@ public class SchedulerTableViewController:
         SearchableTableProtocol,
         UITableViewDataSource,
         UISearchBarDelegate,
-        ScrollableDateProtocol
+        ScrollableDateProtocol,
+        HotReloadProtocol
 {
     
     public func hi() {
@@ -615,6 +616,23 @@ public class SchedulerTableViewController:
         
     }
 
+    public func fetchUpdate() {
+        print("should fetchUpdate")
+        
+        APIReloadManager.fetchUpdate(fetchUrl(), helper: SlotHelper(), completedAction: fetchCompleted)
+        
+    }
+    
+    public func fetchCompleted() -> Void {
+        print(self.debugDescription)
+    }
+    
+    public func fetchUrl() -> String {
+        return "https://myFetchUrl.toto"
+    }
+    
+
+  
 
        
 }

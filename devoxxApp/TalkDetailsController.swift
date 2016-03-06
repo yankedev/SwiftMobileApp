@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class TalkDetailsController : AbstractDetailsController, UITableViewDataSource, UITableViewDelegate {
+public class TalkDetailsController : AbstractDetailsController, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol {
     
    
     var slot : Slot!
@@ -177,6 +177,32 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
         return cell!
         
+    }
+    
+    
+    
+    
+    public override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchUpdate()
+    }
+
+    
+    
+    
+    public func fetchUpdate() {
+        print("should fetchUpdate")
+        
+        APIReloadManager.fetchUpdate(fetchUrl(), helper: SlotHelper(), completedAction: fetchCompleted)
+        
+    }
+    
+    public func fetchCompleted() -> Void {
+        print(self.debugDescription)
+    }
+    
+    public func fetchUrl() -> String {
+        return "https://myFetchUrl.toto"
     }
     
     

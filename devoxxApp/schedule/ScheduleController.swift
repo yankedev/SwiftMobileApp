@@ -252,7 +252,12 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
                 if let fav = pageViewController.viewControllers![0] as? ScrollableDateProtocol {
                     self.pageViewController.navigationItem.title = humanReadableDateFromNSDate(fav.currentDate)
                 }
-                    
+
+                
+                if let reloadable = pageViewController.viewControllers![0] as? HotReloadProtocol {
+                    reloadable.fetchUpdate()
+                }
+
                 
                 
             }

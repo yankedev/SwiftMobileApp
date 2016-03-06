@@ -227,5 +227,7 @@ public class AbstractDetailsController : UIViewController {
         view.bringSubviewToFront(actionButtonView1)
     }
 
-
+   
+    
+   
 }
