@@ -14,10 +14,10 @@ public class RateViewController : UIViewController {
     
     var talkTitle = UILabel()
     var talkSpeakers = UILabel()
-    var stars = UIView()
-    var contentFeedback = UILabel()
-    var deliveryRemarks = UILabel()
-    var other = UILabel()
+    var stars = StarView(frame: CGRectZero)
+    var contentFeedback = UITextView()
+    var deliveryRemarks = UITextView()
+    var other = UITextView()
     var voteBtn = UIButton()
     
     override public func viewDidLoad() {
@@ -25,11 +25,20 @@ public class RateViewController : UIViewController {
         super.viewDidLoad()
         
         talkTitle.backgroundColor = UIColor.redColor()
+        talkTitle.textAlignment = .Center
+        talkTitle.numberOfLines = 0
+        talkTitle.font = UIFont(name: "Roboto", size: 20)
         talkSpeakers.backgroundColor = UIColor.blueColor()
+        talkSpeakers.textAlignment = .Center
+        talkSpeakers.font = UIFont(name: "Roboto", size: 15)
+        talkSpeakers.numberOfLines = 0
         stars.backgroundColor = UIColor.purpleColor()
         contentFeedback.backgroundColor = UIColor.lightGrayColor()
+        contentFeedback.text = "Content feedback"
         deliveryRemarks.backgroundColor = UIColor.darkGrayColor()
+        deliveryRemarks.text = "Delivery remarks"
         other.backgroundColor = UIColor.redColor()
+        other.text = "Other"
         voteBtn.backgroundColor = UIColor.greenColor()
         
         talkTitle.translatesAutoresizingMaskIntoConstraints = false

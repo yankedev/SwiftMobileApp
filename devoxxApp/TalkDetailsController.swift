@@ -270,9 +270,15 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
         let rateViewController = RateViewController()
         
-        self.navigationController?.preferredContentSize = CGSizeMake(100, 100)
         
-        self.navigationController?.presentViewController(rateViewController, animated: true, completion: nil)
+        rateViewController.view.frame = CGRectMake(50, 50, view.frame.size.width - 100, view.frame.size.height - 100)
+        
+        rateViewController.talkTitle.text = slot.talk.title
+        rateViewController.talkSpeakers.text = slot.talk.getFriendlySpeaker(",", useTwitter: false)
+        
+        
+        addChildViewController(rateViewController)
+        view.addSubview(rateViewController.view)
         
         
     }
