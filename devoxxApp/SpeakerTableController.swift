@@ -148,7 +148,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         if let speaker = cellDataArray![indexPath.row] as? Speaker {
             
             
-            print(speaker.speakerDetail.bio)
+      //      print(speaker.speakerDetail.bio)
             
             
             let details = SpeakerDetailsController()

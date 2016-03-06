@@ -139,7 +139,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         dispatch_group_enter(serviceGroup)
         dispatch_group_enter(serviceGroup)
         APIDataManager.loadDataFromURL(APIDataManager.getSpeakerEntryPoint(), dataHelper: SpeakerHelper(), onSuccess: self.successGroup0, onError: self.onError)
-        APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint(), dataHelper: DayHelper(), onSuccess: self.successGroup0, onError: self.onError)
+        APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint(), dataHelper: DayHelper(cfp: APIManager.currentEvent, url: nil), onSuccess: self.successGroup0, onError: self.onError)
         
         dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
             print("OK EVERYTHING IS LOADED FROM GROUP 0")
@@ -156,10 +156,18 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     func fetchSecond(value : String) {
         
-        print("fetch first completed \(value)")
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+
+        for i in APIManager.debugAllDays(context) {
+            print(i)
+        }
         
+        
+        
+        print(APIManager.currentEvent.days.count)
         APIDataManager.updateCurrentEvent()
-        
+        print(APIManager.currentEvent.days.count)
      
         dispatch_group_enter(serviceGroup)
         dispatch_group_enter(serviceGroup)

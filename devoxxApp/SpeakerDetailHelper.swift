@@ -67,7 +67,7 @@ class SpeakerDetailHelper: DataHelperProtocol {
     func save(managedContext : NSManagedObjectContext) -> Bool {
         
         if APIManager.exists(uuid!, leftPredicate:"uuid", entity: entityName()) {
-            print("speakerDetail for \(uuid)  exists")
+     //       print("speakerDetail for \(uuid)  exists")
             
             if bio != nil {
                 update(managedContext)
@@ -78,7 +78,7 @@ class SpeakerDetailHelper: DataHelperProtocol {
             
         }
         
-        print("speakerDetail for  \(uuid) does NOT  exists")
+    //    print("speakerDetail for  \(uuid) does NOT  exists")
         
         let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
         let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)

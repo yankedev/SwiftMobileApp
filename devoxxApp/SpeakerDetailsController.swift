@@ -68,7 +68,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         header.talkTitle.text = speaker.getFullName()
         header.talkTrack.text = speaker.speakerDetail.company
         scroll.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
-        print(speaker.speakerDetail.bio)
+      //  print(speaker.speakerDetail.bio)
         scroll.text = speaker.speakerDetail.bio
         //scroll.backgroundColor = UIColor.yellowColor()
         
@@ -84,9 +84,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = true
         
-        print(speaker.uuid)
-        print(speaker.speakerDetail.speaker.uuid)
-        print(speaker.speakerDetail.uuid)
+    
     }
     
     
@@ -233,8 +231,8 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     }
     
     public func fetchCompleted(msg : String) -> Void {
-        print("fetchCompleted on SpeakerDetailsController")
-        print(speaker.speakerDetail)
+       // print("fetchCompleted on SpeakerDetailsController")
+       // print(speaker.speakerDetail)
         scroll.text = speaker.speakerDetail.bio
         header.talkTrack.text = speaker.speakerDetail.company
     }

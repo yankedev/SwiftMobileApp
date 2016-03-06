@@ -8,22 +8,24 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class DayHelper: DataHelperProtocol {
     
     var url: String?
+    var cfp : Cfp?
     
     func typeName() -> String {
         return entityName()
     }
     
-    init(url: String?) {
+    init(cfp : Cfp?, url: String?) {
         self.url = url ?? ""
+        self.cfp = cfp
     }
     
     func feed(data: JSON) {
         url = data["href"].string
-        
     }
     
     func entityName() -> String {
@@ -31,6 +33,7 @@ class DayHelper: DataHelperProtocol {
     }
     
     func prepareArray(json: JSON) -> [JSON]? {
+        
         return json["links"].array
     }
     
@@ -41,20 +44,20 @@ class DayHelper: DataHelperProtocol {
             return false
         }
         
-        let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
-        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+
+        
+        let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: context)
+        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context)
         
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+            cfp = APIManager.currentEvent
+            cfp = APIManager.findOne("id", value: (cfp?.id)!, entity: "Cfp", context: context) as! Cfp
             coreDataObjectCast.feedHelper(self)
-            
-            let currentEvent = APIDataManager.findEventFromId(managedContext)
-            coreDataObject.setValue(currentEvent, forKey: "cfp")
-
-   
-            
-            
         }
         
+        APIManager.save(context)
        
         
         return true

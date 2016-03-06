@@ -17,10 +17,13 @@ class APIDataManager {
     
     class func findEventFromId(context : NSManagedObjectContext) -> Cfp? {
         
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context2 = appDelegate.managedObjectContext!
         
         do {
 
-            let fetchRequest = APIManager.buildFetchRequest(context, name: "Cfp")
+            let fetchRequest = APIManager.buildFetchRequest(context2, name: "Cfp")
+            print("check cfp for id = \(APIManager.currentEvent!.id!))")
             let predicateId = NSPredicate(format: "id = %@", APIManager.currentEvent!.id!)
             fetchRequest.predicate = predicateId
             
@@ -44,7 +47,6 @@ class APIDataManager {
         let predicateEvent = NSPredicate(format: "uuid = %@", id)
         fetchRequest.predicate = predicateEvent
         let items = try! context.executeFetchRequest(fetchRequest)
-        print(items[0])
         return items[0] as! Speaker
     }
     
@@ -124,7 +126,7 @@ class APIDataManager {
         
        
         
-        print("try to fetch \(resource.url)")
+
         
         
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -235,6 +237,7 @@ class APIDataManager {
                 
             }
             else {
+                print("REQUEST - \(storedResource.url)")
                 return makeRequest(storedResource, dataHelper : dataHelper, onSuccess: onSuccess, onError: onError)
             }
         
@@ -255,7 +258,6 @@ class APIDataManager {
         
         for singleUrl in urls {
             if let singleUrlString = singleUrl as? Day {
-                print(singleUrlString.url)
                 loadDataFromURL(singleUrlString.url, dataHelper: dataHelper, onSuccess: onSuccess, onError: onError)
             }
         }
@@ -293,7 +295,7 @@ class APIDataManager {
             
             if let responseError = error {
               
-                print("Error for \(storedResource.url)")
+
                 
                 if storedResource.hasBeenFedOnce == false {
                     
@@ -325,7 +327,7 @@ class APIDataManager {
                 if httpResponse.statusCode != 200 && httpResponse.statusCode != 304  {
                     let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
                     
-                    print("ni 304 ni 200")
+
                     if storedResource.hasBeenFedOnce == false {
                         
                         let testBundle = NSBundle.mainBundle()
@@ -350,8 +352,7 @@ class APIDataManager {
                 }
                 else if httpResponse.statusCode == 304 {
                     
-                    print("304 detected for url \(storedResource.url), etag = \(storedResource.etag)")
-                   
+                  
                     
                     if storedResource.hasBeenFedOnce == false {
                         
@@ -377,13 +378,10 @@ class APIDataManager {
                 }
                 else {
                     
-                    print("should be 200 \(storedResource.url)")
-                    
                     APIManager.handleData(data!, dataHelper: dataHelper)
                     
                                         
                     dispatch_async(dispatch_get_main_queue(),{
-                        print("SUCESS")
                         onSuccess(value: storedResource.url)
                     })
                 }

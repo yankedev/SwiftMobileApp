@@ -619,7 +619,7 @@ public class SchedulerTableViewController:
     public func fetchUpdate() {
         print("should fetchUpdate")
         
-        APIReloadManager.fetchUpdate(fetchUrl(), helper: SlotHelper(), completedAction: fetchCompleted)
+        //APIReloadManager.fetchUpdate(fetchUrl(), helper: SlotHelper(), completedAction: fetchCompleted)
         
     }
     

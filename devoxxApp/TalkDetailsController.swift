@@ -273,6 +273,10 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
         
         rateViewController.view.frame = CGRectMake(50, 50, view.frame.size.width - 100, view.frame.size.height - 100)
+        let finalCenter = rateViewController.view.center
+        let origCenter = CGPointMake(finalCenter.x, 3*finalCenter.y)
+        
+        rateViewController.view.center = origCenter
         
         rateViewController.talkTitle.text = slot.talk.title
         rateViewController.talkSpeakers.text = slot.talk.getFriendlySpeaker(",", useTwitter: false)
@@ -280,7 +284,11 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
         addChildViewController(rateViewController)
         view.addSubview(rateViewController.view)
+ 
         
+        UIView.animateWithDuration(0.5) { () -> Void in
+            rateViewController.view.center = finalCenter
+        }
         
     }
     

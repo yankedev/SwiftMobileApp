@@ -409,6 +409,20 @@ class APIManager {
         return items
     }
     
+    
+    class func debugAllDays(context : NSManagedObjectContext) -> NSArray {
+        let fetchRequest = buildFetchRequest(context, name: "Day")
+        let items = try! context.executeFetchRequest(fetchRequest)
+        return items
+    }
+    
+    
+    class func debugAllCfp(context : NSManagedObjectContext) -> NSArray {
+        let fetchRequest = buildFetchRequest(context, name: "Cfp")
+        let items = try! context.executeFetchRequest(fetchRequest)
+        return items
+    }
+    
     class func getLastFromUrl(url : String) -> String {
         let lastPartImageName = url.characters.split{$0 == "/"}.map(String.init)
         
