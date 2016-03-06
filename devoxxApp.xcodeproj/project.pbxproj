@@ -414,6 +414,7 @@
 		E1FB6D661C8C3DA200D13082 /* AbstractDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */; };
 		E1FB6D681C8C45C600D13082 /* HotReloadProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D671C8C45C600D13082 /* HotReloadProtocol.swift */; };
 		E1FB6D6A1C8C47CD00D13082 /* APIReloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D691C8C47CD00D13082 /* APIReloadManager.swift */; };
+		E1FB6D6C1C8C52D500D13082 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D6B1C8C52D500D13082 /* RateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -838,6 +839,7 @@
 		E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDetailsController.swift; sourceTree = "<group>"; };
 		E1FB6D671C8C45C600D13082 /* HotReloadProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotReloadProtocol.swift; sourceTree = "<group>"; };
 		E1FB6D691C8C47CD00D13082 /* APIReloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIReloadManager.swift; sourceTree = "<group>"; };
+		E1FB6D6B1C8C52D500D13082 /* RateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1227,6 +1229,7 @@
 				58A38EA01C8371B500C2DFE2 /* ScheduleCellView */,
 				E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */,
 				E18046021C1DD220001AAD85 /* TalkDetailsController.swift */,
+				E1FB6D6B1C8C52D500D13082 /* RateViewController.swift */,
 				E1FB6D691C8C47CD00D13082 /* APIReloadManager.swift */,
 				587796FA1C81207B00A1A7D5 /* SpeakerDetailsController.swift */,
 				E1FB6D671C8C45C600D13082 /* HotReloadProtocol.swift */,
@@ -2036,6 +2039,7 @@
 				580CD2A01C7DCFD900152E4C /* SimpleDetailView.swift in Sources */,
 				587796FB1C81207B00A1A7D5 /* SpeakerDetailsController.swift in Sources */,
 				580B78831C78972C00060C00 /* ImageHelper.swift in Sources */,
+				E1FB6D6C1C8C52D500D13082 /* RateViewController.swift in Sources */,
 				580B78A81C7A78A200060C00 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

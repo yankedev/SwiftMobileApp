@@ -13,6 +13,8 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
    
     var slot : Slot!
+    
+    var actionButtonViewRate = ActionButtonView()
 
 
     override public func viewDidLoad() {
@@ -70,6 +72,62 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         configure()
 
         
+        view.layoutIfNeeded()
+        
+        
+        view.addSubview(actionButtonViewRate)
+        
+        let image0 = UIImage(named: "ic_twitter")?.imageWithRenderingMode(.AlwaysTemplate)
+        
+        actionButtonViewRate.button.setImage(image0, forState: .Normal)
+        actionButtonViewRate.tintColor = UIColor.purpleColor()
+        
+        
+        let actionButtonViewHeight = NSLayoutConstraint(item: actionButtonViewRate,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0,
+            constant: 60)
+        
+        let actionButtonViewWidth = NSLayoutConstraint(item: actionButtonViewRate,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Width,
+            multiplier: 0,
+            constant: 60)
+        
+        let actionButtonViewCenterX = NSLayoutConstraint(item: actionButtonViewRate,
+            attribute: NSLayoutAttribute.CenterX,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.CenterX,
+            multiplier: 2,
+            constant: -180)
+        
+        let actionButtonViewCenterY = NSLayoutConstraint(item: actionButtonViewRate,
+            attribute: NSLayoutAttribute.CenterY,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Top,
+            multiplier: 1,
+            constant: 150)
+        
+        view.addConstraint(actionButtonViewWidth)
+        view.addConstraint(actionButtonViewHeight)
+        
+        view.addConstraint(actionButtonViewCenterX)
+        view.addConstraint(actionButtonViewCenterY)
+        
+        actionButtonViewRate.setup(true)
+        
+        
+        actionButtonViewRate.button.addTarget(self, action: Selector("rate"), forControlEvents: .TouchUpInside)
+        
+        actionButtonViewRate.button.frame = CGRectMake(0,0,40,40)
+
         
     }
     
@@ -205,6 +263,19 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         return "https://myFetchUrl.toto"
     }
     
+    
+    public func rate() {
+        
+        print("rateME")
+        
+        let rateViewController = RateViewController()
+        
+        self.navigationController?.preferredContentSize = CGSizeMake(100, 100)
+        
+        self.navigationController?.presentViewController(rateViewController, animated: true, completion: nil)
+        
+        
+    }
     
    
     

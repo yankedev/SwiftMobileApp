@@ -15,6 +15,8 @@ import CoreData
 class APIReloadManager {
     
     
+    
+    
     class func run_on_background_thread(code: () -> Void) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), code)
     }
@@ -25,7 +27,6 @@ class APIReloadManager {
             sleep(3)
             completedAction()
         }
-        
     }
 
 }

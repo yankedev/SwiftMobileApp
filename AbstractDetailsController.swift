@@ -53,7 +53,7 @@ public class AbstractDetailsController : UIViewController {
         
 
         let image0 = UIImage(named: "ic_twitter")?.imageWithRenderingMode(.AlwaysTemplate)
-        print(image0)
+
         actionButtonView0.button.setImage(image0, forState: .Normal)
         actionButtonView0.tintColor = UIColor.whiteColor()
         actionButtonView0.setup(true)
