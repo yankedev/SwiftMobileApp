@@ -239,7 +239,7 @@ class APIDataManager {
             
             if let responseError = error {
               
-                print("responseError")
+                print("Error for \(storedResource.url)")
                 
                 if storedResource.hasBeenFedOnce == false {
                     
@@ -258,8 +258,12 @@ class APIDataManager {
                     dispatch_async(dispatch_get_main_queue(),{
                         
                         APIManager.handleData(fallbackData, dataHelper: dataHelper)
-                        onError(value: storedResource.url)
+                        onSuccess(value: storedResource.url)
                     })
+                }
+                
+                else {
+                    onSuccess(value: storedResource.url)
                 }
                 
                 

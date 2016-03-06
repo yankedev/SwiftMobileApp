@@ -411,6 +411,7 @@
 		E1FA9C4A1C1BFD560077C09A /* TalkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FA9C481C1BFD560077C09A /* TalkHelper.swift */; };
 		E1FB6D601C865FD700D13082 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D5F1C865FD700D13082 /* Day.swift */; };
 		E1FB6D621C86601800D13082 /* DayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D611C86601800D13082 /* DayHelper.swift */; };
+		E1FB6D661C8C3DA200D13082 /* AbstractDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -474,7 +475,7 @@
 		5872861A1C1F565C00FC098A /* SpeakerTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerTableController.swift; sourceTree = "<group>"; };
 		5872861C1C1F579900FC098A /* SpeakerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerHelper.swift; sourceTree = "<group>"; };
 		5872861E1C1F589400FC098A /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Speaker.swift; path = model/coreData/Speaker.swift; sourceTree = "<group>"; };
-		587796FA1C81207B00A1A7D5 /* SpeakerDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerDetailsController.swift; sourceTree = "<group>"; };
+		587796FA1C81207B00A1A7D5 /* SpeakerDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpeakerDetailsController.swift; path = devoxxApp/SpeakerDetailsController.swift; sourceTree = "<group>"; };
 		587797391C81345A00A1A7D5 /* SelectionWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectionWheel.swift; path = devoxxApp/SelectionWheel.swift; sourceTree = "<group>"; };
 		5877973B1C81C38A00A1A7D5 /* ActionButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButtonView.swift; sourceTree = "<group>"; };
 		5877973F1C81CC8000A1A7D5 /* ic_twitter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ic_twitter@2x.png"; path = "../ic_twitter@2x.png"; sourceTree = "<group>"; };
@@ -832,6 +833,7 @@
 		E1FA9C481C1BFD560077C09A /* TalkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TalkHelper.swift; path = model/helper/TalkHelper.swift; sourceTree = "<group>"; };
 		E1FB6D5F1C865FD700D13082 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		E1FB6D611C86601800D13082 /* DayHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayHelper.swift; sourceTree = "<group>"; };
+		E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDetailsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1219,7 +1221,9 @@
 				E10E7AEF1C1957F300F6220B /* APIManager.swift */,
 				58EC131D1C846F2100958070 /* SettingsController.swift */,
 				58A38EA01C8371B500C2DFE2 /* ScheduleCellView */,
+				E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */,
 				E18046021C1DD220001AAD85 /* TalkDetailsController.swift */,
+				587796FA1C81207B00A1A7D5 /* SpeakerDetailsController.swift */,
 				5877973B1C81C38A00A1A7D5 /* ActionButtonView.swift */,
 				588CFFAA1C811C5200DEC1E6 /* ColoredHeaderView.swift */,
 				588CFDD11C80F9A400DEC1E6 /* SpeakerListView.swift */,
@@ -1469,7 +1473,6 @@
 			isa = PBXGroup;
 			children = (
 				5872861A1C1F565C00FC098A /* SpeakerTableController.swift */,
-				587796FA1C81207B00A1A7D5 /* SpeakerDetailsController.swift */,
 			);
 			name = speaker;
 			sourceTree = "<group>";
@@ -1977,6 +1980,7 @@
 				E1FA9C4A1C1BFD560077C09A /* TalkHelper.swift in Sources */,
 				E10CE1B01C2BDB72002C9934 /* AttributeHelper.swift in Sources */,
 				E10E7AC31C18BF7100F6220B /* AppDelegate.swift in Sources */,
+				E1FB6D661C8C3DA200D13082 /* AbstractDetailsController.swift in Sources */,
 				E17DFF431C79D85800A09547 /* FloorHelper.swift in Sources */,
 				58195C131C359A4E00F56A30 /* FilterViewCell.swift in Sources */,
 				E175F2731C49B01A00D7AC0A /* SearchableItemProtocol.swift in Sources */,

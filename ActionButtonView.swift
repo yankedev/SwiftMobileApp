@@ -34,8 +34,9 @@ class ActionButtonView : UIView {
             layer.cornerRadius = frame.size.width / 2
         }
         
-
+       
         button.frame = CGRectMake(0, 0, frame.size.width, frame.size.height)
+        print(button.frame)
         button.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
         
     }
