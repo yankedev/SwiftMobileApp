@@ -25,6 +25,12 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
         return "\(firstName!.capitalizedString) \(lastName!.capitalizedString)"
     }
     
+    func getId() -> NSManagedObject? {
+        return nil
+    }
+    func resetId(id: NSManagedObject?) {
+    }
+
     
     func getSecondInformation() -> String {
         return ""

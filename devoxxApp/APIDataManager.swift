@@ -15,12 +15,28 @@ import CoreData
 class APIDataManager {
 
     
-    class func findEventFromId(context : NSManagedObjectContext) -> Cfp {
-        let fetchRequest = APIManager.buildFetchRequest(context, name: "Cfp")
-        let predicateEvent = NSPredicate(format: "id = %@", APIManager.currentEvent!.id!)
-        fetchRequest.predicate = predicateEvent
-        let items = try! context.executeFetchRequest(fetchRequest)
-        return items[0] as! Cfp
+    class func findEventFromId(context : NSManagedObjectContext) -> Cfp? {
+        
+        
+        do {
+
+            let fetchRequest = APIManager.buildFetchRequest(context, name: "Cfp")
+            let predicateId = NSPredicate(format: "id = %@", APIManager.currentEvent!.id!)
+            fetchRequest.predicate = predicateId
+            
+            if let items = try context.executeFetchRequest(fetchRequest) as? [Cfp] {
+                
+                if items.count > 0 {
+                    return items[0]
+                }
+            }
+            
+        } catch let error1 as NSError {
+            print(error1)
+        }
+        
+        return nil
+        
     }
     
     class func findSpeakerFromId(id : String, context : NSManagedObjectContext) -> Speaker {
@@ -367,6 +383,7 @@ class APIDataManager {
                     
                                         
                     dispatch_async(dispatch_get_main_queue(),{
+                        print("SUCESS")
                         onSuccess(value: storedResource.url)
                     })
                 }

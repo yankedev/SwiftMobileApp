@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class SpeakerDetailHelper: DataHelperProtocol {
     
@@ -51,31 +52,42 @@ class SpeakerDetailHelper: DataHelperProtocol {
     
     
     func update(managedContext : NSManagedObjectContext) {
-        let obj = APIManager.findOne("uuid", value: uuid!, entity: entityName())
-        obj.feedHelper(self)
-        APIManager.save(managedContext)
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+
+        
+        let obj = APIManager.findOne("uuid", value: uuid!, entity: entityName(), context: context)
+        if let objManagedObject = obj as? SpeakerDetail {
+            speaker = APIManager.findOne("uuid", value: uuid!, entity: "Speaker", context: context) as! Speaker
+            objManagedObject.feedHelper(self)
+            APIManager.save(context)
+        }
     }
     
     func save(managedContext : NSManagedObjectContext) -> Bool {
         
         if APIManager.exists(uuid!, leftPredicate:"uuid", entity: entityName()) {
+            print("speakerDetail for \(uuid)  exists")
             
-            if bio != nil  {
+            if bio != nil {
                 update(managedContext)
+                return true
             }
-            else {
-                return false
-            }
+            
+            return false
             
         }
+        
+        print("speakerDetail for  \(uuid) does NOT  exists")
         
         let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
         let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
 
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+            speaker = APIManager.findOne("uuid", value: uuid!, entity: "Speaker", context: managedContext) as? Speaker
             coreDataObjectCast.feedHelper(self)
-            
+            //APIManager.save(managedContext)
             
             /*let foundSpeaker = APIDataManager.findSpeakerFromId(uuid!, context: managedContext)
             coreDataObject.setValue(foundSpeaker, forKey: "speaker")

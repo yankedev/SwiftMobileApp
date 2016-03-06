@@ -43,11 +43,9 @@ class StoredResourceHelper: DataHelperProtocol {
     func save(managedContext : NSManagedObjectContext) -> Bool {
         
         
-        print("check if \(url) exists")
-        
         
         if APIManager.exists(url!, leftPredicate:"url", entity: entityName()) {
-            print("it does")
+          
             return false
         }
         
@@ -60,7 +58,7 @@ class StoredResourceHelper: DataHelperProtocol {
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
             coreDataObjectCast.feedHelper(self)
             
-            print(coreDataObject)
+           
             
             
         }

@@ -166,7 +166,9 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         }
     }
 
-    
+    public override func viewDidAppear(animated: Bool) {
+        fetchSpeaker()
+    }
     
     override public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1

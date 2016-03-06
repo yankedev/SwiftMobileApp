@@ -26,7 +26,16 @@ class SpeakerDetail: NSManagedObject, FeedableProtocol {
             company = castHelper.company ?? ""
             twitter = castHelper.twitter ?? ""
             uuid = castHelper.uuid ?? ""
+            speaker = castHelper.speaker!
         }
+    }
+    
+    func getId() -> NSManagedObject? {
+        return speaker
+    }
+    
+    func resetId(id: NSManagedObject?) {
+        self.speaker = id as! Speaker
     }
     
     

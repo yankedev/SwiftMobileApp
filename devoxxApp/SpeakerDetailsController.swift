@@ -83,6 +83,10 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = true
+        
+        print(speaker.uuid)
+        print(speaker.speakerDetail.speaker.uuid)
+        print(speaker.speakerDetail.uuid)
     }
     
     
@@ -222,13 +226,15 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     
     public func fetchUpdate() {
-        print("should fetchUpdate")
+    
         
         APIReloadManager.fetchUpdate(fetchUrl(), helper: SpeakerDetailHelper(), completedAction: fetchCompleted)
         
     }
     
     public func fetchCompleted(msg : String) -> Void {
+        print("fetchCompleted on SpeakerDetailsController")
+        print(speaker.speakerDetail)
         scroll.text = speaker.speakerDetail.bio
         header.talkTrack.text = speaker.speakerDetail.company
     }

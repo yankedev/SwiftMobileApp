@@ -230,6 +230,9 @@ class APIManager {
         let arrayToParse = dataHelper.prepareArray(json)
 
         
+      
+        
+        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
 
@@ -431,6 +434,7 @@ class APIManager {
         }
         
         let items = try! context.executeFetchRequest(fetchRequest)
+        
         return items.count > 0
     }
     
@@ -439,9 +443,7 @@ class APIManager {
         return exists(id, leftPredicate: leftPredicate, entity: entity, checkAgainCurrentEvent: false)
     }
     
-    class func findOne(name : String, value : String, entity: String) -> FeedableProtocol {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
+    class func findOne(name : String, value : String, entity: String, context: NSManagedObjectContext) -> FeedableProtocol {
         let fetchRequest = NSFetchRequest(entityName: entity)
         let predicate = NSPredicate(format: "\(name) = %@", value)
         fetchRequest.predicate = predicate

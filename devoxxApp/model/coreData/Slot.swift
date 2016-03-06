@@ -23,6 +23,12 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
     
     @NSManaged var talk: Talk
 
+    func getId() -> NSManagedObject? {
+        return nil
+    }
+    
+    func resetId(id: NSManagedObject?) {
+    }
     
     func getFriendlyTime() -> String {
         return ("\(fromTime)-\(toTime)")

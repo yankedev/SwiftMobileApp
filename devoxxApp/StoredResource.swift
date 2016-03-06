@@ -26,5 +26,12 @@ class StoredResource: NSManagedObject, FeedableProtocol {
         }
     }
     
+    func getId() -> NSManagedObject? {
+        return nil
+    }
+    
+    func resetId(id: NSManagedObject?) {
+    }
+    
     
 }

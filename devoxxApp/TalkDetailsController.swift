@@ -249,7 +249,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     
     public func fetchUpdate() {
-        print("should fetchUpdate")
+
     
         
         APIReloadManager.fetchUpdate(fetchUrl(), helper: SlotHelper(), completedAction: fetchCompleted)
@@ -261,7 +261,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     }
     
     public func fetchUrl() -> String? {
-        return "https://myFetchUrl.toto"
+        return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/talks/\(slot.talk.id)"
     }
     
     

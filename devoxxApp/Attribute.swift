@@ -54,6 +54,12 @@ class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
         return "By type"
     }
     
+    func getId() -> NSManagedObject? {
+        return nil
+    }
+
+    func resetId(id: NSManagedObject?) {
+    }
     
 
 }

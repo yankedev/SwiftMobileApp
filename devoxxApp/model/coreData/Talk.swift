@@ -27,6 +27,14 @@ class Talk: NSManagedObject, FeedableProtocol{
         return "icon_\(trackId)"
     }
     
+    func getId() -> NSManagedObject? {
+        return nil
+    }
+    
+    func resetId(id: NSManagedObject?) {
+    }
+
+    
     func getFriendlySpeaker(delimiter : String, useTwitter : Bool) -> String {
         var returnString = ""
         var isFirst = true

@@ -21,6 +21,13 @@ class Day: NSManagedObject, FeedableProtocol {
         }
     }
     
+    func getId() -> NSManagedObject? {
+        return nil
+    }
+    
+    func resetId(id: NSManagedObject?) {
+    }
+    
     
 }
 

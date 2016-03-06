@@ -48,7 +48,6 @@ class TrackHelper: AttributeHelper, DataHelperProtocol {
             
             let currentEvent = APIDataManager.findEventFromId(managedContext)
             coreDataObject.setValue(currentEvent, forKey: "cfp")
-            
         }
 
         return true

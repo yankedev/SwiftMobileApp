@@ -13,4 +13,6 @@ import UIKit
 
 public protocol FeedableProtocol  {
     func feedHelper(help: DataHelperProtocol)
+    func getId() -> NSManagedObject?
+    func resetId(id : NSManagedObject?)
 }

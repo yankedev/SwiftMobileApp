@@ -52,12 +52,25 @@ class SpeakerHelper: DataHelperProtocol {
             
         }
         
-        let testBundle = NSBundle.mainBundle()
+        let entity2 = NSEntityDescription.entityForName("SpeakerDetail", inManagedObjectContext: managedContext)
+        let coreDataObject2 = SpeakerDetail(entity: entity2!, insertIntoManagedObjectContext: managedContext)
+        coreDataObject2.bio = "super"
+    
+        coreDataObject2.speaker = coreDataObject as! Speaker
+        coreDataObject2.uuid = coreDataObject2.speaker.uuid!
+        
+        //let testBundle = NSBundle.mainBundle()
 
+        
+        
+        
+        
+        
+        
         //APIManager.innerFeed(testBundle, url: uuid!, helper: SpeakerDetailHelper())
         
         
-        
+        /*
         
         let fetch = NSFetchRequest(entityName: "SpeakerDetail")
         let predicate = NSPredicate(format: "uuid = %@", uuid!)
@@ -69,17 +82,13 @@ class SpeakerHelper: DataHelperProtocol {
             if items.count > 0 {
                 coreDataObject.setValue(items[0], forKey: "speakerDetail")
             }
-            else {
-                
-                let speakerDetail = SpeakerDetailHelper(uuid: uuid, bio: "", bioAsHtml: "", company: "", twitter: "", speaker : coreDataObject as! Speaker)
-                speakerDetail.save(managedContext)
-            }
+            
             
             
         } catch let error as NSError {
             print("unresolved error \(error), \(error.userInfo)")
         }
-        
+        */
         
         
         

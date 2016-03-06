@@ -43,6 +43,12 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     @NSManaged var days: NSSet
     @NSManaged var attributes: NSSet
     
+    func getId() -> NSManagedObject? {
+        return nil
+    }
+    func resetId(id: NSManagedObject?) {
+    }
+
 
     func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? CfpHelper  {
