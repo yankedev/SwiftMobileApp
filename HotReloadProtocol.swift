@@ -11,8 +11,8 @@ import Foundation
 public protocol HotReloadProtocol {
     
     func fetchUpdate() -> Void
-    func fetchCompleted() -> Void
-    func fetchUrl() -> String
+    func fetchCompleted(msg : String) -> Void
+    func fetchUrl() -> String?
     
 }
 

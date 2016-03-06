@@ -17,6 +17,7 @@ class SpeakerDetail: NSManagedObject, FeedableProtocol {
     @NSManaged var company: String
     @NSManaged var twitter: String
     @NSManaged var uuid: String
+    @NSManaged var speaker : Speaker
     
     func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? SpeakerDetailHelper  {

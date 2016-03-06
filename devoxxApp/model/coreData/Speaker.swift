@@ -44,6 +44,10 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
     func getColor() -> UIColor? {
         return nil
     }
+    
+    func isSpecial() -> Bool {
+        return false
+    }
 
     func getElement() -> NSManagedObject {
         return self

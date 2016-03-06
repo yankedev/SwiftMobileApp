@@ -32,6 +32,8 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         cellDataArray = try! managedContext.executeFetchRequest(fetchRequest) as! [CellDataPrococol]
         
+        print(cellDataArray![0])
+        
 
         
         
@@ -70,9 +72,12 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         self.tableView.reloadData()
     }
     
-    override public func viewWillAppear(animated: Bool) {
+  /*  override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-    }
+        print("WILL APPEAR")
+        cellDataArray?.removeAll()
+        fetchAll()
+    }*/
     
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -141,6 +146,10 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if let speaker = cellDataArray![indexPath.row] as? Speaker {
+            
+            
+            print(speaker.speakerDetail.bio)
+            
             
             let details = SpeakerDetailsController()
             //todo

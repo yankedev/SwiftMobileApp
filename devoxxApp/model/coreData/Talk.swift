@@ -20,6 +20,7 @@ class Talk: NSManagedObject, FeedableProtocol{
     @NSManaged var track: String
     @NSManaged var trackId: String
     @NSManaged var speakers: NSSet
+    @NSManaged var isBreak : Bool
     @NSManaged var slot: Slot
     
     func getIconFromTrackId() -> String {
@@ -97,6 +98,7 @@ class Talk: NSManagedObject, FeedableProtocol{
             title = castHelper.title ?? ""
             track = castHelper.track ?? ""
             trackId = castHelper.trackId ?? ""
+            isBreak = castHelper.isBreak ?? false
         }
     }
     

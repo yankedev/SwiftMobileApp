@@ -205,7 +205,7 @@ public class SchedulerTableViewController:
         
         let cellData = getCell(indexPath)
         
-        if cellData?.getForthInformation(false) == "" {
+        if cellData?.isSpecial() == true {
             
             var cell = tableView.dequeueReusableCellWithIdentifier("BREAK_CELL") as? ScheduleBreakCell
             
@@ -516,7 +516,7 @@ public class SchedulerTableViewController:
         
         let cellData = getCell(indexPath)
         
-        if cellData?.getForthInformation(false) == "" {
+        if cellData?.isSpecial() == true {
             return 60
         }
 
@@ -623,11 +623,11 @@ public class SchedulerTableViewController:
         
     }
     
-    public func fetchCompleted() -> Void {
+    public func fetchCompleted(msg : String) -> Void {
         print(self.debugDescription)
     }
     
-    public func fetchUrl() -> String {
+    public func fetchUrl() -> String? {
         return "https://myFetchUrl.toto"
     }
     

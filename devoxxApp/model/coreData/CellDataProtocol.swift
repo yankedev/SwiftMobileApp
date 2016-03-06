@@ -19,5 +19,6 @@ import UIKit
     func getPrimaryImage() -> UIImage?
     func getColor() -> UIColor?
     func getElement() -> NSManagedObject
+    func isSpecial() -> Bool
 
 }

@@ -226,6 +226,7 @@ class APIManager {
     class func handleData(inputData : NSData, dataHelper: DataHelperProtocol) {
 
         let json = JSON(data: inputData)
+        
         let arrayToParse = dataHelper.prepareArray(json)
 
         
@@ -436,6 +437,17 @@ class APIManager {
     
     class func exists(id : String, leftPredicate: String, entity: String) -> Bool {
         return exists(id, leftPredicate: leftPredicate, entity: entity, checkAgainCurrentEvent: false)
+    }
+    
+    class func findOne(name : String, value : String, entity: String) -> FeedableProtocol {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = NSFetchRequest(entityName: entity)
+        let predicate = NSPredicate(format: "\(name) = %@", value)
+        fetchRequest.predicate = predicate
+        let items = try! context.executeFetchRequest(fetchRequest)
+        
+        return items[0] as! FeedableProtocol
     }
     
     

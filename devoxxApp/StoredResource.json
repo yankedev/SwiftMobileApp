@@ -110,28 +110,28 @@
   
   {
 		"url": "https://cfp.devoxx.fr/api/conferences/DevoxxFR2016/schedules/monday/",
-		"etag": "v2_473519988",
+		"etag": "v2_473519988______",
 		"fallback": "DevoxxFR2016-monday.json"
   }, {
 		"url": "https://cfp.devoxx.fr/api/conferences/DevoxxFR2016/schedules/tuesday/",
-		"etag": "v2_473519988",
+		"etag": "v2_473519988______",
 		"fallback": "DevoxxFR2016-tuesday.json"
   }, {
 		"url": "https://cfp.devoxx.fr/api/conferences/DevoxxFR2016/schedules/wednesday/",
-		"etag": "v2_191239292",
+		"etag": "v2_191239292______",
 		"fallback": "DevoxxFR2016-wednesday.json"
   }, {
 		"url": "https://cfp.devoxx.fr/api/conferences/DevoxxFR2016/schedules/thursday/",
-		"etag": "v2_-1795626702",
+		"etag": "v2_-1795626702______",
 		"fallback": "DevoxxFR2016-thursday.json"
   }, {
 		"url": "https://cfp.devoxx.fr/api/conferences/DevoxxFR2016/schedules/friday/",
-		"etag": "v2_-1385439971",
+		"etag": "v2_-1385439971______",
 		"fallback": "DevoxxFR2016-friday.json"
   },
   {
 		"url": "https://cfp.devoxx.fr/api/conferences/DevoxxFR2016/speakers",
-		"etag": "1834998537",
+		"etag": "1834998537______",
 		"fallback": "DevoxxFR2016-speaker.json"
   }
   

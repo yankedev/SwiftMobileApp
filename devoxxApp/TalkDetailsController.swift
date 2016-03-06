@@ -250,16 +250,17 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     public func fetchUpdate() {
         print("should fetchUpdate")
+    
         
         APIReloadManager.fetchUpdate(fetchUrl(), helper: SlotHelper(), completedAction: fetchCompleted)
         
     }
     
-    public func fetchCompleted() -> Void {
+    public func fetchCompleted(msg : String) -> Void {
         print(self.debugDescription)
     }
     
-    public func fetchUrl() -> String {
+    public func fetchUrl() -> String? {
         return "https://myFetchUrl.toto"
     }
     

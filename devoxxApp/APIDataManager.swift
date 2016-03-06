@@ -23,6 +23,15 @@ class APIDataManager {
         return items[0] as! Cfp
     }
     
+    class func findSpeakerFromId(id : String, context : NSManagedObjectContext) -> Speaker {
+        let fetchRequest = APIManager.buildFetchRequest(context, name: "Speaker")
+        let predicateEvent = NSPredicate(format: "uuid = %@", id)
+        fetchRequest.predicate = predicateEvent
+        let items = try! context.executeFetchRequest(fetchRequest)
+        print(items[0])
+        return items[0] as! Speaker
+    }
+    
     class func updateCurrentEvent() -> Void {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
@@ -55,6 +64,19 @@ class APIDataManager {
     class func getSpeakerEntryPoint() -> String {
         return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/speakers"
     }
+    
+    
+    
+    class func createResource(url : String) -> StoredResource? {
+        let httpsUrl = url.stringByReplacingOccurrencesOfString("http:", withString: "https:")
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let helper = StoredResourceHelper(url: httpsUrl, etag: "", fallback: "")
+        helper.save(context)
+        APIManager.save(context)
+        return findResource(httpsUrl)
+    }
+    
     
     class func findResource(url : String) -> StoredResource? {
         
@@ -176,7 +198,22 @@ class APIDataManager {
     class func loadDataFromURL(url: String, dataHelper : DataHelperProtocol, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
         
+        var res:StoredResource? = nil
+        
         if let storedResource = APIDataManager.findResource(url) {
+            res = storedResource
+        }
+        else {
+            if let storedResource = APIDataManager.createResource(url) {
+                res = storedResource
+            }
+            else {
+                onError(value: url)
+            }
+        }
+        
+        
+        if let storedResource = res {
             
             if storedResource.hasBeenFedOnce {
                 
@@ -186,6 +223,7 @@ class APIDataManager {
             }
         
         }
+
         
         else {
             dispatch_async(dispatch_get_main_queue(),{
@@ -296,11 +334,8 @@ class APIDataManager {
                 }
                 else if httpResponse.statusCode == 304 {
                     
-                    print("304 detected")
-                    
-                    if storedResource.fallback == "DV15-friday.json" {
-                        print(storedResource.fallback)
-                    }
+                    print("304 detected for url \(storedResource.url), etag = \(storedResource.etag)")
+                   
                     
                     if storedResource.hasBeenFedOnce == false {
                         
@@ -327,6 +362,8 @@ class APIDataManager {
                 else {
                     
                     print("should be 200 \(storedResource.url)")
+                    
+                    APIManager.handleData(data!, dataHelper: dataHelper)
                     
                                         
                     dispatch_async(dispatch_get_main_queue(),{

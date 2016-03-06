@@ -18,6 +18,7 @@ class TalkHelper: DataHelperProtocol {
     var track: String?
     var id: String?
     var summary: String?
+    var isBreak: Bool?
     
     var speakerIds = [String]()
     
@@ -33,7 +34,7 @@ class TalkHelper: DataHelperProtocol {
     
 
     
-    init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?) {
+    init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?, isBreak: Bool) {
         self.title = title ?? ""
         self.lang = lang ?? ""
         self.trackId = trackId ?? ""
@@ -41,6 +42,7 @@ class TalkHelper: DataHelperProtocol {
         self.track = track ?? ""
         self.id = id ?? ""
         self.summary = summary ?? ""
+        self.isBreak = isBreak
     }
     
     func feed(data: JSON) {
@@ -74,10 +76,12 @@ class TalkHelper: DataHelperProtocol {
     
     func prepareArray(json: JSON) -> [JSON]? {
 
-        if(json["talk"] != nil) {
-            return [json["talk"]]
+        if(json["break"] != nil) {
+            isBreak = true
+            return [json["break"]]
         }
-        return [json["break"]]
+        isBreak = false
+        return [json["talk"]]
     }
     
    
@@ -88,6 +92,7 @@ class TalkHelper: DataHelperProtocol {
     
     required init() {
     }
+    
     @objc func copyWithZone(zone: NSZone) -> AnyObject {
         return self.dynamicType.init()
     }

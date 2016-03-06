@@ -48,6 +48,10 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
         return talk.track
     }
     
+    func isSpecial() -> Bool {
+        return talk.isBreak
+    }
+    
     func getColor() -> UIColor? {
         return ColorManager.getColorFromTalkType(talk.talkType)
     }

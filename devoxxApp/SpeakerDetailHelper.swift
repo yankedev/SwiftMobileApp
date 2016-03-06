@@ -16,17 +16,19 @@ class SpeakerDetailHelper: DataHelperProtocol {
     var bioAsHtml: String?
     var company: String?
     var twitter: String?
+    var speaker : Speaker?
     
     func typeName() -> String {
         return entityName()
     }
     
-    init(uuid: String?, bio: String?, bioAsHtml: String?, company: String?, twitter: String?) {
+    init(uuid: String?, bio: String?, bioAsHtml: String?, company: String?, twitter: String?, speaker : Speaker) {
         self.uuid = uuid ?? ""
         self.bio = bio ?? ""
         self.bioAsHtml = bioAsHtml ?? ""
         self.company = company ?? ""
         self.twitter = twitter ?? ""
+        self.speaker = speaker
     }
     
     func feed(data: JSON) {
@@ -42,19 +44,29 @@ class SpeakerDetailHelper: DataHelperProtocol {
     }
     
     func prepareArray(json: JSON) -> [JSON]? {
-        
-       
-        
         var array = [JSON]()
         array.append(json)
         return array
     }
     
     
+    func update(managedContext : NSManagedObjectContext) {
+        let obj = APIManager.findOne("uuid", value: uuid!, entity: entityName())
+        obj.feedHelper(self)
+        APIManager.save(managedContext)
+    }
+    
     func save(managedContext : NSManagedObjectContext) -> Bool {
         
         if APIManager.exists(uuid!, leftPredicate:"uuid", entity: entityName()) {
-            return false
+            
+            if bio != nil  {
+                update(managedContext)
+            }
+            else {
+                return false
+            }
+            
         }
         
         let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
@@ -65,6 +77,10 @@ class SpeakerDetailHelper: DataHelperProtocol {
             coreDataObjectCast.feedHelper(self)
             
             
+            /*let foundSpeaker = APIDataManager.findSpeakerFromId(uuid!, context: managedContext)
+            coreDataObject.setValue(foundSpeaker, forKey: "speaker")
+            foundSpeaker.setValue(coreDataObject, forKey: "speakerDetail")
+            */
             
         }
         

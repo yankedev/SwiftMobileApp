@@ -69,6 +69,11 @@ class SpeakerHelper: DataHelperProtocol {
             if items.count > 0 {
                 coreDataObject.setValue(items[0], forKey: "speakerDetail")
             }
+            else {
+                
+                let speakerDetail = SpeakerDetailHelper(uuid: uuid, bio: "", bioAsHtml: "", company: "", twitter: "", speaker : coreDataObject as! Speaker)
+                speakerDetail.save(managedContext)
+            }
             
             
         } catch let error as NSError {

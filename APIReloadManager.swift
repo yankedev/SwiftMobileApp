@@ -21,12 +21,20 @@ class APIReloadManager {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), code)
     }
     
-    class func fetchUpdate(url : String, helper : DataHelperProtocol, completedAction : () -> Void) {
+    class func fetchUpdate(url : String?, helper : DataHelperProtocol, completedAction : (msg: String) -> Void) {
         print("I will try to update : \(url)")
         run_on_background_thread {
             sleep(3)
-            completedAction()
+            completedAction(msg: "Super")
         }
+        
+        
+        APIDataManager.loadDataFromURL(url!, dataHelper: helper, onSuccess: completedAction, onError: onError)
+        
+    }
+    
+    class func onError(value : String) -> Void {
+        print("ERROR")
     }
 
 }

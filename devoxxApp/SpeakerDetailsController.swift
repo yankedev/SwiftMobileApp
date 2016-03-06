@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class SpeakerDetailsController : AbstractDetailsController, UITableViewDelegate, UITableViewDataSource {
+public class SpeakerDetailsController : AbstractDetailsController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol {
     
   
     var speaker : Speaker!
@@ -68,6 +68,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         header.talkTitle.text = speaker.getFullName()
         header.talkTrack.text = speaker.speakerDetail.company
         scroll.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
+        print(speaker.speakerDetail.bio)
         scroll.text = speaker.speakerDetail.bio
         //scroll.backgroundColor = UIColor.yellowColor()
         
@@ -209,6 +210,33 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         }
         
     }
+    
+    
+    
+    public override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchUpdate()
+    }
+    
+    
+    
+    
+    public func fetchUpdate() {
+        print("should fetchUpdate")
+        
+        APIReloadManager.fetchUpdate(fetchUrl(), helper: SpeakerDetailHelper(), completedAction: fetchCompleted)
+        
+    }
+    
+    public func fetchCompleted(msg : String) -> Void {
+        scroll.text = speaker.speakerDetail.bio
+        header.talkTrack.text = speaker.speakerDetail.company
+    }
+    
+    public func fetchUrl() -> String? {
+        return speaker.href
+    }
+
     
     
 }
