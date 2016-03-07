@@ -20,9 +20,12 @@ public class RateViewController : UIViewController, UITextViewDelegate {
     var other = RateView()
     var buttonView = ButtonView()
     
+    var constraint : NSLayoutConstraint?
     override public func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
         
         talkTitle.textAlignment = .Center
         talkTitle.numberOfLines = 0
@@ -163,6 +166,11 @@ public class RateViewController : UIViewController, UITextViewDelegate {
         let tap = UITapGestureRecognizer(target: self, action: "tap")
         tap.numberOfTapsRequired = 1
         view.addGestureRecognizer(tap)
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+
 
     }
     
@@ -172,19 +180,84 @@ public class RateViewController : UIViewController, UITextViewDelegate {
     }
     
     public func textViewDidBeginEditing(textView: UITextView) {
+  
         if textView.text == "Type here..." {
             textView.text = ""
         }
-        view.center = CGPointMake(view.center.x, view.center.y - 80)
         textView.becomeFirstResponder()
+ 
     }
     
     public func textViewDidEndEditing(textView: UITextView) {
+   
         if textView.text == "" {
             textView.text = "Type here..."
         }
-        view.center = CGPointMake(view.center.x, view.center.y + 80)
         textView.resignFirstResponder()
+
+    }
+    
+    func keyboardWillShow(sender: NSNotification) {
+        print("willShow")
+        let userInfo: [NSObject : AnyObject] = sender.userInfo!
+        
+        let keyboardSize: CGSize = userInfo[UIKeyboardFrameBeginUserInfoKey]!.CGRectValue.size
+        let offset: CGSize = userInfo[UIKeyboardFrameEndUserInfoKey]!.CGRectValue.size
+        
+        if keyboardSize.height == offset.height {
+            if self.view.frame.origin.y == 0 {
+                UIView.animateWithDuration(0.1, animations: { () -> Void in
+                    self.view.frame.origin.y -= keyboardSize.height
+                    
+                    self.constraint = NSLayoutConstraint(item: self.view,
+                        attribute: NSLayoutAttribute.Top,
+                        relatedBy: NSLayoutRelation.Equal,
+                        toItem: self.view.superview,
+                        attribute: NSLayoutAttribute.Top,
+                        multiplier: 1,
+                        constant: -keyboardSize.height)
+                    self.view.addConstraint(self.constraint!)
+                    
+                })
+            }
+        } else {
+            UIView.animateWithDuration(0.1, animations: { () -> Void in
+                
+                
+                self.constraint = NSLayoutConstraint(item: self.view,
+                    attribute: NSLayoutAttribute.Top,
+                    relatedBy: NSLayoutRelation.Equal,
+                    toItem: self.view.superview,
+                    attribute: NSLayoutAttribute.Top,
+                    multiplier: 1,
+                    constant: keyboardSize.height - offset.height)
+                self.view.addConstraint(self.constraint!)
+
+            })
+        }
+        print(self.view.frame.origin.y)
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        
+        if constraint != nil {
+            view.removeConstraint(constraint!)
+        }
+        
+        
+        print("willHide")
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            
+            self.constraint = NSLayoutConstraint(item: self.view,
+                attribute: NSLayoutAttribute.Top,
+                relatedBy: NSLayoutRelation.Equal,
+                toItem: self.view.superview,
+                attribute: NSLayoutAttribute.Top,
+                multiplier: 1,
+                constant: keyboardSize.height)
+
+            view.addConstraint(self.constraint!)
+        }
     }
     
     

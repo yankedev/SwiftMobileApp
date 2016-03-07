@@ -149,8 +149,9 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
                 self.parentViewController?.parentViewController?.removeFromParentViewController()
             }
             if indexPath.row == 1 {
-                let alert = UIAlertController(title: "Clear QR Code", message: "go to clear QR CODE", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
+                APIManager.clearQrCode()
+                let alert = UIAlertController(title: "Success !", message: "qrCore cleared !", preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         }

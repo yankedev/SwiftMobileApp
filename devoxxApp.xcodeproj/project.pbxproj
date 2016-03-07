@@ -29,6 +29,7 @@
 		580B78AE1C7A8B9600060C00 /* down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 580B78AD1C7A8B9600060C00 /* down@2x.png */; };
 		580B78B01C7A8BE100060C00 /* up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 580B78AF1C7A8BE100060C00 /* up@2x.png */; };
 		580B78B21C7BA8AB00060C00 /* cofeeCup.png in Resources */ = {isa = PBXBuildFile; fileRef = 580B78B11C7BA8AB00060C00 /* cofeeCup.png */; };
+		580BB8581C8E104A0005274C /* RateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580BB8571C8E10490005274C /* RateTableViewController.swift */; };
 		580CD2A01C7DCFD900152E4C /* SimpleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580CD29F1C7DCFD900152E4C /* SimpleDetailView.swift */; };
 		580CD2A21C7DDA7900152E4C /* AllDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580CD2A11C7DDA7900152E4C /* AllDetailsView.swift */; };
 		580CD2A61C7E5A4100152E4C /* TopInfoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580CD2A51C7E5A4100152E4C /* TopInfoDetailView.swift */; };
@@ -54,6 +55,7 @@
 		58195C161C359F7500F56A30 /* checkboxOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195C141C359F7500F56A30 /* checkboxOff.png */; };
 		58195C171C359F7500F56A30 /* checkboxOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195C151C359F7500F56A30 /* checkboxOn.png */; };
 		5842E4371C83734400998F9C /* ScheduleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842E4361C83734400998F9C /* ScheduleCellView.swift */; };
+		58631DEA1C8E3C7A00070833 /* QRCodeScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58631DE91C8E3C7A00070833 /* QRCodeScannerController.swift */; };
 		5872861B1C1F565C00FC098A /* SpeakerTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861A1C1F565C00FC098A /* SpeakerTableController.swift */; };
 		5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861C1C1F579900FC098A /* SpeakerHelper.swift */; };
 		587286201C1F589400FC098A /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861E1C1F589400FC098A /* Speaker.swift */; };
@@ -221,6 +223,7 @@
 		580B78AD1C7A8B9600060C00 /* down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "down@2x.png"; sourceTree = "<group>"; };
 		580B78AF1C7A8BE100060C00 /* up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "up@2x.png"; sourceTree = "<group>"; };
 		580B78B11C7BA8AB00060C00 /* cofeeCup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cofeeCup.png; sourceTree = "<group>"; };
+		580BB8571C8E10490005274C /* RateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateTableViewController.swift; sourceTree = "<group>"; };
 		580CD29F1C7DCFD900152E4C /* SimpleDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleDetailView.swift; sourceTree = "<group>"; };
 		580CD2A11C7DDA7900152E4C /* AllDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllDetailsView.swift; path = devoxxApp/AllDetailsView.swift; sourceTree = "<group>"; };
 		580CD2A51C7E5A4100152E4C /* TopInfoDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopInfoDetailView.swift; sourceTree = "<group>"; };
@@ -246,6 +249,7 @@
 		58195C141C359F7500F56A30 /* checkboxOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkboxOff.png; path = icon/checkboxOff.png; sourceTree = "<group>"; };
 		58195C151C359F7500F56A30 /* checkboxOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkboxOn.png; path = icon/checkboxOn.png; sourceTree = "<group>"; };
 		5842E4361C83734400998F9C /* ScheduleCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCellView.swift; sourceTree = "<group>"; };
+		58631DE91C8E3C7A00070833 /* QRCodeScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScannerController.swift; sourceTree = "<group>"; };
 		5872861A1C1F565C00FC098A /* SpeakerTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerTableController.swift; sourceTree = "<group>"; };
 		5872861C1C1F579900FC098A /* SpeakerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerHelper.swift; sourceTree = "<group>"; };
 		5872861E1C1F589400FC098A /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Speaker.swift; path = model/coreData/Speaker.swift; sourceTree = "<group>"; };
@@ -525,11 +529,13 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				58631DE91C8E3C7A00070833 /* QRCodeScannerController.swift */,
 				E1FB6D711C8D0D2B00D13082 /* ButtonView.swift */,
 				58EC131F1C863E5700958070 /* APIDataManager.swift */,
 				E10E7AC21C18BF7100F6220B /* AppDelegate.swift */,
 				E10E7AEF1C1957F300F6220B /* APIManager.swift */,
 				58EC131D1C846F2100958070 /* SettingsController.swift */,
+				580BB8571C8E10490005274C /* RateTableViewController.swift */,
 				58A38EA01C8371B500C2DFE2 /* ScheduleCellView */,
 				E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */,
 				E18046021C1DD220001AAD85 /* TalkDetailsController.swift */,
@@ -1041,6 +1047,7 @@
 				E1FB6D6A1C8C47CD00D13082 /* APIReloadManager.swift in Sources */,
 				58A38EA21C8371C800C2DFE2 /* LeftIconView.swift in Sources */,
 				E1FA9C3B1C1BFCF80077C09A /* MapController.swift in Sources */,
+				580BB8581C8E104A0005274C /* RateTableViewController.swift in Sources */,
 				E127E65A1C38212100FB7E4F /* FilterableTableProtocol.swift in Sources */,
 				58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */,
 				58F67CDD1C308C64007D2B97 /* Favorite.swift in Sources */,
@@ -1074,6 +1081,7 @@
 				E175F2761C52A50C00D7AC0A /* ScheduleControllerView.swift in Sources */,
 				E17DFF411C79D7FB00A09547 /* Floor.swift in Sources */,
 				58EC131E1C846F2100958070 /* SettingsController.swift in Sources */,
+				58631DEA1C8E3C7A00070833 /* QRCodeScannerController.swift in Sources */,
 				588CFFAB1C811C5200DEC1E6 /* ColoredHeaderView.swift in Sources */,
 				E1FB6D681C8C45C600D13082 /* HotReloadProtocol.swift in Sources */,
 				5895EBA11C66698800229780 /* ViewController.swift in Sources */,

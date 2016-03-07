@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class StarView : UIView {
+class StarView : UITableViewCell {
     
     let star0 = UIButton()
     let star1 = UIButton()
@@ -24,8 +24,8 @@ class StarView : UIView {
     var starArray = [UIButton]()
     
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         starArray.append(star0)
         starArray.append(star1)
@@ -88,7 +88,7 @@ class StarView : UIView {
     func reset() {
         for btn in starArray {
             btn.tag = 0
-            btn.tintColor = UIColor.whiteColor()
+            btn.tintColor = UIColor.lightGrayColor()
         }
     }
     
@@ -106,17 +106,17 @@ class StarView : UIView {
             while search != btn {
                 nbStar = idx
                 search.tag = 1
-                search.tintColor = ColorManager.starColor
+                search.tintColor = ColorManager.topNavigationBarColor
                 idx++
                 search = starArray[idx]
             }
             
             
             
-            btn.tintColor = ColorManager.starColor
+            btn.tintColor = ColorManager.topNavigationBarColor
         }
         else {
-            btn.tintColor = UIColor.whiteColor()
+            btn.tintColor = UIColor.lightGrayColor()
         }
         
         

@@ -33,6 +33,26 @@ class APIManager {
     
     static var currentEvent : Cfp!
     
+    class func qrCodeAlreadyScanned() -> Bool {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let _ = defaults.objectForKey("qrCode") as? String {
+            return true
+        }
+        return false
+    }
+
+    
+    class func clearQrCode() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue(nil, forKey: "qrCode")
+    }
+
+    
+    class func setQrCode(str : String) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setValue(str, forKey: "qrCode")
+    }
+    
     class func doesEtagExistForUrl(url : String) -> Bool {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!

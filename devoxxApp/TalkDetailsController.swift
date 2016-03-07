@@ -124,7 +124,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         actionButtonViewRate.setup(true)
         
         
-        actionButtonViewRate.button.addTarget(self, action: Selector("rate"), forControlEvents: .TouchUpInside)
+        actionButtonViewRate.button.addTarget(self, action: Selector("tryToRate"), forControlEvents: .TouchUpInside)
         
         actionButtonViewRate.button.frame = CGRectMake(0,0,40,40)
 
@@ -264,32 +264,92 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/talks/\(slot.talk.id)"
     }
     
+    public func scan() {
+        
+        let qrCodeScannerController = QRCodeScannerController()
+        qrCodeScannerController.completionOnceScanned = rate
+        presentViewController(qrCodeScannerController, animated: true, completion: nil)
+        
+    }
     
     public func rate() {
+        let rateController = RateTableViewController()
+        rateController.talk = slot.talk
+        let rateNavigationController = UINavigationController(rootViewController: rateController)
+        presentViewController(rateNavigationController, animated: true, completion: nil)
+
+    }
+    
+    public func tryToRate() {
         
-        print("rateME")
+        if APIManager.qrCodeAlreadyScanned() {
+            rate()
+        }
+        else {
+            let alert = UIAlertController(title: "QRCode", message: "Please scan your badge QRCode or enter the code on your badge to authenticate yourself for presentation voting", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Scan", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.scan()}))
+            alert.addAction(UIAlertAction(title: "Enter manually", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
         
-        let rateViewController = RateViewController()
         
+       
         
-        rateViewController.view.frame = CGRectMake(50, 75, view.frame.size.width - 100, view.frame.size.height - 150)
-        let finalCenter = rateViewController.view.center
-        let origCenter = CGPointMake(finalCenter.x, 3*finalCenter.y)
-        
-        rateViewController.view.center = origCenter
+        /*
         
         rateViewController.talkTitle.text = slot.talk.title
         rateViewController.talkSpeakers.text = slot.talk.getFriendlySpeaker(", ", useTwitter: false)
         
         
-        addChildViewController(rateViewController)
-        view.addSubview(rateViewController.view)
- 
+        
+        let heightRateView = NSLayoutConstraint(item: rateViewController.view,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0,
+            constant: 450)
+        view.addConstraint(heightRateView)
+        
+        let widthRateView = NSLayoutConstraint(item: rateViewController.view,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Width,
+            multiplier: 0,
+            constant: 300)
+        view.addConstraint(widthRateView)
+        
+        let centerXRateView = NSLayoutConstraint(item: rateViewController.view,
+            attribute: NSLayoutAttribute.CenterX,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.CenterX,
+            multiplier: 1,
+            constant: 0)
+        //view.addConstraint(centerXRateView)
+        
+        let centerYRateView = NSLayoutConstraint(item: rateViewController.view,
+            attribute: NSLayoutAttribute.CenterY,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.CenterY,
+            multiplier: 1,
+            constant: 0)
+        //view.addConstraint(centerYRateView)
+        
+        
+        view.layoutIfNeeded()
+        
+        let finalCenter = rateViewController.view.center
+        let origCenter = CGPointMake(finalCenter.x, 3*finalCenter.y)
+        rateViewController.view.center = origCenter
         
         UIView.animateWithDuration(0.5) { () -> Void in
             rateViewController.view.center = finalCenter
         }
         
+        */
     }
     
    

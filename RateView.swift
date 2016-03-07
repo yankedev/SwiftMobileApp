@@ -9,57 +9,80 @@
 import Foundation
 import UIKit
 
-class RateView : UIView {
+class RateView : UITableViewCell, UITextViewDelegate {
     
+
     let label = UILabel()
     let textView = UITextView()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(label)
         addSubview(textView)
+        
+        
         label.translatesAutoresizingMaskIntoConstraints = false
         textView.translatesAutoresizingMaskIntoConstraints = false
         
         let views = ["label": label, "textView" : textView]
         
-        let heightLabel = NSLayoutConstraint(item: label,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self,
-            attribute: NSLayoutAttribute.Height,
-            multiplier: 0.3,
-            constant: 0)
-        addConstraint(heightLabel)
         
-        let textViewTextView = NSLayoutConstraint(item: textView,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self,
-            attribute: NSLayoutAttribute.Height,
-            multiplier: 0.7,
-            constant: 0)
-        addConstraint(textViewTextView)
+        let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[label(130)]-10-[textView]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
         
+        let constV0 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[label]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
-        let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[label]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
-        let constH1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[textView]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
-        
-        let constV0 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[label]-0-[textView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let constV1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[textView]-5-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
         addConstraints(constH0)
-        addConstraints(constH1)
         addConstraints(constV0)
+        addConstraints(constV1)
         
-        label.font = UIFont(name: "Roboto", size: 13)
+       
+        label.font = UIFont(name: "Roboto", size: 15)
+        label.textAlignment = .Right
+        label.textColor = ColorManager.grayImageColor
         textView.font = UIFont(name: "Roboto", size: 17)
+        
+        textView.delegate = self
+        
     }
     
-
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.text == "Type here..." {
+            textView.text = ""
+        }
+        textView.becomeFirstResponder()
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text == "" {
+            textView.text = "Type here..."
+        }
+        textView.resignFirstResponder()
+    }
+    
+    
+    func updateBackgroundColor(isFavorited : Bool) {
+        if(isFavorited) {
+            backgroundColor = ColorManager.favoriteBackgroundColor
+        }
+        else {
+            backgroundColor = UIColor.whiteColor()
+        }
+    }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+        
+        
+        
+        
+        
     }
+    
+    
+
     
 }
