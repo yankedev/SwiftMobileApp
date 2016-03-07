@@ -184,6 +184,8 @@
 		E1FB6D6A1C8C47CD00D13082 /* APIReloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D691C8C47CD00D13082 /* APIReloadManager.swift */; };
 		E1FB6D6C1C8C52D500D13082 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D6B1C8C52D500D13082 /* RateViewController.swift */; };
 		E1FB6D6E1C8C5E9800D13082 /* StarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D6D1C8C5E9800D13082 /* StarView.swift */; };
+		E1FB6D701C8CFE4A00D13082 /* RateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D6F1C8CFE4A00D13082 /* RateView.swift */; };
+		E1FB6D721C8D0D2B00D13082 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D711C8D0D2B00D13082 /* ButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -378,6 +380,8 @@
 		E1FB6D691C8C47CD00D13082 /* APIReloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIReloadManager.swift; sourceTree = "<group>"; };
 		E1FB6D6B1C8C52D500D13082 /* RateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 		E1FB6D6D1C8C5E9800D13082 /* StarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarView.swift; sourceTree = "<group>"; };
+		E1FB6D6F1C8CFE4A00D13082 /* RateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateView.swift; sourceTree = "<group>"; };
+		E1FB6D711C8D0D2B00D13082 /* ButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -521,6 +525,7 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				E1FB6D711C8D0D2B00D13082 /* ButtonView.swift */,
 				58EC131F1C863E5700958070 /* APIDataManager.swift */,
 				E10E7AC21C18BF7100F6220B /* AppDelegate.swift */,
 				E10E7AEF1C1957F300F6220B /* APIManager.swift */,
@@ -531,6 +536,7 @@
 				E1FB6D691C8C47CD00D13082 /* APIReloadManager.swift */,
 				E1FB6D6B1C8C52D500D13082 /* RateViewController.swift */,
 				E1FB6D6D1C8C5E9800D13082 /* StarView.swift */,
+				E1FB6D6F1C8CFE4A00D13082 /* RateView.swift */,
 				587796FA1C81207B00A1A7D5 /* SpeakerDetailsController.swift */,
 				E1FB6D671C8C45C600D13082 /* HotReloadProtocol.swift */,
 				5877973B1C81C38A00A1A7D5 /* ActionButtonView.swift */,
@@ -1045,7 +1051,9 @@
 				580CD2A21C7DDA7900152E4C /* AllDetailsView.swift in Sources */,
 				58A38EA61C8371F900C2DFE2 /* BottomDetailsView.swift in Sources */,
 				58195BFA1C3572ED00F56A30 /* FilterableProtocol.swift in Sources */,
+				E1FB6D721C8D0D2B00D13082 /* ButtonView.swift in Sources */,
 				E1FB6D621C86601800D13082 /* DayHelper.swift in Sources */,
+				E1FB6D701C8CFE4A00D13082 /* RateView.swift in Sources */,
 				58A38EA41C8371D800C2DFE2 /* TopTitleView.swift in Sources */,
 				E175F26B1C4867F300D7AC0A /* FilterTableView.swift in Sources */,
 				E10CE1AA1C2BD6DE002C9934 /* TalkTypeHelper.swift in Sources */,

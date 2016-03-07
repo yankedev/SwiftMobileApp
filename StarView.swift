@@ -17,32 +17,26 @@ class StarView : UIView {
     let star3 = UIButton()
     let star4 = UIButton()
     
+   
+    
+    var nbStar = 0
+    
+    var starArray = [UIButton]()
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(star0)
-        addSubview(star1)
-        addSubview(star2)
-        addSubview(star3)
-        addSubview(star4)
+        starArray.append(star0)
+        starArray.append(star1)
+        starArray.append(star2)
+        starArray.append(star3)
+        starArray.append(star4)
         
-        star0.translatesAutoresizingMaskIntoConstraints = false
-        star0.backgroundColor = UIColor.redColor()
-        
-        star1.translatesAutoresizingMaskIntoConstraints = false
-        star1.backgroundColor = UIColor.blueColor()
-        
-        star2.translatesAutoresizingMaskIntoConstraints = false
-        star2.backgroundColor = UIColor.greenColor()
-        
-        star3.translatesAutoresizingMaskIntoConstraints = false
-        star3.backgroundColor = UIColor.grayColor()
-        
-        star4.translatesAutoresizingMaskIntoConstraints = false
-        star4.backgroundColor = UIColor.yellowColor()
-        
+        for btn in starArray {
+            addSubview(btn)
+            btn.translatesAutoresizingMaskIntoConstraints = false
+        }
         
         let views = ["star0": star0, "star1" : star1, "star2" : star2, "star3" : star3, "star4" : star4]
         
@@ -73,6 +67,59 @@ class StarView : UIView {
         addConstraints(constV3)
         addConstraints(constV4)
 
+        for btn in starArray {
+            addSubview(btn)
+            btn.translatesAutoresizingMaskIntoConstraints = false
+            constructStar(btn)
+        }
+        
+        clickStar(starArray[2])
+        
+    }
+    
+    func constructStar(btn : UIButton) {
+        let image0 = UIImage(named: "ic_star")?.imageWithRenderingMode(.AlwaysTemplate)
+        btn.setImage(image0, forState: .Normal)
+        btn.tintColor = UIColor.whiteColor()
+        btn.addTarget(self, action: Selector("clickStar:"), forControlEvents: .TouchUpInside)
+        btn.tag = 0
+    }
+    
+    func reset() {
+        for btn in starArray {
+            btn.tag = 0
+            btn.tintColor = UIColor.whiteColor()
+        }
+    }
+    
+    func clickStar(btn : UIButton) {
+        self.superview?.endEditing(true)
+        reset()
+        btn.tag = (btn.tag+1) % 2
+        if btn.tag == 1 {
+            
+            var idx = 0
+            var search = starArray[idx]
+            
+            
+            
+            while search != btn {
+                nbStar = idx
+                search.tag = 1
+                search.tintColor = ColorManager.starColor
+                idx++
+                search = starArray[idx]
+            }
+            
+            
+            
+            btn.tintColor = ColorManager.starColor
+        }
+        else {
+            btn.tintColor = UIColor.whiteColor()
+        }
+        
+        
     }
 
     required init?(coder aDecoder: NSCoder) {

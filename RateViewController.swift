@@ -9,37 +9,40 @@
 import Foundation
 import UIKit
 
-public class RateViewController : UIViewController {
+public class RateViewController : UIViewController, UITextViewDelegate {
     
     
     var talkTitle = UILabel()
     var talkSpeakers = UILabel()
     var stars = StarView(frame: CGRectZero)
-    var contentFeedback = UITextView()
-    var deliveryRemarks = UITextView()
-    var other = UITextView()
-    var voteBtn = UIButton()
+    var contentFeedback = RateView()
+    var deliveryRemarks = RateView()
+    var other = RateView()
+    var buttonView = ButtonView()
     
     override public func viewDidLoad() {
         
         super.viewDidLoad()
         
-        talkTitle.backgroundColor = UIColor.redColor()
         talkTitle.textAlignment = .Center
         talkTitle.numberOfLines = 0
         talkTitle.font = UIFont(name: "Roboto", size: 20)
-        talkSpeakers.backgroundColor = UIColor.blueColor()
+
         talkSpeakers.textAlignment = .Center
         talkSpeakers.font = UIFont(name: "Roboto", size: 15)
         talkSpeakers.numberOfLines = 0
-        stars.backgroundColor = UIColor.purpleColor()
-        contentFeedback.backgroundColor = UIColor.lightGrayColor()
-        contentFeedback.text = "Content feedback"
-        deliveryRemarks.backgroundColor = UIColor.darkGrayColor()
-        deliveryRemarks.text = "Delivery remarks"
-        other.backgroundColor = UIColor.redColor()
-        other.text = "Other"
-        voteBtn.backgroundColor = UIColor.greenColor()
+
+        contentFeedback.label.text = "Content feedback"
+        contentFeedback.textView.text = "Type here..."
+        contentFeedback.textView.delegate = self
+
+        deliveryRemarks.label.text = "Delivery remarks"
+        deliveryRemarks.textView.text = "Type here..."
+        deliveryRemarks.textView.delegate = self
+
+        other.label.text = "Other"
+        other.textView.text = "Type here..."
+        other.textView.delegate = self
         
         talkTitle.translatesAutoresizingMaskIntoConstraints = false
         talkSpeakers.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +50,7 @@ public class RateViewController : UIViewController {
         contentFeedback.translatesAutoresizingMaskIntoConstraints = false
         deliveryRemarks.translatesAutoresizingMaskIntoConstraints = false
         other.translatesAutoresizingMaskIntoConstraints = false
-        voteBtn.translatesAutoresizingMaskIntoConstraints = false
+        buttonView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(talkTitle)
         view.addSubview(talkSpeakers)
@@ -55,25 +58,25 @@ public class RateViewController : UIViewController {
         view.addSubview(contentFeedback)
         view.addSubview(deliveryRemarks)
         view.addSubview(other)
-        view.addSubview(voteBtn)
+        view.addSubview(buttonView)
     
-        let views = ["talkTitle": talkTitle, "talkSpeakers" : talkSpeakers, "stars" : stars, "contentFeedback": contentFeedback, "deliveryRemarks" : deliveryRemarks, "other" : other, "voteBtn" : voteBtn]
+        let views = ["talkTitle": talkTitle, "talkSpeakers" : talkSpeakers, "stars" : stars, "contentFeedback": contentFeedback, "deliveryRemarks" : deliveryRemarks, "other" : other, "buttonView" : buttonView]
         
-        let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[talkTitle]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkTitle]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
-        let constH1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[talkSpeakers]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkSpeakers]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
-        let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[stars]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[stars]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
-        let constH3 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[contentFeedback]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH3 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[contentFeedback]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
-        let constH4 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[deliveryRemarks]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH4 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[deliveryRemarks]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
-        let constH5 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[other]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH5 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[other]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
-        let constH6 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[voteBtn]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH6 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[buttonView]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[talkTitle]-0-[talkSpeakers]-0-[stars]-0-[contentFeedback]-0-[deliveryRemarks]-0-[other]-0-[voteBtn]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[talkTitle]-0-[talkSpeakers]-0-[stars]-0-[contentFeedback]-0-[deliveryRemarks]-0-[other]-0-[buttonView]-10-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         
         view.addConstraints(constH0)
         view.addConstraints(constH1)
@@ -106,7 +109,7 @@ public class RateViewController : UIViewController {
             relatedBy: NSLayoutRelation.Equal,
             toItem: self.view,
             attribute: NSLayoutAttribute.Height,
-            multiplier: 0.20,
+            multiplier: 0.15,
             constant: 0)
         
         let height3 = NSLayoutConstraint(item: contentFeedback,
@@ -151,8 +154,40 @@ public class RateViewController : UIViewController {
         view.addConstraint(height4)
         view.addConstraint(height5)
         
+        
+        
+    
+        
+        view.backgroundColor = ColorManager.filterBackgroundColor
+        
+        let tap = UITapGestureRecognizer(target: self, action: "tap")
+        tap.numberOfTapsRequired = 1
+        view.addGestureRecognizer(tap)
 
     }
+    
+    public func tap() {
+        print("TAP")
+        view.endEditing(true)
+    }
+    
+    public func textViewDidBeginEditing(textView: UITextView) {
+        if textView.text == "Type here..." {
+            textView.text = ""
+        }
+        view.center = CGPointMake(view.center.x, view.center.y - 80)
+        textView.becomeFirstResponder()
+    }
+    
+    public func textViewDidEndEditing(textView: UITextView) {
+        if textView.text == "" {
+            textView.text = "Type here..."
+        }
+        view.center = CGPointMake(view.center.x, view.center.y + 80)
+        textView.resignFirstResponder()
+    }
+    
+    
 
 
 }
