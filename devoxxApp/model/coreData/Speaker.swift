@@ -82,6 +82,12 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
         return APIManager.isFavorited("Speaker", identifier: getIdentifier())
     }
     
+    func displayTwitter() -> String {
+        if speakerDetail.twitter != "" {
+            return speakerDetail.twitter
+        }
+        return getFullName()
+    }
 
     func getFullName() -> String {
         return "\(firstName!) \(lastName!)"

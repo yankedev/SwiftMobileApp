@@ -27,7 +27,7 @@ class RateView : UITableViewCell, UITextViewDelegate {
         let views = ["label": label, "textView" : textView]
         
         
-        let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[label(130)]-10-[textView]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
+        let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[label(150)]-10-[textView]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
         
         let constV0 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[label]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         

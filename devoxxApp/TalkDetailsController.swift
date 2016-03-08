@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 public class TalkDetailsController : AbstractDetailsController, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol {
     
@@ -15,6 +16,8 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     var slot : Slot!
     
     var actionButtonViewRate = ActionButtonView()
+    
+    var txtField : UITextField!
 
 
     override public func viewDidLoad() {
@@ -240,12 +243,25 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     
     
+    
+    
     public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         fetchUpdate()
     }
 
     
+    func checkCamera() {
+        AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        let authStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        switch authStatus {
+        case .Authorized:
+            scan()
+            break // Do you stuffer here i.e. allowScanning()
+        case .Denied: enterManually()
+        default: break;
+        }
+    }
     
     
     public func fetchUpdate() {
@@ -265,12 +281,49 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     }
     
     public func scan() {
-        
         let qrCodeScannerController = QRCodeScannerController()
         qrCodeScannerController.completionOnceScanned = rate
         presentViewController(qrCodeScannerController, animated: true, completion: nil)
         
     }
+    
+    func configurationTextField(textField: UITextField!) {
+   
+        if let tField = textField {
+            txtField = tField
+            txtField.text = "Hello world"
+        }
+    }
+    
+    func validateQrCode() {
+        APIManager.setQrCode(txtField.text!)
+        tryToRate()
+    }
+    
+    public func enterManually() {
+    
+        let alert = UIAlertController(title: "QRCode", message: "Enter the code :", preferredStyle: .Alert)
+        
+        alert.addTextFieldWithConfigurationHandler(configurationTextField)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.validateQrCode()}))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+
+        
+    }
+    
+    public func hasBeenGranted(isGranted : Bool) {
+        dispatch_async(dispatch_get_main_queue(), {
+            self.checkCamera()
+        })
+    }
+    
+    public func triggerRequestAccess() {
+        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: hasBeenGranted)
+    }
+    
+    
     
     public func rate() {
         let rateController = RateTableViewController()
@@ -287,70 +340,14 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         }
         else {
             let alert = UIAlertController(title: "QRCode", message: "Please scan your badge QRCode or enter the code on your badge to authenticate yourself for presentation voting", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Scan", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.scan()}))
-            alert.addAction(UIAlertAction(title: "Enter manually", style: UIAlertActionStyle.Default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Scan", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.triggerRequestAccess()}))
+            alert.addAction(UIAlertAction(title: "Enter manually", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.enterManually()}))
             self.presentViewController(alert, animated: true, completion: nil)
         }
         
         
        
-        
-        /*
-        
-        rateViewController.talkTitle.text = slot.talk.title
-        rateViewController.talkSpeakers.text = slot.talk.getFriendlySpeaker(", ", useTwitter: false)
-        
-        
-        
-        let heightRateView = NSLayoutConstraint(item: rateViewController.view,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self.view,
-            attribute: NSLayoutAttribute.Height,
-            multiplier: 0,
-            constant: 450)
-        view.addConstraint(heightRateView)
-        
-        let widthRateView = NSLayoutConstraint(item: rateViewController.view,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self.view,
-            attribute: NSLayoutAttribute.Width,
-            multiplier: 0,
-            constant: 300)
-        view.addConstraint(widthRateView)
-        
-        let centerXRateView = NSLayoutConstraint(item: rateViewController.view,
-            attribute: NSLayoutAttribute.CenterX,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self.view,
-            attribute: NSLayoutAttribute.CenterX,
-            multiplier: 1,
-            constant: 0)
-        //view.addConstraint(centerXRateView)
-        
-        let centerYRateView = NSLayoutConstraint(item: rateViewController.view,
-            attribute: NSLayoutAttribute.CenterY,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self.view,
-            attribute: NSLayoutAttribute.CenterY,
-            multiplier: 1,
-            constant: 0)
-        //view.addConstraint(centerYRateView)
-        
-        
-        view.layoutIfNeeded()
-        
-        let finalCenter = rateViewController.view.center
-        let origCenter = CGPointMake(finalCenter.x, 3*finalCenter.y)
-        rateViewController.view.center = origCenter
-        
-        UIView.animateWithDuration(0.5) { () -> Void in
-            rateViewController.view.center = finalCenter
-        }
-        
-        */
-    }
+          }
     
    
     

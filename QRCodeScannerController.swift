@@ -24,32 +24,17 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
     // Added to support different barcodes
     let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
     
-    func checkCamera() {
-        let authStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
-        switch authStatus {
-        case .Authorized:
-            scan()
-            break // Do you stuffer here i.e. allowScanning()
-        case .Denied: enterManually()
-        default: break;
-        }
-    }
     
-    func enterManually() {
-        print("manually")
-    }
-    
+   
    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        scan()
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        checkCamera()
-    }
+
     
     func scan() {
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video

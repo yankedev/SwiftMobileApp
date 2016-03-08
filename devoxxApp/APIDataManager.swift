@@ -213,6 +213,7 @@ class APIDataManager {
     
     
     
+    
     class func loadDataFromURL(url: String, dataHelper : DataHelperProtocol, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
         

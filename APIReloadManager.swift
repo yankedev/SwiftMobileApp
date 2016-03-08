@@ -23,10 +23,7 @@ class APIReloadManager {
     
     class func fetchUpdate(url : String?, helper : DataHelperProtocol, completedAction : (msg: String) -> Void) {
         print("I will try to update : \(url)")
-        run_on_background_thread {
-            sleep(3)
-            completedAction(msg: "Super")
-        }
+        
         
         
         APIDataManager.loadDataFromURL(url!, dataHelper: helper, onSuccess: completedAction, onError: onError)
