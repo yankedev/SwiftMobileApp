@@ -240,7 +240,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
 
-        speaker = APIDataManager.findSpeakerFromId(speaker.objectID, context: context)
+        //speaker = APIDataManager.findSpeakerFromId(speaker.objectID, context: context)
         
         scroll.text = speaker.speakerDetail.bio
         header.talkTrack.text = speaker.speakerDetail.company

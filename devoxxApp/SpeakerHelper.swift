@@ -54,7 +54,7 @@ class SpeakerHelper: DataHelperProtocol {
         
         let entity2 = NSEntityDescription.entityForName("SpeakerDetail", inManagedObjectContext: managedContext)
         let coreDataObject2 = SpeakerDetail(entity: entity2!, insertIntoManagedObjectContext: managedContext)
-        coreDataObject2.bio = "super"
+
     
         coreDataObject2.speaker = coreDataObject as! Speaker
         coreDataObject2.uuid = coreDataObject2.speaker.uuid!

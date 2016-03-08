@@ -119,8 +119,6 @@ class BottomDetailsView : UIView {
         
         
         
-        label.text = "SUPER"
-        
         
     }
     
