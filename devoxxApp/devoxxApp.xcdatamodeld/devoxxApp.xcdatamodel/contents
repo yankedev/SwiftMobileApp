@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15B42" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
     <entity name="Attribute" representedClassName="devoxxApp.Attribute" syncable="YES">
         <attribute name="attributeDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -79,6 +79,7 @@
         <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bioAsHtml" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imgData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="twitter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="speaker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Speaker" inverseName="speakerDetail" inverseEntity="Speaker" syncable="YES"/>
@@ -121,7 +122,7 @@
         <element name="Image" positionX="-45" positionY="108" width="128" height="90"/>
         <element name="Slot" positionX="-63" positionY="-18" width="128" height="180"/>
         <element name="Speaker" positionX="-54" positionY="45" width="128" height="165"/>
-        <element name="SpeakerDetail" positionX="-45" positionY="135" width="128" height="135"/>
+        <element name="SpeakerDetail" positionX="-45" positionY="135" width="128" height="150"/>
         <element name="StoredResource" positionX="-54" positionY="135" width="128" height="105"/>
         <element name="Talk" positionX="-54" positionY="-9" width="128" height="195"/>
         <element name="TalkType" positionX="-54" positionY="45" width="128" height="90"/>

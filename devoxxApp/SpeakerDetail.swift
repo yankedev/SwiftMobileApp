@@ -17,6 +17,7 @@ class SpeakerDetail: NSManagedObject, FeedableProtocol {
     @NSManaged var company: String
     @NSManaged var twitter: String
     @NSManaged var uuid: String
+    @NSManaged var imgData: NSData
     @NSManaged var speaker : Speaker
     
     func feedHelper(helper: DataHelperProtocol) -> Void {
@@ -27,6 +28,7 @@ class SpeakerDetail: NSManagedObject, FeedableProtocol {
             twitter = castHelper.twitter ?? ""
             uuid = castHelper.uuid ?? ""
             speaker = castHelper.speaker!
+            imgData = NSData()
         }
     }
     

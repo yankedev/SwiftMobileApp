@@ -129,6 +129,11 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         cell!.initiale.textColor = ColorManager.topNavigationBarColor
         cell!.initiale.font = UIFont(name: "Pirulen", size: 25)
         
+        
+        //APIReloadManager.fetchUpdate(fetchUrl(), helper: SpeakerDetailHelper(), completedAction: fetchCompleted)
+        
+        print(cellData)
+        
         cell!.accessoryView = UIImageView(image: UIImage(named: "speaker.jpg"))
         cell!.accessoryView!.layer.cornerRadius = cell!.accessoryView!.frame.size.width/2
         cell!.accessoryView!.layer.masksToBounds = true

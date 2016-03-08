@@ -19,6 +19,7 @@ class SpeakerDetailHelper: DataHelperProtocol {
     var twitter: String?
     var speaker : Speaker?
     
+    
     func typeName() -> String {
         return entityName()
     }
