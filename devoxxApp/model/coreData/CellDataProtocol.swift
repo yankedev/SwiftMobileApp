@@ -19,6 +19,7 @@ import UIKit
     func getPrimaryImage() -> UIImage?
     func getColor() -> UIColor?
     func getElement() -> NSManagedObject
+    func getUrl() -> String?
     func isSpecial() -> Bool
 
 }

@@ -14,7 +14,20 @@ import CoreData
 
 class APIReloadManager {
     
-    
+    class func feedSpeaker(url : String, data : NSData) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = APIManager.buildFetchRequest(context, name: "Speaker")
+        let predicate = NSPredicate(format: "avatarUrl = %@", url)
+        fetchRequest.predicate = predicate
+        let items = try! context.executeFetchRequest(fetchRequest)
+        if items.count == 1 {
+            let it = items[0] as! Speaker
+            it.imgData = data
+            APIManager.save(context)
+        }
+
+    }
     
     
     class func run_on_background_thread(code: () -> Void) {
@@ -29,6 +42,31 @@ class APIReloadManager {
         APIDataManager.loadDataFromURL(url!, dataHelper: helper, onSuccess: completedAction, onError: onError)
         
     }
+
+    
+    class func fetchSpeakerImg(url : String?, completedAction : (msg: String) -> Void) {
+        print("I will try to update : \(url)")
+        
+        
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        config.requestCachePolicy = .ReloadIgnoringLocalCacheData
+        
+        let session = NSURLSession(configuration: config)
+        let task = session.dataTaskWithURL(NSURL(string: url!)!) {
+            data, response1, error in
+            
+            if let responseError = error {
+                print("error")
+            }
+            else {
+                APIReloadManager.feedSpeaker(url!, data : data!)
+            }
+        }
+        task.resume()
+        
+    }
+
+    
     
     class func onError(value : String) -> Void {
         print("ERROR")

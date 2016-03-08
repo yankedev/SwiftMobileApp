@@ -20,6 +20,7 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
     @NSManaged var eventId: String?
     @NSManaged var speakerDetail: SpeakerDetail
     @NSManaged var talks: NSSet
+    @NSManaged var imgData: NSData
 
     func getFirstInformation() -> String {
         return "\(firstName!.capitalizedString) \(lastName!.capitalizedString)"
@@ -29,6 +30,15 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
         return nil
     }
     func resetId(id: NSManagedObject?) {
+    }
+    
+    func getUrl() -> String? {
+        if avatarUrl != nil {
+            if avatarUrl!.hasPrefix("https") {
+                return avatarUrl
+            }
+        }
+        return ""
     }
 
     
@@ -45,7 +55,7 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
     }
     
     func getPrimaryImage() -> UIImage? {
-        return nil
+        return UIImage(data: imgData)
     }
     func getColor() -> UIColor? {
         return nil

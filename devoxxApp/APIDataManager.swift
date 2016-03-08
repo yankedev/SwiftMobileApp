@@ -1,4 +1,4 @@
-//
+    //
 //  APIDataManager.swift
 //  devoxxApp
 //
@@ -300,23 +300,32 @@ class APIDataManager {
                 
                 if storedResource.hasBeenFedOnce == false {
                     
-                    
+                    print(storedResource.url)
                     
                     let testBundle = NSBundle.mainBundle()
                     let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
-                    let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
-                    if(checkString == nil) {
-                        print("should not be empty", terminator: "")
-                    }
-                    let fallbackData = NSData(contentsOfFile: filePath!)!
-                    
-                    
-                    
-                    dispatch_async(dispatch_get_main_queue(),{
+                    if filePath != nil {
+                        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
+                        if(checkString == nil) {
+                            print("should not be empty", terminator: "")
+                        }
+                        let fallbackData = NSData(contentsOfFile: filePath!)!
                         
-                        APIManager.handleData(fallbackData, dataHelper: dataHelper)
-                        onSuccess(value: storedResource.url)
-                    })
+                        dispatch_async(dispatch_get_main_queue(),{
+                            
+                            APIManager.handleData(fallbackData, dataHelper: dataHelper)
+                            onSuccess(value: storedResource.url)
+                        })
+                    }
+                    else {
+                        dispatch_async(dispatch_get_main_queue(),{
+                            onSuccess(value: storedResource.url)
+                        })
+                    }
+                    
+                    
+                
+                    
                 }
                 
                 else {

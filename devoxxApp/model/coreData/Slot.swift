@@ -27,6 +27,10 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
         return nil
     }
     
+    func getUrl() -> String? {
+        return ""
+    }
+    
     func resetId(id: NSManagedObject?) {
     }
     
