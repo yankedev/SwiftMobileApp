@@ -280,6 +280,7 @@ class APIDataManager {
         
         config.HTTPAdditionalHeaders = headers
         config.requestCachePolicy = .ReloadIgnoringLocalCacheData
+        config.timeoutIntervalForResource = 0.1
         
         let session = NSURLSession(configuration: config)
         

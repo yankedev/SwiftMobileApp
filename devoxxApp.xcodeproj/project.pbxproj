@@ -55,6 +55,7 @@
 		58195C161C359F7500F56A30 /* checkboxOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195C141C359F7500F56A30 /* checkboxOff.png */; };
 		58195C171C359F7500F56A30 /* checkboxOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195C151C359F7500F56A30 /* checkboxOn.png */; };
 		5842E4371C83734400998F9C /* ScheduleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842E4361C83734400998F9C /* ScheduleCellView.swift */; };
+		584FED751C8EF8940037A3E1 /* ic_rate.png in Resources */ = {isa = PBXBuildFile; fileRef = 584FED741C8EF8940037A3E1 /* ic_rate.png */; };
 		58631DEA1C8E3C7A00070833 /* QRCodeScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58631DE91C8E3C7A00070833 /* QRCodeScannerController.swift */; };
 		5872861B1C1F565C00FC098A /* SpeakerTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861A1C1F565C00FC098A /* SpeakerTableController.swift */; };
 		5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861C1C1F579900FC098A /* SpeakerHelper.swift */; };
@@ -249,6 +250,7 @@
 		58195C141C359F7500F56A30 /* checkboxOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkboxOff.png; path = icon/checkboxOff.png; sourceTree = "<group>"; };
 		58195C151C359F7500F56A30 /* checkboxOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkboxOn.png; path = icon/checkboxOn.png; sourceTree = "<group>"; };
 		5842E4361C83734400998F9C /* ScheduleCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCellView.swift; sourceTree = "<group>"; };
+		584FED741C8EF8940037A3E1 /* ic_rate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_rate.png; sourceTree = "<group>"; };
 		58631DE91C8E3C7A00070833 /* QRCodeScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScannerController.swift; sourceTree = "<group>"; };
 		5872861A1C1F565C00FC098A /* SpeakerTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerTableController.swift; sourceTree = "<group>"; };
 		5872861C1C1F579900FC098A /* SpeakerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerHelper.swift; sourceTree = "<group>"; };
@@ -688,6 +690,7 @@
 			children = (
 				58A465B51C879755006B6D46 /* DEVOXXFR2016-tracks.json */,
 				58A465B61C879755006B6D46 /* DEVOXXFR2016-proposalTypes.json */,
+				584FED741C8EF8940037A3E1 /* ic_rate.png */,
 				58A465B71C879755006B6D46 /* DV15-proposalTypes.json */,
 				58A465B81C879755006B6D46 /* DV15-tracks.json */,
 				58A465B31C87963D006B6D46 /* DevoxxFR2016-speaker.json */,
@@ -1013,6 +1016,7 @@
 				E127E66E1C39709400FB7E4F /* Track.json in Resources */,
 				58EC13311C865A8A00958070 /* DevoxxFR2016-tuesday.json in Resources */,
 				58A465B41C87963D006B6D46 /* DevoxxFR2016-speaker.json in Resources */,
+				584FED751C8EF8940037A3E1 /* ic_rate.png in Resources */,
 				588CFDD01C80C77100DEC1E6 /* talk_background.png in Resources */,
 				580B78B21C7BA8AB00060C00 /* cofeeCup.png in Resources */,
 				E1FA9C1F1C1BFC150077C09A /* icon_ssj.png in Resources */,

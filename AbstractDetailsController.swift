@@ -17,6 +17,7 @@ public class AbstractDetailsController : UIViewController {
     var indexPath: NSIndexPath!
     var delegate : DevoxxAppFavoriteDelegate!
     
+    var actionButtonView2 = ActionButtonView()
     var actionButtonView1 = ActionButtonView()
     var actionButtonView0 = ActionButtonView()
     var actionButtonViewBack = ActionButtonView()
@@ -43,6 +44,7 @@ public class AbstractDetailsController : UIViewController {
         view.addSubview(actionButtonViewBack)
         view.addSubview(actionButtonView0)
         view.addSubview(actionButtonView1)
+        view.addSubview(actionButtonView2)
 
 
         actionButtonViewBack.setup(false)
@@ -53,17 +55,21 @@ public class AbstractDetailsController : UIViewController {
         
 
         let image0 = UIImage(named: "ic_twitter")?.imageWithRenderingMode(.AlwaysTemplate)
-
         actionButtonView0.button.setImage(image0, forState: .Normal)
         actionButtonView0.tintColor = UIColor.whiteColor()
         actionButtonView0.setup(true)
         
         
-        actionButtonView1.setup(true)
+        
         let image1 = UIImage(named: "ic_star")?.imageWithRenderingMode(.AlwaysTemplate)
         actionButtonView1.button.setImage(image1, forState: .Normal)
         actionButtonView1.tintColor = UIColor.whiteColor()
+        actionButtonView1.setup(true)
         
+        let image2 = UIImage(named: "ic_rate")?.imageWithRenderingMode(.AlwaysTemplate)
+        actionButtonView2.button.setImage(image2, forState: .Normal)
+        actionButtonView2.tintColor = UIColor.whiteColor()
+        actionButtonView2.setup(true)
         
         actionButtonViewBack.button.addTarget(self, action: Selector("back"), forControlEvents: .TouchUpInside)
         
@@ -80,7 +86,7 @@ public class AbstractDetailsController : UIViewController {
             toItem: self.view,
             attribute: NSLayoutAttribute.Height,
             multiplier: 0,
-            constant: 60)
+            constant: 45)
         
         let actionButtonViewWidth = NSLayoutConstraint(item: actionButtonView0,
             attribute: NSLayoutAttribute.Width,
@@ -88,7 +94,7 @@ public class AbstractDetailsController : UIViewController {
             toItem: self.view,
             attribute: NSLayoutAttribute.Width,
             multiplier: 0,
-            constant: 60)
+            constant: 45)
         
         let actionButtonViewCenterX = NSLayoutConstraint(item: actionButtonView0,
             attribute: NSLayoutAttribute.CenterX,
@@ -96,7 +102,7 @@ public class AbstractDetailsController : UIViewController {
             toItem: self.view,
             attribute: NSLayoutAttribute.CenterX,
             multiplier: 2,
-            constant: -110)
+            constant: -95)
         
         let actionButtonViewCenterY = NSLayoutConstraint(item: actionButtonView0,
             attribute: NSLayoutAttribute.CenterY,
@@ -119,7 +125,7 @@ public class AbstractDetailsController : UIViewController {
             toItem: self.view,
             attribute: NSLayoutAttribute.Height,
             multiplier: 0,
-            constant: 60)
+            constant: 45)
         
         let actionButtonViewWidth1 = NSLayoutConstraint(item: actionButtonView1,
             attribute: NSLayoutAttribute.Width,
@@ -127,7 +133,7 @@ public class AbstractDetailsController : UIViewController {
             toItem: self.view,
             attribute: NSLayoutAttribute.Width,
             multiplier: 0,
-            constant: 60)
+            constant: 45)
         
         let actionButtonViewCenterX1 = NSLayoutConstraint(item: actionButtonView1,
             attribute: NSLayoutAttribute.CenterX,
@@ -150,6 +156,48 @@ public class AbstractDetailsController : UIViewController {
         
         view.addConstraint(actionButtonViewCenterX1)
         view.addConstraint(actionButtonViewCenterY1)
+
+        
+        
+        let actionButtonViewHeight2 = NSLayoutConstraint(item: actionButtonView2,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0,
+            constant: 45)
+        
+        let actionButtonViewWidth2 = NSLayoutConstraint(item: actionButtonView2,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Width,
+            multiplier: 0,
+            constant: 45)
+        
+        let actionButtonViewCenterX2 = NSLayoutConstraint(item: actionButtonView2,
+            attribute: NSLayoutAttribute.CenterX,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.CenterX,
+            multiplier: 2,
+            constant: -150)
+        
+        let actionButtonViewCenterY2 = NSLayoutConstraint(item: actionButtonView2,
+            attribute: NSLayoutAttribute.CenterY,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self.view,
+            attribute: NSLayoutAttribute.Top,
+            multiplier: 1,
+            constant: 150)
+        
+        view.addConstraint(actionButtonViewWidth2)
+        view.addConstraint(actionButtonViewHeight2)
+        
+        view.addConstraint(actionButtonViewCenterX2)
+        view.addConstraint(actionButtonViewCenterY2)
+
+        
         
         
         
@@ -206,25 +254,22 @@ public class AbstractDetailsController : UIViewController {
 
     
     public func configure() {
-        let button = UIButton(type: UIButtonType.Custom)
-        button.frame = CGRectMake(0, 0, 30, 30)
-        button.setBackgroundImage(UIImage(named: "StarOn"), forState: UIControlState.Selected)
-        button.setBackgroundImage(UIImage(named: "StarOff"), forState: UIControlState.Normal)
-        
-        
         
         actionButtonView0.button.addTarget(self, action: Selector("twitter"), forControlEvents: .TouchUpInside)
         actionButtonView1.button.addTarget(self, action: Selector("clicked"), forControlEvents: .TouchUpInside)
+        actionButtonView2.button.addTarget(self, action: Selector("tryToRate"), forControlEvents: .TouchUpInside)
         
         actionButtonViewBack.button.addTarget(self, action: Selector("back"), forControlEvents: .TouchUpInside)
         
         actionButtonViewBack.setup(false)
         actionButtonView0.setup(true)
         actionButtonView1.setup(true)
+        actionButtonView2.setup(true)
         
         view.bringSubviewToFront(actionButtonViewBack)
         view.bringSubviewToFront(actionButtonView0)
         view.bringSubviewToFront(actionButtonView1)
+        view.bringSubviewToFront(actionButtonView2)
     }
 
    

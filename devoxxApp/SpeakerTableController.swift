@@ -129,11 +129,12 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         cell!.initiale.textColor = ColorManager.topNavigationBarColor
         cell!.initiale.font = UIFont(name: "Pirulen", size: 25)
         
-        print(cellData.getUrl())
+
         
         
-        APIReloadManager.fetchSpeakerImg(cellData.getUrl(), completedAction: okUpdate)
-        
+        if cellData.getPrimaryImage() == nil {
+            APIReloadManager.fetchSpeakerImg(cellData.getUrl(), completedAction: okUpdate)
+        }
         
      
         

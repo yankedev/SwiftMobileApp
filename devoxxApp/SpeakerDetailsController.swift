@@ -38,6 +38,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
         
         
+        
         let views = ["header": header, "scroll" : scroll, "talkList" : talkList]
         
         
@@ -74,6 +75,8 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
         
         configure()
+        
+        actionButtonView2.hidden = true
  
     }
     
@@ -84,6 +87,8 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = true
         
+        
+        header.imageView.image = speaker.getPrimaryImage()
     
     }
     
@@ -227,7 +232,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
         
         APIReloadManager.fetchUpdate(fetchUrl(), helper: SpeakerDetailHelper(), completedAction: fetchCompleted)
-        
+        APIReloadManager.fetchSpeakerImg(speaker.getUrl(), completedAction: fetchCompleted)
     }
     
     public func fetchCompleted(msg : String) -> Void {
@@ -235,6 +240,8 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
        // print(speaker.speakerDetail)
         scroll.text = speaker.speakerDetail.bio
         header.talkTrack.text = speaker.speakerDetail.company
+        header.imageView.image = speaker.getPrimaryImage()
+        
     }
     
     public func fetchUrl() -> String? {

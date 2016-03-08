@@ -18,6 +18,7 @@ class SpeakerListView : UITableView {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.separatorStyle = .None
         contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
+        backgroundColor = UIColor.whiteColor()
     }
     
     required init?(coder aDecoder: NSCoder) {

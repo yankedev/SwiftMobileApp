@@ -13,6 +13,7 @@ class ColoredHeaderView : UIImageView {
     
     var talkTitle : UILabel!
     var talkTrack : UILabel!
+    var imageView : UIImageView!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,10 +40,12 @@ class ColoredHeaderView : UIImageView {
         talkTrack.translatesAutoresizingMaskIntoConstraints = false
         talkTrack.numberOfLines = 0
         
+        imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(talkTitle)
         addSubview(talkTrack)
-        
+        addSubview(imageView)
         
         
         
@@ -107,6 +110,45 @@ class ColoredHeaderView : UIImageView {
 
         
         
+        let imgViewHeight = NSLayoutConstraint(item: imageView,
+            attribute: NSLayoutAttribute.Height,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self,
+            attribute: NSLayoutAttribute.Height,
+            multiplier: 0,
+            constant: 70)
+        
+        let imgViewWidth = NSLayoutConstraint(item: imageView,
+            attribute: NSLayoutAttribute.Width,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self,
+            attribute: NSLayoutAttribute.Width,
+            multiplier: 0,
+            constant: 70)
+        
+        let imgViewTop = NSLayoutConstraint(item: imageView,
+            attribute: NSLayoutAttribute.Top,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self,
+            attribute: NSLayoutAttribute.Top,
+            multiplier: 1,
+            constant: 20)
+        
+        let imgViewRight = NSLayoutConstraint(item: imageView,
+            attribute: NSLayoutAttribute.Right,
+            relatedBy: NSLayoutRelation.Equal,
+            toItem: self,
+            attribute: NSLayoutAttribute.Right,
+            multiplier: 1,
+            constant: -20)
+        
+        imageView.layer.cornerRadius = 70 / 2
+        imageView.layer.masksToBounds = true
+        
+        addConstraint(imgViewHeight)
+        addConstraint(imgViewWidth)
+        addConstraint(imgViewTop)
+        addConstraint(imgViewRight)
         
 
         

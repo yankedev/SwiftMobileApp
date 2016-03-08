@@ -136,7 +136,7 @@ class APIManager {
             try context.save()
         } catch let error1 as NSError {
             error = error1
-            print("Could not save \(error), \(error?.userInfo)")
+            print("Could not save \(error)")
         }
     }
     

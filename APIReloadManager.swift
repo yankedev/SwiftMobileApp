@@ -56,10 +56,14 @@ class APIReloadManager {
             data, response1, error in
             
             if let responseError = error {
-                print("error")
+                print("error for \(url)")
             }
             else {
+                print("fetch for \(url)")
                 APIReloadManager.feedSpeaker(url!, data : data!)
+                dispatch_async(dispatch_get_main_queue(),{
+                    completedAction(msg: "ok")
+                })
             }
         }
         task.resume()
