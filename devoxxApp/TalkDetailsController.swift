@@ -218,7 +218,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     }
     
     public func fetchCompleted(msg : String) -> Void {
-        print(self.debugDescription)
+       // print(self.debugDescription)
     }
     
     public func fetchUrl() -> String? {

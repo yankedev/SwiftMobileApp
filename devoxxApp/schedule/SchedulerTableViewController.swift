@@ -17,7 +17,6 @@ public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
 public class SchedulerTableViewController:
         UIViewController,
         DevoxxAppFavoriteDelegate,
-        SwitchableProtocol,
         FilterableTableDataSource,
         FilterableTableProtocol,
         UITableViewDelegate,
@@ -51,10 +50,7 @@ public class SchedulerTableViewController:
     
     var searchedSections = [NSFetchedResultsSectionInfo]()
     
-    
-    //FavoriteTableProtocol
-    var isFavorite = false
-    var favoriteSections = [NSFetchedResultsSectionInfo]()
+
     
     //FilterableTableProtocol
     var currentFilters:[String : [FilterableProtocol]]!
@@ -140,16 +136,11 @@ public class SchedulerTableViewController:
     }
     
     public func performSwitch() {
-        schedulerTableView.updateHeaderView(!isFavorite)
         resetSearch()
         fetchAll()
     }
     
-    public func updateSwitch(switchValue: Bool) {
-        isFavorite = switchValue
-    }
-    
-    
+
     
     //TableView
 
@@ -189,15 +180,14 @@ public class SchedulerTableViewController:
             return cellDataTry
         }
         
-        if isFavorite {
-            let curent = favoriteSections[indexPath.section]
-            let obj = (curent.objects)!
-            cellDataTry = filterArray(obj)[indexPath.row] as? CellDataPrococol
-        }
         else {
             cellDataTry = frc?.objectAtIndexPath(indexPath) as? CellDataPrococol
+            
+            let slot = frc?.sections![indexPath.section].objects as? [Slot]
+            let sortedSlot = slot?.sort({ $0.favorited() > $1.favorited() })
+            return sortedSlot![indexPath.row]
         }
-        return cellDataTry
+
     }
     
  
@@ -308,12 +298,9 @@ public class SchedulerTableViewController:
             }
             
             
-            if !isFavorite {
-                return sections.count
-            }
             
-            updateSection()
-            return favoriteSections.count
+            return sections.count
+           
             
         }
         
@@ -346,21 +333,10 @@ public class SchedulerTableViewController:
             
             
             
-            if !isFavorite {
-                return currentSection.numberOfObjects
-            }
-
             
-            
-            let curent = favoriteSections[section]
-
-            
-            let obj = (curent.objects)!
+            return currentSection.numberOfObjects
             
 
-            
-            
-            return filterArray(obj).count
 
         }
         
@@ -374,30 +350,13 @@ public class SchedulerTableViewController:
                 return searchedSections[section]
             }
             
-            if !isFavorite {
-                return sections[section]
-            }
-            return favoriteSections[section]
+            
+            return sections[section]
         }
         return nil
     }
     
-    public func updateSection() {
-        
-        favoriteSections = (frc?.sections)!
-
-        if let sections = frc?.sections {
-            for section in sections {
-                
-                let filteredArray = filterArray(section.objects!)
-                if filteredArray.count == 0 {
-                    favoriteSections.removeObject(section)
-                }
-            }
-            
-        }
-    }
-    
+   
     
     public func updateSectionForSearch() {
         
@@ -454,8 +413,8 @@ public class SchedulerTableViewController:
         let fetchRequest = NSFetchRequest(entityName: "Slot")
         let sortTime = NSSortDescriptor(key: "fromTime", ascending: true)
         let sortAlpha = NSSortDescriptor(key: "talk.title", ascending: true)
-            
-        fetchRequest.sortDescriptors = [sortTime, sortAlpha]
+        
+        fetchRequest.sortDescriptors = [sortTime, sortAlpha,]
         fetchRequest.fetchBatchSize = 20
         fetchRequest.returnsObjectsAsFaults = false
         let predicate = NSPredicate(format: "date = %@", self.currentDate)
@@ -624,7 +583,7 @@ public class SchedulerTableViewController:
     }
     
     public func fetchCompleted(msg : String) -> Void {
-        print(self.debugDescription)
+        
     }
     
     public func fetchUrl() -> String? {

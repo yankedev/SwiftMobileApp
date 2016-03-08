@@ -14,19 +14,16 @@ import CoreData
 
 class APIReloadManager {
     
-    class func feedSpeaker(url : String, data : NSData) {
+    class func feedSpeaker(id : NSManagedObjectID, data : NSData) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
-        let fetchRequest = APIManager.buildFetchRequest(context, name: "Speaker")
-        let predicate = NSPredicate(format: "avatarUrl = %@", url)
-        fetchRequest.predicate = predicate
-        let items = try! context.executeFetchRequest(fetchRequest)
-        if items.count == 1 {
-            let it = items[0] as! Speaker
-            it.imgData = data
-            APIManager.save(context)
+        let privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        privateContext.persistentStoreCoordinator = context.persistentStoreCoordinator
+        if let speaker = APIDataManager.findSpeakerFromId(id, context: context) {
+            speaker.imgData = data
+            APIManager.save(privateContext)
         }
-
+        
     }
     
     
@@ -35,8 +32,7 @@ class APIReloadManager {
     }
     
     class func fetchUpdate(url : String?, helper : DataHelperProtocol, completedAction : (msg: String) -> Void) {
-        print("I will try to update : \(url)")
-        
+       
         
         
         APIDataManager.loadDataFromURL(url!, dataHelper: helper, onSuccess: completedAction, onError: onError)
@@ -44,8 +40,7 @@ class APIReloadManager {
     }
 
     
-    class func fetchSpeakerImg(url : String?, completedAction : (msg: String) -> Void) {
-        print("I will try to update : \(url)")
+    class func fetchSpeakerImg(url : String?, id : NSManagedObjectID, completedAction : (msg: String) -> Void) {
         
         
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -60,7 +55,7 @@ class APIReloadManager {
             }
             else {
                 print("fetch for \(url)")
-                APIReloadManager.feedSpeaker(url!, data : data!)
+                APIReloadManager.feedSpeaker(id, data : data!)
                 dispatch_async(dispatch_get_main_queue(),{
                     completedAction(msg: "ok")
                 })

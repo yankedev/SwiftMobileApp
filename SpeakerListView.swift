@@ -14,10 +14,9 @@ class SpeakerListView : UITableView {
     
     
     override init(frame: CGRect, style: UITableViewStyle) {
-        super.init(frame: frame, style: style)
+        super.init(frame: frame, style: .Grouped)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.separatorStyle = .None
-        contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
         backgroundColor = UIColor.whiteColor()
     }
     

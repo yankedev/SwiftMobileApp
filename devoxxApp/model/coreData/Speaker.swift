@@ -22,6 +22,10 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
     @NSManaged var talks: NSSet
     @NSManaged var imgData: NSData
 
+    func getObjectID() -> NSManagedObjectID {
+        return objectID
+    }
+    
     func getFirstInformation() -> String {
         return "\(firstName!.capitalizedString) \(lastName!.capitalizedString)"
     }
@@ -34,7 +38,7 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
     
     func getUrl() -> String? {
         if avatarUrl != nil {
-            if avatarUrl!.hasPrefix("https") {
+            if avatarUrl!.hasPrefix("https") && (avatarUrl!.hasSuffix("png") || avatarUrl!.hasSuffix("jpg") || avatarUrl!.hasSuffix("jpeg") || avatarUrl!.hasSuffix("gif")) {
                 return avatarUrl
             }
         }

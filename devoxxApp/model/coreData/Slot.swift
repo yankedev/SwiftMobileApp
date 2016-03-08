@@ -23,6 +23,10 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
     
     @NSManaged var talk: Talk
 
+    func getObjectID() -> NSManagedObjectID {
+        return objectID
+    }
+    
     func getId() -> NSManagedObject? {
         return nil
     }
@@ -112,6 +116,8 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
     func isMatching(str : String) -> Bool {
         return getFirstInformation().lowercaseString.containsString(str.lowercaseString)
     }
+    
+    
     
     
     

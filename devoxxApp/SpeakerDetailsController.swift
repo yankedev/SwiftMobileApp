@@ -232,12 +232,16 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
         
         APIReloadManager.fetchUpdate(fetchUrl(), helper: SpeakerDetailHelper(), completedAction: fetchCompleted)
-        APIReloadManager.fetchSpeakerImg(speaker.getUrl(), completedAction: fetchCompleted)
+        APIReloadManager.fetchSpeakerImg(speaker.getUrl(), id: speaker.objectID, completedAction: fetchCompleted)
     }
     
     public func fetchCompleted(msg : String) -> Void {
-       // print("fetchCompleted on SpeakerDetailsController")
-       // print(speaker.speakerDetail)
+       
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+
+        speaker = APIDataManager.findSpeakerFromId(speaker.objectID, context: context)
+        
         scroll.text = speaker.speakerDetail.bio
         header.talkTrack.text = speaker.speakerDetail.company
         header.imageView.image = speaker.getPrimaryImage()

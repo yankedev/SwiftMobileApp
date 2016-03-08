@@ -53,7 +53,7 @@ class SpeakerCell: UITableViewCell {
         
         let layout = NSLayoutFormatOptions(rawValue: 0)
         
-        let horizontalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-5-[info(40)]-5-[talk]-5-|", options: layout, metrics: nil, views: viewsDictionary)
+        let horizontalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-5-[info(60)]-5-[talk]-5-|", options: layout, metrics: nil, views: viewsDictionary)
         
         
         let verticalContraint_1:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[info]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)

@@ -24,6 +24,7 @@ class GobalDetailView : UIView {
         left.translatesAutoresizingMaskIntoConstraints = false
         right.translatesAutoresizingMaskIntoConstraints = false
         
+        
         addSubview(left)
         addSubview(right)
         

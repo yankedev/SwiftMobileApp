@@ -21,5 +21,6 @@ import UIKit
     func getElement() -> NSManagedObject
     func getUrl() -> String?
     func isSpecial() -> Bool
+    func getObjectID() -> NSManagedObjectID
 
 }

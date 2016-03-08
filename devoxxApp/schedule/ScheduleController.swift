@@ -167,12 +167,6 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     
     func changeSchedule(sender : UIBarButtonItem) {
         sender.tag == (sender.tag + 1) % 2
-        if pageViewController != nil && pageViewController!.viewControllers != nil{
-            if let switchable = pageViewController!.viewControllers![0] as? SwitchableProtocol {
-                switchable.updateSwitch(sender.tag == 1)
-                switchable.performSwitch()
-            }
-        }
     }
 
     
@@ -242,11 +236,6 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         if completed {
             removeOverlay()
             if pageViewController.viewControllers != nil {
-                if let fav = pageViewController.viewControllers![0] as? SwitchableProtocol {
-                    //not optimal
-                    fav.updateSwitch(customView?.favoriteSwitcher.tag == 1)
-                    fav.performSwitch()
-                }
                 
                
                 if let fav = pageViewController.viewControllers![0] as? ScrollableDateProtocol {

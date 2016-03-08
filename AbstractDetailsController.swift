@@ -239,7 +239,6 @@ public class AbstractDetailsController : UIViewController {
     
     public func clicked() {
         let response = delegate.favorite(indexPath)
-        
         setColor(response)
     }
     

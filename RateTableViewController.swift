@@ -40,12 +40,10 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
     
     
     public func cancel() {
-        print("cancel")
-        dismissViewControllerAnimated(true, completion: nil)
+         dismissViewControllerAnimated(true, completion: nil)
     }
     
     public func vote() {
-        print("vote")
         dismissViewControllerAnimated(true, completion: nil)
     
     }

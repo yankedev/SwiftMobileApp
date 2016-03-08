@@ -156,14 +156,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     func fetchSecond(value : String) {
         
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-
-        for i in APIManager.debugAllDays(context) {
-            print(i)
-        }
-        
-        
+       
         
         print(APIManager.currentEvent.days.count)
         APIDataManager.updateCurrentEvent()
@@ -275,7 +268,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     func showStaticView(show : Bool) {
-        self.wheelView.hidden = show
+        self.wheelView.userInteractionEnabled = !show
         self.goView.hidden = show
     }
     

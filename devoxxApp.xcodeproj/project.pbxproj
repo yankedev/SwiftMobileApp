@@ -135,7 +135,6 @@
 		E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACE1C18BF7100F6220B /* LaunchScreen.xib */; };
 		E10E7ADC1C18BF7100F6220B /* devoxxAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */; };
 		E10E7AF01C1957F300F6220B /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E7AEF1C1957F300F6220B /* APIManager.swift */; };
-		E127E6581C38117000FB7E4F /* SwitchableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E127E6571C38117000FB7E4F /* SwitchableProtocol.swift */; };
 		E127E65A1C38212100FB7E4F /* FilterableTableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E127E6591C38212100FB7E4F /* FilterableTableProtocol.swift */; };
 		E127E6601C38313200FB7E4F /* SearchableTableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E127E65F1C38313200FB7E4F /* SearchableTableProtocol.swift */; };
 		E127E66A1C39709400FB7E4F /* DV15-friday.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6651C39709300FB7E4F /* DV15-friday.json */; };
@@ -185,7 +184,6 @@
 		E1FB6D661C8C3DA200D13082 /* AbstractDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */; };
 		E1FB6D681C8C45C600D13082 /* HotReloadProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D671C8C45C600D13082 /* HotReloadProtocol.swift */; };
 		E1FB6D6A1C8C47CD00D13082 /* APIReloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D691C8C47CD00D13082 /* APIReloadManager.swift */; };
-		E1FB6D6C1C8C52D500D13082 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D6B1C8C52D500D13082 /* RateViewController.swift */; };
 		E1FB6D6E1C8C5E9800D13082 /* StarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D6D1C8C5E9800D13082 /* StarView.swift */; };
 		E1FB6D701C8CFE4A00D13082 /* RateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D6F1C8CFE4A00D13082 /* RateView.swift */; };
 		E1FB6D721C8D0D2B00D13082 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FB6D711C8D0D2B00D13082 /* ButtonView.swift */; };
@@ -334,7 +332,6 @@
 		E10E7ADA1C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = devoxxAppTests.swift; sourceTree = "<group>"; };
 		E10E7AEF1C1957F300F6220B /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIManager.swift; path = devoxxApp/APIManager.swift; sourceTree = "<group>"; };
-		E127E6571C38117000FB7E4F /* SwitchableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchableProtocol.swift; sourceTree = "<group>"; };
 		E127E6591C38212100FB7E4F /* FilterableTableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterableTableProtocol.swift; sourceTree = "<group>"; };
 		E127E65F1C38313200FB7E4F /* SearchableTableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchableTableProtocol.swift; path = ../SearchableTableProtocol.swift; sourceTree = "<group>"; };
 		E127E6651C39709300FB7E4F /* DV15-friday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-friday.json"; path = "mock/DV15-friday.json"; sourceTree = "<group>"; };
@@ -384,7 +381,6 @@
 		E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDetailsController.swift; sourceTree = "<group>"; };
 		E1FB6D671C8C45C600D13082 /* HotReloadProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotReloadProtocol.swift; sourceTree = "<group>"; };
 		E1FB6D691C8C47CD00D13082 /* APIReloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIReloadManager.swift; sourceTree = "<group>"; };
-		E1FB6D6B1C8C52D500D13082 /* RateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 		E1FB6D6D1C8C5E9800D13082 /* StarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarView.swift; sourceTree = "<group>"; };
 		E1FB6D6F1C8CFE4A00D13082 /* RateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateView.swift; sourceTree = "<group>"; };
 		E1FB6D711C8D0D2B00D13082 /* ButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
@@ -542,7 +538,6 @@
 				E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */,
 				E18046021C1DD220001AAD85 /* TalkDetailsController.swift */,
 				E1FB6D691C8C47CD00D13082 /* APIReloadManager.swift */,
-				E1FB6D6B1C8C52D500D13082 /* RateViewController.swift */,
 				E1FB6D6D1C8C5E9800D13082 /* StarView.swift */,
 				E1FB6D6F1C8CFE4A00D13082 /* RateView.swift */,
 				587796FA1C81207B00A1A7D5 /* SpeakerDetailsController.swift */,
@@ -777,7 +772,6 @@
 				E175F2631C485AF800D7AC0A /* controller */,
 				E175F2621C485AF200D7AC0A /* view */,
 				E127E6591C38212100FB7E4F /* FilterableTableProtocol.swift */,
-				E127E6571C38117000FB7E4F /* SwitchableProtocol.swift */,
 			);
 			name = schedule;
 			sourceTree = "<group>";
@@ -1116,7 +1110,6 @@
 				580B789A1C7A11B700060C00 /* HomeGoButtonView.swift in Sources */,
 				580B786F1C76688400060C00 /* GenericPageScrollController.swift in Sources */,
 				588CFFA71C81069600DEC1E6 /* SpeakerDetail.swift in Sources */,
-				E127E6581C38117000FB7E4F /* SwitchableProtocol.swift in Sources */,
 				58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */,
 				E1FA9C3F1C1BFD010077C09A /* CellDataViewCell.swift in Sources */,
 				E10E7AF01C1957F300F6220B /* APIManager.swift in Sources */,
@@ -1127,7 +1120,6 @@
 				580CD2A01C7DCFD900152E4C /* SimpleDetailView.swift in Sources */,
 				587796FB1C81207B00A1A7D5 /* SpeakerDetailsController.swift in Sources */,
 				580B78831C78972C00060C00 /* ImageHelper.swift in Sources */,
-				E1FB6D6C1C8C52D500D13082 /* RateViewController.swift in Sources */,
 				580B78A81C7A78A200060C00 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

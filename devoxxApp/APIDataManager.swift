@@ -23,7 +23,6 @@ class APIDataManager {
         do {
 
             let fetchRequest = APIManager.buildFetchRequest(context2, name: "Cfp")
-            print("check cfp for id = \(APIManager.currentEvent!.id!))")
             let predicateId = NSPredicate(format: "id = %@", APIManager.currentEvent!.id!)
             fetchRequest.predicate = predicateId
             
@@ -42,12 +41,15 @@ class APIDataManager {
         
     }
     
-    class func findSpeakerFromId(id : String, context : NSManagedObjectContext) -> Speaker {
-        let fetchRequest = APIManager.buildFetchRequest(context, name: "Speaker")
-        let predicateEvent = NSPredicate(format: "uuid = %@", id)
-        fetchRequest.predicate = predicateEvent
-        let items = try! context.executeFetchRequest(fetchRequest)
-        return items[0] as! Speaker
+    class func findSpeakerFromId(id : NSManagedObjectID, context : NSManagedObjectContext) -> Speaker? {
+        do {
+            if let object = try context.existingObjectWithID(id) as? Speaker {
+                return object
+            }
+        } catch let error1 as NSError {
+            print(error1)
+        }
+        return nil
     }
     
     class func updateCurrentEvent() -> Void {
@@ -61,8 +63,7 @@ class APIDataManager {
         
         
         let res = items[0] as! Cfp
-        print("get res.count = \(res.days.count)")
-        
+       
         APIManager.setEvent(items[0] as! Cfp)
     }
 
@@ -280,7 +281,7 @@ class APIDataManager {
         
         config.HTTPAdditionalHeaders = headers
         config.requestCachePolicy = .ReloadIgnoringLocalCacheData
-        config.timeoutIntervalForResource = 0.1
+        config.timeoutIntervalForResource = 5
         
         let session = NSURLSession(configuration: config)
         
@@ -301,7 +302,7 @@ class APIDataManager {
                 
                 if storedResource.hasBeenFedOnce == false {
                     
-                    print(storedResource.url)
+                  
                     
                     let testBundle = NSBundle.mainBundle()
                     let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")

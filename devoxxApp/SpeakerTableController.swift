@@ -16,6 +16,11 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     
     var cellDataArray:[CellDataPrococol]?
     
+    
+    //var isRefreshing = false
+    
+    
+    
     func fetchSpeaker() {
 
     
@@ -32,10 +37,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         cellDataArray = try! managedContext.executeFetchRequest(fetchRequest) as! [CellDataPrococol]
         
-        print(cellDataArray![0])
-        
-
-        
+            
         
        
     
@@ -133,7 +135,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         
         if cellData.getPrimaryImage() == nil {
-            APIReloadManager.fetchSpeakerImg(cellData.getUrl(), completedAction: okUpdate)
+            APIReloadManager.fetchSpeakerImg(cellData.getUrl(), id: cellData.getObjectID(), completedAction: okUpdate)
         }
         
      
