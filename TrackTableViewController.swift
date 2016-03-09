@@ -18,7 +18,8 @@ public class TrackTableViewController:
     SearchableTableProtocol,
     UITableViewDataSource,
     UISearchBarDelegate,
-    ScrollableDateProtocol
+    ScrollableDateProtocol,
+    DevoxxAppFavoriteDelegate
 {
     
     public func hi() {
@@ -55,6 +56,7 @@ public class TrackTableViewController:
     
     var schedulerTableView = SchedulerTableView()
     
+    var presort = Array<[Slot]>()
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -112,6 +114,7 @@ public class TrackTableViewController:
         
         do {
             try fetchedResultsController().performFetch()
+            sortSectionFavorite()
         } catch let error as NSError {
             //todo
            // print("unresolved error \(error), \(error.userInfo)")
@@ -123,7 +126,6 @@ public class TrackTableViewController:
             }
         }
         
-        schedulerTableView.reloadData()
     }
     
     public func resetSearch() {
@@ -144,10 +146,8 @@ public class TrackTableViewController:
         if let slot = getCell(indexPath) as? Slot {
             
             let details = TalkDetailsController()
-            //todo
-            //details.indexPath = indexPath
             details.slot = slot
-            
+            details.delegate = self
             
             
             details.configure()
@@ -160,6 +160,45 @@ public class TrackTableViewController:
         }
     }
     
+    
+    public func favorite(id : NSManagedObjectID) -> Bool {
+        
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        
+        if let cellData:Slot = APIDataManager.findEntityFromId(id, context: managedContext) {
+            return cellData.invertFavorite()
+        }
+        return false
+    }
+    
+    
+    
+    
+    func sortSectionFavorite() {
+        
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            
+            self.presort.removeAll()
+            for section in (self.frc?.sections)! {
+                if section.objects?.count > 0 {
+                
+                if let sectionObjects = section.objects as? [Slot] {
+                    let sortedSection = sectionObjects.sort({ $0.favorited() > $1.favorited() })
+                    self.presort.append(sortedSection)
+                }
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                self.schedulerTableView.reloadData()
+            }
+        }
+
+    }
     
     
     func getCell(indexPath : NSIndexPath) -> CellDataPrococol? {
@@ -175,14 +214,9 @@ public class TrackTableViewController:
         }
             
         else {
-            cellDataTry = frc?.objectAtIndexPath(indexPath) as? CellDataPrococol
-            
-            let slot = frc?.sections![indexPath.section].objects as? [Slot]
-            if sortedSlot == nil {
-                sortedSlot = slot?.sort({ $0.favorited() > $1.favorited() })
+            if presort.count > indexPath.section {
+                return presort[indexPath.section][indexPath.row]
             }
-
-            return slot![indexPath.row]
         }
         return nil
         
@@ -341,14 +375,7 @@ public class TrackTableViewController:
     }
     
     
-    public func favorite(indexPath : NSIndexPath) -> Bool {
-        if let cellData = frc?.objectAtIndexPath(indexPath) as? CellDataPrococol {
-            if let cellElement = cellData as? FavoriteProtocol  {
-                return cellElement.invertFavorite()
-            }
-        }
-        return false
-    }
+  
     
     
     public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {

@@ -245,7 +245,6 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
    
         if let tField = textField {
             txtField = tField
-            txtField.text = "Hello world"
         }
     }
     
@@ -296,6 +295,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
             let alert = UIAlertController(title: "QRCode", message: "Please scan your badge QRCode or enter the code on your badge to authenticate yourself for presentation voting", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Scan", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.triggerRequestAccess()}))
             alert.addAction(UIAlertAction(title: "Enter manually", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.enterManually()}))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler:nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
         

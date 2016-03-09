@@ -142,6 +142,9 @@ class APIManager {
     }
     
     class func getDistinctTracks() -> NSArray {
+        
+        let res = NSMutableArray()
+        
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
         let fetchRequest = buildFetchRequest(context, name: "Attribute")
@@ -154,8 +157,38 @@ class APIManager {
         fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateEvent, predicateType])
 
         let items = try! context.executeFetchRequest(fetchRequest)
-        return items
+        
+        
+        
+        for it in items  {
+        
+        
+            let fetchRequestSlot = NSFetchRequest(entityName: "Slot")
+            fetchRequestSlot.fetchBatchSize = 20
+            fetchRequestSlot.returnsObjectsAsFaults = false
+            
+            let labelDict = it as! NSDictionary
+            let labelString = labelDict.objectForKey("label") as! String
+            
+            let predicateTrack = NSPredicate(format: "talk.track = %@", labelString)
+            let predicateEvent = NSPredicate(format: "eventId = %@", APIManager.currentEvent.id!)
+            
+            fetchRequestSlot.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateEvent, predicateTrack])
+            let itemsRes = try! context.executeFetchRequest(fetchRequestSlot)
+            
+      
+            
+            if itemsRes.count > 0 {
+                res.addObject(it)
+            }
+        
+        }
+        
+        
+        return res
     }
+    
+    
     
     
     

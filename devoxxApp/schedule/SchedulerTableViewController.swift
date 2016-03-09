@@ -64,6 +64,11 @@ public class SchedulerTableViewController:
     var schedulerTableView = SchedulerTableView()
     
     
+    
+    var presort = Array<[Slot]>()
+    
+    
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         
@@ -128,7 +133,7 @@ public class SchedulerTableViewController:
                 openedSections.append(true)
             }
         }
-        
+        sortSectionFavorite()
         schedulerTableView.reloadData()
     }
     
@@ -170,6 +175,21 @@ public class SchedulerTableViewController:
     
     
     
+    func sortSectionFavorite() {
+        
+        presort.removeAll()
+        
+        for section in (frc?.sections)! {
+            if let sectionObjects = section.objects as? [Slot] {
+                let sortedSection = sectionObjects.sort({ $0.favorited() > $1.favorited() })
+                presort.append(sortedSection)
+            }
+        }
+    }
+    
+    
+    
+    
     func getCell(indexPath : NSIndexPath) -> CellDataPrococol? {
         var cellDataTry:CellDataPrococol?
         
@@ -182,11 +202,7 @@ public class SchedulerTableViewController:
         }
         
         else {
-            cellDataTry = frc?.objectAtIndexPath(indexPath) as? CellDataPrococol
-            
-            let slot = frc?.sections![indexPath.section].objects as? [Slot]
-            let sortedSlot = slot?.sort({ $0.favorited() > $1.favorited() })
-            return sortedSlot![indexPath.row]
+            return presort[indexPath.section][indexPath.row]
         }
 
     }

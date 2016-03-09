@@ -109,8 +109,14 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
         return APIManager.invertFavorite("Talk", identifier: getIdentifier())
     }
     
-    func favorited() -> Bool {
+    var isFavorited: Bool {
         return APIManager.isFavorited("Talk", identifier: getIdentifier())
+    }
+    
+   
+    
+    func favorited() -> Bool {
+        return isFavorited
     }
     
     func isMatching(str : String) -> Bool {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1509" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
     <entity name="Attribute" representedClassName="devoxxApp.Attribute" syncable="YES">
         <attribute name="attributeDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -62,6 +62,7 @@
         <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fromTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fromTimeMillis" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="isFavorited" optional="YES" transient="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="roomName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="slotId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="toTime" optional="YES" attributeType="String" syncable="YES"/>
@@ -122,7 +123,7 @@
         <element name="Favorite" positionX="-54" positionY="45" width="128" height="90"/>
         <element name="Floor" positionX="-45" positionY="126" width="128" height="150"/>
         <element name="Image" positionX="-45" positionY="108" width="128" height="90"/>
-        <element name="Slot" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="Slot" positionX="-63" positionY="-18" width="128" height="195"/>
         <element name="Speaker" positionX="-54" positionY="45" width="128" height="180"/>
         <element name="SpeakerDetail" positionX="-45" positionY="135" width="128" height="135"/>
         <element name="StoredResource" positionX="-54" positionY="135" width="128" height="105"/>
