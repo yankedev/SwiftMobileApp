@@ -211,6 +211,10 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     }
     
     
+    override public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        searchBar.resignFirstResponder()
+    }
+    
     
     public func updateRowForSearch() {
         
