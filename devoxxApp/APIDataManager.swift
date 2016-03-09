@@ -36,7 +36,7 @@ class APIDataManager {
             }
             
         } catch let error1 as NSError {
-            print(error1)
+           // print(error1)
         }
         
         return nil
@@ -50,7 +50,7 @@ class APIDataManager {
                 return object
             }
         } catch let error1 as NSError {
-            print(error1)
+            //print(error1)
         }
         return nil
     }
@@ -62,7 +62,7 @@ class APIDataManager {
                 return object
             }
         } catch let error1 as NSError {
-            print(error1)
+            //print(error1)
         }
         return nil
     }
@@ -73,7 +73,7 @@ class APIDataManager {
                 return object
             }
         } catch let error1 as NSError {
-            print(error1)
+            //print(error1)
         }
         return nil
     }
@@ -182,7 +182,7 @@ class APIDataManager {
                     let filePath = testBundle.pathForResource(resource.fallback, ofType: "")
                     let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
                     if(checkString == nil) {
-                        print("should not be empty", terminator: "")
+                        //print("should not be empty", terminator: "")
                     }
                     let fallbackData = NSData(contentsOfFile: filePath!)!
                     
@@ -200,7 +200,7 @@ class APIDataManager {
                         let filePath = testBundle.pathForResource(resource.fallback, ofType: "")
                         let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
                         if(checkString == nil) {
-                            print("should not be empty", terminator: "")
+                            //print("should not be empty", terminator: "")
                         }
                         let fallbackData = NSData(contentsOfFile: filePath!)!
                         
@@ -216,7 +216,7 @@ class APIDataManager {
                         let filePath = testBundle.pathForResource(resource.fallback, ofType: "")
                         let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
                         if(checkString == nil) {
-                            print("should not be empty", terminator: "")
+                            //print("should not be empty", terminator: "")
                         }
                         let fallbackData = NSData(contentsOfFile: filePath!)!
                         
@@ -339,7 +339,7 @@ class APIDataManager {
                     if filePath != nil {
                         let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
                         if(checkString == nil) {
-                            print("should not be empty", terminator: "")
+                            //print("should not be empty", terminator: "")
                         }
                         let fallbackData = NSData(contentsOfFile: filePath!)!
                         
@@ -376,7 +376,7 @@ class APIDataManager {
                         let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
                         let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
                         if(checkString == nil) {
-                            print("should not be empty", terminator: "")
+                            //print("should not be empty", terminator: "")
                         }
                         let fallbackData = NSData(contentsOfFile: filePath!)!
                         
@@ -404,7 +404,7 @@ class APIDataManager {
                         
                         let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
                         if(checkString == nil) {
-                            print("should not be empty", terminator: "")
+                            //print("should not be empty", terminator: "")
                         }
                         let fallbackData = NSData(contentsOfFile: filePath!)!
                         

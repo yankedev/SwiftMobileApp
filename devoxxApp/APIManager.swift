@@ -123,7 +123,7 @@ class APIManager {
             try context.save()
         } catch let error1 as NSError {
             error = error1
-            print("Could not save \(error)")
+            //print("Could not save \(error)")
         }
     }
     
@@ -246,7 +246,7 @@ class APIManager {
             }
             
         } catch let error1 as NSError {
-            print(error1)
+           // print(error1)
         }
         
         return false
@@ -292,7 +292,7 @@ class APIManager {
    
     
     class func sayHi() {
-        print("hiiii")
+        //print("hiiii")
     }
     
     
@@ -326,7 +326,7 @@ class APIManager {
             let filePath = testBundle.pathForResource(singleUrl, ofType: "json")
             let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
             if(checkString == nil) {
-                print("should not be empty", terminator: "")
+               // print("should not be empty", terminator: "")
             }
             let data = NSData(contentsOfFile: filePath!)!
             self.handleData(data, dataHelper: helper)
@@ -340,7 +340,7 @@ class APIManager {
         let filePath = bundle.pathForResource(url, ofType: "json")
         let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
         if(checkString == nil) {
-            print("should not be empty", terminator: "")
+            //print("should not be empty", terminator: "")
         }
         let data = NSData(contentsOfFile: filePath!)!
         self.handleData(data, dataHelper: helper)

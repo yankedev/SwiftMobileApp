@@ -91,7 +91,7 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
             
         } catch {
             // If any error occurs, simply print it out and don't continue any more.
-            print(error)
+           // print(error)
             return
         }
 

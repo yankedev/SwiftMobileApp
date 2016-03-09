@@ -121,7 +121,7 @@ class SlotHelper: DataHelperProtocol {
                         
                                                
                     } catch let error as NSError {
-                        print("unresolved error \(error), \(error.userInfo)")
+                        //print("unresolved error \(error), \(error.userInfo)")
                     }
                   
                     coreDataObject.setValue(subDataObject as? AnyObject, forKey: relationName)

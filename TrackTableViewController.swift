@@ -22,7 +22,7 @@ public class TrackTableViewController:
 {
     
     public func hi() {
-        print("hi")
+       // print("hi")
     }
     
     var sortedSlot:[Slot]!
@@ -114,7 +114,7 @@ public class TrackTableViewController:
             try fetchedResultsController().performFetch()
         } catch let error as NSError {
             //todo
-            print("unresolved error \(error), \(error.userInfo)")
+           // print("unresolved error \(error), \(error.userInfo)")
         }
         
         if let sections = frc?.sections {

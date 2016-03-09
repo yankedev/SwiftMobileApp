@@ -28,7 +28,7 @@ public class SchedulerTableViewController:
 {
     
     public func hi() {
-        print("hi")
+       // print("hi")
     }
     
     //ScrollableDateProtocol
@@ -120,7 +120,7 @@ public class SchedulerTableViewController:
             try fetchedResultsController().performFetch()
         } catch let error as NSError {
             //todo
-            print("unresolved error \(error), \(error.userInfo)")
+            //print("unresolved error \(error), \(error.userInfo)")
         }
         
         if let sections = frc?.sections {

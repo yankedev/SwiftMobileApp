@@ -64,10 +64,10 @@ class APIReloadManager {
             data, response1, error in
             
             if let responseError = error {
-                print("error for \(url)")
+                //print("error for \(url)")
             }
             else {
-                print("fetch for \(url)")
+                //print("fetch for \(url)")
                 APIReloadManager.feedSpeaker(id, data : data!)
                 dispatch_async(dispatch_get_main_queue(),{
                     completedAction(msg: "ok")
@@ -90,10 +90,10 @@ class APIReloadManager {
             data, response1, error in
             
             if let responseError = error {
-                print("error for \(url)")
+                //print("error for \(url)")
             }
             else {
-                print("fetch for \(url)")
+                //print("fetch for \(url)")
                 APIReloadManager.feedFloor(id, data : data!)
                 dispatch_async(dispatch_get_main_queue(),{
                     completedAction(msg: "ok")
@@ -107,7 +107,7 @@ class APIReloadManager {
     
     
     class func onError(value : String) -> Void {
-        print("ERROR")
+       // print("ERROR")
     }
 
 }

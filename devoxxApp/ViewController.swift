@@ -152,7 +152,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint(), dataHelper: DayHelper(cfp: APIManager.currentEvent, url: nil), onSuccess: self.successGroup0, onError: self.onError)
         
         dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
-            print("OK EVERYTHING IS LOADED FROM GROUP 0")
+           // print("OK EVERYTHING IS LOADED FROM GROUP 0")
             self.serviceGroup = dispatch_group_create()
             self.fetchSecond("GO")
         })
@@ -187,7 +187,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         
-        print(APIManager.currentEvent.floors.count)
+        //print(APIManager.currentEvent.floors.count)
         
         
         
@@ -197,14 +197,14 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         APIDataManager.loadDataFromURLS(APIManager.currentEvent!.days, dataHelper: SlotHelper(), onSuccess: self.successGroup, onError: self.onError)
         
         dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
-                print("OK EVERYTHING IS LOADED FROM GROUP1")
+              //  print("OK EVERYTHING IS LOADED FROM GROUP1")
                 self.rotating = false
                 self.loadIsFinihsed()
         })
     }
     
     func successGroup(ok : String) {
-        print("block finished \(ok)")
+     //   print("block finished \(ok)")
         dispatch_group_leave(serviceGroup)
     }
     
@@ -264,14 +264,14 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     
     func onSuccess(value : String) {
-        print("OnSucess = \(value)")
+      //  print("OnSucess = \(value)")
     }
     
     func onError(value : String) {
         
         showStaticView(false)
         
-        print("OnError = \(value)")
+       // print("OnError = \(value)")
         
         if(APIManager.isCurrentEventEmpty()) {
             let alert = UIAlertController(title: "No data", message: "No data for this event, select Belgium to test", preferredStyle: UIAlertControllerStyle.Alert)

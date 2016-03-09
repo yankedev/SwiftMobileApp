@@ -27,7 +27,7 @@ public class MapTabController : UIViewController {
     }
     
     func completed(msg : String) {
-        print("fetch img")
+        //print("fetch img")
         change(seg)
     }
     

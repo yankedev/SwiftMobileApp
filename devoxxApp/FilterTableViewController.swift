@@ -72,7 +72,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
             try fetchedResultsController.performFetch()
         } catch let error1 as NSError {
             error = error1
-            print("unresolved error \(error), \(error!.userInfo)")
+           // print("unresolved error \(error), \(error!.userInfo)")
         }
         filterTableView.reloadData()
     }

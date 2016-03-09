@@ -133,7 +133,7 @@ public class GenericPageScrollController<T : ScrollableItemProtocol> : UINavigat
     
     public func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
-                print("completed")
+                //print("completed")
         }
         
     }
