@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol {
+class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, SearchableItemProtocol {
 
     @NSManaged var uuid: String?
     @NSManaged var firstName: String?
@@ -110,6 +110,11 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
     func getTalks() -> Void {
         //return APIManager.getTalksFromSpeaker(self)
     }
+    
+    func isMatching(str : String) -> Bool {
+        return getFullName().lowercaseString.containsString(str.lowercaseString)
+    }
+
     
 
 

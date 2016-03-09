@@ -12,13 +12,20 @@ import CoreData
 
 //TODO make CellData optional
 
-public class SpeakerTableController: UITableViewController, NSFetchedResultsControllerDelegate {
+public class SpeakerTableController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
     
     var cellDataArray:[CellDataPrococol]?
+    var searchedRow:[CellDataPrococol]?
+    
+   
+    var searchingString = ""
+    var searchBar = UISearchBar(frame: CGRectMake(0,0,44,44))
     
     
-    //var isRefreshing = false
-    
+    public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        searchingString = searchText
+        tableView.reloadData()
+    }
     
     
     func fetchSpeaker() {
@@ -46,9 +53,11 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
   
     override public func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
         self.tableView.separatorStyle = .None
         
+        
+        self.tableView.tableHeaderView = searchBar
+        searchBar.delegate = self
         
         
         let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: Selector("searchSchedule"))
@@ -93,9 +102,16 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         }
         
         
+        var arrayToParse:[CellDataPrococol]!
+        if searchingString.isEmpty {
+            arrayToParse = cellDataArray
+        }
+        else {
+            arrayToParse = searchedRow
+        }
         
         
-        let cellData = cellDataArray![indexPath.row]
+        let cellData = arrayToParse![indexPath.row]
         cell!.firstInformation.text = cellData.getFirstInformation()
         
         var shouldDisplay = false
@@ -103,7 +119,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             shouldDisplay = true
         }
         else {
-            let previousCellDataInfo = cellDataArray![indexPath.row - 1].getFirstInformation()
+            let previousCellDataInfo = arrayToParse![indexPath.row - 1].getFirstInformation()
             if cellData.getFirstInformation().characters.first == previousCellDataInfo.characters.first {
                 shouldDisplay = false
             }
@@ -155,7 +171,17 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     
     override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if let speaker = cellDataArray![indexPath.row] as? Speaker {
+        
+        var arrayToParse:[CellDataPrococol]!
+        if searchingString.isEmpty {
+            arrayToParse = cellDataArray
+        }
+        else {
+            arrayToParse = searchedRow
+        }
+        
+        
+        if let speaker = arrayToParse![indexPath.row] as? Speaker {
             
             
       //      print(speaker.speakerDetail.bio)
@@ -184,9 +210,33 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         return 1
     }
     
+    
+    
+    public func updateRowForSearch() {
+        
+        searchedRow = cellDataArray
+        
+        let filteredArray = searchedRow!.filter() {
+            if let type = $0 as? SearchableItemProtocol {
+                return type.isMatching(searchingString)
+            } else {
+                return false
+            }
+        }
+        
+        searchedRow = filteredArray
+
+    }
+    
+    
     public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if cellDataArray == nil {
             return 0
+        }
+        
+        if !searchingString.isEmpty {
+            updateRowForSearch()
+            return searchedRow!.count
         }
         return cellDataArray!.count
     }

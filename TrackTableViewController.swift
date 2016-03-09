@@ -23,7 +23,7 @@ public class TrackTableViewController:
 {
     
     public func hi() {
-       // print("hi")
+       // print("hi") 
     }
     
     var sortedSlot:[Slot]!
@@ -282,10 +282,8 @@ public class TrackTableViewController:
                 return false
             }
         }
-        
-        
+
         return filteredArray
-        
     }
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
