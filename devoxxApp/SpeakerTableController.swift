@@ -74,13 +74,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         self.tableView.reloadData()
     }
     
-  /*  override public func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        print("WILL APPEAR")
-        cellDataArray?.removeAll()
-        fetchAll()
-    }*/
-    
+
     override public func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -169,7 +163,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             
             let details = SpeakerDetailsController()
             //todo
-            details.indexPath = indexPath
+            //details.indexPath = indexPath
             details.speaker = speaker
             //details.delegate = self
             

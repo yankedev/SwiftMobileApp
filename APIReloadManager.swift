@@ -25,7 +25,20 @@ class APIReloadManager {
         }
         
     }
+
     
+    class func feedFloor(id : NSManagedObjectID, data : NSData) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        privateContext.persistentStoreCoordinator = context.persistentStoreCoordinator
+        if let floor = APIDataManager.findFloorFromId(id, context: context) {
+            floor.imgData = data
+            APIManager.save(privateContext)
+        }
+        
+    }
+
     
     class func run_on_background_thread(code: () -> Void) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), code)
@@ -56,6 +69,32 @@ class APIReloadManager {
             else {
                 print("fetch for \(url)")
                 APIReloadManager.feedSpeaker(id, data : data!)
+                dispatch_async(dispatch_get_main_queue(),{
+                    completedAction(msg: "ok")
+                })
+            }
+        }
+        task.resume()
+        
+    }
+
+    
+    class func fetchFloorImg(url : String?, id : NSManagedObjectID, completedAction : (msg: String) -> Void) {
+        
+        
+        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+        config.requestCachePolicy = .ReloadIgnoringLocalCacheData
+        
+        let session = NSURLSession(configuration: config)
+        let task = session.dataTaskWithURL(NSURL(string: url!)!) {
+            data, response1, error in
+            
+            if let responseError = error {
+                print("error for \(url)")
+            }
+            else {
+                print("fetch for \(url)")
+                APIReloadManager.feedFloor(id, data : data!)
                 dispatch_async(dispatch_get_main_queue(),{
                     completedAction(msg: "ok")
                 })

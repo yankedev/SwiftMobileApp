@@ -168,12 +168,13 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
        
         
-        print(APIManager.currentEvent.days.count)
+       
         APIDataManager.updateCurrentEvent()
-        print(APIManager.currentEvent.days.count)
+       
      
         dispatch_group_enter(serviceGroup)
         dispatch_group_enter(serviceGroup)
+        
         for _ in 0...APIManager.currentEvent!.days.count-1 {
             dispatch_group_enter(serviceGroup)
         }
@@ -183,6 +184,10 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         APIDataManager.loadDataFromURL(APIDataManager.getTracks(), dataHelper: TrackHelper(), onSuccess: self.successGroup, onError: self.onError)
         
         APIDataManager.loadDataFromURL(APIDataManager.getProposalTypes(), dataHelper: TalkTypeHelper(), onSuccess: self.successGroup, onError: self.onError)
+        
+        
+        
+        print(APIManager.currentEvent.floors.count)
         
         
         
@@ -441,11 +446,11 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     //Delegate
     //some sample messages when actions are triggered (open/close slices)
     func didOpenSliceAtIndex(index: Int) {
-        print("Open slice at \(index)")
+      
     }
     
     func didCloseSliceAtIndex(index: Int) {
-        print("Close slice at \(index)")
+      
     }
     
     func willOpenSliceAtIndex(index: Int) {
@@ -454,7 +459,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     func willCloseSliceAtIndex(index: Int) {
-        print("Will close slice at \(index)")
+       
     }
     
     //Datasource

@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 
 public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
-    func favorite(path : NSIndexPath) -> Bool
+    func favorite(id : NSManagedObjectID) -> Bool
 }
 
 public class SchedulerTableViewController:
@@ -151,7 +151,7 @@ public class SchedulerTableViewController:
                 
             let details = TalkDetailsController()
             //todo
-            details.indexPath = indexPath
+
             details.slot = slot
             details.delegate = self
       
@@ -384,11 +384,15 @@ public class SchedulerTableViewController:
     
     
     
-    public func favorite(indexPath : NSIndexPath) -> Bool {
-        if let cellData = frc?.objectAtIndexPath(indexPath) as? CellDataPrococol {
-            if let cellElement = cellData as? FavoriteProtocol  {
-                return cellElement.invertFavorite()
-            }
+    public func favorite(id : NSManagedObjectID) -> Bool {
+        
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        
+        if let cellData:Slot = APIDataManager.findEntityFromId(id, context: managedContext) {
+            return cellData.invertFavorite()
         }
         return false
     }
@@ -577,8 +581,7 @@ public class SchedulerTableViewController:
     }
 
     public func fetchUpdate() {
-        print("should fetchUpdate")
-        
+      
         //APIReloadManager.fetchUpdate(fetchUrl(), helper: SlotHelper(), completedAction: fetchCompleted)
         
     }

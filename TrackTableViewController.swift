@@ -13,7 +13,6 @@ import CoreData
 
 public class TrackTableViewController:
     UIViewController,
-    DevoxxAppFavoriteDelegate,
     FilterableTableDataSource,
     UITableViewDelegate,
     SearchableTableProtocol,
@@ -142,11 +141,9 @@ public class TrackTableViewController:
             
             let details = TalkDetailsController()
             //todo
-            details.indexPath = indexPath
+            //details.indexPath = indexPath
             details.slot = slot
-            details.delegate = self
-            
-            
+                        
             
             
             details.configure()

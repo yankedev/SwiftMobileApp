@@ -202,7 +202,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
             
             let details = TalkDetailsController()
         //todo
-            details.indexPath = indexPath
+            //details.indexPath = indexPath
             details.slot = talk.slot
 
         

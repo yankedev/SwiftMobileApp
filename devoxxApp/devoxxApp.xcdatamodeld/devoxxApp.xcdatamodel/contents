@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="14F1509" minimumToolsVersion="Automatic">
     <entity name="Attribute" representedClassName="devoxxApp.Attribute" syncable="YES">
         <attribute name="attributeDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,7 +27,7 @@
         <attribute name="venue" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="attributes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Attribute" inverseName="cfp" inverseEntity="Attribute" syncable="YES"/>
         <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="cfp" inverseEntity="Day" syncable="YES"/>
-        <relationship name="floors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Floor" syncable="YES"/>
+        <relationship name="floors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Floor" inverseName="cfp" inverseEntity="Floor" syncable="YES"/>
     </entity>
     <entity name="Day" representedClassName="devoxxApp.Day" syncable="YES">
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
@@ -45,9 +45,11 @@
     <entity name="Floor" representedClassName="devoxxApp.Floor" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="img" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imgData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="tabpos" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="target" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="cfp" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cfp" inverseName="floors" inverseEntity="Cfp" syncable="YES"/>
     </entity>
     <entity name="Image" representedClassName="devoxxApp.Image" syncable="YES">
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -118,7 +120,7 @@
         <element name="Day" positionX="-54" positionY="135" width="128" height="75"/>
         <element name="Etag" positionX="-54" positionY="45" width="128" height="75"/>
         <element name="Favorite" positionX="-54" positionY="45" width="128" height="90"/>
-        <element name="Floor" positionX="-45" positionY="126" width="128" height="120"/>
+        <element name="Floor" positionX="-45" positionY="126" width="128" height="150"/>
         <element name="Image" positionX="-45" positionY="108" width="128" height="90"/>
         <element name="Slot" positionX="-63" positionY="-18" width="128" height="180"/>
         <element name="Speaker" positionX="-54" positionY="45" width="128" height="180"/>

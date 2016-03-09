@@ -10,22 +10,9 @@ import Foundation
 import UIKit
 import CoreData
 
-let topAppURL = "http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday"
-
-
-
-/*
-let apiURLS:[String : [String]] = ["Slot" : ["http://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/thursday/","http://cfp.devoxx.be/api/conferences/DV15/schedules/friday/"], "TalkType" : ["http://cfp.devoxx.be/api/conferences/DV15/proposalTypes"], "Track" :  ["http://cfp.devoxx.be/api/conferences/DV15/tracks"], "Speaker" :  ["http://cfp.devoxx.be/api/conferences/DV15/speakers"]]
-*/
-
 
 
 let commonUrl:[String : [String]] = ["StoredResource" : ["StoredResource"], "Cfp" : ["Cfp"]]
-let apiURLS:[String : [String]] =  ["Slot" : ["00","01","02","03"], "TalkType" : ["TalkType"], "Track" :  ["Track"], "Speaker" :  ["Speaker"]]
-let otherUrls:[String : [String]] = ["Slot" : [], "TalkType" : [], "Track" :  [], "Speaker" :  []]
-
-
-let allData = ["DV15" : apiURLS, "DevoxxMA2015" : otherUrls, "DevoxxPL2015" : otherUrls, "DevoxxUK2016" : otherUrls, "DevoxxFR2016" : otherUrls]
 
 
 
@@ -195,8 +182,7 @@ class APIManager {
     
     
     class func getTrackFromIndex(index : NSInteger, array: NSArray) -> String {
-        print("all tracks")
-        print(array)
+  
         if index < array.count  {
             if let dict = array.objectAtIndex(index) as? NSDictionary {
                 return (dict.objectForKey("label") as? String)!
@@ -324,12 +310,6 @@ class APIManager {
         singleCommonFeed(CfpHelper())
     }
     
-    class func eventFeed() {
-        singleFeed(SpeakerHelper())
-        singleFeed(SlotHelper())
-        singleFeed(TalkTypeHelper())
-        singleFeed(TrackHelper())
-    }
     
     
     class func singleCommonFeed(helper : DataHelperProtocol) {
@@ -366,23 +346,6 @@ class APIManager {
         self.handleData(data, dataHelper: helper)
     }
     
-    
-    class func singleFeed(helper : DataHelperProtocol) {
-        
-        
-        
-        let s = allData[currentEvent!.id!]
-        let url = s![helper.typeName()]
-        
-        
-        let testBundle = NSBundle.mainBundle()
-        
-        for singleUrl in url! {
-            innerFeed(testBundle, url: singleUrl, helper: helper)
-        }
-        
-        
-    }
     
     
     
@@ -517,18 +480,7 @@ class APIManager {
         return getDistinctDays().count == 0
 
     }
-    
-   /*
-    class func getTalksFromSpeaker(speaker : Speaker) {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-        let fetchRequest = NSFetchRequest(entityName: "Talk")
-        let predicate = NSPredicate(format: " = %@", id)
-        fetchRequest.predicate = predicate
-        let items = try! context.executeFetchRequest(fetchRequest)
-
-    }
-    */
+   
     
 }
 

@@ -73,9 +73,12 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         configure()
 
         
+        actionButtonView1.button.addTarget(self, action: Selector("clicked"), forControlEvents: .TouchUpInside)
+        
         view.layoutIfNeeded()
         
     
+        
         
     }
     
@@ -85,7 +88,13 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         self.navigationController?.navigationBarHidden = true
     }
     
-        
+    
+    public func clicked() {
+        if delegate != nil {
+            let response = delegate.favorite(slot.objectID)
+            setColor(response)
+        }
+    }
     
    
     
@@ -122,7 +131,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
             
             let details = SpeakerDetailsController()
             //todo
-            details.indexPath = indexPath
+            
             details.speaker = speaker
             //details.delegate = self
             

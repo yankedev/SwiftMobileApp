@@ -17,6 +17,7 @@ class Floor: NSManagedObject, FeedableProtocol {
     @NSManaged var title: String
     @NSManaged var tabpos: String
     @NSManaged var target: String
+    @NSManaged var imgData: NSData
     
     func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? FloorHelper  {

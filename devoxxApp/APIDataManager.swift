@@ -54,10 +54,22 @@ class APIDataManager {
         }
         return nil
     }
+
     
     class func findSpeakerFromId(id : NSManagedObjectID, context : NSManagedObjectContext) -> Speaker? {
         do {
             if let object = try context.existingObjectWithID(id) as? Speaker {
+                return object
+            }
+        } catch let error1 as NSError {
+            print(error1)
+        }
+        return nil
+    }
+    
+    class func findFloorFromId(id : NSManagedObjectID, context : NSManagedObjectContext) -> Floor? {
+        do {
+            if let object = try context.existingObjectWithID(id) as? Floor {
                 return object
             }
         } catch let error1 as NSError {

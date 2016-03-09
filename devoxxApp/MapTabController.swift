@@ -22,7 +22,13 @@ public class MapTabController : UIViewController {
         floors = APIManager.currentEvent.getImages()
         for floor in floors {
             seg.insertSegmentWithTitle(floor.title, atIndex: seg.numberOfSegments, animated: false)
+            APIReloadManager.fetchFloorImg(floor.img, id: floor.objectID, completedAction: completed)
         }
+    }
+    
+    func completed(msg : String) {
+        print("fetch img")
+        change(seg)
     }
     
     override public func viewDidLoad() {
@@ -101,12 +107,11 @@ public class MapTabController : UIViewController {
         
         if(sender.selectedSegmentIndex > 0) {
 
-            let imageName = floors[sender.selectedSegmentIndex - 1].img
-            let decodedData = APIManager.getDataFromName(imageName)
-            
+            let currentFloor = floors[sender.selectedSegmentIndex - 1]
+        
             currentView?.removeFromSuperview()
             let v = UIImageView(frame: CGRectMake(0, 0, accessView.frame.width, accessView.frame.height))
-            v.image = UIImage(data: decodedData)
+            v.image = UIImage(data: currentFloor.imgData)
             currentView = v
             accessView.addSubview(currentView!)
         }

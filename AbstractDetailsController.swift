@@ -14,7 +14,6 @@ public class AbstractDetailsController : UIViewController {
     var scroll : UITextView!
     var header = ColoredHeaderView(frame: CGRectZero)
     
-    var indexPath: NSIndexPath!
     var delegate : DevoxxAppFavoriteDelegate!
     
     var actionButtonView2 = ActionButtonView()
@@ -237,10 +236,7 @@ public class AbstractDetailsController : UIViewController {
 
     }
     
-    public func clicked() {
-        let response = delegate.favorite(indexPath)
-        setColor(response)
-    }
+    
     
     public func setColor(isFavorited: Bool) {
         if isFavorited {
@@ -255,7 +251,7 @@ public class AbstractDetailsController : UIViewController {
     public func configure() {
         
         actionButtonView0.button.addTarget(self, action: Selector("twitter"), forControlEvents: .TouchUpInside)
-        actionButtonView1.button.addTarget(self, action: Selector("clicked"), forControlEvents: .TouchUpInside)
+        
         actionButtonView2.button.addTarget(self, action: Selector("tryToRate"), forControlEvents: .TouchUpInside)
         
         actionButtonViewBack.button.addTarget(self, action: Selector("back"), forControlEvents: .TouchUpInside)

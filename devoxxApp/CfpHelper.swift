@@ -88,7 +88,7 @@ class CfpHelper: DataHelperProtocol {
             
         }
 
-        
+        print(fedFloorsArray)
         //floors = data["floors"].array?.description
     }
     
@@ -111,6 +111,8 @@ class CfpHelper: DataHelperProtocol {
         for floor in fedFloorsArray {
             floor.save(managedContext)
         }
+        APIManager.save(managedContext)
+        
         let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
         let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
         
@@ -123,12 +125,12 @@ class CfpHelper: DataHelperProtocol {
             fetch.returnsObjectsAsFaults = false
             
             
-            
             let items = APIManager.debugAllFloors(managedContext, withId:self.id!)
 
             coreDataObject.mutableSetValueForKey("floors").addObjectsFromArray(items as [AnyObject])
 
           
+            print(coreDataObject)
             
             
         }
