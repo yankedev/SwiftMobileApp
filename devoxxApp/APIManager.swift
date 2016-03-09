@@ -68,7 +68,7 @@ class APIManager {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
         let entity = NSEntityDescription.entityForName("Etag", inManagedObjectContext: managedContext)
-        let coreData = devoxxApp.Etag(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        let coreData = Etag(entity: entity!, insertIntoManagedObjectContext: managedContext)
         coreData.url = url
         coreData.value = ""
         save(managedContext)

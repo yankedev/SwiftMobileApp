@@ -129,6 +129,7 @@ class CfpHelper: DataHelperProtocol {
             coreDataObject.mutableSetValueForKey("floors").addObjectsFromArray(items as [AnyObject])
 
        
+            print(coreDataObject)
             
             
         }

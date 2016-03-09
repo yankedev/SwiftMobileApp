@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
-    <entity name="Attribute" representedClassName="devoxxApp.Attribute" syncable="YES">
+    <entity name="Attribute" representedClassName="My_Devoxx.Attribute" syncable="YES">
         <attribute name="attributeDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="cfp" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cfp" inverseName="attributes" inverseEntity="Cfp" syncable="YES"/>
     </entity>
-    <entity name="Cfp" representedClassName=".Cfp" syncable="YES">
+    <entity name="Cfp" representedClassName="My_Devoxx.Cfp" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="backgroundImageData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="capacity" optional="YES" attributeType="String" syncable="YES"/>
@@ -29,20 +29,20 @@
         <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="cfp" inverseEntity="Day" syncable="YES"/>
         <relationship name="floors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Floor" inverseName="cfp" inverseEntity="Floor" syncable="YES"/>
     </entity>
-    <entity name="Day" representedClassName="devoxxApp.Day" syncable="YES">
+    <entity name="Day" representedClassName="My_Devoxx.Day" syncable="YES">
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="cfp" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cfp" inverseName="days" inverseEntity="Cfp" syncable="YES"/>
     </entity>
-    <entity name="Etag" representedClassName="devoxxApp.Etag" syncable="YES">
+    <entity name="Etag" representedClassName="My_Devoxx.Etag" syncable="YES">
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Favorite" representedClassName="devoxxApp.Favorite" syncable="YES">
+    <entity name="Favorite" representedClassName="My_Devoxx.Favorite" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isFavorited" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Floor" representedClassName="devoxxApp.Floor" syncable="YES">
+    <entity name="Floor" representedClassName="My_Devoxx.Floor" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="img" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imgData" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -51,12 +51,12 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="cfp" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Cfp" inverseName="floors" inverseEntity="Cfp" syncable="YES"/>
     </entity>
-    <entity name="Image" representedClassName="devoxxApp.Image" syncable="YES">
+    <entity name="Image" representedClassName="My_Devoxx.Image" syncable="YES">
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="etag" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="img" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Slot" representedClassName="devoxxApp.Slot" syncable="YES">
+    <entity name="Slot" representedClassName="My_Devoxx.Slot" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="day" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
@@ -68,7 +68,7 @@
         <attribute name="toTime" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="talk" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Talk" inverseName="slot" inverseEntity="Talk" syncable="YES"/>
     </entity>
-    <entity name="Speaker" representedClassName="devoxxApp.Speaker" syncable="YES">
+    <entity name="Speaker" representedClassName="My_Devoxx.Speaker" syncable="YES">
         <attribute name="avatarUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -79,7 +79,7 @@
         <relationship name="speakerDetail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SpeakerDetail" inverseName="speaker" inverseEntity="SpeakerDetail" syncable="YES"/>
         <relationship name="talks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Talk" inverseName="speakers" inverseEntity="Talk" syncable="YES"/>
     </entity>
-    <entity name="SpeakerDetail" representedClassName="devoxxApp.SpeakerDetail" syncable="YES">
+    <entity name="SpeakerDetail" representedClassName="My_Devoxx.SpeakerDetail" syncable="YES">
         <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bioAsHtml" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="company" optional="YES" attributeType="String" syncable="YES"/>
@@ -87,13 +87,13 @@
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="speaker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Speaker" inverseName="speakerDetail" inverseEntity="Speaker" syncable="YES"/>
     </entity>
-    <entity name="StoredResource" representedClassName="devoxxApp.StoredResource" syncable="YES">
+    <entity name="StoredResource" representedClassName="My_Devoxx.StoredResource" syncable="YES">
         <attribute name="etag" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fallback" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hasBeenFedOnce" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Talk" representedClassName="devoxxApp.Talk" syncable="YES">
+    <entity name="Talk" representedClassName="My_Devoxx.Talk" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isBreak" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lang" optional="YES" attributeType="String" syncable="YES"/>
@@ -105,12 +105,12 @@
         <relationship name="slot" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Slot" inverseName="talk" inverseEntity="Slot" syncable="YES"/>
         <relationship name="speakers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Speaker" inverseName="talks" inverseEntity="Speaker" syncable="YES"/>
     </entity>
-    <entity name="TalkType" representedClassName="devoxxApp.TalkType" syncable="YES">
+    <entity name="TalkType" representedClassName="My_Devoxx.TalkType" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="talkTypeDescription" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Track" representedClassName="devoxxApp.Track" syncable="YES">
+    <entity name="Track" representedClassName="My_Devoxx.Track" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="trackDescription" optional="YES" attributeType="String" syncable="YES"/>

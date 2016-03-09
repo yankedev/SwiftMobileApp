@@ -74,7 +74,7 @@ class SlotHelper: DataHelperProtocol {
     
     func generateFavorite(managedContext:NSManagedObjectContext, identifier: String, type: String) {
         let favEntity = NSEntityDescription.entityForName("Favorite", inManagedObjectContext: managedContext)
-        let favCoreData = devoxxApp.Favorite(entity: favEntity!, insertIntoManagedObjectContext: managedContext)
+        let favCoreData = Favorite(entity: favEntity!, insertIntoManagedObjectContext: managedContext)
         favCoreData.id = identifier
         favCoreData.isFavorited = 0
         favCoreData.type = type
