@@ -1271,7 +1271,7 @@
 				PRODUCT_NAME = "My Devoxx";
 				PROVISIONING_PROFILE = "af2e2e57-6c99-4e9b-9b02-17869fdbc689";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1287,7 +1287,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx;
 				PRODUCT_NAME = "My Devoxx";
 				PROVISIONING_PROFILE = "af2e2e57-6c99-4e9b-9b02-17869fdbc689";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
