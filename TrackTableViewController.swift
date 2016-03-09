@@ -15,13 +15,11 @@ public class TrackTableViewController:
     UIViewController,
     DevoxxAppFavoriteDelegate,
     FilterableTableDataSource,
-    FilterableTableProtocol,
     UITableViewDelegate,
     SearchableTableProtocol,
     UITableViewDataSource,
     UISearchBarDelegate,
-    ScrollableDateProtocol,
-    HotReloadProtocol
+    ScrollableDateProtocol
 {
     
     public func hi() {
@@ -48,10 +46,6 @@ public class TrackTableViewController:
     
     var searchedSections = [NSFetchedResultsSectionInfo]()
     
-    
-    
-    //FilterableTableProtocol
-    var currentFilters:[String : [FilterableProtocol]]!
     
     //FilterableTableDataSource
     var frc:NSFetchedResultsController?
@@ -81,7 +75,7 @@ public class TrackTableViewController:
         
         
         
-        self.schedulerTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.schedulerTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell2")
         
         
         
@@ -168,6 +162,7 @@ public class TrackTableViewController:
     
     
     func getCell(indexPath : NSIndexPath) -> CellDataPrococol? {
+        
         var cellDataTry:CellDataPrococol?
         
         if !searchingString.isEmpty {
@@ -185,75 +180,44 @@ public class TrackTableViewController:
             let sortedSlot = slot?.sort({ $0.favorited() > $1.favorited() })
             return sortedSlot![indexPath.row]
         }
+        return nil
         
     }
     
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
-        let cellData = getCell(indexPath)
         
-        if cellData?.isSpecial() == true {
+        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? ScheduleCellView
             
-            var cell = tableView.dequeueReusableCellWithIdentifier("BREAK_CELL") as? ScheduleBreakCell
-            
-            if cell == nil {
-                cell = ScheduleBreakCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "BREAK_CELL")
+        if cell == nil {
+            cell = ScheduleCellView(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
+        }
+        
+        if let cellData = getCell(indexPath) {
+                
+            cell!.leftIconView.imageView.image = cellData.getPrimaryImage()
+                
+            cell!.rightTextView.topTitleView.talkTrackName.text = cellData.getThirdInformation()
+            cell!.rightTextView.topTitleView.talkTitle.text = cellData.getFirstInformation()
+                
+            cell!.rightTextView.locationView.label.text = cellData.getSecondInformation()
+            cell!.rightTextView.speakerView.label.text = cellData.getForthInformation(false)
+                
+                
+            if let fav = cellData as? FavoriteProtocol {
+                cell!.updateBackgroundColor(fav.favorited())
             }
-            
-            cell?.rightTextView.text = cellData?.getFirstInformation()
-            
-            cell?.leftIconView.setup()
-            
-            cell?.leftIconView.imageView.frame = CGRectInset(CGRectMake(0, 5, 50, 60), 8, 8);
-            cell?.leftIconView.imageView.contentMode = .ScaleAspectFit
-            
-            cell?.leftIconView.imageView.image = UIImage(named: "cofeeCup.png")
-            
-            cell?.backgroundColor = cellData!.getColor()
-            
-            
+                
             return cell!
-            
-        }
-        else {
-            
-            var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? ScheduleCellView
-            
-            if cell == nil {
-                cell = ScheduleCellView(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
-            }
-            
-            
-            
-            if let cellData = getCell(indexPath) {
                 
-                cell!.leftIconView.imageView.image = cellData.getPrimaryImage()
-                
-                cell!.rightTextView.topTitleView.talkTrackName.text = cellData.getThirdInformation()
-                cell!.rightTextView.topTitleView.talkTitle.text = cellData.getFirstInformation()
-                
-                cell!.rightTextView.locationView.label.text = cellData.getSecondInformation()
-                cell!.rightTextView.speakerView.label.text = cellData.getForthInformation(false)
-                
-                
-                if let fav = cellData as? FavoriteProtocol {
-                    cell!.updateBackgroundColor(fav.favorited())
-                }
-                
-                
-                
-                return cell!
-                
-            } else {
+        } else {
                 // todo should be be here
-            }
         }
-        
         
         return UITableViewCell()
-        
     }
+
     
     func filterArray(currentArray : [AnyObject]) -> [AnyObject] {
         
@@ -287,22 +251,7 @@ public class TrackTableViewController:
     }
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
-        if let sections = frc?.sections {
-            
-            if !searchingString.isEmpty {
-                updateSectionForSearch()
-                return searchedSections.count
-            }
-            
-            
-            
-            return sections.count
-            
-            
-        }
-        
-        return 0
+        return 1
     }
     
     
@@ -373,14 +322,6 @@ public class TrackTableViewController:
     }
     
     
-    public func changeSchedule(sender: UISegmentedControl) {
-        self.fetchAll()
-    }
-    
-    
-    
-    
-    
     public func favorite(indexPath : NSIndexPath) -> Bool {
         if let cellData = frc?.objectAtIndexPath(indexPath) as? CellDataPrococol {
             if let cellElement = cellData as? FavoriteProtocol  {
@@ -427,157 +368,22 @@ public class TrackTableViewController:
         return frc!
     }
     
-    //FilterableTableProtocol
-    
-    
-    func clearFilter() {
-        searchPredicates.removeAll()
-    }
-    
-    
-    func buildFilter(filters: [String : [FilterableProtocol]]) {
-        currentFilters = filters
-        for key in filters.keys {
-            searchPredicates[key] = [NSPredicate]()
-            for attribute in filters[key]! {
-                let predicate = NSPredicate(format: "\(attribute.filterPredicateLeftValue()) = %@", attribute.filterPredicateRightValue())
-                searchPredicates[key]?.append(predicate)
-            }
-        }
-    }
-    
-    func filter() {
-        fetchAll()
-    }
-    
-    func getCurrentFilters() -> [String : [FilterableProtocol]]? {
-        return currentFilters
-    }
-    
-    
+
     public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
        return 0
     }
     
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        
-        let cellData = getCell(indexPath)
-        
-        if cellData?.isSpecial() == true {
-            return 60
-        }
-        
-        
-        
         return 130
     }
     
     
     public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        var title = ""
-        var nbTalks = 0
-        
-        var set = Set<String>()
-        
-        let currentSection = getSection(section)!
-        
-        
-        var obj = currentSection.objects!
-        if !searchingString.isEmpty {
-            obj = filterSearchArray(obj)
-        }
-        
-        if let slot = obj[0] as? Slot {
-            title = "\(currentSection.name) - \(slot.toTime)"
-        }
-        nbTalks = obj.count
-        for slot in obj {
-            if let currentSlot = slot as? Slot {
-                set.insert(currentSlot.talk.track)
-            }
-        }
-        
-        
-        
-        let breakSlot = (set.count == 1 && set.first == "")
-        
-        let headerView = HeaderView(frame: CGRectMake(0,0,schedulerTableView.frame.width, 50))
-        headerView.headerString.text = title
-        
-        
-        headerView.tag = section
-        headerView.upDown.tag = section
-        headerView.upDown.addTarget(self, action: Selector("openCloseButton:"), forControlEvents: .TouchUpInside)
-        headerView.upDown.selected = openedSections[section]
-        
-        if breakSlot {
-            headerView.upDown.hidden = breakSlot
-            headerView.eventImg.hidden = breakSlot
-            headerView.numberOfTalkString.text = ""
-            headerView.backgroundColor = ColorManager.breakColor
-        }
-        else {
-            let pluralTracks = (set.count > 1) ? "tracks" : "track"
-            let pluralTalks = (nbTalks > 1) ? "talks" : "talk"
-            
-            headerView.numberOfTalkString.text = "\(nbTalks) \(pluralTalks) in \(set.count) \(pluralTracks)"
-            
-            let tap = UITapGestureRecognizer(target: self, action: Selector("openCloseView:"))
-            headerView.addGestureRecognizer(tap)
-        }
-        
-        
-        return headerView
+        return UIView()
     }
     
     
-    func openCloseButton(sender: UIButton) {
-        let indexPath : NSIndexPath = NSIndexPath(forRow: 0, inSection:(sender.tag as Int!)!)
-        if (indexPath.row == 0) {
-            
-            openedSections[indexPath.section] =  !openedSections[indexPath.section]
-            
-            let range = NSMakeRange(indexPath.section, 1)
-            let sectionToReload = NSIndexSet(indexesInRange: range)
-            self.schedulerTableView .reloadSections(sectionToReload, withRowAnimation:UITableViewRowAnimation.Fade)
-        }
-        sender.selected = !sender.selected
-    }
-    
-    
-    func openCloseView(sender: UITapGestureRecognizer) {
-        let indexPath : NSIndexPath = NSIndexPath(forRow: 0, inSection:(sender.view!.tag as Int!)!)
-        if (indexPath.row == 0) {
-            
-            openedSections[indexPath.section] =  !openedSections[indexPath.section]
-            
-            let range = NSMakeRange(indexPath.section, 1)
-            let sectionToReload = NSIndexSet(indexesInRange: range)
-            self.schedulerTableView .reloadSections(sectionToReload, withRowAnimation:UITableViewRowAnimation.Fade)
-        }
-        
-        if let view = sender.view as? HeaderView {
-            view.upDown.selected = !view.upDown.selected
-        }
-        
-    }
-    
-    public func fetchUpdate() {
-        print("should fetchUpdate")
-        
-        //APIReloadManager.fetchUpdate(fetchUrl(), helper: SlotHelper(), completedAction: fetchCompleted)
-        
-    }
-    
-    public func fetchCompleted(msg : String) -> Void {
-        
-    }
-    
-    public func fetchUrl() -> String? {
-        return "https://myFetchUrl.toto"
-    }
     
     
     

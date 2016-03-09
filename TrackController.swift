@@ -21,7 +21,7 @@ import UIKit
 
 
 
-public class TrackController<T : ScrollableDateProtocol> : UINavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
+public class TrackController<T : ScrollableDateProtocol> : UINavigationController, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
     
     var generator: () -> ScrollableDateProtocol
     
@@ -35,11 +35,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
 
     var pageViewController : UIPageViewController!
     
-    
-    var overlay:FilterTableViewController?
-    
-    
-    
+
     var customView:ScheduleControllerView?
     
     init(generator: () -> ScrollableDateProtocol) {
@@ -105,74 +101,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
     }
     
     
-    
-    
-    func filter(filters : [String: [FilterableProtocol]]) -> Void {
-        
-        
-        if pageViewController != nil && pageViewController!.viewControllers != nil{
-            if let filterableTable = pageViewController!.viewControllers![0] as? FilterableTableProtocol {
-                filterableTable.clearFilter()
-                filterableTable.buildFilter(filters)
-                filterableTable.filter()
-            }
-        }
-    }
-    
-    
-    func filterMe() {
-        if pageViewController != nil && pageViewController!.viewControllers != nil{
-            
-            
-            if overlay == nil {
-                
-                overlay = FilterTableViewController()
-                
-                overlay?.viewDidLoad()
-                
-                
-                
-                
-                
-                
-                //
-                
-                if pageViewController != nil && pageViewController!.viewControllers != nil{
-                    if let filterableTable = pageViewController!.viewControllers![0] as? FilterableTableProtocol {
-                        if filterableTable.getCurrentFilters() != nil {
-                            overlay?.selected = filterableTable.getCurrentFilters()!
-                        }
-                    }
-                }
-                
-                
-                //
-                
-                pageViewController!.viewControllers![0].view.addSubview((overlay?.filterTableView)!)
-                
-                overlay?.filterTableView.setupConstraints(referenceView : pageViewController!.viewControllers![0].view)
-                
-                
-                
-                
-                overlay?.devoxxAppFilterDelegate = self
-                
-                
-                
-                
-            }
-            else {
-                removeOverlay()
-            }
-            
-        }
-    }
-    
-    func removeOverlay() {
-        overlay?.filterTableView.removeFromSuperview()
-        overlay = nil
-    }
-    
+
     func changeSchedule(sender : UIBarButtonItem) {
         sender.tag == (sender.tag + 1) % 2
     }
@@ -241,23 +170,6 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
     
     
     public func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        if completed {
-            removeOverlay()
-            if pageViewController.viewControllers != nil {
-                
-                
-               
-                
-                
-                if let reloadable = pageViewController.viewControllers![0] as? HotReloadProtocol {
-                    reloadable.fetchUpdate()
-                }
-                
-                
-                
-            }
-        }
-        
     }
     
     
