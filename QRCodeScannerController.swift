@@ -27,11 +27,20 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
     
    
    
+    public func cancel() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: Selector("cancel"))
+        
         scan()
+        
     }
     
 

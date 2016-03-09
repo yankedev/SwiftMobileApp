@@ -228,8 +228,8 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     public func scan() {
         let qrCodeScannerController = QRCodeScannerController()
         qrCodeScannerController.completionOnceScanned = rate
-        presentViewController(qrCodeScannerController, animated: true, completion: nil)
-        
+        let qrCodeNavigationController = UINavigationController(rootViewController: qrCodeScannerController)
+        presentViewController(qrCodeNavigationController, animated: true, completion: nil)
     }
     
     func configurationTextField(textField: UITextField!) {

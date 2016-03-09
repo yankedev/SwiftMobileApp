@@ -33,6 +33,10 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         return SchedulerTableViewController()
     }
     
+    func generateTrackTableViewController() -> ScrollableDateProtocol {
+        return TrackTableViewController()
+    }
+    
     func generate() -> ScrollableItemProtocol {
         return MapController()
     }
@@ -84,19 +88,25 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         let scheduleController = ScheduleController<SchedulerTableViewController>(generator:self.generateScheduleTableViewController)
+        
+        
+        let trackController = TrackController<TrackTableViewController>(generator:self.generateTrackTableViewController)
+        
         let speakerController = SpeakerTableController()
         let mapController = MapTabController()
         let settingsController = SettingsController()
         
         let scheduleTabImage = UIImage(named: "tabIconSchedule.png")
+        let trackTabImage = UIImage(named: "tabIconTracks.png")
         let speakerTabImage = UIImage(named: "tabIconSpeaker.png")
         let mapTabImage = UIImage(named: "tabIconMap.png")
         let settingsTabImage = UIImage(named: "tabIconSettings.png")
         
         scheduleController.tabBarItem = UITabBarItem(title: "Schedule", image: scheduleTabImage, tag:0)
-        speakerController.tabBarItem = UITabBarItem(title: "Speakers", image: speakerTabImage, tag:1)
-        mapController.tabBarItem = UITabBarItem(title: "Map", image: mapTabImage, tag:2)
-        settingsController.tabBarItem = UITabBarItem(title: "Settings", image: settingsTabImage, tag:3)
+        trackController.tabBarItem = UITabBarItem(title: "Tracks", image: trackTabImage, tag:1)
+        speakerController.tabBarItem = UITabBarItem(title: "Speakers", image: speakerTabImage, tag:2)
+        mapController.tabBarItem = UITabBarItem(title: "Map", image: mapTabImage, tag:3)
+        settingsController.tabBarItem = UITabBarItem(title: "Settings", image: settingsTabImage, tag:4)
         
         //let scheduleNavigationController = UINavigationController(rootViewController: scheduleController)
         let speakerNavigationController = UINavigationController(rootViewController: speakerController)
@@ -113,7 +123,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         let mapNavigationController = UINavigationController(rootViewController: mapController)
         
         
-        self.customTabController.viewControllers = [scheduleController, speakerNavigationController, mapNavigationController, settingsNavigationController]
+        self.customTabController.viewControllers = [scheduleController, trackController, speakerNavigationController, mapNavigationController, settingsNavigationController]
         self.customTabController.tabBar.translucent = false
         self.customTabController.view.backgroundColor = UIColor.whiteColor()
         //TODO BACK BUTTON
@@ -416,6 +426,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             }
             else {
                 currentSelectedIndex = currentEventIndex
+                updateIndex(currentSelectedIndex)
                 prepareNext()
             }
         }

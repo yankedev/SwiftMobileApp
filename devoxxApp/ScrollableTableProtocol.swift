@@ -12,6 +12,7 @@ import UIKit
 protocol ScrollableDateTableDatasource : UIPageViewControllerDelegate {
 
     var allDates:NSArray! {get set}
+    var allTracks:NSArray! {get set}
     
 }
 

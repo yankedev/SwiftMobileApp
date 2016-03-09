@@ -56,6 +56,9 @@
 		58195C171C359F7500F56A30 /* checkboxOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 58195C151C359F7500F56A30 /* checkboxOn.png */; };
 		5842E4371C83734400998F9C /* ScheduleCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5842E4361C83734400998F9C /* ScheduleCellView.swift */; };
 		584FED751C8EF8940037A3E1 /* ic_rate.png in Resources */ = {isa = PBXBuildFile; fileRef = 584FED741C8EF8940037A3E1 /* ic_rate.png */; };
+		584FED771C8F8FAF0037A3E1 /* TrackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584FED761C8F8FAE0037A3E1 /* TrackTableViewController.swift */; };
+		584FED791C8F94720037A3E1 /* TrackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584FED781C8F94720037A3E1 /* TrackController.swift */; };
+		584FED7B1C8F9EDE0037A3E1 /* tabIconTracks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 584FED7A1C8F9EDE0037A3E1 /* tabIconTracks@2x.png */; };
 		58631DEA1C8E3C7A00070833 /* QRCodeScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58631DE91C8E3C7A00070833 /* QRCodeScannerController.swift */; };
 		5872861B1C1F565C00FC098A /* SpeakerTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861A1C1F565C00FC098A /* SpeakerTableController.swift */; };
 		5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861C1C1F579900FC098A /* SpeakerHelper.swift */; };
@@ -249,6 +252,9 @@
 		58195C151C359F7500F56A30 /* checkboxOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkboxOn.png; path = icon/checkboxOn.png; sourceTree = "<group>"; };
 		5842E4361C83734400998F9C /* ScheduleCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCellView.swift; sourceTree = "<group>"; };
 		584FED741C8EF8940037A3E1 /* ic_rate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_rate.png; sourceTree = "<group>"; };
+		584FED761C8F8FAE0037A3E1 /* TrackTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackTableViewController.swift; sourceTree = "<group>"; };
+		584FED781C8F94720037A3E1 /* TrackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackController.swift; sourceTree = "<group>"; };
+		584FED7A1C8F9EDE0037A3E1 /* tabIconTracks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabIconTracks@2x.png"; path = "icon/tab/tabIconTracks@2x.png"; sourceTree = "<group>"; };
 		58631DE91C8E3C7A00070833 /* QRCodeScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScannerController.swift; sourceTree = "<group>"; };
 		5872861A1C1F565C00FC098A /* SpeakerTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerTableController.swift; sourceTree = "<group>"; };
 		5872861C1C1F579900FC098A /* SpeakerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerHelper.swift; sourceTree = "<group>"; };
@@ -555,6 +561,8 @@
 				580B78991C7A11B700060C00 /* HomeGoButtonView.swift */,
 				580B789B1C7A11DD00060C00 /* HomeNumberView.swift */,
 				5895EB9E1C66698800229780 /* ViewController.swift */,
+				584FED781C8F94720037A3E1 /* TrackController.swift */,
+				584FED761C8F8FAE0037A3E1 /* TrackTableViewController.swift */,
 				588CFDD31C80F9FC00DEC1E6 /* GobalDetailView.swift */,
 				587797391C81345A00A1A7D5 /* SelectionWheel.swift */,
 				E10E7ABF1C18BF7100F6220B /* devoxxApp */,
@@ -740,6 +748,7 @@
 			isa = PBXGroup;
 			children = (
 				E1FA9C221C1BFC1E0077C09A /* tabIconMap@2x.png */,
+				584FED7A1C8F9EDE0037A3E1 /* tabIconTracks@2x.png */,
 				E1FA9C231C1BFC1E0077C09A /* tabIconSchedule@2x.png */,
 				E1FA9C241C1BFC1E0077C09A /* tabIconSpeaker@2x.png */,
 			);
@@ -1017,6 +1026,7 @@
 				5895EB931C66683600229780 /* devoxx.svg.png in Resources */,
 				58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */,
 				58C6A8181C74A171005CDCA1 /* filterWhite@2x.png in Resources */,
+				584FED7B1C8F9EDE0037A3E1 /* tabIconTracks@2x.png in Resources */,
 				580B78B01C7A8BE100060C00 /* up@2x.png in Resources */,
 				58195C041C35868400F56A30 /* icon_lab.png in Resources */,
 				58A465C11C87AC85006B6D46 /* icon_cldops.png in Resources */,
@@ -1048,12 +1058,14 @@
 				580BB8581C8E104A0005274C /* RateTableViewController.swift in Sources */,
 				E127E65A1C38212100FB7E4F /* FilterableTableProtocol.swift in Sources */,
 				58A0E8C11C272FF9000C49DD /* TrackHelper.swift in Sources */,
+				584FED791C8F94720037A3E1 /* TrackController.swift in Sources */,
 				58F67CDD1C308C64007D2B97 /* Favorite.swift in Sources */,
 				588CFFA91C81070A00DEC1E6 /* SpeakerDetailHelper.swift in Sources */,
 				58EC13241C8640FE00958070 /* StoredResource.swift in Sources */,
 				580B78851C78988500060C00 /* Image.swift in Sources */,
 				E127E6601C38313200FB7E4F /* SearchableTableProtocol.swift in Sources */,
 				580CD2A21C7DDA7900152E4C /* AllDetailsView.swift in Sources */,
+				584FED771C8F8FAF0037A3E1 /* TrackTableViewController.swift in Sources */,
 				58A38EA61C8371F900C2DFE2 /* BottomDetailsView.swift in Sources */,
 				58195BFA1C3572ED00F56A30 /* FilterableProtocol.swift in Sources */,
 				E1FB6D721C8D0D2B00D13082 /* ButtonView.swift in Sources */,

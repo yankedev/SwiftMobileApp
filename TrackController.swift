@@ -1,4 +1,12 @@
 //
+//  TrackController.swift
+//  devoxxApp
+//
+//  Created by got2bex on 2016-03-09.
+//  Copyright © 2016 maximedavid. All rights reserved.
+//
+
+//
 //  ScheduleController.swift
 //  devoxxApp
 //
@@ -10,25 +18,21 @@ import Foundation
 import UIKit
 
 
-public protocol ScrollableDateProtocol : NSObjectProtocol {
-    var index:Int { get set }
-    var currentDate:NSDate!  { get set }
-    var currentTrack:String!  { get set }
-    func getNavigationItem() -> UINavigationItem
-}
 
 
 
-public class ScheduleController<T : ScrollableDateProtocol> : UINavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
-
+public class TrackController<T : ScrollableDateProtocol> : UINavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
+    
     var generator: () -> ScrollableDateProtocol
     
     //ScrollableDateTableDatasource
     var scrollableDateTableDatasource: ScrollableDateTableDatasource?
     var scrollableDateTableDelegate: ScrollableDateTableDelegate?
     
-    var allDates:NSArray!
     var allTracks:NSArray!
+
+    var allDates:NSArray!
+
     var pageViewController : UIPageViewController!
     
     
@@ -42,7 +46,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         self.generator = generator
         super.init(navigationBarClass: nil, toolbarClass: nil)
     }
-
+    
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -51,17 +55,17 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     public override func viewDidLoad() {
         
         super.viewDidLoad()
-
+        
         customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"), favoriteSelector : Selector("changeSchedule:"))
-
+        
         
         
         feedDate()
         
         self.scrollableDateTableDatasource = self
         self.scrollableDateTableDelegate = self
-    
-
+        
+        
         self.navigationBar.translucent = false
         
         pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
@@ -75,34 +79,33 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         pageViewController?.setViewControllers(controls, direction: .Forward, animated: false, completion: nil)
         
         pushViewController(pageViewController!, animated: false)
-
+        
         
         //self.pageViewController.navigationItem.rightBarButtonItems = [customView!.filterRightButton, customView!.favoriteSwitcher]
         self.pageViewController.navigationItem.rightBarButtonItem = customView!.filterRightButton
-  
         
         
         
         
-             
         
-        if allDates.count == 0 {
+        
+        
+        if allTracks.count == 0 {
             self.pageViewController.navigationItem.title = "No data yet"
         }
         else {
-            self.pageViewController.navigationItem.title = humanReadableDateFromNSDate(allDates[0].objectForKey("date") as! NSDate)
-        }
+            self.pageViewController.navigationItem.title = "Tracks"        }
         
-       
         
-      
+        
+        
         self.view.addSubview(customView!)
         
-
+        
     }
     
     
- 
+    
     
     func filter(filters : [String: [FilterableProtocol]]) -> Void {
         
@@ -115,7 +118,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
             }
         }
     }
-
+    
     
     func filterMe() {
         if pageViewController != nil && pageViewController!.viewControllers != nil{
@@ -127,11 +130,11 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
                 
                 overlay?.viewDidLoad()
                 
-           
                 
                 
                 
-               
+                
+                
                 //
                 
                 if pageViewController != nil && pageViewController!.viewControllers != nil{
@@ -139,7 +142,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
                         if filterableTable.getCurrentFilters() != nil {
                             overlay?.selected = filterableTable.getCurrentFilters()!
                         }
-                                            }
+                    }
                 }
                 
                 
@@ -150,18 +153,18 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
                 overlay?.filterTableView.setupConstraints(referenceView : pageViewController!.viewControllers![0].view)
                 
                 
-              
-            
+                
+                
                 overlay?.devoxxAppFilterDelegate = self
-            
-            
-         
-
+                
+                
+                
+                
             }
             else {
                 removeOverlay()
             }
-        
+            
         }
     }
     
@@ -173,7 +176,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     func changeSchedule(sender : UIBarButtonItem) {
         sender.tag == (sender.tag + 1) % 2
     }
-
+    
     
     
     public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
@@ -188,7 +191,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         }
         
         currentIndex--
-    
+        
         return viewControllerAtIndex(currentIndex)
     }
     
@@ -202,7 +205,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         currentIndex++
         
         
-        if currentIndex == allDates.count {
+        if currentIndex == allTracks.count {
             return nil
         }
         
@@ -215,19 +218,19 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         let scheduleTableController:T = generator() as! T
         scheduleTableController.index = index
         
-        if let dates = self.scrollableDateTableDatasource?.allDates {
-            scheduleTableController.currentDate = APIManager.getDateFromIndex(index, array: dates)
+        if let tracks = self.scrollableDateTableDatasource?.allTracks {
+            scheduleTableController.currentTrack = APIManager.getTrackFromIndex(index, array: tracks)
             
             
-        
+            
         }
         return (scheduleTableController as? UIViewController)!
     }
     
     
     public func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        if let dates = self.scrollableDateTableDatasource?.allDates {
-            return dates.count
+        if let tracks = self.scrollableDateTableDatasource?.allTracks {
+            return tracks.count
         }
         return 0
     }
@@ -235,23 +238,21 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     public func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 0
     }
-
+    
     
     public func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
             removeOverlay()
             if pageViewController.viewControllers != nil {
                 
+                
                
-                if let fav = pageViewController.viewControllers![0] as? ScrollableDateProtocol {
-                    self.pageViewController.navigationItem.title = humanReadableDateFromNSDate(fav.currentDate)
-                }
-
+                
                 
                 if let reloadable = pageViewController.viewControllers![0] as? HotReloadProtocol {
                     reloadable.fetchUpdate()
                 }
-
+                
                 
                 
             }
@@ -259,10 +260,10 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
     }
     
-
+    
     //ScrollableDateTableDelegate
     func feedDate() {
-        allDates = APIManager.getDistinctDays()
+        allTracks = APIManager.getDistinctTracks()
     }
     
     func humanReadableDateFromNSDate(date : NSDate) -> String {
@@ -271,5 +272,6 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         return dateFormatter.stringFromDate(date)
     }
     
-   
+    
 }
+

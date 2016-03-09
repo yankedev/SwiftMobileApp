@@ -156,7 +156,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     }
     
     func okUpdate(msg : String) {
-        self.tableView.reloadData()
+        fetchAll()
     }
     
     override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

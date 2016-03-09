@@ -46,7 +46,7 @@ class TrackHelper: AttributeHelper, DataHelperProtocol {
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
             coreDataObjectCast.feedHelper(self)
             
-            let currentEvent = APIDataManager.findEventFromId(managedContext)
+            let currentEvent:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, context : managedContext)
             coreDataObject.setValue(currentEvent, forKey: "cfp")
         }
 

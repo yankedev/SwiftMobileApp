@@ -154,6 +154,22 @@ class APIManager {
         return items
     }
     
+    class func getDistinctTracks() -> NSArray {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context = appDelegate.managedObjectContext!
+        let fetchRequest = buildFetchRequest(context, name: "Attribute")
+        let predicateEvent = NSPredicate(format: "cfp.id = %@", APIManager.currentEvent.id!)
+        let predicateType = NSPredicate(format: "type = %@", "Track")
+        fetchRequest.resultType = .DictionaryResultType
+        fetchRequest.returnsDistinctResults = true
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "label", ascending: true)]
+        fetchRequest.propertiesToFetch = ["label"]
+        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateEvent, predicateType])
+
+        let items = try! context.executeFetchRequest(fetchRequest)
+        return items
+    }
+    
     
     
     class func getAllEvents() -> NSArray {
@@ -168,9 +184,6 @@ class APIManager {
     }
     
     class func getDateFromIndex(index : NSInteger, array: NSArray) -> NSDate {
-        
-        
-        
         if index < array.count  {
             if let dict = array.objectAtIndex(index) as? NSDictionary {
                 return (dict.objectForKey("date") as? NSDate)!
@@ -178,6 +191,19 @@ class APIManager {
         }
         //error
         return NSDate()
+    }
+    
+    
+    class func getTrackFromIndex(index : NSInteger, array: NSArray) -> String {
+        print("all tracks")
+        print(array)
+        if index < array.count  {
+            if let dict = array.objectAtIndex(index) as? NSDictionary {
+                return (dict.objectForKey("label") as? String)!
+            }
+        }
+        //error
+        return ""
     }
     
     class func buildFetchRequest(context: NSManagedObjectContext, name: String) -> NSFetchRequest {

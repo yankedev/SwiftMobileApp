@@ -1,5 +1,5 @@
-///
-//  SchedulerTableViewController.swift
+//
+//  TrackTableViewController.swift
 //  devoxxApp
 //
 //  Created by maxday on 09.12.15.
@@ -10,21 +10,18 @@ import Foundation
 import UIKit
 import CoreData
 
-public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
-    func favorite(path : NSIndexPath) -> Bool
-}
 
-public class SchedulerTableViewController:
-        UIViewController,
-        DevoxxAppFavoriteDelegate,
-        FilterableTableDataSource,
-        FilterableTableProtocol,
-        UITableViewDelegate,
-        SearchableTableProtocol,
-        UITableViewDataSource,
-        UISearchBarDelegate,
-        ScrollableDateProtocol,
-        HotReloadProtocol
+public class TrackTableViewController:
+    UIViewController,
+    DevoxxAppFavoriteDelegate,
+    FilterableTableDataSource,
+    FilterableTableProtocol,
+    UITableViewDelegate,
+    SearchableTableProtocol,
+    UITableViewDataSource,
+    UISearchBarDelegate,
+    ScrollableDateProtocol,
+    HotReloadProtocol
 {
     
     public func hi() {
@@ -39,10 +36,10 @@ public class SchedulerTableViewController:
     public func getNavigationItem() -> UINavigationItem {
         return (self.navigationController?.navigationItem)!
     }
-
+    
     
     var openedSections = [Bool]()
-
+    
     
     
     //SerchableTableProtocol
@@ -51,7 +48,7 @@ public class SchedulerTableViewController:
     
     var searchedSections = [NSFetchedResultsSectionInfo]()
     
-
+    
     
     //FilterableTableProtocol
     var currentFilters:[String : [FilterableProtocol]]!
@@ -92,11 +89,11 @@ public class SchedulerTableViewController:
         
         
     }
-
+    
     
     private func computePredicate() -> NSPredicate {
         var andPredicate = [NSPredicate]()
-        let predicateDay = NSPredicate(format: "date = %@", self.currentDate)
+        let predicateDay = NSPredicate(format: "talk.track = %@", self.currentTrack)
         let predicateEvent = NSPredicate(format: "eventId = %@", APIManager.currentEvent.id!)
         
         andPredicate.append(predicateDay)
@@ -115,7 +112,7 @@ public class SchedulerTableViewController:
     
     public func fetchAll() {
         fetchedResultsController().fetchRequest.predicate = computePredicate()
-  
+        
         do {
             try fetchedResultsController().performFetch()
         } catch let error as NSError {
@@ -141,30 +138,30 @@ public class SchedulerTableViewController:
         fetchAll()
     }
     
-
+    
     
     //TableView
-
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         if let slot = getCell(indexPath) as? Slot {
-                
+            
             let details = TalkDetailsController()
             //todo
             details.indexPath = indexPath
             details.slot = slot
             details.delegate = self
-      
+            
             
             
             
             details.configure()
-
+            
             details.setColor(slot.favorited())
-         
+            
             self.navigationController?.pushViewController(details, animated: true)
             
-
+            
         }
     }
     
@@ -174,13 +171,13 @@ public class SchedulerTableViewController:
         var cellDataTry:CellDataPrococol?
         
         if !searchingString.isEmpty {
-          
+            
             let curent = searchedSections[indexPath.section]
             let obj = (curent.objects)!
             cellDataTry = filterSearchArray(obj)[indexPath.row] as? CellDataPrococol
             return cellDataTry
         }
-        
+            
         else {
             cellDataTry = frc?.objectAtIndexPath(indexPath) as? CellDataPrococol
             
@@ -188,10 +185,10 @@ public class SchedulerTableViewController:
             let sortedSlot = slot?.sort({ $0.favorited() > $1.favorited() })
             return sortedSlot![indexPath.row]
         }
-
+        
     }
     
- 
+    
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
         let cellData = getCell(indexPath)
@@ -205,7 +202,7 @@ public class SchedulerTableViewController:
             }
             
             cell?.rightTextView.text = cellData?.getFirstInformation()
-           
+            
             cell?.leftIconView.setup()
             
             cell?.leftIconView.imageView.frame = CGRectInset(CGRectMake(0, 5, 50, 60), 8, 8);
@@ -214,50 +211,50 @@ public class SchedulerTableViewController:
             cell?.leftIconView.imageView.image = UIImage(named: "cofeeCup.png")
             
             cell?.backgroundColor = cellData!.getColor()
-
-
+            
+            
             return cell!
             
         }
         else {
-       
+            
             var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? ScheduleCellView
-     
+            
             if cell == nil {
                 cell = ScheduleCellView(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
             }
-        
-        
-       
-            if let cellData = getCell(indexPath) {
-
-                cell!.leftIconView.imageView.image = cellData.getPrimaryImage()
             
+            
+            
+            if let cellData = getCell(indexPath) {
+                
+                cell!.leftIconView.imageView.image = cellData.getPrimaryImage()
+                
                 cell!.rightTextView.topTitleView.talkTrackName.text = cellData.getThirdInformation()
                 cell!.rightTextView.topTitleView.talkTitle.text = cellData.getFirstInformation()
-            
+                
                 cell!.rightTextView.locationView.label.text = cellData.getSecondInformation()
                 cell!.rightTextView.speakerView.label.text = cellData.getForthInformation(false)
-            
-            
+                
+                
                 if let fav = cellData as? FavoriteProtocol {
                     cell!.updateBackgroundColor(fav.favorited())
                 }
-
-               
-            
+                
+                
+                
                 return cell!
-            
+                
             } else {
                 // todo should be be here
             }
         }
         
-            
+        
         return UITableViewCell()
         
     }
-
+    
     func filterArray(currentArray : [AnyObject]) -> [AnyObject] {
         
         let filteredArray = currentArray.filter() {
@@ -284,13 +281,13 @@ public class SchedulerTableViewController:
             }
         }
         
-     
+        
         return filteredArray
         
     }
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-
+        
         if let sections = frc?.sections {
             
             if !searchingString.isEmpty {
@@ -301,14 +298,14 @@ public class SchedulerTableViewController:
             
             
             return sections.count
-           
+            
             
         }
         
         return 0
     }
     
-       
+    
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = frc?.sections {
             
@@ -325,9 +322,9 @@ public class SchedulerTableViewController:
             
             if !searchingString.isEmpty {
                 let curent = searchedSections[section]
-             
+                
                 let obj = (curent.objects)!
-             
+                
                 return filterSearchArray(obj).count
             }
             
@@ -337,8 +334,8 @@ public class SchedulerTableViewController:
             
             return currentSection.numberOfObjects
             
-
-
+            
+            
         }
         
         return 0
@@ -357,7 +354,7 @@ public class SchedulerTableViewController:
         return nil
     }
     
-   
+    
     
     public func updateSectionForSearch() {
         
@@ -374,7 +371,7 @@ public class SchedulerTableViewController:
             
         }
     }
-  
+    
     
     public func changeSchedule(sender: UISegmentedControl) {
         self.fetchAll()
@@ -410,7 +407,7 @@ public class SchedulerTableViewController:
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
-            
+        
         let fetchRequest = NSFetchRequest(entityName: "Slot")
         let sortTime = NSSortDescriptor(key: "fromTime", ascending: true)
         let sortAlpha = NSSortDescriptor(key: "talk.title", ascending: true)
@@ -418,25 +415,25 @@ public class SchedulerTableViewController:
         fetchRequest.sortDescriptors = [sortTime, sortAlpha,]
         fetchRequest.fetchBatchSize = 20
         fetchRequest.returnsObjectsAsFaults = false
-        let predicate = NSPredicate(format: "date = %@", self.currentDate)
+        let predicate = NSPredicate(format: "talk.track = %@", self.currentTrack)
         fetchRequest.predicate = predicate
-            
+        
         frc = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: managedContext,
-            sectionNameKeyPath: "fromTime",
+            sectionNameKeyPath: "talk.track",
             cacheName: nil)
-
+        
         return frc!
     }
-
+    
     //FilterableTableProtocol
     
     
     func clearFilter() {
         searchPredicates.removeAll()
     }
-
+    
     
     func buildFilter(filters: [String : [FilterableProtocol]]) {
         currentFilters = filters
@@ -459,16 +456,7 @@ public class SchedulerTableViewController:
     
     
     public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        /*if let sections = frc?.sections {
-            let currentSection = sections[section]
-            if currentSection.numberOfObjects == 1 {
-                return 0
-            }
-        }*/
-        return 44
-        
-        
+       return 0
     }
     
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -479,7 +467,7 @@ public class SchedulerTableViewController:
         if cellData?.isSpecial() == true {
             return 60
         }
-
+        
         
         
         return 130
@@ -490,7 +478,7 @@ public class SchedulerTableViewController:
         
         var title = ""
         var nbTalks = 0
-    
+        
         var set = Set<String>()
         
         let currentSection = getSection(section)!
@@ -500,7 +488,7 @@ public class SchedulerTableViewController:
         if !searchingString.isEmpty {
             obj = filterSearchArray(obj)
         }
-
+        
         if let slot = obj[0] as? Slot {
             title = "\(currentSection.name) - \(slot.toTime)"
         }
@@ -510,7 +498,7 @@ public class SchedulerTableViewController:
                 set.insert(currentSlot.talk.track)
             }
         }
-            
+        
         
         
         let breakSlot = (set.count == 1 && set.first == "")
@@ -540,7 +528,7 @@ public class SchedulerTableViewController:
             headerView.addGestureRecognizer(tap)
         }
         
-
+        
         return headerView
     }
     
@@ -550,14 +538,14 @@ public class SchedulerTableViewController:
         if (indexPath.row == 0) {
             
             openedSections[indexPath.section] =  !openedSections[indexPath.section]
-     
+            
             let range = NSMakeRange(indexPath.section, 1)
             let sectionToReload = NSIndexSet(indexesInRange: range)
             self.schedulerTableView .reloadSections(sectionToReload, withRowAnimation:UITableViewRowAnimation.Fade)
         }
         sender.selected = !sender.selected
     }
-
+    
     
     func openCloseView(sender: UITapGestureRecognizer) {
         let indexPath : NSIndexPath = NSIndexPath(forRow: 0, inSection:(sender.view!.tag as Int!)!)
@@ -575,7 +563,7 @@ public class SchedulerTableViewController:
         }
         
     }
-
+    
     public func fetchUpdate() {
         print("should fetchUpdate")
         
@@ -591,8 +579,8 @@ public class SchedulerTableViewController:
         return "https://myFetchUrl.toto"
     }
     
-
-  
-
-       
+    
+    
+    
+    
 }

@@ -15,6 +15,8 @@ import CoreData
 class APIDataManager {
 
     
+    
+    
     class func findEventFromId(context : NSManagedObjectContext) -> Cfp? {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -41,6 +43,18 @@ class APIDataManager {
         
     }
     
+    
+    class func findEntityFromId<T>(id : NSManagedObjectID, context : NSManagedObjectContext) -> T? {
+        do {
+            if let object = try context.existingObjectWithID(id) as? T {
+                return object
+            }
+        } catch let error1 as NSError {
+            print(error1)
+        }
+        return nil
+    }
+    
     class func findSpeakerFromId(id : NSManagedObjectID, context : NSManagedObjectContext) -> Speaker? {
         do {
             if let object = try context.existingObjectWithID(id) as? Speaker {
@@ -51,6 +65,10 @@ class APIDataManager {
         }
         return nil
     }
+    
+    
+  
+    
     
     class func updateCurrentEvent() -> Void {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
