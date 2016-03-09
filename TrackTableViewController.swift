@@ -251,7 +251,22 @@ public class TrackTableViewController:
     }
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        
+        if let sections = frc?.sections {
+            
+            if !searchingString.isEmpty {
+                updateSectionForSearch()
+                return searchedSections.count
+            }
+            
+            
+            
+            return sections.count
+            
+            
+        }
+        
+        return 0
     }
     
     

@@ -78,13 +78,9 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
         
         
         //self.pageViewController.navigationItem.rightBarButtonItems = [customView!.filterRightButton, customView!.favoriteSwitcher]
-        self.pageViewController.navigationItem.rightBarButtonItem = customView!.filterRightButton
+       
         
-        
-        
-        
-        
-        
+   
         
         if allTracks.count == 0 {
             self.pageViewController.navigationItem.title = "No data yet"
