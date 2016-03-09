@@ -26,8 +26,11 @@ class ScheduleControllerView : UIView, TopFilterableProtocol {
     init(target: AnyObject?, filterSelector:Selector, favoriteSelector:Selector) {
         
         
-        let img = UIImage(named: "filterWhite.png")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        let img = UIImage(named: "ic_filter_inactive")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         filterRightButton = UIBarButtonItem(image: img, style: UIBarButtonItemStyle.Plain, target: target, action: filterSelector)
+        
+        
+        
         
         favoriteSwitcher = UIBarButtonItem(barButtonSystemItem: .Compose, target: target, action: favoriteSelector)
 

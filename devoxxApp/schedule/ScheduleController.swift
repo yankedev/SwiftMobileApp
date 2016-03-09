@@ -107,8 +107,17 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     func filter(filters : [String: [FilterableProtocol]]) -> Void {
         
         
+        if filters.count == 0 {
+            customView?.filterRightButton.image = UIImage(named: "ic_filter_inactive")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        }
+        else {
+            customView?.filterRightButton.image = UIImage(named: "ic_filter_active")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        }
+        
+        
         if pageViewController != nil && pageViewController!.viewControllers != nil{
             if let filterableTable = pageViewController!.viewControllers![0] as? FilterableTableProtocol {
+                
                 filterableTable.clearFilter()
                 filterableTable.buildFilter(filters)
                 filterableTable.filter()

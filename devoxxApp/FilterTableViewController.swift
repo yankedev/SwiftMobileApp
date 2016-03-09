@@ -17,6 +17,7 @@ protocol DevoxxAppFilter : NSObjectProtocol {
 }
 
 
+
 extension Array {
     
     mutating func removeObject<U: AnyObject>(object: U) -> Element? {
@@ -137,7 +138,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
                 }, completion: { finished in
                     
                     
-                    let imageToUse = (self.isFilterSelected(track)) ? "checkboxOff" : "checkboxOn"
+                    let imageToUse = (self.isFilterSelected(track)) ? "checkboxOn" : "checkboxOff"
                     
                     cell.tickedImg.image = UIImage(named: imageToUse)
                     let scale = CGAffineTransformMakeScale(0.1, 0.1)
@@ -188,7 +189,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
                             }
 
                             cell.userInteractionEnabled = true
-                           
+                        
                             self.devoxxAppFilterDelegate?.filter(self.selected)
                             
                     
@@ -233,7 +234,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
             
             cell?.backgroundColor = ColorManager.defaultColor
             
-            let imageToUse = (isFilterSelected(attribute)) ? "checkboxOn" : "checkboxOff"
+            let imageToUse = (isFilterSelected(attribute)) ? "checkboxOff" : "checkboxOn"
             cell?.tickedImg.image = UIImage(named: imageToUse)
             
         }

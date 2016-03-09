@@ -28,7 +28,7 @@ class FilterViewCell: UITableViewCell {
         self.addSubview(attributeTitle)
         
         tickedImg.translatesAutoresizingMaskIntoConstraints = false
-        tickedImg.image = UIImage(named: "checkboxOff")
+        tickedImg.image = UIImage(named: "checkboxOn")
         self.addSubview(tickedImg)
         
         setupConstraints()

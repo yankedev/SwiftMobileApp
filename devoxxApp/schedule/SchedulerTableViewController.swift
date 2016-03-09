@@ -110,7 +110,7 @@ public class SchedulerTableViewController:
         var attributeOrPredicate = [NSPredicate]()
         
         for name in searchPredicates.keys {
-            attributeOrPredicate.append(NSCompoundPredicate(orPredicateWithSubpredicates: searchPredicates[name]!))
+            attributeOrPredicate.append(NSCompoundPredicate(andPredicateWithSubpredicates: searchPredicates[name]!))
         }
         
         andPredicate.append(NSCompoundPredicate(andPredicateWithSubpredicates: attributeOrPredicate))
@@ -463,7 +463,7 @@ public class SchedulerTableViewController:
         for key in filters.keys {
             searchPredicates[key] = [NSPredicate]()
             for attribute in filters[key]! {
-                let predicate = NSPredicate(format: "\(attribute.filterPredicateLeftValue()) = %@", attribute.filterPredicateRightValue())
+                let predicate = NSPredicate(format: "\(attribute.filterPredicateLeftValue()) != %@", attribute.filterPredicateRightValue())
                 searchPredicates[key]?.append(predicate)
             }
         }

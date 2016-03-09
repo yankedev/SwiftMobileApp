@@ -59,6 +59,8 @@
 		584FED771C8F8FAF0037A3E1 /* TrackTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584FED761C8F8FAE0037A3E1 /* TrackTableViewController.swift */; };
 		584FED791C8F94720037A3E1 /* TrackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584FED781C8F94720037A3E1 /* TrackController.swift */; };
 		584FED7B1C8F9EDE0037A3E1 /* tabIconTracks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 584FED7A1C8F9EDE0037A3E1 /* tabIconTracks@2x.png */; };
+		584FED7E1C90A6790037A3E1 /* ic_filter_inactive@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 584FED7C1C90A6790037A3E1 /* ic_filter_inactive@2x.png */; };
+		584FED7F1C90A6790037A3E1 /* ic_filter_active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 584FED7D1C90A6790037A3E1 /* ic_filter_active@2x.png */; };
 		58631DEA1C8E3C7A00070833 /* QRCodeScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58631DE91C8E3C7A00070833 /* QRCodeScannerController.swift */; };
 		5872861B1C1F565C00FC098A /* SpeakerTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861A1C1F565C00FC098A /* SpeakerTableController.swift */; };
 		5872861D1C1F579900FC098A /* SpeakerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5872861C1C1F579900FC098A /* SpeakerHelper.swift */; };
@@ -255,6 +257,8 @@
 		584FED761C8F8FAE0037A3E1 /* TrackTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackTableViewController.swift; sourceTree = "<group>"; };
 		584FED781C8F94720037A3E1 /* TrackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackController.swift; sourceTree = "<group>"; };
 		584FED7A1C8F9EDE0037A3E1 /* tabIconTracks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabIconTracks@2x.png"; path = "icon/tab/tabIconTracks@2x.png"; sourceTree = "<group>"; };
+		584FED7C1C90A6790037A3E1 /* ic_filter_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_filter_inactive@2x.png"; sourceTree = "<group>"; };
+		584FED7D1C90A6790037A3E1 /* ic_filter_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_filter_active@2x.png"; sourceTree = "<group>"; };
 		58631DE91C8E3C7A00070833 /* QRCodeScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScannerController.swift; sourceTree = "<group>"; };
 		5872861A1C1F565C00FC098A /* SpeakerTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerTableController.swift; sourceTree = "<group>"; };
 		5872861C1C1F579900FC098A /* SpeakerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerHelper.swift; sourceTree = "<group>"; };
@@ -459,6 +463,8 @@
 			children = (
 				58EC131B1C8464E000958070 /* tabIconSettings@2x.png */,
 				580B78A91C7A884800060C00 /* event.png */,
+				584FED7C1C90A6790037A3E1 /* ic_filter_inactive@2x.png */,
+				584FED7D1C90A6790037A3E1 /* ic_filter_active@2x.png */,
 				58C6A8171C74A171005CDCA1 /* filterWhite@2x.png */,
 				E17DFF3C1C72884F00A09547 /* filter@2x.png */,
 				580B78781C76771800060C00 /* speaker@2x.jpg */,
@@ -974,6 +980,7 @@
 				580CD2AC1C7E613300152E4C /* star@2x.png in Resources */,
 				58195C0F1C3587C600F56A30 /* icon_tia.png in Resources */,
 				E1FA9C2F1C1BFC730077C09A /* Roboto-Regular.ttf in Resources */,
+				584FED7E1C90A6790037A3E1 /* ic_filter_inactive@2x.png in Resources */,
 				58195C061C35868400F56A30 /* icon_key.png in Resources */,
 				58195C0D1C35877100F56A30 /* icon_start.png in Resources */,
 				580CD2A81C7E5E3900152E4C /* location@2x.png in Resources */,
@@ -1006,6 +1013,7 @@
 				E1FA9C1C1C1BFC150077C09A /* icon_lang.png in Resources */,
 				58A465B91C879755006B6D46 /* DEVOXXFR2016-tracks.json in Resources */,
 				E1FA9C1D1C1BFC150077C09A /* icon_methodevops.png in Resources */,
+				584FED7F1C90A6790037A3E1 /* ic_filter_active@2x.png in Resources */,
 				580B78AA1C7A884800060C00 /* event.png in Resources */,
 				5895EB8F1C66683600229780 /* splash_btn_DevoxxPL2015@2x.png in Resources */,
 				5895EB971C66683600229780 /* DevoxxUKHomePage.jpg in Resources */,
