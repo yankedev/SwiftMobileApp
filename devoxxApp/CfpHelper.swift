@@ -88,8 +88,7 @@ class CfpHelper: DataHelperProtocol {
             
         }
 
-        print(fedFloorsArray)
-        //floors = data["floors"].array?.description
+       
     }
     
     func entityName() -> String {
@@ -129,8 +128,7 @@ class CfpHelper: DataHelperProtocol {
 
             coreDataObject.mutableSetValueForKey("floors").addObjectsFromArray(items as [AnyObject])
 
-          
-            print(coreDataObject)
+       
             
             
         }

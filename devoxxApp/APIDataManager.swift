@@ -269,7 +269,7 @@ class APIDataManager {
                 
             }
             else {
-                print("REQUEST - \(storedResource.url)")
+                //print("REQUEST - \(storedResource.url)")
                 return makeRequest(storedResource, dataHelper : dataHelper, onSuccess: onSuccess, onError: onError)
             }
         

@@ -25,6 +25,8 @@ public class TrackTableViewController:
         print("hi")
     }
     
+    var sortedSlot:[Slot]!
+    
     //ScrollableDateProtocol
     public var index:Int = 0
     public var currentTrack:String!
@@ -67,6 +69,8 @@ public class TrackTableViewController:
         self.view.addSubview(schedulerTableView)
         schedulerTableView.setupConstraints()
     }
+    
+    
     
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -143,7 +147,7 @@ public class TrackTableViewController:
             //todo
             //details.indexPath = indexPath
             details.slot = slot
-                        
+            
             
             
             details.configure()
@@ -174,8 +178,11 @@ public class TrackTableViewController:
             cellDataTry = frc?.objectAtIndexPath(indexPath) as? CellDataPrococol
             
             let slot = frc?.sections![indexPath.section].objects as? [Slot]
-            let sortedSlot = slot?.sort({ $0.favorited() > $1.favorited() })
-            return sortedSlot![indexPath.row]
+            if sortedSlot == nil {
+                sortedSlot = slot?.sort({ $0.favorited() > $1.favorited() })
+            }
+
+            return slot![indexPath.row]
         }
         return nil
         
@@ -348,6 +355,11 @@ public class TrackTableViewController:
         searchingString = searchText
         schedulerTableView.reloadData()
     }
+    
+    public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        schedulerTableView.searchBar.resignFirstResponder()
+    }
+    
     
     //FilterableTableDataSource
     

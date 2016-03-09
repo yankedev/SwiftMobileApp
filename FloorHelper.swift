@@ -57,8 +57,6 @@ class FloorHelper: DataHelperProtocol {
         
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
             coreDataObjectCast.feedHelper(self)
-            print(coreDataObjectCast)
-           
         }
    
         return true

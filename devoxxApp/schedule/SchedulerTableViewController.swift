@@ -594,6 +594,9 @@ public class SchedulerTableViewController:
         return "https://myFetchUrl.toto"
     }
     
+    public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+        schedulerTableView.searchBar.resignFirstResponder()
+    }
 
   
 
