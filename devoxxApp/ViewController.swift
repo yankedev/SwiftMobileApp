@@ -172,6 +172,13 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         APIDataManager.updateCurrentEvent()
        
      
+        
+        
+        if APIManager.currentEvent!.days.count == 0 {
+            onError("toto")
+            return
+        }
+        
         dispatch_group_enter(serviceGroup)
         dispatch_group_enter(serviceGroup)
         
