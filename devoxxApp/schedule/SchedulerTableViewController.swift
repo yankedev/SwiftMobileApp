@@ -31,6 +31,8 @@ public class SchedulerTableViewController:
        // print("hi")
     }
     
+    var managedContext:NSManagedObjectContext!
+    
     //ScrollableDateProtocol
     public var index:Int = 0
     public var currentTrack:String!
@@ -40,6 +42,7 @@ public class SchedulerTableViewController:
         return (self.navigationController?.navigationItem)!
     }
 
+    
     
     var openedSections = [Bool]()
 
@@ -100,9 +103,12 @@ public class SchedulerTableViewController:
 
     
     private func computePredicate() -> NSPredicate {
+        
+        let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: managedContext)
+        
         var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "date = %@", self.currentDate)
-        let predicateEvent = NSPredicate(format: "eventId = %@", APIManager.currentEvent.id!)
+        let predicateEvent = NSPredicate(format: "cfp = %@", currentCfp!)
         
         andPredicate.append(predicateDay)
         andPredicate.append(predicateEvent)
@@ -407,9 +413,10 @@ public class SchedulerTableViewController:
         let managedContext = appDelegate.managedObjectContext!
         
         
-        if let cellData:Slot = APIDataManager.findEntityFromId(id, context: managedContext) {
+        if let cellData:Slot = APIDataManager.findEntityFromId(id, inContext: managedContext) {
             return cellData.invertFavorite()
         }
+        
         return false
     }
     
@@ -429,7 +436,7 @@ public class SchedulerTableViewController:
         
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
+        managedContext = appDelegate.managedObjectContext!
             
         let fetchRequest = NSFetchRequest(entityName: "Slot")
         let sortTime = NSSortDescriptor(key: "fromTime", ascending: true)

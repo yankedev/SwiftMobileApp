@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class Floor: NSManagedObject, FeedableProtocol {
+class Floor: NSManagedObject, FeedableProtocol, ImageFeedable {
     
     @NSManaged var id: String
     @NSManaged var img: String
@@ -27,6 +27,10 @@ class Floor: NSManagedObject, FeedableProtocol {
             tabpos = castHelper.tabpos ?? ""
             target = castHelper.target ?? ""
         }
+    }
+    
+    func feedImageData(data: NSData) {
+        imgData = data
     }
     
     func getId() -> NSManagedObject? {

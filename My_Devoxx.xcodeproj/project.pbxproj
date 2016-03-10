@@ -147,6 +147,7 @@
 		E127E66C1C39709400FB7E4F /* DV15-speakers.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6671C39709300FB7E4F /* DV15-speakers.json */; };
 		E127E66D1C39709400FB7E4F /* TalkType.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6681C39709400FB7E4F /* TalkType.json */; };
 		E127E66E1C39709400FB7E4F /* Track.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6691C39709400FB7E4F /* Track.json */; };
+		E136DF201C9216AB00BB1A0C /* SpeakerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E136DF1F1C9216AB00BB1A0C /* SpeakerProtocol.swift */; };
 		E175F25C1C46FFAD00D7AC0A /* DV15-monday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2581C46FFAD00D7AC0A /* DV15-monday.json */; };
 		E175F25D1C46FFAD00D7AC0A /* DV15-tuesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */; };
 		E175F25E1C46FFAD00D7AC0A /* DV15-wednesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */; };
@@ -349,6 +350,7 @@
 		E127E6671C39709300FB7E4F /* DV15-speakers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-speakers.json"; path = "mock/DV15-speakers.json"; sourceTree = "<group>"; };
 		E127E6681C39709400FB7E4F /* TalkType.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TalkType.json; path = mock/TalkType.json; sourceTree = "<group>"; };
 		E127E6691C39709400FB7E4F /* Track.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Track.json; path = mock/Track.json; sourceTree = "<group>"; };
+		E136DF1F1C9216AB00BB1A0C /* SpeakerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerProtocol.swift; sourceTree = "<group>"; };
 		E175F2581C46FFAD00D7AC0A /* DV15-monday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-monday.json"; path = "mock/DV15-monday.json"; sourceTree = "<group>"; };
 		E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-tuesday.json"; path = "mock/DV15-tuesday.json"; sourceTree = "<group>"; };
 		E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-wednesday.json"; path = "mock/DV15-wednesday.json"; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				E136DF1E1C92163A00BB1A0C /* Speakers */,
 				58631DE91C8E3C7A00070833 /* QRCodeScannerController.swift */,
 				E1FB6D711C8D0D2B00D13082 /* ButtonView.swift */,
 				58EC131F1C863E5700958070 /* APIDataManager.swift */,
@@ -630,6 +633,14 @@
 				E10E7ADA1C18BF7100F6220B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E136DF1E1C92163A00BB1A0C /* Speakers */ = {
+			isa = PBXGroup;
+			children = (
+				E136DF1F1C9216AB00BB1A0C /* SpeakerProtocol.swift */,
+			);
+			name = Speakers;
 			sourceTree = "<group>";
 		};
 		E175F2621C485AF200D7AC0A /* view */ = {
@@ -1103,6 +1114,7 @@
 				588CFFAB1C811C5200DEC1E6 /* ColoredHeaderView.swift in Sources */,
 				E1FB6D681C8C45C600D13082 /* HotReloadProtocol.swift in Sources */,
 				5895EBA11C66698800229780 /* ViewController.swift in Sources */,
+				E136DF201C9216AB00BB1A0C /* SpeakerProtocol.swift in Sources */,
 				58BA2BFC1C3331EF0031C2E3 /* Etag.swift in Sources */,
 				5895EB7D1C6662F300229780 /* Cfp.swift in Sources */,
 				E1FA9BEE1C1BF4E70077C09A /* ColorManager.swift in Sources */,
@@ -1263,13 +1275,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Stephan Janssen (72TCNRSLH6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = devoxxApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx;
 				PRODUCT_NAME = "My Devoxx";
-				PROVISIONING_PROFILE = "af2e2e57-6c99-4e9b-9b02-17869fdbc689";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1280,13 +1292,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Stephan Janssen (72TCNRSLH6)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = devoxxApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx;
 				PRODUCT_NAME = "My Devoxx";
-				PROVISIONING_PROFILE = "af2e2e57-6c99-4e9b-9b02-17869fdbc689";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

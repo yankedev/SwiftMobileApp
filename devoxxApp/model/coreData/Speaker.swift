@@ -10,20 +10,24 @@ import Foundation
 import CoreData
 import UIKit
 
-class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, SearchableItemProtocol {
+class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, SearchableItemProtocol, ImageFeedable {
 
     @NSManaged var uuid: String?
     @NSManaged var firstName: String?
     @NSManaged var lastName: String?
     @NSManaged var avatarUrl: String?
     @NSManaged var href: String?
-    @NSManaged var eventId: String?
+    @NSManaged var cfp: Cfp?
     @NSManaged var speakerDetail: SpeakerDetail
     @NSManaged var talks: NSSet
     @NSManaged var imgData: NSData
 
     func getObjectID() -> NSManagedObjectID {
         return objectID
+    }
+    
+    func feedImageData(data: NSData) {
+        imgData = data
     }
     
     func getFirstInformation() -> String {
@@ -80,7 +84,6 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
             lastName = castHelper.lastName
             avatarUrl = castHelper.avatarUrl
             href = castHelper.href
-            eventId = APIManager.currentEvent.id!
         }
     }
     

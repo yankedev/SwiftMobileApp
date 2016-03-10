@@ -130,8 +130,12 @@ class APIManager {
     class func getDistinctDays() -> NSArray {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
+        
+        let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: context)
+        
+        
         let fetchRequest = buildFetchRequest(context, name: "Slot")
-        let predicateEvent = NSPredicate(format: "eventId = %@", APIManager.currentEvent.id!)
+        let predicateEvent = NSPredicate(format: "cfp = %@", currentCfp!)
         fetchRequest.resultType = .DictionaryResultType
         fetchRequest.returnsDistinctResults = true
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
@@ -159,6 +163,7 @@ class APIManager {
         let items = try! context.executeFetchRequest(fetchRequest)
         
         
+        let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: context)
         
         for it in items  {
         
@@ -171,7 +176,11 @@ class APIManager {
             let labelString = labelDict.objectForKey("label") as! String
             
             let predicateTrack = NSPredicate(format: "talk.track = %@", labelString)
-            let predicateEvent = NSPredicate(format: "eventId = %@", APIManager.currentEvent.id!)
+            
+            
+            
+            
+            let predicateEvent = NSPredicate(format: "cfp = %@", currentCfp!)
             
             fetchRequestSlot.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateEvent, predicateTrack])
             let itemsRes = try! context.executeFetchRequest(fetchRequestSlot)

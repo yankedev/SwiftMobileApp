@@ -94,8 +94,53 @@ class SlotHelper: DataHelperProtocol {
  
             coreDataObjectCast.feedHelper(self)
             
-            for att in (entity?.properties)! {
+            
+            
+            let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: managedContext)
+            
+            coreDataObject.setValue(currentCfp, forKey: "cfp")
+            
+            
+            
+            
+            let subEntity = NSEntityDescription.entityForName("Talk", inManagedObjectContext: managedContext)
+            let subDataObject = NSManagedObject(entity: subEntity!, insertIntoManagedObjectContext: managedContext) as! FeedableProtocol
+            
+            subDataObject.feedHelper(self.talk!)
+            
+            
+            coreDataObject.setValue(subDataObject as? AnyObject, forKey: "talk")
+            
+            
+            
+            
+            let fetch = NSFetchRequest(entityName: "Speaker")
+            let predicate = NSPredicate(format: "href IN %@", self.talk!.speakerIds)
+            fetch.predicate = predicate
+            fetch.returnsObjectsAsFaults = false
+            //fetch.resultType = .ManagedObjectResultType
+            
+            
+            
+            do {
+                let items = try managedContext.executeFetchRequest(fetch)
+                let nsm = subDataObject as! Talk
+                nsm.mutableSetValueForKey("speakers").addObjectsFromArray(items)
                 
+                //iterate over speaker and set talk
+                
+                
+            } catch let error as NSError {
+                //print("unresolved error \(error), \(error.userInfo)")
+            }
+
+            
+            
+            
+            
+            
+            /*for att in (entity?.properties)! {
+            
                 if let relation = att as? NSRelationshipDescription  {
                     let relationName = relation.name
                     let subEntity = NSEntityDescription.entityForName(relationName.capitalizedString, inManagedObjectContext: managedContext)
@@ -128,7 +173,7 @@ class SlotHelper: DataHelperProtocol {
                     
                 }
                 
-            }
+            }*/
             
             
         }

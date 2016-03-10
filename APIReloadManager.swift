@@ -11,34 +11,20 @@ import UIKit
 import CoreData
 
 
+protocol ImageFeedable {
+    func feedImageData(data : NSData)
+}
 
 class APIReloadManager {
     
-    class func feedSpeaker(id : NSManagedObjectID, data : NSData) {
+    class func feedImage(id : NSManagedObjectID, data : NSData) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
-        let privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        privateContext.persistentStoreCoordinator = context.persistentStoreCoordinator
-        if let speaker = APIDataManager.findSpeakerFromId(id, context: context) {
-            speaker.imgData = data
-            APIManager.save(privateContext)
+        if let obj:ImageFeedable = APIDataManager.findEntityFromId(id, inContext: context) {
+            obj.feedImageData(data)
+            APIManager.save(context)
         }
-        
     }
-
-    
-    class func feedFloor(id : NSManagedObjectID, data : NSData) {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-        let privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        privateContext.persistentStoreCoordinator = context.persistentStoreCoordinator
-        if let floor = APIDataManager.findFloorFromId(id, context: context) {
-            floor.imgData = data
-            APIManager.save(privateContext)
-        }
-        
-    }
-
     
     class func run_on_background_thread(code: () -> Void) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), code)
@@ -68,7 +54,7 @@ class APIReloadManager {
             }
             else {
                 //print("fetch for \(url)")
-                APIReloadManager.feedSpeaker(id, data : data!)
+                APIReloadManager.feedImage(id, data : data!)
                 dispatch_async(dispatch_get_main_queue(),{
                     completedAction(msg: "ok")
                 })
@@ -94,7 +80,7 @@ class APIReloadManager {
             }
             else {
                 //print("fetch for \(url)")
-                APIReloadManager.feedFloor(id, data : data!)
+                APIReloadManager.feedImage(id, data : data!)
                 dispatch_async(dispatch_get_main_queue(),{
                     completedAction(msg: "ok")
                 })

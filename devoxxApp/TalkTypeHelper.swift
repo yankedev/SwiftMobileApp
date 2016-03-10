@@ -48,7 +48,8 @@ class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
             coreDataObjectCast.feedHelper(self)
             
-            let currentEvent:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, context : managedContext)
+            let currentEvent:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: managedContext)
+            
             coreDataObject.setValue(currentEvent, forKey: "cfp")
             
         }

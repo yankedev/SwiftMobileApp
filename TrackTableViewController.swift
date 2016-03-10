@@ -26,6 +26,9 @@ public class TrackTableViewController:
        // print("hi") 
     }
     
+    var managedContext:NSManagedObjectContext!
+    
+    
     var sortedSlot:[Slot]!
     
     //ScrollableDateProtocol
@@ -91,9 +94,14 @@ public class TrackTableViewController:
     
     
     private func computePredicate() -> NSPredicate {
+        
+        let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: managedContext)
+        
+        
+        
         var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "talk.track = %@", self.currentTrack)
-        let predicateEvent = NSPredicate(format: "eventId = %@", APIManager.currentEvent.id!)
+        let predicateEvent = NSPredicate(format: "cfp = %@", currentCfp!)
         
         andPredicate.append(predicateDay)
         andPredicate.append(predicateEvent)
@@ -168,9 +176,10 @@ public class TrackTableViewController:
         let managedContext = appDelegate.managedObjectContext!
         
         
-        if let cellData:Slot = APIDataManager.findEntityFromId(id, context: managedContext) {
+        if let cellData:Slot = APIDataManager.findEntityFromId(id, inContext: managedContext) {
             return cellData.invertFavorite()
         }
+        
         return false
     }
     
@@ -396,7 +405,7 @@ public class TrackTableViewController:
         
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
+        managedContext = appDelegate.managedObjectContext!
         
         let fetchRequest = NSFetchRequest(entityName: "Slot")
         let sortTime = NSSortDescriptor(key: "fromTime", ascending: true)

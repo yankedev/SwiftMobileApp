@@ -15,69 +15,17 @@ import CoreData
 class APIDataManager {
 
     
-    
-    
-    class func findEventFromId(context : NSManagedObjectContext) -> Cfp? {
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context2 = appDelegate.managedObjectContext!
-        
-        do {
 
-            let fetchRequest = APIManager.buildFetchRequest(context2, name: "Cfp")
-            let predicateId = NSPredicate(format: "id = %@", APIManager.currentEvent!.id!)
-            fetchRequest.predicate = predicateId
-            
-            if let items = try context.executeFetchRequest(fetchRequest) as? [Cfp] {
-                
-                if items.count > 0 {
-                    return items[0]
-                }
-            }
-            
-        } catch let error1 as NSError {
-           // print(error1)
-        }
-        
-        return nil
-        
-    }
-    
-    
-    class func findEntityFromId<T>(id : NSManagedObjectID, context : NSManagedObjectContext) -> T? {
+    class func findEntityFromId<T>(id : NSManagedObjectID, inContext context : NSManagedObjectContext) -> T? {
         do {
             if let object = try context.existingObjectWithID(id) as? T {
                 return object
             }
         } catch let error1 as NSError {
-            //print(error1)
+            print(error1)
         }
         return nil
     }
-
-    
-    class func findSpeakerFromId(id : NSManagedObjectID, context : NSManagedObjectContext) -> Speaker? {
-        do {
-            if let object = try context.existingObjectWithID(id) as? Speaker {
-                return object
-            }
-        } catch let error1 as NSError {
-            //print(error1)
-        }
-        return nil
-    }
-    
-    class func findFloorFromId(id : NSManagedObjectID, context : NSManagedObjectContext) -> Floor? {
-        do {
-            if let object = try context.existingObjectWithID(id) as? Floor {
-                return object
-            }
-        } catch let error1 as NSError {
-            //print(error1)
-        }
-        return nil
-    }
-    
     
   
     
