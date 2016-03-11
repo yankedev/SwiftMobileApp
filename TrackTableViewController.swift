@@ -100,8 +100,8 @@ public class TrackTableViewController:
         
         
         var andPredicate = [NSPredicate]()
-        let predicateDay = NSPredicate(format: "talk.track = %@", self.currentTrack)
-        let predicateEvent = NSPredicate(format: "cfp = %@", currentCfp!)
+        let predicateDay = NSPredicate(format: "track = %@", self.currentTrack)
+        let predicateEvent = NSPredicate(format: "slot.cfp = %@", currentCfp!)
         
         andPredicate.append(predicateDay)
         andPredicate.append(predicateEvent)
