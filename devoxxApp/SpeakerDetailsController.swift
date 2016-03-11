@@ -156,28 +156,28 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
             cell = ScheduleCellView(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
    
         }
-        /*
         
-        if let talk = speaker.talks.allObjects[indexPath.row] as? Talk {
+        
+        if let relatedObject = detailObject.getRelatedDetailWithIndex(indexPath.row) {
             
             
             
-            cell!.leftIconView.imageView.image = talk.getPrimaryImage()
+            cell!.leftIconView.imageView.image = relatedObject.getPrimaryImage()
             
-            cell!.rightTextView.topTitleView.talkTrackName.text = talk.getThirdInformation()
-            cell!.rightTextView.topTitleView.talkTitle.text = talk.getFirstInformation()
+            cell!.rightTextView.topTitleView.talkTrackName.text = relatedObject.getDetailInfoWithIndex(2)
+            cell!.rightTextView.topTitleView.talkTitle.text = relatedObject.getDetailInfoWithIndex(0)
             
-            cell!.rightTextView.locationView.label.text = talk.getSecondInformation()
-            cell!.rightTextView.speakerView.label.text = talk.getForthInformation(false)
+            cell!.rightTextView.locationView.label.text = relatedObject.getDetailInfoWithIndex(1)
+            cell!.rightTextView.speakerView.label.text = relatedObject.getDetailInfoWithIndex(3)
             
             
-            if let fav = talk as? FavoriteProtocol {
-                cell!.updateBackgroundColor(fav.isFav())
-            }
+            //if let fav = talk as? FavoriteProtocol {
+            //    cell!.updateBackgroundColor(fav.isFav())
+            //}
 
         }
         
-        */
+        
         
         
         
@@ -188,8 +188,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
-        //return speaker.talks.count
+        return detailObject.getRelatedDetailsCount()
     }
 
     
@@ -232,28 +231,19 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     
     public func fetchUpdate() {
-    
-        
         APIReloadManager.fetchUpdate(fetchUrl(), helper: SpeakerDetailHelper(), completedAction: fetchCompleted)
-        //APIReloadManager.fetchSpeakerImg(speaker.getUrl(), id: speaker.objectID, completedAction: fetchCompleted)
+        
+        APIReloadManager.fetchSpeakerImg(detailObject.getImageFullLink(), id: detailObject.getObjectId(), completedAction: fetchCompleted)
     }
     
     public func fetchCompleted(msg : String) -> Void {
-       
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-
-        //speaker = APIDataManager.findEntityFromId(speaker.objectID, context: context)
-        
         scroll.text = detailObject.getSummary()
         header.talkTrack.text = detailObject.getSubTitle()
         header.imageView.image = detailObject.getPrimaryImage()
-        
     }
     
     public func fetchUrl() -> String? {
-        //return speaker.href
-        return ""
+        return detailObject.getFullLink()
     }
 
     

@@ -193,7 +193,8 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             let details = SpeakerDetailsController()
             //todo
             //details.indexPath = indexPath
-            //details.speaker = speaker
+            
+            details.detailObject = speaker
             //details.delegate = self
             
             details.configure()

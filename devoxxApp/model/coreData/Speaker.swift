@@ -52,7 +52,7 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
     }
     
     func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol? {
-        if let speakerArray = talks.sortedArrayUsingDescriptors([NSSortDescriptor(key: "firstName", ascending: true)]) as?[DetailableProtocol] {
+        if let speakerArray = talks.sortedArrayUsingDescriptors([NSSortDescriptor(key: "title", ascending: true)]) as?[DetailableProtocol] {
             
             if idx < speakerArray.count {
                 return speakerArray[idx]
@@ -64,10 +64,14 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
         return nil
     }
     
-    func getFullLink() -> String {
-       // return "\(APIManager.currentEvent!)\(id)"
-        return ""
+    func getFullLink() -> String? {
+       return href
     }
+    
+    func getImageFullLink() -> String? {
+        return avatarUrl
+    }
+
     
     func getRelatedDetailsCount() -> Int {
         return talks.count

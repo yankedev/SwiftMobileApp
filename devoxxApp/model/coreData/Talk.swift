@@ -19,8 +19,10 @@ import UIKit
     func getObjectId() -> NSManagedObjectID
     func getRelatedDetailsCount() -> Int
     func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol?
-    func getFullLink() -> String
+    func getFullLink() -> String?
+    func getImageFullLink() -> String?
     func getPrimaryImage() -> UIImage?
+    
 }
 
 class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococol, SearchableItemProtocol, DetailableProtocol {
@@ -50,7 +52,7 @@ class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococo
     }
     
     func detailInfos() -> [String] {
-        return [slot.roomName, getShortTalkTypeName(), slot.getFriendlyTime()]
+        return [slot.roomName, getShortTalkTypeName(), slot.getFriendlyTime(), getForthInformation(false)]
     }
     
     func getDetailInfoWithIndex(idx: Int) -> String? {
@@ -77,11 +79,15 @@ class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococo
         return nil
     }
     
-    func getFullLink() -> String {
+    func getFullLink() -> String? {
         
         return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/talks/\(id)"
         
         //return "\(APIManager.currentEvent.talkURL!)\(id)"
+    }
+    
+    func getImageFullLink() -> String? {
+        return nil
     }
     
     func getRelatedDetailsCount() -> Int {
