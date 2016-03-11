@@ -142,7 +142,6 @@ class APIManager {
     class func getDateFromIndex(index : NSInteger, array: NSArray) -> NSDate {
         if index < array.count  {
             if let dict = array.objectAtIndex(index) as? NSDictionary {
-                print(dict)
                 return (dict.objectForKey("date") as? NSDate)!
             }
         }

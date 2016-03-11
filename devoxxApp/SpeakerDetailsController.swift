@@ -199,25 +199,23 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        /*
-        if let talk = speaker.talks.allObjects[indexPath.row] as? Talk {
+        
+        if let talk = detailObject.getRelatedDetailWithIndex(indexPath.row) {
             
             let details = TalkDetailsController()
-        //todo
-            //details.indexPath = indexPath
-            details.slot = talk.slot
+            
+            details.detailObject = talk
 
-        
-        
-        
-        
             details.configure()
         
-            details.setColor(talk.isFav())
+            if let talkFavorite = talk as? FavoriteProtocol {
+                details.setColor(talkFavorite.isFav())
+            }
+            
         
             self.navigationController?.pushViewController(details, animated: true)
         }
-        */
+        
     }
     
     

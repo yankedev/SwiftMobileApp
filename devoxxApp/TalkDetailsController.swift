@@ -280,10 +280,18 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     
     public func rate() {
-        let rateController = RateTableViewController()
-        //rateController.talk = detailObject
-        let rateNavigationController = UINavigationController(rootViewController: rateController)
-        presentViewController(rateNavigationController, animated: true, completion: nil)
+        
+        if let rateObj = detailObject as? RatableProtocol {
+        
+            let rateController = RateTableViewController()
+            rateController.rateObject = rateObj
+            let rateNavigationController = UINavigationController(rootViewController: rateController)
+            presentViewController(rateNavigationController, animated: true, completion: nil)
+            
+        }
+        
+        
+    
 
     }
     

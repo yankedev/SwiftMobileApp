@@ -198,6 +198,13 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             //details.delegate = self
             
             details.configure()
+            
+            
+            details.setColor(speaker.isFav())
+            
+
+            
+            
             // details.setColor(slot.favorited())
             
             self.navigationController?.pushViewController(details, animated: true)

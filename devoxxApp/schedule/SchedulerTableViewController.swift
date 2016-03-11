@@ -166,6 +166,9 @@ public class SchedulerTableViewController:
             details.configure()
 
             
+            if let slotFavorite = slot as? FavoriteProtocol {
+                details.setColor(slotFavorite.isFav())
+            }
             
             //details.setColor(slot.talk.isFavorited)
          

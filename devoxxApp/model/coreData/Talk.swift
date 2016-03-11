@@ -25,7 +25,11 @@ import UIKit
     
 }
 
-class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococol, SearchableItemProtocol, DetailableProtocol {
+protocol RatableProtocol {
+    func getTitle() -> String
+}
+
+class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococol, SearchableItemProtocol, DetailableProtocol, RatableProtocol {
 
     @NSManaged var id: String
     @NSManaged var lang: String
@@ -190,8 +194,6 @@ class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococo
     }
     
     func getPrimaryImage() -> UIImage? {
-        print(self)
-        
         return UIImage(named: getIconFromTrackId())
     }
     

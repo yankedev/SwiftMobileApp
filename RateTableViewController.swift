@@ -14,18 +14,13 @@ import UIKit
 public class RateTableViewController : UITableViewController, UIAlertViewDelegate {
     
     
-    var talk : Talk!
-    
- 
+    var rateObject : RatableProtocol!
     
     enum KindOfSection : Equatable {
         case TALK
         case STARS
         case TALK_CONTENT_FEEDBACK
     }
-    
-
-    let color = UIColor(red: 3/255, green: 166/255, blue: 244/255, alpha: 0.08)
     
 
     override public func viewDidLoad() {
@@ -103,7 +98,7 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
                 cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "TALK")
             }
             
-            cell?.textLabel?.text = talk.title
+            cell?.textLabel?.text = rateObject.getTitle()
             cell?.textLabel?.numberOfLines = 0
             
             
