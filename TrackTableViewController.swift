@@ -154,13 +154,13 @@ public class TrackTableViewController:
         if let slot = getCell(indexPath) as? Slot {
             
             let details = TalkDetailsController()
-            details.slot = slot
+            //details.slot = slot
             details.delegate = self
             
             
             details.configure()
             
-            details.setColor(slot.favorited())
+            details.setColor(slot.talk.isFavorited)
             
             self.navigationController?.pushViewController(details, animated: true)
             
@@ -177,7 +177,8 @@ public class TrackTableViewController:
         
         
         if let cellData:Slot = APIDataManager.findEntityFromId(id, inContext: managedContext) {
-            return cellData.invertFavorite()
+            cellData.talk.invertFavorite()
+            return cellData.talk.isFav()
         }
         
         return false
@@ -195,10 +196,10 @@ public class TrackTableViewController:
             for section in (self.frc?.sections)! {
                 if section.objects?.count > 0 {
                 
-                if let sectionObjects = section.objects as? [Slot] {
-                    let sortedSection = sectionObjects.sort({ $0.favorited() > $1.favorited() })
-                    self.presort.append(sortedSection)
-                }
+                //if let sectionObjects = section.objects as? [Slot] {
+                //    let sortedSection = sectionObjects.sort({ $0.talk.isFavorited() > $1.talk.isFavorited() })
+                    //self.presort.append(sortedSection)
+               // }
                 }
             }
             
@@ -223,9 +224,7 @@ public class TrackTableViewController:
         }
             
         else {
-            if presort.count > indexPath.section {
-                return presort[indexPath.section][indexPath.row]
-            }
+            frc?.objectAtIndexPath(indexPath)
         }
         return nil
         
@@ -253,7 +252,7 @@ public class TrackTableViewController:
                 
                 
             if let fav = cellData as? FavoriteProtocol {
-                cell!.updateBackgroundColor(fav.favorited())
+                cell!.updateBackgroundColor(fav.isFav())
             }
                 
             return cell!
@@ -267,10 +266,10 @@ public class TrackTableViewController:
 
     
     func filterArray(currentArray : [AnyObject]) -> [AnyObject] {
-        
+
         let filteredArray = currentArray.filter() {
             if let type = $0 as? FavoriteProtocol {
-                return type.favorited()
+                return type.isFav()
             } else {
                 return false
             }
@@ -407,20 +406,20 @@ public class TrackTableViewController:
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         managedContext = appDelegate.managedObjectContext!
         
-        let fetchRequest = NSFetchRequest(entityName: "Slot")
-        let sortTime = NSSortDescriptor(key: "fromTime", ascending: true)
-        let sortAlpha = NSSortDescriptor(key: "talk.title", ascending: true)
+        let fetchRequest = NSFetchRequest(entityName: "Talk")
+        let sortTime = NSSortDescriptor(key: "slot.fromTime", ascending: true)
+        let sortAlpha = NSSortDescriptor(key: "title", ascending: true)
         
         fetchRequest.sortDescriptors = [sortTime, sortAlpha,]
         fetchRequest.fetchBatchSize = 20
         fetchRequest.returnsObjectsAsFaults = false
-        let predicate = NSPredicate(format: "talk.track = %@", self.currentTrack)
+        let predicate = NSPredicate(format: "track = %@", self.currentTrack)
         fetchRequest.predicate = predicate
         
         frc = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: managedContext,
-            sectionNameKeyPath: "talk.track",
+            sectionNameKeyPath: "track",
             cacheName: nil)
         
         return frc!

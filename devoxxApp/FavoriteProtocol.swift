@@ -11,6 +11,6 @@ import Foundation
 
 public protocol FavoriteProtocol : NSObjectProtocol {
     func getIdentifier() -> String
-    func favorited() -> Bool
-    func invertFavorite() -> Bool
+    func isFav() -> Bool
+    func invertFavorite()
 }

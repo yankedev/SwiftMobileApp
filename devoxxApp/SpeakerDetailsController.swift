@@ -12,8 +12,7 @@ import UIKit
 public class SpeakerDetailsController : AbstractDetailsController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol {
     
   
-    var speaker : Speaker!
-  
+    var detailObject : DetailableProtocol!
     
     
     
@@ -66,11 +65,11 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         view.addConstraints(constV)
         
         
-        header.talkTitle.text = speaker.getFullName()
-        header.talkTrack.text = speaker.speakerDetail.company
+        header.talkTitle.text = detailObject.getTitle()
+        header.talkTrack.text = detailObject.getSubTitle()
         scroll.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
       //  print(speaker.speakerDetail.bio)
-        scroll.text = speaker.speakerDetail.bio
+        scroll.text = detailObject.getSummary()
         //scroll.backgroundColor = UIColor.yellowColor()
         
         
@@ -88,7 +87,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         self.navigationController?.navigationBarHidden = true
         
         
-        header.imageView.image = speaker.getPrimaryImage()
+        header.imageView.image = detailObject.getPrimaryImage()
     
     }
     
@@ -104,7 +103,10 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     public func twitter() {
         
-        let originalString = "\(APIManager.currentEvent.hashtag!) \(speaker.displayTwitter())"
+        //let originalString = "\(APIManager.currentEvent.hashtag!) \(speaker.displayTwitter())"
+        
+        let originalString = ""
+        
         let escapedString = originalString.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         
         let url = "https://twitter.com/intent/tweet?text=\(escapedString!)"
@@ -154,28 +156,28 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
             cell = ScheduleCellView(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
    
         }
-        
+        /*
         
         if let talk = speaker.talks.allObjects[indexPath.row] as? Talk {
             
             
             
-            cell!.leftIconView.imageView.image = talk.slot.getPrimaryImage()
+            cell!.leftIconView.imageView.image = talk.getPrimaryImage()
             
-            cell!.rightTextView.topTitleView.talkTrackName.text = talk.slot.getThirdInformation()
-            cell!.rightTextView.topTitleView.talkTitle.text = talk.slot.getFirstInformation()
+            cell!.rightTextView.topTitleView.talkTrackName.text = talk.getThirdInformation()
+            cell!.rightTextView.topTitleView.talkTitle.text = talk.getFirstInformation()
             
-            cell!.rightTextView.locationView.label.text = talk.slot.getSecondInformation()
-            cell!.rightTextView.speakerView.label.text = talk.slot.getForthInformation(false)
+            cell!.rightTextView.locationView.label.text = talk.getSecondInformation()
+            cell!.rightTextView.speakerView.label.text = talk.getForthInformation(false)
             
             
             if let fav = talk as? FavoriteProtocol {
-                cell!.updateBackgroundColor(fav.favorited())
+                cell!.updateBackgroundColor(fav.isFav())
             }
 
         }
         
-        
+        */
         
         
         
@@ -186,7 +188,8 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return speaker.talks.count
+        return 0
+        //return speaker.talks.count
     }
 
     
@@ -197,7 +200,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        /*
         if let talk = speaker.talks.allObjects[indexPath.row] as? Talk {
             
             let details = TalkDetailsController()
@@ -211,11 +214,11 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
             details.configure()
         
-            details.setColor(talk.slot.favorited())
+            details.setColor(talk.isFav())
         
             self.navigationController?.pushViewController(details, animated: true)
         }
-        
+        */
     }
     
     
@@ -232,7 +235,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
         
         APIReloadManager.fetchUpdate(fetchUrl(), helper: SpeakerDetailHelper(), completedAction: fetchCompleted)
-        APIReloadManager.fetchSpeakerImg(speaker.getUrl(), id: speaker.objectID, completedAction: fetchCompleted)
+        //APIReloadManager.fetchSpeakerImg(speaker.getUrl(), id: speaker.objectID, completedAction: fetchCompleted)
     }
     
     public func fetchCompleted(msg : String) -> Void {
@@ -242,14 +245,15 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
 
         //speaker = APIDataManager.findEntityFromId(speaker.objectID, context: context)
         
-        scroll.text = speaker.speakerDetail.bio
-        header.talkTrack.text = speaker.speakerDetail.company
-        header.imageView.image = speaker.getPrimaryImage()
+        scroll.text = detailObject.getSummary()
+        header.talkTrack.text = detailObject.getSubTitle()
+        header.imageView.image = detailObject.getPrimaryImage()
         
     }
     
     public func fetchUrl() -> String? {
-        return speaker.href
+        //return speaker.href
+        return ""
     }
 
     

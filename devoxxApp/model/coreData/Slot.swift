@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, SearchableItemProtocol {
+class Slot: NSManagedObject, FeedableProtocol {
 
     @NSManaged var roomName: String
     @NSManaged var slotId: String
@@ -23,17 +23,13 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
     
     @NSManaged var talk: Talk
 
-    func getObjectID() -> NSManagedObjectID {
-        return objectID
-    }
+    
     
     func getId() -> NSManagedObject? {
         return nil
     }
     
-    func getUrl() -> String? {
-        return ""
-    }
+    
     
     func resetId(id: NSManagedObject?) {
     }
@@ -42,35 +38,9 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
         return ("\(fromTime)-\(toTime)")
     }
     
-    func getForthInformation(useTwitter : Bool) -> String {
-        return talk.getFriendlySpeaker(", ", useTwitter : useTwitter)
-    }
-    
-    func getPrimaryImage() -> UIImage? {
-        print(self)
         
-        return UIImage(named: talk.getIconFromTrackId())
-    }
     
-    func getFirstInformation() -> String {
-        return talk.title
-    }
-    
-    func getSecondInformation() -> String {
-        return roomName
-    }
-    
-    func getThirdInformation() -> String {
-        return talk.track
-    }
-    
-    func isSpecial() -> Bool {
-        return talk.isBreak
-    }
-    
-    func getColor() -> UIColor? {
-        return ColorManager.getColorFromTalkType(talk.talkType)
-    }
+  
     
     func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? SlotHelper  {
@@ -96,31 +66,9 @@ class Slot: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtoco
         }
     }
     
-    func getElement() -> NSManagedObject {
-        return talk
-    }
-
-    func getIdentifier() -> String {
-        return talk.title
-    }
-    
-    func invertFavorite() -> Bool {
-        return APIManager.invertFavorite("Talk", identifier: getIdentifier())
-    }
-    
-    var isFavorited: Bool {
-        return APIManager.isFavorited("Talk", identifier: getIdentifier())
-    }
-    
    
     
-    func favorited() -> Bool {
-        return isFavorited
-    }
-    
-    func isMatching(str : String) -> Bool {
-        return getFirstInformation().lowercaseString.containsString(str.lowercaseString)
-    }
+   
     
     
     

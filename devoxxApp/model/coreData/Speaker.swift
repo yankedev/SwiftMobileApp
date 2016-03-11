@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, SearchableItemProtocol, ImageFeedable {
+class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, SearchableItemProtocol, ImageFeedable, DetailableProtocol {
 
     @NSManaged var uuid: String?
     @NSManaged var firstName: String?
@@ -18,10 +18,66 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
     @NSManaged var avatarUrl: String?
     @NSManaged var href: String?
     @NSManaged var cfp: Cfp?
+    @NSManaged var isFavorited: Bool
     @NSManaged var speakerDetail: SpeakerDetail
     @NSManaged var talks: NSSet
     @NSManaged var imgData: NSData
 
+    
+    func getTitle() -> String {
+        return getFullName()
+    }
+    
+    func getSubTitle() -> String {
+        return speakerDetail.company
+    }
+    
+    func getSummary() -> String {
+        return speakerDetail.bio
+    }
+    
+    func detailInfos() -> [String] {
+        return []
+    }
+    
+    func getDetailInfoWithIndex(idx: Int) -> String? {
+        if idx < detailInfos().count {
+            return detailInfos()[idx]
+        }
+        return nil
+    }
+    
+    func getObjectId() -> NSManagedObjectID {
+        return objectID
+    }
+    
+    func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol? {
+        if let speakerArray = talks.sortedArrayUsingDescriptors([NSSortDescriptor(key: "firstName", ascending: true)]) as?[DetailableProtocol] {
+            
+            if idx < speakerArray.count {
+                return speakerArray[idx]
+            }
+            
+            return nil
+        }
+        
+        return nil
+    }
+    
+    func getFullLink() -> String {
+       // return "\(APIManager.currentEvent!)\(id)"
+        return ""
+    }
+    
+    func getRelatedDetailsCount() -> Int {
+        return talks.count
+    }
+    
+    
+    
+    
+    
+    
     func getObjectID() -> NSManagedObjectID {
         return objectID
     }
@@ -91,12 +147,18 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
         return uuid!
     }
     
-    func invertFavorite() -> Bool {
-        return APIManager.invertFavorite("Speaker", identifier: getIdentifier())
+    func invertFavorite() {
+        isFavorited = !isFavorited
     }
     
+    func isFav() -> Bool {
+        return isFavorited
+    }
+    
+   
+    
     func favorited() -> Bool {
-        return APIManager.isFavorited("Speaker", identifier: getIdentifier())
+        return isFavorited
     }
     
     func displayTwitter() -> String {
@@ -110,13 +172,15 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
         return "\(firstName!) \(lastName!)"
     }
     
-    func getTalks() -> Void {
-        //return APIManager.getTalksFromSpeaker(self)
-    }
     
     func isMatching(str : String) -> Bool {
         return getFullName().lowercaseString.containsString(str.lowercaseString)
     }
+    
+    
+    
+    
+    
 
     
 

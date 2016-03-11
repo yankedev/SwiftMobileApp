@@ -65,12 +65,7 @@ public class SchedulerTableViewController:
     var filterableTableDataSource: FilterableTableDataSource!
     
     var schedulerTableView = SchedulerTableView()
-    
-    
-    
-    var presort = Array<[Slot]>()
-    
-    
+
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -107,8 +102,8 @@ public class SchedulerTableViewController:
         let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: managedContext)
         
         var andPredicate = [NSPredicate]()
-        let predicateDay = NSPredicate(format: "date = %@", self.currentDate)
-        let predicateEvent = NSPredicate(format: "cfp = %@", currentCfp!)
+        let predicateDay = NSPredicate(format: "slot.date = %@", self.currentDate)
+        let predicateEvent = NSPredicate(format: "slot.cfp = %@", currentCfp!)
         
         andPredicate.append(predicateDay)
         andPredicate.append(predicateEvent)
@@ -139,7 +134,6 @@ public class SchedulerTableViewController:
                 openedSections.append(true)
             }
         }
-        sortSectionFavorite()
         schedulerTableView.reloadData()
     }
     
@@ -158,12 +152,12 @@ public class SchedulerTableViewController:
 
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
-        if let slot = getCell(indexPath) as? Slot {
+        if let slot = getCell(indexPath) {
                 
             let details = TalkDetailsController()
             //todo
 
-            details.slot = slot
+            details.detailObject = slot.getElement() as! DetailableProtocol
             details.delegate = self
       
             
@@ -171,7 +165,9 @@ public class SchedulerTableViewController:
             
             details.configure()
 
-            details.setColor(slot.favorited())
+            
+            
+            //details.setColor(slot.talk.isFavorited)
          
             self.navigationController?.pushViewController(details, animated: true)
             
@@ -180,18 +176,7 @@ public class SchedulerTableViewController:
     }
     
     
-    
-    func sortSectionFavorite() {
-        
-        presort.removeAll()
-        
-        for section in (frc?.sections)! {
-            if let sectionObjects = section.objects as? [Slot] {
-                let sortedSection = sectionObjects.sort({ $0.favorited() > $1.favorited() })
-                presort.append(sortedSection)
-            }
-        }
-    }
+  
     
     
     
@@ -208,7 +193,7 @@ public class SchedulerTableViewController:
         }
         
         else {
-            return presort[indexPath.section][indexPath.row]
+            return frc?.objectAtIndexPath(indexPath) as? CellDataPrococol
         }
 
     }
@@ -263,7 +248,7 @@ public class SchedulerTableViewController:
             
             
                 if let fav = cellData as? FavoriteProtocol {
-                    cell!.updateBackgroundColor(fav.favorited())
+                    cell!.updateBackgroundColor(fav.isFav())
                 }
 
                
@@ -284,7 +269,7 @@ public class SchedulerTableViewController:
         
         let filteredArray = currentArray.filter() {
             if let type = $0 as? FavoriteProtocol {
-                return type.favorited()
+                return type.isFav()
             } else {
                 return false
             }
@@ -414,7 +399,8 @@ public class SchedulerTableViewController:
         
         
         if let cellData:Slot = APIDataManager.findEntityFromId(id, inContext: managedContext) {
-            return cellData.invertFavorite()
+            cellData.talk.invertFavorite()
+            return cellData.talk.isFav()
         }
         
         return false
@@ -438,20 +424,20 @@ public class SchedulerTableViewController:
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         managedContext = appDelegate.managedObjectContext!
             
-        let fetchRequest = NSFetchRequest(entityName: "Slot")
-        let sortTime = NSSortDescriptor(key: "fromTime", ascending: true)
-        let sortAlpha = NSSortDescriptor(key: "talk.title", ascending: true)
+        let fetchRequest = NSFetchRequest(entityName: "Talk")
+        let sortTime = NSSortDescriptor(key: "slot.fromTime", ascending: true)
+        let sortAlpha = NSSortDescriptor(key: "title", ascending: true)
         
         fetchRequest.sortDescriptors = [sortTime, sortAlpha,]
         fetchRequest.fetchBatchSize = 20
         fetchRequest.returnsObjectsAsFaults = false
-        let predicate = NSPredicate(format: "date = %@", self.currentDate)
+        let predicate = NSPredicate(format: "slot.date = %@", self.currentDate)
         fetchRequest.predicate = predicate
             
         frc = NSFetchedResultsController(
             fetchRequest: fetchRequest,
             managedObjectContext: managedContext,
-            sectionNameKeyPath: "fromTime",
+            sectionNameKeyPath: "slot.fromTime",
             cacheName: nil)
 
         return frc!
@@ -528,13 +514,13 @@ public class SchedulerTableViewController:
             obj = filterSearchArray(obj)
         }
 
-        if let slot = obj[0] as? Slot {
-            title = "\(currentSection.name) - \(slot.toTime)"
+        if let talk = obj[0] as? Talk {
+            title = "\(currentSection.name) - \(talk.slot.toTime)"
         }
         nbTalks = obj.count
-        for slot in obj {
-            if let currentSlot = slot as? Slot {
-                set.insert(currentSlot.talk.track)
+        for talk in obj {
+            if let currentTalk = talk as? Talk {
+                set.insert(currentTalk.track)
             }
         }
             

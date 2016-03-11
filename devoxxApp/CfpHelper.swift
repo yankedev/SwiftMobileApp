@@ -124,7 +124,7 @@ class CfpHelper: DataHelperProtocol {
             fetch.returnsObjectsAsFaults = false
             
             
-            let items = APIManager.debugAllFloors(managedContext, withId:self.id!)
+            let items = getAllFloors(managedContext, withId:self.id!)
 
             coreDataObject.mutableSetValueForKey("floors").addObjectsFromArray(items as [AnyObject])
 
@@ -140,6 +140,15 @@ class CfpHelper: DataHelperProtocol {
     }
     @objc func copyWithZone(zone: NSZone) -> AnyObject {
         return self.dynamicType.init()
+    }
+    
+    
+    func getAllFloors(context : NSManagedObjectContext, withId : String) -> NSArray {
+        let fetchRequest = APIManager.buildFetchRequest(context, name: "Floor")
+        let predicate = NSPredicate(format: "id = %@", withId)
+        fetchRequest.predicate = predicate
+        let items = try! context.executeFetchRequest(fetchRequest)
+        return items
     }
     
 }

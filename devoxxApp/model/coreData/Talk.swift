@@ -10,7 +10,20 @@ import Foundation
 import CoreData
 import UIKit
 
-class Talk: NSManagedObject, FeedableProtocol{
+@objc protocol DetailableProtocol {
+    func getTitle() -> String
+    func getSubTitle() -> String
+    func getSummary() -> String
+    func detailInfos() -> [String]
+    func getDetailInfoWithIndex(idx : Int) -> String?
+    func getObjectId() -> NSManagedObjectID
+    func getRelatedDetailsCount() -> Int
+    func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol?
+    func getFullLink() -> String
+    func getPrimaryImage() -> UIImage?
+}
+
+class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococol, SearchableItemProtocol, DetailableProtocol {
 
     @NSManaged var id: String
     @NSManaged var lang: String
@@ -20,8 +33,60 @@ class Talk: NSManagedObject, FeedableProtocol{
     @NSManaged var track: String
     @NSManaged var trackId: String
     @NSManaged var speakers: NSSet
+    @NSManaged var isFavorited: Bool
     @NSManaged var isBreak : Bool
     @NSManaged var slot: Slot
+    
+    func getTitle() -> String {
+        return title
+    }
+    
+    func getSubTitle() -> String {
+        return track
+    }
+    
+    func getSummary() -> String {
+        return summary
+    }
+    
+    func detailInfos() -> [String] {
+        return [slot.roomName, getShortTalkTypeName(), slot.getFriendlyTime()]
+    }
+    
+    func getDetailInfoWithIndex(idx: Int) -> String? {
+        if idx < detailInfos().count {
+            return detailInfos()[idx]
+        }
+        return nil
+    }
+    
+    func getObjectId() -> NSManagedObjectID {
+        return objectID
+    }
+    
+    func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol? {
+        if let speakerArray = speakers.sortedArrayUsingDescriptors([NSSortDescriptor(key: "title", ascending: true)]) as?[DetailableProtocol] {
+        
+            if idx < speakerArray.count {
+                return speakerArray[idx]
+            }
+            
+            return nil
+        }
+        
+        return nil
+    }
+    
+    func getFullLink() -> String {
+        
+        return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/talks/\(id)"
+        
+        //return "\(APIManager.currentEvent.talkURL!)\(id)"
+    }
+    
+    func getRelatedDetailsCount() -> Int {
+        return speakers.count
+    }
     
     func getIconFromTrackId() -> String {
         return "icon_\(trackId)"
@@ -53,9 +118,7 @@ class Talk: NSManagedObject, FeedableProtocol{
         return returnString
     }
     
-    func getFullLink() -> String {
-        return "\(APIManager.currentEvent.talkURL!)\(id)"
-    }
+    
     
     func getShortTalkTypeName() -> String {
         if(talkType == "Ignite Sessions") {
@@ -88,15 +151,8 @@ class Talk: NSManagedObject, FeedableProtocol{
     func getIdentifier() -> String {
         return id
     }
-    func favorited() -> Bool {
-        return APIManager.isFavorited("Talk", identifier: getIdentifier())
-    }
     
-    func invertFavorite() -> Bool {
-        return APIManager.invertFavorite("Talk", identifier: getIdentifier())
-    }
-
-    
+  
     func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? TalkHelper  {
             id = castHelper.id ?? ""
@@ -109,6 +165,67 @@ class Talk: NSManagedObject, FeedableProtocol{
             isBreak = castHelper.isBreak ?? false
         }
     }
+    
+    func invertFavorite() {
+        isFavorited = !isFavorited
+    }
+    
+    func isFav() -> Bool {
+        return isFavorited
+    }
+    
+    
+    
+    
+    
+    
+    func getForthInformation(useTwitter : Bool) -> String {
+        return getFriendlySpeaker(", ", useTwitter : useTwitter)
+    }
+    
+    func getPrimaryImage() -> UIImage? {
+        print(self)
+        
+        return UIImage(named: getIconFromTrackId())
+    }
+    
+    func getFirstInformation() -> String {
+        return title
+    }
+    
+    func getSecondInformation() -> String {
+        return slot.roomName
+    }
+    
+    func getThirdInformation() -> String {
+        return track
+    }
+    
+    func isMatching(str : String) -> Bool {
+        return getFirstInformation().lowercaseString.containsString(str.lowercaseString)
+    }
+
+    
+    func getColor() -> UIColor? {
+        return ColorManager.getColorFromTalkType(talkType)
+    }
+    
+    func getElement() -> NSManagedObject {
+        return self
+    }
+    
+    func getObjectID() -> NSManagedObjectID {
+        return objectID
+    }
+    
+    func getUrl() -> String? {
+        return ""
+    }
+    
+    func isSpecial() -> Bool {
+        return isBreak
+    }
+
     
     
 }

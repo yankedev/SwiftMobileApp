@@ -265,6 +265,8 @@ public class AbstractDetailsController : UIViewController {
         view.bringSubviewToFront(actionButtonView0)
         view.bringSubviewToFront(actionButtonView1)
         view.bringSubviewToFront(actionButtonView2)
+        
+      
     }
 
    

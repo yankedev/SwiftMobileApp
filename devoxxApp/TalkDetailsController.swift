@@ -13,7 +13,7 @@ import AVFoundation
 public class TalkDetailsController : AbstractDetailsController, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol {
     
    
-    var slot : Slot!
+    var detailObject : DetailableProtocol!
     
     var txtField : UITextField!
 
@@ -42,24 +42,24 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         view.addConstraints(constV)
         
 
-        header.talkTitle.text = slot.talk.title
-        header.talkTrack.text = slot.talk.track
-        scroll.text = slot.talk.summary
+        header.talkTitle.text = detailObject.getTitle()
+        header.talkTrack.text = detailObject.getSubTitle()
+        scroll.text = detailObject.getSummary()
         
 
         
         details.layoutIfNeeded()
        
         details.left.simpleDetailView1.textView.firstInfo.text = "Room"
-        details.left.simpleDetailView1.textView.secondInfo.text = slot.roomName
+        details.left.simpleDetailView1.textView.secondInfo.text = detailObject.getDetailInfoWithIndex(0)
         
         details.left.simpleDetailView2.textView.firstInfo.text = "Format"
-        details.left.simpleDetailView2.textView.secondInfo.text = slot.talk.getShortTalkTypeName()
+        details.left.simpleDetailView2.textView.secondInfo.text = detailObject.getDetailInfoWithIndex(1)
         
    
         
         details.left.simpleDetailView3.textView.firstInfo.text = "Date and time"
-        details.left.simpleDetailView3.textView.secondInfo.text = slot.getFriendlyTime()
+        details.left.simpleDetailView3.textView.secondInfo.text = detailObject.getDetailInfoWithIndex(2)
         
       
         
@@ -91,7 +91,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     public func clicked() {
         if delegate != nil {
-            let response = delegate.favorite(slot.objectID)
+            let response = delegate.favorite(detailObject.getObjectId())
             setColor(response)
         }
     }
@@ -123,23 +123,21 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-            let speakerArray = slot.talk.speakers.sortedArrayUsingDescriptors([NSSortDescriptor(key: "firstName", ascending: true)]) as! [Speaker]
+        if let speaker = detailObject.getRelatedDetailWithIndex(indexPath.row) {
             
-            let speaker = speakerArray[indexPath.row]
-            
-            
-            
+        
             let details = SpeakerDetailsController()
             //todo
             
-            details.speaker = speaker
+            details.detailObject = speaker
             //details.delegate = self
             
             details.configure()
             // details.setColor(slot.favorited())
             
             self.navigationController?.pushViewController(details, animated: true)
-            
+        }
+        
             
             
         
@@ -153,7 +151,10 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     public func twitter() {
     
-        let originalString = "\(APIManager.currentEvent.hashtag!) \(slot.talk.title) by \(slot.getForthInformation(true)) \(slot.talk.getFullLink())"
+       // let originalString = "\(APIManager.currentEvent.hashtag!) \(detailObject.getTitle()) by \(slot.talk.getForthInformation(true)) \(detailObject.getFullLink())"
+        
+        let originalString = ""
+        
         let escapedString = originalString.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         
         let url = "https://twitter.com/intent/tweet?text=\(escapedString!)"
@@ -168,7 +169,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return slot.talk.speakers.count
+        return detailObject.getRelatedDetailsCount()
     }
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
@@ -183,10 +184,10 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
 
         
-        let speakerArray = slot.talk.speakers.sortedArrayUsingDescriptors([NSSortDescriptor(key: "firstName", ascending: true)]) as! [Speaker]
+        
         
         cell?.textLabel?.font = UIFont(name: "Roboto", size: 15)
-        cell?.textLabel?.text = speakerArray[indexPath.row].getFullName()
+        cell?.textLabel?.text = detailObject.getRelatedDetailWithIndex(indexPath.row)?.getTitle()
         
         cell?.accessoryType = .DisclosureIndicator
         
@@ -231,7 +232,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     }
     
     public func fetchUrl() -> String? {
-        return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/talks/\(slot.talk.id)"
+        return detailObject.getFullLink()
     }
     
     public func scan() {
@@ -280,7 +281,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     public func rate() {
         let rateController = RateTableViewController()
-        rateController.talk = slot.talk
+        //rateController.talk = detailObject
         let rateNavigationController = UINavigationController(rootViewController: rateController)
         presentViewController(rateNavigationController, animated: true, completion: nil)
 

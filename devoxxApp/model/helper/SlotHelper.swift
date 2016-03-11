@@ -72,13 +72,6 @@ class SlotHelper: DataHelperProtocol {
     
    
     
-    func generateFavorite(managedContext:NSManagedObjectContext, identifier: String, type: String) {
-        let favEntity = NSEntityDescription.entityForName("Favorite", inManagedObjectContext: managedContext)
-        let favCoreData = Favorite(entity: favEntity!, insertIntoManagedObjectContext: managedContext)
-        favCoreData.id = identifier
-        favCoreData.isFavorited = 0
-        favCoreData.type = type
-    }
     
     func save(managedContext : NSManagedObjectContext) -> Bool {
         
@@ -179,9 +172,7 @@ class SlotHelper: DataHelperProtocol {
         }
         
         
-        if let coreDataObjectCast = coreDataObject as? FavoriteProtocol {
-            generateFavorite(managedContext, identifier: coreDataObjectCast.getIdentifier(), type: "Talk")
-        }
+        
         
         return true
     }
