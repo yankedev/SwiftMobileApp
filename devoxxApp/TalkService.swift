@@ -55,14 +55,14 @@ class TalkService {
                 
                 if sortByDate {
                     sectionNameKeyPath = "slot.fromTime"
-                    predicate = self.computePredicate(criterion as? NSDate, searchPredicates: searchPredicates)
+                    predicate = NSPredicate(format: "slot.date = %@", criterion as! CVarArgType)
                 }
                 else {
                     sectionNameKeyPath = "track"
-                    predicate = NSPredicate(value: true)
+                    predicate = NSPredicate(format: "track = %@", criterion as! String)
                 }
                 
-                fetchRequest.predicate = predicate
+                fetchRequest.predicate = self.computePredicate(predicate, searchPredicates: searchPredicates)
                 
                 let frc = NSFetchedResultsController(
                     fetchRequest: fetchRequest,
@@ -93,16 +93,15 @@ class TalkService {
         return false
     }
     
-    private func computePredicate(currentDate : NSDate?, searchPredicates : [String : [NSPredicate]]?) -> NSPredicate {
+    private func computePredicate(predicate : NSPredicate, searchPredicates : [String : [NSPredicate]]?) -> NSPredicate {
         
         let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: self.privateManagedObjectContext)
         
         
         var andPredicate = [NSPredicate]()
-        let predicateDay = NSPredicate(format: "slot.date = %@", currentDate!)
         let predicateEvent = NSPredicate(format: "slot.cfp = %@", currentCfp!)
         
-        andPredicate.append(predicateDay)
+        andPredicate.append(predicate)
         andPredicate.append(predicateEvent)
         
         var attributeOrPredicate = [NSPredicate]()

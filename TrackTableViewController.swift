@@ -55,13 +55,14 @@ public class TrackTableViewController<T : CellDataPrococol>:
     var searchedSections = [NSFetchedResultsSectionInfo]()
     
     
-    //FilterableTableDataSource
-    var frc:NSFetchedResultsController?
     
     
     var schedulerTableView = SchedulerTableView()
     
     var presort = Array<[Slot]>()
+    
+    let talkService = TalkService()
+    var savedFetchedResult : NSFetchedResultsController?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -119,24 +120,6 @@ public class TrackTableViewController<T : CellDataPrococol>:
         return NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
     }
     
-    public func fetchAll() {
-        fetchedResultsController().fetchRequest.predicate = computePredicate()
-        
-        do {
-            try fetchedResultsController().performFetch()
-            sortSectionFavorite()
-        } catch let error as NSError {
-            //todo
-           // print("unresolved error \(error), \(error.userInfo)")
-        }
-        
-        if let sections = frc?.sections {
-            for _ in sections {
-                openedSections.append(true)
-            }
-        }
-        
-    }
     
     public func resetSearch() {
         searchingString = ""
@@ -189,29 +172,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     
     
-    func sortSectionFavorite() {
         
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            
-            self.presort.removeAll()
-            for section in (self.frc?.sections)! {
-                if section.objects?.count > 0 {
-                
-                //if let sectionObjects = section.objects as? [Slot] {
-                //    let sortedSection = sectionObjects.sort({ $0.talk.isFavorited() > $1.talk.isFavorited() })
-                    //self.presort.append(sortedSection)
-               // }
-                }
-            }
-            
-            dispatch_async(dispatch_get_main_queue()) {
-                self.schedulerTableView.reloadData()
-            }
-        }
-
-    }
-    
     
     func getCell(indexPath : NSIndexPath) -> CellDataPrococol? {
         
@@ -226,9 +187,8 @@ public class TrackTableViewController<T : CellDataPrococol>:
         }
             
         else {
-            frc?.objectAtIndexPath(indexPath)
+            return savedFetchedResult?.objectAtIndexPath(indexPath) as? CellDataPrococol
         }
-        return nil
         
     }
     
@@ -298,7 +258,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        if let sections = frc?.sections {
+        if let sections = savedFetchedResult?.sections {
             
             if !searchingString.isEmpty {
                 updateSectionForSearch()
@@ -311,13 +271,13 @@ public class TrackTableViewController<T : CellDataPrococol>:
             
             
         }
-        
+        print(savedFetchedResult?.sections?.count)
         return 0
     }
     
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = frc?.sections {
+        if let sections = savedFetchedResult?.sections {
             
             
             if(searchingString.isEmpty && !openedSections[section]) {
@@ -352,7 +312,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     }
     
     public func getSection(section: Int) -> NSFetchedResultsSectionInfo? {
-        if let sections = frc?.sections {
+        if let sections = savedFetchedResult?.sections {
             
             if !searchingString.isEmpty {
                 return searchedSections[section]
@@ -368,9 +328,9 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     public func updateSectionForSearch() {
         
-        searchedSections = (frc?.sections)!
+        searchedSections = (savedFetchedResult?.sections)!
         
-        if let sections = frc?.sections {
+        if let sections = savedFetchedResult?.sections {
             for section in sections {
                 
                 let filteredArray = filterSearchArray(section.objects!)
@@ -396,39 +356,21 @@ public class TrackTableViewController<T : CellDataPrococol>:
     }
     
     
-    //FilterableTableDataSource
-    
-    func fetchedResultsController() -> NSFetchedResultsController {
-        
-        if frc != nil {
-            return frc!
+    public func callBack(fetchedResult :NSFetchedResultsController?, error :TalksStoreError?) {
+        savedFetchedResult = fetchedResult
+        if let sections = fetchedResult!.sections {
+            for _ in sections {
+                openedSections.append(true)
+            }
         }
-        
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        managedContext = appDelegate.managedObjectContext!
-        
-        let fetchRequest = NSFetchRequest(entityName: "Talk")
-        let sortTime = NSSortDescriptor(key: "slot.fromTime", ascending: true)
-        let sortAlpha = NSSortDescriptor(key: "title", ascending: true)
-        
-        fetchRequest.sortDescriptors = [sortTime, sortAlpha,]
-        fetchRequest.fetchBatchSize = 20
-        fetchRequest.returnsObjectsAsFaults = false
-        let predicate = NSPredicate(format: "track = %@", self.currentTrack)
-        fetchRequest.predicate = predicate
-        
-        frc = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
-            managedObjectContext: managedContext,
-            sectionNameKeyPath: "track",
-            cacheName: nil)
-        
-        return frc!
-        
-        
-        
+        schedulerTableView.reloadData()
     }
+    
+    
+    public func fetchAll() {
+        talkService.fetchTalksByTrack(self.currentTrack, completionHandler: self.callBack)
+    }
+    
     
 
     public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
