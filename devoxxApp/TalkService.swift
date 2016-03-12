@@ -27,7 +27,17 @@ class TalkService {
     var mainManagedObjectContext: NSManagedObjectContext
     var privateManagedObjectContext: NSManagedObjectContext
     
-    func fetchTalksByDate(currentDate : NSDate, searchPredicates : [String : [NSPredicate]], completionHandler: (talks: NSFetchedResultsController?, error: TalksStoreError?) -> Void) {
+    
+    func fetchTalksByDate(currentDate : NSDate, searchPredicates : [String : [NSPredicate]]?, completionHandler: (talks: NSFetchedResultsController?, error: TalksStoreError?) -> Void) {
+        fetchTalks(currentDate, searchPredicates : searchPredicates, sortByDate : true, completionHandler : completionHandler)
+    }
+    
+    func fetchTalksByTrack(currentTrack : String, completionHandler: (talks: NSFetchedResultsController?, error: TalksStoreError?) -> Void) {
+        fetchTalks(currentTrack, searchPredicates : nil, sortByDate : false, completionHandler : completionHandler)
+    }
+    
+    
+    func fetchTalks<T>(criterion : T, searchPredicates : [String : [NSPredicate]]?, sortByDate : Bool, completionHandler: (talks: NSFetchedResultsController?, error: TalksStoreError?) -> Void) {
         privateManagedObjectContext.performBlock {
             do {
                 let fetchRequest = NSFetchRequest(entityName: "Talk")
@@ -38,12 +48,26 @@ class TalkService {
                 fetchRequest.sortDescriptors = [sortTime, sortFavorite, sortAlpha]
                 fetchRequest.fetchBatchSize = 20
                 fetchRequest.returnsObjectsAsFaults = false
-                fetchRequest.predicate = self.computePredicate(currentDate, searchPredicates: searchPredicates)
+                
+                
+                var sectionNameKeyPath:String
+                var predicate:NSPredicate
+                
+                if sortByDate {
+                    sectionNameKeyPath = "slot.fromTime"
+                    predicate = self.computePredicate(criterion as? NSDate, searchPredicates: searchPredicates)
+                }
+                else {
+                    sectionNameKeyPath = "track"
+                    predicate = NSPredicate(value: true)
+                }
+                
+                fetchRequest.predicate = predicate
                 
                 let frc = NSFetchedResultsController(
                     fetchRequest: fetchRequest,
                     managedObjectContext: self.privateManagedObjectContext,
-                    sectionNameKeyPath: "slot.fromTime",
+                    sectionNameKeyPath: sectionNameKeyPath,
                     cacheName: nil)
                 
                 
@@ -69,13 +93,13 @@ class TalkService {
         return false
     }
     
-    private func computePredicate(currentDate : NSDate, searchPredicates : [String : [NSPredicate]]) -> NSPredicate {
+    private func computePredicate(currentDate : NSDate?, searchPredicates : [String : [NSPredicate]]?) -> NSPredicate {
         
         let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: self.privateManagedObjectContext)
         
         
         var andPredicate = [NSPredicate]()
-        let predicateDay = NSPredicate(format: "slot.date = %@", currentDate)
+        let predicateDay = NSPredicate(format: "slot.date = %@", currentDate!)
         let predicateEvent = NSPredicate(format: "slot.cfp = %@", currentCfp!)
         
         andPredicate.append(predicateDay)
@@ -83,12 +107,13 @@ class TalkService {
         
         var attributeOrPredicate = [NSPredicate]()
         
-        for name in searchPredicates.keys {
-            attributeOrPredicate.append(NSCompoundPredicate(andPredicateWithSubpredicates: searchPredicates[name]!))
+        if searchPredicates?.count > 0 {
+            for name in searchPredicates!.keys {
+                attributeOrPredicate.append(NSCompoundPredicate(andPredicateWithSubpredicates: searchPredicates![name]!))
+            }
         }
         
         andPredicate.append(NSCompoundPredicate(andPredicateWithSubpredicates: attributeOrPredicate))
-        
         return NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
     }
 
