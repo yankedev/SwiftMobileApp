@@ -35,7 +35,6 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
         
         dispatch_async(dispatch_get_main_queue(),{
             let spk = self.privateManagedObjectContext.objectWithID(id) as! Speaker
-            print("talkCountBefore\(spk.talks.count)")
             completionHandler(spk)
         })
 
@@ -43,26 +42,55 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
     }
     
     override func getHelper() -> DataHelperProtocol {
-        return SpeakerDetailHelper()
+        return SpeakerHelper()
     }
     
     override func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
         
         privateManagedObjectContext.performBlock {
             
-            let fetchRequest = NSFetchRequest(entityName: "SpeakerDetail")
+            do {
+            
+           
+            let fetchRequest = NSFetchRequest(entityName: "Speaker")
             let predicate = NSPredicate(format: "uuid = %@", helper.getMainId())
             fetchRequest.predicate = predicate
-            let items = try! self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+            let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
             
-            let found = items[0] as! FeedableProtocol
+            if items.count > 0 {
+                let found = items[0] as! FeedableProtocol
+                (helper as! SpeakerDetailHelper).speaker = (found as! SpeakerDetail).speaker
+                found.feedHelper(helper)
+            }
+            
+            else {
+                
+                let entity = NSEntityDescription.entityForName(helper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
+                let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                
+                if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+                    coreDataObjectCast.feedHelper(helper)
+                    
+                    coreDataObject.setValue(self.getCfp(), forKey: "cfp")
+                }
+                
+                
+                
+                let entity2 = NSEntityDescription.entityForName("SpeakerDetail", inManagedObjectContext: self.privateManagedObjectContext)
+                let coreDataObject2 = SpeakerDetail(entity: entity2!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                
+                coreDataObject2.speaker = coreDataObject as! Speaker
+                coreDataObject2.uuid = coreDataObject2.speaker.uuid!
+                
+                
+            }
             
             
-            
-            (helper as! SpeakerDetailHelper).speaker = (found as! SpeakerDetail).speaker
-            found.feedHelper(helper)
             self.realSave(completionHandler)
+            }
+            catch {
             
+            }
             
         }
     
@@ -93,9 +121,7 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
         privateManagedObjectContext.performBlock {
             do {
                 
-                let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: self.privateManagedObjectContext)
-                
-                let predicateEvent = NSPredicate(format: "cfp = %@", currentCfp!)
+                let predicateEvent = NSPredicate(format: "cfp = %@", super.getCfp()!)
                 let fetchRequest = NSFetchRequest(entityName: "Speaker")
                 fetchRequest.includesSubentities = true
                 fetchRequest.returnsObjectsAsFaults = false
@@ -117,6 +143,12 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
                 
             }
         }
+    }
+    
+    
+    func getSpeakerUrl() -> String {
+        let cfp = super.getCfp()
+        return "\(cfp!.cfpEndpoint!)/conferences/\(cfp!.id!)/speakers"
     }
     
     

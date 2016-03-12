@@ -26,7 +26,9 @@ class SpeakerDetail: NSManagedObject, FeedableProtocol {
             company = castHelper.company ?? ""
             twitter = castHelper.twitter ?? ""
             uuid = castHelper.uuid ?? ""
-            speaker = castHelper.speaker!
+            if castHelper.speaker != nil {
+                speaker = castHelper.speaker!
+            }
         }
     }
     

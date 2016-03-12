@@ -140,7 +140,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     func fetchFirst() {
         /*dispatch_group_enter(serviceGroup)
         dispatch_group_enter(serviceGroup)
-        APIDataManager.loadDataFromURL(APIDataManager.getSpeakerEntryPoint(), dataHelper: SpeakerHelper(), isCritical : true, onSuccess: self.successGroup0, onError: self.onError)
+        
         APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint(), dataHelper: DayHelper(cfp: APIManager.currentEvent, url: nil), isCritical : true, onSuccess: self.successGroup0, onError: self.onError)
         
         dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
@@ -153,10 +153,6 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     
-    
-    func successGroup0(value : String) {
-        dispatch_group_leave(serviceGroup)
-    }
     
     func fetchSecond(value : String) {
         
@@ -173,7 +169,10 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             //return
         //}
         
+        
         dispatch_group_enter(serviceGroup)
+        //dispatch_group_enter(serviceGroup)
+        //dispatch_group_enter(serviceGroup)
         //dispatch_group_enter(serviceGroup)
         
        /* for _ in 0...APIManager.currentEvent!.days.count-1 {
@@ -182,9 +181,13 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         */
         
-        //APIDataManager.loadDataFromURL(APIDataManager.getTracks(), dataHelper: TrackHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
         
-        //APIDataManager.loadDataFromURL(APIDataManager.getProposalTypes(), dataHelper: TalkTypeHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
+        APIDataManager.loadDataFromURL(SpeakerService.sharedInstance.getSpeakerUrl(), service: SpeakerService.sharedInstance, helper : SpeakerHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
+        
+        //APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: AttributeService.sharedInstance, helper : TrackHelper(), isCritical: true, onSuccess: self.successGroup, onError: onError)
+        
+        //APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: AttributeService.sharedInstance, helper : TalkTypeHelper(), isCritical: true, onSuccess: self.successGroup, onError: onError)
+               
         
         
         
@@ -196,17 +199,18 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         
-        APIDataManager.loadDataFromURLS(nil, dataHelper: SlotHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
+        //APIDataManager.loadDataFromURLS(nil, dataHelper: SlotHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
         
         dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
-              //  print("OK EVERYTHING IS LOADED FROM GROUP1")
+                print("OK EVERYTHING IS LOADED FROM GROUP1")
                 self.rotating = false
                 self.loadIsFinihsed()
         })
     }
     
     func successGroup(ok : String) {
-     //   print("block finished \(ok)")
+        print("block finished \(ok)")
+        print(serviceGroup)
         dispatch_group_leave(serviceGroup)
     }
     
@@ -294,6 +298,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     let cfpService = CfpService.sharedInstance
+    let storedResourceService = StoredResourceService.sharedInstance
     
     func loadWheel(msg : String) {
         print("cfp has been fed")
@@ -315,22 +320,16 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     
-    func contextDidSave(notification: NSNotification){
-        /*let sender = notification.object as! NSManagedObjectContext
-        if sender != managedObjectContext{
-            managedObjectContext!.mergeChangesFromContextDidSaveNotification(notification)
-        */
-        print("ROGER THAT")
-    }
     
     override func viewDidLoad() {
 
         super.viewDidLoad()
         
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "contextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: nil)
+      
 
         APIManager.firstFeed(loadWheel, service: cfpService)
+        
         
         
         
@@ -536,7 +535,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             numberView.number3.text = currentData.capacityCount()
             
             let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject(currentData.title(), forKey: "currentEvent")
+            defaults.setObject(currentData.identifier(), forKey: "currentEvent")
             
         }
 

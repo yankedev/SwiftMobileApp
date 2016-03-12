@@ -83,11 +83,9 @@ class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococo
         return nil
     }
     
+    
     func getFullLink() -> String? {
-        
-        return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/talks/\(id)"
-        
-        //return "\(APIManager.currentEvent.talkURL!)\(id)"
+        return "\(slot.cfp!.cfpEndpoint!)/conferences/\(slot.cfp!.id!)/talks/\(id)"
     }
     
     func getImageFullLink() -> String? {

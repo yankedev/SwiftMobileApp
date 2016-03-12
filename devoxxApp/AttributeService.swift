@@ -34,9 +34,8 @@ class AttributeService : AbstractService {
         privateManagedObjectContext.performBlock {
             do {
                 
-                let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: self.privateManagedObjectContext)
-
-                let predicateEvent = NSPredicate(format: "cfp = %@", currentCfp!)
+                
+                let predicateEvent = NSPredicate(format: "cfp = %@", self.getCfp()!)
                 let fetchRequest = NSFetchRequest(entityName: "Attribute")
                 let predicateType = NSPredicate(format: "type = %@", "Track")
                 fetchRequest.returnsDistinctResults = true
@@ -74,6 +73,68 @@ class AttributeService : AbstractService {
                 
             }
         }
+    }
+    
+    
+    override func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
+        
+        privateManagedObjectContext.performBlock {
+            
+            do {
+                
+                let fetchRequest = NSFetchRequest(entityName: "Attribute")
+                let predicate = NSPredicate(format: "id = %@", helper.getMainId())
+                fetchRequest.predicate = predicate
+                let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+                
+                if items.count == 0 {
+                    print("create")
+                    
+                    let entity = NSEntityDescription.entityForName(helper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
+                    let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                    
+                    if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+                        coreDataObjectCast.feedHelper(helper)
+                        
+                        coreDataObject.setValue(super.getCfp(), forKey: "cfp")
+                        self.realSave(completionHandler)
+                    }
+
+                    
+                
+                    
+                    
+                }
+                else {
+                    //print("already in")
+                    completionHandler(msg: "OK")
+                }
+                
+                
+            }
+            catch {
+                print("not found")
+            }
+            
+            
+            
+        }
+        
+    }
+
+    
+    func getTracksUrl() -> String {
+        let cfp = super.getCfp()
+        return "\(cfp!.cfpEndpoint!)/conferences/\(cfp!.id!)/tracks"
+    }
+    
+    func getTalkTypeUrl() -> String {
+        let cfp = super.getCfp()
+        return "\(cfp!.cfpEndpoint!)/conferences/\(cfp!.id!)/proposalTypes"
+    }
+    
+    override func getHelper() -> DataHelperProtocol {
+        return TrackHelper()
     }
 
 }

@@ -77,7 +77,7 @@ class AbstractService  {
         
         do {
             let fetchRequest = NSFetchRequest(entityName: "Cfp")
-            let predicate = NSPredicate(format: "country = %@", getCfpId())
+            let predicate = NSPredicate(format: "id = %@", getCfpId())
             fetchRequest.predicate = predicate
             let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Cfp]
             if items.count > 0 {

@@ -20,7 +20,7 @@ class SpeakerDetailHelper: DataHelperProtocol {
     var speaker : Speaker?
     
     func getMainId() -> String {
-        return uuid!
+        return uuid ?? ""
     }
 
     

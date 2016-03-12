@@ -31,38 +31,16 @@ class APIDataManager {
   
     
     
-    class func updateCurrentEvent() -> Void {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-        
-        let fetchRequest = APIManager.buildFetchRequest(context, name: "Cfp")
-        let predicateEvent = NSPredicate(format: "id = %@", APIManager.currentEvent!.id!)
-        fetchRequest.predicate = predicateEvent
-        let items = try! context.executeFetchRequest(fetchRequest)
-        
-        
-        let res = items[0] as! Cfp
-       
-        APIManager.setEvent(items[0] as! Cfp)
-    }
-
+   
     
     class func getEntryPointPoint() -> String {
         return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/schedules"
     }
     
-    class func getProposalTypes() -> String {
-        return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/proposalTypes"
-    }
+   
     
-    class func getTracks() -> String {
-        return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/tracks"
-    }
-    
-    class func getSpeakerEntryPoint() -> String {
-        return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/speakers"
-    }
-    
+   
+ 
     
     
     class func createResource(url : String) -> StoredResource? {
@@ -101,7 +79,7 @@ class APIDataManager {
    
     
     
-    
+    /*
     class func loadDataFromURL(url: String, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
         
@@ -138,14 +116,14 @@ class APIDataManager {
         
     }
 
+    */
     
     
     
     
     
     
-    
-    class func loadDataFromURL(url: String, service : AbstractService, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
+    class func loadDataFromURL(url: String, service : AbstractService, helper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
         
         var res:StoredResource? = nil
@@ -166,7 +144,7 @@ class APIDataManager {
         if let storedResource = res {
             
             
-            return makeRequest(storedResource, service : service, isCritical : isCritical, onSuccess: onSuccess, onError: onError)
+            return makeRequest(storedResource, service : service, helper : helper, isCritical : isCritical, onSuccess: onSuccess, onError: onError)
             
             
         }
@@ -186,7 +164,7 @@ class APIDataManager {
     
     class func loadDataFromURLS(urls: NSSet?, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
-        loadDataFromURL("https://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/", service: SlotService.sharedInstance, isCritical: true, onSuccess: onSuccess, onError: onError)
+        loadDataFromURL("https://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/", service: SlotService.sharedInstance, helper : SlotHelper(), isCritical: true, onSuccess: onSuccess, onError: onError)
         
         /*for singleUrl in urls {
             if let singleUrlString = singleUrl as? Day {
@@ -200,160 +178,12 @@ class APIDataManager {
     
     
     
-    class func makeRequest(storedResource : StoredResource, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void){
-        
-        
-        
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        
-        let headers = [
-            "If-None-Match": storedResource.etag
-        ]
-        
-        config.HTTPAdditionalHeaders = headers
-        config.requestCachePolicy = .ReloadIgnoringLocalCacheData
-        config.timeoutIntervalForResource = 5
-        
-        let session = NSURLSession(configuration: config)
-        
-        
-        
-
-        
-        
-        let task = session.dataTaskWithURL(NSURL(string: storedResource.url)!) {
-            data, response1, error in
-            
-            
-            
-            
-            if let responseError = error {
-              
-                print("No internet for \(storedResource.url)")
-
-                
-                if isCritical {
-                    
-                  
-                    
-                    let testBundle = NSBundle.mainBundle()
-                    let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
-                    if filePath != nil {
-                        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
-                        if(checkString == nil) {
-                            //print("should not be empty", terminator: "")
-                        }
-                        let fallbackData = NSData(contentsOfFile: filePath!)!
-                        
-                        dispatch_async(dispatch_get_main_queue(),{
-                            
-                            APIManager.handleData(fallbackData, dataHelper: dataHelper, storedResource: storedResource, etag: nil)
-                            onSuccess(value: storedResource.url)
-                        })
-                    }
-                    else {
-                        dispatch_async(dispatch_get_main_queue(),{
-                            onSuccess(value: storedResource.url)
-                        })
-                    }
-                    
-                    
-                
-                    
-                }
-                
-                else {
-                    onSuccess(value: storedResource.url)
-                }
-                
-                
-            } else if let httpResponse = response1 as? NSHTTPURLResponse {
-                if httpResponse.statusCode != 200 && httpResponse.statusCode != 304  {
-                    
-                    print("Error code for \(storedResource.url)")
-                    
-                    let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
-                    
-
-                    if isCritical {
-                        
-                        let testBundle = NSBundle.mainBundle()
-                        let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
-                        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
-                        if(checkString == nil) {
-                            //print("should not be empty", terminator: "")
-                        }
-                        let fallbackData = NSData(contentsOfFile: filePath!)!
-                        
-                        dispatch_async(dispatch_get_main_queue(),{
-                            APIManager.handleData(fallbackData, dataHelper: dataHelper, storedResource: storedResource, etag: nil)
-                        })
-                        
-                    }
-                    
-                    dispatch_async(dispatch_get_main_queue(),{
-                        onSuccess(value: storedResource.url)
-                    })
-                    
-                    
-                }
-                else if httpResponse.statusCode == 304 {
-                    
-                    print("304 for \(storedResource.url)")
-                  
-                    
-                    if isCritical {
-                        
-                        let testBundle = NSBundle.mainBundle()
-                        let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
-                        
-                        
-                        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
-                        if(checkString == nil) {
-                            //print("should not be empty", terminator: "")
-                        }
-                        let fallbackData = NSData(contentsOfFile: filePath!)!
-                        
-                        dispatch_async(dispatch_get_main_queue(),{
-                            APIManager.handleData(fallbackData, dataHelper: dataHelper, storedResource: storedResource, etag: nil)
-                        })
-                    }
-                    
-                    dispatch_async(dispatch_get_main_queue(),{
-                        onSuccess(value: storedResource.url)
-                    })
-                    
-                }
-                else {
-                    
-                    print("200 for \(storedResource.url)")
-                    
-                    APIManager.handleData(data!, dataHelper: dataHelper, storedResource : storedResource, etag : httpResponse.allHeaderFields["etag"] as? String)
-
-                    dispatch_async(dispatch_get_main_queue(),{
-                        onSuccess(value: storedResource.url)
-                    })
-                }
-            }
-        }
-
-   
-        task.resume()
-    }
-
     
     
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    class func makeRequest(storedResource : StoredResource, service : AbstractService, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void){
+    class func makeRequest(storedResource : StoredResource, service : AbstractService, helper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void){
         
         
         
@@ -458,7 +288,6 @@ class APIDataManager {
                         let testBundle = NSBundle.mainBundle()
                         let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
                         
-                        
                         let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
                         if(checkString == nil) {
                             //print("should not be empty", terminator: "")
@@ -467,10 +296,14 @@ class APIDataManager {
                         
                         APIManager.handleData(fallbackData, service: service, storedResource: storedResource, etag: nil, completionHandler: onSuccess)
                     }
+                    else {
                     
-                    dispatch_async(dispatch_get_main_queue(),{
-                        onSuccess(value: storedResource.url)
-                    })
+                        dispatch_async(dispatch_get_main_queue(),{
+                            onSuccess(value: storedResource.url)
+                        })
+                    }
+                    
+                    
                     
                 }
                 else {

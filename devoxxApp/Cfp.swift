@@ -18,6 +18,7 @@ public protocol EventProtocol  {
     func sessionsCount() -> String
     func daysLeft() -> String
     func backgroundImage() -> NSData
+    func identifier() -> String
 }
 
 class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
@@ -47,6 +48,10 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
         return nil
     }
     func resetId(id: NSManagedObject?) {
+    }
+    
+    func identifier() -> String {
+        return id!
     }
 
 
@@ -117,7 +122,6 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     
     
     func title() -> String {
-        print(country)
         return country!
     }
     

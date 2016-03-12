@@ -90,60 +90,23 @@ class APIManager {
 
     
        
-    class func handleData(inputData : NSData, dataHelper: DataHelperProtocol, storedResource : StoredResource?, etag : String?) {
-        
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-
-
-        let json = JSON(data: inputData)
-        
-        let arrayToParse = dataHelper.prepareArray(json)
-
-        if let appArray = arrayToParse {
-            for appDict in appArray {
-
-                let newHelper = dataHelper.copyWithZone(nil) as! DataHelperProtocol
-                
-                newHelper.feed(appDict)
-                newHelper.save(context)
-                
-            }
-        }
-        
-        storedResource?.etag = etag ?? ""
-        
-        
-        APIManager.save(context)
-
-        
+        static var serviceGroup = dispatch_group_create()
     
+    class func step(msg : String) {
+        print("step")
     }
-
     
-    static var serviceGroup = dispatch_group_create()
-    
-    class func step(msg:String) -> Void {
-        //print("step out")
-        dispatch_group_leave(serviceGroup)
-    }
     
     class func handleData(inputData : NSData, service: AbstractService, storedResource : StoredResource?, etag : String?,completionHandler : (msg: String) -> Void) {
         
+       
+        
         let json = JSON(data: inputData)
-        print(storedResource?.url)
         let arrayToParse = service.getHelper().prepareArray(json)
         
         if let appArray = arrayToParse {
             
-        
-            
-            for appDict in appArray {
-                //print("step in")
-                dispatch_group_enter(serviceGroup)
-            }
-            
+
             for appDict in appArray {
                 
                 let newHelper = service.getHelper()
@@ -157,22 +120,22 @@ class APIManager {
 
         storedResource?.etag = etag ?? ""
     
-        dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
-            completionHandler(msg:"DONE")
-        })
+
+        completionHandler(msg:"DONE")
+    
     }
 
     
 
     
     class func firstFeed(completionHandler: (msg: String) -> Void, service : AbstractService) {
-        singleCommonFeed(CfpHelper(), completionHandler: completionHandler, service : service)
+        singleCommonFeed(completionHandler, service : service)
     }
     
-    class func singleCommonFeed(helper : DataHelperProtocol, completionHandler: (msg: String) -> Void, service : AbstractService) {
+    class func singleCommonFeed(completionHandler: (msg: String) -> Void, service : AbstractService) {
         
         
-        let url = commonUrl[helper.entityName()]
+        let url = commonUrl[service.getHelper().entityName()]
         
         let testBundle = NSBundle.mainBundle()
         

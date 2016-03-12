@@ -12,7 +12,7 @@ import CoreData
 class TrackHelper: AttributeHelper, DataHelperProtocol {
   
     func getMainId() -> String {
-        return ""
+        return id!
     }
 
 

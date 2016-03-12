@@ -39,7 +39,6 @@ class SlotService : AbstractService {
                 
                 let fetchRequest = NSFetchRequest(entityName: "Slot")
                 let predicateEvent = NSPredicate(format: "cfp.country = %@", super.getCfpId())
-                print(super.getCfpId())
                 fetchRequest.resultType = .DictionaryResultType
                 fetchRequest.returnsDistinctResults = true
                 fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
@@ -49,8 +48,6 @@ class SlotService : AbstractService {
                 let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
                 
                 dispatch_async(dispatch_get_main_queue(), {
-                    print("fetched : \(results)")
-                    print("fetched : \(results.count)")
                     completionHandler(slots: results, error: nil)
                 })
             } catch {
@@ -99,7 +96,7 @@ class SlotService : AbstractService {
 
                         coreDataObject.setValue(subDataObject as? AnyObject, forKey: "talk")
 
-                        
+                        //print("CALL COMPLETION HANDLER 0")
                         self.realSave(completionHandler)
                         
                         
@@ -110,6 +107,7 @@ class SlotService : AbstractService {
                     
                 }
                 else {
+                    //print("CALL COMPLETION HANDLER 1")
                     completionHandler(msg: "OK")
                 }
                 

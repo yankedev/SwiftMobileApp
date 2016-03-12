@@ -26,7 +26,7 @@ class APIReloadManager {
         
         if ResourceFetcherManager.isAllowedToFetch(url) {
         
-            APIDataManager.loadDataFromURL(url!, dataHelper: helper, isCritical : false, onSuccess: completedAction, onError: onError)
+            //APIDataManager.loadDataFromURL(url!, dataHelper: helper, isCritical : false, onSuccess: completedAction, onError: onError)
             
         }
     }
@@ -36,7 +36,7 @@ class APIReloadManager {
         
         if ResourceFetcherManager.isAllowedToFetch(url) {
             
-            APIDataManager.loadDataFromURL(url!, service: service, isCritical : false, onSuccess: completedAction, onError: onError)
+            //APIDataManager.loadDataFromURL(url!, service: service, isCritical : false, onSuccess: completedAction, onError: onError)
             
         }
     }
