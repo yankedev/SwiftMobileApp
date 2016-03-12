@@ -172,7 +172,7 @@ class APIManager {
 
     
        
-    class func handleData(inputData : NSData, dataHelper: DataHelperProtocol) {
+    class func handleData(inputData : NSData, dataHelper: DataHelperProtocol, storedResource : StoredResource?, etag : String?) {
 
         let json = JSON(data: inputData)
         
@@ -199,6 +199,7 @@ class APIManager {
             }
         }
         
+        storedResource?.etag = etag ?? ""
         APIManager.save(privateContext)
         
     
@@ -231,7 +232,7 @@ class APIManager {
                // print("should not be empty", terminator: "")
             }
             let data = NSData(contentsOfFile: filePath!)!
-            self.handleData(data, dataHelper: helper)
+            self.handleData(data, dataHelper: helper, storedResource: nil, etag: nil)
         }
         
         

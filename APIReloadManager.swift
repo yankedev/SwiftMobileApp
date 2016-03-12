@@ -31,37 +31,42 @@ class APIReloadManager {
     }
     
     class func fetchUpdate(url : String?, helper : DataHelperProtocol, completedAction : (msg: String) -> Void) {
-       
         
+        if ResourceFetcherManager.isAllowedToFetch(url) {
         
-        APIDataManager.loadDataFromURL(url!, dataHelper: helper, onSuccess: completedAction, onError: onError)
-        
+            APIDataManager.loadDataFromURL(url!, dataHelper: helper, isCritical : false, onSuccess: completedAction, onError: onError)
+            
+        }
     }
 
     
     class func fetchSpeakerImg(url : String?, id : NSManagedObjectID, completedAction : (msg: String) -> Void) {
         
-        
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        config.requestCachePolicy = .ReloadIgnoringLocalCacheData
-        
-        let session = NSURLSession(configuration: config)
-        let task = session.dataTaskWithURL(NSURL(string: url!)!) {
-            data, response1, error in
+        if ResourceFetcherManager.isAllowedToFetch(url) {
             
-            if let responseError = error {
-                //print("error for \(url)")
+            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+            config.requestCachePolicy = .ReloadIgnoringLocalCacheData
+            
+            let session = NSURLSession(configuration: config)
+            let task = session.dataTaskWithURL(NSURL(string: url!)!) {
+                data, response1, error in
+                
+                if let responseError = error {
+                    //print("error for \(url)")
+                }
+                else {
+                    //print("fetch for \(url)")
+                    APIReloadManager.feedImage(id, data : data!)
+                    dispatch_async(dispatch_get_main_queue(),{
+                        completedAction(msg: "ok")
+                    })
+                }
             }
-            else {
-                //print("fetch for \(url)")
-                APIReloadManager.feedImage(id, data : data!)
-                dispatch_async(dispatch_get_main_queue(),{
-                    completedAction(msg: "ok")
-                })
-            }
+            task.resume()
+
         }
-        task.resume()
         
+            
     }
 
     

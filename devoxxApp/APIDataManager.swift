@@ -98,103 +98,11 @@ class APIDataManager {
     }
    
     
-    class func handleData(data : NSData?, error: NSError?) -> Void {
-
-    }
-
-    class func tryToFetch(resource : StoredResource, dataHelper : DataHelperProtocol, completion:(data: NSData?, error: NSError?) -> Void, sync : Bool) -> NSURLSessionDataTask{
-        
-       
-        
-
-        
-        
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        
-        let headers = [
-            "If-None-Match": resource.etag
-        ]
-        
-        config.HTTPAdditionalHeaders = headers
-        config.requestCachePolicy = .ReloadIgnoringLocalCacheData
-        
-        let session = NSURLSession(configuration: config)
-        
-        
-        let loadDataTask = session.dataTaskWithURL(NSURL(string: resource.url)!, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-            if let responseError = error {
-                completion(data: nil, error: responseError)
-                
-                if resource.hasBeenFedOnce == false {
-                    
-                    let testBundle = NSBundle.mainBundle()
-                    let filePath = testBundle.pathForResource(resource.fallback, ofType: "")
-                    let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
-                    if(checkString == nil) {
-                        //print("should not be empty", terminator: "")
-                    }
-                    let fallbackData = NSData(contentsOfFile: filePath!)!
-                    
-                    APIManager.handleData(fallbackData, dataHelper: dataHelper)
-                }
-
-                
-            } else if let httpResponse = response as? NSHTTPURLResponse {
-                if httpResponse.statusCode != 200 && httpResponse.statusCode != 304  {
-                    let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
-                    
-                  if resource.hasBeenFedOnce == false {
-                        
-                        let testBundle = NSBundle.mainBundle()
-                        let filePath = testBundle.pathForResource(resource.fallback, ofType: "")
-                        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
-                        if(checkString == nil) {
-                            //print("should not be empty", terminator: "")
-                        }
-                        let fallbackData = NSData(contentsOfFile: filePath!)!
-                        
-                        APIManager.handleData(fallbackData, dataHelper: dataHelper)
-                    }
-
-                    
-                }
-                else if httpResponse.statusCode == 304 {
-                    if resource.hasBeenFedOnce == false {
-                        
-                        let testBundle = NSBundle.mainBundle()
-                        let filePath = testBundle.pathForResource(resource.fallback, ofType: "")
-                        let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
-                        if(checkString == nil) {
-                            //print("should not be empty", terminator: "")
-                        }
-                        let fallbackData = NSData(contentsOfFile: filePath!)!
-                        
-                        APIManager.handleData(fallbackData, dataHelper: dataHelper)
-                    }
-                    
-                }
-                else {
-                    let etagValue = httpResponse.allHeaderFields["Etag"] as! String
-                    resource.etag = etagValue
-                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    let context = appDelegate.managedObjectContext!
-                    APIManager.save(context)
-                    completion(data: data, error: nil)
-                }
-            }
-            
-        })
-        
-        
-        
-        return loadDataTask
-        
-    }
+   
     
     
     
-    
-    class func loadDataFromURL(url: String, dataHelper : DataHelperProtocol, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
+    class func loadDataFromURL(url: String, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
         
         var res:StoredResource? = nil
@@ -214,13 +122,9 @@ class APIDataManager {
         
         if let storedResource = res {
             
-            if storedResource.hasBeenFedOnce {
-                
-            }
-            else {
-                //print("REQUEST - \(storedResource.url)")
-                return makeRequest(storedResource, dataHelper : dataHelper, onSuccess: onSuccess, onError: onError)
-            }
+        
+            return makeRequest(storedResource, dataHelper : dataHelper, isCritical : isCritical, onSuccess: onSuccess, onError: onError)
+            
         
         }
 
@@ -235,11 +139,11 @@ class APIDataManager {
     }
 
     
-    class func loadDataFromURLS(urls: NSSet, dataHelper : DataHelperProtocol, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
+    class func loadDataFromURLS(urls: NSSet, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
         for singleUrl in urls {
             if let singleUrlString = singleUrl as? Day {
-                loadDataFromURL(singleUrlString.url, dataHelper: dataHelper, onSuccess: onSuccess, onError: onError)
+                loadDataFromURL(singleUrlString.url, dataHelper: dataHelper, isCritical : isCritical, onSuccess: onSuccess, onError: onError)
             }
         }
         
@@ -248,7 +152,7 @@ class APIDataManager {
     
     
     
-    class func makeRequest(storedResource : StoredResource, dataHelper : DataHelperProtocol, onSuccess : (value:String) -> Void, onError: (value:String)->Void){
+    class func makeRequest(storedResource : StoredResource, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void){
         
         
         
@@ -277,9 +181,10 @@ class APIDataManager {
             
             if let responseError = error {
               
+                print("No internet for \(storedResource.url)")
 
                 
-                if storedResource.hasBeenFedOnce == false {
+                if isCritical {
                     
                   
                     
@@ -294,7 +199,7 @@ class APIDataManager {
                         
                         dispatch_async(dispatch_get_main_queue(),{
                             
-                            APIManager.handleData(fallbackData, dataHelper: dataHelper)
+                            APIManager.handleData(fallbackData, dataHelper: dataHelper, storedResource: storedResource, etag: nil)
                             onSuccess(value: storedResource.url)
                         })
                     }
@@ -316,10 +221,13 @@ class APIDataManager {
                 
             } else if let httpResponse = response1 as? NSHTTPURLResponse {
                 if httpResponse.statusCode != 200 && httpResponse.statusCode != 304  {
+                    
+                    print("Error code for \(storedResource.url)")
+                    
                     let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
                     
 
-                    if storedResource.hasBeenFedOnce == false {
+                    if isCritical {
                         
                         let testBundle = NSBundle.mainBundle()
                         let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
@@ -330,7 +238,7 @@ class APIDataManager {
                         let fallbackData = NSData(contentsOfFile: filePath!)!
                         
                         dispatch_async(dispatch_get_main_queue(),{
-                            APIManager.handleData(fallbackData, dataHelper: dataHelper)
+                            APIManager.handleData(fallbackData, dataHelper: dataHelper, storedResource: storedResource, etag: nil)
                         })
                         
                     }
@@ -343,9 +251,10 @@ class APIDataManager {
                 }
                 else if httpResponse.statusCode == 304 {
                     
+                    print("304 for \(storedResource.url)")
                   
                     
-                    if storedResource.hasBeenFedOnce == false {
+                    if isCritical {
                         
                         let testBundle = NSBundle.mainBundle()
                         let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
@@ -358,7 +267,7 @@ class APIDataManager {
                         let fallbackData = NSData(contentsOfFile: filePath!)!
                         
                         dispatch_async(dispatch_get_main_queue(),{
-                            APIManager.handleData(fallbackData, dataHelper: dataHelper)
+                            APIManager.handleData(fallbackData, dataHelper: dataHelper, storedResource: storedResource, etag: nil)
                         })
                     }
                     
@@ -369,9 +278,10 @@ class APIDataManager {
                 }
                 else {
                     
-                    APIManager.handleData(data!, dataHelper: dataHelper)
+                    print("200 for \(storedResource.url)")
                     
-                                        
+                    APIManager.handleData(data!, dataHelper: dataHelper, storedResource : storedResource, etag : httpResponse.allHeaderFields["etag"] as? String)
+
                     dispatch_async(dispatch_get_main_queue(),{
                         onSuccess(value: storedResource.url)
                     })

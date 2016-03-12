@@ -140,8 +140,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     func fetchFirst() {
         dispatch_group_enter(serviceGroup)
         dispatch_group_enter(serviceGroup)
-        APIDataManager.loadDataFromURL(APIDataManager.getSpeakerEntryPoint(), dataHelper: SpeakerHelper(), onSuccess: self.successGroup0, onError: self.onError)
-        APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint(), dataHelper: DayHelper(cfp: APIManager.currentEvent, url: nil), onSuccess: self.successGroup0, onError: self.onError)
+        APIDataManager.loadDataFromURL(APIDataManager.getSpeakerEntryPoint(), dataHelper: SpeakerHelper(), isCritical : true, onSuccess: self.successGroup0, onError: self.onError)
+        APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint(), dataHelper: DayHelper(cfp: APIManager.currentEvent, url: nil), isCritical : true, onSuccess: self.successGroup0, onError: self.onError)
         
         dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
            // print("OK EVERYTHING IS LOADED FROM GROUP 0")
@@ -180,9 +180,9 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         
-        APIDataManager.loadDataFromURL(APIDataManager.getTracks(), dataHelper: TrackHelper(), onSuccess: self.successGroup, onError: self.onError)
+        APIDataManager.loadDataFromURL(APIDataManager.getTracks(), dataHelper: TrackHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
         
-        APIDataManager.loadDataFromURL(APIDataManager.getProposalTypes(), dataHelper: TalkTypeHelper(), onSuccess: self.successGroup, onError: self.onError)
+        APIDataManager.loadDataFromURL(APIDataManager.getProposalTypes(), dataHelper: TalkTypeHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
         
         
         
@@ -193,7 +193,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         
-        APIDataManager.loadDataFromURLS(APIManager.currentEvent!.days, dataHelper: SlotHelper(), onSuccess: self.successGroup, onError: self.onError)
+        APIDataManager.loadDataFromURLS(APIManager.currentEvent!.days, dataHelper: SlotHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
         
         dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
               //  print("OK EVERYTHING IS LOADED FROM GROUP1")

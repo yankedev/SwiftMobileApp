@@ -129,12 +129,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         
         
-        
-        if cellData.getPrimaryImage() == nil {
-            //APIReloadManager.fetchSpeakerImg(cellData.getUrl(), id: cellData.getObjectID(), completedAction: okUpdate)
-        }
-        
-        
+        APIReloadManager.fetchSpeakerImg(cellData.getUrl(), id: cellData.getObjectID(), completedAction: okUpdate)
         
         
         cell!.accessoryView = UIImageView(image: cellData.getPrimaryImage())
