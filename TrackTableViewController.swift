@@ -13,7 +13,6 @@ import CoreData
 
 public class TrackTableViewController:
     UIViewController,
-    FilterableTableDataSource,
     UITableViewDelegate,
     SearchableTableProtocol,
     UITableViewDataSource,
@@ -55,7 +54,6 @@ public class TrackTableViewController:
     //FilterableTableDataSource
     var frc:NSFetchedResultsController?
     
-    var filterableTableDataSource: FilterableTableDataSource!
     
     var schedulerTableView = SchedulerTableView()
     
@@ -64,7 +62,7 @@ public class TrackTableViewController:
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        filterableTableDataSource = self
+        
         
         schedulerTableView.delegate = self
         schedulerTableView.dataSource = self

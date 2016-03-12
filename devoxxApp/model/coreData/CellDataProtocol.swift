@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-@objc protocol CellDataPrococol : NSObjectProtocol {
+@objc public protocol CellDataPrococol : NSObjectProtocol {
     
     func getFirstInformation() -> String
     func getSecondInformation() -> String
@@ -22,5 +22,7 @@ import UIKit
     func getUrl() -> String?
     func isSpecial() -> Bool
     func getObjectID() -> NSManagedObjectID
+    
+    init()
 
 }

@@ -15,13 +15,14 @@ public protocol ScrollableDateProtocol : NSObjectProtocol {
     var currentDate:NSDate!  { get set }
     var currentTrack:String!  { get set }
     func getNavigationItem() -> UINavigationItem
+    init()
 }
 
 
 
 public class ScheduleController<T : ScrollableDateProtocol> : UINavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
 
-    var generator: () -> ScrollableDateProtocol
+
     
     //ScrollableDateTableDatasource
     var scrollableDateTableDatasource: ScrollableDateTableDatasource?
@@ -38,8 +39,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     
     var customView:ScheduleControllerView?
     
-    init(generator: () -> ScrollableDateProtocol) {
-        self.generator = generator
+    init() {
         super.init(navigationBarClass: nil, toolbarClass: nil)
     }
 
@@ -221,7 +221,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     
     public func viewControllerAtIndex(index : NSInteger) -> UIViewController {
         
-        let scheduleTableController:T = generator() as! T
+        let scheduleTableController:T = T()
         scheduleTableController.index = index
         
         if let dates = self.scrollableDateTableDatasource?.allDates {

@@ -18,9 +18,3 @@ protocol FilterableTableProtocol {
     func filter()
     func getCurrentFilters() -> [String : [FilterableProtocol]]?
 }
-
-
-protocol FilterableTableDataSource {
-    var frc:NSFetchedResultsController? { set get }
-    func fetchedResultsController() -> NSFetchedResultsController
-}

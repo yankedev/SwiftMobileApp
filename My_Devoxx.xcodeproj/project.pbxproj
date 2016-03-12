@@ -148,6 +148,7 @@
 		E127E66D1C39709400FB7E4F /* TalkType.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6681C39709400FB7E4F /* TalkType.json */; };
 		E127E66E1C39709400FB7E4F /* Track.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6691C39709400FB7E4F /* Track.json */; };
 		E136DF201C9216AB00BB1A0C /* SpeakerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E136DF1F1C9216AB00BB1A0C /* SpeakerProtocol.swift */; };
+		E175E5D11C93A0C7002A262A /* TalkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5D01C93A0C7002A262A /* TalkService.swift */; };
 		E175F25C1C46FFAD00D7AC0A /* DV15-monday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2581C46FFAD00D7AC0A /* DV15-monday.json */; };
 		E175F25D1C46FFAD00D7AC0A /* DV15-tuesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */; };
 		E175F25E1C46FFAD00D7AC0A /* DV15-wednesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */; };
@@ -351,6 +352,7 @@
 		E127E6681C39709400FB7E4F /* TalkType.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TalkType.json; path = mock/TalkType.json; sourceTree = "<group>"; };
 		E127E6691C39709400FB7E4F /* Track.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Track.json; path = mock/Track.json; sourceTree = "<group>"; };
 		E136DF1F1C9216AB00BB1A0C /* SpeakerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerProtocol.swift; sourceTree = "<group>"; };
+		E175E5D01C93A0C7002A262A /* TalkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkService.swift; sourceTree = "<group>"; };
 		E175F2581C46FFAD00D7AC0A /* DV15-monday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-monday.json"; path = "mock/DV15-monday.json"; sourceTree = "<group>"; };
 		E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-tuesday.json"; path = "mock/DV15-tuesday.json"; sourceTree = "<group>"; };
 		E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-wednesday.json"; path = "mock/DV15-wednesday.json"; sourceTree = "<group>"; };
@@ -825,6 +827,7 @@
 			children = (
 				E1FA9C461C1BFD480077C09A /* helper */,
 				E1FA9C411C1BFD330077C09A /* coreData */,
+				E175E5D01C93A0C7002A262A /* TalkService.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1117,6 +1120,7 @@
 				E136DF201C9216AB00BB1A0C /* SpeakerProtocol.swift in Sources */,
 				58BA2BFC1C3331EF0031C2E3 /* Etag.swift in Sources */,
 				5895EB7D1C6662F300229780 /* Cfp.swift in Sources */,
+				E175E5D11C93A0C7002A262A /* TalkService.swift in Sources */,
 				E1FA9BEE1C1BF4E70077C09A /* ColorManager.swift in Sources */,
 				5842E4371C83734400998F9C /* ScheduleCellView.swift in Sources */,
 				580B78961C7A10E100060C00 /* HomeHeaderView.swift in Sources */,

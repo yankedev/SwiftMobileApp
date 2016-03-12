@@ -14,10 +14,9 @@ public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
     func favorite(id : NSManagedObjectID) -> Bool
 }
 
-public class SchedulerTableViewController:
+public class SchedulerTableViewController<T : CellDataPrococol>:
         UIViewController,
         DevoxxAppFavoriteDelegate,
-        FilterableTableDataSource,
         FilterableTableProtocol,
         UITableViewDelegate,
         SearchableTableProtocol,
@@ -42,6 +41,7 @@ public class SchedulerTableViewController:
         return (self.navigationController?.navigationItem)!
     }
 
+
     
     
     var openedSections = [Bool]()
@@ -59,18 +59,20 @@ public class SchedulerTableViewController:
     //FilterableTableProtocol
     var currentFilters:[String : [FilterableProtocol]]!
     
-    //FilterableTableDataSource
-    var frc:NSFetchedResultsController?
-    
-    var filterableTableDataSource: FilterableTableDataSource!
     
     var schedulerTableView = SchedulerTableView()
+    
+    
+    var savedFetchedResult : NSFetchedResultsController?
 
+    public required init() {
+        super.init(nibName: nil, bundle: nil)
+    }
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        filterableTableDataSource = self
+        
         
         schedulerTableView.delegate = self
         schedulerTableView.dataSource = self
@@ -97,44 +99,22 @@ public class SchedulerTableViewController:
     }
 
     
-    private func computePredicate() -> NSPredicate {
-        
-        let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: managedContext)
-        
-        var andPredicate = [NSPredicate]()
-        let predicateDay = NSPredicate(format: "slot.date = %@", self.currentDate)
-        let predicateEvent = NSPredicate(format: "slot.cfp = %@", currentCfp!)
-        
-        andPredicate.append(predicateDay)
-        andPredicate.append(predicateEvent)
-        
-        var attributeOrPredicate = [NSPredicate]()
-        
-        for name in searchPredicates.keys {
-            attributeOrPredicate.append(NSCompoundPredicate(andPredicateWithSubpredicates: searchPredicates[name]!))
-        }
-        
-        andPredicate.append(NSCompoundPredicate(andPredicateWithSubpredicates: attributeOrPredicate))
-        
-        return NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
-    }
     
-    public func fetchAll() {
-        fetchedResultsController().fetchRequest.predicate = computePredicate()
-  
-        do {
-            try fetchedResultsController().performFetch()
-        } catch let error as NSError {
-            //todo
-            //print("unresolved error \(error), \(error.userInfo)")
-        }
-        
-        if let sections = frc?.sections {
+    
+    public func callBack(fetchedResult :NSFetchedResultsController?, error :TalksStoreError?) {
+        savedFetchedResult = fetchedResult
+        if let sections = fetchedResult!.sections {
             for _ in sections {
                 openedSections.append(true)
             }
         }
         schedulerTableView.reloadData()
+    }
+    
+    
+    public func fetchAll() {
+        let service = TalkService()
+        service.fetchTalksByDate(self.currentDate, searchPredicates : self.searchPredicates, completionHandler: self.callBack)
     }
     
     public func resetSearch() {
@@ -196,7 +176,7 @@ public class SchedulerTableViewController:
         }
         
         else {
-            return frc?.objectAtIndexPath(indexPath) as? CellDataPrococol
+            return savedFetchedResult?.objectAtIndexPath(indexPath) as? CellDataPrococol
         }
 
     }
@@ -301,7 +281,7 @@ public class SchedulerTableViewController:
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 
-        if let sections = frc?.sections {
+        if let sections = savedFetchedResult?.sections {
             
             if !searchingString.isEmpty {
                 updateSectionForSearch()
@@ -320,7 +300,7 @@ public class SchedulerTableViewController:
     
        
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = frc?.sections {
+        if let sections = savedFetchedResult?.sections {
             
             
             if(searchingString.isEmpty && !openedSections[section]) {
@@ -355,7 +335,7 @@ public class SchedulerTableViewController:
     }
     
     public func getSection(section: Int) -> NSFetchedResultsSectionInfo? {
-        if let sections = frc?.sections {
+        if let sections = savedFetchedResult?.sections {
             
             if !searchingString.isEmpty {
                 return searchedSections[section]
@@ -371,9 +351,9 @@ public class SchedulerTableViewController:
     
     public func updateSectionForSearch() {
         
-        searchedSections = (frc?.sections)!
+        searchedSections = (savedFetchedResult?.sections)!
         
-        if let sections = frc?.sections {
+        if let sections = savedFetchedResult?.sections {
             for section in sections {
                 
                 let filteredArray = filterSearchArray(section.objects!)
@@ -401,9 +381,9 @@ public class SchedulerTableViewController:
         let managedContext = appDelegate.managedObjectContext!
         
         
-        if let cellData:Slot = APIDataManager.findEntityFromId(id, inContext: managedContext) {
-            cellData.talk.invertFavorite()
-            return cellData.talk.isFav()
+        if let cellData:FavoriteProtocol = APIDataManager.findEntityFromId(id, inContext: managedContext) {
+            cellData.invertFavorite()
+            return cellData.isFav()
         }
         
         return false
@@ -417,35 +397,6 @@ public class SchedulerTableViewController:
     
     //FilterableTableDataSource
     
-    func fetchedResultsController() -> NSFetchedResultsController {
-        
-        if frc != nil {
-            return frc!
-        }
-        
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        managedContext = appDelegate.managedObjectContext!
-            
-        let fetchRequest = NSFetchRequest(entityName: "Talk")
-        let sortTime = NSSortDescriptor(key: "slot.fromTime", ascending: true)
-        let sortAlpha = NSSortDescriptor(key: "title", ascending: true)
-        
-        fetchRequest.sortDescriptors = [sortTime, sortAlpha,]
-        fetchRequest.fetchBatchSize = 20
-        fetchRequest.returnsObjectsAsFaults = false
-        let predicate = NSPredicate(format: "slot.date = %@", self.currentDate)
-        fetchRequest.predicate = predicate
-            
-        frc = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
-            managedObjectContext: managedContext,
-            sectionNameKeyPath: "slot.fromTime",
-            cacheName: nil)
-
-        return frc!
-    }
-
     //FilterableTableProtocol
     
     
