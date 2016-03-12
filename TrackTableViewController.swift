@@ -136,6 +136,9 @@ public class TrackTableViewController<T : CellDataPrococol>:
         
         if let detailObject = getCell(indexPath) as? DetailableProtocol {
             
+            
+
+            
             let details = TalkDetailsController()
             details.detailObject = detailObject
             details.delegate = self
@@ -154,20 +157,8 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     
     public func favorite(id : NSManagedObjectID) -> Bool {
-        
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        
-        
-        if let cellData:Slot = APIDataManager.findEntityFromId(id, inContext: managedContext) {
-            cellData.talk.invertFavorite()
-            return cellData.talk.isFav()
-        }
-        
-        return false
+        return talkService.invertFavorite(id)
     }
-    
     
     
     

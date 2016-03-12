@@ -28,11 +28,12 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
         super.init()
     }
     
-    func getSpeakerFromId(id : NSManagedObjectID, completionHandler : (DetailableProtocol) -> Void)  {
+    func getSpeakerFromId(id : NSManagedObjectID, completionHandler : (Speaker) -> Void)  {
         
         
         dispatch_async(dispatch_get_main_queue(),{
             let spk = self.privateManagedObjectContext.objectWithID(id) as! Speaker
+            print("talkCountBefore\(spk.talks.count)")
             completionHandler(spk)
         })
 

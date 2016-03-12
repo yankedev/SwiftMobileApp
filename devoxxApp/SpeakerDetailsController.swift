@@ -8,13 +8,14 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 public class SpeakerDetailsController : AbstractDetailsController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol {
     
   
     var detailObject : DetailableProtocol!
     
-    
+    let speakerService = SpeakerService()
     
     var talkList = SpeakerListView(frame: CGRectZero, style: .Grouped)
     
@@ -200,6 +201,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
+
         if let talk = detailObject.getRelatedDetailWithIndex(indexPath.row) {
             
             let details = TalkDetailsController()
@@ -228,16 +230,15 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     
     
+    
     public func fetchUpdate() {
-        //APIReloadManager.fetchUpdate(fetchUrl(), helper: SpeakerDetailHelper(), completedAction: fetchCompleted)
-        
-        APIReloadManager.fetchUpdate(fetchUrl(), service: SpeakerService(), completedAction: fetchCompleted)
+        APIReloadManager.fetchUpdate(fetchUrl(), service: speakerService, completedAction: fetchCompleted)
         
         APIReloadManager.fetchImg(detailObject.getImageFullLink(), id: detailObject.getObjectId(), service:SpeakerService(), completedAction: fetchCompleted)
     }
     
     public func fetchCompleted(msg : String) -> Void {
-        SpeakerService().getSpeakerFromId(detailObject.getObjectId(), completionHandler : callBackUpdate)
+        speakerService.getSpeakerFromId(detailObject.getObjectId(), completionHandler : callBackUpdate)
     }
     
     public func callBackUpdate(callBackObject : DetailableProtocol) {
@@ -245,6 +246,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         scroll.text = detailObject.getSummary()
         header.talkTrack.text = detailObject.getSubTitle()
         header.imageView.image = detailObject.getPrimaryImage()
+        talkList.reloadData()
     }
     
     public func fetchUrl() -> String? {

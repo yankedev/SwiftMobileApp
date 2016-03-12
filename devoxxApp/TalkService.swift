@@ -47,9 +47,6 @@ class TalkService : AbstractService {
                 let sortAlpha = NSSortDescriptor(key: "title", ascending: true)
                 let sortFavorite = NSSortDescriptor(key: "isFavorited", ascending: false)
                 
-                fetchRequest.sortDescriptors = [sortTime, sortFavorite, sortAlpha]
-                fetchRequest.fetchBatchSize = 20
-                fetchRequest.returnsObjectsAsFaults = false
                 
                 
                 var sectionNameKeyPath:String
@@ -58,10 +55,12 @@ class TalkService : AbstractService {
                 if sortByDate {
                     sectionNameKeyPath = "slot.fromTime"
                     predicate = NSPredicate(format: "slot.date = %@", criterion as! CVarArgType)
+                    fetchRequest.sortDescriptors = [sortTime, sortFavorite, sortAlpha]
                 }
                 else {
                     sectionNameKeyPath = "track"
                     predicate = NSPredicate(format: "track = %@", criterion as! String)
+                    fetchRequest.sortDescriptors = [sortFavorite, sortAlpha]
                 }
                 
                 fetchRequest.predicate = self.computePredicate(predicate, searchPredicates: searchPredicates)

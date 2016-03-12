@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, SearchableItemProtocol, ImageFeedable, DetailableProtocol {
+public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, SearchableItemProtocol, ImageFeedable, DetailableProtocol {
 
     @NSManaged var uuid: String?
     @NSManaged var firstName: String?
@@ -24,56 +24,55 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
     @NSManaged var imgData: NSData
 
     
-    func getTitle() -> String {
+    public func getTitle() -> String {
         return getFullName()
     }
     
-    func getSubTitle() -> String {
+    public func getSubTitle() -> String {
         return speakerDetail.company
     }
     
-    func getSummary() -> String {
+    public func getSummary() -> String {
         return speakerDetail.bio
     }
     
-    func detailInfos() -> [String] {
+    public func detailInfos() -> [String] {
         return []
     }
     
-    func getDetailInfoWithIndex(idx: Int) -> String? {
+    public func getDetailInfoWithIndex(idx: Int) -> String? {
         if idx < detailInfos().count {
             return detailInfos()[idx]
         }
         return nil
     }
     
-    func getObjectId() -> NSManagedObjectID {
+    public func getObjectId() -> NSManagedObjectID {
         return objectID
     }
     
-    func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol? {
-        if let speakerArray = talks.sortedArrayUsingDescriptors([NSSortDescriptor(key: "title", ascending: true)]) as?[DetailableProtocol] {
-            
+    public func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol? {
+        if let speakerArray = talks.sortedArrayUsingDescriptors([NSSortDescriptor(key: "title", ascending: true)]) as? [Talk] {
+                
             if idx < speakerArray.count {
                 return speakerArray[idx]
             }
-            
+                
             return nil
         }
-        
         return nil
     }
     
-    func getFullLink() -> String? {
+    public func getFullLink() -> String? {
        return href
     }
     
-    func getImageFullLink() -> String? {
+    public func getImageFullLink() -> String? {
         return avatarUrl
     }
 
     
-    func getRelatedDetailsCount() -> Int {
+    public func getRelatedDetailsCount() -> Int {
         return talks.count
     }
     
@@ -82,7 +81,7 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
     
     
     
-    func getObjectID() -> NSManagedObjectID {
+    public func getObjectID() -> NSManagedObjectID {
         return objectID
     }
     
@@ -90,17 +89,17 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
         imgData = data
     }
     
-    func getFirstInformation() -> String {
+    public func getFirstInformation() -> String {
         return "\(firstName!.capitalizedString) \(lastName!.capitalizedString)"
     }
     
-    func getId() -> NSManagedObject? {
+    public func getId() -> NSManagedObject? {
         return nil
     }
-    func resetId(id: NSManagedObject?) {
+    public func resetId(id: NSManagedObject?) {
     }
     
-    func getUrl() -> String? {
+    public func getUrl() -> String? {
         if avatarUrl != nil {
             if avatarUrl!.hasPrefix("https") && (avatarUrl!.hasSuffix("png") || avatarUrl!.hasSuffix("jpg") || avatarUrl!.hasSuffix("jpeg") || avatarUrl!.hasSuffix("gif")) {
                 return avatarUrl
@@ -110,34 +109,34 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
     }
 
     
-    func getSecondInformation() -> String {
+    public func getSecondInformation() -> String {
         return ""
     }
     
-    func getForthInformation(useTwitter : Bool) -> String {
+    public  func getForthInformation(useTwitter : Bool) -> String {
         return ""
     }
     
-    func getThirdInformation() -> String  {
+    public  func getThirdInformation() -> String  {
         return ""
     }
     
-    func getPrimaryImage() -> UIImage? {
+    public  func getPrimaryImage() -> UIImage? {
         return UIImage(data: imgData)
     }
-    func getColor() -> UIColor? {
+    public  func getColor() -> UIColor? {
         return nil
     }
     
-    func isSpecial() -> Bool {
+    public  func isSpecial() -> Bool {
         return false
     }
 
-    func getElement() -> NSManagedObject {
+    public func getElement() -> NSManagedObject {
         return self
     }
 
-    func feedHelper(help: DataHelperProtocol) {
+    public func feedHelper(help: DataHelperProtocol) {
         if let castHelper = help as? SpeakerHelper  {
             uuid = castHelper.uuid
             firstName = castHelper.firstName
@@ -147,15 +146,15 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
         }
     }
     
-    func getIdentifier() -> String {
+    public func getIdentifier() -> String {
         return uuid!
     }
     
-    func invertFavorite() {
+    public func invertFavorite() {
         isFavorited = !isFavorited
     }
     
-    func isFav() -> Bool {
+    public func isFav() -> Bool {
         return isFavorited
     }
     

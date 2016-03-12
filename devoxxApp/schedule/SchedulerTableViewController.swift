@@ -354,15 +354,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     
     
     public func favorite(id : NSManagedObjectID) -> Bool {
-        
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        
-        
         return talkService.invertFavorite(id)
-        
-        
     }
     
     

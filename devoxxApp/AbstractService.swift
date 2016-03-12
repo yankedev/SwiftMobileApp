@@ -48,32 +48,32 @@ class AbstractService {
     func invertFavorite(id : NSManagedObjectID) -> Bool {
         if let cellData:FavoriteProtocol = APIDataManager.findEntityFromId(id, inContext: self.privateManagedObjectContext) {
             cellData.invertFavorite()
-            APIManager.save(self.mainManagedObjectContext)
+            self.realSave(nil)
             return cellData.isFav()
         }
         return false
     }
     
-    func realSave(completionHandler : (msg: String) -> Void) {
+    func realSave(completionHandler : ((msg: String) -> Void)?) {
         do {
             try privateManagedObjectContext.save()
             mainManagedObjectContext.performBlock {
                 do {
                     try self.mainManagedObjectContext.save()
                     dispatch_async(dispatch_get_main_queue(),{
-                        completionHandler(msg: "ok")
+                        completionHandler?(msg: "ok")
                     })
                 } catch let err as NSError {
                     print("Could not save main context: \(err.localizedDescription)")
                     dispatch_async(dispatch_get_main_queue(),{
-                        completionHandler(msg: "ko")
+                        completionHandler?(msg: "ko")
                     })
                 }
             }
         } catch let err as NSError {
             print("Could not save private context: \(err.localizedDescription)")
             dispatch_async(dispatch_get_main_queue(),{
-                completionHandler(msg: "ko")
+                completionHandler?(msg: "ko")
             })
         }
     }
