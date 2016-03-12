@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-@objc protocol DetailableProtocol {
+@objc public protocol DetailableProtocol {
     func getTitle() -> String
     func getSubTitle() -> String
     func getSummary() -> String

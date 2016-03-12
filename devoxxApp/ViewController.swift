@@ -304,7 +304,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         super.viewDidLoad()
 
         slicesData = APIManager.getAllEvents()
-        
+        print(slicesData.count)
         
         imgView = UIImageView()
         imgView.contentMode = .ScaleAspectFit

@@ -53,19 +53,20 @@ class SpeakerDetailHelper: DataHelperProtocol {
     
     
     func update(managedContext : NSManagedObjectContext) {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-
         
-        let obj = APIManager.findOne("uuid", value: uuid!, entity: entityName(), context: context)
+        
+        
+        
+        let obj = APIManager.findOne("uuid", value: uuid!, entity: entityName(), context: managedContext)
         if let objManagedObject = obj as? SpeakerDetail {
-            speaker = APIManager.findOne("uuid", value: uuid!, entity: "Speaker", context: context) as! Speaker
+            speaker = APIManager.findOne("uuid", value: uuid!, entity: "Speaker", context: managedContext) as! Speaker
             objManagedObject.feedHelper(self)
-            APIManager.save(context)
         }
     }
     
     func save(managedContext : NSManagedObjectContext) -> Bool {
+        
+        
         
         if APIManager.exists(uuid!, leftPredicate:"uuid", entity: entityName()) {
      //       print("speakerDetail for \(uuid)  exists")

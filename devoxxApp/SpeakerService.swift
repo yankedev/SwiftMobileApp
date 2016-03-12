@@ -28,7 +28,48 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
         super.init()
     }
     
+    func getSpeakerFromId(id : NSManagedObjectID, completionHandler : (DetailableProtocol) -> Void)  {
+        dispatch_async(dispatch_get_main_queue(),{
+            let spk = self.privateManagedObjectContext.objectWithID(id) as! Speaker
+            completionHandler(spk)
+        })
+    }
+    
+    func getHelper() -> SpeakerDetailHelper {
+        return SpeakerDetailHelper()
+    }
+    
+    func updateWithHelper(helper : SpeakerDetailHelper, completionHandler : (msg: String) -> Void) {
+        
+        privateManagedObjectContext.performBlock {
+            
+            let fetchRequest = NSFetchRequest(entityName: "SpeakerDetail")
+            let predicate = NSPredicate(format: "uuid = %@", helper.uuid!)
+            fetchRequest.predicate = predicate
+            let items = try! self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+            
+            let found = items[0] as! FeedableProtocol
+            
+            print((found as! SpeakerDetail).speaker.getFullName())
+            
+            helper.speaker = (found as! SpeakerDetail).speaker
+            found.feedHelper(helper)
+            
+            print((found as! SpeakerDetail).speaker.getFullName())
+            print((found as! SpeakerDetail).bio)
+            
+            self.realSave()
+            
+            dispatch_async(dispatch_get_main_queue(),{
+                completionHandler(msg: "ok")
+            })
+        }
+
+    }
+    
+    
     func updateImageForId(id : NSManagedObjectID, withData data: NSData, completionHandler : (msg: String) -> Void) {
+        print(privateManagedObjectContext)
         
         privateManagedObjectContext.performBlock {
             

@@ -105,6 +105,7 @@ class SelectionWheel: UIView {
             shapeLayer.anchorPoint = CGPointMake(0.5, 0.5)
             
             
+            
             let image = datasource.imageForSliceAtIndex(index)
            
 

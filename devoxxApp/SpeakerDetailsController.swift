@@ -229,11 +229,23 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     
     public func fetchUpdate() {
-        APIReloadManager.fetchUpdate(fetchUrl(), helper: SpeakerDetailHelper(), completedAction: fetchCompleted)
-        //APIReloadManager.fetchImg(detailObject.getImageFullLink(), id: detailObject.getObjectId(), completedAction: fetchCompleted)
+        //APIReloadManager.fetchUpdate(fetchUrl(), helper: SpeakerDetailHelper(), completedAction: fetchCompleted)
+        
+        APIReloadManager.fetchUpdate(fetchUrl(), service: SpeakerService(), completedAction: fetchCompleted)
+        
+        APIReloadManager.fetchImg(detailObject.getImageFullLink(), id: detailObject.getObjectId(), service:SpeakerService(), completedAction: fetchCompleted)
     }
     
     public func fetchCompleted(msg : String) -> Void {
+        SpeakerService().getSpeakerFromId(detailObject.getObjectId(), completionHandler : callBackUpdate)
+    }
+    
+    public func callBackUpdate(callBackObject : DetailableProtocol) {
+        detailObject = callBackObject
+        print("HERE")
+        let speaker = detailObject as! Speaker
+        print(speaker.uuid)
+        print(speaker.speakerDetail)
         scroll.text = detailObject.getSummary()
         header.talkTrack.text = detailObject.getSubTitle()
         header.imageView.image = detailObject.getPrimaryImage()

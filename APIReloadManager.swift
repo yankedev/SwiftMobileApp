@@ -32,6 +32,16 @@ class APIReloadManager {
     }
 
     
+    class func fetchUpdate(url : String?, service : SpeakerService, completedAction : (msg: String) -> Void) {
+        
+        if ResourceFetcherManager.isAllowedToFetch(url) {
+            
+            APIDataManager.loadDataFromURL(url!, service: service, isCritical : false, onSuccess: completedAction, onError: onError)
+            
+        }
+    }
+
+    
     class func fetchImg(url : String?, id : NSManagedObjectID, service : ImageServiceProtocol, completedAction : (msg: String) -> Void) {
         
         if ResourceFetcherManager.isAllowedToFetch(url) {

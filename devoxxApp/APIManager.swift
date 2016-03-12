@@ -119,38 +119,59 @@ class APIManager {
     
        
     class func handleData(inputData : NSData, dataHelper: DataHelperProtocol, storedResource : StoredResource?, etag : String?) {
-
-        let json = JSON(data: inputData)
-        
-        let arrayToParse = dataHelper.prepareArray(json)
-
-        
-      
         
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = appDelegate.managedObjectContext!
 
-        let privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        privateContext.persistentStoreCoordinator = context.persistentStoreCoordinator
+
+        let json = JSON(data: inputData)
         
+        let arrayToParse = dataHelper.prepareArray(json)
+
         if let appArray = arrayToParse {
             for appDict in appArray {
 
                 let newHelper = dataHelper.copyWithZone(nil) as! DataHelperProtocol
                 
                 newHelper.feed(appDict)
-                newHelper.save(privateContext)
+                newHelper.save(context)
                 
             }
         }
         
         storedResource?.etag = etag ?? ""
-        APIManager.save(privateContext)
+        
+        
+        APIManager.save(context)
+
         
     
     }
+
     
+    
+    class func handleData(inputData : NSData, service: SpeakerService, storedResource : StoredResource?, etag : String?,completionHandler : (msg: String) -> Void) {
+        
+        let json = JSON(data: inputData)
+        
+        let arrayToParse = service.getHelper().prepareArray(json)
+        
+        if let appArray = arrayToParse {
+            for appDict in appArray {
+                
+                let newHelper = service.getHelper()
+                newHelper.feed(appDict)
+                
+                service.updateWithHelper(newHelper, completionHandler: completionHandler)
+                
+            }
+        }
+
+        storedResource?.etag = etag ?? ""
+    
+    }
+
     
 
     
