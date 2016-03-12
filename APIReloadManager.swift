@@ -17,15 +17,7 @@ protocol ImageFeedable {
 
 class APIReloadManager {
     
-    class func feedImage(id : NSManagedObjectID, data : NSData) {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-        if let obj:ImageFeedable = APIDataManager.findEntityFromId(id, inContext: context) {
-            obj.feedImageData(data)
-            APIManager.save(context)
-        }
-    }
-    
+   
     class func run_on_background_thread(code: () -> Void) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), code)
     }
@@ -40,7 +32,7 @@ class APIReloadManager {
     }
 
     
-    class func fetchSpeakerImg(url : String?, id : NSManagedObjectID, completedAction : (msg: String) -> Void) {
+    class func fetchImg(url : String?, id : NSManagedObjectID, service : SpeakerService, completedAction : (msg: String) -> Void) {
         
         if ResourceFetcherManager.isAllowedToFetch(url) {
             
@@ -55,11 +47,11 @@ class APIReloadManager {
                     //print("error for \(url)")
                 }
                 else {
-                    //print("fetch for \(url)")
-                    APIReloadManager.feedImage(id, data : data!)
-                    dispatch_async(dispatch_get_main_queue(),{
-                        completedAction(msg: "ok")
-                    })
+    
+                    
+                    service.updateImageForId(id, withData : data!, completionHandler: completedAction)
+                    
+                    
                 }
             }
             task.resume()
@@ -70,32 +62,7 @@ class APIReloadManager {
     }
 
     
-    class func fetchFloorImg(url : String?, id : NSManagedObjectID, completedAction : (msg: String) -> Void) {
         
-        
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        config.requestCachePolicy = .ReloadIgnoringLocalCacheData
-        
-        let session = NSURLSession(configuration: config)
-        let task = session.dataTaskWithURL(NSURL(string: url!)!) {
-            data, response1, error in
-            
-            if let responseError = error {
-                //print("error for \(url)")
-            }
-            else {
-                //print("fetch for \(url)")
-                APIReloadManager.feedImage(id, data : data!)
-                dispatch_async(dispatch_get_main_queue(),{
-                    completedAction(msg: "ok")
-                })
-            }
-        }
-        task.resume()
-        
-    }
-
-    
     
     class func onError(value : String) -> Void {
        // print("ERROR")

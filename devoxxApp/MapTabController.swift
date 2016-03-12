@@ -22,7 +22,7 @@ public class MapTabController : UIViewController {
         floors = APIManager.currentEvent.getImages()
         for floor in floors {
             seg.insertSegmentWithTitle(floor.title, atIndex: seg.numberOfSegments, animated: false)
-            APIReloadManager.fetchFloorImg(floor.img, id: floor.objectID, completedAction: completed)
+            //APIReloadManager.fetchImg(floor.img, id: floor.objectID, completedAction: completed)
         }
     }
     

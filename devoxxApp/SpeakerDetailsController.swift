@@ -230,7 +230,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     public func fetchUpdate() {
         APIReloadManager.fetchUpdate(fetchUrl(), helper: SpeakerDetailHelper(), completedAction: fetchCompleted)
-        APIReloadManager.fetchSpeakerImg(detailObject.getImageFullLink(), id: detailObject.getObjectId(), completedAction: fetchCompleted)
+        //APIReloadManager.fetchImg(detailObject.getImageFullLink(), id: detailObject.getObjectId(), completedAction: fetchCompleted)
     }
     
     public func fetchCompleted(msg : String) -> Void {

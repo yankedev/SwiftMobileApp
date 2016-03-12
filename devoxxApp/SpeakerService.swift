@@ -28,6 +28,26 @@ class SpeakerService : AbstractService {
         super.init()
     }
     
+    func updateImageForId(id : NSManagedObjectID, withData data: NSData, completionHandler : (msg: String) -> Void) {
+        
+        privateManagedObjectContext.performBlock {
+            
+            if let obj:ImageFeedable = APIDataManager.findEntityFromId(id, inContext: self.privateManagedObjectContext) {
+                obj.feedImageData(data)
+                
+                super.realSave()
+                
+                
+                
+                dispatch_async(dispatch_get_main_queue(),{
+                    completionHandler(msg: "ok")
+                })
+            }
+            
+        }
+        
+    }
+    
     
     func fetchSpeakers(completionHandler: (speakers: [Speaker], error: SpeakerStoreError?) -> Void) {
         privateManagedObjectContext.performBlock {
@@ -48,8 +68,6 @@ class SpeakerService : AbstractService {
                 let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Speaker]
                 
                 dispatch_async(dispatch_get_main_queue(), {
-                    print(results[0].getFullName())
-                    print(results[1].getFullName())
                     completionHandler(speakers: results, error: nil)
                 })
             } catch {

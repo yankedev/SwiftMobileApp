@@ -53,4 +53,23 @@ class AbstractService {
         }
         return false
     }
+    
+    func realSave() {
+        do {
+            try privateManagedObjectContext.save()
+            mainManagedObjectContext.performBlock {
+                do {
+                    try self.mainManagedObjectContext.save()
+                } catch let err as NSError {
+                    print("Could not save main context: \(err.localizedDescription)")
+                }
+            }
+        } catch let err as NSError {
+            print("Could not save private context: \(err.localizedDescription)")
+        }
+    }
+
+    
+    
+    
 }

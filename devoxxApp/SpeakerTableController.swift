@@ -127,12 +127,13 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         cell!.initiale.textColor = ColorManager.topNavigationBarColor
         cell!.initiale.font = UIFont(name: "Pirulen", size: 25)
         
-        
-        
-        APIReloadManager.fetchSpeakerImg(cellData.getUrl(), id: cellData.getObjectID(), completedAction: okUpdate)
-        
-        
         cell!.accessoryView = UIImageView(image: cellData.getPrimaryImage())
+        
+        
+        APIReloadManager.fetchImg(cellData.getUrl(), id: cellData.getObjectID(), service: speakerService, completedAction: okUpdate)
+        
+        
+        
         cell!.accessoryView?.frame = CGRectMake(0,200,44,44)
         cell!.accessoryView!.layer.cornerRadius = cell!.accessoryView!.frame.size.width/2
         cell!.accessoryView!.layer.masksToBounds = true
@@ -147,6 +148,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     }
     
     func okUpdate(msg : String) {
+        print(msg)
         fetchSpeaker()
     }
     
