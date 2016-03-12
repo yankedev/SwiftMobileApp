@@ -134,17 +134,18 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if let slot = getCell(indexPath) as? Slot {
+        if let detailObject = getCell(indexPath) as? DetailableProtocol {
             
             let details = TalkDetailsController()
-            //details.slot = slot
+            details.detailObject = detailObject
             details.delegate = self
             
             
             details.configure()
             
-            details.setColor(slot.talk.isFavorited)
-            
+            if let favorite = detailObject as? FavoriteProtocol {
+                details.setColor(favorite.isFav())
+            }
             self.navigationController?.pushViewController(details, animated: true)
             
             

@@ -165,15 +165,15 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
             cell!.leftIconView.imageView.image = relatedObject.getPrimaryImage()
             
             cell!.rightTextView.topTitleView.talkTrackName.text = relatedObject.getDetailInfoWithIndex(2)
-            cell!.rightTextView.topTitleView.talkTitle.text = relatedObject.getDetailInfoWithIndex(0)
+            cell!.rightTextView.topTitleView.talkTitle.text = relatedObject.getTitle()
             
-            cell!.rightTextView.locationView.label.text = relatedObject.getDetailInfoWithIndex(1)
+            cell!.rightTextView.locationView.label.text = relatedObject.getDetailInfoWithIndex(0)
             cell!.rightTextView.speakerView.label.text = relatedObject.getDetailInfoWithIndex(3)
             
             
-            //if let fav = talk as? FavoriteProtocol {
-            //    cell!.updateBackgroundColor(fav.isFav())
-            //}
+            if let fav = relatedObject as? FavoriteProtocol {
+                cell!.updateBackgroundColor(fav.isFav())
+            }
 
         }
         
