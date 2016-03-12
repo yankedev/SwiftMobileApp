@@ -204,32 +204,8 @@ class APIManager {
     
     
     
-    class func exists(id : String, leftPredicate: String, entity: String, checkAgainCurrentEvent : Bool) -> Bool {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-        let fetchRequest = NSFetchRequest(entityName: entity)
-        let predicate = NSPredicate(format: "\(leftPredicate) = %@", id)
-        if checkAgainCurrentEvent {
-            let predicateEvent = NSPredicate(format: "cfp.id = %@", APIManager.currentEvent.id!)
-            fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, predicateEvent])
-        } else {
-            fetchRequest.predicate = predicate
-        }
-        do {
-            let items = try context.executeFetchRequest(fetchRequest)
-            return items.count > 0
-        } catch {
-            print("err")
-        }
-        
-        return false
-
-    }
+      
     
-    
-    class func exists(id : String, leftPredicate: String, entity: String) -> Bool {
-        return exists(id, leftPredicate: leftPredicate, entity: entity, checkAgainCurrentEvent: false)
-    }
     
     class func findOne(name : String, value : String, entity: String, context: NSManagedObjectContext) -> FeedableProtocol {
         let fetchRequest = NSFetchRequest(entityName: entity)

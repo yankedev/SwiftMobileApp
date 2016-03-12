@@ -43,33 +43,7 @@ class DayHelper: DataHelperProtocol {
     }
     
     
-    func save(managedContext : NSManagedObjectContext) -> Bool {
-        
-        if APIManager.exists(url!, leftPredicate:"url", entity: entityName()) {
-            return false
-        }
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-
-        
-        let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: context)
-        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: context)
-        
-        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-            cfp = APIManager.currentEvent
-            cfp = APIManager.findOne("id", value: (cfp?.id)!, entity: "Cfp", context: context) as! Cfp
-            coreDataObjectCast.feedHelper(self)
-        }
-        
-        APIManager.save(context)
        
-        
-        return true
-        
-        //APIManager.save(managedContext)
-    }
-    
     required init() {
     }
     @objc func copyWithZone(zone: NSZone) -> AnyObject {

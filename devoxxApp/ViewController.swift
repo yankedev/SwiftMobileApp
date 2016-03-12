@@ -171,8 +171,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         dispatch_group_enter(serviceGroup)
-        //dispatch_group_enter(serviceGroup)
-        //dispatch_group_enter(serviceGroup)
+        dispatch_group_enter(serviceGroup)
+        dispatch_group_enter(serviceGroup)
         //dispatch_group_enter(serviceGroup)
         
        /* for _ in 0...APIManager.currentEvent!.days.count-1 {
@@ -184,7 +184,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         APIDataManager.loadDataFromURL(SpeakerService.sharedInstance.getSpeakerUrl(), service: SpeakerService.sharedInstance, helper : SpeakerHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
         
-        //APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: AttributeService.sharedInstance, helper : TrackHelper(), isCritical: true, onSuccess: self.successGroup, onError: onError)
+        APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: AttributeService.sharedInstance, helper : TrackHelper(), isCritical: true, onSuccess: self.successGroup, onError: onError)
         
         //APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: AttributeService.sharedInstance, helper : TalkTypeHelper(), isCritical: true, onSuccess: self.successGroup, onError: onError)
                
@@ -199,7 +199,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         
-        //APIDataManager.loadDataFromURLS(nil, dataHelper: SlotHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
+        APIDataManager.loadDataFromURLS(nil, dataHelper: SlotHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
         
         dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
                 print("OK EVERYTHING IS LOADED FROM GROUP1")

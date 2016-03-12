@@ -376,7 +376,7 @@
 		E175E5E41C94644B002A262A /* SlotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotService.swift; sourceTree = "<group>"; };
 		E175E5E61C947294002A262A /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		E175E5E81C947733002A262A /* MainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainManager.swift; sourceTree = "<group>"; };
-		E175E5EA1C948DF8002A262A /* StoredResourceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredResourceService.swift; sourceTree = "<group>"; };
+		E175E5EA1C948DF8002A262A /* StoredResourceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoredResourceService.swift; path = ../StoredResourceService.swift; sourceTree = "<group>"; };
 		E175F2581C46FFAD00D7AC0A /* DV15-monday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-monday.json"; path = "mock/DV15-monday.json"; sourceTree = "<group>"; };
 		E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-tuesday.json"; path = "mock/DV15-tuesday.json"; sourceTree = "<group>"; };
 		E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-wednesday.json"; path = "mock/DV15-wednesday.json"; sourceTree = "<group>"; };
@@ -567,7 +567,6 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
-				E175E5EA1C948DF8002A262A /* StoredResourceService.swift */,
 				E175E5E61C947294002A262A /* File.swift */,
 				E136DF1E1C92163A00BB1A0C /* Speakers */,
 				58631DE91C8E3C7A00070833 /* QRCodeScannerController.swift */,
@@ -674,6 +673,7 @@
 		E175E5D71C93BF37002A262A /* service */ = {
 			isa = PBXGroup;
 			children = (
+				E175E5EA1C948DF8002A262A /* StoredResourceService.swift */,
 				E175E5D01C93A0C7002A262A /* TalkService.swift */,
 				E175E5E21C944D55002A262A /* CfpService.swift */,
 				E175E5E41C94644B002A262A /* SlotService.swift */,

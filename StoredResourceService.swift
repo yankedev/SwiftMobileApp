@@ -34,7 +34,7 @@ class StoredResourceService : AbstractService {
     override func getHelper() -> DataHelperProtocol {
         return StoredResourceHelper()
     }
-    
+   
 
     override func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
         

@@ -40,16 +40,18 @@ class APIDataManager {
    
     
    
+    class func completion(msg : String) {
+        print("OK CREATED")
+    }
  
     
     
     class func createResource(url : String) -> StoredResource? {
         let httpsUrl = url.stringByReplacingOccurrencesOfString("http:", withString: "https:")
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
         let helper = StoredResourceHelper(url: httpsUrl, etag: "", fallback: "")
-        helper.save(context)
-        APIManager.save(context)
+        let storedResource = StoredResourceService.sharedInstance
+        
+        storedResource.updateWithHelper(helper, completionHandler: completion)
         return findResource(httpsUrl)
     }
     

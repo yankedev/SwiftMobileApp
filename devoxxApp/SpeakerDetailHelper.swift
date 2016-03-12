@@ -68,49 +68,9 @@ class SpeakerDetailHelper: DataHelperProtocol {
         }
     }
     
-    func save(managedContext : NSManagedObjectContext) -> Bool {
-        
-        
-        
-        if APIManager.exists(uuid!, leftPredicate:"uuid", entity: entityName()) {
-     //       print("speakerDetail for \(uuid)  exists")
-            
-            if bio != nil {
-                update(managedContext)
-                return true
-            }
-            
-            return false
-            
-        }
-        
-    //    print("speakerDetail for  \(uuid) does NOT  exists")
-        
-        let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
-        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-
-        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-            speaker = APIManager.findOne("uuid", value: uuid!, entity: "Speaker", context: managedContext) as? Speaker
-            coreDataObjectCast.feedHelper(self)
-            //APIManager.save(managedContext)
-            
-            /*let foundSpeaker = APIDataManager.findSpeakerFromId(uuid!, context: managedContext)
-            coreDataObject.setValue(foundSpeaker, forKey: "speaker")
-            foundSpeaker.setValue(coreDataObject, forKey: "speakerDetail")
-            */
-            
-        }
-        
-        return true
-        
-   
-    }
     
     required init() {
     }
-    @objc func copyWithZone(zone: NSZone) -> AnyObject {
-        return self.dynamicType.init()
-    }
+   
     
 }

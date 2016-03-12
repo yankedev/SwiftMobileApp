@@ -74,119 +74,12 @@ class SlotHelper: DataHelperProtocol {
         return json["slots"].array
     }
     
-   
-    
-    
-    func save(managedContext : NSManagedObjectContext) -> Bool {
-        
-        if APIManager.exists(slotId!, leftPredicate:"slotId", entity: entityName()) {
-            return false
-        }
 
-        
-        let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
-        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
- 
-            coreDataObjectCast.feedHelper(self)
-            
-            
-            
-            let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: managedContext)
-            
-            coreDataObject.setValue(currentCfp, forKey: "cfp")
-            
-            
-            
-            
-            let subEntity = NSEntityDescription.entityForName("Talk", inManagedObjectContext: managedContext)
-            let subDataObject = NSManagedObject(entity: subEntity!, insertIntoManagedObjectContext: managedContext) as! FeedableProtocol
-            
-            subDataObject.feedHelper(self.talk!)
-            
-            
-            coreDataObject.setValue(subDataObject as? AnyObject, forKey: "talk")
-            
-            
-            
-            
-            let fetch = NSFetchRequest(entityName: "Speaker")
-            let predicate = NSPredicate(format: "href IN %@", self.talk!.speakerIds)
-            fetch.predicate = predicate
-            fetch.returnsObjectsAsFaults = false
-            //fetch.resultType = .ManagedObjectResultType
-            
-            
-            
-            do {
-                let items = try managedContext.executeFetchRequest(fetch)
-                let nsm = subDataObject as! Talk
-                nsm.mutableSetValueForKey("speakers").addObjectsFromArray(items)
-                
-                //iterate over speaker and set talk
-                
-                
-            } catch let error as NSError {
-                //print("unresolved error \(error), \(error.userInfo)")
-            }
-
-            
-            
-            
-            
-            
-            /*for att in (entity?.properties)! {
-            
-                if let relation = att as? NSRelationshipDescription  {
-                    let relationName = relation.name
-                    let subEntity = NSEntityDescription.entityForName(relationName.capitalizedString, inManagedObjectContext: managedContext)
-                    let subDataObject = NSManagedObject(entity: subEntity!, insertIntoManagedObjectContext: managedContext) as! FeedableProtocol
-                    
-                    subDataObject.feedHelper(self.talk!)
-
-                              
-                    let fetch = NSFetchRequest(entityName: "Speaker")
-                    let predicate = NSPredicate(format: "href IN %@", self.talk!.speakerIds)
-                    fetch.predicate = predicate
-                    fetch.returnsObjectsAsFaults = false
-                    //fetch.resultType = .ManagedObjectResultType
-                    
-                    
-                    
-                    do {
-                        let items = try managedContext.executeFetchRequest(fetch)
-                        let nsm = subDataObject as! Talk
-                        nsm.mutableSetValueForKey("speakers").addObjectsFromArray(items)
-                        
-                        //iterate over speaker and set talk
-                        
-                                               
-                    } catch let error as NSError {
-                        //print("unresolved error \(error), \(error.userInfo)")
-                    }
-                  
-                    coreDataObject.setValue(subDataObject as? AnyObject, forKey: relationName)
-                    
-                }
-                
-            }*/
-            
-            
-        }
-        
-        
-        
-        
-        return true
-    }
     
     required init() {
     }
-    @objc func copyWithZone(zone: NSZone) -> AnyObject {
-        return self.dynamicType.init()
-    }
     
+   
     
     
 }

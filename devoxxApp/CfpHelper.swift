@@ -106,46 +106,9 @@ class CfpHelper: DataHelperProtocol {
     
     
     
-    func save(managedContext : NSManagedObjectContext) ->Bool {
-        
-        if APIManager.exists(id!, leftPredicate:"id", entity: entityName()) {
-            return false
-        }
-        
-        for floor in fedFloorsArray {
-            floor.save(managedContext)
-        }
-        APIManager.save(managedContext)
-        
-        let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
-        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-            coreDataObjectCast.feedHelper(self)
-            
-            let fetch = NSFetchRequest(entityName: "Floor")
-            //let predicate = NSPredicate(format: "id = %@", self.id!)
-            //fetch.predicate = predicate
-            fetch.returnsObjectsAsFaults = false
-            
-            
-            let items = getAllFloors(managedContext, withId:self.id!)
-
-            coreDataObject.mutableSetValueForKey("floors").addObjectsFromArray(items as [AnyObject])
-
-       
-            
-            
-        }
-        
-        return true
-    }
-    
     required init() {
     }
-    @objc func copyWithZone(zone: NSZone) -> AnyObject {
-        return self.dynamicType.init()
-    }
+    
     
     
     func getAllFloors(context : NSManagedObjectContext, withId : String) -> NSArray {

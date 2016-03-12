@@ -44,38 +44,9 @@ class StoredResourceHelper: DataHelperProtocol {
     }
     
     
-    func save(managedContext : NSManagedObjectContext) -> Bool {
-        
-        
-        
-        if APIManager.exists(url!, leftPredicate:"url", entity: entityName()) {
-          
-            return false
-        }
-        
-        let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
-        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        
-        
-        
-        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-            coreDataObjectCast.feedHelper(self)
-            
-           
-            
-            
-        }
-        
-        return true
-        
-        //APIManager.save(managedContext)
-    }
-    
+  
     required init() {
     }
-    @objc func copyWithZone(zone: NSZone) -> AnyObject {
-        return self.dynamicType.init()
-    }
+   
     
 }

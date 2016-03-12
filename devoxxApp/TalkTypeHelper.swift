@@ -40,27 +40,6 @@ class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
     
   
     
-    func save(managedContext : NSManagedObjectContext) -> Bool {
-        
-        if APIManager.exists(super.id!, leftPredicate:"id", entity: entityName(), checkAgainCurrentEvent: true) {
-            return true
-        }
-        
-        let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
-        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-            coreDataObjectCast.feedHelper(self)
-            
-            let currentEvent:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: managedContext)
-            
-            coreDataObject.setValue(currentEvent, forKey: "cfp")
-            
-        }
-        
-        return false
-        
-    }
     
   
     

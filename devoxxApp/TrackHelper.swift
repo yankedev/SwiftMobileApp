@@ -38,35 +38,13 @@ class TrackHelper: AttributeHelper, DataHelperProtocol {
         return json["tracks"].array
     }
     
-    func save(managedContext : NSManagedObjectContext) -> Bool {
-        
-        if APIManager.exists(super.id!, leftPredicate:"id", entity: entityName(), checkAgainCurrentEvent: true) {
-            return false
-        }
-      
-        let entity = NSEntityDescription.entityForName(entityName(), inManagedObjectContext: managedContext)
-        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-            coreDataObjectCast.feedHelper(self)
-            
-            let currentEvent:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext : managedContext)
-            coreDataObject.setValue(currentEvent, forKey: "cfp")
-        }
-
-        return true
-    
-    }
-    
+  
   
     
     required override init() {
     }
     
-    @objc func copyWithZone(zone: NSZone) -> AnyObject {
-        return self.dynamicType.init()
-    }
-    
+       
     func filterPredicate() -> String {
         return "talk.trackId"
     }
