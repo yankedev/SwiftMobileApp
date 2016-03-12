@@ -148,7 +148,6 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     }
     
     func okUpdate(msg : String) {
-        print(msg)
         fetchSpeaker()
     }
     
