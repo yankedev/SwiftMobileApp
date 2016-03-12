@@ -35,6 +35,39 @@ class StoredResourceService : AbstractService {
         return StoredResourceHelper()
     }
    
+    func findByUrl(url : String) -> StoredResource {
+    
+            do {
+                let fetchRequest = NSFetchRequest(entityName: "StoredResource")
+                let predicateEvent = NSPredicate(format: "url = %@", url)
+                fetchRequest.returnsDistinctResults = true
+                fetchRequest.predicate = predicateEvent
+                
+                let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [StoredResource]
+                
+                if items.count > 0 {
+                    return items[0]
+                }
+                
+                let entity = NSEntityDescription.entityForName("StoredResource", inManagedObjectContext: self.privateManagedObjectContext)
+                let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                coreDataObject.setValue(url, forKey: "url")
+                
+                return coreDataObject as! StoredResource
+
+            }
+            catch {
+                
+                let entity = NSEntityDescription.entityForName("StoredResource", inManagedObjectContext: self.privateManagedObjectContext)
+                let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                coreDataObject.setValue(url, forKey: "url")
+                
+                return coreDataObject as! StoredResource
+                
+            }
+        
+
+    }
 
     override func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
         

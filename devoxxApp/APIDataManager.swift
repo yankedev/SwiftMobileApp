@@ -46,118 +46,30 @@ class APIDataManager {
  
     
     
-    class func createResource(url : String) -> StoredResource? {
+    class func createResource(url : String, completionHandler : (msg: String) -> Void) {
         let httpsUrl = url.stringByReplacingOccurrencesOfString("http:", withString: "https:")
         let helper = StoredResourceHelper(url: httpsUrl, etag: "", fallback: "")
         let storedResource = StoredResourceService.sharedInstance
-        
         storedResource.updateWithHelper(helper, completionHandler: completion)
-        return findResource(httpsUrl)
     }
     
     
     class func findResource(url : String) -> StoredResource? {
-        
-        
         let httpsUrl = url.stringByReplacingOccurrencesOfString("http:", withString: "https:")
-        
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-        let fetchRequest = APIManager.buildFetchRequest(context, name: "StoredResource")
-        let predicateEvent = NSPredicate(format: "url = %@", httpsUrl)
-        fetchRequest.returnsDistinctResults = true
-        fetchRequest.predicate = predicateEvent
-        let items = try! context.executeFetchRequest(fetchRequest)
-        
-        if items.count == 0 {
-            return nil
-        }
-        
-        return items[0] as? StoredResource
+        let storedResource = StoredResourceService.sharedInstance
+        return storedResource.findByUrl(httpsUrl)
     }
+    
+   
    
     
    
     
-    
-    /*
-    class func loadDataFromURL(url: String, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
-        
-        
-        var res:StoredResource? = nil
-        
-        if let storedResource = APIDataManager.findResource(url) {
-            res = storedResource
-        }
-        else {
-            if let storedResource = APIDataManager.createResource(url) {
-                res = storedResource
-            }
-            else {
-                onError(value: url)
-            }
-        }
-        
-        
-        if let storedResource = res {
-            
-        
-            return makeRequest(storedResource, dataHelper : dataHelper, isCritical : isCritical, onSuccess: onSuccess, onError: onError)
-            
-        
-        }
-
-        
-        else {
-            dispatch_async(dispatch_get_main_queue(),{
-                onError(value: url)
-            })
-        }
-        
-        
-    }
-
-    */
-    
-    
-    
-    
-    
+   
     
     class func loadDataFromURL(url: String, service : AbstractService, helper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
-        
-        var res:StoredResource? = nil
-        
-        if let storedResource = APIDataManager.findResource(url) {
-            res = storedResource
-        }
-        else {
-            if let storedResource = APIDataManager.createResource(url) {
-                res = storedResource
-            }
-            else {
-                onError(value: url)
-            }
-        }
-        
-        
-        if let storedResource = res {
-            
-            
-            return makeRequest(storedResource, service : service, helper : helper, isCritical : isCritical, onSuccess: onSuccess, onError: onError)
-            
-            
-        }
-            
-            
-        else {
-            dispatch_async(dispatch_get_main_queue(),{
-                onError(value: url)
-            })
-        }
-        
+        return makeRequest(findResource(url)!, service : service, helper : helper, isCritical : isCritical, onSuccess: onSuccess, onError: onError)
         
     }
 
