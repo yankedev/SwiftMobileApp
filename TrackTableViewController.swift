@@ -30,7 +30,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     //ScrollableDateProtocol
     public var index:Int = 0
-    public var currentTrack:String!
+    public var currentTrack:NSManagedObjectID!
     public var currentDate:NSDate!
     
     public func getNavigationItem() -> UINavigationItem {
@@ -83,7 +83,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
         fetchAll()
         
         
-        
+
         self.schedulerTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell2")
         
         
@@ -367,7 +367,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     
     public func fetchAll() {
-        talkService.fetchTalksByTrack(self.currentTrack, completionHandler: self.callBack)
+        talkService.fetchTalksByTrackId(self.currentTrack, completionHandler: self.callBack)
     }
     
     

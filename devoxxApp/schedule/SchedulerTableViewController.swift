@@ -27,7 +27,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     
     //ScrollableDateProtocol
     public var index:Int = 0
-    public var currentTrack:String!
+    public var currentTrack:NSManagedObjectID!
     public var currentDate:NSDate!
     
     public func getNavigationItem() -> UINavigationItem {

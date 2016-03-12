@@ -32,8 +32,11 @@ class TalkService : AbstractService {
         fetchTalks(currentDate, searchPredicates : searchPredicates, sortByDate : true, completionHandler : completionHandler)
     }
     
-    func fetchTalksByTrack(currentTrack : String, completionHandler: (talks: NSFetchedResultsController?, error: TalksStoreError?) -> Void) {
-        fetchTalks(currentTrack, searchPredicates : nil, sortByDate : false, completionHandler : completionHandler)
+    func fetchTalksByTrackId(currentTrack : NSManagedObjectID, completionHandler: (talks: NSFetchedResultsController?, error: TalksStoreError?) -> Void) {
+        
+        let attribute = self.privateManagedObjectContext.objectWithID(currentTrack) as! Attribute
+
+        fetchTalks(attribute.label!, searchPredicates : nil, sortByDate : false, completionHandler : completionHandler)
     }
     
     func fetchTalks<T>(criterion : T, searchPredicates : [String : [NSPredicate]]?, sortByDate : Bool, completionHandler: (talks: NSFetchedResultsController?, error: TalksStoreError?) -> Void) {

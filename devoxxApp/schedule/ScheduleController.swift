@@ -8,12 +8,13 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 
 public protocol ScrollableDateProtocol : NSObjectProtocol {
     var index:Int { get set }
     var currentDate:NSDate!  { get set }
-    var currentTrack:String!  { get set }
+    var currentTrack:NSManagedObjectID!  { get set }
     func getNavigationItem() -> UINavigationItem
     init()
 }
@@ -29,7 +30,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     var scrollableDateTableDelegate: ScrollableDateTableDelegate?
     
     var allDates:NSArray!
-    var allTracks:NSArray!
+    var allTracks:[Attribute]?
     var pageViewController : UIPageViewController!
     
     

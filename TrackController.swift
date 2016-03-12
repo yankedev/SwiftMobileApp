@@ -29,7 +29,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
     var scrollableDateTableDatasource: ScrollableDateTableDatasource?
     var scrollableDateTableDelegate: ScrollableDateTableDelegate?
     
-    var allTracks:NSArray!
+    var allTracks:[Attribute]?
 
     var allDates:NSArray!
 
@@ -68,27 +68,6 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
         pageViewController?.dataSource = self
         pageViewController?.delegate = self
         
-        let demo = viewControllerAtIndex(0)
-        let controls = [demo]
-        
-        pageViewController?.setViewControllers(controls, direction: .Forward, animated: false, completion: nil)
-        
-        pushViewController(pageViewController!, animated: false)
-        
-        
-        //self.pageViewController.navigationItem.rightBarButtonItems = [customView!.filterRightButton, customView!.favoriteSwitcher]
-       
-        
-   
-        
-        if allTracks.count == 0 {
-            self.pageViewController.navigationItem.title = "No data yet"
-        }
-        else {
-            self.pageViewController.navigationItem.title = "Tracks"        }
-        
-        
-        
         
         self.view.addSubview(customView!)
         
@@ -126,7 +105,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
         currentIndex++
         
         
-        if currentIndex == allTracks.count {
+        if currentIndex == allTracks?.count {
             return nil
         }
         
@@ -140,10 +119,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
         scheduleTableController.index = index
         
         if let tracks = self.scrollableDateTableDatasource?.allTracks {
-            scheduleTableController.currentTrack = APIManager.getTrackFromIndex(index, array: tracks)
-            
-            
-            
+            scheduleTableController.currentTrack = tracks[index].objectID
         }
         return (scheduleTableController as? UIViewController)!
     }
@@ -164,11 +140,33 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
     public func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
     }
     
+    func updateTitle() {
+        if allTracks?.count == 0 {
+            self.pageViewController.navigationItem.title = "No data yet"
+        }
+        else {
+            self.pageViewController.navigationItem.title = "Tracks"
+        }
+    }
+    
+    func callBack(attributes : [Attribute], error : AttributeStoreError?) {
+        allTracks = attributes
+        updateTitle()
+        
+        let demo = viewControllerAtIndex(0)
+        let controls = [demo]
+        pageViewController?.setViewControllers(controls, direction: .Forward, animated: false, completion: nil)
+        pushViewController(pageViewController!, animated: false)
+
+    }
     
     //ScrollableDateTableDelegate
     func feedDate() {
-        allTracks = APIManager.getDistinctTracks()
+        let trackService = AttributeService()
+        trackService.fetchTracks(callBack)
     }
+    
+    
     
     func humanReadableDateFromNSDate(date : NSDate) -> String {
         let dateFormatter = NSDateFormatter()

@@ -72,61 +72,7 @@ class APIManager {
         return items
     }
     
-    class func getDistinctTracks() -> NSArray {
-        
-        let res = NSMutableArray()
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-        let fetchRequest = buildFetchRequest(context, name: "Attribute")
-        let predicateEvent = NSPredicate(format: "cfp.id = %@", APIManager.currentEvent.id!)
-        let predicateType = NSPredicate(format: "type = %@", "Track")
-        fetchRequest.resultType = .DictionaryResultType
-        fetchRequest.returnsDistinctResults = true
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "label", ascending: true)]
-        fetchRequest.propertiesToFetch = ["label"]
-        fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateEvent, predicateType])
-
-        let items = try! context.executeFetchRequest(fetchRequest)
-        
-        
-        let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: context)
-        
-        for it in items  {
-        
-        
-            let fetchRequestSlot = NSFetchRequest(entityName: "Slot")
-            fetchRequestSlot.fetchBatchSize = 20
-            fetchRequestSlot.returnsObjectsAsFaults = false
-            
-            let labelDict = it as! NSDictionary
-            let labelString = labelDict.objectForKey("label") as! String
-            
-            let predicateTrack = NSPredicate(format: "talk.track = %@", labelString)
-            
-            
-            
-            
-            let predicateEvent = NSPredicate(format: "cfp = %@", currentCfp!)
-            
-            fetchRequestSlot.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateEvent, predicateTrack])
-            let itemsRes = try! context.executeFetchRequest(fetchRequestSlot)
-            
-      
-            
-            if itemsRes.count > 0 {
-                res.addObject(it)
-            }
-        
-        }
-        
-        
-        return res
-    }
-    
-    
-    
-    
+       
     
     class func getAllEvents() -> NSArray {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
