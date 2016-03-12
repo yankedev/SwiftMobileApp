@@ -242,10 +242,6 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     public func callBackUpdate(callBackObject : DetailableProtocol) {
         detailObject = callBackObject
-        print("HERE")
-        let speaker = detailObject as! Speaker
-        print(speaker.uuid)
-        print(speaker.speakerDetail)
         scroll.text = detailObject.getSummary()
         header.talkTrack.text = detailObject.getSubTitle()
         header.imageView.image = detailObject.getPrimaryImage()

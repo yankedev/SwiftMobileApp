@@ -66,13 +66,11 @@ class FloorService : AbstractService, ImageServiceProtocol {
             if let obj:ImageFeedable = APIDataManager.findEntityFromId(id, inContext: self.privateManagedObjectContext) {
                 obj.feedImageData(data)
                 
-                super.realSave()
+                super.realSave(completionHandler)
                 
                 
                 
-                dispatch_async(dispatch_get_main_queue(),{
-                    completionHandler(msg: "ok")
-                })
+                
             }
             
         }

@@ -29,10 +29,14 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
     }
     
     func getSpeakerFromId(id : NSManagedObjectID, completionHandler : (DetailableProtocol) -> Void)  {
+        
+        
         dispatch_async(dispatch_get_main_queue(),{
             let spk = self.privateManagedObjectContext.objectWithID(id) as! Speaker
             completionHandler(spk)
         })
+
+    
     }
     
     func getHelper() -> SpeakerDetailHelper {
@@ -51,6 +55,8 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
             let found = items[0] as! FeedableProtocol
             
             print((found as! SpeakerDetail).speaker.getFullName())
+            print((found as! SpeakerDetail).company)
+            print(helper.company)
             
             helper.speaker = (found as! SpeakerDetail).speaker
             found.feedHelper(helper)
@@ -58,13 +64,11 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
             print((found as! SpeakerDetail).speaker.getFullName())
             print((found as! SpeakerDetail).bio)
             
-            self.realSave()
+            self.realSave(completionHandler)
             
-            dispatch_async(dispatch_get_main_queue(),{
-                completionHandler(msg: "ok")
-            })
+            
         }
-
+    
     }
     
     
@@ -76,13 +80,11 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
             if let obj:ImageFeedable = APIDataManager.findEntityFromId(id, inContext: self.privateManagedObjectContext) {
                 obj.feedImageData(data)
                 
-                super.realSave()
+                self.realSave(completionHandler)
                 
                 
                 
-                dispatch_async(dispatch_get_main_queue(),{
-                    completionHandler(msg: "ok")
-                })
+                
             }
             
         }
