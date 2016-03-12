@@ -1,5 +1,5 @@
 //
-//  DataHelper.swift
+//  DataHelperProtocol.swift
 //  devoxxApp
 //
 //  Created by maxday on 24.12.15.
@@ -7,9 +7,6 @@
 //
 
 import Foundation
-import CoreData
-
-
 
 public protocol DataHelperProtocol {
     func feed(data: JSON)

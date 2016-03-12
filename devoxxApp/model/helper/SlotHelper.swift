@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreData
 
 class SlotHelper: DataHelperProtocol {
     
@@ -19,19 +18,9 @@ class SlotHelper: DataHelperProtocol {
     var fromTimeMillis : NSNumber?
     var talk : TalkHelper?
     
-    func getMainId() -> String {
-        return slotId!
-    }
-
-    
-    func typeName() -> String {
-        return entityName()
-    }
-     func description() -> String {
-        return "roomName: \(roomName)\n slotId: \(slotId)\n fromTime: \(fromTime) \n talk: \(talk)\n day: \(day)\n"
+    init() {
     }
     
-
     init(roomName: String?, slotId: String?, fromTime: String?, toTime:String?, day: String?, talk: TalkHelper) {
         self.roomName = roomName ?? ""
         self.slotId = slotId ?? ""
@@ -39,6 +28,14 @@ class SlotHelper: DataHelperProtocol {
         self.toTime = toTime ?? ""
         self.day = day ?? ""
         self.talk = talk
+    }
+    
+    func getMainId() -> String {
+        return slotId!
+    }
+    
+    func typeName() -> String {
+        return entityName()
     }
     
     func feed(data: JSON) {
@@ -58,10 +55,7 @@ class SlotHelper: DataHelperProtocol {
         talkHelper.feed(subData![0])
         talk = talkHelper
     }
-    
-   
-    
-    
+
     func entityName() -> String {
         return "Slot"
     }
@@ -73,13 +67,5 @@ class SlotHelper: DataHelperProtocol {
     func prepareArray(json : JSON) -> [JSON]? {
         return json["slots"].array
     }
-    
 
-    
-    required init() {
-    }
-    
-   
-    
-    
 }

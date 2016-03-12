@@ -12,21 +12,23 @@ import UIKit
 
 class DayHelper: DataHelperProtocol {
     
-    func getMainId() -> String {
-        return "url"
-    }
-
-    
     var url: String?
     var cfp : Cfp?
     
-    func typeName() -> String {
-        return entityName()
+    init () {
     }
     
     init(cfp : Cfp?, url: String?) {
         self.url = url ?? ""
         self.cfp = cfp
+    }
+    
+    func getMainId() -> String {
+        return "url"
+    }
+    
+    func typeName() -> String {
+        return entityName()
     }
     
     func feed(data: JSON) {
@@ -38,16 +40,7 @@ class DayHelper: DataHelperProtocol {
     }
     
     func prepareArray(json: JSON) -> [JSON]? {
-        
         return json["links"].array
-    }
-    
-    
-       
-    required init() {
-    }
-    @objc func copyWithZone(zone: NSZone) -> AnyObject {
-        return self.dynamicType.init()
     }
     
 }

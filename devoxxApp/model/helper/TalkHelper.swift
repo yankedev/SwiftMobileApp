@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreData
 
 class TalkHelper: DataHelperProtocol {
     
@@ -19,26 +18,11 @@ class TalkHelper: DataHelperProtocol {
     var id: String?
     var summary: String?
     var isBreak: Bool?
-    
     var speakerIds = [String]()
     
-    func getMainId() -> String {
-        return ""
+    init() {
     }
 
-    
-    /*
-    override var description: String {
-        return "title: \(title)\n lang: \(lang)\n trackId: \(trackId)\n title: \(talkType)\n talkType: \(title)\n id: \(id)\n title: \(title)\n summary: \(summary)\n"
-    }
-    */
-    
-    func typeName() -> String {
-        return entityName()
-    }
-    
-
-    
     init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?, isBreak: Bool) {
         self.title = title ?? ""
         self.lang = lang ?? ""
@@ -48,6 +32,14 @@ class TalkHelper: DataHelperProtocol {
         self.id = id ?? ""
         self.summary = summary ?? ""
         self.isBreak = isBreak
+    }
+    
+    func getMainId() -> String {
+        return ""
+    }
+    
+    func typeName() -> String {
+        return entityName()
     }
     
     func feed(data: JSON) {
@@ -63,7 +55,6 @@ class TalkHelper: DataHelperProtocol {
         id = data["id"].string
         summary = data["summary"].string
         
-        
         if let speakerArray = data["speakers"].array {
             for spk in speakerArray {
         
@@ -71,8 +62,6 @@ class TalkHelper: DataHelperProtocol {
             }
         }
         
-    
-
     }
     
     func entityName() -> String {
@@ -87,19 +76,6 @@ class TalkHelper: DataHelperProtocol {
         }
         isBreak = false
         return [json["talk"]]
-    }
-    
-   
-    
-    func save(managedContext : NSManagedObjectContext)->Bool {
-        return false
-    }
-    
-    required init() {
-    }
-    
-    @objc func copyWithZone(zone: NSZone) -> AnyObject {
-        return self.dynamicType.init()
     }
     
 }

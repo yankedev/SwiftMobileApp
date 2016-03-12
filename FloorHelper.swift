@@ -6,22 +6,19 @@
 //  Copyright © 2016 maximedavid. All rights reserved.
 //
 
-
 import Foundation
-import CoreData
 
 class FloorHelper: DataHelperProtocol {
-    
-    func getMainId() -> String {
-        return ""
-    }
-
     
     var id: String?
     var img: String?
     var title: String?
     var tabpos: String?
     var target: String?
+    
+    func getMainId() -> String {
+        return ""
+    }
     
     func typeName() -> String {
         return entityName()
@@ -49,7 +46,6 @@ class FloorHelper: DataHelperProtocol {
     func prepareArray(json: JSON) -> [JSON]? {
         return json.array
     }
-    
     
     required init() {
     }

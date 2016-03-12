@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreData
 
 class TrackHelper: AttributeHelper, DataHelperProtocol {
   
@@ -15,10 +14,7 @@ class TrackHelper: AttributeHelper, DataHelperProtocol {
         return id!
     }
 
-
     func feed(data: JSON) {
-    
-        
         super.label = data["title"].string
         super.id = data["id"].string
         super.attributeDescription = data["trackDescription"].string
@@ -37,18 +33,9 @@ class TrackHelper: AttributeHelper, DataHelperProtocol {
     func prepareArray(json : JSON) -> [JSON]? {
         return json["tracks"].array
     }
-    
-  
-  
-    
-    required override init() {
-    }
-    
-       
+
     func filterPredicate() -> String {
         return "talk.trackId"
     }
-    
-   
     
 }

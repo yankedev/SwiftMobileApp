@@ -10,7 +10,6 @@ import Foundation
 
 class ResourceFetcherManager {
 
-
     static var map = Dictionary<String, NSDate>()
     
     class func isAllowedToFetch(url : String?) -> Bool {

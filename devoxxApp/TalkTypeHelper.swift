@@ -7,10 +7,6 @@
 //
 
 import Foundation
-import CoreData
-
-
-
 
 class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
     
@@ -18,7 +14,6 @@ class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
         return ""
     }
 
-    
     func feed(data: JSON) {
         super.label = data["label"].string
         super.id = data["id"].string
@@ -37,16 +32,5 @@ class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
     func prepareArray(json : JSON) -> [JSON]? {
         return json["proposalTypes"].array
     }
-    
-  
-    
-    
-  
-    
-    required override init() {
-    }
-    @objc func copyWithZone(zone: NSZone) -> AnyObject {
-        return self.dynamicType.init()
-    }
-    
+
 }

@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import CoreData
-import UIKit
 
 class CfpHelper: DataHelperProtocol {
     
@@ -32,14 +30,8 @@ class CfpHelper: DataHelperProtocol {
     
     var fedFloorsArray:Array<FloorHelper>!
     
-    func typeName() -> String {
-        return entityName()
+    init() {
     }
-    
-    func getMainId() -> String {
-        return id!
-    }
-
     
     init(id: String?, confType: String?, confDescription: String?, venue: String?, address: String?, country: String?, capacity: String?, sessions: String?, latitude:String?, longitude:String?, splashImgURL: String?, hashtag: String?, fromDate: String?, talkURL: String?, regURL : String?, cfpEndpoint : String?) {
         self.id = id ?? ""
@@ -58,9 +50,17 @@ class CfpHelper: DataHelperProtocol {
         self.longitude = longitude ?? ""
         self.splashImgURL = splashImgURL ?? ""
         self.hashtag = hashtag ?? ""
-
+        
     }
     
+    func typeName() -> String {
+        return entityName()
+    }
+    
+    func getMainId() -> String {
+        return id!
+    }
+
     func feed(data: JSON) {
    
         id = data["id"].string
@@ -93,7 +93,6 @@ class CfpHelper: DataHelperProtocol {
             
         }
 
-       
     }
     
     func entityName() -> String {
@@ -103,14 +102,5 @@ class CfpHelper: DataHelperProtocol {
     func prepareArray(json: JSON) -> [JSON]? {
         return json.array
     }
-    
-    
-    
-    required init() {
-    }
-    
-    
-    
-    
     
 }

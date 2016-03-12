@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreData
 
 class SpeakerHelper: DataHelperProtocol {
     
@@ -20,8 +19,7 @@ class SpeakerHelper: DataHelperProtocol {
     func getMainId() -> String {
         return ""
     }
-
-
+    
     func feed(data: JSON) {
         uuid = data["uuid"].string
         lastName = data["lastName"].string?.capitalizedString
@@ -41,9 +39,5 @@ class SpeakerHelper: DataHelperProtocol {
     func prepareArray(json : JSON) -> [JSON]? {
         return json.array
     }
-    
-    
-    required init() {
-    }
-    
+       
 }

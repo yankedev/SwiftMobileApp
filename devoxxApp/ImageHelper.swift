@@ -6,9 +6,7 @@
 //  Copyright © 2016 maximedavid. All rights reserved.
 //
 
-
 import Foundation
-import CoreData
 
 class ImageHelper: DataHelperProtocol {
     
@@ -41,11 +39,5 @@ class ImageHelper: DataHelperProtocol {
     func prepareArray(json: JSON) -> [JSON]? {
         return json.array
     }
-    
-    
-    required init() {
-    }
-    
-    
-    
+
 }

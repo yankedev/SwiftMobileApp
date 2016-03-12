@@ -129,7 +129,7 @@
 		58F67CD91C308B8D007D2B97 /* FavoriteProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F67CD81C308B8D007D2B97 /* FavoriteProtocol.swift */; };
 		58F67CDD1C308C64007D2B97 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F67CDB1C308C64007D2B97 /* Favorite.swift */; };
 		E10CE19E1C2BB6BE002C9934 /* CellDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE19D1C2BB6BE002C9934 /* CellDataProtocol.swift */; };
-		E10CE1A41C2BC1F2002C9934 /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1A31C2BC1F2002C9934 /* DataHelper.swift */; };
+		E10CE1A41C2BC1F2002C9934 /* DataHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1A31C2BC1F2002C9934 /* DataHelperProtocol.swift */; };
 		E10CE1A61C2BD0CB002C9934 /* FeedableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1A51C2BD0CB002C9934 /* FeedableProtocol.swift */; };
 		E10CE1AA1C2BD6DE002C9934 /* TalkTypeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1A91C2BD6DE002C9934 /* TalkTypeHelper.swift */; };
 		E10CE1AE1C2BDAA1002C9934 /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10CE1AC1C2BDAA1002C9934 /* Attribute.swift */; };
@@ -342,7 +342,7 @@
 		58F67CD81C308B8D007D2B97 /* FavoriteProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteProtocol.swift; sourceTree = "<group>"; };
 		58F67CDB1C308C64007D2B97 /* Favorite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		E10CE19D1C2BB6BE002C9934 /* CellDataProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellDataProtocol.swift; path = model/coreData/CellDataProtocol.swift; sourceTree = "<group>"; };
-		E10CE1A31C2BC1F2002C9934 /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataHelper.swift; path = model/helper/DataHelper.swift; sourceTree = "<group>"; };
+		E10CE1A31C2BC1F2002C9934 /* DataHelperProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataHelperProtocol.swift; path = model/helper/DataHelperProtocol.swift; sourceTree = "<group>"; };
 		E10CE1A51C2BD0CB002C9934 /* FeedableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedableProtocol.swift; sourceTree = "<group>"; };
 		E10CE1A91C2BD6DE002C9934 /* TalkTypeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkTypeHelper.swift; sourceTree = "<group>"; };
 		E10CE1AC1C2BDAA1002C9934 /* Attribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
@@ -900,14 +900,14 @@
 		E1FA9C461C1BFD480077C09A /* helper */ = {
 			isa = PBXGroup;
 			children = (
+				E10CE1A31C2BC1F2002C9934 /* DataHelperProtocol.swift */,
+				E175E5DA1C93C639002A262A /* ResourceFetcherManager.swift */,
 				E1FA9C471C1BFD560077C09A /* SlotHelper.swift */,
 				E1FA9C481C1BFD560077C09A /* TalkHelper.swift */,
 				5872861C1C1F579900FC098A /* SpeakerHelper.swift */,
-				E175E5DA1C93C639002A262A /* ResourceFetcherManager.swift */,
-				58A0E8C01C272FF9000C49DD /* TrackHelper.swift */,
-				E10CE1A31C2BC1F2002C9934 /* DataHelper.swift */,
-				E10CE1A91C2BD6DE002C9934 /* TalkTypeHelper.swift */,
 				E10CE1AF1C2BDB72002C9934 /* AttributeHelper.swift */,
+				58A0E8C01C272FF9000C49DD /* TrackHelper.swift */,
+				E10CE1A91C2BD6DE002C9934 /* TalkTypeHelper.swift */,
 				5895EB801C66642A00229780 /* CfpHelper.swift */,
 				580B78821C78972C00060C00 /* ImageHelper.swift */,
 				E17DFF421C79D85800A09547 /* FloorHelper.swift */,
@@ -1121,7 +1121,7 @@
 				580B786B1C74FD9A00060C00 /* SpeakerCell.swift in Sources */,
 				E175E5ED1C94BBF7002A262A /* DayService.swift in Sources */,
 				E10CE1AE1C2BDAA1002C9934 /* Attribute.swift in Sources */,
-				E10CE1A41C2BC1F2002C9934 /* DataHelper.swift in Sources */,
+				E10CE1A41C2BC1F2002C9934 /* DataHelperProtocol.swift in Sources */,
 				E1FB6D6A1C8C47CD00D13082 /* APIReloadManager.swift in Sources */,
 				58A38EA21C8371C800C2DFE2 /* LeftIconView.swift in Sources */,
 				E1FA9C3B1C1BFCF80077C09A /* MapController.swift in Sources */,

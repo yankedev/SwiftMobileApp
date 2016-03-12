@@ -54,11 +54,6 @@ class SpeakerDetailHelper: DataHelperProtocol {
         array.append(json)
         return array
     }
-    
-        
-    
-    required init() {
-    }
-   
+
     
 }

@@ -15,18 +15,20 @@ class StoredResourceHelper: DataHelperProtocol {
     var etag: String?
     var fallback: String?
     
-    func typeName() -> String {
-        return entityName()
+    init() {
     }
-    func getMainId() -> String {
-        return ""
-    }
-
     
     init(url: String?, etag: String?, fallback : String?) {
         self.url = url ?? ""
         self.etag = etag ?? ""
         self.fallback = fallback ?? ""
+    }
+    
+    func typeName() -> String {
+        return entityName()
+    }
+    func getMainId() -> String {
+        return ""
     }
     
     func feed(data: JSON) {
@@ -42,11 +44,5 @@ class StoredResourceHelper: DataHelperProtocol {
     func prepareArray(json: JSON) -> [JSON]? {
         return json.array
     }
-    
-    
-  
-    required init() {
-    }
-   
     
 }
