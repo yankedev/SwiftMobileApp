@@ -43,16 +43,7 @@ class APIManager {
 
  
     
-    class func save(context:NSManagedObjectContext) {
-        var error: NSError?
-        do {
-            try context.save()
-        } catch let error1 as NSError {
-            error = error1
-            //print("Could not save \(error)")
-        }
-    }
-    
+   
     
     
        
@@ -78,13 +69,7 @@ class APIManager {
         return ""
     }
     
-    class func buildFetchRequest(context: NSManagedObjectContext, name: String) -> NSFetchRequest {
-        let fetchRequest = NSFetchRequest(entityName: name)
-        fetchRequest.includesSubentities = true
-        fetchRequest.returnsObjectsAsFaults = false
-        return fetchRequest
-    }
-    
+   
             
 
     
@@ -197,14 +182,7 @@ class APIManager {
       
     
     
-    class func findOne(name : String, value : String, entity: String, context: NSManagedObjectContext) -> FeedableProtocol {
-        let fetchRequest = NSFetchRequest(entityName: entity)
-        let predicate = NSPredicate(format: "\(name) = %@", value)
-        fetchRequest.predicate = predicate
-        let items = try! context.executeFetchRequest(fetchRequest)
-        
-        return items[0] as! FeedableProtocol
-    }
+   
     
     
     class func isCurrentEventEmpty() -> Bool {

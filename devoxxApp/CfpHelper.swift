@@ -111,12 +111,6 @@ class CfpHelper: DataHelperProtocol {
     
     
     
-    func getAllFloors(context : NSManagedObjectContext, withId : String) -> NSArray {
-        let fetchRequest = APIManager.buildFetchRequest(context, name: "Floor")
-        let predicate = NSPredicate(format: "id = %@", withId)
-        fetchRequest.predicate = predicate
-        let items = try! context.executeFetchRequest(fetchRequest)
-        return items
-    }
+    
     
 }

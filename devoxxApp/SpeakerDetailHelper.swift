@@ -55,19 +55,7 @@ class SpeakerDetailHelper: DataHelperProtocol {
         return array
     }
     
-    
-    func update(managedContext : NSManagedObjectContext) {
         
-        
-        
-        
-        let obj = APIManager.findOne("uuid", value: uuid!, entity: entityName(), context: managedContext)
-        if let objManagedObject = obj as? SpeakerDetail {
-            speaker = APIManager.findOne("uuid", value: uuid!, entity: "Speaker", context: managedContext) as! Speaker
-            objManagedObject.feedHelper(self)
-        }
-    }
-    
     
     required init() {
     }
