@@ -140,10 +140,13 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     func fetchFirst() {
         print("enter fetch first")
         dispatch_group_enter(serviceGroup)
+        dispatch_group_enter(serviceGroup)
         
         self.updateIndex(self.currentSelectedIndex)
         
         APIDataManager.loadDataFromURL(CfpService.sharedInstance.getEntryPoint(), service: DayService.sharedInstance, helper : DayHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
+        
+        APIDataManager.loadDataFromURL(SpeakerService.sharedInstance.getSpeakerUrl(), service: SpeakerService.sharedInstance, helper : SpeakerHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
         
         dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
             self.serviceGroup = dispatch_group_create()
@@ -170,7 +173,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         //}
         
         
-        dispatch_group_enter(serviceGroup)
+        
         dispatch_group_enter(serviceGroup)
         
         //dispatch_group_enter(serviceGroup)
@@ -182,7 +185,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         
-        APIDataManager.loadDataFromURL(SpeakerService.sharedInstance.getSpeakerUrl(), service: SpeakerService.sharedInstance, helper : SpeakerHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
+        
         
         APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: AttributeService.sharedInstance, helper : TrackHelper(), isCritical: true, onSuccess: self.successGroup, onError: onError)
         

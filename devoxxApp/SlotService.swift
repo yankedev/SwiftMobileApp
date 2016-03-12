@@ -92,11 +92,24 @@ class SlotService : AbstractService {
                         
                         if let helperSlot = helper as? SlotHelper {
                             subDataObject.feedHelper(helperSlot.talk!)
+                            
+                            let fetch = NSFetchRequest(entityName: "Speaker")
+                            let predicate = NSPredicate(format: "href IN %@", helperSlot.talk!.speakerIds)
+                            fetch.predicate = predicate
+                            fetch.returnsObjectsAsFaults = false
+                            
+                            let items = try self.privateManagedObjectContext.executeFetchRequest(fetch)
+                            let nsm = subDataObject as! Talk
+                            nsm.mutableSetValueForKey("speakers").addObjectsFromArray(items)
+                            
                         }
 
                         coreDataObject.setValue(subDataObject as? AnyObject, forKey: "talk")
 
-                        //print("CALL COMPLETION HANDLER 0")
+                        
+                    
+                        
+                        
                         self.realSave(completionHandler)
                         
                         
