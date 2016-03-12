@@ -83,15 +83,6 @@ class TalkService : AbstractService {
         }
     }
     
-    func invertFavorite(id : NSManagedObjectID) -> Bool {
-        if let cellData:FavoriteProtocol = APIDataManager.findEntityFromId(id, inContext: self.privateManagedObjectContext) {
-            cellData.invertFavorite()
-            APIManager.save(self.mainManagedObjectContext)
-            return cellData.isFav()
-        }
-        return false
-    }
-    
     private func computePredicate(predicate : NSPredicate, searchPredicates : [String : [NSPredicate]]?) -> NSPredicate {
         
         let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: self.privateManagedObjectContext)

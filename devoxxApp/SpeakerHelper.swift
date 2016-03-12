@@ -20,8 +20,8 @@ class SpeakerHelper: DataHelperProtocol {
 
     func feed(data: JSON) {
         uuid = data["uuid"].string
-        lastName = data["lastName"].string
-        firstName = data["firstName"].string
+        lastName = data["lastName"].string?.capitalizedString
+        firstName = data["firstName"].string?.capitalizedString
         avatarUrl = data["avatarURL"].string
         href = data["links"][0]["href"].string
     }

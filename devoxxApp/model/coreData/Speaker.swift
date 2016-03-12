@@ -181,8 +181,7 @@ class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProt
         return getFullName().lowercaseString.containsString(str.lowercaseString)
     }
     
-    
-    
+ 
     
     
 

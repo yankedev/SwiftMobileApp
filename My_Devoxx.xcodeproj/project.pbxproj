@@ -151,6 +151,7 @@
 		E175E5D11C93A0C7002A262A /* TalkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5D01C93A0C7002A262A /* TalkService.swift */; };
 		E175E5D31C93AE0B002A262A /* FavoritableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5D21C93AE0B002A262A /* FavoritableProtocol.swift */; };
 		E175E5D51C93BE6B002A262A /* AbstractService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5D41C93BE6B002A262A /* AbstractService.swift */; };
+		E175E5D91C93BF4F002A262A /* SpeakerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5D81C93BF4F002A262A /* SpeakerService.swift */; };
 		E175F25C1C46FFAD00D7AC0A /* DV15-monday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2581C46FFAD00D7AC0A /* DV15-monday.json */; };
 		E175F25D1C46FFAD00D7AC0A /* DV15-tuesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */; };
 		E175F25E1C46FFAD00D7AC0A /* DV15-wednesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */; };
@@ -357,6 +358,7 @@
 		E175E5D01C93A0C7002A262A /* TalkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkService.swift; sourceTree = "<group>"; };
 		E175E5D21C93AE0B002A262A /* FavoritableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritableProtocol.swift; sourceTree = "<group>"; };
 		E175E5D41C93BE6B002A262A /* AbstractService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractService.swift; sourceTree = "<group>"; };
+		E175E5D81C93BF4F002A262A /* SpeakerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerService.swift; sourceTree = "<group>"; };
 		E175F2581C46FFAD00D7AC0A /* DV15-monday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-monday.json"; path = "mock/DV15-monday.json"; sourceTree = "<group>"; };
 		E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-tuesday.json"; path = "mock/DV15-tuesday.json"; sourceTree = "<group>"; };
 		E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-wednesday.json"; path = "mock/DV15-wednesday.json"; sourceTree = "<group>"; };
@@ -649,6 +651,16 @@
 			name = Speakers;
 			sourceTree = "<group>";
 		};
+		E175E5D71C93BF37002A262A /* service */ = {
+			isa = PBXGroup;
+			children = (
+				E175E5D01C93A0C7002A262A /* TalkService.swift */,
+				E175E5D41C93BE6B002A262A /* AbstractService.swift */,
+				E175E5D81C93BF4F002A262A /* SpeakerService.swift */,
+			);
+			name = service;
+			sourceTree = "<group>";
+		};
 		E175F2621C485AF200D7AC0A /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -830,10 +842,9 @@
 		E1FA9C401C1BFD2D0077C09A /* model */ = {
 			isa = PBXGroup;
 			children = (
+				E175E5D71C93BF37002A262A /* service */,
 				E1FA9C461C1BFD480077C09A /* helper */,
 				E1FA9C411C1BFD330077C09A /* coreData */,
-				E175E5D01C93A0C7002A262A /* TalkService.swift */,
-				E175E5D41C93BE6B002A262A /* AbstractService.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -1161,6 +1172,7 @@
 				E1FB6D601C865FD700D13082 /* Day.swift in Sources */,
 				5877973C1C81C38A00A1A7D5 /* ActionButtonView.swift in Sources */,
 				E175F2651C485B0D00D7AC0A /* SchedulerTableView.swift in Sources */,
+				E175E5D91C93BF4F002A262A /* SpeakerService.swift in Sources */,
 				580CD2A01C7DCFD900152E4C /* SimpleDetailView.swift in Sources */,
 				587796FB1C81207B00A1A7D5 /* SpeakerDetailsController.swift in Sources */,
 				580B78831C78972C00060C00 /* ImageHelper.swift in Sources */,

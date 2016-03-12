@@ -44,4 +44,13 @@ class AbstractService {
         privateManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         privateManagedObjectContext.parentContext = mainManagedObjectContext
     }
+    
+    func invertFavorite(id : NSManagedObjectID) -> Bool {
+        if let cellData:FavoriteProtocol = APIDataManager.findEntityFromId(id, inContext: self.privateManagedObjectContext) {
+            cellData.invertFavorite()
+            APIManager.save(self.mainManagedObjectContext)
+            return cellData.isFav()
+        }
+        return false
+    }
 }

@@ -21,6 +21,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     var searchingString = ""
     var searchBar = UISearchBar(frame: CGRectMake(0,0,44,44))
     
+    let speakerService = SpeakerService()
     
     public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         searchingString = searchText
@@ -28,29 +29,14 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     }
     
     
+    func callBack(speakers : [Speaker], error : SpeakerStoreError?) {
+        cellDataArray = speakers
+        tableView.reloadData()
+    }
+        
+    
     func fetchSpeaker() {
-        
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        
-        let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: managedContext)
-        
-        let predicateEvent = NSPredicate(format: "cfp = %@", currentCfp!)
-        let fetchRequest = NSFetchRequest(entityName: "Speaker")
-        fetchRequest.includesSubentities = true
-        fetchRequest.returnsObjectsAsFaults = false
-        fetchRequest.predicate = predicateEvent
-        let sort = NSSortDescriptor(key: "firstName", ascending: true)
-        fetchRequest.sortDescriptors = [sort]
-        
-        
-        cellDataArray = try! managedContext.executeFetchRequest(fetchRequest) as! [CellDataPrococol]
-        
-        
-        
-        
-        
+        speakerService.fetchSpeakers(callBack)
     }
     
     
@@ -67,7 +53,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         searchButton.tintColor = UIColor.whiteColor()
         
         
-        fetchAll()
+        fetchSpeaker()
         
         
         
@@ -81,10 +67,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     
     
     
-    public func fetchAll() {
-        fetchSpeaker()
-        self.tableView.reloadData()
-    }
+ 
     
     
     override public func didReceiveMemoryWarning() {
@@ -148,7 +131,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         
         if cellData.getPrimaryImage() == nil {
-            APIReloadManager.fetchSpeakerImg(cellData.getUrl(), id: cellData.getObjectID(), completedAction: okUpdate)
+            //APIReloadManager.fetchSpeakerImg(cellData.getUrl(), id: cellData.getObjectID(), completedAction: okUpdate)
         }
         
         
@@ -169,7 +152,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     }
     
     func okUpdate(msg : String) {
-        fetchAll()
+        fetchSpeaker()
     }
     
     override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
