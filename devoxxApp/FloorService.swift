@@ -33,9 +33,7 @@ class FloorService : AbstractService, ImageServiceProtocol {
         privateManagedObjectContext.performBlock {
             do {
                 
-                let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: self.privateManagedObjectContext)
-                
-                let predicateEvent = NSPredicate(format: "cfp = %@", currentCfp!)
+                let predicateEvent = NSPredicate(format: "cfp = %@", super.getCfp()!)
                 let predicateDevice = NSPredicate(format: "target = %@", APIManager.getStringDevice())
                 let fetchRequest = NSFetchRequest(entityName: "Floor")
                 fetchRequest.includesSubentities = true

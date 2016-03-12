@@ -235,7 +235,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     func callBack(slots: NSArray, error: SlotStoreError?) {
         allDates = slots
         
-        print(allDates)
+        
         
         
         self.scrollableDateTableDatasource = self

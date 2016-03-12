@@ -64,8 +64,11 @@ class CfpService : AbstractService {
 
     
     
-    
-    
+    func getEntryPoint() -> String {
+        let cfp = super.getCfp()
+        return "\(cfp!.cfpEndpoint!)/conferences/\(cfp!.id!)/schedules"
+    }
+
     override func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
         
         privateManagedObjectContext.performBlock {
@@ -78,7 +81,7 @@ class CfpService : AbstractService {
             let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
                 
                 if items.count == 0 {
-                    print("create")
+               
                     let entity = NSEntityDescription.entityForName(helper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
                     let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
 
@@ -90,14 +93,15 @@ class CfpService : AbstractService {
                     
                 }
                 else {
-                    //print("already in")
-                    completionHandler(msg: "OK")
+                    dispatch_async(dispatch_get_main_queue(),{
+                        completionHandler(msg: "ok")
+                    })
                 }
             
             
             }
             catch {
-                print("not found")
+             
             }
             
            

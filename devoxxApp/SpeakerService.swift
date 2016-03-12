@@ -98,7 +98,7 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
     
     
     func updateImageForId(id : NSManagedObjectID, withData data: NSData, completionHandler : (msg: String) -> Void) {
-        print(privateManagedObjectContext)
+        
         
         privateManagedObjectContext.performBlock {
             

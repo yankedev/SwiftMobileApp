@@ -138,18 +138,18 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     
     func fetchFirst() {
-        /*dispatch_group_enter(serviceGroup)
+        print("enter fetch first")
         dispatch_group_enter(serviceGroup)
         
-        APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint(), dataHelper: DayHelper(cfp: APIManager.currentEvent, url: nil), isCritical : true, onSuccess: self.successGroup0, onError: self.onError)
+        self.updateIndex(self.currentSelectedIndex)
+        
+        APIDataManager.loadDataFromURL(CfpService.sharedInstance.getEntryPoint(), service: DayService.sharedInstance, helper : DayHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
         
         dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
-           // print("OK EVERYTHING IS LOADED FROM GROUP 0")
             self.serviceGroup = dispatch_group_create()
             self.fetchSecond("GO")
         })
-        */
-        fetchSecond("go")
+        
     }
     
     
@@ -172,14 +172,14 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         dispatch_group_enter(serviceGroup)
         dispatch_group_enter(serviceGroup)
-        dispatch_group_enter(serviceGroup)
-        //dispatch_group_enter(serviceGroup)
         
-       /* for _ in 0...APIManager.currentEvent!.days.count-1 {
+        //dispatch_group_enter(serviceGroup)
+      
+        for _ in 0...(SlotService.sharedInstance.getCfp()?.days.count)!-1 {
             dispatch_group_enter(serviceGroup)
         }
         
-        */
+        
         
         
         APIDataManager.loadDataFromURL(SpeakerService.sharedInstance.getSpeakerUrl(), service: SpeakerService.sharedInstance, helper : SpeakerHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
@@ -199,7 +199,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         
-        APIDataManager.loadDataFromURLS(nil, dataHelper: SlotHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
+        APIDataManager.loadDataFromURLS(SlotService.sharedInstance.getCfp()?.days, dataHelper: SlotHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
         
         dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
                 print("OK EVERYTHING IS LOADED FROM GROUP1")
@@ -210,7 +210,6 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     func successGroup(ok : String) {
         print("block finished \(ok)")
-        print(serviceGroup)
         dispatch_group_leave(serviceGroup)
     }
     
@@ -230,7 +229,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             {
                 
                 
-                self.updateIndex(self.currentSelectedIndex)
+                
                 
                
                 self.fetchFirst()
@@ -439,8 +438,9 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         globeView = wheelView.globe
         
-        
+      
 
+        goView.hidden = false
         
         
     }
@@ -522,7 +522,6 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     func updateIndex(index:Int) {
         currentSelectedIndex = index
-
         if let currentData = slicesData[index] as? EventProtocol {
             let img = UIImage(data: currentData.backgroundImage())
             let tmpImageView = UIImageView(image: img)

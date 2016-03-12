@@ -15,6 +15,7 @@ class AbstractService  {
     var mainManagedObjectContext: NSManagedObjectContext
     var privateManagedObjectContext: NSManagedObjectContext
 
+  
     init() {
        
         mainManagedObjectContext = MainManager.sharedInstance.mainManagedObjectContext
@@ -62,7 +63,7 @@ class AbstractService  {
     }
     
     func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
-        print("HERE")
+        
     }
     
     func getCfpId() -> String{

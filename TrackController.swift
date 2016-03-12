@@ -119,7 +119,6 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
         scheduleTableController.index = index
         
         if let tracks = self.scrollableDateTableDatasource?.allTracks {
-            print(tracks)
             scheduleTableController.currentTrack = tracks[index].objectID
         }
         return (scheduleTableController as? UIViewController)!

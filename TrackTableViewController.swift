@@ -96,13 +96,10 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     private func computePredicate() -> NSPredicate {
         
-        let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: managedContext)
-        
-        
-        
+
         var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "track = %@", self.currentTrack)
-        let predicateEvent = NSPredicate(format: "slot.cfp = %@", currentCfp!)
+        let predicateEvent = NSPredicate(format: "slot.cfp = %@", CfpService.sharedInstance.getCfp()!)
         
         andPredicate.append(predicateDay)
         andPredicate.append(predicateEvent)

@@ -31,17 +31,12 @@ class APIDataManager {
   
     
     
-   
-    
-    class func getEntryPointPoint() -> String {
-        return "\(APIManager.currentEvent.cfpEndpoint!)/conferences/\(APIManager.currentEvent.id!)/schedules"
-    }
-    
+       
    
     
    
     class func completion(msg : String) {
-        print("OK CREATED")
+        //print("OK CREATED")
     }
  
     
@@ -78,14 +73,19 @@ class APIDataManager {
     
     class func loadDataFromURLS(urls: NSSet?, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
-        loadDataFromURL("https://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/", service: SlotService.sharedInstance, helper : SlotHelper(), isCritical: true, onSuccess: onSuccess, onError: onError)
+        /*loadDataFromURL("https://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/", service: SlotService.sharedInstance, helper : SlotHelper(), isCritical: true, onSuccess: onSuccess, onError: onError)
         
-        /*for singleUrl in urls {
+        loadDataFromURL("https://cfp.devoxx.be/api/conferences/DV15/schedules/thursday/", service: SlotService.sharedInstance, helper : SlotHelper(), isCritical: true, onSuccess: onSuccess, onError: onError)
+        
+        loadDataFromURL("https://cfp.devoxx.be/api/conferences/DV15/schedules/friday/", service: SlotService.sharedInstance, helper : SlotHelper(), isCritical: true, onSuccess: onSuccess, onError: onError)
+        */
+                
+        for singleUrl in urls! {
             if let singleUrlString = singleUrl as? Day {
                 //loadDataFromURL(singleUrlString.url, dataHelper: dataHelper, isCritical : isCritical, onSuccess: onSuccess, onError: onError)
-                //loadDataFromURL(singleUrlString.url, service: SlotService(), isCritical: true, onSuccess: onSuccess, onError: onError)
+                loadDataFromURL(singleUrlString.url, service: SlotService.sharedInstance, helper : SlotHelper(), isCritical: true, onSuccess: onSuccess, onError: onError)
             }
-        }*/
+        }
         
     }
 

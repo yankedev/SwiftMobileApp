@@ -75,7 +75,7 @@ class SlotService : AbstractService {
                 let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
                 
                 if items.count == 0 {
-                    print("create")
+                    
                     let entity = NSEntityDescription.entityForName(helper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
                     let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
                     
@@ -114,7 +114,7 @@ class SlotService : AbstractService {
                 
             }
             catch {
-                print("not found")
+              
             }
             
             

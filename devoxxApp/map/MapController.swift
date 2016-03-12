@@ -39,8 +39,8 @@ public class MapController : UIViewController, MKMapViewDelegate, ScrollableItem
         
         var newRegion = MKCoordinateRegion()
        
-        newRegion.center.latitude = Double(APIManager.getEvent().latitude!)!
-        newRegion.center.longitude = Double(APIManager.getEvent().longitude!)!
+        newRegion.center.latitude = Double(CfpService.sharedInstance.getCfp()!.latitude!)!
+        newRegion.center.longitude = Double(CfpService.sharedInstance.getCfp()!.longitude!)!
         
         
         
@@ -52,7 +52,7 @@ public class MapController : UIViewController, MKMapViewDelegate, ScrollableItem
         let coord = CLLocationCoordinate2D(latitude: newRegion.center.latitude, longitude: newRegion.center.longitude)
         let annotation = MKPointAnnotation()
         annotation.coordinate = coord
-        annotation.title = APIManager.getEvent().id
+        annotation.title = CfpService.sharedInstance.getCfp()!.title()
         
         mapView.addAnnotation(annotation)
         mapView.setRegion(newRegion, animated: false)

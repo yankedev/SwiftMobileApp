@@ -18,7 +18,6 @@ let commonUrl:[String : [String]] = ["StoredResource" : ["StoredResource"], "Cfp
 
 class APIManager {
     
-    static var currentEvent : Cfp!
     
     class func qrCodeAlreadyScanned() -> Bool {
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -90,10 +89,10 @@ class APIManager {
 
     
        
-        static var serviceGroup = dispatch_group_create()
+    static var serviceGroup = dispatch_group_create()
     
     class func step(msg : String) {
-        print("step")
+        dispatch_group_leave(serviceGroup)
     }
     
     
@@ -108,20 +107,21 @@ class APIManager {
             
 
             for appDict in appArray {
-                
+                dispatch_group_enter(serviceGroup)
                 let newHelper = service.getHelper()
                 newHelper.feed(appDict)
-                
                 service.updateWithHelper(newHelper, completionHandler: step)
-                
-                
             }
         }
 
         storedResource?.etag = etag ?? ""
     
 
-        completionHandler(msg:"DONE")
+        
+        dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
+            completionHandler(msg: "GOGOGOOGOGOGOG")
+        })
+       
     
     }
 
@@ -182,16 +182,6 @@ class APIManager {
         }
     }
   
-    class func setEvent(event : Cfp) {
-        currentEvent = event
-    }
-    
-    class func getEvent() -> Cfp {
-        return currentEvent
-    }
-    
-    
-    
     class func getLastFromUrl(url : String) -> String {
         let lastPartImageName = url.characters.split{$0 == "/"}.map(String.init)
         

@@ -13,7 +13,7 @@ import UIKit
 class DayHelper: DataHelperProtocol {
     
     func getMainId() -> String {
-        return ""
+        return "url"
     }
 
     

@@ -18,7 +18,6 @@ class Day: NSManagedObject, FeedableProtocol {
     func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? DayHelper  {
             url = castHelper.url ?? ""
-            cfp = castHelper.cfp!
         }
     }
     

@@ -49,7 +49,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
         let sortSection = NSSortDescriptor(key: "type", ascending: true)
         let sortAlpha = NSSortDescriptor(key: "label", ascending: true)
         
-        let predicateEvent = NSPredicate(format: "cfp.id = %@", APIManager.currentEvent.id!)
+        let predicateEvent = NSPredicate(format: "cfp.id = %@", CfpService.sharedInstance.getCfpId())
         
         fetchRequest.sortDescriptors = [sortSection, sortAlpha]
         fetchRequest.fetchBatchSize = 20
