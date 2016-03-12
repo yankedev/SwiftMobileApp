@@ -24,6 +24,9 @@ public func ==(lhs: CfpStoreError, rhs: CfpStoreError) -> Bool {
 
 class CfpService : AbstractService {
     
+    
+    static let sharedInstance = CfpService()
+    
     override init() {
         super.init()
     }
@@ -87,7 +90,7 @@ class CfpService : AbstractService {
                     
                 }
                 else {
-                    print("already in")
+                    //print("already in")
                     completionHandler(msg: "OK")
                 }
             

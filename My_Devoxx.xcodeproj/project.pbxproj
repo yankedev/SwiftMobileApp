@@ -158,6 +158,8 @@
 		E175E5E11C940F44002A262A /* AttributeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5E01C940F44002A262A /* AttributeService.swift */; };
 		E175E5E31C944D55002A262A /* CfpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5E21C944D55002A262A /* CfpService.swift */; };
 		E175E5E51C94644B002A262A /* SlotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5E41C94644B002A262A /* SlotService.swift */; };
+		E175E5E71C947294002A262A /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5E61C947294002A262A /* File.swift */; };
+		E175E5E91C947733002A262A /* MainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5E81C947733002A262A /* MainManager.swift */; };
 		E175F25C1C46FFAD00D7AC0A /* DV15-monday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2581C46FFAD00D7AC0A /* DV15-monday.json */; };
 		E175F25D1C46FFAD00D7AC0A /* DV15-tuesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */; };
 		E175F25E1C46FFAD00D7AC0A /* DV15-wednesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */; };
@@ -371,6 +373,8 @@
 		E175E5E01C940F44002A262A /* AttributeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeService.swift; sourceTree = "<group>"; };
 		E175E5E21C944D55002A262A /* CfpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CfpService.swift; sourceTree = "<group>"; };
 		E175E5E41C94644B002A262A /* SlotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotService.swift; sourceTree = "<group>"; };
+		E175E5E61C947294002A262A /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		E175E5E81C947733002A262A /* MainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainManager.swift; sourceTree = "<group>"; };
 		E175F2581C46FFAD00D7AC0A /* DV15-monday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-monday.json"; path = "mock/DV15-monday.json"; sourceTree = "<group>"; };
 		E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-tuesday.json"; path = "mock/DV15-tuesday.json"; sourceTree = "<group>"; };
 		E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-wednesday.json"; path = "mock/DV15-wednesday.json"; sourceTree = "<group>"; };
@@ -561,6 +565,7 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				E175E5E61C947294002A262A /* File.swift */,
 				E136DF1E1C92163A00BB1A0C /* Speakers */,
 				58631DE91C8E3C7A00070833 /* QRCodeScannerController.swift */,
 				E1FB6D711C8D0D2B00D13082 /* ButtonView.swift */,
@@ -670,6 +675,7 @@
 				E175E5E21C944D55002A262A /* CfpService.swift */,
 				E175E5E41C94644B002A262A /* SlotService.swift */,
 				E175E5D41C93BE6B002A262A /* AbstractService.swift */,
+				E175E5E81C947733002A262A /* MainManager.swift */,
 				E175E5D81C93BF4F002A262A /* SpeakerService.swift */,
 				E175E5DC1C93D447002A262A /* FloorService.swift */,
 				E175E5DE1C93DFAF002A262A /* ImageServiceProtocol.swift */,
@@ -1149,6 +1155,7 @@
 				E175E5DF1C93DFAF002A262A /* ImageServiceProtocol.swift in Sources */,
 				E175F2731C49B01A00D7AC0A /* SearchableItemProtocol.swift in Sources */,
 				580B78711C766BDD00060C00 /* MapTabController.swift in Sources */,
+				E175E5E91C947733002A262A /* MainManager.swift in Sources */,
 				588CFDD41C80F9FC00DEC1E6 /* GobalDetailView.swift in Sources */,
 				E175E5E51C94644B002A262A /* SlotService.swift in Sources */,
 				E175F2761C52A50C00D7AC0A /* ScheduleControllerView.swift in Sources */,
@@ -1189,6 +1196,7 @@
 				580B786F1C76688400060C00 /* GenericPageScrollController.swift in Sources */,
 				588CFFA71C81069600DEC1E6 /* SpeakerDetail.swift in Sources */,
 				58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */,
+				E175E5E71C947294002A262A /* File.swift in Sources */,
 				E1FA9C3F1C1BFD010077C09A /* CellDataViewCell.swift in Sources */,
 				E10E7AF01C1957F300F6220B /* APIManager.swift in Sources */,
 				E1FA9C441C1BFD400077C09A /* Slot.swift in Sources */,

@@ -24,6 +24,8 @@ public func ==(lhs: SlotStoreError, rhs: SlotStoreError) -> Bool {
 
 class SlotService : AbstractService {
     
+    static let sharedInstance = SlotService()
+    
     override init() {
         super.init()
     }
@@ -31,50 +33,24 @@ class SlotService : AbstractService {
    
     
     
-    
-    func fetchCfps(completionHandler: (slots: [Slot], error: SlotStoreError?) -> Void) {
-        privateManagedObjectContext.performBlock {
-            do {
-                
-                let fetchRequest = NSFetchRequest(entityName: "Slot")
-                fetchRequest.includesSubentities = true
-                fetchRequest.returnsObjectsAsFaults = false
-                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "slotId", ascending: true)]
-                
-                
-                let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Slot]
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(slots: results, error: nil)
-                })
-            } catch {
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(slots: [], error: SlotStoreError.CannotFetch("Cannot fetch slots"))
-                })
-                
-            }
-        }
-    }
-    
-    
     func fetchCfpDay(completionHandler: (slots: NSArray, error: SlotStoreError?) -> Void) {
         privateManagedObjectContext.performBlock {
             do {
                 
-                
-
-                
                 let fetchRequest = NSFetchRequest(entityName: "Slot")
-                let predicateEvent = NSPredicate(format: "cfp.id = %@", super.getCfpId())
+                let predicateEvent = NSPredicate(format: "cfp.country = %@", super.getCfpId())
+                print(super.getCfpId())
                 fetchRequest.resultType = .DictionaryResultType
                 fetchRequest.returnsDistinctResults = true
                 fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
                 fetchRequest.propertiesToFetch = ["date"]
-                fetchRequest.predicate = predicateEvent
+                //fetchRequest.predicate = predicateEvent
                 
                 let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
                 
                 dispatch_async(dispatch_get_main_queue(), {
+                    print("fetched : \(results)")
+                    print("fetched : \(results.count)")
                     completionHandler(slots: results, error: nil)
                 })
             } catch {
@@ -108,13 +84,32 @@ class SlotService : AbstractService {
                     
                     if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
                         coreDataObjectCast.feedHelper(helper)
+                        
+                        
+                        
+                        
+                        coreDataObject.setValue(super.getCfp(), forKey: "cfp")
+                        
+                        let subEntity = NSEntityDescription.entityForName("Talk", inManagedObjectContext: self.privateManagedObjectContext)
+                        let subDataObject = NSManagedObject(entity: subEntity!, insertIntoManagedObjectContext: self.privateManagedObjectContext) as! FeedableProtocol
+                        
+                        if let helperSlot = helper as? SlotHelper {
+                            subDataObject.feedHelper(helperSlot.talk!)
+                        }
+
+                        coreDataObject.setValue(subDataObject as? AnyObject, forKey: "talk")
+
+                        
                         self.realSave(completionHandler)
+                        
+                        
+                        
+                        
                     }
                     
                     
                 }
                 else {
-                    print("already in")
                     completionHandler(msg: "OK")
                 }
                 

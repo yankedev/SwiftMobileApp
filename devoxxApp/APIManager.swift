@@ -125,7 +125,7 @@ class APIManager {
     static var serviceGroup = dispatch_group_create()
     
     class func step(msg:String) -> Void {
-        print("step out")
+        //print("step out")
         dispatch_group_leave(serviceGroup)
     }
     
@@ -140,7 +140,7 @@ class APIManager {
         
             
             for appDict in appArray {
-                print("step in")
+                //print("step in")
                 dispatch_group_enter(serviceGroup)
             }
             

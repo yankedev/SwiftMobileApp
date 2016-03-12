@@ -226,6 +226,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             {
                 
                 
+                self.updateIndex(self.currentSelectedIndex)
                 
                
                 self.fetchFirst()
@@ -292,7 +293,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         super.viewWillAppear(animated)
     }
     
-    let cfpService = CfpService()
+    let cfpService = CfpService.sharedInstance
     
     func loadWheel(msg : String) {
         print("cfp has been fed")
@@ -457,7 +458,6 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             }
             else {
                 currentSelectedIndex = currentEventIndex
-                updateIndex(currentSelectedIndex)
                 prepareNext()
             }
         }

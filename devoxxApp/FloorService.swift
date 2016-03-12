@@ -23,6 +23,8 @@ public func ==(lhs: FloorStoreError, rhs: FloorStoreError) -> Bool {
 
 class FloorService : AbstractService, ImageServiceProtocol {
     
+    static let sharedInstance = FloorService()
+    
     override init() {
         super.init()
     }

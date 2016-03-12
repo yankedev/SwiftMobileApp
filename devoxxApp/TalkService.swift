@@ -23,6 +23,8 @@ public func ==(lhs: TalksStoreError, rhs: TalksStoreError) -> Bool {
 
 
 class TalkService : AbstractService {
+    
+    static let sharedInstance = TalkService()
 
     override init() {
         super.init()
@@ -90,10 +92,10 @@ class TalkService : AbstractService {
         
         
         var andPredicate = [NSPredicate]()
-        let predicateEvent = NSPredicate(format: "slot.cfp.id = %@", super.getCfpId())
+        let predicateEvent = NSPredicate(format: "slot.cfp.country = %@", super.getCfpId())
         
         andPredicate.append(predicate)
-        andPredicate.append(predicateEvent)
+        //andPredicate.append(predicateEvent)
         
         var attributeOrPredicate = [NSPredicate]()
         

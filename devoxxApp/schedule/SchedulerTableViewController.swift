@@ -23,7 +23,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         HotReloadProtocol
 {
 
-    let talkService = TalkService()
+    let talkService = TalkService.sharedInstance
     
     //ScrollableDateProtocol
     public var index:Int = 0

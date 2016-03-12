@@ -16,7 +16,7 @@ public class MapTabController : UIViewController {
     var currentView : UIView?
     var accessView:UIView!
     
-    let floorService = FloorService()
+    let floorService = FloorService.sharedInstance
     
     var floors:[Floor]!
     

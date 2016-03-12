@@ -24,6 +24,8 @@ public func ==(lhs: SpeakerStoreError, rhs: SpeakerStoreError) -> Bool {
 
 class SpeakerService : AbstractService, ImageServiceProtocol {
     
+    static let sharedInstance = SpeakerService()
+    
     override init() {
         super.init()
     }

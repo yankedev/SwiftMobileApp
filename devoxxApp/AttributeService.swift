@@ -28,6 +28,8 @@ class AttributeService : AbstractService {
     }
     
     
+    static let sharedInstance = AttributeService()
+    
     func fetchTracks(completionHandler: (attributes: [Attribute], error: AttributeStoreError?) -> Void) {
         privateManagedObjectContext.performBlock {
             do {

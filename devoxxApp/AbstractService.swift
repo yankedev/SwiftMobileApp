@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class AbstractService  {
     
@@ -15,31 +16,9 @@ class AbstractService  {
     var privateManagedObjectContext: NSManagedObjectContext
 
     init() {
-        // This resource is the same name as your xcdatamodeld contained in your project.
-        guard let modelURL = NSBundle.mainBundle().URLForResource("My_Devoxx", withExtension:"momd") else {
-            fatalError("Error loading model from bundle")
-        }
-        
-        // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
-        guard let mom = NSManagedObjectModel(contentsOfURL: modelURL) else {
-            fatalError("Error initializing mom from: \(modelURL)")
-        }
-        
-        let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
-        mainManagedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
-        mainManagedObjectContext.persistentStoreCoordinator = psc
-        
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        let docURL = urls[urls.endIndex-1]
-        /* The directory the application uses to store the Core Data store file.
-        This code uses a file named "DataModel.sqlite" in the application's documents directory.
-        */
-        let storeURL = docURL.URLByAppendingPathComponent("devoxxApp.sqlite")
-        do {
-            try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
-        } catch {
-            fatalError("Error migrating store: \(error)")
-        }
+       
+        mainManagedObjectContext = MainManager.sharedInstance.mainManagedObjectContext
+
         
         privateManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         privateManagedObjectContext.parentContext = mainManagedObjectContext
@@ -92,6 +71,24 @@ class AbstractService  {
             return currentEventStr
         }
         return ""
+    }
+    
+    func getCfp() -> Cfp? {
+        
+        do {
+            let fetchRequest = NSFetchRequest(entityName: "Cfp")
+            let predicate = NSPredicate(format: "country = %@", getCfpId())
+            fetchRequest.predicate = predicate
+            let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Cfp]
+            if items.count > 0 {
+                return items[0]
+            }
+        }
+        catch {
+            return nil
+        }
+        
+        return nil
     }
 
 }

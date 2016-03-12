@@ -229,11 +229,13 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
 
     //ScrollableDateTableDelegate
     func feedDate() {
-        SlotService().fetchCfpDay(callBack)
+        SlotService.sharedInstance.fetchCfpDay(callBack)
     }
     
     func callBack(slots: NSArray, error: SlotStoreError?) {
         allDates = slots
+        
+        print(allDates)
         
         
         self.scrollableDateTableDatasource = self

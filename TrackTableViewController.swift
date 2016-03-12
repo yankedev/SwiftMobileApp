@@ -59,7 +59,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     var presort = Array<[Slot]>()
     
-    let talkService = TalkService()
+    let talkService = TalkService.sharedInstance
     var savedFetchedResult : NSFetchedResultsController?
     
     override public func viewDidLoad() {

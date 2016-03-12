@@ -186,7 +186,7 @@ class APIDataManager {
     
     class func loadDataFromURLS(urls: NSSet?, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
-        loadDataFromURL("https://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/", service: SlotService(), isCritical: true, onSuccess: onSuccess, onError: onError)
+        loadDataFromURL("https://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/", service: SlotService.sharedInstance, isCritical: true, onSuccess: onSuccess, onError: onError)
         
         /*for singleUrl in urls {
             if let singleUrlString = singleUrl as? Day {

@@ -21,7 +21,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     var searchingString = ""
     var searchBar = UISearchBar(frame: CGRectMake(0,0,44,44))
     
-    let speakerService = SpeakerService()
+    let speakerService = SpeakerService.sharedInstance
     
     public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         searchingString = searchText

@@ -15,7 +15,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
   
     var detailObject : DetailableProtocol!
     
-    let speakerService = SpeakerService()
+    let speakerService = SpeakerService.sharedInstance
     
     var talkList = SpeakerListView(frame: CGRectZero, style: .Grouped)
     
