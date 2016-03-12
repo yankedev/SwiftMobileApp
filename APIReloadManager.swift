@@ -32,7 +32,7 @@ class APIReloadManager {
     }
 
     
-    class func fetchImg(url : String?, id : NSManagedObjectID, service : SpeakerService, completedAction : (msg: String) -> Void) {
+    class func fetchImg(url : String?, id : NSManagedObjectID, service : ImageServiceProtocol, completedAction : (msg: String) -> Void) {
         
         if ResourceFetcherManager.isAllowedToFetch(url) {
             

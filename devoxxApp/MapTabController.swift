@@ -16,13 +16,20 @@ public class MapTabController : UIViewController {
     var currentView : UIView?
     var accessView:UIView!
     
+    let floorService = FloorService()
+    
     var floors:[Floor]!
     
     func setupSegments() {
-        floors = APIManager.currentEvent.getImages()
+        floorService.fetchFloors(callBack)
+    }
+    
+    
+    func callBack(floors : [Floor], error : FloorStoreError?) {
+        self.floors = floors
         for floor in floors {
             seg.insertSegmentWithTitle(floor.title, atIndex: seg.numberOfSegments, animated: false)
-            //APIReloadManager.fetchImg(floor.img, id: floor.objectID, completedAction: completed)
+            APIReloadManager.fetchImg(floor.img, id: floor.objectID, service : floorService, completedAction: completed)
         }
     }
     

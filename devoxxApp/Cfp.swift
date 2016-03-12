@@ -146,16 +146,6 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
         return backgroundImageData!
     }
     
-    func getImages() -> [Floor] {
-        var result = [Floor]()
-        for floor in floors  {
-            if let realFloor = floor as? Floor  {
-                if realFloor.target == APIManager.getStringDevice() {
-                    result.append(realFloor)
-                }
-            }
-        }
-        return result.sort({ $0.tabpos < $1.tabpos })
-    }
+    
 
 }

@@ -22,7 +22,7 @@ public func ==(lhs: SpeakerStoreError, rhs: SpeakerStoreError) -> Bool {
 }
 
 
-class SpeakerService : AbstractService {
+class SpeakerService : AbstractService, ImageServiceProtocol {
     
     override init() {
         super.init()
