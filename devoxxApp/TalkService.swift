@@ -87,11 +87,10 @@ class TalkService : AbstractService {
     
     private func computePredicate(predicate : NSPredicate, searchPredicates : [String : [NSPredicate]]?) -> NSPredicate {
         
-        let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: self.privateManagedObjectContext)
         
         
         var andPredicate = [NSPredicate]()
-        let predicateEvent = NSPredicate(format: "slot.cfp = %@", currentCfp!)
+        let predicateEvent = NSPredicate(format: "slot.cfp.id = %@", super.getCfpId())
         
         andPredicate.append(predicate)
         andPredicate.append(predicateEvent)

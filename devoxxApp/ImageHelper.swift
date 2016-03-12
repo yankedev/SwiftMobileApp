@@ -16,6 +16,10 @@ class ImageHelper: DataHelperProtocol {
     var imgName: String?
     var etag: String?
     
+    func getMainId() -> String {
+        return ""
+    }
+    
     func typeName() -> String {
         return entityName()
     }

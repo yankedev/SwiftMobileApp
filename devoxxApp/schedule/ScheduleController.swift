@@ -59,47 +59,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
         feedDate()
         
-        self.scrollableDateTableDatasource = self
-        self.scrollableDateTableDelegate = self
-    
-
-        self.navigationBar.translucent = false
-        
-        pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
-        
-        pageViewController?.dataSource = self
-        pageViewController?.delegate = self
-        
-        let demo = viewControllerAtIndex(0)
-        let controls = [demo]
-        
-        pageViewController?.setViewControllers(controls, direction: .Forward, animated: false, completion: nil)
-        
-        pushViewController(pageViewController!, animated: false)
-
-        
-        //self.pageViewController.navigationItem.rightBarButtonItems = [customView!.filterRightButton, customView!.favoriteSwitcher]
-        self.pageViewController.navigationItem.rightBarButtonItem = customView!.filterRightButton
-  
-        
-        
-        
-        
-             
-        
-        if allDates.count == 0 {
-            self.pageViewController.navigationItem.title = "No data yet"
-        }
-        else {
-            self.pageViewController.navigationItem.title = humanReadableDateFromNSDate(allDates[0].objectForKey("date") as! NSDate)
-        }
-        
        
-        
-      
-        self.view.addSubview(customView!)
-        
-
     }
     
     
@@ -269,7 +229,45 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
 
     //ScrollableDateTableDelegate
     func feedDate() {
-        allDates = APIManager.getDistinctDays()
+        SlotService().fetchCfpDay(callBack)
+    }
+    
+    func callBack(slots: NSArray, error: SlotStoreError?) {
+        allDates = slots
+        
+        
+        self.scrollableDateTableDatasource = self
+        self.scrollableDateTableDelegate = self
+        
+        
+        self.navigationBar.translucent = false
+        
+        pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
+        
+        pageViewController?.dataSource = self
+        pageViewController?.delegate = self
+        
+        let demo = viewControllerAtIndex(0)
+        let controls = [demo]
+        
+        pageViewController?.setViewControllers(controls, direction: .Forward, animated: false, completion: nil)
+        
+        pushViewController(pageViewController!, animated: false)
+        
+        
+        //self.pageViewController.navigationItem.rightBarButtonItems = [customView!.filterRightButton, customView!.favoriteSwitcher]
+        self.pageViewController.navigationItem.rightBarButtonItem = customView!.filterRightButton
+        
+        if allDates.count == 0 {
+            self.pageViewController.navigationItem.title = "No data yet"
+        }
+        else {
+            self.pageViewController.navigationItem.title = humanReadableDateFromNSDate(allDates[0].objectForKey("date") as! NSDate)
+        }
+        
+        self.view.addSubview(customView!)
+        
+
     }
     
     func humanReadableDateFromNSDate(date : NSDate) -> String {

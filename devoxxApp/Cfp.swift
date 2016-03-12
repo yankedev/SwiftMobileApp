@@ -117,6 +117,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     
     
     func title() -> String {
+        print(country)
         return country!
     }
     

@@ -156,6 +156,8 @@
 		E175E5DD1C93D447002A262A /* FloorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5DC1C93D447002A262A /* FloorService.swift */; };
 		E175E5DF1C93DFAF002A262A /* ImageServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5DE1C93DFAF002A262A /* ImageServiceProtocol.swift */; };
 		E175E5E11C940F44002A262A /* AttributeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5E01C940F44002A262A /* AttributeService.swift */; };
+		E175E5E31C944D55002A262A /* CfpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5E21C944D55002A262A /* CfpService.swift */; };
+		E175E5E51C94644B002A262A /* SlotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5E41C94644B002A262A /* SlotService.swift */; };
 		E175F25C1C46FFAD00D7AC0A /* DV15-monday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2581C46FFAD00D7AC0A /* DV15-monday.json */; };
 		E175F25D1C46FFAD00D7AC0A /* DV15-tuesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */; };
 		E175F25E1C46FFAD00D7AC0A /* DV15-wednesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */; };
@@ -367,6 +369,8 @@
 		E175E5DC1C93D447002A262A /* FloorService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloorService.swift; sourceTree = "<group>"; };
 		E175E5DE1C93DFAF002A262A /* ImageServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageServiceProtocol.swift; sourceTree = "<group>"; };
 		E175E5E01C940F44002A262A /* AttributeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeService.swift; sourceTree = "<group>"; };
+		E175E5E21C944D55002A262A /* CfpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CfpService.swift; sourceTree = "<group>"; };
+		E175E5E41C94644B002A262A /* SlotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotService.swift; sourceTree = "<group>"; };
 		E175F2581C46FFAD00D7AC0A /* DV15-monday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-monday.json"; path = "mock/DV15-monday.json"; sourceTree = "<group>"; };
 		E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-tuesday.json"; path = "mock/DV15-tuesday.json"; sourceTree = "<group>"; };
 		E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-wednesday.json"; path = "mock/DV15-wednesday.json"; sourceTree = "<group>"; };
@@ -663,6 +667,8 @@
 			isa = PBXGroup;
 			children = (
 				E175E5D01C93A0C7002A262A /* TalkService.swift */,
+				E175E5E21C944D55002A262A /* CfpService.swift */,
+				E175E5E41C94644B002A262A /* SlotService.swift */,
 				E175E5D41C93BE6B002A262A /* AbstractService.swift */,
 				E175E5D81C93BF4F002A262A /* SpeakerService.swift */,
 				E175E5DC1C93D447002A262A /* FloorService.swift */,
@@ -1124,6 +1130,7 @@
 				E1FB6D721C8D0D2B00D13082 /* ButtonView.swift in Sources */,
 				E1FB6D621C86601800D13082 /* DayHelper.swift in Sources */,
 				E1FB6D701C8CFE4A00D13082 /* RateView.swift in Sources */,
+				E175E5E31C944D55002A262A /* CfpService.swift in Sources */,
 				58A38EA41C8371D800C2DFE2 /* TopTitleView.swift in Sources */,
 				E175F26B1C4867F300D7AC0A /* FilterTableView.swift in Sources */,
 				E10CE1AA1C2BD6DE002C9934 /* TalkTypeHelper.swift in Sources */,
@@ -1143,6 +1150,7 @@
 				E175F2731C49B01A00D7AC0A /* SearchableItemProtocol.swift in Sources */,
 				580B78711C766BDD00060C00 /* MapTabController.swift in Sources */,
 				588CFDD41C80F9FC00DEC1E6 /* GobalDetailView.swift in Sources */,
+				E175E5E51C94644B002A262A /* SlotService.swift in Sources */,
 				E175F2761C52A50C00D7AC0A /* ScheduleControllerView.swift in Sources */,
 				E17DFF411C79D7FB00A09547 /* Floor.swift in Sources */,
 				58EC131E1C846F2100958070 /* SettingsController.swift in Sources */,

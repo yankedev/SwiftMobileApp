@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class AbstractService {
+class AbstractService  {
     
     var mainManagedObjectContext: NSManagedObjectContext
     var privateManagedObjectContext: NSManagedObjectContext
@@ -78,6 +78,20 @@ class AbstractService {
         }
     }
 
+    func getHelper() -> DataHelperProtocol {
+        return SpeakerHelper()
+    }
     
+    func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
+        print("HERE")
+    }
+    
+    func getCfpId() -> String{
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let currentEventStr = defaults.objectForKey("currentEvent") as? String {
+            return currentEventStr
+        }
+        return ""
+    }
 
 }

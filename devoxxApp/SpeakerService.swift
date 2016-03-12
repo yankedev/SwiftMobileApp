@@ -40,31 +40,25 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
     
     }
     
-    func getHelper() -> SpeakerDetailHelper {
+    override func getHelper() -> DataHelperProtocol {
         return SpeakerDetailHelper()
     }
     
-    func updateWithHelper(helper : SpeakerDetailHelper, completionHandler : (msg: String) -> Void) {
+    override func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
         
         privateManagedObjectContext.performBlock {
             
             let fetchRequest = NSFetchRequest(entityName: "SpeakerDetail")
-            let predicate = NSPredicate(format: "uuid = %@", helper.uuid!)
+            let predicate = NSPredicate(format: "uuid = %@", helper.getMainId())
             fetchRequest.predicate = predicate
             let items = try! self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
             
             let found = items[0] as! FeedableProtocol
             
-            print((found as! SpeakerDetail).speaker.getFullName())
-            print((found as! SpeakerDetail).company)
-            print(helper.company)
             
-            helper.speaker = (found as! SpeakerDetail).speaker
+            
+            (helper as! SpeakerDetailHelper).speaker = (found as! SpeakerDetail).speaker
             found.feedHelper(helper)
-            
-            print((found as! SpeakerDetail).speaker.getFullName())
-            print((found as! SpeakerDetail).bio)
-            
             self.realSave(completionHandler)
             
             

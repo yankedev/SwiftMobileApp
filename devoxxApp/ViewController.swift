@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreData
 
 
 
@@ -138,7 +138,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     
     func fetchFirst() {
-        dispatch_group_enter(serviceGroup)
+        /*dispatch_group_enter(serviceGroup)
         dispatch_group_enter(serviceGroup)
         APIDataManager.loadDataFromURL(APIDataManager.getSpeakerEntryPoint(), dataHelper: SpeakerHelper(), isCritical : true, onSuccess: self.successGroup0, onError: self.onError)
         APIDataManager.loadDataFromURL(APIDataManager.getEntryPointPoint(), dataHelper: DayHelper(cfp: APIManager.currentEvent, url: nil), isCritical : true, onSuccess: self.successGroup0, onError: self.onError)
@@ -148,6 +148,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             self.serviceGroup = dispatch_group_create()
             self.fetchSecond("GO")
         })
+        */
+        fetchSecond("go")
     }
     
     
@@ -161,28 +163,28 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
        
         
        
-        APIDataManager.updateCurrentEvent()
+        //APIDataManager.updateCurrentEvent()
        
      
         
         
-        if APIManager.currentEvent!.days.count == 0 {
-            onError("toto")
-            return
-        }
+        //if APIManager.currentEvent!.days.count == 0 {
+            //onError("toto")
+            //return
+        //}
         
         dispatch_group_enter(serviceGroup)
-        dispatch_group_enter(serviceGroup)
+        //dispatch_group_enter(serviceGroup)
         
-        for _ in 0...APIManager.currentEvent!.days.count-1 {
+       /* for _ in 0...APIManager.currentEvent!.days.count-1 {
             dispatch_group_enter(serviceGroup)
         }
         
+        */
         
+        //APIDataManager.loadDataFromURL(APIDataManager.getTracks(), dataHelper: TrackHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
         
-        APIDataManager.loadDataFromURL(APIDataManager.getTracks(), dataHelper: TrackHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
-        
-        APIDataManager.loadDataFromURL(APIDataManager.getProposalTypes(), dataHelper: TalkTypeHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
+        //APIDataManager.loadDataFromURL(APIDataManager.getProposalTypes(), dataHelper: TalkTypeHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
         
         
         
@@ -193,7 +195,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         
-        APIDataManager.loadDataFromURLS(APIManager.currentEvent!.days, dataHelper: SlotHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
+        
+        APIDataManager.loadDataFromURLS(nil, dataHelper: SlotHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
         
         dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
               //  print("OK EVERYTHING IS LOADED FROM GROUP1")
@@ -224,11 +227,6 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                 
                 
                 
-                APIManager.setEvent(self.slicesData.objectAtIndex(self.currentSelectedIndex) as! Cfp)
-                
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setInteger(self.currentSelectedIndex, forKey: "currentEvent")
-      
                
                 self.fetchFirst()
                 
@@ -294,17 +292,47 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         super.viewWillAppear(animated)
     }
     
+    let cfpService = CfpService()
+    
+    func loadWheel(msg : String) {
+        print("cfp has been fed")
+        cfpService.fetchCfps(callBack)
+    }
+    
+    func callBack(cfps :[Cfp], error : CfpStoreError?) {
+        slicesData = cfps
+        
+       
+        
+        wheelView.datasource = self
+        wheelView.delegate = self
+
+        shouldByPass()
+        
+        //wheelView.setup()
+        //wheelView.click(0)
+    }
     
     
+    func contextDidSave(notification: NSNotification){
+        /*let sender = notification.object as! NSManagedObjectContext
+        if sender != managedObjectContext{
+            managedObjectContext!.mergeChangesFromContextDidSaveNotification(notification)
+        */
+        print("ROGER THAT")
+    }
     
     override func viewDidLoad() {
-        
-        
-        
-        super.viewDidLoad()
 
-        slicesData = APIManager.getAllEvents()
-        print(slicesData.count)
+        super.viewDidLoad()
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "contextDidSave:", name: NSManagedObjectContextDidSaveNotification, object: nil)
+
+        APIManager.firstFeed(loadWheel, service: cfpService)
+        
+        
+        
         
         imgView = UIImageView()
         imgView.contentMode = .ScaleAspectFit
@@ -322,7 +350,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         eventLocation = headerView.eventLocation
         
         self.showStaticView(true)
-        shouldByPass()
+        
         view.addSubview(headerView)
         view.addSubview(wheelView)
         view.addSubview(goView)
@@ -407,19 +435,18 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         goView.goButton.addTarget(self, action: Selector("prepareNext"), forControlEvents: .TouchUpInside)
         
         
-        wheelView.datasource = self
-        wheelView.delegate = self
-      
-        wheelView.setup()
+        
+        
         globeView = wheelView.globe
-        wheelView.click(0)
         
         
+
         
         
     }
 
     func shouldByPass() {
+        
         let defaults = NSUserDefaults.standardUserDefaults()
         
         
@@ -496,6 +523,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     func updateIndex(index:Int) {
         currentSelectedIndex = index
+
         if let currentData = slicesData[index] as? EventProtocol {
             let img = UIImage(data: currentData.backgroundImage())
             let tmpImageView = UIImageView(image: img)
@@ -507,8 +535,11 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             numberView.number2.text = currentData.sessionsCount()
             numberView.number3.text = currentData.capacityCount()
             
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(currentData.title(), forKey: "currentEvent")
+            
         }
-        currentSelectedIndex = index
+
     }
 }
 

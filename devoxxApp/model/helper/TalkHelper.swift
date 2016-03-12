@@ -22,6 +22,11 @@ class TalkHelper: DataHelperProtocol {
     
     var speakerIds = [String]()
     
+    func getMainId() -> String {
+        return ""
+    }
+
+    
     /*
     override var description: String {
         return "title: \(title)\n lang: \(lang)\n trackId: \(trackId)\n title: \(talkType)\n talkType: \(title)\n id: \(id)\n title: \(title)\n summary: \(summary)\n"

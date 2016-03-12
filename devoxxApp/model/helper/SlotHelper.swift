@@ -19,6 +19,10 @@ class SlotHelper: DataHelperProtocol {
     var fromTimeMillis : NSNumber?
     var talk : TalkHelper?
     
+    func getMainId() -> String {
+        return slotId!
+    }
+
     
     func typeName() -> String {
         return entityName()

@@ -12,6 +12,11 @@ import CoreData
 
 class FloorHelper: DataHelperProtocol {
     
+    func getMainId() -> String {
+        return ""
+    }
+
+    
     var id: String?
     var img: String?
     var title: String?

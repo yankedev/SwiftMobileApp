@@ -11,6 +11,10 @@ import CoreData
 
 class TrackHelper: AttributeHelper, DataHelperProtocol {
   
+    func getMainId() -> String {
+        return ""
+    }
+
 
     func feed(data: JSON) {
     

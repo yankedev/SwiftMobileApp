@@ -36,6 +36,11 @@ class CfpHelper: DataHelperProtocol {
         return entityName()
     }
     
+    func getMainId() -> String {
+        return id!
+    }
+
+    
     init(id: String?, confType: String?, confDescription: String?, venue: String?, address: String?, country: String?, capacity: String?, sessions: String?, latitude:String?, longitude:String?, splashImgURL: String?, hashtag: String?, fromDate: String?, talkURL: String?, regURL : String?, cfpEndpoint : String?) {
         self.id = id ?? ""
         self.confType = confType ?? ""
@@ -57,7 +62,7 @@ class CfpHelper: DataHelperProtocol {
     }
     
     func feed(data: JSON) {
-        
+   
         id = data["id"].string
         confType = data["confType"].string
         confDescription = data["confDescription"].string

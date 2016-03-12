@@ -14,6 +14,10 @@ import CoreData
 
 class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
     
+    func getMainId() -> String {
+        return ""
+    }
+
     
     func feed(data: JSON) {
         super.label = data["label"].string

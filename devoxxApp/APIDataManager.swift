@@ -145,7 +145,7 @@ class APIDataManager {
     
     
     
-    class func loadDataFromURL(url: String, service : SpeakerService, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
+    class func loadDataFromURL(url: String, service : AbstractService, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
         
         var res:StoredResource? = nil
@@ -182,15 +182,18 @@ class APIDataManager {
     }
 
     
+      
     
-    
-    class func loadDataFromURLS(urls: NSSet, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
+    class func loadDataFromURLS(urls: NSSet?, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
-        for singleUrl in urls {
+        loadDataFromURL("https://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/", service: SlotService(), isCritical: true, onSuccess: onSuccess, onError: onError)
+        
+        /*for singleUrl in urls {
             if let singleUrlString = singleUrl as? Day {
-                loadDataFromURL(singleUrlString.url, dataHelper: dataHelper, isCritical : isCritical, onSuccess: onSuccess, onError: onError)
+                //loadDataFromURL(singleUrlString.url, dataHelper: dataHelper, isCritical : isCritical, onSuccess: onSuccess, onError: onError)
+                //loadDataFromURL(singleUrlString.url, service: SlotService(), isCritical: true, onSuccess: onSuccess, onError: onError)
             }
-        }
+        }*/
         
     }
 
@@ -350,7 +353,7 @@ class APIDataManager {
     
     
     
-    class func makeRequest(storedResource : StoredResource, service : SpeakerService, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void){
+    class func makeRequest(storedResource : StoredResource, service : AbstractService, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void){
         
         
         

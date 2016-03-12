@@ -54,37 +54,9 @@ class APIManager {
         }
     }
     
-    class func getDistinctDays() -> NSArray {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-        
-        let currentCfp:Cfp? = APIDataManager.findEntityFromId(APIManager.currentEvent.objectID, inContext: context)
-        
-        
-        let fetchRequest = buildFetchRequest(context, name: "Slot")
-        let predicateEvent = NSPredicate(format: "cfp = %@", currentCfp!)
-        fetchRequest.resultType = .DictionaryResultType
-        fetchRequest.returnsDistinctResults = true
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-        fetchRequest.propertiesToFetch = ["date"]
-        fetchRequest.predicate = predicateEvent
-        let items = try! context.executeFetchRequest(fetchRequest)
-        return items
-    }
+    
     
        
-    
-    class func getAllEvents() -> NSArray {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context = appDelegate.managedObjectContext!
-        let fetchRequest = buildFetchRequest(context, name: "Cfp")
-        fetchRequest.resultType = .ManagedObjectResultType
-        fetchRequest.returnsDistinctResults = true
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-        let items = try! context.executeFetchRequest(fetchRequest)
-        return items
-    }
-    
     class func getDateFromIndex(index : NSInteger, array: NSArray) -> NSDate {
         if index < array.count  {
             if let dict = array.objectAtIndex(index) as? NSDictionary {
@@ -150,42 +122,55 @@ class APIManager {
     }
 
     
+    static var serviceGroup = dispatch_group_create()
     
-    class func handleData(inputData : NSData, service: SpeakerService, storedResource : StoredResource?, etag : String?,completionHandler : (msg: String) -> Void) {
+    class func step(msg:String) -> Void {
+        print("step out")
+        dispatch_group_leave(serviceGroup)
+    }
+    
+    class func handleData(inputData : NSData, service: AbstractService, storedResource : StoredResource?, etag : String?,completionHandler : (msg: String) -> Void) {
         
         let json = JSON(data: inputData)
-        
+        print(storedResource?.url)
         let arrayToParse = service.getHelper().prepareArray(json)
         
         if let appArray = arrayToParse {
+            
+        
+            
+            for appDict in appArray {
+                print("step in")
+                dispatch_group_enter(serviceGroup)
+            }
+            
             for appDict in appArray {
                 
                 let newHelper = service.getHelper()
                 newHelper.feed(appDict)
                 
-                service.updateWithHelper(newHelper, completionHandler: completionHandler)
+                service.updateWithHelper(newHelper, completionHandler: step)
+                
                 
             }
         }
 
         storedResource?.etag = etag ?? ""
     
+        dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
+            completionHandler(msg:"DONE")
+        })
     }
 
     
 
     
-    class func firstFeed() {
-        singleCommonFeed(StoredResourceHelper())
-        singleCommonFeed(CfpHelper())
+    class func firstFeed(completionHandler: (msg: String) -> Void, service : AbstractService) {
+        singleCommonFeed(CfpHelper(), completionHandler: completionHandler, service : service)
     }
     
-    
-    
-    class func singleCommonFeed(helper : DataHelperProtocol) {
-
-
-
+    class func singleCommonFeed(helper : DataHelperProtocol, completionHandler: (msg: String) -> Void, service : AbstractService) {
+        
         
         let url = commonUrl[helper.entityName()]
         
@@ -199,7 +184,11 @@ class APIManager {
                // print("should not be empty", terminator: "")
             }
             let data = NSData(contentsOfFile: filePath!)!
-            self.handleData(data, dataHelper: helper, storedResource: nil, etag: nil)
+            
+            
+            self.handleData(data, service: service, storedResource: nil, etag: nil, completionHandler: completionHandler)
+            
+            //self.handleData(data, dataHelper: helper, storedResource: nil, etag: nil)
         }
         
         
@@ -263,10 +252,15 @@ class APIManager {
         } else {
             fetchRequest.predicate = predicate
         }
+        do {
+            let items = try context.executeFetchRequest(fetchRequest)
+            return items.count > 0
+        } catch {
+            print("err")
+        }
         
-        let items = try! context.executeFetchRequest(fetchRequest)
-        
-        return items.count > 0
+        return false
+
     }
     
     
@@ -285,7 +279,8 @@ class APIManager {
     
     
     class func isCurrentEventEmpty() -> Bool {
-        return getDistinctDays().count == 0
+        //return getDistinctDays().count == 0
+        return false
 
     }
    

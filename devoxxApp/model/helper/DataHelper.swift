@@ -17,5 +17,6 @@ public protocol DataHelperProtocol : NSCopying {
     func prepareArray(json : JSON) -> [JSON]?
     func save(managedContext : NSManagedObjectContext) -> Bool
     func typeName() -> String
+    func getMainId() -> String
 }
 

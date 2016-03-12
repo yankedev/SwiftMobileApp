@@ -18,6 +18,10 @@ class StoredResourceHelper: DataHelperProtocol {
     func typeName() -> String {
         return entityName()
     }
+    func getMainId() -> String {
+        return ""
+    }
+
     
     init(url: String?, etag: String?, fallback : String?) {
         self.url = url ?? ""
