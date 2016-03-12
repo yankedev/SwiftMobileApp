@@ -11,14 +11,14 @@ import UIKit
 import CoreData
 
 
-public class TrackTableViewController:
+public class TrackTableViewController<T : CellDataPrococol>:
     UIViewController,
     UITableViewDelegate,
     SearchableTableProtocol,
     UITableViewDataSource,
     UISearchBarDelegate,
     ScrollableDateProtocol,
-    DevoxxAppFavoriteDelegate
+    FavoritableProtocol
 {
     
     public func hi() {
@@ -39,6 +39,10 @@ public class TrackTableViewController:
         return (self.navigationController?.navigationItem)!
     }
     
+    
+    public required init() {
+        super.init(nibName: nil, bundle: nil)
+    }
     
     var openedSections = [Bool]()
     

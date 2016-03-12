@@ -33,9 +33,9 @@ class TalkService {
                 let fetchRequest = NSFetchRequest(entityName: "Talk")
                 let sortTime = NSSortDescriptor(key: "slot.fromTime", ascending: true)
                 let sortAlpha = NSSortDescriptor(key: "title", ascending: true)
-                let sortFavorite = NSSortDescriptor(key: "isFavorited", ascending: true)
+                let sortFavorite = NSSortDescriptor(key: "isFavorited", ascending: false)
                 
-                fetchRequest.sortDescriptors = [sortTime, sortAlpha, sortFavorite]
+                fetchRequest.sortDescriptors = [sortTime, sortFavorite, sortAlpha]
                 fetchRequest.fetchBatchSize = 20
                 fetchRequest.returnsObjectsAsFaults = false
                 fetchRequest.predicate = self.computePredicate(currentDate, searchPredicates: searchPredicates)
@@ -58,6 +58,15 @@ class TalkService {
                
             }
         }
+    }
+    
+    func invertFavorite(id : NSManagedObjectID) -> Bool {
+        if let cellData:FavoriteProtocol = APIDataManager.findEntityFromId(id, inContext: self.privateManagedObjectContext) {
+            cellData.invertFavorite()
+            APIManager.save(self.privateManagedObjectContext)
+            return cellData.isFav()
+        }
+        return false
     }
     
     private func computePredicate(currentDate : NSDate, searchPredicates : [String : [NSPredicate]]) -> NSPredicate {

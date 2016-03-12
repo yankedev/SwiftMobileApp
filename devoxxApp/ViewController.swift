@@ -30,14 +30,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     var rotating = false
 
     
+  
     
-    func generateTrackTableViewController() -> ScrollableDateProtocol {
-        return TrackTableViewController()
-    }
-    
-    func generate() -> ScrollableItemProtocol {
-        return MapController()
-    }
     
     
     
@@ -88,7 +82,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         let scheduleController = ScheduleController<SchedulerTableViewController<Talk>>()
         
         
-        let trackController = TrackController<TrackTableViewController>(generator:self.generateTrackTableViewController)
+        let trackController = TrackController<TrackTableViewController<Talk>>()
         
         let speakerController = SpeakerTableController()
         let mapController = MapTabController()

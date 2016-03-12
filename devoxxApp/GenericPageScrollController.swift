@@ -38,7 +38,7 @@ public class GenericPageScrollController<T : ScrollableItemProtocol> : UINavigat
         
         super.viewDidLoad()
         
-        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"), favoriteSelector : Selector("changeSchedule:"))
+        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"))
         
         
         

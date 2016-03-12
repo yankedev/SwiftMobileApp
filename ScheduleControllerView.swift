@@ -16,25 +16,20 @@ protocol TopFilterableProtocol {
 
 class ScheduleControllerView : UIView, TopFilterableProtocol {
     
-    var favoriteSwitcher:UIBarButtonItem
+   
     var filterRightButton:UIBarButtonItem
     
    
     
 
     
-    init(target: AnyObject?, filterSelector:Selector, favoriteSelector:Selector) {
+    init(target: AnyObject?, filterSelector:Selector) {
         
         
         let img = UIImage(named: "ic_filter_inactive")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         filterRightButton = UIBarButtonItem(image: img, style: UIBarButtonItemStyle.Plain, target: target, action: filterSelector)
         
         
-        
-        
-        favoriteSwitcher = UIBarButtonItem(barButtonSystemItem: .Compose, target: target, action: favoriteSelector)
-
-       
         
        
         
@@ -47,9 +42,6 @@ class ScheduleControllerView : UIView, TopFilterableProtocol {
     
     override init(frame: CGRect) {
         self.filterRightButton = UIBarButtonItem()
-        self.favoriteSwitcher = UIBarButtonItem()
-       
-        
         super.init(frame: frame)
         self.initialize()
     }

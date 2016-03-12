@@ -14,7 +14,7 @@ public class AbstractDetailsController : UIViewController {
     var scroll : UITextView!
     var header = ColoredHeaderView(frame: CGRectZero)
     
-    var delegate : DevoxxAppFavoriteDelegate!
+    var delegate : FavoritableProtocol!
     
     var actionButtonView2 = ActionButtonView()
     var actionButtonView1 = ActionButtonView()

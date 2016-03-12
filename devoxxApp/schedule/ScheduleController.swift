@@ -52,7 +52,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
         super.viewDidLoad()
 
-        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"), favoriteSelector : Selector("changeSchedule:"))
+        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"))
 
         
         
@@ -178,10 +178,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         overlay?.filterTableView.removeFromSuperview()
         overlay = nil
     }
-    
-    func changeSchedule(sender : UIBarButtonItem) {
-        sender.tag == (sender.tag + 1) % 2
-    }
+   
 
     
     

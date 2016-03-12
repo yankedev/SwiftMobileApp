@@ -10,13 +10,10 @@ import Foundation
 import UIKit
 import CoreData
 
-public protocol DevoxxAppFavoriteDelegate : NSObjectProtocol {
-    func favorite(id : NSManagedObjectID) -> Bool
-}
 
 public class SchedulerTableViewController<T : CellDataPrococol>:
         UIViewController,
-        DevoxxAppFavoriteDelegate,
+        FavoritableProtocol,
         FilterableTableProtocol,
         UITableViewDelegate,
         SearchableTableProtocol,
@@ -25,12 +22,8 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         ScrollableDateProtocol,
         HotReloadProtocol
 {
-    
-    public func hi() {
-       // print("hi")
-    }
-    
-    var managedContext:NSManagedObjectContext!
+
+    let talkService = TalkService()
     
     //ScrollableDateProtocol
     public var index:Int = 0
@@ -86,16 +79,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         fetchAll()
-        
-        
-        
         self.schedulerTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        
-        
-        
-        
-        
-        
     }
 
     
@@ -113,8 +97,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     
     
     public func fetchAll() {
-        let service = TalkService()
-        service.fetchTalksByDate(self.currentDate, searchPredicates : self.searchPredicates, completionHandler: self.callBack)
+        talkService.fetchTalksByDate(self.currentDate, searchPredicates : self.searchPredicates, completionHandler: self.callBack)
     }
     
     public func resetSearch() {
@@ -366,10 +349,6 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     }
   
     
-    public func changeSchedule(sender: UISegmentedControl) {
-        self.fetchAll()
-    }
-    
     
     
     
@@ -381,12 +360,9 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         let managedContext = appDelegate.managedObjectContext!
         
         
-        if let cellData:FavoriteProtocol = APIDataManager.findEntityFromId(id, inContext: managedContext) {
-            cellData.invertFavorite()
-            return cellData.isFav()
-        }
+        return talkService.invertFavorite(id)
         
-        return false
+        
     }
     
     

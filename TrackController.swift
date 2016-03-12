@@ -23,7 +23,7 @@ import UIKit
 
 public class TrackController<T : ScrollableDateProtocol> : UINavigationController, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
     
-    var generator: () -> ScrollableDateProtocol
+    
     
     //ScrollableDateTableDatasource
     var scrollableDateTableDatasource: ScrollableDateTableDatasource?
@@ -38,8 +38,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
 
     var customView:ScheduleControllerView?
     
-    init(generator: () -> ScrollableDateProtocol) {
-        self.generator = generator
+    init() {
         super.init(navigationBarClass: nil, toolbarClass: nil)
     }
     
@@ -52,7 +51,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
         
         super.viewDidLoad()
         
-        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"), favoriteSelector : Selector("changeSchedule:"))
+        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"))
         
         
         
@@ -98,9 +97,6 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
     
     
 
-    func changeSchedule(sender : UIBarButtonItem) {
-        sender.tag == (sender.tag + 1) % 2
-    }
     
     
     
@@ -140,7 +136,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
     
     public func viewControllerAtIndex(index : NSInteger) -> UIViewController {
         
-        let scheduleTableController:T = generator() as! T
+        let scheduleTableController = T()
         scheduleTableController.index = index
         
         if let tracks = self.scrollableDateTableDatasource?.allTracks {
