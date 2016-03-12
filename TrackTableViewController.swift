@@ -21,9 +21,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     FavoritableProtocol
 {
     
-    public func hi() {
-       // print("hi") 
-    }
+   
     
     var managedContext:NSManagedObjectContext!
     
@@ -271,7 +269,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
             
             
         }
-        print(savedFetchedResult?.sections?.count)
+       
         return 0
     }
     
