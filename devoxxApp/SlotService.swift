@@ -63,77 +63,78 @@ class SlotService : AbstractService {
  
     
     
-    override func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
+    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
         
         privateManagedObjectContext.performBlock {
             
-            do {
+            for singleHelper in helper {
                 
-                let fetchRequest = NSFetchRequest(entityName: "Slot")
-                let predicate = NSPredicate(format: "slotId = %@", helper.getMainId())
-                fetchRequest.predicate = predicate
-                let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
-                
-                if items.count == 0 {
+                do {
                     
-                    let entity = NSEntityDescription.entityForName(helper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
-                    let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                    let fetchRequest = NSFetchRequest(entityName: "Slot")
+                    let predicate = NSPredicate(format: "slotId = %@", singleHelper.getMainId())
+                    fetchRequest.predicate = predicate
+                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
                     
-                    if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-                        coreDataObjectCast.feedHelper(helper)
+                    if items.count == 0 {
                         
+                        let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
+                        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
                         
-                        
-                        
-                        coreDataObject.setValue(self.getCfp(), forKey: "cfp")
-                        
-                        let subEntity = NSEntityDescription.entityForName("Talk", inManagedObjectContext: self.privateManagedObjectContext)
-                        let subDataObject = NSManagedObject(entity: subEntity!, insertIntoManagedObjectContext: self.privateManagedObjectContext) as! FeedableProtocol
-                        
-                        if let helperSlot = helper as? SlotHelper {
-                            subDataObject.feedHelper(helperSlot.talk!)
+                        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+                            coreDataObjectCast.feedHelper(singleHelper)
                             
-                            let fetch = NSFetchRequest(entityName: "Speaker")
-                            let predicate = NSPredicate(format: "href IN %@", helperSlot.talk!.speakerIds)
-                            fetch.predicate = predicate
-                            fetch.returnsObjectsAsFaults = false
                             
-                            let items = try self.privateManagedObjectContext.executeFetchRequest(fetch)
-                            let nsm = subDataObject as! Talk
-                            nsm.mutableSetValueForKey("speakers").addObjectsFromArray(items)
+                            
+                            
+                            coreDataObject.setValue(self.getCfp(), forKey: "cfp")
+                            
+                            let subEntity = NSEntityDescription.entityForName("Talk", inManagedObjectContext: self.privateManagedObjectContext)
+                            let subDataObject = NSManagedObject(entity: subEntity!, insertIntoManagedObjectContext: self.privateManagedObjectContext) as! FeedableProtocol
+                            
+                            if let helperSlot = singleHelper as? SlotHelper {
+                                subDataObject.feedHelper(helperSlot.talk!)
+                                
+                                let fetch = NSFetchRequest(entityName: "Speaker")
+                                let predicate = NSPredicate(format: "href IN %@", helperSlot.talk!.speakerIds)
+                                fetch.predicate = predicate
+                                fetch.returnsObjectsAsFaults = false
+                                
+                                let items = try self.privateManagedObjectContext.executeFetchRequest(fetch)
+                                let nsm = subDataObject as! Talk
+                                nsm.mutableSetValueForKey("speakers").addObjectsFromArray(items)
+                                
+                            }
+                            
+                            coreDataObject.setValue(subDataObject as? AnyObject, forKey: "talk")
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
                             
                         }
-
-                        coreDataObject.setValue(subDataObject as? AnyObject, forKey: "talk")
-
-                        
-                    
                         
                         
-                        dispatch_async(dispatch_get_main_queue(),{
-                            completionHandler(msg: "ok")
-                        })
-                        
-                        
-                        
-                        
+                    }
+                    else {
+                        //print("CALL COMPLETION HANDLER 1")
+                        //completionHandler(msg: "OK")
                     }
                     
                     
                 }
-                else {
-                    //print("CALL COMPLETION HANDLER 1")
-                    completionHandler(msg: "OK")
+                catch {
+                    
                 }
-                
+
                 
             }
-            catch {
-              
-            }
             
-            
-            
+            self.realSave(completionHandler)
         }
         
     }

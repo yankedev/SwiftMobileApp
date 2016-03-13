@@ -69,29 +69,29 @@ class StoredResourceService : AbstractService {
 
     }
 
-    override func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
+    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
         
         privateManagedObjectContext.performBlock {
             
-            do {
-                
-                let entity = NSEntityDescription.entityForName(helper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
-                let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+            for singleHelper in helper {
+                do {
+                    
+                    let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
+                    let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                    
+                    if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+                        coreDataObjectCast.feedHelper(singleHelper)
+                    }
 
-                if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-                    coreDataObjectCast.feedHelper(helper)
+                    
                 }
-                
-                dispatch_async(dispatch_get_main_queue(),{
-                    completionHandler(msg: "ok")
-                })
-                
-                
-            }
-            catch {
-                print("not found")
+                catch {
+                    print("not found")
+                }
+
             }
             
+            self.realSave(completionHandler)
             
             
         }

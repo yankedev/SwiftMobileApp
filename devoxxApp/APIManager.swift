@@ -73,49 +73,31 @@ class APIManager {
             
 
     
-       
-    static var serviceGroup = dispatch_group_create()
-    
-    class func step(msg : String) {
-        dispatch_group_leave(serviceGroup)
-    }
-    
+   
     
     class func handleData(inputData : NSData, service: AbstractService, storedResource : StoredResource?, etag : String?,completionHandler : (msg: String) -> Void) {
         
+        print("handle data for \(storedResource?.url)")
        
-        
         let json = JSON(data: inputData)
         let arrayToParse = service.getHelper().prepareArray(json)
+        var arrayHelper = [DataHelperProtocol]()
+        
+        
         
         if let appArray = arrayToParse {
-            
-
-            
-            for appDict in appArray {
-                dispatch_group_enter(serviceGroup)
-            }
-            
             for appDict in appArray {
                 let newHelper = service.getHelper()
                 newHelper.feed(appDict)
-                service.updateWithHelper(newHelper, completionHandler: step)
+                arrayHelper.append(newHelper)
             }
-            service.privateManagedObjectContext.performBlock({
-                service.realSave(ok)
-            })
-            
+            print(appArray.count)
+            print(arrayHelper.count)
+            service.updateWithHelper(arrayHelper, completionHandler: completionHandler)
         }
 
         storedResource?.etag = etag ?? ""
-    
 
-        
-        dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
-            completionHandler(msg: "GOGOGOOGOGOGOG\(storedResource?.url)")
-        })
-       
-    
     }
 
     
@@ -203,5 +185,47 @@ class APIManager {
     }
    
     
+    
+    /*
+    
+    
+    class func handleData(inputData : NSData, service: AbstractService, storedResource : StoredResource?, etag : String?,completionHandler : (msg: String) -> Void) {
+        
+        
+        
+        let json = JSON(data: inputData)
+        let arrayToParse = service.getHelper().prepareArray(json)
+        
+        if let appArray = arrayToParse {
+            
+            
+            
+            for appDict in appArray {
+                dispatch_group_enter(serviceGroup)
+            }
+            
+            for appDict in appArray {
+                let newHelper = service.getHelper()
+                newHelper.feed(appDict)
+                service.updateWithHelper(newHelper, completionHandler: step)
+            }
+            service.privateManagedObjectContext.performBlock({
+                service.realSave(ok)
+            })
+            
+        }
+        
+        storedResource?.etag = etag ?? ""
+        
+        
+        
+        dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
+            completionHandler(msg: "GOGOGOOGOGOGOG\(storedResource?.url)")
+        })
+        
+        
+    }
+
+    */
 }
 

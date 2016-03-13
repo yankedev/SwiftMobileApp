@@ -32,92 +32,73 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
     
     func getSpeakerFromId(id : NSManagedObjectID, completionHandler : (Speaker) -> Void)  {
         
-        
         dispatch_async(dispatch_get_main_queue(),{
             let spk = self.privateManagedObjectContext.objectWithID(id) as! Speaker
             completionHandler(spk)
         })
 
-    
     }
+    
+    
     
     override func getHelper() -> DataHelperProtocol {
         return SpeakerHelper()
     }
     
-    override func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
+    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
         
         privateManagedObjectContext.performBlock {
-            
-            do {
-            
-           
-            let fetchRequest = NSFetchRequest(entityName: "Speaker")
-            let predicate = NSPredicate(format: "uuid = %@", helper.getMainId())
-            fetchRequest.predicate = predicate
-            let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
-            
-            if items.count > 0 {
-                
-            }
-            
-            else {
-                
-                let entity = NSEntityDescription.entityForName(helper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
-                let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
-                
-                if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-                    coreDataObjectCast.feedHelper(helper)
+            for singleHelper in helper {
+                do {
                     
-                    coreDataObject.setValue(self.getCfp(), forKey: "cfp")
+                    
+                    let fetchRequest = NSFetchRequest(entityName: "Speaker")
+                    let predicate = NSPredicate(format: "uuid = %@", singleHelper.getMainId())
+                    fetchRequest.predicate = predicate
+                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+                    
+                    if items.count > 0 {
+                        
+                    }
+                        
+                    else {
+                        
+                        let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
+                        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                        
+                        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+                            coreDataObjectCast.feedHelper(singleHelper)
+                            
+                            coreDataObject.setValue(self.getCfp(), forKey: "cfp")
+                        }
+                        
+                        
+                        
+                        let entity2 = NSEntityDescription.entityForName("SpeakerDetail", inManagedObjectContext: self.privateManagedObjectContext)
+                        let coreDataObject2 = SpeakerDetail(entity: entity2!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                        
+                        coreDataObject2.speaker = coreDataObject as! Speaker
+                        coreDataObject2.uuid = coreDataObject2.speaker.uuid!
+                        
+                        
+                    }
+                    
+                    
+                    
                 }
-                
-                
-                
-                let entity2 = NSEntityDescription.entityForName("SpeakerDetail", inManagedObjectContext: self.privateManagedObjectContext)
-                let coreDataObject2 = SpeakerDetail(entity: entity2!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
-                
-                coreDataObject2.speaker = coreDataObject as! Speaker
-                coreDataObject2.uuid = coreDataObject2.speaker.uuid!
-                
-                
+                catch {
+                    
+                }
+
             }
             
-            
-                self.realSave(completionHandler)
-            }
-            catch {
-            
-            }
-            
+            self.realSave(completionHandler)
         }
     
     }
     
     
-    func updateImageForId(id : NSManagedObjectID, withData data: NSData, completionHandler : (msg: String) -> Void) {
-        
-        
-        privateManagedObjectContext.performBlock {
-            
-            if let obj:ImageFeedable = APIDataManager.findEntityFromId(id, inContext: self.privateManagedObjectContext) {
-                obj.feedImageData(data)
-                
-                
-                
-                dispatch_async(dispatch_get_main_queue(),{
-                    completionHandler(msg: "ok")
-                })
-                
-                
-                
-                
-            }
-            
-        }
-        
-    }
-    
+
     
     func fetchSpeakers(completionHandler: (speakers: [Speaker], error: SpeakerStoreError?) -> Void) {
         privateManagedObjectContext.performBlock {
@@ -153,6 +134,24 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
         let cfpId = super.getCfpId()
         return "https://cfp.devoxx.be/api/conferences/\(cfpId)/speakers"
     }
+    
+    
+    func updateImageForId(id : NSManagedObjectID, withData data: NSData, completionHandler : (msg: String) -> Void) {
+        
+        print("update image for speaker detail")
+        
+        privateManagedObjectContext.performBlock {
+            
+            if let obj = self.privateManagedObjectContext.objectWithID(id) as? ImageFeedable {
+                print("found")
+                obj.feedImageData(data)
+            }
+            
+            self.realSave(completionHandler)
+        }
+        
+    }
+
     
     var currentCfp : Cfp?
     

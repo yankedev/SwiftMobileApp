@@ -23,7 +23,7 @@ class ResourceFetcherManager {
             return true
         }
         
-        if abs(map[url!]!.timeIntervalSinceNow) > 30 {
+        if abs(map[url!]!.timeIntervalSinceNow) > 1 {
             map[url!] = NSDate()
             return true
         }

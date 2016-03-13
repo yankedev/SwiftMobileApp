@@ -22,7 +22,7 @@ public func ==(lhs: SpeakerDetailStoreError, rhs: SpeakerDetailStoreError) -> Bo
 }
 
 
-class SpeakerDetailService : AbstractService, ImageServiceProtocol {
+class SpeakerDetailService : AbstractService {
     
     static let sharedInstance = SpeakerDetailService()
     
@@ -30,62 +30,53 @@ class SpeakerDetailService : AbstractService, ImageServiceProtocol {
         super.init()
     }
     
+    func getSpeakerFromId(id : NSManagedObjectID, completionHandler : (Speaker) -> Void)  {
+        
+        dispatch_async(dispatch_get_main_queue(),{
+            let spk = self.privateManagedObjectContext.objectWithID(id) as! Speaker
+            completionHandler(spk)
+        })
+        
+    }
+    
     override func getHelper() -> DataHelperProtocol {
         return SpeakerDetailHelper()
     }
     
-    override func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
+    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
         
         privateManagedObjectContext.performBlock {
             
-            do {
-                
-                
-                let fetchRequest = NSFetchRequest(entityName: "SpeakerDetail")
-                let predicate = NSPredicate(format: "uuid = %@", helper.getMainId())
-                fetchRequest.predicate = predicate
-                let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
-                
-                if items.count > 0 {
-                    let found = items[0] as! FeedableProtocol
-                    (helper as! SpeakerDetailHelper).speaker = (found as! SpeakerDetail).speaker
-                    found.feedHelper(helper)
-                }
+            for singleHelper in helper {
+                do {
                     
-                dispatch_async(dispatch_get_main_queue(),{
-                    completionHandler(msg: "ok")
-                })
-            }
-            catch {
-                
+                    
+                    let fetchRequest = NSFetchRequest(entityName: "SpeakerDetail")
+                    let predicate = NSPredicate(format: "uuid = %@", singleHelper.getMainId())
+                    fetchRequest.predicate = predicate
+                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+                    
+                    if items.count > 0 {
+                        let found = items[0] as! FeedableProtocol
+                        (singleHelper as! SpeakerDetailHelper).speaker = (found as! SpeakerDetail).speaker
+                        found.feedHelper(singleHelper)
+                    }
+                    else {
+                        print("not found")
+                    }
+                }
+                catch {
+                    print("in catch")
+                }
+
             }
             
+            self.realSave(completionHandler)
         }
         
     }
     
-    
-    func updateImageForId(id : NSManagedObjectID, withData data: NSData, completionHandler : (msg: String) -> Void) {
         
-        
-        privateManagedObjectContext.performBlock {
-            
-            if let obj:ImageFeedable = APIDataManager.findEntityFromId(id, inContext: self.privateManagedObjectContext) {
-                obj.feedImageData(data)
-                
-                dispatch_async(dispatch_get_main_queue(),{
-                    completionHandler(msg: "ok")
-                })
-                
-                
-                
-                
-            }
-            
-        }
-        
-    }
-    
     var currentCfp:Cfp?
     
     override func getCfp() -> Cfp? {

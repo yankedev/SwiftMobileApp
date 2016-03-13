@@ -62,7 +62,7 @@ class AbstractService  {
         return SpeakerHelper()
     }
     
-    func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
+    func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
         
     }
     

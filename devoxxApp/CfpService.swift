@@ -71,41 +71,40 @@ class CfpService : AbstractService {
         return "https://cfp.devoxx.be/api/conferences/\(cfpId)/schedules"
     }
 
-    override func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
+    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
         
         privateManagedObjectContext.performBlock {
             
-            do {
-          
-            let fetchRequest = NSFetchRequest(entityName: "Cfp")
-            let predicate = NSPredicate(format: "id = %@", helper.getMainId())
-            fetchRequest.predicate = predicate
-            let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
-                
-                if items.count == 0 {
-               
-                    let entity = NSEntityDescription.entityForName(helper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
-                    let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
-
-                    if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-                        coreDataObjectCast.feedHelper(helper)
+            for singleHelper in helper {
+            
+                do {
+                    
+                    let fetchRequest = NSFetchRequest(entityName: "Cfp")
+                    let predicate = NSPredicate(format: "id = %@", singleHelper.getMainId())
+                    fetchRequest.predicate = predicate
+                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+                    
+                    if items.count == 0 {
+                        
+                        let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
+                        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                        
+                        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+                            coreDataObjectCast.feedHelper(singleHelper)
+                            
+                        }
+                        
                         
                     }
                     
-                    self.realSave(completionHandler)
                 }
-                else {
-                    dispatch_async(dispatch_get_main_queue(),{
-                        completionHandler(msg: "ok")
-                    })
+                catch {
+                    
                 }
-            
-            
-            }
-            catch {
-             
+
             }
             
+            self.realSave(completionHandler)
            
             
         }

@@ -452,13 +452,13 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     
     func success(msg : String) {
-        print("Success")
+        print("Success \(msg)")
         dispatch_group_leave(group)
     }
     
     func failure(msg : String) {
         print("Failure")
-        dispatch_group_leave(group)
+        //dispatch_group_leave(group)
     }
     
     

@@ -48,7 +48,7 @@ class APIDataManager {
         }
         let helper = StoredResourceHelper(url: httpsUrl, etag: "", fallback: "")
         let storedResource = StoredResourceService.sharedInstance
-        storedResource.updateWithHelper(helper, completionHandler: completion)
+        storedResource.updateWithHelper([helper], completionHandler: completion)
     }
     
     
@@ -120,14 +120,17 @@ class APIDataManager {
             if let responseError = error {
                 
                 print("No internet for \(storedResource.url)")
+                print("Store callbal =  \(storedResource.fallback)")
                 print(error)
                 
                 if isCritical {
                     
+                    print("critical call")
                     
                     
                     let testBundle = NSBundle.mainBundle()
                     let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
+                    print("check for callback\(storedResource.fallback)")
                     if filePath != nil {
                         let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
                         if(checkString == nil) {
@@ -136,6 +139,7 @@ class APIDataManager {
                         let fallbackData = NSData(contentsOfFile: filePath!)!
                         
                         
+                        print("fallBack data found")
                             
                         APIManager.handleData(fallbackData, service: service, storedResource: storedResource, etag: nil, completionHandler: onSuccess)
                             
@@ -143,7 +147,7 @@ class APIDataManager {
                     }
                     else {
                         dispatch_async(dispatch_get_main_queue(),{
-                            onSuccess(value: storedResource.url)
+                            onError(value: storedResource.url)
                         })
                     }
                     
@@ -173,15 +177,18 @@ class APIDataManager {
                         if(checkString == nil) {
                             //print("should not be empty", terminator: "")
                         }
+                        
                         let fallbackData = NSData(contentsOfFile: filePath!)!
                         
                         APIManager.handleData(fallbackData, service: service, storedResource: storedResource, etag: nil, completionHandler: onSuccess)
                         
                     }
-                    
-                    dispatch_async(dispatch_get_main_queue(),{
-                        onSuccess(value: storedResource.url)
-                    })
+                    else {
+                        dispatch_async(dispatch_get_main_queue(),{
+                            onSuccess(value: storedResource.url)
+                        })
+                    }
+                   
                     
                     
                 }

@@ -76,47 +76,49 @@ class AttributeService : AbstractService {
     }
     
     
-    override func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
+    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
         
         privateManagedObjectContext.performBlock {
             
-            do {
-                
-                let fetchRequest = NSFetchRequest(entityName: "Attribute")
-                let predicate = NSPredicate(format: "id = %@", helper.getMainId())
-                fetchRequest.predicate = predicate
-                let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
-                
-                if items.count == 0 {
-             
+            for singleHelper in helper {
+                do {
                     
-                    let entity = NSEntityDescription.entityForName(helper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
-                    let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                    let fetchRequest = NSFetchRequest(entityName: "Attribute")
+                    let predicate = NSPredicate(format: "id = %@", singleHelper.getMainId())
+                    fetchRequest.predicate = predicate
+                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
                     
-                    if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-                        coreDataObjectCast.feedHelper(helper)
+                    if items.count == 0 {
                         
-                        coreDataObject.setValue(self.getCfp(), forKey: "cfp")
+                        
+                        let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
+                        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                        
+                        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+                            coreDataObjectCast.feedHelper(singleHelper)
+                            
+                            coreDataObject.setValue(self.getCfp(), forKey: "cfp")
+                            
+                        }
+                        
+                        
+                        
+                        
                         
                     }
+                    else {
+              
+                    }
+                    
+                    
+                }
+                catch {
+                    print("not found")
+                }
 
-                    
-                    completionHandler(msg:"OK")
-                    
-                    
-                }
-                else {
-                    //print("already in")
-                    completionHandler(msg: "OK")
-                }
-                
-                
-            }
-            catch {
-                print("not found")
             }
             
-            
+            self.realSave(completionHandler)
             
         }
         

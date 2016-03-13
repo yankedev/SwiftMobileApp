@@ -15,8 +15,6 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
   
     var detailObject : DetailableProtocol!
     
-    let speakerService = SpeakerService.sharedInstance
-    
     var talkList = SpeakerListView(frame: CGRectZero, style: .Grouped)
     
     
@@ -231,15 +229,18 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     
     
+    
     public func fetchUpdate() {
-        APIReloadManager.fetchUpdate(fetchUrl(), service: SpeakerService.sharedInstance, completedAction: fetchCompleted)
-        
-        APIReloadManager.fetchImg(detailObject.getImageFullLink(), id: detailObject.getObjectId(), service:SpeakerDetailService.sharedInstance, completedAction: fetchCompleted)
+        //APIReloadManager.fetchImg(detailObject.getImageFullLink(), id: detailObject.getObjectId(), service:SpeakerService.sharedInstance, completedAction: fetchCompletedImg)
+        APIReloadManager.fetchUpdate(fetchUrl(), service: SpeakerDetailService.sharedInstance, completedAction: fetchCompleted)
     }
     
     public func fetchCompleted(msg : String) -> Void {
-        
-        speakerService.getSpeakerFromId(detailObject.getObjectId(), completionHandler : callBackUpdate)
+        SpeakerDetailService.sharedInstance.getSpeakerFromId(detailObject.getObjectId(), completionHandler : callBackUpdate)
+    }
+    
+    public func fetchCompletedImg(msg : String) -> Void {
+        SpeakerService.sharedInstance.getSpeakerFromId(detailObject.getObjectId(), completionHandler : callBackUpdate)
     }
     
     public func callBackUpdate(callBackObject : DetailableProtocol) {
