@@ -42,7 +42,10 @@ class APIDataManager {
     
     
     class func createResource(url : String, completionHandler : (msg: String) -> Void) {
-        let httpsUrl = url.stringByReplacingOccurrencesOfString("http:", withString: "https:")
+        var httpsUrl = url
+        if !url.hasPrefix("http://localhost") {
+            httpsUrl = url.stringByReplacingOccurrencesOfString("http:", withString: "https:")
+        }
         let helper = StoredResourceHelper(url: httpsUrl, etag: "", fallback: "")
         let storedResource = StoredResourceService.sharedInstance
         storedResource.updateWithHelper(helper, completionHandler: completion)
@@ -50,7 +53,10 @@ class APIDataManager {
     
     
     class func findResource(url : String) -> StoredResource? {
-        let httpsUrl = url.stringByReplacingOccurrencesOfString("http:", withString: "https:")
+        var httpsUrl = url
+        if !url.hasPrefix("http://localhost") {
+            httpsUrl = url.stringByReplacingOccurrencesOfString("http:", withString: "https:")
+        }
         let storedResource = StoredResourceService.sharedInstance
         return storedResource.findByUrl(httpsUrl)
     }
