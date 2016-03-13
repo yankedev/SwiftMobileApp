@@ -64,6 +64,8 @@ class APIDataManager {
     
     class func loadDataFromURL(url: String, service : AbstractService, helper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
+        print("Make request with : \(url)")
+        
         return makeRequest(findResource(url)!, service : service, helper : helper, isCritical : isCritical, onSuccess: onSuccess, onError: onError)
         
     }
@@ -73,31 +75,16 @@ class APIDataManager {
     
     class func loadDataFromURLS(urls: NSSet?, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
-        /*loadDataFromURL("https://cfp.devoxx.be/api/conferences/DV15/schedules/wednesday/", service: SlotService.sharedInstance, helper : SlotHelper(), isCritical: true, onSuccess: onSuccess, onError: onError)
-        
-        loadDataFromURL("https://cfp.devoxx.be/api/conferences/DV15/schedules/thursday/", service: SlotService.sharedInstance, helper : SlotHelper(), isCritical: true, onSuccess: onSuccess, onError: onError)
-        
-        loadDataFromURL("https://cfp.devoxx.be/api/conferences/DV15/schedules/friday/", service: SlotService.sharedInstance, helper : SlotHelper(), isCritical: true, onSuccess: onSuccess, onError: onError)
-        */
-                
+
         for singleUrl in urls! {
             if let singleUrlString = singleUrl as? Day {
-                //loadDataFromURL(singleUrlString.url, dataHelper: dataHelper, isCritical : isCritical, onSuccess: onSuccess, onError: onError)
                 loadDataFromURL(singleUrlString.url, service: SlotService.sharedInstance, helper : SlotHelper(), isCritical: true, onSuccess: onSuccess, onError: onError)
             }
         }
         
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    class func makeRequest(storedResource : StoredResource, service : AbstractService, helper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void){
+    class func makeRequest(storedResource : StoredResource, service : AbstractService, helper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
         
         
         
@@ -127,7 +114,7 @@ class APIDataManager {
             if let responseError = error {
                 
                 print("No internet for \(storedResource.url)")
-                
+                print(error)
                 
                 if isCritical {
                     
@@ -197,7 +184,7 @@ class APIDataManager {
                     print("304 for \(storedResource.url)")
                     
                     
-                    if isCritical {
+                    if isCritical && service.isEmpty() {
                         
                         let testBundle = NSBundle.mainBundle()
                         let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")

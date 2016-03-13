@@ -18,25 +18,14 @@ protocol ImageFeedable {
 class APIReloadManager {
     
    
-    class func run_on_background_thread(code: () -> Void) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), code)
-    }
     
-    class func fetchUpdate(url : String?, helper : DataHelperProtocol, completedAction : (msg: String) -> Void) {
-        
-        if ResourceFetcherManager.isAllowedToFetch(url) {
-        
-            //APIDataManager.loadDataFromURL(url!, dataHelper: helper, isCritical : false, onSuccess: completedAction, onError: onError)
-            
-        }
-    }
-
     
-    class func fetchUpdate(url : String?, service : SpeakerService, completedAction : (msg: String) -> Void) {
+    
+    class func fetchUpdate(url : String?, service : AbstractService, completedAction : (msg: String) -> Void) {
         
         if ResourceFetcherManager.isAllowedToFetch(url) {
             
-            //APIDataManager.loadDataFromURL(url!, service: service, isCritical : false, onSuccess: completedAction, onError: onError)
+            APIDataManager.loadDataFromURL(url!, service: service, helper: service.getHelper(), isCritical: false, onSuccess: completedAction, onError: onError)
             
         }
     }

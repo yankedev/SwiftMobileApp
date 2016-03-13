@@ -232,12 +232,13 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     
     public func fetchUpdate() {
-        APIReloadManager.fetchUpdate(fetchUrl(), service: speakerService, completedAction: fetchCompleted)
+        APIReloadManager.fetchUpdate(fetchUrl(), service: SpeakerService.sharedInstance, completedAction: fetchCompleted)
         
-        APIReloadManager.fetchImg(detailObject.getImageFullLink(), id: detailObject.getObjectId(), service:SpeakerService(), completedAction: fetchCompleted)
+        APIReloadManager.fetchImg(detailObject.getImageFullLink(), id: detailObject.getObjectId(), service:SpeakerDetailService.sharedInstance, completedAction: fetchCompleted)
     }
     
     public func fetchCompleted(msg : String) -> Void {
+        
         speakerService.getSpeakerFromId(detailObject.getObjectId(), completionHandler : callBackUpdate)
     }
     
@@ -250,7 +251,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     }
     
     public func fetchUrl() -> String? {
-        return detailObject.getFullLink()
+        return detailObject.getFullLink()?.stringByReplacingOccurrencesOfString("http://", withString: "https://")
     }
 
     

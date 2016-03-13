@@ -17,7 +17,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
   
     let wheelView = SelectionWheel()
     
-    var serviceGroup = dispatch_group_create()
+    
     
     let color = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)
     let customTabController = UITabBarController()
@@ -129,7 +129,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         self.navigationController?.pushViewController(self.customTabController, animated: true)
         
-        self.showStaticView(false)
+    
         
         self.addChildViewController(self.customTabController)
         self.view.addSubview(self.customTabController.view)
@@ -138,24 +138,10 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     
     func fetchFirst() {
-        print("enter fetch first")
-        dispatch_group_enter(serviceGroup)
-        dispatch_group_enter(serviceGroup)
-        
-        self.updateIndex(self.currentSelectedIndex)
-        
-        APIDataManager.loadDataFromURL(CfpService.sharedInstance.getEntryPoint(), service: DayService.sharedInstance, helper : DayHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
-        
-        APIDataManager.loadDataFromURL(SpeakerService.sharedInstance.getSpeakerUrl(), service: SpeakerService.sharedInstance, helper : SpeakerHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
-        
-        dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
-            self.serviceGroup = dispatch_group_create()
-            self.fetchSecond("GO")
-        })
         
     }
     
-    
+    /*
     
     func fetchSecond(value : String) {
         
@@ -188,10 +174,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: AttributeService.sharedInstance, helper : TrackHelper(), isCritical: true, onSuccess: self.successGroup, onError: onError)
-        
-        //APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: AttributeService.sharedInstance, helper : TalkTypeHelper(), isCritical: true, onSuccess: self.successGroup, onError: onError)
                
-        
         
         
         //print(APIManager.currentEvent.floors.count)
@@ -210,70 +193,30 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                 self.loadIsFinihsed()
         })
     }
+
+*/
     
-    func successGroup(ok : String) {
-        print("block finished \(ok)")
-        dispatch_group_leave(serviceGroup)
-    }
+    
     
   
     
     
     func prepareNext() {
-        
-       rotating = true
-       rotateOnce()
-        
-        
-        
-        
-        
-        run_on_background_thread
-            {
-                
-                
-                
-                
-               
-                self.fetchFirst()
-                
-                
-                
-                
-                
-                
-                
-                
-               
-                
-                
-                self.run_on_main_thread
-                    {
-                    self.rotateOnce()
-                }
+        rotating = true
+        rotateOnce()
+        run_on_background_thread {
+            self.firstFetching()
+            self.run_on_main_thread{
+                self.rotateOnce()
+            }
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //selectedEvent
-        
-
     }
     
-    
-    func onSuccess(value : String) {
-      //  print("OnSucess = \(value)")
-    }
+  
     
     func onError(value : String) {
         
-        showStaticView(false)
+        
         
        // print("OnError = \(value)")
         
@@ -310,15 +253,13 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     func callBack(cfps :[Cfp], error : CfpStoreError?) {
         slicesData = cfps
         
-       
-        
         wheelView.datasource = self
         wheelView.delegate = self
 
+        wheelView.setup()
+        wheelView.click(0)
+        globeView = wheelView.globe
         shouldByPass()
-        
-        //wheelView.setup()
-        //wheelView.click(0)
     }
     
     
@@ -326,15 +267,6 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        
-        
-      
-
-        APIManager.firstFeed(loadWheel, service: cfpService)
-        
-        
-        
-        
         
         imgView = UIImageView()
         imgView.contentMode = .ScaleAspectFit
@@ -351,7 +283,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         eventLocation = headerView.eventLocation
         
-        self.showStaticView(true)
+        
         
         view.addSubview(headerView)
         view.addSubview(wheelView)
@@ -396,20 +328,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-      //  wheelView.setConstraints()
-        
-               
-        //wheelView.pieChart.datasource = self
-        //wheelView.pieChart.delegate = self
-        
+
         
         view.layoutIfNeeded()
         wheelView.layoutIfNeeded()
@@ -422,28 +341,18 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         
-       
-       // print(wheelView.pieChart.frame)
-      //  let point = self.wheelView.convertPoint(wheelView.pieChart.center, toView: wheelView)
-       // print(point)
-       // let point2 = CGPointMake(point.x-wheelView.pieChart.frame.origin.x, point.y-wheelView.pieChart.frame.origin.y)
-       // print(point2)
-        
-       // wheelView.pieChart.build(point2)
-        
-      
-
+    
                
         goView.goButton.addTarget(self, action: Selector("prepareNext"), forControlEvents: .TouchUpInside)
         
         
         
         
-        globeView = wheelView.globe
+        
         
       
-
-        goView.hidden = false
+        
+        APIManager.firstFeed(loadWheel, service: cfpService)
         
         
     }
@@ -452,20 +361,17 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         let defaults = NSUserDefaults.standardUserDefaults()
         
-        
-        if let currentEventIndex = NSUserDefaults.standardUserDefaults().objectForKey("currentEvent") as? Int {
-            if currentEventIndex == -1 {
-                self.showStaticView(false)
+        if let currentEventIndex = defaults.objectForKey("currentEvent") as? String {
+            if currentEventIndex == "" {
                 return
             }
             else {
-                currentSelectedIndex = currentEventIndex
+                print(currentEventIndex)
                 prepareNext()
             }
         }
         else {
-            self.showStaticView(false)
-            defaults.setInteger(-1, forKey: "currentEvent")
+            defaults.setObject("", forKey: "currentEvent")
             return
         }
     }
@@ -542,6 +448,78 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         }
 
     }
+    
+    
+    
+    func success(msg : String) {
+        print("Success")
+        dispatch_group_leave(group)
+    }
+    
+    func failure(msg : String) {
+        print("Failure")
+        dispatch_group_leave(group)
+    }
+    
+    
+  
+    var group = dispatch_group_create()
+    
+    
+    func firstFetching() {
+        print("--- Begin bootstrap --- ")
+
+        dispatch_group_enter(group)
+        APIDataManager.loadDataFromURL(CfpService.sharedInstance.getEntryPoint(), service: DayService.sharedInstance, helper : DayHelper(), isCritical : true, onSuccess: self.success, onError: self.failure)
+    
+        dispatch_group_enter(group)
+        APIDataManager.loadDataFromURL(SpeakerService.sharedInstance.getSpeakerUrl(), service: SpeakerService.sharedInstance, helper : SpeakerHelper(), isCritical : true, onSuccess: self.success, onError: self.failure)
+       
+        dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            print("--- End bootstrap --- ")
+            self.secondFetching()
+        });
+        
+    }
+    
+    
+    func secondFetching() {
+        
+        //TODO check for empty event
+        
+        group = dispatch_group_create()
+        
+        print(SlotService.sharedInstance.getCfp()?.regURL)
+        
+        for _ in 0...(CfpService.sharedInstance.getCfp()?.days.count)!-1 {
+            dispatch_group_enter(group)
+        }
+        APIDataManager.loadDataFromURLS(SlotService.sharedInstance.getCfp()?.days, dataHelper: SlotHelper(), isCritical : true, onSuccess: self.success, onError: self.failure)
+        
+        dispatch_group_enter(group)
+        APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: AttributeService.sharedInstance, helper : TrackHelper(), isCritical: true, onSuccess: self.success, onError: failure)
+        
+        dispatch_group_notify(group, dispatch_get_main_queue(), {
+            self.rotating = false
+            self.loadIsFinihsed()
+        });
+    }
+    
+       
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 

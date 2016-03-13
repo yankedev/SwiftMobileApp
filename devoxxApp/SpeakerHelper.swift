@@ -17,7 +17,7 @@ class SpeakerHelper: DataHelperProtocol {
     var href: String?
 
     func getMainId() -> String {
-        return ""
+        return uuid!
     }
     
     func feed(data: JSON) {

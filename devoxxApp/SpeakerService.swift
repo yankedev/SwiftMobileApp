@@ -58,9 +58,7 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
             let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
             
             if items.count > 0 {
-                let found = items[0] as! FeedableProtocol
-                (helper as! SpeakerDetailHelper).speaker = (found as! SpeakerDetail).speaker
-                found.feedHelper(helper)
+                
             }
             
             else {
@@ -86,7 +84,7 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
             }
             
             
-            self.realSave(completionHandler)
+                self.realSave(completionHandler)
             }
             catch {
             
@@ -105,7 +103,11 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
             if let obj:ImageFeedable = APIDataManager.findEntityFromId(id, inContext: self.privateManagedObjectContext) {
                 obj.feedImageData(data)
                 
-                self.realSave(completionHandler)
+                
+                
+                dispatch_async(dispatch_get_main_queue(),{
+                    completionHandler(msg: "ok")
+                })
                 
                 
                 
@@ -121,7 +123,7 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
         privateManagedObjectContext.performBlock {
             do {
                 
-                let predicateEvent = NSPredicate(format: "cfp = %@", super.getCfp()!)
+                let predicateEvent = NSPredicate(format: "cfp.id = %@", super.getCfpId())
                 let fetchRequest = NSFetchRequest(entityName: "Speaker")
                 fetchRequest.includesSubentities = true
                 fetchRequest.returnsObjectsAsFaults = false
@@ -146,11 +148,20 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
     }
     
     
+    
     func getSpeakerUrl() -> String {
-        let cfp = super.getCfp()
-        return "\(cfp!.cfpEndpoint!)/conferences/\(cfp!.id!)/speakers"
+        let cfpId = super.getCfpId()
+        return "https://cfp.devoxx.be/api/conferences/\(cfpId)/speakers"
     }
     
+    var currentCfp : Cfp?
+    
+    override func getCfp() -> Cfp? {
+        if currentCfp == nil {
+            currentCfp = super.getCfp()
+        }
+        return currentCfp
+    }
     
     
 }

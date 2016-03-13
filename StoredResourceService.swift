@@ -82,7 +82,9 @@ class StoredResourceService : AbstractService {
                     coreDataObjectCast.feedHelper(helper)
                 }
                 
-                super.realSave(completionHandler)
+                dispatch_async(dispatch_get_main_queue(),{
+                    completionHandler(msg: "ok")
+                })
                 
                 
             }

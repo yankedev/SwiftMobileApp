@@ -99,7 +99,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
 
         var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "track = %@", self.currentTrack)
-        let predicateEvent = NSPredicate(format: "slot.cfp = %@", CfpService.sharedInstance.getCfp()!)
+        let predicateEvent = NSPredicate(format: "slot.cfp.id = %@", CfpService.sharedInstance.getCfpId())
         
         andPredicate.append(predicateDay)
         andPredicate.append(predicateEvent)

@@ -24,7 +24,7 @@ class DayHelper: DataHelperProtocol {
     }
     
     func getMainId() -> String {
-        return "url"
+        return url!
     }
     
     func typeName() -> String {

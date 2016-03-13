@@ -27,6 +27,8 @@ class CfpService : AbstractService {
     
     static let sharedInstance = CfpService()
     
+
+    
     override init() {
         super.init()
     }
@@ -65,8 +67,8 @@ class CfpService : AbstractService {
     
     
     func getEntryPoint() -> String {
-        let cfp = super.getCfp()
-        return "\(cfp!.cfpEndpoint!)/conferences/\(cfp!.id!)/schedules"
+        let cfpId = super.getCfpId()
+        return "https://cfp.devoxx.be/api/conferences/\(cfpId)/schedules"
     }
 
     override func updateWithHelper(helper : DataHelperProtocol, completionHandler : (msg: String) -> Void) {
@@ -87,10 +89,10 @@ class CfpService : AbstractService {
 
                     if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
                         coreDataObjectCast.feedHelper(helper)
-                        self.realSave(completionHandler)
+                        
                     }
                     
-                    
+                    self.realSave(completionHandler)
                 }
                 else {
                     dispatch_async(dispatch_get_main_queue(),{

@@ -74,6 +74,11 @@ class AbstractService  {
         return ""
     }
     
+    
+    func isEmpty() -> Bool {
+        return true
+    }
+    
     func getCfp() -> Cfp? {
         
         do {

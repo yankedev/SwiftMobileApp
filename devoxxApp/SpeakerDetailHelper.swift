@@ -28,6 +28,9 @@ class SpeakerDetailHelper: DataHelperProtocol {
         return entityName()
     }
     
+    init() {
+    }
+    
     init(uuid: String?, bio: String?, bioAsHtml: String?, company: String?, twitter: String?, speaker : Speaker) {
         self.uuid = uuid ?? ""
         self.bio = bio ?? ""

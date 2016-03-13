@@ -2,8 +2,7 @@
 //  QRCodeScannerController.swift
 //  devoxxApp
 //
-//  Created by got2bex on 2016-03-07.
-//  Copyright © 2016 maximedavid. All rights reserved.
+//  Modified by got2bex on 2016-03-07.
 //
 
 // THIS CODE IS NOT MINE, TAKEN FROM QRReaderDemo by Simon Ng on 23/11/14.
@@ -22,11 +21,9 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
     var completionOnceScanned: (() -> Void)?
     
     // Added to support different barcodes
-    let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
+    let supportedBarCodes = [AVMetadataObjectTypeQRCode]
     
-    
-   
-   
+
     public func cancel() {
         dismissViewControllerAnimated(true, completion: nil)
     }

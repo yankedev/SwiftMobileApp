@@ -39,7 +39,7 @@ public class MapController : UIViewController, MKMapViewDelegate, ScrollableItem
         
         var newRegion = MKCoordinateRegion()
        
-        newRegion.center.latitude = Double(CfpService.sharedInstance.getCfp()!.latitude!)!
+        /*newRegion.center.latitude = Double(CfpService.sharedInstance.getCfp()!.latitude!)!
         newRegion.center.longitude = Double(CfpService.sharedInstance.getCfp()!.longitude!)!
         
         
@@ -56,7 +56,7 @@ public class MapController : UIViewController, MKMapViewDelegate, ScrollableItem
         
         mapView.addAnnotation(annotation)
         mapView.setRegion(newRegion, animated: false)
-        
+        */
     }
     
 }

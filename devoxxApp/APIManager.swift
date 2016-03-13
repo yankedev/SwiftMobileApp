@@ -91,12 +91,20 @@ class APIManager {
         if let appArray = arrayToParse {
             
 
+            
             for appDict in appArray {
                 dispatch_group_enter(serviceGroup)
+            }
+            
+            for appDict in appArray {
                 let newHelper = service.getHelper()
                 newHelper.feed(appDict)
                 service.updateWithHelper(newHelper, completionHandler: step)
             }
+            service.privateManagedObjectContext.performBlock({
+                service.realSave(ok)
+            })
+            
         }
 
         storedResource?.etag = etag ?? ""
@@ -104,13 +112,16 @@ class APIManager {
 
         
         dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
-            completionHandler(msg: "GOGOGOOGOGOGOG")
+            completionHandler(msg: "GOGOGOOGOGOGOG\(storedResource?.url)")
         })
        
     
     }
 
     
+    class func ok(msg:String) {
+        print("OK")
+    }
 
     
     class func firstFeed(completionHandler: (msg: String) -> Void, service : AbstractService) {

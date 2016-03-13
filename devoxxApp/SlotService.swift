@@ -85,7 +85,7 @@ class SlotService : AbstractService {
                         
                         
                         
-                        coreDataObject.setValue(super.getCfp(), forKey: "cfp")
+                        coreDataObject.setValue(self.getCfp(), forKey: "cfp")
                         
                         let subEntity = NSEntityDescription.entityForName("Talk", inManagedObjectContext: self.privateManagedObjectContext)
                         let subDataObject = NSManagedObject(entity: subEntity!, insertIntoManagedObjectContext: self.privateManagedObjectContext) as! FeedableProtocol
@@ -110,7 +110,9 @@ class SlotService : AbstractService {
                     
                         
                         
-                        self.realSave(completionHandler)
+                        dispatch_async(dispatch_get_main_queue(),{
+                            completionHandler(msg: "ok")
+                        })
                         
                         
                         
@@ -135,6 +137,16 @@ class SlotService : AbstractService {
         }
         
     }
+    
+    var currentCfp:Cfp?
+    
+    override func getCfp() -> Cfp? {
+        if currentCfp == nil {
+            currentCfp = super.getCfp()
+        }
+        return currentCfp
+    }
+
     
     override func getHelper() -> DataHelperProtocol {
         return SlotHelper()

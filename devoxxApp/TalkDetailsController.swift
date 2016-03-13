@@ -220,11 +220,9 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     
     public func fetchUpdate() {
+        
+        APIReloadManager.fetchUpdate(fetchUrl(), service: SlotService.sharedInstance, completedAction: fetchCompleted)
 
-    
-        
-        APIReloadManager.fetchUpdate(fetchUrl(), helper: SlotHelper(), completedAction: fetchCompleted)
-        
     }
     
     public func fetchCompleted(msg : String) -> Void {

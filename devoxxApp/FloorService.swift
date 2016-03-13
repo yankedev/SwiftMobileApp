@@ -33,7 +33,7 @@ class FloorService : AbstractService, ImageServiceProtocol {
         privateManagedObjectContext.performBlock {
             do {
                 
-                let predicateEvent = NSPredicate(format: "cfp = %@", super.getCfp()!)
+                let predicateEvent = NSPredicate(format: "cfp.id = %@", super.getCfpId())
                 let predicateDevice = NSPredicate(format: "target = %@", APIManager.getStringDevice())
                 let fetchRequest = NSFetchRequest(entityName: "Floor")
                 fetchRequest.includesSubentities = true
@@ -66,7 +66,10 @@ class FloorService : AbstractService, ImageServiceProtocol {
             if let obj:ImageFeedable = APIDataManager.findEntityFromId(id, inContext: self.privateManagedObjectContext) {
                 obj.feedImageData(data)
                 
-                super.realSave(completionHandler)
+                
+                dispatch_async(dispatch_get_main_queue(),{
+                    completionHandler(msg: "ok")
+                })
                 
                 
                 

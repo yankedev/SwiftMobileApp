@@ -39,6 +39,7 @@ class DayService : AbstractService {
             do {
                 
                 let fetchRequest = NSFetchRequest(entityName: "Day")
+                print(helper.getMainId())
                 let predicate = NSPredicate(format: "url = %@", helper.getMainId())
                 fetchRequest.predicate = predicate
                 let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
@@ -52,11 +53,18 @@ class DayService : AbstractService {
                     
                     if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
                         coreDataObjectCast.feedHelper(helper)
-                        coreDataObject.setValue(super.getCfp(), forKey: "cfp")
+                        
+                  
+                        
+                        coreDataObject.setValue(self.getCfp(), forKey: "cfp")
+                        
+                        print(coreDataObject)
                     }
                     
                     
+                    
                     self.realSave(completionHandler)
+                    
                  
                     
                     
@@ -81,6 +89,16 @@ class DayService : AbstractService {
     override func getHelper() -> DataHelperProtocol {
         return DayHelper()
     }
+    
+    var currentCfp:Cfp?
+    
+    override func getCfp() -> Cfp? {
+        if currentCfp == nil {
+            currentCfp = super.getCfp()
+        }
+        return currentCfp
+    }
+
     
     
 }

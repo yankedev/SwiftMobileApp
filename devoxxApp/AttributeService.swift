@@ -35,7 +35,7 @@ class AttributeService : AbstractService {
             do {
                 
                 
-                let predicateEvent = NSPredicate(format: "cfp = %@", self.getCfp()!)
+                let predicateEvent = NSPredicate(format: "cfp.id = %@", self.getCfpId())
                 let fetchRequest = NSFetchRequest(entityName: "Attribute")
                 let predicateType = NSPredicate(format: "type = %@", "Track")
                 fetchRequest.returnsDistinctResults = true
@@ -96,12 +96,12 @@ class AttributeService : AbstractService {
                     if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
                         coreDataObjectCast.feedHelper(helper)
                         
-                        coreDataObject.setValue(super.getCfp(), forKey: "cfp")
-                        self.realSave(completionHandler)
+                        coreDataObject.setValue(self.getCfp(), forKey: "cfp")
+                        
                     }
 
                     
-                
+                    completionHandler(msg:"OK")
                     
                     
                 }
@@ -124,17 +124,26 @@ class AttributeService : AbstractService {
 
     
     func getTracksUrl() -> String {
-        let cfp = super.getCfp()
-        return "\(cfp!.cfpEndpoint!)/conferences/\(cfp!.id!)/tracks"
+        let cfpId = super.getCfpId()
+        return "https://cfp.devoxx.be/api/conferences/\(cfpId)/tracks"
     }
     
     func getTalkTypeUrl() -> String {
-        let cfp = super.getCfp()
-        return "\(cfp!.cfpEndpoint!)/conferences/\(cfp!.id!)/proposalTypes"
+        let cfpId = super.getCfpId()
+        return "https://cfp.devoxx.be/api/conferences/\(cfpId)/proposalTypes"
     }
     
     override func getHelper() -> DataHelperProtocol {
         return TrackHelper()
+    }
+
+    var currentCfp:Cfp?
+    
+    override func getCfp() -> Cfp? {
+        if currentCfp == nil {
+            currentCfp = super.getCfp()
+        }
+        return currentCfp
     }
 
 }
