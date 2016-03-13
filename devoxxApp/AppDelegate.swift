@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func resourceReady(msg: String) -> Void {
-        print(msg)
+        print("msg = \(msg)")
     }
     
     

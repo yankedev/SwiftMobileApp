@@ -202,12 +202,30 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     
     func prepareNext() {
-        rotating = true
-        rotateOnce()
-        run_on_background_thread {
-            self.firstFetching()
-            self.run_on_main_thread{
-                self.rotateOnce()
+        if let currentData = slicesData[currentSelectedIndex] as? EventProtocol {
+            
+            
+            let defaults = NSUserDefaults.standardUserDefaults()
+            
+            if let currentEventIndex = defaults.objectForKey("currentEvent") as? String {
+                print("SETTING 1 \(currentData.identifier())")
+                defaults.setObject(currentData.identifier(), forKey: "currentEvent")
+                print(currentData.identifier())
+                CfpService.sharedInstance.currentCfp = nil
+            }
+            
+            
+
+            
+            
+            //defaults.setObject(currentData.identifier(), forKey: "currentEvent")
+            rotating = true
+            rotateOnce()
+            run_on_background_thread {
+                self.firstFetching()
+                self.run_on_main_thread{
+                    self.rotateOnce()
+                }
             }
         }
     }
@@ -257,7 +275,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         wheelView.delegate = self
 
         wheelView.setup()
-        wheelView.click(0)
+       
         globeView = wheelView.globe
         shouldByPass()
     }
@@ -362,15 +380,17 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         let defaults = NSUserDefaults.standardUserDefaults()
         
         if let currentEventIndex = defaults.objectForKey("currentEvent") as? String {
+            print("READDING 2 \(currentEventIndex)")
             if currentEventIndex == "" {
                 return
             }
             else {
-                print(currentEventIndex)
+                print("coucou ->\(currentEventIndex)")
                 prepareNext()
             }
         }
         else {
+            print("SETTINH 2 ")
             defaults.setObject("", forKey: "currentEvent")
             return
         }
@@ -442,8 +462,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             numberView.number2.text = currentData.sessionsCount()
             numberView.number3.text = currentData.capacityCount()
             
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject(currentData.identifier(), forKey: "currentEvent")
+            
             
         }
 
@@ -470,6 +489,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         print("--- Begin bootstrap --- ")
 
         dispatch_group_enter(group)
+        print(CfpService.sharedInstance.getEntryPoint())
+        
         APIDataManager.loadDataFromURL(CfpService.sharedInstance.getEntryPoint(), service: DayService.sharedInstance, helper : DayHelper(), isCritical : true, onSuccess: self.success, onError: self.failure)
     
         dispatch_group_enter(group)
@@ -489,12 +510,13 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         group = dispatch_group_create()
         
-        print(SlotService.sharedInstance.getCfp()?.regURL)
+    
         
-        for _ in 0...(CfpService.sharedInstance.getCfp()?.days.count)!-1 {
+        
+        for _ in 0...(CfpService.sharedInstance.getNbDays())-1 {
             dispatch_group_enter(group)
         }
-        APIDataManager.loadDataFromURLS(SlotService.sharedInstance.getCfp()?.days, dataHelper: SlotHelper(), isCritical : true, onSuccess: self.success, onError: self.failure)
+        APIDataManager.loadDataFromURLS(CfpService.sharedInstance.getDays(), dataHelper: SlotHelper(), isCritical : true, onSuccess: self.success, onError: self.failure)
         
         dispatch_group_enter(group)
         APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: AttributeService.sharedInstance, helper : TrackHelper(), isCritical: true, onSuccess: self.success, onError: failure)

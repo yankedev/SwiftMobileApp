@@ -76,22 +76,15 @@ class SpeakerDetailService : AbstractService {
         
     }
     
-        
-    var currentCfp:Cfp?
-    
-    override func getCfp() -> Cfp? {
-        if currentCfp == nil {
-            currentCfp = super.getCfp()
-        }
-        return currentCfp
-    }
-
+  
     
     func getSpeakerUrl() -> String {
-        let cfp = super.getCfp()
-        return "\(cfp!.cfpEndpoint!)/conferences/\(cfp!.id!)/speakers"
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/speakers"
     }
     
+    
+ 
     
     
 }

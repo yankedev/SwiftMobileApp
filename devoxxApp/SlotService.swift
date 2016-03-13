@@ -38,12 +38,12 @@ class SlotService : AbstractService {
             do {
                 
                 let fetchRequest = NSFetchRequest(entityName: "Slot")
-                let predicateEvent = NSPredicate(format: "cfp.country = %@", super.getCfpId())
+                let predicateEvent = NSPredicate(format: "cfp.id = %@", super.getCfpId())
                 fetchRequest.resultType = .DictionaryResultType
                 fetchRequest.returnsDistinctResults = true
                 fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
                 fetchRequest.propertiesToFetch = ["date"]
-                //fetchRequest.predicate = predicateEvent
+                fetchRequest.predicate = predicateEvent
                 
                 let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
                 
@@ -64,6 +64,8 @@ class SlotService : AbstractService {
     
     
     override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
+        
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
         
         privateManagedObjectContext.performBlock {
             
@@ -87,7 +89,7 @@ class SlotService : AbstractService {
                             
                             
                             
-                            coreDataObject.setValue(self.getCfp(), forKey: "cfp")
+                            coreDataObject.setValue(cfp, forKey: "cfp")
                             
                             let subEntity = NSEntityDescription.entityForName("Talk", inManagedObjectContext: self.privateManagedObjectContext)
                             let subDataObject = NSManagedObject(entity: subEntity!, insertIntoManagedObjectContext: self.privateManagedObjectContext) as! FeedableProtocol
@@ -139,14 +141,8 @@ class SlotService : AbstractService {
         
     }
     
-    var currentCfp:Cfp?
+
     
-    override func getCfp() -> Cfp? {
-        if currentCfp == nil {
-            currentCfp = super.getCfp()
-        }
-        return currentCfp
-    }
 
     
     override func getHelper() -> DataHelperProtocol {

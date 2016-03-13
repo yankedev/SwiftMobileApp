@@ -15,12 +15,14 @@ class AbstractService  {
     var mainManagedObjectContext: NSManagedObjectContext
     var privateManagedObjectContext: NSManagedObjectContext
 
+   
+    
+    var currentCfp:Cfp?
   
     init() {
        
         mainManagedObjectContext = MainManager.sharedInstance.mainManagedObjectContext
 
-        
         privateManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
         privateManagedObjectContext.parentContext = mainManagedObjectContext
     }
@@ -69,6 +71,7 @@ class AbstractService  {
     func getCfpId() -> String{
         let defaults = NSUserDefaults.standardUserDefaults()
         if let currentEventStr = defaults.objectForKey("currentEvent") as? String {
+            print("READIND 0 \(currentEventStr)")
             return currentEventStr
         }
         return ""
@@ -79,22 +82,8 @@ class AbstractService  {
         return true
     }
     
-    func getCfp() -> Cfp? {
+    
         
-        do {
-            let fetchRequest = NSFetchRequest(entityName: "Cfp")
-            let predicate = NSPredicate(format: "id = %@", getCfpId())
-            fetchRequest.predicate = predicate
-            let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Cfp]
-            if items.count > 0 {
-                return items[0]
-            }
-        }
-        catch {
-            return nil
-        }
-        
-        return nil
-    }
+   
 
 }

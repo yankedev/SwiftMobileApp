@@ -37,8 +37,41 @@ class CfpService : AbstractService {
         return CfpHelper()
     }
     
+    /*
+    func clearAll() {
+        clear("Slot")
+        clear("SpeakerDetail")
+        clear("Speaker")
+        clear("Talk")
+        clear("Track")
+        clear("TalkType")
+        clear("Attribute")
+        clear("Etag")
+        clear("Floor")
+        clear("Image")
+        clear("StoredResource")
+        clear("Cfp")
+        clear("Day")
+
+    }
     
-    
+    func clear(entityName :  String) {
+        do {
+            let fetchRequest = NSFetchRequest()
+            fetchRequest.entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.privateManagedObjectContext)
+            fetchRequest.includesPropertyValues = false
+            
+            let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+            for result in results {
+                self.privateManagedObjectContext.deleteObject(result as! NSManagedObject)
+            }
+            try realSave(nil)
+        }
+        catch {
+            print("DONT SAVED")
+        }
+    }
+    */
     
     func fetchCfps(completionHandler: (cfps: [Cfp], error: CfpStoreError?) -> Void) {
         privateManagedObjectContext.performBlock {
@@ -65,10 +98,19 @@ class CfpService : AbstractService {
     }
 
     
+    func getNbDays() -> Int {
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return cfp.days.count
+    }
+    
+    func getDays() -> NSSet {
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return cfp.days
+    }
     
     func getEntryPoint() -> String {
-        let cfpId = super.getCfpId()
-        return "https://cfp.devoxx.be/api/conferences/\(cfpId)/schedules"
+        let cfp = self.privateManagedObjectContext.objectWithID(getCfp()) as! Cfp
+        return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/schedules"
     }
 
     override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
@@ -110,6 +152,37 @@ class CfpService : AbstractService {
         }
         
     }
+
+    
+    var cfp:NSManagedObjectID? = nil
+    
+    func getCfp() -> NSManagedObjectID {
+        
+        if cfp != nil {
+            print("NOT NIL")
+            return cfp!
+        }
+        
+        do {
+            let fetchRequest = NSFetchRequest(entityName: "Cfp")
+            let predicate = NSPredicate(format: "id = %@", getCfpId())
+            fetchRequest.predicate = predicate
+            let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Cfp]
+            if items.count > 0 {
+                cfp = items[0].objectID
+            }
+        }
+        catch {
+            cfp = nil
+        }
+        
+        return cfp!
+    }
+
+   
+    
+    
+    
 
         
 }

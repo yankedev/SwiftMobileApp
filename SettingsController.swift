@@ -144,7 +144,10 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         if indexPath.section == KindOfSection.SETTINGS.hashValue {
             if indexPath.row == 0 {
                 let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setInteger(-1, forKey: "currentEvent")
+                print("SETTING 0")
+                defaults.setObject("", forKey: "currentEvent")
+                CfpService.sharedInstance.cfp = nil
+                //CfpService.sharedInstance.clearAll()
                 self.parentViewController!.parentViewController?.view!.removeFromSuperview()
                 self.parentViewController?.parentViewController?.removeFromParentViewController()
             }

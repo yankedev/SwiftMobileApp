@@ -78,6 +78,8 @@ class AttributeService : AbstractService {
     
     override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
         
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        
         privateManagedObjectContext.performBlock {
             
             for singleHelper in helper {
@@ -97,7 +99,7 @@ class AttributeService : AbstractService {
                         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
                             coreDataObjectCast.feedHelper(singleHelper)
                             
-                            coreDataObject.setValue(self.getCfp(), forKey: "cfp")
+                            coreDataObject.setValue(cfp, forKey: "cfp")
                             
                         }
                         
@@ -126,27 +128,25 @@ class AttributeService : AbstractService {
 
     
     func getTracksUrl() -> String {
-        let cfpId = super.getCfpId()
-        return "https://cfp.devoxx.be/api/conferences/\(cfpId)/tracks"
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/tracks"
     }
     
     func getTalkTypeUrl() -> String {
-        let cfpId = super.getCfpId()
-        return "https://cfp.devoxx.be/api/conferences/\(cfpId)/proposalTypes"
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/proposalTypes"
     }
     
     override func getHelper() -> DataHelperProtocol {
         return TrackHelper()
     }
 
-    var currentCfp:Cfp?
+   
+  
     
-    override func getCfp() -> Cfp? {
-        if currentCfp == nil {
-            currentCfp = super.getCfp()
-        }
-        return currentCfp
-    }
+
+    
+
 
 }
 

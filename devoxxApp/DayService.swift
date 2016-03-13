@@ -36,12 +36,15 @@ class DayService : AbstractService {
         
         privateManagedObjectContext.performBlock {
             
-
+         
+            let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+            
             for singleHelper in helper {
                 do {
                     
                     let fetchRequest = NSFetchRequest(entityName: "Day")
-                    print(singleHelper.getMainId())
+                    
+                    print("main id = \(singleHelper.getMainId())")
                     let predicate = NSPredicate(format: "url = %@", singleHelper.getMainId())
                     fetchRequest.predicate = predicate
                     let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
@@ -58,7 +61,7 @@ class DayService : AbstractService {
                             
                             
                             
-                            coreDataObject.setValue(self.getCfp(), forKey: "cfp")
+                            coreDataObject.setValue(cfp, forKey: "cfp")
                             
                             print(coreDataObject)
                         }
@@ -90,14 +93,11 @@ class DayService : AbstractService {
         return DayHelper()
     }
     
-    var currentCfp:Cfp?
+   
+
     
-    override func getCfp() -> Cfp? {
-        if currentCfp == nil {
-            currentCfp = super.getCfp()
-        }
-        return currentCfp
-    }
+   
+
 
     
     

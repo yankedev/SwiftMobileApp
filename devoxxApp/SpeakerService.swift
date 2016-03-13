@@ -47,6 +47,8 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
     
     override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
         
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        
         privateManagedObjectContext.performBlock {
             for singleHelper in helper {
                 do {
@@ -69,7 +71,7 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
                         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
                             coreDataObjectCast.feedHelper(singleHelper)
                             
-                            coreDataObject.setValue(self.getCfp(), forKey: "cfp")
+                            coreDataObject.setValue(cfp, forKey: "cfp")
                         }
                         
                         
@@ -131,8 +133,8 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
     
     
     func getSpeakerUrl() -> String {
-        let cfpId = super.getCfpId()
-        return "https://cfp.devoxx.be/api/conferences/\(cfpId)/speakers"
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/speakers"
     }
     
     
@@ -153,14 +155,13 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
     }
 
     
-    var currentCfp : Cfp?
     
-    override func getCfp() -> Cfp? {
-        if currentCfp == nil {
-            currentCfp = super.getCfp()
-        }
-        return currentCfp
-    }
+    
+    
+ 
+
+    
+  
     
     
 }

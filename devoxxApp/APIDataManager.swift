@@ -121,7 +121,7 @@ class APIDataManager {
                 
                 print("No internet for \(storedResource.url)")
                 print("Store callbal =  \(storedResource.fallback)")
-                print(error)
+                
                 
                 if isCritical {
                     
