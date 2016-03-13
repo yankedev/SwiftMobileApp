@@ -275,7 +275,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         wheelView.delegate = self
 
         wheelView.setup()
-       
+        wheelView.click(0)
         globeView = wheelView.globe
         shouldByPass()
     }

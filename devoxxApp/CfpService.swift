@@ -103,6 +103,11 @@ class CfpService : AbstractService {
         return cfp.days.count
     }
     
+    func getRegUrl() -> String? {
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return cfp.regURL
+    }
+    
     func getDays() -> NSSet {
         let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
         return cfp.days

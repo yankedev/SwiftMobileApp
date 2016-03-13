@@ -23,6 +23,9 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
     @NSManaged var talks: NSSet
     @NSManaged var imgData: NSData
 
+    public func getTwitter() -> String {
+        return "\((cfp?.hashtag)!) \(displayTwitter())"
+    }
     
     public func getTitle() -> String {
         return getFullName()

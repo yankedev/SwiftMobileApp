@@ -151,9 +151,8 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     public func twitter() {
     
-       // let originalString = "\(APIManager.currentEvent.hashtag!) \(detailObject.getTitle()) by \(slot.talk.getForthInformation(true)) \(detailObject.getFullLink())"
+        let originalString = detailObject.getTwitter()
         
-        let originalString = ""
         
         let escapedString = originalString.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         

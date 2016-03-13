@@ -126,8 +126,8 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
     override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == KindOfSection.QUICK_ACCESS.hashValue {
             if indexPath.row == 0 {
-                //let url = CfpService.sharedInstance.getCfp()?.regURL
-                //UIApplication.sharedApplication().openURL(NSURL(string: url!)!)
+                let url = CfpService.sharedInstance.getRegUrl()
+                UIApplication.sharedApplication().openURL(NSURL(string: url!)!)
             }
             if indexPath.row == 1 {
                 let alert = UIAlertController(title: "Report Issue", message: "go to report issue", preferredStyle: UIAlertControllerStyle.Alert)

@@ -22,6 +22,7 @@ import UIKit
     func getFullLink() -> String?
     func getImageFullLink() -> String?
     func getPrimaryImage() -> UIImage?
+    func getTwitter() -> String
     
 }
 
@@ -53,6 +54,10 @@ class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococo
     
     func getSummary() -> String {
         return summary
+    }
+    
+    func getTwitter() -> String {
+        return "\((slot.cfp?.hashtag)!) \(getTitle()) by \(getForthInformation(true)) \(getFullLink()!)"
     }
     
     func detailInfos() -> [String] {

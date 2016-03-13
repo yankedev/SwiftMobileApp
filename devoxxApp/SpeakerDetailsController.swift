@@ -102,9 +102,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     public func twitter() {
         
-        //let originalString = "\(APIManager.currentEvent.hashtag!) \(speaker.displayTwitter())"
-        
-        let originalString = ""
+        let originalString = detailObject.getTwitter()
         
         let escapedString = originalString.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         
