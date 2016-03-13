@@ -11,7 +11,7 @@ import Foundation
 class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
     
     func getMainId() -> String {
-        return ""
+        return id!
     }
 
     func feed(data: JSON) {

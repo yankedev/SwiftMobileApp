@@ -137,9 +137,7 @@ class AttributeService : AbstractService {
         return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/proposalTypes"
     }
     
-    override func getHelper() -> DataHelperProtocol {
-        return TrackHelper()
-    }
+    
 
    
   

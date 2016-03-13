@@ -519,7 +519,10 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         APIDataManager.loadDataFromURLS(CfpService.sharedInstance.getDays(), dataHelper: SlotHelper(), isCritical : true, onSuccess: self.success, onError: self.failure)
         
         dispatch_group_enter(group)
-        APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: AttributeService.sharedInstance, helper : TrackHelper(), isCritical: true, onSuccess: self.success, onError: failure)
+        APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: TrackService.sharedInstance, helper : TrackHelper(), isCritical: true, onSuccess: self.success, onError: failure)
+        
+        dispatch_group_enter(group)
+        APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTalkTypeUrl(), service: TalkTypeService.sharedInstance, helper : TalkTypeHelper(), isCritical: true, onSuccess: self.success, onError: failure)
         
         dispatch_group_notify(group, dispatch_get_main_queue(), {
             self.rotating = false

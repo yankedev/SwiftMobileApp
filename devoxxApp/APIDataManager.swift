@@ -72,7 +72,7 @@ class APIDataManager {
         
         print("Make request with : \(url)")
         
-        return makeRequest(findResource(url)!, service : service, helper : helper, isCritical : isCritical, onSuccess: onSuccess, onError: onError)
+        return makeRequest(findResource(url)!, service : service, helper : service.getHelper(), isCritical : isCritical, onSuccess: onSuccess, onError: onError)
         
     }
 

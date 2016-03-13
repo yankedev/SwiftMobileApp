@@ -83,9 +83,14 @@ class APIManager {
         let arrayToParse = service.getHelper().prepareArray(json)
         var arrayHelper = [DataHelperProtocol]()
         
-        
+    
+        print("PRE INSIDE FOR \(storedResource?.url) - \(service) -  \(service.getHelper())")
+       
         
         if let appArray = arrayToParse {
+            
+            print("INSIDE FOR \(storedResource?.url)")
+            
             for appDict in appArray {
                 let newHelper = service.getHelper()
                 newHelper.feed(appDict)
@@ -184,48 +189,6 @@ class APIManager {
 
     }
    
-    
-    
-    /*
-    
-    
-    class func handleData(inputData : NSData, service: AbstractService, storedResource : StoredResource?, etag : String?,completionHandler : (msg: String) -> Void) {
-        
-        
-        
-        let json = JSON(data: inputData)
-        let arrayToParse = service.getHelper().prepareArray(json)
-        
-        if let appArray = arrayToParse {
-            
-            
-            
-            for appDict in appArray {
-                dispatch_group_enter(serviceGroup)
-            }
-            
-            for appDict in appArray {
-                let newHelper = service.getHelper()
-                newHelper.feed(appDict)
-                service.updateWithHelper(newHelper, completionHandler: step)
-            }
-            service.privateManagedObjectContext.performBlock({
-                service.realSave(ok)
-            })
-            
-        }
-        
-        storedResource?.etag = etag ?? ""
-        
-        
-        
-        dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
-            completionHandler(msg: "GOGOGOOGOGOGOG\(storedResource?.url)")
-        })
-        
-        
-    }
 
-    */
 }
 

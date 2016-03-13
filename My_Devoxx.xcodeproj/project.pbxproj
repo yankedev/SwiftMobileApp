@@ -163,6 +163,8 @@
 		E175E5EB1C948DF8002A262A /* StoredResourceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5EA1C948DF8002A262A /* StoredResourceService.swift */; };
 		E175E5ED1C94BBF7002A262A /* DayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5EC1C94BBF7002A262A /* DayService.swift */; };
 		E175E5EF1C94E0C4002A262A /* SpeakerDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5EE1C94E0C4002A262A /* SpeakerDetailService.swift */; };
+		E175E5F11C961AB6002A262A /* TrackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5F01C961AB5002A262A /* TrackService.swift */; };
+		E175E5F31C961AD7002A262A /* TalkTypeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5F21C961AD7002A262A /* TalkTypeService.swift */; };
 		E175F25C1C46FFAD00D7AC0A /* DV15-monday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2581C46FFAD00D7AC0A /* DV15-monday.json */; };
 		E175F25D1C46FFAD00D7AC0A /* DV15-tuesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */; };
 		E175F25E1C46FFAD00D7AC0A /* DV15-wednesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */; };
@@ -381,6 +383,8 @@
 		E175E5EA1C948DF8002A262A /* StoredResourceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoredResourceService.swift; path = ../StoredResourceService.swift; sourceTree = "<group>"; };
 		E175E5EC1C94BBF7002A262A /* DayService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayService.swift; sourceTree = "<group>"; };
 		E175E5EE1C94E0C4002A262A /* SpeakerDetailService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerDetailService.swift; sourceTree = "<group>"; };
+		E175E5F01C961AB5002A262A /* TrackService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackService.swift; sourceTree = "<group>"; };
+		E175E5F21C961AD7002A262A /* TalkTypeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkTypeService.swift; sourceTree = "<group>"; };
 		E175F2581C46FFAD00D7AC0A /* DV15-monday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-monday.json"; path = "mock/DV15-monday.json"; sourceTree = "<group>"; };
 		E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-tuesday.json"; path = "mock/DV15-tuesday.json"; sourceTree = "<group>"; };
 		E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-wednesday.json"; path = "mock/DV15-wednesday.json"; sourceTree = "<group>"; };
@@ -689,6 +693,8 @@
 				E175E5DC1C93D447002A262A /* FloorService.swift */,
 				E175E5DE1C93DFAF002A262A /* ImageServiceProtocol.swift */,
 				E175E5E01C940F44002A262A /* AttributeService.swift */,
+				E175E5F01C961AB5002A262A /* TrackService.swift */,
+				E175E5F21C961AD7002A262A /* TalkTypeService.swift */,
 			);
 			name = service;
 			sourceTree = "<group>";
@@ -1165,6 +1171,7 @@
 				58195C131C359A4E00F56A30 /* FilterViewCell.swift in Sources */,
 				E175E5DF1C93DFAF002A262A /* ImageServiceProtocol.swift in Sources */,
 				E175F2731C49B01A00D7AC0A /* SearchableItemProtocol.swift in Sources */,
+				E175E5F11C961AB6002A262A /* TrackService.swift in Sources */,
 				580B78711C766BDD00060C00 /* MapTabController.swift in Sources */,
 				E175E5E91C947733002A262A /* MainManager.swift in Sources */,
 				588CFDD41C80F9FC00DEC1E6 /* GobalDetailView.swift in Sources */,
@@ -1218,6 +1225,7 @@
 				E175F2651C485B0D00D7AC0A /* SchedulerTableView.swift in Sources */,
 				E175E5D91C93BF4F002A262A /* SpeakerService.swift in Sources */,
 				580CD2A01C7DCFD900152E4C /* SimpleDetailView.swift in Sources */,
+				E175E5F31C961AD7002A262A /* TalkTypeService.swift in Sources */,
 				587796FB1C81207B00A1A7D5 /* SpeakerDetailsController.swift in Sources */,
 				580B78831C78972C00060C00 /* ImageHelper.swift in Sources */,
 				580B78A81C7A78A200060C00 /* HeaderView.swift in Sources */,

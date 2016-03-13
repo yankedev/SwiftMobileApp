@@ -31,9 +31,9 @@ class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
     
     func filterPredicateLeftValue() -> String {
         if(type == "Track") {
-            return "talk.trackId"
+            return "trackId"
         }
-        return "talk.talkType"
+        return "talkType"
     }
     
     func filterPredicateRightValue() -> String {
