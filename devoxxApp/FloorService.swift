@@ -29,11 +29,55 @@ class FloorService : AbstractService, ImageServiceProtocol {
         super.init()
     }
     
+    override func updateWithHelper(helper : Array<DataHelperProtocol>, completionHandler : (msg: String) -> Void) {
+        
+        privateManagedObjectContext.performBlock {
+            
+            for singleHelper in helper {
+                
+                do {
+                    
+                    let fetchRequest = NSFetchRequest(entityName: "Floor")
+                    let predicate = NSPredicate(format: "id = %@", singleHelper.getMainId())
+                    fetchRequest.predicate = predicate
+                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+                    
+                    if items.count == 0 {
+                        
+                        let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
+                        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                        
+                        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+                            coreDataObjectCast.feedHelper(singleHelper)
+                        }
+                        
+                        
+                    }
+                    else {
+                        //print("CALL COMPLETION HANDLER 1")
+                        //completionHandler(msg: "OK")
+                    }
+                    
+                    
+                }
+                catch {
+                    
+                }
+                
+                
+            }
+            
+            self.realSave(completionHandler)
+        }
+        
+    }
+
+    
     func fetchFloors(completionHandler: (floors: [Floor], error: FloorStoreError?) -> Void) {
         privateManagedObjectContext.performBlock {
             do {
-                
-                let predicateEvent = NSPredicate(format: "cfp.id = %@", super.getCfpId())
+                let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+                let predicateEvent = NSPredicate(format: "id = %@", cfp.id!)
                 let predicateDevice = NSPredicate(format: "target = %@", APIManager.getStringDevice())
                 let fetchRequest = NSFetchRequest(entityName: "Floor")
                 fetchRequest.includesSubentities = true

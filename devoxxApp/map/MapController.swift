@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import MapKit
 
-public class MapController : UIViewController, MKMapViewDelegate, ScrollableItemProtocol {
+public class MapController : UIViewController, MKMapViewDelegate {
     
     public var index:Int = 0
     
@@ -18,45 +18,33 @@ public class MapController : UIViewController, MKMapViewDelegate, ScrollableItem
     
     override public func viewDidLoad() {
         self.title = "Map"
-        
-        
-        
-        
-        
-        
-        
     }
     
     func reset() {
-        
-
         
         mapView = MKMapView(frame: view.frame)
         self.view.backgroundColor = UIColor.whiteColor()
         
         view.addSubview(mapView)
 
-        
         var newRegion = MKCoordinateRegion()
        
-        /*newRegion.center.latitude = Double(CfpService.sharedInstance.getCfp()!.latitude!)!
-        newRegion.center.longitude = Double(CfpService.sharedInstance.getCfp()!.longitude!)!
+       
         
-        
-        
-        
+        newRegion.center.latitude = CfpService.sharedInstance.getCoordLat()
+        newRegion.center.longitude = CfpService.sharedInstance.getCoordLong()
+
         newRegion.span.latitudeDelta = 0.01;
         newRegion.span.longitudeDelta = 0.01;
-        
         
         let coord = CLLocationCoordinate2D(latitude: newRegion.center.latitude, longitude: newRegion.center.longitude)
         let annotation = MKPointAnnotation()
         annotation.coordinate = coord
-        annotation.title = CfpService.sharedInstance.getCfp()!.title()
+        annotation.title = CfpService.sharedInstance.getTitle()
         
         mapView.addAnnotation(annotation)
         mapView.setRegion(newRegion, animated: false)
-        */
+        
     }
     
 }

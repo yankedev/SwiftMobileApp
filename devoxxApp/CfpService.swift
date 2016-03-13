@@ -73,6 +73,26 @@ class CfpService : AbstractService {
     }
     */
     
+    func getTitle() -> String {
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return cfp.title()
+    }
+    
+    func getAdress() -> String? {
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return cfp.address
+    }
+    
+    func getCoordLat() -> Double {
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return Double(cfp.latitude!)!
+    }
+
+    func getCoordLong() -> Double {
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return Double(cfp.longitude!)!
+    }
+    
     func fetchCfps(completionHandler: (cfps: [Cfp], error: CfpStoreError?) -> Void) {
         privateManagedObjectContext.performBlock {
             do {
@@ -144,6 +164,11 @@ class CfpService : AbstractService {
                         
                     }
                     
+                    if let cfpHelper = singleHelper as? CfpHelper {
+               
+                        FloorService.sharedInstance.updateWithHelper(cfpHelper.fedFloorsArray, completionHandler: self.floorsOk)
+                    }
+                    
                 }
                 catch {
                     
@@ -155,6 +180,10 @@ class CfpService : AbstractService {
            
             
         }
+        
+    }
+    
+    func floorsOk(msg : String) {
         
     }
 
@@ -175,9 +204,11 @@ class CfpService : AbstractService {
             let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Cfp]
             if items.count > 0 {
                 cfp = items[0].objectID
+                return cfp!
             }
         }
         catch {
+            //TODO
             cfp = nil
         }
         

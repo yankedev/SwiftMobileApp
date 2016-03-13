@@ -67,7 +67,7 @@ public class MapTabController : UIViewController {
         self.view.addSubview(accessView)
         
         
-       // self.navigationItem.title = CfpService.sharedInstance.getCfp()!.address
+        self.navigationItem.title = CfpService.sharedInstance.getAdress()
         
         
             

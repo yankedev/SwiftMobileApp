@@ -39,6 +39,7 @@ class APIReloadManager {
             config.requestCachePolicy = .ReloadIgnoringLocalCacheData
             
             let session = NSURLSession(configuration: config)
+            
             let task = session.dataTaskWithURL(NSURL(string: url!)!) {
                 data, response1, error in
                 

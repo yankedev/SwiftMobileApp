@@ -28,7 +28,7 @@ class CfpHelper: DataHelperProtocol {
     var regURL: String?
     var cfpEndpoint: String?
     
-    var fedFloorsArray:Array<FloorHelper>!
+    var fedFloorsArray:Array<DataHelperProtocol>!
     
     init() {
     }

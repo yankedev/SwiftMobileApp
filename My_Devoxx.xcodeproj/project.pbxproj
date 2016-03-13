@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		580B786B1C74FD9A00060C00 /* SpeakerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B786A1C74FD9A00060C00 /* SpeakerCell.swift */; };
-		580B786F1C76688400060C00 /* GenericPageScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B786E1C76688400060C00 /* GenericPageScrollController.swift */; };
 		580B78711C766BDD00060C00 /* MapTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B78701C766BDD00060C00 /* MapTabController.swift */; };
-		580B78791C76771800060C00 /* speaker@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 580B78781C76771800060C00 /* speaker@2x.jpg */; };
 		580B78811C78956F00060C00 /* StoredResource.json in Resources */ = {isa = PBXBuildFile; fileRef = 580B78801C78956F00060C00 /* StoredResource.json */; };
 		580B78831C78972C00060C00 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B78821C78972C00060C00 /* ImageHelper.swift */; };
 		580B78851C78988500060C00 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 580B78841C78988500060C00 /* Image.swift */; };
@@ -109,10 +107,7 @@
 		58A465C21C87AC85006B6D46 /* icon_agTest.png in Resources */ = {isa = PBXBuildFile; fileRef = 58A465BF1C87AC85006B6D46 /* icon_agTest.png */; };
 		58A465C41C87AD12006B6D46 /* icon_wm.png in Resources */ = {isa = PBXBuildFile; fileRef = 58A465C31C87AD12006B6D46 /* icon_wm.png */; };
 		58BA2BFC1C3331EF0031C2E3 /* Etag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58BA2BFB1C3331EE0031C2E3 /* Etag.swift */; };
-		58C6A8181C74A171005CDCA1 /* filterWhite@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58C6A8171C74A171005CDCA1 /* filterWhite@2x.png */; };
 		58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */; };
-		58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */; };
-		58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */; };
 		58EC131A1C83A7D700958070 /* ScheduleBreakCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC13191C83A7D700958070 /* ScheduleBreakCell.swift */; };
 		58EC131C1C8464E000958070 /* tabIconSettings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 58EC131B1C8464E000958070 /* tabIconSettings@2x.png */; };
 		58EC131E1C846F2100958070 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58EC131D1C846F2100958070 /* SettingsController.swift */; };
@@ -143,10 +138,7 @@
 		E127E65A1C38212100FB7E4F /* FilterableTableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E127E6591C38212100FB7E4F /* FilterableTableProtocol.swift */; };
 		E127E6601C38313200FB7E4F /* SearchableTableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E127E65F1C38313200FB7E4F /* SearchableTableProtocol.swift */; };
 		E127E66A1C39709400FB7E4F /* DV15-friday.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6651C39709300FB7E4F /* DV15-friday.json */; };
-		E127E66B1C39709400FB7E4F /* Slot.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6661C39709300FB7E4F /* Slot.json */; };
 		E127E66C1C39709400FB7E4F /* DV15-speakers.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6671C39709300FB7E4F /* DV15-speakers.json */; };
-		E127E66D1C39709400FB7E4F /* TalkType.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6681C39709400FB7E4F /* TalkType.json */; };
-		E127E66E1C39709400FB7E4F /* Track.json in Resources */ = {isa = PBXBuildFile; fileRef = E127E6691C39709400FB7E4F /* Track.json */; };
 		E136DF201C9216AB00BB1A0C /* SpeakerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E136DF1F1C9216AB00BB1A0C /* SpeakerProtocol.swift */; };
 		E175E5D11C93A0C7002A262A /* TalkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5D01C93A0C7002A262A /* TalkService.swift */; };
 		E175E5D31C93AE0B002A262A /* FavoritableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5D21C93AE0B002A262A /* FavoritableProtocol.swift */; };
@@ -158,7 +150,6 @@
 		E175E5E11C940F44002A262A /* AttributeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5E01C940F44002A262A /* AttributeService.swift */; };
 		E175E5E31C944D55002A262A /* CfpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5E21C944D55002A262A /* CfpService.swift */; };
 		E175E5E51C94644B002A262A /* SlotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5E41C94644B002A262A /* SlotService.swift */; };
-		E175E5E71C947294002A262A /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5E61C947294002A262A /* File.swift */; };
 		E175E5E91C947733002A262A /* MainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5E81C947733002A262A /* MainManager.swift */; };
 		E175E5EB1C948DF8002A262A /* StoredResourceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5EA1C948DF8002A262A /* StoredResourceService.swift */; };
 		E175E5ED1C94BBF7002A262A /* DayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5EC1C94BBF7002A262A /* DayService.swift */; };
@@ -174,7 +165,6 @@
 		E175F2711C49AF7B00D7AC0A /* ScrollableTableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F2701C49AF7B00D7AC0A /* ScrollableTableProtocol.swift */; };
 		E175F2731C49B01A00D7AC0A /* SearchableItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F2721C49B01A00D7AC0A /* SearchableItemProtocol.swift */; };
 		E175F2761C52A50C00D7AC0A /* ScheduleControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175F2751C52A50C00D7AC0A /* ScheduleControllerView.swift */; };
-		E17DFF3D1C72884F00A09547 /* filter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17DFF3C1C72884F00A09547 /* filter@2x.png */; };
 		E17DFF411C79D7FB00A09547 /* Floor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17DFF401C79D7FA00A09547 /* Floor.swift */; };
 		E17DFF431C79D85800A09547 /* FloorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17DFF421C79D85800A09547 /* FloorHelper.swift */; };
 		E18046031C1DD220001AAD85 /* TalkDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18046021C1DD220001AAD85 /* TalkDetailsController.swift */; };
@@ -224,9 +214,7 @@
 
 /* Begin PBXFileReference section */
 		580B786A1C74FD9A00060C00 /* SpeakerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerCell.swift; sourceTree = "<group>"; };
-		580B786E1C76688400060C00 /* GenericPageScrollController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericPageScrollController.swift; sourceTree = "<group>"; };
 		580B78701C766BDD00060C00 /* MapTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTabController.swift; sourceTree = "<group>"; };
-		580B78781C76771800060C00 /* speaker@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "speaker@2x.jpg"; sourceTree = "<group>"; };
 		580B78801C78956F00060C00 /* StoredResource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoredResource.json; sourceTree = "<group>"; };
 		580B78821C78972C00060C00 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		580B78841C78988500060C00 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
@@ -267,7 +255,7 @@
 		58195C0C1C35877100F56A30 /* icon_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_start.png; path = icon/talkType/icon_start.png; sourceTree = "<group>"; };
 		58195C0E1C3587C600F56A30 /* icon_tia.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_tia.png; path = icon/talkType/icon_tia.png; sourceTree = "<group>"; };
 		58195C101C3587EE00F56A30 /* icon_uni.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_uni.png; path = icon/talkType/icon_uni.png; sourceTree = "<group>"; };
-		58195C121C359A4E00F56A30 /* FilterViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewCell.swift; sourceTree = "<group>"; };
+		58195C121C359A4E00F56A30 /* FilterViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterViewCell.swift; path = devoxxApp/FilterViewCell.swift; sourceTree = "<group>"; };
 		58195C141C359F7500F56A30 /* checkboxOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkboxOff.png; path = icon/checkboxOff.png; sourceTree = "<group>"; };
 		58195C151C359F7500F56A30 /* checkboxOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkboxOn.png; path = icon/checkboxOn.png; sourceTree = "<group>"; };
 		5842E4361C83734400998F9C /* ScheduleCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCellView.swift; sourceTree = "<group>"; };
@@ -278,7 +266,7 @@
 		584FED7C1C90A6790037A3E1 /* ic_filter_inactive@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_filter_inactive@2x.png"; sourceTree = "<group>"; };
 		584FED7D1C90A6790037A3E1 /* ic_filter_active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_filter_active@2x.png"; sourceTree = "<group>"; };
 		58631DE91C8E3C7A00070833 /* QRCodeScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeScannerController.swift; sourceTree = "<group>"; };
-		5872861A1C1F565C00FC098A /* SpeakerTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerTableController.swift; sourceTree = "<group>"; };
+		5872861A1C1F565C00FC098A /* SpeakerTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpeakerTableController.swift; path = devoxxApp/SpeakerTableController.swift; sourceTree = "<group>"; };
 		5872861C1C1F579900FC098A /* SpeakerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerHelper.swift; sourceTree = "<group>"; };
 		5872861E1C1F589400FC098A /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Speaker.swift; path = model/coreData/Speaker.swift; sourceTree = "<group>"; };
 		587796FA1C81207B00A1A7D5 /* SpeakerDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpeakerDetailsController.swift; path = devoxxApp/SpeakerDetailsController.swift; sourceTree = "<group>"; };
@@ -325,10 +313,7 @@
 		58A465BF1C87AC85006B6D46 /* icon_agTest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_agTest.png; path = icon/track/icon_agTest.png; sourceTree = "<group>"; };
 		58A465C31C87AD12006B6D46 /* icon_wm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_wm.png; path = icon/track/icon_wm.png; sourceTree = "<group>"; };
 		58BA2BFB1C3331EE0031C2E3 /* Etag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Etag.swift; sourceTree = "<group>"; };
-		58C6A8171C74A171005CDCA1 /* filterWhite@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filterWhite@2x.png"; sourceTree = "<group>"; };
-		58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableViewController.swift; sourceTree = "<group>"; };
-		58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOn@2x.png"; path = "icon/StarOn@2x.png"; sourceTree = "<group>"; };
-		58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StarOff@2x.png"; path = "icon/StarOff@2x.png"; sourceTree = "<group>"; };
+		58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterTableViewController.swift; path = devoxxApp/FilterTableViewController.swift; sourceTree = "<group>"; };
 		58EC13191C83A7D700958070 /* ScheduleBreakCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleBreakCell.swift; path = devoxxApp/ScheduleBreakCell.swift; sourceTree = "<group>"; };
 		58EC131B1C8464E000958070 /* tabIconSettings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabIconSettings@2x.png"; path = "icon/tab/tabIconSettings@2x.png"; sourceTree = "<group>"; };
 		58EC131D1C846F2100958070 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
@@ -363,11 +348,8 @@
 		E127E6591C38212100FB7E4F /* FilterableTableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterableTableProtocol.swift; sourceTree = "<group>"; };
 		E127E65F1C38313200FB7E4F /* SearchableTableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchableTableProtocol.swift; path = ../SearchableTableProtocol.swift; sourceTree = "<group>"; };
 		E127E6651C39709300FB7E4F /* DV15-friday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-friday.json"; path = "mock/DV15-friday.json"; sourceTree = "<group>"; };
-		E127E6661C39709300FB7E4F /* Slot.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Slot.json; path = mock/Slot.json; sourceTree = "<group>"; };
 		E127E6671C39709300FB7E4F /* DV15-speakers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-speakers.json"; path = "mock/DV15-speakers.json"; sourceTree = "<group>"; };
-		E127E6681C39709400FB7E4F /* TalkType.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = TalkType.json; path = mock/TalkType.json; sourceTree = "<group>"; };
-		E127E6691C39709400FB7E4F /* Track.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Track.json; path = mock/Track.json; sourceTree = "<group>"; };
-		E136DF1F1C9216AB00BB1A0C /* SpeakerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerProtocol.swift; sourceTree = "<group>"; };
+		E136DF1F1C9216AB00BB1A0C /* SpeakerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpeakerProtocol.swift; path = ../SpeakerProtocol.swift; sourceTree = "<group>"; };
 		E175E5D01C93A0C7002A262A /* TalkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkService.swift; sourceTree = "<group>"; };
 		E175E5D21C93AE0B002A262A /* FavoritableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritableProtocol.swift; sourceTree = "<group>"; };
 		E175E5D41C93BE6B002A262A /* AbstractService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractService.swift; sourceTree = "<group>"; };
@@ -378,7 +360,6 @@
 		E175E5E01C940F44002A262A /* AttributeService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeService.swift; sourceTree = "<group>"; };
 		E175E5E21C944D55002A262A /* CfpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CfpService.swift; sourceTree = "<group>"; };
 		E175E5E41C94644B002A262A /* SlotService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotService.swift; sourceTree = "<group>"; };
-		E175E5E61C947294002A262A /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		E175E5E81C947733002A262A /* MainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainManager.swift; sourceTree = "<group>"; };
 		E175E5EA1C948DF8002A262A /* StoredResourceService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoredResourceService.swift; path = ../StoredResourceService.swift; sourceTree = "<group>"; };
 		E175E5EC1C94BBF7002A262A /* DayService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayService.swift; sourceTree = "<group>"; };
@@ -389,16 +370,15 @@
 		E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-tuesday.json"; path = "mock/DV15-tuesday.json"; sourceTree = "<group>"; };
 		E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-wednesday.json"; path = "mock/DV15-wednesday.json"; sourceTree = "<group>"; };
 		E175F25B1C46FFAD00D7AC0A /* DV15-thursday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "DV15-thursday.json"; path = "mock/DV15-thursday.json"; sourceTree = "<group>"; };
-		E175F2641C485B0D00D7AC0A /* SchedulerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulerTableView.swift; sourceTree = "<group>"; };
-		E175F26A1C4867F300D7AC0A /* FilterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterTableView.swift; sourceTree = "<group>"; };
+		E175F2641C485B0D00D7AC0A /* SchedulerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchedulerTableView.swift; path = devoxxApp/SchedulerTableView.swift; sourceTree = "<group>"; };
+		E175F26A1C4867F300D7AC0A /* FilterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterTableView.swift; path = devoxxApp/FilterTableView.swift; sourceTree = "<group>"; };
 		E175F2701C49AF7B00D7AC0A /* ScrollableTableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableTableProtocol.swift; sourceTree = "<group>"; };
 		E175F2721C49B01A00D7AC0A /* SearchableItemProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableItemProtocol.swift; sourceTree = "<group>"; };
-		E175F2751C52A50C00D7AC0A /* ScheduleControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleControllerView.swift; path = ../ScheduleControllerView.swift; sourceTree = "<group>"; };
-		E17DFF3C1C72884F00A09547 /* filter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "filter@2x.png"; sourceTree = "<group>"; };
+		E175F2751C52A50C00D7AC0A /* ScheduleControllerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleControllerView.swift; sourceTree = "<group>"; };
 		E17DFF401C79D7FA00A09547 /* Floor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Floor.swift; sourceTree = "<group>"; };
 		E17DFF421C79D85800A09547 /* FloorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FloorHelper.swift; path = ../FloorHelper.swift; sourceTree = "<group>"; };
 		E18046021C1DD220001AAD85 /* TalkDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TalkDetailsController.swift; path = devoxxApp/TalkDetailsController.swift; sourceTree = "<group>"; };
-		E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorManager.swift; path = devoxxApp/ColorManager.swift; sourceTree = "<group>"; };
 		E1FA9C0E1C1BFC150077C09A /* icon_archisec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_archisec.png; path = icon/track/icon_archisec.png; sourceTree = "<group>"; };
 		E1FA9C0F1C1BFC150077C09A /* icon_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_cloud.png; path = icon/track/icon_cloud.png; sourceTree = "<group>"; };
 		E1FA9C101C1BFC150077C09A /* icon_future.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_future.png; path = icon/track/icon_future.png; sourceTree = "<group>"; };
@@ -414,10 +394,10 @@
 		E1FA9C241C1BFC1E0077C09A /* tabIconSpeaker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabIconSpeaker@2x.png"; path = "icon/tab/tabIconSpeaker@2x.png"; sourceTree = "<group>"; };
 		E1FA9C2C1C1BFC690077C09A /* Swifty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Swifty.swift; path = swifty/Swifty.swift; sourceTree = "<group>"; };
 		E1FA9C2E1C1BFC730077C09A /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Regular.ttf"; path = "font/Roboto-Regular.ttf"; sourceTree = "<group>"; };
-		E1FA9C341C1BFCC60077C09A /* SchedulerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchedulerTableViewController.swift; path = schedule/SchedulerTableViewController.swift; sourceTree = "<group>"; };
-		E1FA9C351C1BFCC60077C09A /* ScheduleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleController.swift; path = schedule/ScheduleController.swift; sourceTree = "<group>"; };
+		E1FA9C341C1BFCC60077C09A /* SchedulerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchedulerTableViewController.swift; path = devoxxApp/schedule/SchedulerTableViewController.swift; sourceTree = "<group>"; };
+		E1FA9C351C1BFCC60077C09A /* ScheduleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleController.swift; path = devoxxApp/schedule/ScheduleController.swift; sourceTree = "<group>"; };
 		E1FA9C3A1C1BFCF80077C09A /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapController.swift; path = map/MapController.swift; sourceTree = "<group>"; };
-		E1FA9C3D1C1BFD010077C09A /* CellDataViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellDataViewCell.swift; path = speaker/CellDataViewCell.swift; sourceTree = "<group>"; };
+		E1FA9C3D1C1BFD010077C09A /* CellDataViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CellDataViewCell.swift; path = devoxxApp/speaker/CellDataViewCell.swift; sourceTree = "<group>"; };
 		E1FA9C421C1BFD400077C09A /* Slot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Slot.swift; path = model/coreData/Slot.swift; sourceTree = "<group>"; };
 		E1FA9C431C1BFD400077C09A /* Talk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Talk.swift; path = model/coreData/Talk.swift; sourceTree = "<group>"; };
 		E1FA9C471C1BFD560077C09A /* SlotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SlotHelper.swift; path = model/helper/SlotHelper.swift; sourceTree = "<group>"; };
@@ -425,7 +405,7 @@
 		E1FB6D5F1C865FD700D13082 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		E1FB6D611C86601800D13082 /* DayHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayHelper.swift; sourceTree = "<group>"; };
 		E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractDetailsController.swift; sourceTree = "<group>"; };
-		E1FB6D671C8C45C600D13082 /* HotReloadProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotReloadProtocol.swift; sourceTree = "<group>"; };
+		E1FB6D671C8C45C600D13082 /* HotReloadProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HotReloadProtocol.swift; path = ../HotReloadProtocol.swift; sourceTree = "<group>"; };
 		E1FB6D691C8C47CD00D13082 /* APIReloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIReloadManager.swift; sourceTree = "<group>"; };
 		E1FB6D6D1C8C5E9800D13082 /* StarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarView.swift; sourceTree = "<group>"; };
 		E1FB6D6F1C8CFE4A00D13082 /* RateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateView.swift; sourceTree = "<group>"; };
@@ -450,20 +430,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		580B78881C7A07A100060C00 /* bundledImages */ = {
+		580B78881C7A07A100060C00 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				E1FA9C0B1C1BFBE30077C09A /* icon */,
-				587797471C8206A800A1A7D5 /* background */,
-				587797461C82067F00A1A7D5 /* wheel */,
-				587797451C82067700A1A7D5 /* logo */,
-				587797441C82063A00A1A7D5 /* icons */,
-				587797431C82062E00A1A7D5 /* floors */,
+				587797451C82067700A1A7D5 /* Logo */,
+				587797461C82067F00A1A7D5 /* Wheel */,
+				587797471C8206A800A1A7D5 /* Background */,
+				E175F26D1C49ACEF00D7AC0A /* Checkbox */,
+				58195BFB1C35867500F56A30 /* TalkType */,
+				E1FA9C0D1C1BFBFE0077C09A /* Track */,
+				E1FA9C0C1C1BFBF80077C09A /* Tab */,
+				587797441C82063A00A1A7D5 /* Icon */,
+				587797431C82062E00A1A7D5 /* Floors */,
 			);
-			name = bundledImages;
+			name = Images;
+			path = devoxxApp;
 			sourceTree = "<group>";
 		};
-		58195BFB1C35867500F56A30 /* talkType */ = {
+		58195BFB1C35867500F56A30 /* TalkType */ = {
 			isa = PBXGroup;
 			children = (
 				58A465C31C87AD12006B6D46 /* icon_wm.png */,
@@ -478,10 +462,10 @@
 				58195C001C35868400F56A30 /* icon_key.png */,
 				58195C011C35868400F56A30 /* icon_quick.png */,
 			);
-			name = talkType;
+			name = TalkType;
 			sourceTree = "<group>";
 		};
-		587797431C82062E00A1A7D5 /* floors */ = {
+		587797431C82062E00A1A7D5 /* Floors */ = {
 			isa = PBXGroup;
 			children = (
 				580B78891C7A07AF00060C00 /* DevoxxFRExhibitionTablet.jpg */,
@@ -491,19 +475,21 @@
 				580B788D1C7A07AF00060C00 /* devoxxCinameFloorPhone.jpg */,
 				580B788E1C7A07AF00060C00 /* devoxxExhibitionFloorPhone.jpg */,
 			);
-			name = floors;
+			name = Floors;
 			sourceTree = "<group>";
 		};
-		587797441C82063A00A1A7D5 /* icons */ = {
+		587797441C82063A00A1A7D5 /* Icon */ = {
 			isa = PBXGroup;
 			children = (
-				58EC131B1C8464E000958070 /* tabIconSettings@2x.png */,
+				584FED741C8EF8940037A3E1 /* ic_rate.png */,
+				580B78AF1C7A8BE100060C00 /* up@2x.png */,
+				580B78AD1C7A8B9600060C00 /* down@2x.png */,
+				580CD2AB1C7E613300152E4C /* star@2x.png */,
+				580CD2A91C7E5F9400152E4C /* micro@2x.png */,
+				580CD2A71C7E5E3900152E4C /* location@2x.png */,
 				580B78A91C7A884800060C00 /* event.png */,
 				584FED7C1C90A6790037A3E1 /* ic_filter_inactive@2x.png */,
 				584FED7D1C90A6790037A3E1 /* ic_filter_active@2x.png */,
-				58C6A8171C74A171005CDCA1 /* filterWhite@2x.png */,
-				E17DFF3C1C72884F00A09547 /* filter@2x.png */,
-				580B78781C76771800060C00 /* speaker@2x.jpg */,
 				580B78B11C7BA8AB00060C00 /* cofeeCup.png */,
 				587797411C81D82300A1A7D5 /* ic_back@2x.png */,
 				580CD2AD1C7E653C00152E4C /* ic_microphone@2x.png */,
@@ -512,19 +498,19 @@
 				580CD2B11C7E65E300152E4C /* ic_star@2x.png */,
 				5877973F1C81CC8000A1A7D5 /* ic_twitter@2x.png */,
 			);
-			name = icons;
+			name = Icon;
 			sourceTree = "<group>";
 		};
-		587797451C82067700A1A7D5 /* logo */ = {
+		587797451C82067700A1A7D5 /* Logo */ = {
 			isa = PBXGroup;
 			children = (
 				5895EB821C66683600229780 /* logo.png */,
 				5895EB871C66683600229780 /* devoxx.svg.png */,
 			);
-			name = logo;
+			name = Logo;
 			sourceTree = "<group>";
 		};
-		587797461C82067F00A1A7D5 /* wheel */ = {
+		587797461C82067F00A1A7D5 /* Wheel */ = {
 			isa = PBXGroup;
 			children = (
 				5895EB9A1C66684000229780 /* globe.png */,
@@ -534,10 +520,10 @@
 				5895EB861C66683600229780 /* splash_btn_DV15@2x.png */,
 				5895EB881C66683600229780 /* splash_btn_DevoxxMA2015@2x.png */,
 			);
-			name = wheel;
+			name = Wheel;
 			sourceTree = "<group>";
 		};
-		587797471C8206A800A1A7D5 /* background */ = {
+		587797471C8206A800A1A7D5 /* Background */ = {
 			isa = PBXGroup;
 			children = (
 				588CFDCF1C80C77100DEC1E6 /* talk_background.png */,
@@ -547,68 +533,33 @@
 				5895EB8C1C66683600229780 /* DevoxxPolandHomePage.jpg */,
 				5895EB8D1C66683600229780 /* DevoxxBelgiumHomePage.jpg */,
 			);
-			name = background;
+			name = Background;
 			sourceTree = "<group>";
 		};
-		587797481C8206C200A1A7D5 /* font */ = {
+		587797481C8206C200A1A7D5 /* Font */ = {
 			isa = PBXGroup;
 			children = (
 				E1FA9C2E1C1BFC730077C09A /* Roboto-Regular.ttf */,
 				5895EB9B1C66684000229780 /* pirulen.ttf */,
 			);
-			name = font;
-			sourceTree = "<group>";
-		};
-		58A38EA01C8371B500C2DFE2 /* ScheduleCellView */ = {
-			isa = PBXGroup;
-			children = (
-				58A38EA11C8371C800C2DFE2 /* LeftIconView.swift */,
-				58A38EA31C8371D800C2DFE2 /* TopTitleView.swift */,
-				58A38EA51C8371F900C2DFE2 /* BottomDetailsView.swift */,
-				58A38EA71C83727000C2DFE2 /* RightTextView.swift */,
-				5842E4361C83734400998F9C /* ScheduleCellView.swift */,
-				58EC13191C83A7D700958070 /* ScheduleBreakCell.swift */,
-			);
-			name = ScheduleCellView;
+			name = Font;
+			path = devoxxApp;
 			sourceTree = "<group>";
 		};
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
-				E175E5E61C947294002A262A /* File.swift */,
-				E136DF1E1C92163A00BB1A0C /* Speakers */,
-				58631DE91C8E3C7A00070833 /* QRCodeScannerController.swift */,
-				E1FB6D711C8D0D2B00D13082 /* ButtonView.swift */,
-				58EC131F1C863E5700958070 /* APIDataManager.swift */,
 				E10E7AC21C18BF7100F6220B /* AppDelegate.swift */,
-				E10E7AEF1C1957F300F6220B /* APIManager.swift */,
-				58EC131D1C846F2100958070 /* SettingsController.swift */,
-				580BB8571C8E10490005274C /* RateTableViewController.swift */,
-				58A38EA01C8371B500C2DFE2 /* ScheduleCellView */,
-				E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */,
-				E18046021C1DD220001AAD85 /* TalkDetailsController.swift */,
-				E1FB6D691C8C47CD00D13082 /* APIReloadManager.swift */,
-				E1FB6D6D1C8C5E9800D13082 /* StarView.swift */,
-				E1FB6D6F1C8CFE4A00D13082 /* RateView.swift */,
-				587796FA1C81207B00A1A7D5 /* SpeakerDetailsController.swift */,
-				E1FB6D671C8C45C600D13082 /* HotReloadProtocol.swift */,
-				5877973B1C81C38A00A1A7D5 /* ActionButtonView.swift */,
-				588CFFAA1C811C5200DEC1E6 /* ColoredHeaderView.swift */,
-				588CFDD11C80F9A400DEC1E6 /* SpeakerListView.swift */,
-				580CD2A51C7E5A4100152E4C /* TopInfoDetailView.swift */,
-				580CD2A11C7DDA7900152E4C /* AllDetailsView.swift */,
-				580CD29F1C7DCFD900152E4C /* SimpleDetailView.swift */,
-				580B78A71C7A78A200060C00 /* HeaderView.swift */,
-				580B786A1C74FD9A00060C00 /* SpeakerCell.swift */,
-				580B78951C7A10E100060C00 /* HomeHeaderView.swift */,
-				580B78971C7A11A800060C00 /* HomeWheelView.swift */,
-				580B78991C7A11B700060C00 /* HomeGoButtonView.swift */,
-				580B789B1C7A11DD00060C00 /* HomeNumberView.swift */,
-				5895EB9E1C66698800229780 /* ViewController.swift */,
-				584FED781C8F94720037A3E1 /* TrackController.swift */,
-				584FED761C8F8FAE0037A3E1 /* TrackTableViewController.swift */,
-				588CFDD31C80F9FC00DEC1E6 /* GobalDetailView.swift */,
-				587797391C81345A00A1A7D5 /* SelectionWheel.swift */,
+				E175E5F61C962295002A262A /* Views */,
+				E175E5F41C962257002A262A /* Controllers */,
+				E175E5F71C9624A3002A262A /* Manager */,
+				E175F26F1C49AF4200D7AC0A /* Protocol */,
+				587797481C8206C200A1A7D5 /* Font */,
+				E175E5D71C93BF37002A262A /* Service */,
+				E1FA9BE91C1BE59A0077C09A /* ThirdParty */,
+				580B78881C7A07A100060C00 /* Images */,
+				E175F2741C49B18E00D7AC0A /* Mock */,
+				E1FA9C401C1BFD2D0077C09A /* Model */,
 				E10E7ABF1C18BF7100F6220B /* devoxxApp */,
 				E10E7AD81C18BF7100F6220B /* devoxxAppTests */,
 				E10E7ABE1C18BF7100F6220B /* Products */,
@@ -627,16 +578,6 @@
 		E10E7ABF1C18BF7100F6220B /* devoxxApp */ = {
 			isa = PBXGroup;
 			children = (
-				587797481C8206C200A1A7D5 /* font */,
-				580B78881C7A07A100060C00 /* bundledImages */,
-				E175F2741C49B18E00D7AC0A /* mock */,
-				E175F26F1C49AF4200D7AC0A /* protocol */,
-				E1FA9C401C1BFD2D0077C09A /* model */,
-				E1FA9C391C1BFCED0077C09A /* speaker */,
-				E1FA9C381C1BFCE90077C09A /* map */,
-				E1FA9BE91C1BE59A0077C09A /* thirdPartyLibrary */,
-				E1FA9C2B1C1BFC3D0077C09A /* schedule */,
-				E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */,
 				E10E7ACC1C18BF7100F6220B /* Images.xcassets */,
 				E10E7ACE1C18BF7100F6220B /* LaunchScreen.xib */,
 				E10E7AC41C18BF7100F6220B /* My_Devoxx.xcdatamodeld */,
@@ -670,15 +611,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E136DF1E1C92163A00BB1A0C /* Speakers */ = {
-			isa = PBXGroup;
-			children = (
-				E136DF1F1C9216AB00BB1A0C /* SpeakerProtocol.swift */,
-			);
-			name = Speakers;
-			sourceTree = "<group>";
-		};
-		E175E5D71C93BF37002A262A /* service */ = {
+		E175E5D71C93BF37002A262A /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				E175E5EA1C948DF8002A262A /* StoredResourceService.swift */,
@@ -696,58 +629,135 @@
 				E175E5F01C961AB5002A262A /* TrackService.swift */,
 				E175E5F21C961AD7002A262A /* TalkTypeService.swift */,
 			);
-			name = service;
+			name = Service;
+			path = devoxxApp;
 			sourceTree = "<group>";
 		};
-		E175F2621C485AF200D7AC0A /* view */ = {
+		E175E5F41C962257002A262A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E175F26C1C49A42300D7AC0A /* cell */,
-				E175F2641C485B0D00D7AC0A /* SchedulerTableView.swift */,
-				E175F26A1C4867F300D7AC0A /* FilterTableView.swift */,
+				E175E5F81C962511002A262A /* Scheduler */,
+				E1FA9C381C1BFCE90077C09A /* Map */,
+				E175E5F51C96226A002A262A /* DetailControllers */,
+				58EC131D1C846F2100958070 /* SettingsController.swift */,
+				5872861A1C1F565C00FC098A /* SpeakerTableController.swift */,
+				58631DE91C8E3C7A00070833 /* QRCodeScannerController.swift */,
+				580BB8571C8E10490005274C /* RateTableViewController.swift */,
+				584FED781C8F94720037A3E1 /* TrackController.swift */,
+				584FED761C8F8FAE0037A3E1 /* TrackTableViewController.swift */,
+				5895EB9E1C66698800229780 /* ViewController.swift */,
 			);
-			name = view;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
-		E175F2631C485AF800D7AC0A /* controller */ = {
+		E175E5F51C96226A002A262A /* DetailControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E1FB6D651C8C3DA200D13082 /* AbstractDetailsController.swift */,
+				587796FA1C81207B00A1A7D5 /* SpeakerDetailsController.swift */,
+				E18046021C1DD220001AAD85 /* TalkDetailsController.swift */,
+			);
+			name = DetailControllers;
+			sourceTree = "<group>";
+		};
+		E175E5F61C962295002A262A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E175F2751C52A50C00D7AC0A /* ScheduleControllerView.swift */,
+				E1FA9C3D1C1BFD010077C09A /* CellDataViewCell.swift */,
+				580B786A1C74FD9A00060C00 /* SpeakerCell.swift */,
+				58A38EA11C8371C800C2DFE2 /* LeftIconView.swift */,
+				58A38EA31C8371D800C2DFE2 /* TopTitleView.swift */,
+				58A38EA51C8371F900C2DFE2 /* BottomDetailsView.swift */,
+				58A38EA71C83727000C2DFE2 /* RightTextView.swift */,
+				5842E4361C83734400998F9C /* ScheduleCellView.swift */,
+				58EC13191C83A7D700958070 /* ScheduleBreakCell.swift */,
+				58195C121C359A4E00F56A30 /* FilterViewCell.swift */,
+				E175F2641C485B0D00D7AC0A /* SchedulerTableView.swift */,
+				E175F26A1C4867F300D7AC0A /* FilterTableView.swift */,
+				E1FB6D711C8D0D2B00D13082 /* ButtonView.swift */,
+				E1FB6D6D1C8C5E9800D13082 /* StarView.swift */,
+				E1FB6D6F1C8CFE4A00D13082 /* RateView.swift */,
+				580B78A71C7A78A200060C00 /* HeaderView.swift */,
+				5877973B1C81C38A00A1A7D5 /* ActionButtonView.swift */,
+				580CD2A51C7E5A4100152E4C /* TopInfoDetailView.swift */,
+				588CFFAA1C811C5200DEC1E6 /* ColoredHeaderView.swift */,
+				580B78971C7A11A800060C00 /* HomeWheelView.swift */,
+				588CFDD11C80F9A400DEC1E6 /* SpeakerListView.swift */,
+				580CD29F1C7DCFD900152E4C /* SimpleDetailView.swift */,
+				580CD2A11C7DDA7900152E4C /* AllDetailsView.swift */,
+				580B78951C7A10E100060C00 /* HomeHeaderView.swift */,
+				580B789B1C7A11DD00060C00 /* HomeNumberView.swift */,
+				580B78991C7A11B700060C00 /* HomeGoButtonView.swift */,
+				588CFDD31C80F9FC00DEC1E6 /* GobalDetailView.swift */,
+				587797391C81345A00A1A7D5 /* SelectionWheel.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		E175E5F71C9624A3002A262A /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				E1FA9BED1C1BF4E70077C09A /* ColorManager.swift */,
+				58EC131F1C863E5700958070 /* APIDataManager.swift */,
+				E10E7AEF1C1957F300F6220B /* APIManager.swift */,
+				E1FB6D691C8C47CD00D13082 /* APIReloadManager.swift */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		E175E5F81C962511002A262A /* Scheduler */ = {
 			isa = PBXGroup;
 			children = (
 				E1FA9C351C1BFCC60077C09A /* ScheduleController.swift */,
 				58D7C6561C271CC00072FE63 /* FilterTableViewController.swift */,
 				E1FA9C341C1BFCC60077C09A /* SchedulerTableViewController.swift */,
 			);
-			name = controller;
+			name = Scheduler;
 			sourceTree = "<group>";
 		};
-		E175F26C1C49A42300D7AC0A /* cell */ = {
+		E175E5F91C962586002A262A /* DV15 */ = {
 			isa = PBXGroup;
 			children = (
-				E175F2751C52A50C00D7AC0A /* ScheduleControllerView.swift */,
-				E1FA9C3D1C1BFD010077C09A /* CellDataViewCell.swift */,
-				58195C121C359A4E00F56A30 /* FilterViewCell.swift */,
+				58A465B71C879755006B6D46 /* DV15-proposalTypes.json */,
+				58A465B81C879755006B6D46 /* DV15-tracks.json */,
+				58EC13211C86400800958070 /* DV15-conferences.json */,
+				E175F2581C46FFAD00D7AC0A /* DV15-monday.json */,
+				E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */,
+				E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */,
+				E175F25B1C46FFAD00D7AC0A /* DV15-thursday.json */,
+				E127E6651C39709300FB7E4F /* DV15-friday.json */,
+				E127E6671C39709300FB7E4F /* DV15-speakers.json */,
 			);
-			name = cell;
+			name = DV15;
 			sourceTree = "<group>";
 		};
-		E175F26D1C49ACEF00D7AC0A /* checkbox */ = {
+		E175E5FA1C962597002A262A /* DEVOXXFR2016 */ = {
+			isa = PBXGroup;
+			children = (
+				58A465B51C879755006B6D46 /* DEVOXXFR2016-tracks.json */,
+				58A465B61C879755006B6D46 /* DEVOXXFR2016-proposalTypes.json */,
+				58A465B31C87963D006B6D46 /* DevoxxFR2016-speaker.json */,
+				58EC13291C865A8A00958070 /* DevoxxFR2016-friday.json */,
+				58EC132A1C865A8A00958070 /* DevoxxFR2016-thursday.json */,
+				58EC132B1C865A8A00958070 /* DevoxxFR2016-wednesday.json */,
+				58EC132C1C865A8A00958070 /* DevoxxFR2016-tuesday.json */,
+				58EC132D1C865A8A00958070 /* DevoxxFR2016-monday.json */,
+				58EC13271C86576D00958070 /* DevoxxFR2016-conferences.json */,
+			);
+			name = DEVOXXFR2016;
+			sourceTree = "<group>";
+		};
+		E175F26D1C49ACEF00D7AC0A /* Checkbox */ = {
 			isa = PBXGroup;
 			children = (
 				58195C141C359F7500F56A30 /* checkboxOff.png */,
 				58195C151C359F7500F56A30 /* checkboxOn.png */,
 			);
-			name = checkbox;
+			name = Checkbox;
 			sourceTree = "<group>";
 		};
-		E175F26E1C49ACFE00D7AC0A /* star */ = {
-			isa = PBXGroup;
-			children = (
-				58E3CC951C25CC6F00F24DAA /* StarOn@2x.png */,
-				58E3CC961C25CC6F00F24DAA /* StarOff@2x.png */,
-			);
-			name = star;
-			sourceTree = "<group>";
-		};
-		E175F26F1C49AF4200D7AC0A /* protocol */ = {
+		E175F26F1C49AF4200D7AC0A /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
 				E10CE1A51C2BD0CB002C9934 /* FeedableProtocol.swift */,
@@ -756,80 +766,50 @@
 				E127E65F1C38313200FB7E4F /* SearchableTableProtocol.swift */,
 				E175F2701C49AF7B00D7AC0A /* ScrollableTableProtocol.swift */,
 				E175F2721C49B01A00D7AC0A /* SearchableItemProtocol.swift */,
+				E127E6591C38212100FB7E4F /* FilterableTableProtocol.swift */,
 				E10CE19D1C2BB6BE002C9934 /* CellDataProtocol.swift */,
+				E136DF1F1C9216AB00BB1A0C /* SpeakerProtocol.swift */,
 				E175E5D21C93AE0B002A262A /* FavoritableProtocol.swift */,
+				E1FB6D671C8C45C600D13082 /* HotReloadProtocol.swift */,
 			);
-			name = protocol;
+			name = Protocol;
+			path = devoxxApp;
 			sourceTree = "<group>";
 		};
-		E175F2741C49B18E00D7AC0A /* mock */ = {
+		E175F2741C49B18E00D7AC0A /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				58A465B51C879755006B6D46 /* DEVOXXFR2016-tracks.json */,
-				58A465B61C879755006B6D46 /* DEVOXXFR2016-proposalTypes.json */,
-				584FED741C8EF8940037A3E1 /* ic_rate.png */,
-				58A465B71C879755006B6D46 /* DV15-proposalTypes.json */,
-				58A465B81C879755006B6D46 /* DV15-tracks.json */,
-				58A465B31C87963D006B6D46 /* DevoxxFR2016-speaker.json */,
-				58EC13291C865A8A00958070 /* DevoxxFR2016-friday.json */,
-				58EC132A1C865A8A00958070 /* DevoxxFR2016-thursday.json */,
-				58EC132B1C865A8A00958070 /* DevoxxFR2016-wednesday.json */,
-				58EC132C1C865A8A00958070 /* DevoxxFR2016-tuesday.json */,
-				58EC132D1C865A8A00958070 /* DevoxxFR2016-monday.json */,
-				58EC13271C86576D00958070 /* DevoxxFR2016-conferences.json */,
-				58EC13211C86400800958070 /* DV15-conferences.json */,
+				E175E5FA1C962597002A262A /* DEVOXXFR2016 */,
+				E175E5F91C962586002A262A /* DV15 */,
 				580B78801C78956F00060C00 /* StoredResource.json */,
-				E175F2581C46FFAD00D7AC0A /* DV15-monday.json */,
-				E175F2591C46FFAD00D7AC0A /* DV15-tuesday.json */,
-				E175F25A1C46FFAD00D7AC0A /* DV15-wednesday.json */,
-				E175F25B1C46FFAD00D7AC0A /* DV15-thursday.json */,
-				E127E6651C39709300FB7E4F /* DV15-friday.json */,
-				E127E6661C39709300FB7E4F /* Slot.json */,
-				E127E6671C39709300FB7E4F /* DV15-speakers.json */,
-				E127E6681C39709400FB7E4F /* TalkType.json */,
-				E127E6691C39709400FB7E4F /* Track.json */,
 				5895EB7E1C66635100229780 /* Cfp.json */,
 			);
-			name = mock;
+			name = Mock;
+			path = devoxxApp;
 			sourceTree = "<group>";
 		};
-		E1FA9BE91C1BE59A0077C09A /* thirdPartyLibrary */ = {
+		E1FA9BE91C1BE59A0077C09A /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
 				E1FA9C2C1C1BFC690077C09A /* Swifty.swift */,
 			);
-			name = thirdPartyLibrary;
+			name = ThirdParty;
+			path = devoxxApp;
 			sourceTree = "<group>";
 		};
-		E1FA9C0B1C1BFBE30077C09A /* icon */ = {
+		E1FA9C0C1C1BFBF80077C09A /* Tab */ = {
 			isa = PBXGroup;
 			children = (
-				580B78AF1C7A8BE100060C00 /* up@2x.png */,
-				580B78AD1C7A8B9600060C00 /* down@2x.png */,
-				580CD2AB1C7E613300152E4C /* star@2x.png */,
-				580CD2A91C7E5F9400152E4C /* micro@2x.png */,
-				580CD2A71C7E5E3900152E4C /* location@2x.png */,
-				E175F26E1C49ACFE00D7AC0A /* star */,
-				E175F26D1C49ACEF00D7AC0A /* checkbox */,
-				58195BFB1C35867500F56A30 /* talkType */,
-				E1FA9C0D1C1BFBFE0077C09A /* track */,
-				E1FA9C0C1C1BFBF80077C09A /* tab */,
-			);
-			name = icon;
-			sourceTree = "<group>";
-		};
-		E1FA9C0C1C1BFBF80077C09A /* tab */ = {
-			isa = PBXGroup;
-			children = (
+				58EC131B1C8464E000958070 /* tabIconSettings@2x.png */,
 				E1FA9C221C1BFC1E0077C09A /* tabIconMap@2x.png */,
 				584FED7A1C8F9EDE0037A3E1 /* tabIconTracks@2x.png */,
 				E1FA9C231C1BFC1E0077C09A /* tabIconSchedule@2x.png */,
 				E1FA9C241C1BFC1E0077C09A /* tabIconSpeaker@2x.png */,
 			);
-			name = tab;
+			name = Tab;
 			sourceTree = "<group>";
 		};
-		E1FA9C0D1C1BFBFE0077C09A /* track */ = {
+		E1FA9C0D1C1BFBFE0077C09A /* Track */ = {
 			isa = PBXGroup;
 			children = (
 				58A465BD1C87AC85006B6D46 /* icon_bigd.png */,
@@ -846,48 +826,30 @@
 				E1FA9C161C1BFC150077C09A /* icon_startup.png */,
 				E1FA9C171C1BFC150077C09A /* icon_web.png */,
 			);
-			name = track;
+			name = Track;
 			sourceTree = "<group>";
 		};
-		E1FA9C2B1C1BFC3D0077C09A /* schedule */ = {
-			isa = PBXGroup;
-			children = (
-				E175F2631C485AF800D7AC0A /* controller */,
-				E175F2621C485AF200D7AC0A /* view */,
-				E127E6591C38212100FB7E4F /* FilterableTableProtocol.swift */,
-			);
-			name = schedule;
-			sourceTree = "<group>";
-		};
-		E1FA9C381C1BFCE90077C09A /* map */ = {
+		E1FA9C381C1BFCE90077C09A /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				E1FA9C3A1C1BFCF80077C09A /* MapController.swift */,
 				580B78701C766BDD00060C00 /* MapTabController.swift */,
-				580B786E1C76688400060C00 /* GenericPageScrollController.swift */,
 			);
-			name = map;
+			name = Map;
+			path = devoxxApp;
 			sourceTree = "<group>";
 		};
-		E1FA9C391C1BFCED0077C09A /* speaker */ = {
+		E1FA9C401C1BFD2D0077C09A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5872861A1C1F565C00FC098A /* SpeakerTableController.swift */,
+				E1FA9C461C1BFD480077C09A /* Helper */,
+				E1FA9C411C1BFD330077C09A /* CoreData */,
 			);
-			name = speaker;
+			name = Model;
+			path = devoxxApp;
 			sourceTree = "<group>";
 		};
-		E1FA9C401C1BFD2D0077C09A /* model */ = {
-			isa = PBXGroup;
-			children = (
-				E175E5D71C93BF37002A262A /* service */,
-				E1FA9C461C1BFD480077C09A /* helper */,
-				E1FA9C411C1BFD330077C09A /* coreData */,
-			);
-			name = model;
-			sourceTree = "<group>";
-		};
-		E1FA9C411C1BFD330077C09A /* coreData */ = {
+		E1FA9C411C1BFD330077C09A /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				5895EB7B1C6662F300229780 /* Cfp.swift */,
@@ -903,10 +865,10 @@
 				58EC13231C8640FE00958070 /* StoredResource.swift */,
 				E1FB6D5F1C865FD700D13082 /* Day.swift */,
 			);
-			name = coreData;
+			name = CoreData;
 			sourceTree = "<group>";
 		};
-		E1FA9C461C1BFD480077C09A /* helper */ = {
+		E1FA9C461C1BFD480077C09A /* Helper */ = {
 			isa = PBXGroup;
 			children = (
 				E10CE1A31C2BC1F2002C9934 /* DataHelperProtocol.swift */,
@@ -924,7 +886,7 @@
 				58EC13251C86423700958070 /* StoredResourceHelper.swift */,
 				E1FB6D611C86601800D13082 /* DayHelper.swift */,
 			);
-			name = helper;
+			name = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1027,7 +989,6 @@
 				E175F25F1C46FFAD00D7AC0A /* DV15-thursday.json in Resources */,
 				58195C0B1C35871600F56A30 /* icon_other.png in Resources */,
 				58195C171C359F7500F56A30 /* checkboxOn.png in Resources */,
-				58E3CC981C25CC6F00F24DAA /* StarOff@2x.png in Resources */,
 				580B78811C78956F00060C00 /* StoredResource.json in Resources */,
 				587797401C81CC8000A1A7D5 /* ic_twitter@2x.png in Resources */,
 				58195C161C359F7500F56A30 /* checkboxOff.png in Resources */,
@@ -1060,7 +1021,6 @@
 				5895EB7F1C66635100229780 /* Cfp.json in Resources */,
 				58EC132E1C865A8A00958070 /* DevoxxFR2016-friday.json in Resources */,
 				5895EB921C66683600229780 /* splash_btn_DV15@2x.png in Resources */,
-				E17DFF3D1C72884F00A09547 /* filter@2x.png in Resources */,
 				E1FA9C251C1BFC1E0077C09A /* tabIconMap@2x.png in Resources */,
 				58EC132F1C865A8A00958070 /* DevoxxFR2016-thursday.json in Resources */,
 				58195C051C35868400F56A30 /* icon_ignite.png in Resources */,
@@ -1074,12 +1034,10 @@
 				E1FA9C201C1BFC150077C09A /* icon_startup.png in Resources */,
 				5895EB951C66683600229780 /* DevoxxMoroccoHomePage.jpg in Resources */,
 				58195C021C35868400F56A30 /* icon_bof.png in Resources */,
-				E127E66B1C39709400FB7E4F /* Slot.json in Resources */,
 				E1FA9C1A1C1BFC150077C09A /* icon_future.png in Resources */,
 				E127E66A1C39709400FB7E4F /* DV15-friday.json in Resources */,
 				E175F25D1C46FFAD00D7AC0A /* DV15-tuesday.json in Resources */,
 				587797421C81D82300A1A7D5 /* ic_back@2x.png in Resources */,
-				E127E66D1C39709400FB7E4F /* TalkType.json in Resources */,
 				E1FA9C1C1C1BFC150077C09A /* icon_lang.png in Resources */,
 				58A465B91C879755006B6D46 /* DEVOXXFR2016-tracks.json in Resources */,
 				E1FA9C1D1C1BFC150077C09A /* icon_methodevops.png in Resources */,
@@ -1087,14 +1045,12 @@
 				580B78AA1C7A884800060C00 /* event.png in Resources */,
 				5895EB8F1C66683600229780 /* splash_btn_DevoxxPL2015@2x.png in Resources */,
 				5895EB971C66683600229780 /* DevoxxUKHomePage.jpg in Resources */,
-				580B78791C76771800060C00 /* speaker@2x.jpg in Resources */,
 				58A465BB1C879755006B6D46 /* DV15-proposalTypes.json in Resources */,
 				E1FA9C181C1BFC150077C09A /* icon_archisec.png in Resources */,
 				58195C071C35868400F56A30 /* icon_quick.png in Resources */,
 				58A465C41C87AD12006B6D46 /* icon_wm.png in Resources */,
 				5895EB991C66683600229780 /* DevoxxBelgiumHomePage.jpg in Resources */,
 				E175F25C1C46FFAD00D7AC0A /* DV15-monday.json in Resources */,
-				E127E66E1C39709400FB7E4F /* Track.json in Resources */,
 				58EC13311C865A8A00958070 /* DevoxxFR2016-tuesday.json in Resources */,
 				58A465B41C87963D006B6D46 /* DevoxxFR2016-speaker.json in Resources */,
 				584FED751C8EF8940037A3E1 /* ic_rate.png in Resources */,
@@ -1102,8 +1058,6 @@
 				580B78B21C7BA8AB00060C00 /* cofeeCup.png in Resources */,
 				E1FA9C1F1C1BFC150077C09A /* icon_ssj.png in Resources */,
 				5895EB931C66683600229780 /* devoxx.svg.png in Resources */,
-				58E3CC971C25CC6F00F24DAA /* StarOn@2x.png in Resources */,
-				58C6A8181C74A171005CDCA1 /* filterWhite@2x.png in Resources */,
 				584FED7B1C8F9EDE0037A3E1 /* tabIconTracks@2x.png in Resources */,
 				580B78B01C7A8BE100060C00 /* up@2x.png in Resources */,
 				58195C041C35868400F56A30 /* icon_lab.png in Resources */,
@@ -1212,10 +1166,8 @@
 				58EC131A1C83A7D700958070 /* ScheduleBreakCell.swift in Sources */,
 				E1FA9C2D1C1BFC690077C09A /* Swifty.swift in Sources */,
 				580B789A1C7A11B700060C00 /* HomeGoButtonView.swift in Sources */,
-				580B786F1C76688400060C00 /* GenericPageScrollController.swift in Sources */,
 				588CFFA71C81069600DEC1E6 /* SpeakerDetail.swift in Sources */,
 				58D7C6571C271CC00072FE63 /* FilterTableViewController.swift in Sources */,
-				E175E5E71C947294002A262A /* File.swift in Sources */,
 				E1FA9C3F1C1BFD010077C09A /* CellDataViewCell.swift in Sources */,
 				E10E7AF01C1957F300F6220B /* APIManager.swift in Sources */,
 				E1FA9C441C1BFD400077C09A /* Slot.swift in Sources */,

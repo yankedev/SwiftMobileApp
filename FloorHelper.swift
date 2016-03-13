@@ -17,7 +17,7 @@ class FloorHelper: DataHelperProtocol {
     var target: String?
     
     func getMainId() -> String {
-        return ""
+        return id!
     }
     
     func typeName() -> String {

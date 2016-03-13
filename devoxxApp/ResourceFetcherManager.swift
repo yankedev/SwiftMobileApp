@@ -18,6 +18,9 @@ class ResourceFetcherManager {
             return false
         }
         
+        if NSURL(string: url!) == nil {
+            return false
+        }
         if map[url!] == nil {
             map[url!] = NSDate()
             return true

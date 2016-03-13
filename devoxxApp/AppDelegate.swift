@@ -20,12 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        UITextView()
-        
+
         APIManager.firstFeed(resourceReady, service: StoredResourceService.sharedInstance)
         
-
         let color = ColorManager.topNavigationBarColor
         UINavigationBar.appearance().barTintColor = color
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
