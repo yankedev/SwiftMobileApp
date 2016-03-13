@@ -38,7 +38,7 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
         })
 
     }
-    
+ 
     
     
     override func getHelper() -> DataHelperProtocol {

@@ -231,17 +231,19 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     
     public func fetchUpdate() {
-        //APIReloadManager.fetchImg(detailObject.getImageFullLink(), id: detailObject.getObjectId(), service:SpeakerService.sharedInstance, completedAction: fetchCompletedImg)
         APIReloadManager.fetchUpdate(fetchUrl(), service: SpeakerDetailService.sharedInstance, completedAction: fetchCompleted)
+        
+        
+        SpeakerService.sharedInstance.privateManagedObjectContext.refreshAllObjects()
+        
     }
     
     public func fetchCompleted(msg : String) -> Void {
-        SpeakerDetailService.sharedInstance.getSpeakerFromId(detailObject.getObjectId(), completionHandler : callBackUpdate)
-    }
-    
-    public func fetchCompletedImg(msg : String) -> Void {
+        
         SpeakerService.sharedInstance.getSpeakerFromId(detailObject.getObjectId(), completionHandler : callBackUpdate)
     }
+    
+    
     
     public func callBackUpdate(callBackObject : DetailableProtocol) {
         detailObject = callBackObject
@@ -249,6 +251,12 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         header.talkTrack.text = detailObject.getSubTitle()
         header.imageView.image = detailObject.getPrimaryImage()
         talkList.reloadData()
+        
+        APIReloadManager.fetchImg(detailObject.getImageFullLink(), id: detailObject.getObjectId(), service:SpeakerService.sharedInstance, completedAction: fetchCompletedImg)
+    }
+    
+    public func fetchCompletedImg(msg : String) -> Void {
+        header.imageView.image = detailObject.getPrimaryImage()
     }
     
     public func fetchUrl() -> String? {
