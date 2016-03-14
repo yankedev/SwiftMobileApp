@@ -258,10 +258,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     }
     
     public func fetchUrl() -> String? {
-        if ((detailObject.getFullLink()?.hasPrefix("http://localhost")) != nil) {
-            return detailObject.getFullLink()
-        }
-        return detailObject.getFullLink()?.stringByReplacingOccurrencesOfString("http://", withString: "https://")
+        return detailObject.getFullLink()
     }
     
     
