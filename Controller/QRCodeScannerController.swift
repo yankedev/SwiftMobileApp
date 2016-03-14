@@ -24,7 +24,7 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
     let supportedBarCodes = [AVMetadataObjectTypeQRCode]
     
     
-    public func cancel() {
+    func cancel() {
         dismissViewControllerAnimated(true, completion: nil)
     }
     

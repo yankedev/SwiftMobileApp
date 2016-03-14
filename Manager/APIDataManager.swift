@@ -111,7 +111,7 @@
                 
                 
                 
-                if let responseError = error {
+                if let _ = error {
                     
                     print("No internet for \(storedResource.url)")
                     print("Store callbal =  \(storedResource.fallback)")
@@ -160,7 +160,7 @@
                         
                         print("Error code for \(storedResource.url)")
                         
-                        let statusError = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
+                        let _ = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
                         
                         
                         if isCritical {

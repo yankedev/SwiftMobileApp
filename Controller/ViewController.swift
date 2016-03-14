@@ -207,7 +207,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             
             let defaults = NSUserDefaults.standardUserDefaults()
             
-            if let currentEventIndex = defaults.objectForKey("currentEvent") as? String {
+            if let _ = defaults.objectForKey("currentEvent") as? String {
                 print("SETTING 1 \(currentData.identifier())")
                 defaults.setObject(currentData.identifier(), forKey: "currentEvent")
                 print(currentData.identifier())

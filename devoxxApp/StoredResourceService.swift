@@ -74,26 +74,19 @@ class StoredResourceService : AbstractService {
         privateManagedObjectContext.performBlock {
             
             for singleHelper in helper {
-                do {
+               
+                let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
+                let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
                     
-                    let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
-                    let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
-                    
-                    if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-                        coreDataObjectCast.feedHelper(singleHelper)
-                    }
-
-                    
-                }
-                catch {
-                    print("not found")
+                if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+                    coreDataObjectCast.feedHelper(singleHelper)
                 }
 
             }
             
             self.realSave(completionHandler)
             
-            
+
         }
         
     }

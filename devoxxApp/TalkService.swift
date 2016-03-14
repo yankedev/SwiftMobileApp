@@ -88,15 +88,9 @@ class TalkService : AbstractService {
     }
     
     private func computePredicate(predicate : NSPredicate, searchPredicates : [String : [NSPredicate]]?) -> NSPredicate {
-        
-        
-        
+
         var andPredicate = [NSPredicate]()
-        let predicateEvent = NSPredicate(format: "slot.cfp.country = %@", super.getCfpId())
-        
         andPredicate.append(predicate)
-        //andPredicate.append(predicateEvent)
-        
         var attributeOrPredicate = [NSPredicate]()
         
         if searchPredicates?.count > 0 {

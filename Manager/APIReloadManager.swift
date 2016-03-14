@@ -43,7 +43,7 @@ class APIReloadManager {
             let task = session.dataTaskWithURL(NSURL(string: url!)!) {
                 data, response1, error in
                 
-                if let responseError = error {
+                if let _ = error {
                     //print("error for \(url)")
                 }
                 else {
