@@ -477,7 +477,9 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     func failure(msg : String) {
         print("Failure")
-        //dispatch_group_leave(group)
+        rotating = false
+        CfpService.sharedInstance.cfp = nil
+        dispatch_group_leave(group)
     }
     
     
@@ -487,7 +489,6 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     func firstFetching() {
         print("--- Begin bootstrap --- ")
-        
         dispatch_group_enter(group)
         print(CfpService.sharedInstance.getEntryPoint())
         
@@ -498,7 +499,17 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             print("--- End bootstrap --- ")
-            self.secondFetching()
+            if self.rotating {
+                self.secondFetching()
+            }
+            else {
+                    self.run_on_main_thread {
+                        let alert = UIAlertController(title: "No Data", message: "Please select another event", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "Sure !", style: UIAlertActionStyle.Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                }
+            }
+            
         });
         
     }

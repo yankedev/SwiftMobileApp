@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        //dunno why, first time UITextView is called, the UI freezes for about 1 sec, so by doing it here, the user wont be affected (workaround)
+        UITextView()
+        
         APIManager.firstFeed(resourceReady, service: StoredResourceService.sharedInstance)
         
         let color = ColorManager.topNavigationBarColor
