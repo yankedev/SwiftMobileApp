@@ -9,6 +9,10 @@
 import UIKit
 import CoreData
 
+//Fabric/CrashAnalytics
+import Fabric
+import Crashlytics
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -20,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        Fabric.with([Crashlytics.self])
         
         //dunno why, first time UITextView is called, the UI freezes for about 1 sec, so by doing it here, the user wont be affected (workaround)
         UITextView()

@@ -198,6 +198,8 @@
 		E175E8D21C9640B3002A262A /* ScheduleBreakCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E8D11C9640B3002A262A /* ScheduleBreakCell.swift */; };
 		E175E8D31C964172002A262A /* pirulen.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E175E7C31C963DEE002A262A /* pirulen.ttf */; };
 		E175E8D41C964172002A262A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E175E7C41C963DEE002A262A /* Roboto-Regular.ttf */; };
+		E1E9E4F91C977C9300EC347D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E9E4F71C977C9300EC347D /* Fabric.framework */; };
+		E1E9E4FA1C977C9300EC347D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E9E4F81C977C9300EC347D /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -406,6 +408,8 @@
 		E175E8CD1C96401A002A262A /* AllDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllDetailsView.swift; path = View/AllDetailsView.swift; sourceTree = "<group>"; };
 		E175E8CF1C964082002A262A /* SchedulerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchedulerTableView.swift; path = devoxxApp/SchedulerTableView.swift; sourceTree = "<group>"; };
 		E175E8D11C9640B3002A262A /* ScheduleBreakCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleBreakCell.swift; path = View/ScheduleBreakCell.swift; sourceTree = "<group>"; };
+		E1E9E4F71C977C9300EC347D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		E1E9E4F81C977C9300EC347D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -413,6 +417,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1E9E4FA1C977C9300EC347D /* Crashlytics.framework in Frameworks */,
+				E1E9E4F91C977C9300EC347D /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,6 +791,8 @@
 		E1FA9BE91C1BE59A0077C09A /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				E1E9E4F71C977C9300EC347D /* Fabric.framework */,
+				E1E9E4F81C977C9300EC347D /* Crashlytics.framework */,
 				E175E7951C963DBB002A262A /* Swifty.swift */,
 			);
 			name = ThirdParty;
@@ -893,6 +901,7 @@
 				E10E7AB91C18BF7100F6220B /* Sources */,
 				E10E7ABA1C18BF7100F6220B /* Frameworks */,
 				E10E7ABB1C18BF7100F6220B /* Resources */,
+				E1E9E4F61C977C3D00EC347D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1067,6 +1076,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E1E9E4F61C977C3D00EC347D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run a6ede11e280e265f7ecbc6e5fc2b2d2e984b73e6 f2b6eee201760230a1aceaa9985a46d1024eb87431422f0bde832b928900f2d5";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E10E7AB91C18BF7100F6220B /* Sources */ = {
@@ -1297,6 +1322,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/devoxxApp",
+				);
 				INFOPLIST_FILE = devoxxApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx;
@@ -1314,6 +1343,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/devoxxApp",
+				);
 				INFOPLIST_FILE = devoxxApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx;
