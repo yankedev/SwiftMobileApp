@@ -471,12 +471,12 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     
     func success(msg : String) {
-        print("Success \(msg)")
+        //print("Success \(msg)")
         dispatch_group_leave(group)
     }
     
     func failure(msg : String) {
-        print("Failure")
+        //print("Failure")
         rotating = false
         CfpService.sharedInstance.cfp = nil
         dispatch_group_leave(group)

@@ -64,7 +64,7 @@
         
         class func loadDataFromURL(url: String, service : AbstractService, helper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
             
-            print("Make request with : \(url)")
+            //print("Make request with : \(url)")
             
             return makeRequest(findResource(url)!, service : service, helper : service.getHelper(), isCritical : isCritical, onSuccess: onSuccess, onError: onError)
             
@@ -113,18 +113,18 @@
                 
                 if let _ = error {
                     
-                    print("No internet for \(storedResource.url)")
-                    print("Store callbal =  \(storedResource.fallback)")
+                    //print("No internet for \(storedResource.url)")
+                    //print("Store callbal =  \(storedResource.fallback)")
                     
                     
                     if isCritical {
                         
-                        print("critical call")
+                        //print("critical call")
                         
                         
                         let testBundle = NSBundle.mainBundle()
                         let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
-                        print("check for callback\(storedResource.fallback)")
+                        ////print("check for callback\(storedResource.fallback)")
                         if filePath != nil {
                             let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
                             if(checkString == nil) {
@@ -133,7 +133,7 @@
                             let fallbackData = NSData(contentsOfFile: filePath!)!
                             
                             
-                            print("fallBack data found")
+                            ////print("fallBack data found")
                             
                             APIManager.handleData(fallbackData, service: service, storedResource: storedResource, etag: nil, completionHandler: onSuccess)
                             
@@ -158,7 +158,7 @@
                 } else if let httpResponse = response1 as? NSHTTPURLResponse {
                     if httpResponse.statusCode != 200 && httpResponse.statusCode != 304  {
                         
-                        print("Error code for \(storedResource.url)")
+                        ////print("Error code for \(storedResource.url)")
                         
                         let _ = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
                         
@@ -188,7 +188,7 @@
                     }
                     else if httpResponse.statusCode == 304 {
                         
-                        print("304 for \(storedResource.url)")
+                        //print("304 for \(storedResource.url)")
                         
                         
                         if isCritical && service.isEmpty() {
@@ -216,7 +216,7 @@
                     }
                     else {
                         
-                        print("200 for \(storedResource.url)")
+                        //print("200 for \(storedResource.url)")
                         
                         APIManager.handleData(data!, service: service, storedResource: storedResource, etag : httpResponse.allHeaderFields["etag"] as? String, completionHandler: onSuccess)
                     }

@@ -44,7 +44,7 @@ class DayService : AbstractService {
                     
                     let fetchRequest = NSFetchRequest(entityName: "Day")
                     
-                    print("main id = \(singleHelper.getMainId())")
+                    //print("main id = \(singleHelper.getMainId())")
                     let predicate = NSPredicate(format: "url = %@", singleHelper.getMainId())
                     fetchRequest.predicate = predicate
                     let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)

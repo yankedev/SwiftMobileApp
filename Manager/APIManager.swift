@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import CoreData
 
+import Crashlytics
+
 
 
 let commonUrl:[String : [String]] = ["StoredResource" : ["StoredResource"], "Cfp" : ["Cfp"]]
@@ -48,6 +50,7 @@ class APIManager {
     
     
     class func getDateFromIndex(index : NSInteger, array: NSArray) -> NSDate {
+
         if index < array.count  {
             if let dict = array.objectAtIndex(index) as? NSDictionary {
                 return (dict.objectForKey("date") as? NSDate)!
@@ -77,27 +80,26 @@ class APIManager {
     
     class func handleData(inputData : NSData, service: AbstractService, storedResource : StoredResource?, etag : String?,completionHandler : (msg: String) -> Void) {
         
-        print("handle data for \(storedResource?.url)")
+        
+   
         
         let json = JSON(data: inputData)
         let arrayToParse = service.getHelper().prepareArray(json)
         var arrayHelper = [DataHelperProtocol]()
         
         
-        print("PRE INSIDE FOR \(storedResource?.url) - \(service) -  \(service.getHelper())")
         
         
         if let appArray = arrayToParse {
             
-            print("INSIDE FOR \(storedResource?.url)")
+            
             
             for appDict in appArray {
                 let newHelper = service.getHelper()
                 newHelper.feed(appDict)
                 arrayHelper.append(newHelper)
             }
-            print(appArray.count)
-            print(arrayHelper.count)
+
             service.updateWithHelper(arrayHelper, completionHandler: completionHandler)
         }
         
@@ -115,8 +117,25 @@ class APIManager {
         singleCommonFeed(completionHandler, service : service)
     }
     
+    
+    class func logUserCrash() {
+        // TODO: Use the current user's information
+        // You can call any combination of these three methods
+        Crashlytics.sharedInstance().setUserEmail("user@fabric.io")
+        Crashlytics.sharedInstance().setUserIdentifier("12345")
+        Crashlytics.sharedInstance().setUserName("Test User")
+    }
+
+    
     class func singleCommonFeed(completionHandler: (msg: String) -> Void, service : AbstractService) {
         
+    
+ 
+        
+    
+        
+        
+       
         
         let url = commonUrl[service.getHelper().entityName()]
         

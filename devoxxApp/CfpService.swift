@@ -193,7 +193,7 @@ class CfpService : AbstractService {
     func getCfp() -> NSManagedObjectID {
         
         if cfp != nil {
-            print("NOT NIL")
+            //print("NOT NIL")
             return cfp!
         }
         
