@@ -40,41 +40,19 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
     
     var devoxxAppFilterDelegate:DevoxxAppFilter?
     
-    lazy var fetchedResultsController: NSFetchedResultsController = {
-        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let managedContext = appDelegate.managedObjectContext!
-        
-        let fetchRequest = NSFetchRequest(entityName: "Attribute")
-        let sortSection = NSSortDescriptor(key: "type", ascending: true)
-        let sortAlpha = NSSortDescriptor(key: "label", ascending: true)
-        
-        let predicateEvent = NSPredicate(format: "cfp.id = %@", CfpService.sharedInstance.getCfpId())
-        
-        fetchRequest.sortDescriptors = [sortSection, sortAlpha]
-        fetchRequest.fetchBatchSize = 20
-        
-        fetchRequest.predicate = predicateEvent
-        
-        let frc = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
-            managedObjectContext: managedContext,
-            sectionNameKeyPath: "type",
-            cacheName: nil)
-        
-        frc.delegate = self
-        
-        return frc
-    }()
-    public func fetchAll() {
-        
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            // print("unresolved error \(error), \(error!.userInfo)")
-        }
+    var savedFetchedResult:NSFetchedResultsController!
+    
+    public func callBack(fetchedResult :NSFetchedResultsController?, error :AttributeStoreError?) {
+        savedFetchedResult = fetchedResult
         filterTableView.reloadData()
     }
+    
+    
+    public func fetchAll() {
+        AttributeService.sharedInstance.fetchFilters(self.callBack)
+    }
+
+    
     
     
     
@@ -117,7 +95,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
     
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Attribute {
+        if let track = savedFetchedResult.objectAtIndexPath(indexPath) as? Attribute {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as! FilterViewCell
             
             
@@ -222,7 +200,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
             cell?.configureCell()
         }
         
-        if let attribute = fetchedResultsController.objectAtIndexPath(indexPath) as? Attribute {
+        if let attribute = savedFetchedResult?.objectAtIndexPath(indexPath) as? Attribute {
             cell?.attributeTitle.text = attribute.label
             cell?.attributeImage.image = attribute.filterMiniIcon()
             
@@ -240,7 +218,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
     }
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if let sections = fetchedResultsController.sections {
+        if let sections = savedFetchedResult?.sections {
             return sections.count
         }
         
@@ -248,7 +226,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = fetchedResultsController.sections {
+        if let sections = savedFetchedResult?.sections {
             let currentSection = sections[section]
             return currentSection.numberOfObjects
         }
@@ -262,7 +240,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
     
     
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let sections = fetchedResultsController.sections {
+        if let sections = savedFetchedResult?.sections {
             let currentSection = sections[section]
             if currentSection.objects?.count > 0 {
                 if let currentSectionFilterable = currentSection.objects![0] as? FilterableProtocol {

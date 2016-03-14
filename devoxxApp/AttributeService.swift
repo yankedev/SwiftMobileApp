@@ -30,6 +30,43 @@ class AttributeService : AbstractService {
     
     static let sharedInstance = AttributeService()
     
+    
+    
+    func fetchFilters(completionHandler: (filters: NSFetchedResultsController?, error: AttributeStoreError?) -> Void) {
+        privateManagedObjectContext.performBlock {
+            do {
+        
+                let fetchRequest = NSFetchRequest(entityName: "Attribute")
+                let sortSection = NSSortDescriptor(key: "type", ascending: true)
+                let sortAlpha = NSSortDescriptor(key: "label", ascending: true)
+                
+                let predicateEvent = NSPredicate(format: "cfp.id = %@", CfpService.sharedInstance.getCfpId())
+                
+                fetchRequest.sortDescriptors = [sortSection, sortAlpha]
+                fetchRequest.fetchBatchSize = 20
+                
+                fetchRequest.predicate = predicateEvent
+                
+                let frc = NSFetchedResultsController(
+                    fetchRequest: fetchRequest,
+                    managedObjectContext: self.privateManagedObjectContext,
+                    sectionNameKeyPath: "type",
+                    cacheName: nil)
+                
+                try frc.performFetch()
+                dispatch_async(dispatch_get_main_queue(), {
+                    completionHandler(filters: frc, error: nil)
+                })
+            } catch {
+                dispatch_async(dispatch_get_main_queue(), {
+                    completionHandler(filters: nil, error: AttributeStoreError.CannotFetch("Cannot fetch attributes"))
+                })
+                
+            }
+        }
+    }
+
+    
     func fetchTracks(completionHandler: (attributes: [Attribute], error: AttributeStoreError?) -> Void) {
         privateManagedObjectContext.performBlock {
             do {
@@ -102,11 +139,7 @@ class AttributeService : AbstractService {
                             coreDataObject.setValue(cfp, forKey: "cfp")
                             
                         }
-                        
-                        
-                        
-                        
-                        
+ 
                     }
                     else {
               
@@ -136,14 +169,6 @@ class AttributeService : AbstractService {
         let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
         return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/proposalTypes"
     }
-    
-    
-
-   
-  
-    
-
-    
 
 
 }
