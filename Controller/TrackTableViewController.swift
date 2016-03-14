@@ -214,19 +214,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     }
     
     
-    func filterArray(currentArray : [AnyObject]) -> [AnyObject] {
-        
-        let filteredArray = currentArray.filter() {
-            if let type = $0 as? FavoriteProtocol {
-                return type.isFav()
-            } else {
-                return false
-            }
-        }
-        
-        return filteredArray
-        
-    }
+  
     
     
     

@@ -231,20 +231,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         
     }
     
-    func filterArray(currentArray : [AnyObject]) -> [AnyObject] {
         
-        let filteredArray = currentArray.filter() {
-            if let type = $0 as? FavoriteProtocol {
-                return type.isFav()
-            } else {
-                return false
-            }
-        }
-        
-        return filteredArray
-        
-    }
-    
     
     
     func filterSearchArray(currentArray : [AnyObject]) -> [AnyObject] {
