@@ -30,12 +30,12 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
     var scrollableDateTableDelegate: ScrollableDateTableDelegate?
     
     var allTracks:[Attribute]?
-
+    
     var allDates:NSArray!
-
+    
     var pageViewController : UIPageViewController!
     
-
+    
     var customView:ScheduleControllerView?
     
     init() {
@@ -75,7 +75,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
     }
     
     
-
+    
     
     
     
@@ -157,7 +157,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
         let controls = [demo]
         pageViewController?.setViewControllers(controls, direction: .Forward, animated: false, completion: nil)
         pushViewController(pageViewController!, animated: false)
-
+        
     }
     
     //ScrollableDateTableDelegate

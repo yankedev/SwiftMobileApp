@@ -11,9 +11,9 @@ import CoreData
 
 
 class Favorite: NSManagedObject {
-
+    
     @NSManaged var id: String?
     @NSManaged var isFavorited: NSNumber?
     @NSManaged var type: String?
-
+    
 }

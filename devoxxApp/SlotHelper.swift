@@ -39,14 +39,14 @@ class SlotHelper: DataHelperProtocol {
     }
     
     func feed(data: JSON) {
-    
+        
         roomName = data["roomName"].string
         slotId = data["slotId"].string
         fromTime = data["fromTime"].string
         toTime = data["toTime"].string
         day = data["day"].string
         fromTimeMillis = data["fromTimeMillis"].doubleValue
-   
+        
         let talkHelper = TalkHelper()
         
         let subData = talkHelper.prepareArray(data)
@@ -55,7 +55,7 @@ class SlotHelper: DataHelperProtocol {
         talkHelper.feed(subData![0])
         talk = talkHelper
     }
-
+    
     func entityName() -> String {
         return "Slot"
     }
@@ -67,5 +67,5 @@ class SlotHelper: DataHelperProtocol {
     func prepareArray(json : JSON) -> [JSON]? {
         return json["slots"].array
     }
-
+    
 }

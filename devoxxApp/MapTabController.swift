@@ -59,7 +59,7 @@ public class MapTabController : UIViewController {
         accessView.translatesAutoresizingMaskIntoConstraints = false
         
         currentView?.removeFromSuperview()
-     
+        
         currentView = UIView()
         accessView.addSubview(currentView!)
         
@@ -70,7 +70,7 @@ public class MapTabController : UIViewController {
         self.navigationItem.title = CfpService.sharedInstance.getAdress()
         
         
-            
+        
         
         
         
@@ -96,7 +96,7 @@ public class MapTabController : UIViewController {
         
         
         segZero()
-
+        
         
         
         
@@ -106,16 +106,16 @@ public class MapTabController : UIViewController {
     }
     
     func change(sender : UISegmentedControl) {
-       
+        
         
         if(sender.selectedSegmentIndex == 0) {
             segZero()
         }
         
         if(sender.selectedSegmentIndex > 0) {
-
+            
             let currentFloor = floors[sender.selectedSegmentIndex - 1]
-        
+            
             currentView?.removeFromSuperview()
             let v = UIImageView(frame: CGRectMake(0, 0, accessView.frame.width, accessView.frame.height))
             v.image = UIImage(data: currentFloor.imgData)
@@ -124,7 +124,7 @@ public class MapTabController : UIViewController {
         }
     }
     
-  
+    
     func segZero() {
         currentView?.removeFromSuperview()
         let controller = MapController()

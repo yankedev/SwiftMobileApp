@@ -73,17 +73,17 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
             try fetchedResultsController.performFetch()
         } catch let error1 as NSError {
             error = error1
-           // print("unresolved error \(error), \(error!.userInfo)")
+            // print("unresolved error \(error), \(error!.userInfo)")
         }
         filterTableView.reloadData()
     }
     
-  
+    
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-  
+        
         
         filterTableView.delegate = self
         filterTableView.dataSource = self
@@ -95,7 +95,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
         fetchAll()
     }
     
-  
+    
     func isFilterSelected(attribute : FilterableProtocol) -> Bool {
         if selected[attribute.filterPredicateLeftValue()] == nil  {
             return false
@@ -105,19 +105,19 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
         if let array = selected[attribute.filterPredicateLeftValue()] {
             for item in array {
                 if item.filterPredicateLeftValue() == attribute.filterPredicateLeftValue() &&
-                item.filterPredicateRightValue() == attribute.filterPredicateRightValue() {
-                    return true
+                    item.filterPredicateRightValue() == attribute.filterPredicateRightValue() {
+                        return true
                 }
             }
         }
-
+        
         return false
     }
     
-
-  
     
-
+    
+    
+    
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let track = fetchedResultsController.objectAtIndexPath(indexPath) as? Attribute {
             let cell = tableView.cellForRowAtIndexPath(indexPath) as! FilterViewCell
@@ -132,7 +132,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
                 let scale = CGAffineTransformMakeScale(0.1, 0.1)
                 let rotate = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
                 
-          
+                
                 
                 cell.tickedImg.transform = CGAffineTransformConcat(rotate, scale)
                 }, completion: { finished in
@@ -144,7 +144,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
                     let scale = CGAffineTransformMakeScale(0.1, 0.1)
                     let rotate = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
                     cell.tickedImg.transform = CGAffineTransformConcat(rotate, scale)
-
+                    
                     
                     UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseOut, animations: {
                         
@@ -156,7 +156,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
                         cell.tickedImg.transform = CGAffineTransformConcat(rotate, scale)
                         }, completion: { finished in
                             
-                           
+                            
                             let key = track.filterPredicateLeftValue()
                             
                             
@@ -187,32 +187,32 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
                                 attributeArray.append(track)
                                 self.selected[key] = attributeArray
                             }
-
+                            
                             cell.userInteractionEnabled = true
-                        
+                            
                             self.devoxxAppFilterDelegate?.filter(self.selected)
                             
-                    
+                            
                             
                         }
                     )
-
                     
-            }
+                    
+                }
             )
             
         }
         
         
         
-       
+        
     }
-
     
-   
     
-
-
+    
+    
+    
+    
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL_1") as? FilterViewCell
@@ -261,7 +261,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 44
     }
-   
+    
     
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = fetchedResultsController.sections {

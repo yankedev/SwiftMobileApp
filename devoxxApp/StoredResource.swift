@@ -16,7 +16,7 @@ class StoredResource: NSManagedObject, FeedableProtocol {
     @NSManaged var url: String
     @NSManaged var etag: String
     @NSManaged var fallback: String
-
+    
     func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? StoredResourceHelper  {
             url = castHelper.url ?? ""

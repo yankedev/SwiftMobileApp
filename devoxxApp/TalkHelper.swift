@@ -22,7 +22,7 @@ class TalkHelper: DataHelperProtocol {
     
     init() {
     }
-
+    
     init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?, isBreak: Bool) {
         self.title = title ?? ""
         self.lang = lang ?? ""
@@ -43,7 +43,7 @@ class TalkHelper: DataHelperProtocol {
     }
     
     func feed(data: JSON) {
-      
+        
         title = data["title"].string
         if(title == nil) {
             title = data["nameEN"].string
@@ -57,7 +57,7 @@ class TalkHelper: DataHelperProtocol {
         
         if let speakerArray = data["speakers"].array {
             for spk in speakerArray {
-        
+                
                 speakerIds.append(spk["link"]["href"].string!)
             }
         }
@@ -69,7 +69,7 @@ class TalkHelper: DataHelperProtocol {
     }
     
     func prepareArray(json: JSON) -> [JSON]? {
-
+        
         if(json["break"] != nil) {
             isBreak = true
             return [json["break"]]

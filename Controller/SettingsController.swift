@@ -37,7 +37,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         case QUICK_ACCESS
         
         case SETTINGS
-
+        
         
     }
     
@@ -67,7 +67,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         self.tableView = UITableView(frame: self.tableView.frame, style: .Grouped)
         
         
-               
+        
         
         self.navigationItem.title = "Settings"
         
@@ -174,13 +174,13 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         }
         
         cell!.textLabel!.font = UIFont(name: "Arial", size: 14)
-
+        
         if(indexPath.section == KindOfSection.QUICK_ACCESS.hashValue) {
             
             if(indexPath.row == 0) {
                 cell!.textLabel!.text = "Purchase a ticket"
             }
-
+            
             if(indexPath.row == 1) {
                 cell!.textLabel!.text = "Report issue"
             }
@@ -189,18 +189,18 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             }
             
         }
-            
+        
         if (indexPath.section == KindOfSection.SETTINGS.hashValue) {
             
             if(indexPath.row == 0) {
                 cell!.textLabel!.text = "Change conference"
             }
-                
+            
             if(indexPath.row == 1) {
                 cell!.textLabel!.text = "Clear QR Code"
             }
         }
-            
+        
         return cell!
     }
     

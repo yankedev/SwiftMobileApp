@@ -22,7 +22,7 @@ public protocol EventProtocol  {
 }
 
 class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
-
+    
     @NSManaged var id: String?
     @NSManaged var confType: String?
     @NSManaged var confDescription: String?
@@ -53,8 +53,8 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     func identifier() -> String {
         return id!
     }
-
-
+    
+    
     func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? CfpHelper  {
             
@@ -74,10 +74,10 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
             longitude = castHelper.longitude
             splashImgURL = castHelper.splashImgURL
             hashtag = castHelper.hashtag
-
+            
             
             let splashImgUrlLastComponent = APIManager.getLastFromUrl(splashImgURL!)
-
+            
             if let path = NSBundle.mainBundle().pathForResource(splashImgUrlLastComponent, ofType: "") {
                 if let data = NSData(contentsOfFile: path) {
                     backgroundImageData = data
@@ -89,7 +89,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     
     func daysLeft() -> String {
         
-       
+        
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
@@ -101,10 +101,10 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
         
         return string
         
-
+        
     }
     
-  
+    
     func differenceInDaysWithDate(firstDate : NSDate, secondDate: NSDate) -> Int {
         
         if firstDate.timeIntervalSince1970 >= secondDate.timeIntervalSince1970 {
@@ -152,5 +152,5 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     }
     
     
-
+    
 }

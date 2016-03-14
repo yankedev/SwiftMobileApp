@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public class AbstractDetailsController : UIViewController {
-
+    
     var scroll : UITextView!
     var header = ColoredHeaderView(frame: CGRectZero)
     
@@ -31,11 +31,11 @@ public class AbstractDetailsController : UIViewController {
         scroll.backgroundColor = UIColor.whiteColor()
         scroll.font = UIFont(name: "Roboto", size:  18)
         scroll.editable = false
-
+        
         
         let inputImage = UIImage(named: "talk_background.png")
         header.image = inputImage
-
+        
         
         view.addSubview(header)
         view.addSubview(scroll)
@@ -44,15 +44,15 @@ public class AbstractDetailsController : UIViewController {
         view.addSubview(actionButtonView0)
         view.addSubview(actionButtonView1)
         view.addSubview(actionButtonView2)
-
-
+        
+        
         actionButtonViewBack.setup(false)
         let imageBack = UIImage(named: "ic_back")?.imageWithRenderingMode(.AlwaysTemplate)
         actionButtonViewBack.button.setImage(imageBack, forState: .Normal)
         actionButtonViewBack.tintColor = UIColor.whiteColor()
         
         
-
+        
         let image0 = UIImage(named: "ic_twitter")?.imageWithRenderingMode(.AlwaysTemplate)
         actionButtonView0.button.setImage(image0, forState: .Normal)
         actionButtonView0.tintColor = UIColor.whiteColor()
@@ -155,7 +155,7 @@ public class AbstractDetailsController : UIViewController {
         
         view.addConstraint(actionButtonViewCenterX1)
         view.addConstraint(actionButtonViewCenterY1)
-
+        
         
         
         let actionButtonViewHeight2 = NSLayoutConstraint(item: actionButtonView2,
@@ -195,7 +195,7 @@ public class AbstractDetailsController : UIViewController {
         
         view.addConstraint(actionButtonViewCenterX2)
         view.addConstraint(actionButtonViewCenterY2)
-
+        
         
         
         
@@ -230,10 +230,10 @@ public class AbstractDetailsController : UIViewController {
         view.addConstraint(actionButtonViewBackTop)
         
         
-    
+        
         view.layoutIfNeeded()
-
-
+        
+        
     }
     
     
@@ -246,7 +246,7 @@ public class AbstractDetailsController : UIViewController {
             actionButtonView1.button.tintColor = UIColor.whiteColor()
         }
     }
-
+    
     
     public func configure() {
         
@@ -266,10 +266,10 @@ public class AbstractDetailsController : UIViewController {
         view.bringSubviewToFront(actionButtonView1)
         view.bringSubviewToFront(actionButtonView2)
         
-      
+        
     }
-
-   
     
-   
+    
+    
+    
 }

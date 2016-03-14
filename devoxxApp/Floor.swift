@@ -38,7 +38,7 @@ class Floor: NSManagedObject, FeedableProtocol, ImageFeedable {
     }
     func resetId(id: NSManagedObject?) {
     }
-
+    
     
     
 }

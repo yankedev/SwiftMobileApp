@@ -26,27 +26,27 @@ class APIManager {
         }
         return false
     }
-
+    
     
     class func clearQrCode() {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setValue(nil, forKey: "qrCode")
     }
-
+    
     
     class func setQrCode(str : String) {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setValue(str, forKey: "qrCode")
     }
     
-  
-
- 
-    
-   
     
     
-       
+    
+    
+    
+    
+    
+    
     class func getDateFromIndex(index : NSInteger, array: NSArray) -> NSDate {
         if index < array.count  {
             if let dict = array.objectAtIndex(index) as? NSDictionary {
@@ -59,7 +59,7 @@ class APIManager {
     
     
     class func getTrackFromIndex(index : NSInteger, array: NSArray) -> String {
-  
+        
         if index < array.count  {
             if let dict = array.objectAtIndex(index) as? NSDictionary {
                 return (dict.objectForKey("label") as? String)!
@@ -69,23 +69,23 @@ class APIManager {
         return ""
     }
     
-   
-            
-
     
-   
+    
+    
+    
+    
     
     class func handleData(inputData : NSData, service: AbstractService, storedResource : StoredResource?, etag : String?,completionHandler : (msg: String) -> Void) {
         
         print("handle data for \(storedResource?.url)")
-       
+        
         let json = JSON(data: inputData)
         let arrayToParse = service.getHelper().prepareArray(json)
         var arrayHelper = [DataHelperProtocol]()
         
-    
+        
         print("PRE INSIDE FOR \(storedResource?.url) - \(service) -  \(service.getHelper())")
-       
+        
         
         if let appArray = arrayToParse {
             
@@ -100,16 +100,16 @@ class APIManager {
             print(arrayHelper.count)
             service.updateWithHelper(arrayHelper, completionHandler: completionHandler)
         }
-
+        
         storedResource?.etag = etag ?? ""
-
+        
     }
-
+    
     
     class func ok(msg:String) {
         print("OK")
     }
-
+    
     
     class func firstFeed(completionHandler: (msg: String) -> Void, service : AbstractService) {
         singleCommonFeed(completionHandler, service : service)
@@ -127,7 +127,7 @@ class APIManager {
             let filePath = testBundle.pathForResource(singleUrl, ofType: "json")
             let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
             if(checkString == nil) {
-               // print("should not be empty", terminator: "")
+                // print("should not be empty", terminator: "")
             }
             let data = NSData(contentsOfFile: filePath!)!
             
@@ -140,7 +140,7 @@ class APIManager {
         
     }
     
-   
+    
     
     
     
@@ -164,7 +164,7 @@ class APIManager {
             return ""
         }
     }
-  
+    
     class func getLastFromUrl(url : String) -> String {
         let lastPartImageName = url.characters.split{$0 == "/"}.map(String.init)
         
@@ -177,18 +177,18 @@ class APIManager {
     
     
     
-      
     
     
-   
+    
+    
     
     
     class func isCurrentEventEmpty() -> Bool {
         //return getDistinctDays().count == 0
         return false
-
+        
     }
-   
-
+    
+    
 }
 

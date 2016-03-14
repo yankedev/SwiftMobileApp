@@ -22,7 +22,7 @@ class SpeakerDetailHelper: DataHelperProtocol {
     func getMainId() -> String {
         return uuid ?? ""
     }
-
+    
     
     func typeName() -> String {
         return entityName()
@@ -57,6 +57,6 @@ class SpeakerDetailHelper: DataHelperProtocol {
         array.append(json)
         return array
     }
-
+    
     
 }

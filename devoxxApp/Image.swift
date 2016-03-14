@@ -29,6 +29,6 @@ class Image: NSManagedObject, FeedableProtocol {
     }
     func resetId(id: NSManagedObject?) {
     }
-
+    
     
 }

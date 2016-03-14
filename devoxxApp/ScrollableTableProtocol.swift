@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol ScrollableDateTableDatasource : UIPageViewControllerDelegate {
-
+    
     var allDates:NSArray! {get set}
     var allTracks:[Attribute]? {get set}
     

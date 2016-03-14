@@ -31,7 +31,7 @@ protocol RatableProtocol {
 }
 
 class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococol, SearchableItemProtocol, DetailableProtocol, RatableProtocol {
-
+    
     @NSManaged var id: String
     @NSManaged var lang: String
     @NSManaged var summary: String
@@ -77,7 +77,7 @@ class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococo
     
     func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol? {
         if let speakerArray = speakers.sortedArrayUsingDescriptors([NSSortDescriptor(key: "title", ascending: true)]) as?[DetailableProtocol] {
-        
+            
             if idx < speakerArray.count {
                 return speakerArray[idx]
             }
@@ -111,7 +111,7 @@ class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococo
     
     func resetId(id: NSManagedObject?) {
     }
-
+    
     
     func getFriendlySpeaker(delimiter : String, useTwitter : Bool) -> String {
         var returnString = ""
@@ -165,7 +165,7 @@ class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococo
         return id
     }
     
-  
+    
     func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? TalkHelper  {
             id = castHelper.id ?? ""
@@ -215,7 +215,7 @@ class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococo
     func isMatching(str : String) -> Bool {
         return getFirstInformation().lowercaseString.containsString(str.lowercaseString)
     }
-
+    
     
     func getColor() -> UIColor? {
         return ColorManager.getColorFromTalkType(talkType)
@@ -236,7 +236,7 @@ class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococo
     func isSpecial() -> Bool {
         return isBreak
     }
-
+    
     
     
 }

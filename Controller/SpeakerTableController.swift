@@ -33,7 +33,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         cellDataArray = speakers
         tableView.reloadData()
     }
-        
+    
     
     func fetchSpeaker() {
         speakerService.fetchSpeakers(callBack)
@@ -67,7 +67,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     
     
     
- 
+    
     
     
     override public func didReceiveMemoryWarning() {
@@ -181,7 +181,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             
             details.setColor(speaker.isFav())
             
-
+            
             
             
             // details.setColor(slot.favorited())

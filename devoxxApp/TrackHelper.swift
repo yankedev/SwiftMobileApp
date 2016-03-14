@@ -9,11 +9,11 @@
 import Foundation
 
 class TrackHelper: AttributeHelper, DataHelperProtocol {
-  
+    
     func getMainId() -> String {
         return id!
     }
-
+    
     func feed(data: JSON) {
         super.label = data["title"].string
         super.id = data["id"].string
@@ -21,7 +21,7 @@ class TrackHelper: AttributeHelper, DataHelperProtocol {
         
         super.type = "Track"
     }
-
+    
     func entityName() -> String {
         return "Attribute"
     }
@@ -33,7 +33,7 @@ class TrackHelper: AttributeHelper, DataHelperProtocol {
     func prepareArray(json : JSON) -> [JSON]? {
         return json["tracks"].array
     }
-
+    
     func filterPredicate() -> String {
         return "talk.trackId"
     }

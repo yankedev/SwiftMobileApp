@@ -24,5 +24,5 @@ import UIKit
     func getObjectID() -> NSManagedObjectID
     
     init()
-
+    
 }

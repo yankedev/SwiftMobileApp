@@ -62,7 +62,6 @@
 		E175E7BF1C963DDD002A262A /* ScrollableTableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E7B41C963DDD002A262A /* ScrollableTableProtocol.swift */; };
 		E175E7C01C963DDD002A262A /* SearchableItemProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E7B51C963DDD002A262A /* SearchableItemProtocol.swift */; };
 		E175E7C11C963DDD002A262A /* SearchableTableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E7B61C963DDD002A262A /* SearchableTableProtocol.swift */; };
-		E175E7C21C963DDD002A262A /* SpeakerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E7B71C963DDD002A262A /* SpeakerProtocol.swift */; };
 		E175E7D31C963DFC002A262A /* AbstractService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E7C51C963DFC002A262A /* AbstractService.swift */; };
 		E175E7D41C963DFC002A262A /* AttributeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E7C61C963DFC002A262A /* AttributeService.swift */; };
 		E175E7D51C963DFC002A262A /* CfpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E7C71C963DFC002A262A /* CfpService.swift */; };
@@ -271,7 +270,6 @@
 		E175E7B41C963DDD002A262A /* ScrollableTableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableTableProtocol.swift; sourceTree = "<group>"; };
 		E175E7B51C963DDD002A262A /* SearchableItemProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableItemProtocol.swift; sourceTree = "<group>"; };
 		E175E7B61C963DDD002A262A /* SearchableTableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableTableProtocol.swift; sourceTree = "<group>"; };
-		E175E7B71C963DDD002A262A /* SpeakerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerProtocol.swift; sourceTree = "<group>"; };
 		E175E7C31C963DEE002A262A /* pirulen.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pirulen.ttf; sourceTree = "<group>"; };
 		E175E7C41C963DEE002A262A /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		E175E7C51C963DFC002A262A /* AbstractService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractService.swift; sourceTree = "<group>"; };
@@ -767,7 +765,6 @@
 				E175E7B41C963DDD002A262A /* ScrollableTableProtocol.swift */,
 				E175E7B51C963DDD002A262A /* SearchableItemProtocol.swift */,
 				E175E7B61C963DDD002A262A /* SearchableTableProtocol.swift */,
-				E175E7B71C963DDD002A262A /* SpeakerProtocol.swift */,
 			);
 			name = Protocol;
 			path = devoxxApp;
@@ -1131,7 +1128,6 @@
 				E175E64F1C963950002A262A /* ScheduleController.swift in Sources */,
 				E175E6161C9638A2002A262A /* ActionButtonView.swift in Sources */,
 				E175E8CB1C963F9C002A262A /* SpeakerDetailsController.swift in Sources */,
-				E175E7C21C963DDD002A262A /* SpeakerProtocol.swift in Sources */,
 				E175E8C81C963F5C002A262A /* AbstractDetailsController.swift in Sources */,
 				E175E62A1C9638A2002A262A /* SpeakerCell.swift in Sources */,
 				E175E61B1C9638A2002A262A /* FilterTableView.swift in Sources */,

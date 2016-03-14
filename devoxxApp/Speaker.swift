@@ -11,7 +11,7 @@ import CoreData
 import UIKit
 
 public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, SearchableItemProtocol, ImageFeedable, DetailableProtocol {
-
+    
     @NSManaged var uuid: String?
     @NSManaged var firstName: String?
     @NSManaged var lastName: String?
@@ -22,7 +22,7 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
     @NSManaged var speakerDetail: SpeakerDetail
     @NSManaged var talks: NSSet
     @NSManaged var imgData: NSData
-
+    
     public func getTwitter() -> String {
         return "\((cfp?.hashtag)!) \(displayTwitter())"
     }
@@ -56,24 +56,24 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
     
     public func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol? {
         if let speakerArray = talks.sortedArrayUsingDescriptors([NSSortDescriptor(key: "title", ascending: true)]) as? [Talk] {
-                
+            
             if idx < speakerArray.count {
                 return speakerArray[idx]
             }
-                
+            
             return nil
         }
         return nil
     }
     
     public func getFullLink() -> String? {
-       return href
+        return href
     }
     
     public func getImageFullLink() -> String? {
         return avatarUrl
     }
-
+    
     
     public func getRelatedDetailsCount() -> Int {
         return talks.count
@@ -110,7 +110,7 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
         }
         return ""
     }
-
+    
     
     public func getSecondInformation() -> String {
         return ""
@@ -134,11 +134,11 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
     public  func isSpecial() -> Bool {
         return false
     }
-
+    
     public func getElement() -> NSManagedObject {
         return self
     }
-
+    
     public func feedHelper(help: DataHelperProtocol) {
         if let castHelper = help as? SpeakerHelper  {
             uuid = castHelper.uuid
@@ -161,7 +161,7 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
         return isFavorited
     }
     
-   
+    
     
     func favorited() -> Bool {
         return isFavorited
@@ -173,7 +173,7 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
         }
         return getFullName()
     }
-
+    
     func getFullName() -> String {
         return "\(firstName!) \(lastName!)"
     }
@@ -183,11 +183,11 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
         return getFullName().lowercaseString.containsString(str.lowercaseString)
     }
     
- 
     
     
-
     
-
-
+    
+    
+    
+    
 }

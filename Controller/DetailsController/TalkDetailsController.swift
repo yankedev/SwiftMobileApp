@@ -12,12 +12,12 @@ import AVFoundation
 
 public class TalkDetailsController : AbstractDetailsController, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol {
     
-   
+    
     var detailObject : DetailableProtocol!
     
     var txtField : UITextField!
-
-
+    
+    
     override public func viewDidLoad() {
         
         super.viewDidLoad()
@@ -27,62 +27,62 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         view.addSubview(details)
         
         let views = ["header": header, "scroll" : scroll, "details" : details]
-
+        
         let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[header]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
         let constH5 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[details]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
         let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(150)]-[details(150)]-[scroll]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-
+        
         view.addConstraints(constH)
         view.addConstraints(constH2)
         view.addConstraints(constH5)
         
         view.addConstraints(constV)
         
-
+        
         header.talkTitle.text = detailObject.getTitle()
         header.talkTrack.text = detailObject.getSubTitle()
         scroll.text = detailObject.getSummary()
         
-
+        
         
         details.layoutIfNeeded()
-       
+        
         details.left.simpleDetailView1.textView.firstInfo.text = "Room"
         details.left.simpleDetailView1.textView.secondInfo.text = detailObject.getDetailInfoWithIndex(0)
         
         details.left.simpleDetailView2.textView.firstInfo.text = "Format"
         details.left.simpleDetailView2.textView.secondInfo.text = detailObject.getDetailInfoWithIndex(1)
         
-   
+        
         
         details.left.simpleDetailView3.textView.firstInfo.text = "Date and time"
         details.left.simpleDetailView3.textView.secondInfo.text = detailObject.getDetailInfoWithIndex(2)
         
-      
+        
         
         
         details.right.dataSource = self
         details.right.delegate = self
-
+        
         
         
         
         configure()
-
+        
         
         actionButtonView1.button.addTarget(self, action: Selector("clicked"), forControlEvents: .TouchUpInside)
         
         view.layoutIfNeeded()
         
-    
+        
         
         
     }
     
-      
+    
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = true
@@ -96,7 +96,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         }
     }
     
-   
+    
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -115,7 +115,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         label.textColor = UIColor.lightGrayColor()
         label.text = "Speakers"
         return label
-
+        
         
     }
     
@@ -125,7 +125,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
         if let speaker = detailObject.getRelatedDetailWithIndex(indexPath.row) {
             
-        
+            
             let details = SpeakerDetailsController()
             //todo
             
@@ -138,8 +138,8 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
             self.navigationController?.pushViewController(details, animated: true)
         }
         
-            
-            
+        
+        
         
     }
     
@@ -150,7 +150,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     
     public func twitter() {
-    
+        
         let originalString = detailObject.getTwitter()
         
         
@@ -161,7 +161,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         UIApplication.sharedApplication().openURL(NSURL(string: url)!)
     }
     
-
+    
     
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Speakers"
@@ -181,7 +181,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         }
         
         
-
+        
         
         
         
@@ -203,7 +203,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         super.viewDidAppear(animated)
         fetchUpdate()
     }
-
+    
     
     func checkCamera() {
         AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
@@ -221,11 +221,11 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     public func fetchUpdate() {
         
         APIReloadManager.fetchUpdate(fetchUrl(), service: SlotService.sharedInstance, completedAction: fetchCompleted)
-
+        
     }
     
     public func fetchCompleted(msg : String) -> Void {
-       // print(self.debugDescription)
+        // print(self.debugDescription)
     }
     
     public func fetchUrl() -> String? {
@@ -240,7 +240,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     }
     
     func configurationTextField(textField: UITextField!) {
-   
+        
         if let tField = textField {
             txtField = tField
         }
@@ -252,7 +252,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     }
     
     public func enterManually() {
-    
+        
         let alert = UIAlertController(title: "QRCode", message: "Enter the code :", preferredStyle: .Alert)
         
         alert.addTextFieldWithConfigurationHandler(configurationTextField)
@@ -260,7 +260,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.validateQrCode()}))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
-
+        
         
     }
     
@@ -279,7 +279,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     public func rate() {
         
         if let rateObj = detailObject as? RatableProtocol {
-        
+            
             let rateController = RateTableViewController()
             rateController.rateObject = rateObj
             let rateNavigationController = UINavigationController(rootViewController: rateController)
@@ -288,8 +288,8 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         }
         
         
-    
-
+        
+        
     }
     
     public func tryToRate() {
@@ -306,9 +306,9 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         }
         
         
-       
-          }
+        
+    }
     
-   
+    
     
 }

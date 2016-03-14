@@ -39,5 +39,5 @@ class ImageHelper: DataHelperProtocol {
     func prepareArray(json: JSON) -> [JSON]? {
         return json.array
     }
-
+    
 }

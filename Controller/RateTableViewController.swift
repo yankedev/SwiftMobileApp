@@ -22,7 +22,7 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         case TALK_CONTENT_FEEDBACK
     }
     
-
+    
     override public func viewDidLoad() {
         self.view.backgroundColor = UIColor.lightGrayColor()
         self.tableView = UITableView(frame: self.tableView.frame, style: .Grouped)
@@ -35,12 +35,12 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
     
     
     public func cancel() {
-         dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     public func vote() {
         dismissViewControllerAnimated(true, completion: nil)
-    
+        
     }
     
     
@@ -60,7 +60,7 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
     }
     
     
-
+    
     
     public override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
@@ -86,7 +86,7 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
     }
     
     
-
+    
     override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
         
@@ -105,24 +105,24 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
             return cell!
             
         }
-        
-        
+            
+            
         else if indexPath.section == KindOfSection.STARS.hashValue  {
-        
+            
             var cell = tableView.dequeueReusableCellWithIdentifier("STAR_CELL")
             
             if cell == nil {
                 cell = StarView(style: UITableViewCellStyle.Value1, reuseIdentifier: "STAR_CELL")
             }
-
             
-
+            
+            
             return cell!
             
         }
-        
+            
         else  {
-        
+            
             var cell = tableView.dequeueReusableCellWithIdentifier("FEEDBACK_CELL") as? RateView
             
             if cell == nil {
@@ -141,7 +141,7 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
             
             
             cell!.textView.text = "Type here..."
-
+            
             return cell!
             
         }

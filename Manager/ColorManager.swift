@@ -40,7 +40,7 @@ class ColorManager {
     static var darkOrangeColor = UIColor(red: 219/255, green: 71/255, blue: 0/255, alpha: 1)
     
     static var starColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
-
+    
     
     
     class func getColorFromTalkType(talkType : String) -> UIColor {
@@ -70,7 +70,7 @@ class ColorManager {
         }
         return breakColor
     }
-
+    
     
     class func getColorFromTrackTitle(trackTitle : String) -> UIColor {
         if(trackTitle == "Ignite Sessions") {
@@ -99,6 +99,6 @@ class ColorManager {
         }
         return defaultColor
     }
-
+    
     
 }

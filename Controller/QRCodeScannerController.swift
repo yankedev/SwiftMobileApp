@@ -23,7 +23,7 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
     // Added to support different barcodes
     let supportedBarCodes = [AVMetadataObjectTypeQRCode]
     
-
+    
     public func cancel() {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -40,7 +40,7 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
         
     }
     
-
+    
     
     func scan() {
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video
@@ -88,10 +88,10 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
             
         } catch {
             // If any error occurs, simply print it out and don't continue any more.
-           // print(error)
+            // print(error)
             return
         }
-
+        
     }
     
     override func didReceiveMemoryWarning() {

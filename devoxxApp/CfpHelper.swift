@@ -60,9 +60,9 @@ class CfpHelper: DataHelperProtocol {
     func getMainId() -> String {
         return id!
     }
-
+    
     func feed(data: JSON) {
-   
+        
         id = data["id"].string
         confType = data["confType"].string
         confDescription = data["confDescription"].string
@@ -79,11 +79,11 @@ class CfpHelper: DataHelperProtocol {
         longitude = data["longitude"].string
         splashImgURL = data["splashImgURL"].string
         hashtag = data["hashtag"].string
-   
+        
         fedFloorsArray = Array<FloorHelper>()
         
         if let floorArray = data["floors"].array {
-
+            
             for spk in floorArray {
                 let floorHelper = FloorHelper()
                 floorHelper.feed(spk)
@@ -92,7 +92,7 @@ class CfpHelper: DataHelperProtocol {
             }
             
         }
-
+        
     }
     
     func entityName() -> String {

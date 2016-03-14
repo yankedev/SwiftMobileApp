@@ -12,7 +12,7 @@ import CoreData
 
 public class SpeakerDetailsController : AbstractDetailsController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol {
     
-  
+    
     var detailObject : DetailableProtocol!
     
     var talkList = SpeakerListView(frame: CGRectZero, style: .Grouped)
@@ -20,13 +20,13 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     // var speakers: UITableView!
     
-  
-
+    
+    
     override public func viewDidLoad() {
         
         super.viewDidLoad()
         
-      
+        
         view.addSubview(talkList)
         
         //talkList.backgroundColor = UIColor.redColor()
@@ -59,7 +59,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         view.addConstraints(constH)
         view.addConstraints(constH2)
         view.addConstraints(constH3)
-
+        
         
         view.addConstraints(constV)
         
@@ -67,7 +67,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         header.talkTitle.text = detailObject.getTitle()
         header.talkTrack.text = detailObject.getSubTitle()
         scroll.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
-      //  print(speaker.speakerDetail.bio)
+        //  print(speaker.speakerDetail.bio)
         scroll.text = detailObject.getSummary()
         //scroll.backgroundColor = UIColor.yellowColor()
         
@@ -75,26 +75,26 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         configure()
         
         actionButtonView2.hidden = true
- 
+        
     }
     
     
     
-  
+    
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = true
         
         
         header.imageView.image = detailObject.getPrimaryImage()
-    
+        
     }
     
     
-   
     
     
-
+    
+    
     
     
     
@@ -111,7 +111,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         UIApplication.sharedApplication().openURL(NSURL(string: url)!)
     }
     
-
+    
     
     //DATASOUTCE
     
@@ -151,7 +151,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
         if cell == nil {
             cell = ScheduleCellView(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
-   
+            
         }
         
         
@@ -171,7 +171,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
             if let fav = relatedObject as? FavoriteProtocol {
                 cell!.updateBackgroundColor(fav.isFav())
             }
-
+            
         }
         
         
@@ -187,7 +187,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return detailObject.getRelatedDetailsCount()
     }
-
+    
     
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100
@@ -197,20 +197,20 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-
+        
         if let talk = detailObject.getRelatedDetailWithIndex(indexPath.row) {
             
             let details = TalkDetailsController()
             
             details.detailObject = talk
-
+            
             details.configure()
-        
+            
             if let talkFavorite = talk as? FavoriteProtocol {
                 details.setColor(talkFavorite.isFav())
             }
             
-        
+            
             self.navigationController?.pushViewController(details, animated: true)
         }
         
@@ -263,7 +263,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         }
         return detailObject.getFullLink()?.stringByReplacingOccurrencesOfString("http://", withString: "https://")
     }
-
+    
     
     
 }

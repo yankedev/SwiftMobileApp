@@ -15,7 +15,7 @@ class SpeakerHelper: DataHelperProtocol {
     var firstName: String?
     var avatarUrl: String?
     var href: String?
-
+    
     func getMainId() -> String {
         return uuid!
     }
@@ -39,5 +39,5 @@ class SpeakerHelper: DataHelperProtocol {
     func prepareArray(json : JSON) -> [JSON]? {
         return json.array
     }
-       
+    
 }

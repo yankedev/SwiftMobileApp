@@ -17,7 +17,7 @@ protocol ImageFeedable {
 
 class APIReloadManager {
     
-   
+    
     
     
     
@@ -29,7 +29,7 @@ class APIReloadManager {
             
         }
     }
-
+    
     
     class func fetchImg(url : String?, id : NSManagedObjectID, service : ImageServiceProtocol, completedAction : (msg: String) -> Void) {
         
@@ -47,7 +47,7 @@ class APIReloadManager {
                     //print("error for \(url)")
                 }
                 else {
-    
+                    
                     
                     service.updateImageForId(id, withData : data!, completionHandler: completedAction)
                     
@@ -55,17 +55,17 @@ class APIReloadManager {
                 }
             }
             task.resume()
-
+            
         }
         
-            
-    }
-
-    
         
+    }
+    
+    
+    
     
     class func onError(value : String) -> Void {
-       // print("ERROR")
+        // print("ERROR")
     }
-
+    
 }

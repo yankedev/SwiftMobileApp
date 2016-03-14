@@ -57,9 +57,9 @@ class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
     func getId() -> NSManagedObject? {
         return nil
     }
-
+    
     func resetId(id: NSManagedObject?) {
     }
     
-
+    
 }

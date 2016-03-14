@@ -11,7 +11,7 @@ import CoreData
 import UIKit
 
 class Slot: NSManagedObject, FeedableProtocol {
-
+    
     @NSManaged var roomName: String
     @NSManaged var slotId: String
     @NSManaged var fromTime: String
@@ -22,7 +22,7 @@ class Slot: NSManagedObject, FeedableProtocol {
     @NSManaged var cfp: Cfp?
     
     @NSManaged var talk: Talk
-
+    
     
     
     func getId() -> NSManagedObject? {
@@ -38,9 +38,9 @@ class Slot: NSManagedObject, FeedableProtocol {
         return ("\(fromTime)-\(toTime)")
     }
     
-        
     
-  
+    
+    
     
     func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? SlotHelper  {
@@ -59,16 +59,16 @@ class Slot: NSManagedObject, FeedableProtocol {
             dateFormatter
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             date = dateFormatter.dateFromString("\(components.year)-\(components.month)-\(components.day) 08:00:00")!
-
+            
             
             
             
         }
     }
     
-   
     
-   
+    
+    
     
     
     

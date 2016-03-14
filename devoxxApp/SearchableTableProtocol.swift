@@ -15,5 +15,5 @@ protocol SearchableTableProtocol {
     var searchPredicates:[String : [NSPredicate]] { get set }
     var searchingString:String { get set }
     var searchedSections:[NSFetchedResultsSectionInfo] { get set }
-
+    
 }

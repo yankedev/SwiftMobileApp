@@ -26,14 +26,14 @@ public class MapController : UIViewController, MKMapViewDelegate {
         self.view.backgroundColor = UIColor.whiteColor()
         
         view.addSubview(mapView)
-
+        
         var newRegion = MKCoordinateRegion()
-       
-       
+        
+        
         
         newRegion.center.latitude = CfpService.sharedInstance.getCoordLat()
         newRegion.center.longitude = CfpService.sharedInstance.getCoordLong()
-
+        
         newRegion.span.latitudeDelta = 0.01;
         newRegion.span.longitudeDelta = 0.01;
         

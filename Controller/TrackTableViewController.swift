@@ -21,7 +21,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     FavoritableProtocol
 {
     
-   
+    
     
     var managedContext:NSManagedObjectContext!
     
@@ -83,7 +83,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
         fetchAll()
         
         
-
+        
         self.schedulerTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell2")
         
         
@@ -96,7 +96,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     private func computePredicate() -> NSPredicate {
         
-
+        
         var andPredicate = [NSPredicate]()
         let predicateDay = NSPredicate(format: "track = %@", self.currentTrack)
         let predicateEvent = NSPredicate(format: "slot.cfp.id = %@", CfpService.sharedInstance.getCfpId())
@@ -134,7 +134,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
         if let detailObject = getCell(indexPath) as? DetailableProtocol {
             
             
-
+            
             
             let details = TalkDetailsController()
             details.detailObject = detailObject
@@ -159,7 +159,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     
     
-        
+    
     
     func getCell(indexPath : NSIndexPath) -> CellDataPrococol? {
         
@@ -184,38 +184,38 @@ public class TrackTableViewController<T : CellDataPrococol>:
         
         
         var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? ScheduleCellView
-            
+        
         if cell == nil {
             cell = ScheduleCellView(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
         }
         
         if let cellData = getCell(indexPath) {
-                
+            
             cell!.leftIconView.imageView.image = cellData.getPrimaryImage()
-                
+            
             cell!.rightTextView.topTitleView.talkTrackName.text = cellData.getThirdInformation()
             cell!.rightTextView.topTitleView.talkTitle.text = cellData.getFirstInformation()
-                
+            
             cell!.rightTextView.locationView.label.text = cellData.getSecondInformation()
             cell!.rightTextView.speakerView.label.text = cellData.getForthInformation(false)
-                
-                
+            
+            
             if let fav = cellData as? FavoriteProtocol {
                 cell!.updateBackgroundColor(fav.isFav())
             }
-                
+            
             return cell!
-                
+            
         } else {
-                // todo should be be here
+            // todo should be be here
         }
         
         return UITableViewCell()
     }
-
+    
     
     func filterArray(currentArray : [AnyObject]) -> [AnyObject] {
-
+        
         let filteredArray = currentArray.filter() {
             if let type = $0 as? FavoriteProtocol {
                 return type.isFav()
@@ -239,7 +239,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
                 return false
             }
         }
-
+        
         return filteredArray
     }
     
@@ -258,7 +258,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
             
             
         }
-       
+        
         return 0
     }
     
@@ -330,7 +330,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     }
     
     
-  
+    
     
     
     public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -359,9 +359,9 @@ public class TrackTableViewController<T : CellDataPrococol>:
     }
     
     
-
+    
     public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-       return 0
+        return 0
     }
     
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

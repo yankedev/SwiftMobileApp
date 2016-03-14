@@ -12,17 +12,17 @@ import CoreData
 
 
 public class SchedulerTableViewController<T : CellDataPrococol>:
-        UIViewController,
-        FavoritableProtocol,
-        FilterableTableProtocol,
-        UITableViewDelegate,
-        SearchableTableProtocol,
-        UITableViewDataSource,
-        UISearchBarDelegate,
-        ScrollableDateProtocol,
-        HotReloadProtocol
+    UIViewController,
+    FavoritableProtocol,
+    FilterableTableProtocol,
+    UITableViewDelegate,
+    SearchableTableProtocol,
+    UITableViewDataSource,
+    UISearchBarDelegate,
+    ScrollableDateProtocol,
+    HotReloadProtocol
 {
-
+    
     let talkService = TalkService.sharedInstance
     
     //ScrollableDateProtocol
@@ -33,12 +33,12 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     public func getNavigationItem() -> UINavigationItem {
         return (self.navigationController?.navigationItem)!
     }
-
-
+    
+    
     
     
     var openedSections = [Bool]()
-
+    
     
     
     //SerchableTableProtocol
@@ -47,7 +47,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     
     var searchedSections = [NSFetchedResultsSectionInfo]()
     
-
+    
     
     //FilterableTableProtocol
     var currentFilters:[String : [FilterableProtocol]]!
@@ -57,7 +57,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     
     
     var savedFetchedResult : NSFetchedResultsController?
-
+    
     public required init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -81,7 +81,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         fetchAll()
         self.schedulerTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
-
+    
     
     
     
@@ -109,40 +109,40 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         fetchAll()
     }
     
-
+    
     
     //TableView
-
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
         if let slot = getCell(indexPath) {
-                
+            
             let details = TalkDetailsController()
             //todo
-
+            
             details.detailObject = slot.getElement() as! DetailableProtocol
             details.delegate = self
-      
+            
             
             
             
             details.configure()
-
+            
             
             if let slotFavorite = slot as? FavoriteProtocol {
                 details.setColor(slotFavorite.isFav())
             }
             
             //details.setColor(slot.talk.isFavorited)
-         
+            
             self.navigationController?.pushViewController(details, animated: true)
             
-
+            
         }
     }
     
     
-  
+    
     
     
     
@@ -151,20 +151,20 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         var cellDataTry:CellDataPrococol?
         
         if !searchingString.isEmpty {
-          
+            
             let curent = searchedSections[indexPath.section]
             let obj = (curent.objects)!
             cellDataTry = filterSearchArray(obj)[indexPath.row] as? CellDataPrococol
             return cellDataTry
         }
-        
+            
         else {
             return savedFetchedResult?.objectAtIndexPath(indexPath) as? CellDataPrococol
         }
-
+        
     }
     
- 
+    
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
         let cellData = getCell(indexPath)
@@ -178,7 +178,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
             }
             
             cell?.rightTextView.text = cellData?.getFirstInformation()
-           
+            
             cell?.leftIconView.setup()
             
             cell?.leftIconView.imageView.frame = CGRectInset(CGRectMake(0, 5, 50, 60), 8, 8);
@@ -187,50 +187,50 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
             cell?.leftIconView.imageView.image = UIImage(named: "cofeeCup.png")
             
             cell?.backgroundColor = cellData!.getColor()
-
-
+            
+            
             return cell!
             
         }
         else {
-       
+            
             var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? ScheduleCellView
-     
+            
             if cell == nil {
                 cell = ScheduleCellView(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
             }
-        
-        
-       
-            if let cellData = getCell(indexPath) {
-
-                cell!.leftIconView.imageView.image = cellData.getPrimaryImage()
             
+            
+            
+            if let cellData = getCell(indexPath) {
+                
+                cell!.leftIconView.imageView.image = cellData.getPrimaryImage()
+                
                 cell!.rightTextView.topTitleView.talkTrackName.text = cellData.getThirdInformation()
                 cell!.rightTextView.topTitleView.talkTitle.text = cellData.getFirstInformation()
-            
+                
                 cell!.rightTextView.locationView.label.text = cellData.getSecondInformation()
                 cell!.rightTextView.speakerView.label.text = cellData.getForthInformation(false)
-            
-            
+                
+                
                 if let fav = cellData as? FavoriteProtocol {
                     cell!.updateBackgroundColor(fav.isFav())
                 }
-
-               
-            
+                
+                
+                
                 return cell!
-            
+                
             } else {
                 // todo should be be here
             }
         }
         
-            
+        
         return UITableViewCell()
         
     }
-
+    
     func filterArray(currentArray : [AnyObject]) -> [AnyObject] {
         
         let filteredArray = currentArray.filter() {
@@ -257,13 +257,13 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
             }
         }
         
-     
+        
         return filteredArray
         
     }
     
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-
+        
         if let sections = savedFetchedResult?.sections {
             
             if !searchingString.isEmpty {
@@ -274,14 +274,14 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
             
             
             return sections.count
-           
+            
             
         }
         
         return 0
     }
     
-       
+    
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = savedFetchedResult?.sections {
             
@@ -298,9 +298,9 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
             
             if !searchingString.isEmpty {
                 let curent = searchedSections[section]
-             
+                
                 let obj = (curent.objects)!
-             
+                
                 return filterSearchArray(obj).count
             }
             
@@ -310,8 +310,8 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
             
             return currentSection.numberOfObjects
             
-
-
+            
+            
         }
         
         return 0
@@ -330,7 +330,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         return nil
     }
     
-   
+    
     
     public func updateSectionForSearch() {
         
@@ -347,7 +347,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
             
         }
     }
-  
+    
     
     
     
@@ -371,7 +371,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     func clearFilter() {
         searchPredicates.removeAll()
     }
-
+    
     
     func buildFilter(filters: [String : [FilterableProtocol]]) {
         currentFilters = filters
@@ -396,10 +396,10 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         /*if let sections = frc?.sections {
-            let currentSection = sections[section]
-            if currentSection.numberOfObjects == 1 {
-                return 0
-            }
+        let currentSection = sections[section]
+        if currentSection.numberOfObjects == 1 {
+        return 0
+        }
         }*/
         return 44
         
@@ -414,7 +414,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         if cellData?.isSpecial() == true {
             return 60
         }
-
+        
         
         
         return 130
@@ -425,7 +425,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         
         var title = ""
         var nbTalks = 0
-    
+        
         var set = Set<String>()
         
         let currentSection = getSection(section)!
@@ -435,7 +435,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         if !searchingString.isEmpty {
             obj = filterSearchArray(obj)
         }
-
+        
         if let talk = obj[0] as? Talk {
             title = "\(currentSection.name) - \(talk.slot.toTime)"
         }
@@ -445,7 +445,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
                 set.insert(currentTalk.track)
             }
         }
-            
+        
         
         
         let breakSlot = (set.count == 1 && set.first == "")
@@ -475,7 +475,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
             headerView.addGestureRecognizer(tap)
         }
         
-
+        
         return headerView
     }
     
@@ -485,14 +485,14 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         if (indexPath.row == 0) {
             
             openedSections[indexPath.section] =  !openedSections[indexPath.section]
-     
+            
             let range = NSMakeRange(indexPath.section, 1)
             let sectionToReload = NSIndexSet(indexesInRange: range)
             self.schedulerTableView .reloadSections(sectionToReload, withRowAnimation:UITableViewRowAnimation.Fade)
         }
         sender.selected = !sender.selected
     }
-
+    
     
     func openCloseView(sender: UITapGestureRecognizer) {
         let indexPath : NSIndexPath = NSIndexPath(forRow: 0, inSection:(sender.view!.tag as Int!)!)
@@ -510,9 +510,9 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         }
         
     }
-
+    
     public func fetchUpdate() {
-      
+        
         //APIReloadManager.fetchUpdate(fetchUrl(), helper: SlotHelper(), completedAction: fetchCompleted)
         
     }
@@ -528,8 +528,8 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         schedulerTableView.searchBar.resignFirstResponder()
     }
-
-  
-
-       
+    
+    
+    
+    
 }
