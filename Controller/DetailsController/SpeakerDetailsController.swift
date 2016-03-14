@@ -13,7 +13,7 @@ import CoreData
 public class SpeakerDetailsController : AbstractDetailsController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol {
     
     
-    var detailObject : DetailableProtocol!
+   
     
     var talkList = SpeakerListView(frame: CGRectZero, style: .Grouped)
     
@@ -81,14 +81,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     
     
-    public override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBarHidden = true
-        
-        
-        header.imageView.image = detailObject.getPrimaryImage()
-        
-    }
+    
     
     
     
@@ -116,34 +109,9 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     //DATASOUTCE
     
     
-    public func back() {
-        self.navigationController?.navigationBarHidden = false
-        self.navigationController?.popViewControllerAnimated(true)
-    }
     
     
-    
-    
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    
-    
-    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
-    }
-    
-    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let label = UILabel(frame: CGRectMake(0,0,20,1000))
-        label.font = UIFont(name: "Roboto", size: 18)
-        label.textColor = UIColor.lightGrayColor()
-        label.text = "Talks"
-        return label
-        
-        
-    }
+   
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
@@ -184,9 +152,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         return cell!
     }
     
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return detailObject.getRelatedDetailsCount()
-    }
+  
     
     
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -230,14 +196,11 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     public func fetchUpdate() {
         APIReloadManager.fetchUpdate(fetchUrl(), service: SpeakerDetailService.sharedInstance, completedAction: fetchCompleted)
-        
-        
         SpeakerService.sharedInstance.privateManagedObjectContext.refreshAllObjects()
         
     }
     
     public func fetchCompleted(msg : String) -> Void {
-        
         SpeakerService.sharedInstance.getSpeakerFromId(detailObject.getObjectId(), completionHandler : callBackUpdate)
     }
     
@@ -257,9 +220,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         header.imageView.image = detailObject.getPrimaryImage()
     }
     
-    public func fetchUrl() -> String? {
-        return detailObject.getFullLink()
-    }
+    
     
     
     

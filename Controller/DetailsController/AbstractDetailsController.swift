@@ -12,6 +12,7 @@ import UIKit
 public class AbstractDetailsController : UIViewController {
     
     var scroll : UITextView!
+    var detailObject : DetailableProtocol!
     var header = ColoredHeaderView(frame: CGRectZero)
     
     var delegate : FavoritableProtocol!
@@ -237,6 +238,12 @@ public class AbstractDetailsController : UIViewController {
     }
     
     
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBarHidden = true
+        header.imageView.image = detailObject.getPrimaryImage()
+    }
+    
     
     public func setColor(isFavorited: Bool) {
         if isFavorited {
@@ -268,6 +275,50 @@ public class AbstractDetailsController : UIViewController {
         
         
     }
+    
+    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let label = UILabel(frame: CGRectMake(0,0,20,1000))
+        label.font = UIFont(name: "Roboto", size: 15)
+        label.textColor = UIColor.lightGrayColor()
+        label.text = detailObject.getHeaderTitle()
+        return label
+        
+        
+    }
+
+    
+    public func clicked() {
+        if delegate != nil {
+            let response = delegate.favorite(detailObject.getObjectId())
+            setColor(response)
+        }
+    }
+    
+    public func back() {
+        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return detailObject.getRelatedDetailsCount()
+    }
+    
+    
+    
+    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+    
+    public func fetchUrl() -> String? {
+        return detailObject.getFullLink()
+    }
+   
     
     
     

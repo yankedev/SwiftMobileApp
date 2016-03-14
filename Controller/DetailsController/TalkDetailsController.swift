@@ -13,7 +13,7 @@ import AVFoundation
 public class TalkDetailsController : AbstractDetailsController, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol {
     
     
-    var detailObject : DetailableProtocol!
+    
     
     var txtField : UITextField!
     
@@ -82,43 +82,14 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
     }
     
-    
-    public override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBarHidden = true
-    }
-    
-    
-    public func clicked() {
-        if delegate != nil {
-            let response = delegate.favorite(detailObject.getObjectId())
-            setColor(response)
-        }
-    }
+  
     
     
     
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
     
     
-    
-    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
-    }
-    
-    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let label = UILabel(frame: CGRectMake(0,0,20,1000))
-        label.font = UIFont(name: "Roboto", size: 15)
-        label.textColor = UIColor.lightGrayColor()
-        label.text = "Speakers"
-        return label
-        
-        
-    }
-    
+  
+       
     
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -143,10 +114,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
     }
     
-    public func back() {
-        self.navigationController?.navigationBarHidden = false
-        self.navigationController?.popViewControllerAnimated(true)
-    }
+   
     
     
     public func twitter() {
@@ -163,13 +131,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     
     
-    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Speakers"
-    }
-    
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return detailObject.getRelatedDetailsCount()
-    }
+   
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
@@ -228,9 +190,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         // print(self.debugDescription)
     }
     
-    public func fetchUrl() -> String? {
-        return detailObject.getFullLink()
-    }
+   
     
     public func scan() {
         let qrCodeScannerController = QRCodeScannerController()

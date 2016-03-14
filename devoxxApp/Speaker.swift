@@ -183,6 +183,9 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
         return getFullName().lowercaseString.containsString(str.lowercaseString)
     }
     
+    public func getHeaderTitle() -> String {
+        return "Talks"
+    }
     
     
     

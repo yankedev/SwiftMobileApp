@@ -23,7 +23,7 @@ import UIKit
     func getImageFullLink() -> String?
     func getPrimaryImage() -> UIImage?
     func getTwitter() -> String
-    
+    func getHeaderTitle() -> String
 }
 
 protocol RatableProtocol {
@@ -235,6 +235,10 @@ class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococo
     
     func isSpecial() -> Bool {
         return isBreak
+    }
+    
+    public func getHeaderTitle() -> String {
+        return "Speakers"
     }
     
     
