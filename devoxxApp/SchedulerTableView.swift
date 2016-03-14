@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class SchedulerTableView : UITableView {
-
+    
     var searchBar = UISearchBar(frame: CGRectMake(0,0,44,44))
     
     func updateHeaderView(show : Bool) {
@@ -31,7 +31,7 @@ class SchedulerTableView : UITableView {
         self.init(frame: CGRectZero, style : .Plain)
         self.initialize()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -12,18 +12,18 @@ import UIKit
 
 class ActionButtonView : UIView {
     
-     let button = UIButton()
+    let button = UIButton()
     
-     override init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         
         contentMode = .ScaleAspectFill
         clipsToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
         
-       
         
-
+        
+        
         addSubview(button)
     }
     
@@ -34,7 +34,7 @@ class ActionButtonView : UIView {
             layer.cornerRadius = frame.size.width / 2
         }
         
-       
+        
         button.frame = CGRectMake(0, 0, frame.size.width, frame.size.height)
         button.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
         

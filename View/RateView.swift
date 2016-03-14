@@ -11,7 +11,7 @@ import UIKit
 
 class RateView : UITableViewCell, UITextViewDelegate {
     
-
+    
     let label = UILabel()
     let textView = UITextView()
     
@@ -37,7 +37,7 @@ class RateView : UITableViewCell, UITextViewDelegate {
         addConstraints(constV0)
         addConstraints(constV1)
         
-       
+        
         label.font = UIFont(name: "Roboto", size: 15)
         label.textAlignment = .Right
         label.textColor = ColorManager.grayImageColor
@@ -83,6 +83,6 @@ class RateView : UITableViewCell, UITextViewDelegate {
     }
     
     
-
+    
     
 }

@@ -16,12 +16,12 @@ protocol TopFilterableProtocol {
 
 class ScheduleControllerView : UIView, TopFilterableProtocol {
     
-   
+    
     var filterRightButton:UIBarButtonItem
     
-   
     
-
+    
+    
     
     init(target: AnyObject?, filterSelector:Selector) {
         
@@ -31,7 +31,7 @@ class ScheduleControllerView : UIView, TopFilterableProtocol {
         
         
         
-       
+        
         
         
         
@@ -45,10 +45,10 @@ class ScheduleControllerView : UIView, TopFilterableProtocol {
         super.init(frame: frame)
         self.initialize()
     }
-
     
     
-
+    
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

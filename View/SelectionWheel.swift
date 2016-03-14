@@ -29,13 +29,13 @@ class SelectionWheel: UIView {
     
     var datasource : SelectionWheelDatasource!
     var delegate : SelectionWheelDelegate!
-
+    
     func rotate90() {
         transform = CGAffineTransformRotate(transform, CGFloat(-M_PI_2))
         orig = transform
     }
     
-       
+    
     
     
     override init(frame: CGRect) {
@@ -43,27 +43,27 @@ class SelectionWheel: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         
         //backgroundColor = UIColor.blueColor()
-    
+        
         let tap = UITapGestureRecognizer(target: self, action: Selector("check:"))
         addGestureRecognizer(tap)
         
-       
         
-       
+        
+        
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-
+    
     
     func check(sender : UITapGestureRecognizer) {
         let point = sender.locationInView(self)
         var i = 0
-   
+        
         for shape in layers {
-
+            
             if CGPathContainsPoint(shape.path, nil, point, false) {
                 click(i)
                 return
@@ -90,12 +90,12 @@ class SelectionWheel: UIView {
         
         
         
-       
+        
         
         
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = circlePath.CGPath
-
+        
         
         
         
@@ -107,19 +107,19 @@ class SelectionWheel: UIView {
             
             
             let image = datasource.imageForSliceAtIndex(index)
-           
-
+            
+            
             
             let imgV = UIImageView(frame : CGRectMake(0,0, 159/2, 191/2))
             imgV.image = image
             
-           
+            
             
             addSubview(imgV)
-           
+            
             
             shapeLayer.fillColor = UIColor.clearColor().CGColor
-
+            
             
             
             /*
@@ -137,15 +137,15 @@ class SelectionWheel: UIView {
             
             imgViews.append(imgV)
             layers.append(shapeLayer)
-           
+            
         }
-        
+            
         else {
             
             
             shapeLayer.fillColor = color.CGColor
             
-        
+            
         }
         shapeLayer.strokeColor = UIColor.clearColor().CGColor
         
@@ -156,7 +156,7 @@ class SelectionWheel: UIView {
     
     
     func reset() {
-    
+        
         for layer in layers {
             layer.removeFromSuperlayer()
         }
@@ -168,20 +168,20 @@ class SelectionWheel: UIView {
         reset()
         
         let radius = min((frame.size.width - 150)/2, 200)
-
+        
         
         let centerPoint = CGPointMake(center.x - frame.origin.x, center.y - self.frame.origin.y)
         
         layer.addSublayer(createCenterCircle(centerPoint, radius: radius, color : ColorManager.centerWheelColor, angle: 0, index: 0))
         
-
+        
         let width = radius - 25
         globe = UIImageView(frame: CGRectMake(0, 0, width*2, width*2))
         globe.center = centerPoint
         globe.image = UIImage(named: "globe")
         
         addSubview(globe)
-
+        
         
         for i in 0...4 {
             
@@ -191,11 +191,11 @@ class SelectionWheel: UIView {
             let b:CGFloat = CGFloat(2)
             let fakeC = CGFloat(i)/5.0
             let c:CGFloat = CGFloat(fakeC)
-          
+            
             
             let firstPoint = CGPointMake(centerPoint.x + radius*cos(CGFloat(a*b*c)), centerPoint.y + radius*sin(CGFloat(a*b*c)))
             
-
+            
             
             layer.addSublayer(createEventCircle(firstPoint, radius: CGFloat(191/4), color : UIColor.greenColor(), angle : a*b*c, index: i))
             
@@ -203,18 +203,18 @@ class SelectionWheel: UIView {
         
         
         
-       
-
+        
+        
         
         
         
         
         rotate90()
-    
+        
     }
     
     func click(index : Int) {
-
+        
         if(currentIndex == index)  {
             return
         }

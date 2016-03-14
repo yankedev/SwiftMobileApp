@@ -17,7 +17,7 @@ class StarView : UITableViewCell {
     let star3 = UIButton()
     let star4 = UIButton()
     
-   
+    
     
     var nbStar = 0
     
@@ -59,14 +59,14 @@ class StarView : UITableViewCell {
         let constV2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[star2]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         let constV3 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[star3]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         let constV4 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[star4]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-
+        
         addConstraints(constH)
         addConstraints(constV0)
         addConstraints(constV1)
         addConstraints(constV2)
         addConstraints(constV3)
         addConstraints(constV4)
-
+        
         for btn in starArray {
             addSubview(btn)
             btn.translatesAutoresizingMaskIntoConstraints = false
@@ -121,9 +121,9 @@ class StarView : UITableViewCell {
         
         
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
 }

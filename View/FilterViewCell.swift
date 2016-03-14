@@ -58,7 +58,7 @@ class FilterViewCell: UITableViewCell {
         self.addConstraints(verticalContraint_2)
         self.addConstraints(verticalContraint_3)
         self.addConstraints(horizontalContraint)
-
+        
     }
     
 }

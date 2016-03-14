@@ -22,7 +22,7 @@ class HomeNumberView : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
-    
+        
         number1.font = UIFont(name: "Pirulen", size: 26)!
         number1.textColor = UIColor.whiteColor()
         number1.textAlignment = .Center
@@ -32,7 +32,7 @@ class HomeNumberView : UIView {
         number2.textColor = UIColor.whiteColor()
         number2.textAlignment = .Center
         number2.translatesAutoresizingMaskIntoConstraints = false
-      
+        
         number3.font = UIFont(name: "Pirulen", size: 26)!
         number3.textColor = UIColor.whiteColor()
         number3.textAlignment = .Center
@@ -43,19 +43,19 @@ class HomeNumberView : UIView {
         addSubview(number2)
         addSubview(number3)
         
-
+        
         label1.text = "DAYS LEFT"
         label1.font = UIFont(name: "Pirulen", size: 8)!
         label1.textColor = UIColor.whiteColor()
         label1.textAlignment = .Center
         label1.translatesAutoresizingMaskIntoConstraints = false
-
+        
         label2.text = "TALKS"
         label2.font = UIFont(name: "Pirulen", size: 8)!
         label2.textColor = UIColor.whiteColor()
         label2.textAlignment = .Center
         label2.translatesAutoresizingMaskIntoConstraints = false
-
+        
         label3.text = "CAPACITY"
         label3.font = UIFont(name: "Pirulen", size: 8)!
         label3.textColor = UIColor.whiteColor()
@@ -126,20 +126,19 @@ class HomeNumberView : UIView {
         
         self.layoutIfNeeded()
         
-
         
-
-    
+        
+        
+        
         createConstraint(number1, centerXFactor: 0.4, centerYConstant : 30)
         createConstraint(number2, centerXFactor: 1, centerYConstant : 30)
         createConstraint(number3, centerXFactor: 1.6, centerYConstant : 30)
-
+        
         
         
         createConstraint(label1, centerXFactor: 0.4, centerYConstant : 60)
         createConstraint(label2, centerXFactor: 1, centerYConstant : 60)
         createConstraint(label3, centerXFactor: 1.6, centerYConstant : 60)
-
         
         
         
@@ -152,7 +151,8 @@ class HomeNumberView : UIView {
         
         
         
-
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

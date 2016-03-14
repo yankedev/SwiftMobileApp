@@ -30,7 +30,7 @@ class SimpleDetailView : UIView {
         //iconView.backgroundColor = UIColor.purpleColor()
         //textView.backgroundColor = UIColor.grayColor()
         
-              
+        
         
         addSubview(iconView)
         addSubview(textView)
@@ -43,12 +43,12 @@ class SimpleDetailView : UIView {
         let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[iconView(50)]-0-[textView]-0-|", options: .AlignAllCenterY, metrics: nil, views: views)
         let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[iconView]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         let constV1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[textView]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-
+        
         addConstraints(constH)
         addConstraints(constV)
         addConstraints(constV1)
         
-
+        
         
         //self.layoutIfNeeded()
         //textView.configure()
@@ -56,12 +56,12 @@ class SimpleDetailView : UIView {
         
         
         
-
+        
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     
 }

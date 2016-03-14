@@ -23,9 +23,9 @@ class ScheduleBreakCell : UITableViewCell {
         addSubview(rightTextView)
         
         
-       
         
-
+        
+        
         rightTextView.translatesAutoresizingMaskIntoConstraints = false
         
         let views = ["leftIconView": leftIconView, "rightTextView" : rightTextView]
@@ -35,7 +35,7 @@ class ScheduleBreakCell : UITableViewCell {
         
         
         addConstraints(constH0)
-
+        
         
         leftIconView.setup()
         
@@ -62,7 +62,7 @@ class ScheduleBreakCell : UITableViewCell {
         
     }
     
-       
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
         

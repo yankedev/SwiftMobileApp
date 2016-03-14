@@ -20,7 +20,7 @@ class ButtonView : UIView {
         let sepView = UIView()
         cancelBtn.setTitle("Cancel", forState: .Normal)
         cancelBtn.backgroundColor = ColorManager.starColor
-
+        
         voteBtn.setTitle("Vote!", forState: .Normal)
         voteBtn.backgroundColor = ColorManager.starColor
         
@@ -32,7 +32,7 @@ class ButtonView : UIView {
         voteBtn.translatesAutoresizingMaskIntoConstraints = false
         sepView.translatesAutoresizingMaskIntoConstraints = false
         
-         let views = ["cancelBtn" : cancelBtn, "voteBtn" : voteBtn, "sepView" : sepView]
+        let views = ["cancelBtn" : cancelBtn, "voteBtn" : voteBtn, "sepView" : sepView]
         
         let constV0 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[cancelBtn]-10-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         let constV1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[voteBtn]-10-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
@@ -40,7 +40,7 @@ class ButtonView : UIView {
         let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[cancelBtn(80)]-0-[sepView]-0-[voteBtn(80)]-10-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         
         
-
+        
         addConstraints(constH0)
         addConstraints(constV0)
         addConstraints(constV1)
@@ -51,7 +51,7 @@ class ButtonView : UIView {
         
         
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

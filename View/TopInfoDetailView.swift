@@ -13,7 +13,7 @@ class TopInfoDetailView : UIView {
     
     let firstInfo = UILabel()
     let secondInfo = UITextView()
-
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,7 +81,7 @@ class TopInfoDetailView : UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     
     
 }

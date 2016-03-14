@@ -34,7 +34,7 @@ class ScheduleCellView: UITableViewCell {
         addConstraints(constV1)
         
         leftIconView.setup()
-
+        
         
     }
     
@@ -47,8 +47,8 @@ class ScheduleCellView: UITableViewCell {
             backgroundColor = UIColor.whiteColor()
         }
     }
-
-
+    
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
         
@@ -58,7 +58,7 @@ class ScheduleCellView: UITableViewCell {
         
     }
     
-   
+    
     
     
 }

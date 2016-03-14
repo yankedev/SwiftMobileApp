@@ -89,14 +89,14 @@ class ColoredHeaderView : UIImageView {
         addConstraint(talkTrackHeight)
         addConstraint(talkTrackTop)
         
-   
+        
         
         
         
         
         
         let views = ["talkTitle" : talkTitle, "talkTrack" : talkTrack]
-
+        
         
         let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkTitle]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
         let constH1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkTrack]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
@@ -107,7 +107,7 @@ class ColoredHeaderView : UIImageView {
         addConstraints(constH0)
         addConstraints(constH1)
         
-
+        
         
         
         let imgViewHeight = NSLayoutConstraint(item: imageView,
@@ -150,7 +150,7 @@ class ColoredHeaderView : UIImageView {
         addConstraint(imgViewTop)
         addConstraint(imgViewRight)
         
-
+        
         
         
         

@@ -18,8 +18,8 @@ class BottomDetailsView : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-     
-
+        
+        
         translatesAutoresizingMaskIntoConstraints = false
         
         //backgroundColor = UIColor.greenColor()
@@ -45,11 +45,11 @@ class BottomDetailsView : UIView {
         addSubview(image)
         addSubview(label)
         
-               
+        
         //let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[image]-0-[label]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
         //addConstraints(constH0)
-   
-         let imageHeight = NSLayoutConstraint(item: image,
+        
+        let imageHeight = NSLayoutConstraint(item: image,
             attribute: NSLayoutAttribute.Height,
             relatedBy: NSLayoutRelation.Equal,
             toItem: self,

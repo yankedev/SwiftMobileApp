@@ -15,7 +15,7 @@ class AllDetailsView : UIView {
     let simpleDetailView1 = SimpleDetailView()
     let simpleDetailView2 = SimpleDetailView()
     let simpleDetailView3 = SimpleDetailView()
-
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,14 +40,14 @@ class AllDetailsView : UIView {
         simpleDetailView2.iconView.image = UIImage(named: "ic_microphone.png")?.imageWithRenderingMode(.AlwaysTemplate)
         addSubview(simpleDetailView2)
         
-
+        
         simpleDetailView3.translatesAutoresizingMaskIntoConstraints = false
         //simpleDetailView3.backgroundColor = UIColor.redColor()
         simpleDetailView3.iconView.image = UIImage(named: "ic_star.png")?.imageWithRenderingMode(.AlwaysTemplate)
         addSubview(simpleDetailView3)
         
-
-
+        
+        
         
         let views = ["simpleDetailView1": simpleDetailView1, "simpleDetailView2" : simpleDetailView2, "simpleDetailView3" : simpleDetailView3]
         
@@ -60,7 +60,7 @@ class AllDetailsView : UIView {
             multiplier: 0.33,
             constant: 0)
         
-               addConstraint(height)
+        addConstraint(height)
         
         //view 2
         
@@ -73,15 +73,15 @@ class AllDetailsView : UIView {
             attribute: NSLayoutAttribute.Height,
             multiplier: 0.33,
             constant: 0)
-
         
-     
+        
+        
         addConstraint(height2)
         
         //view 3
         
         
-    
+        
         let height3 = NSLayoutConstraint(item: simpleDetailView3,
             attribute: NSLayoutAttribute.Height,
             relatedBy: NSLayoutRelation.Equal,
@@ -90,26 +90,26 @@ class AllDetailsView : UIView {
             multiplier: 0.34,
             constant: 0)
         
-   
+        
         addConstraint(height3)
         
-      
         
         
-       
-         let constH1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[simpleDetailView1]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
-         let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[simpleDetailView2]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
-         let constH3 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[simpleDetailView3]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
+        
+        
+        let constH1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[simpleDetailView1]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
+        let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[simpleDetailView2]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
+        let constH3 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[simpleDetailView3]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
         
         let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[simpleDetailView1]-0-[simpleDetailView2]-0-[simpleDetailView3]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-
+        
         
         addConstraints(constH1)
         addConstraints(constH2)
         addConstraints(constH3)
-
+        
         addConstraints(constV)
-
+        
         
         
         /*
@@ -117,7 +117,7 @@ class AllDetailsView : UIView {
         simpleDetailView2.backgroundColor = UIColor.yellowColor()
         simpleDetailView3.backgroundColor = UIColor.purpleColor()
         */
-       
+        
         
         
         

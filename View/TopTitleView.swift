@@ -61,7 +61,7 @@ class TopTitleView : UIView {
             attribute: NSLayoutAttribute.Height,
             multiplier: 0.3,
             constant: 0)
-
+        
         
         let talkTitleHeight = NSLayoutConstraint(item: talkTitle,
             attribute: NSLayoutAttribute.Height,
@@ -72,7 +72,7 @@ class TopTitleView : UIView {
             constant: 0)
         
         
-
+        
         addConstraint(talkTitleHeight)
         addConstraint(talkTrackNameHeight)
         

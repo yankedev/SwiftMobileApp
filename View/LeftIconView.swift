@@ -16,10 +16,10 @@ class LeftIconView : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-  
         
-       
-
+        
+        
+        
         translatesAutoresizingMaskIntoConstraints = false
         
         
@@ -30,10 +30,10 @@ class LeftIconView : UIView {
     
     func setup() {
         layoutIfNeeded()
-      
+        
         imageView.frame = CGRectInset(frame, 8, 8);
         imageView.image = UIImage(named: "icon_archisec.png")
-      
+        
     }
     
     

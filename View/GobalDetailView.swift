@@ -14,13 +14,13 @@ class GobalDetailView : UIView {
     
     let left = AllDetailsView()
     let right = SpeakerListView()
-
+    
     
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-       
+        
         left.translatesAutoresizingMaskIntoConstraints = false
         right.translatesAutoresizingMaskIntoConstraints = false
         
@@ -65,12 +65,12 @@ class GobalDetailView : UIView {
         
         
         /*let widthRight = NSLayoutConstraint(item: right,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
-            toItem: self,
-            attribute: NSLayoutAttribute.Width,
-            multiplier: 0.50,
-            constant: 0)
+        attribute: NSLayoutAttribute.Width,
+        relatedBy: NSLayoutRelation.Equal,
+        toItem: self,
+        attribute: NSLayoutAttribute.Width,
+        multiplier: 0.50,
+        constant: 0)
         
         addConstraint(widthRight)
         */

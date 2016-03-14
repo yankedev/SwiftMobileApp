@@ -16,7 +16,7 @@ class RightTextView : UIView {
     var locationView : BottomDetailsView!
     var speakerView : BottomDetailsView!
     var sepView1 = UIView()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -40,7 +40,7 @@ class RightTextView : UIView {
         
         addSubview(locationView)
         addSubview(speakerView)
-
+        
         
         sepView0.translatesAutoresizingMaskIntoConstraints = false
         addSubview(sepView0)
@@ -58,7 +58,7 @@ class RightTextView : UIView {
         
         //speakerView.backgroundColor = UIColor.blueColor()
         
-
+        
         
         
         let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[topTitleView]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
@@ -76,7 +76,7 @@ class RightTextView : UIView {
         addConstraints(constH3)
         addConstraints(constH4)
         addConstraints(constV0)
-
+        
         
         
         let topTitleViewHeight = NSLayoutConstraint(item: topTitleView,
@@ -110,7 +110,7 @@ class RightTextView : UIView {
             attribute: NSLayoutAttribute.Height,
             multiplier: 0.1,
             constant: 0)
-
+        
         
         let sepView1Height = NSLayoutConstraint(item: sepView1,
             attribute: NSLayoutAttribute.Height,
@@ -119,7 +119,7 @@ class RightTextView : UIView {
             attribute: NSLayoutAttribute.Height,
             multiplier: 0.1,
             constant: 0)
-
+        
         
         addConstraint(topTitleViewHeight)
         addConstraint(locationViewHeight)

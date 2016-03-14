@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class HomeHeaderView : UIView {
-
+    
     let eventLocation = UILabel()
     
     override init(frame: CGRect) {
@@ -50,7 +50,7 @@ class HomeHeaderView : UIView {
         
         let heightLogo = NSLayoutConstraint(item: title, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Width, multiplier:0.6/ratio, constant: 0)
         
-        let centerXLogo = NSLayoutConstraint(item: title, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+        let centerXLogo = NSLayoutConstraint(item: title, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.      CenterX, multiplier: 1, constant: 0)
         
         
         
@@ -70,7 +70,7 @@ class HomeHeaderView : UIView {
         
         eventLocation.translatesAutoresizingMaskIntoConstraints = false
         
-   
+        
         
         
         
@@ -101,6 +101,6 @@ class HomeHeaderView : UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-
+    
+    
 }
