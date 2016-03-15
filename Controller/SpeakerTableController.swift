@@ -98,19 +98,19 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         let cellData = arrayToParse![indexPath.row]
         
         
-        if let cellDataCast = cellData as? HelperableProtocol {
+        if let cellDataCast = cellData as? CellDataDisplayPrococol {
         
-            let cellDataHelper = cellDataCast.toHelper() as? CellDataPrococol
-            cell!.firstInformation.text = cellDataHelper!.getFirstInformation()
+            cell!.firstInformation.text = cellDataCast.getFirstInformation()
             
             var shouldDisplay = false
             if indexPath.row == 0 {
                 shouldDisplay = true
             }
             else {
-                let previousCellData = arrayToParse![indexPath.row - 1] as! CellDataPrococol
+                let previousCellData = arrayToParse![indexPath.row - 1] as! CellDataDisplayPrococol
                 let previousCellDataInfo = previousCellData.getFirstInformation()
-                if cellDataHelper!.getFirstInformation().characters.first == previousCellDataInfo.characters.first {
+                print(previousCellDataInfo?.characters.first)
+                if cellDataCast.getFirstInformation()?.characters.first == previousCellDataInfo?.characters.first {
                     shouldDisplay = false
                 }
                 else {
@@ -122,7 +122,8 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             
             
             if shouldDisplay {
-                cell!.initiale.text = "\(cellDataHelper!.getFirstInformation().characters.first!)"
+                let firstChar = (cellDataCast.getFirstInformation()?.characters.first)!
+                cell!.initiale.text = "\(firstChar)"
             }
             else {
                 cell!.initiale.text = ""
@@ -131,10 +132,10 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             cell!.initiale.textColor = ColorManager.topNavigationBarColor
             cell!.initiale.font = UIFont(name: "Pirulen", size: 25)
             
-            cell!.accessoryView = UIImageView(image: cellDataHelper!.getPrimaryImage())
+            cell!.accessoryView = UIImageView(image: cellDataCast.getPrimaryImage())
             
             
-            APIReloadManager.fetchImg(cellDataHelper!.getUrl(), id: cellDataHelper!.getObjectID(), service: SpeakerService.sharedInstance, completedAction: okUpdate)
+            //APIReloadManager.fetchImg(cellDataHelper!.getUrl(), id: cellDataHelper!.getObjectID(), service: SpeakerService.sharedInstance, completedAction: okUpdate)
             
             
             
