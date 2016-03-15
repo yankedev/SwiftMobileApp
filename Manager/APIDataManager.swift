@@ -88,7 +88,7 @@
             
             
             
-            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+            let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
             
             let headers = [
                 "If-None-Match": storedResource.etag

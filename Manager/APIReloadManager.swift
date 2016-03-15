@@ -35,7 +35,7 @@ class APIReloadManager {
         
         if ResourceFetcherManager.isAllowedToFetch(url) {
             
-            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+            let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
             config.requestCachePolicy = .ReloadIgnoringLocalCacheData
             
             let session = NSURLSession(configuration: config)
