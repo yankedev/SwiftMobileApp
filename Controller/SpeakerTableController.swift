@@ -58,7 +58,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         
         
-        self.navigationItem.title = "Speakers"
+        self.navigationItem.title = NSLocalizedString("Speakers", comment: "")
         
         
         

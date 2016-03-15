@@ -34,6 +34,14 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         }
     }
     
+    private struct TabNameString {
+        static let schedule = NSLocalizedString("Schedule", comment: "")
+        static let tracks = NSLocalizedString("Tracks", comment: "")
+        static let speakers = NSLocalizedString("Speakers", comment: "")
+        static let map = NSLocalizedString("Map", comment: "")
+        static let settings = NSLocalizedString("Settings", comment: "")
+    }
+    
     
     
     
@@ -98,33 +106,21 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         let mapTabImage = UIImage(named: "tabIconMap.png")
         let settingsTabImage = UIImage(named: "tabIconSettings.png")
         
-        scheduleController.tabBarItem = UITabBarItem(title: "Schedule", image: scheduleTabImage, tag:0)
-        trackController.tabBarItem = UITabBarItem(title: "Tracks", image: trackTabImage, tag:1)
-        speakerController.tabBarItem = UITabBarItem(title: "Speakers", image: speakerTabImage, tag:2)
-        mapController.tabBarItem = UITabBarItem(title: "Map", image: mapTabImage, tag:3)
-        settingsController.tabBarItem = UITabBarItem(title: "Settings", image: settingsTabImage, tag:4)
-        
-        //let scheduleNavigationController = UINavigationController(rootViewController: scheduleController)
+        scheduleController.tabBarItem = UITabBarItem(title: TabNameString.schedule, image: scheduleTabImage, tag:0)
+        trackController.tabBarItem = UITabBarItem(title: TabNameString.tracks, image: trackTabImage, tag:1)
+        speakerController.tabBarItem = UITabBarItem(title: TabNameString.speakers, image: speakerTabImage, tag:2)
+        mapController.tabBarItem = UITabBarItem(title: TabNameString.map, image: mapTabImage, tag:3)
+        settingsController.tabBarItem = UITabBarItem(title: TabNameString.settings, image: settingsTabImage, tag:4)
+
         let speakerNavigationController = UINavigationController(rootViewController: speakerController)
-        
-        
-        
+
         let settingsNavigationController = UINavigationController(rootViewController: settingsController)
-        
-        
-        
-        
-        //let scroll = GenericPageScrollController<MapController>(generator:generate)
-        
+
         let mapNavigationController = UINavigationController(rootViewController: mapController)
-        
         
         self.customTabController.viewControllers = [scheduleController, trackController, speakerNavigationController, mapNavigationController, settingsNavigationController]
         self.customTabController.tabBar.translucent = false
         self.customTabController.view.backgroundColor = UIColor.whiteColor()
-        //TODO BACK BUTTON
-        //self.navigationController?.navigationBarHidden = false
-        
         
         
         self.rotating = false

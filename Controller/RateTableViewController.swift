@@ -22,14 +22,18 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         case TALK_CONTENT_FEEDBACK
     }
     
+    private struct NavigationButtonString {
+        static let cancel = NSLocalizedString("Cancel", comment: "")
+        static let vote = NSLocalizedString("Vote", comment: "")
+    }
     
     override public func viewDidLoad() {
         self.view.backgroundColor = UIColor.lightGrayColor()
         self.tableView = UITableView(frame: self.tableView.frame, style: .Grouped)
         
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: Selector("cancel"))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Vote", style: .Plain, target: self, action: Selector("vote"))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NavigationButtonString.cancel, style: .Plain, target: self, action: Selector("cancel"))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NavigationButtonString.vote, style: .Plain, target: self, action: Selector("vote"))
         
     }
     

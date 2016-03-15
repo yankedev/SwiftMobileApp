@@ -86,34 +86,10 @@ public class TrackTableViewController<T : CellDataPrococol>:
         
         self.schedulerTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell2")
         
-        
-        
-        
-        
-        
+
     }
     
     
-    private func computePredicate() -> NSPredicate {
-        
-        
-        var andPredicate = [NSPredicate]()
-        let predicateDay = NSPredicate(format: "track = %@", self.currentTrack)
-        let predicateEvent = NSPredicate(format: "slot.cfp.id = %@", CfpService.sharedInstance.getCfpId())
-        
-        andPredicate.append(predicateDay)
-        andPredicate.append(predicateEvent)
-        
-        var attributeOrPredicate = [NSPredicate]()
-        
-        for name in searchPredicates.keys {
-            attributeOrPredicate.append(NSCompoundPredicate(orPredicateWithSubpredicates: searchPredicates[name]!))
-        }
-        
-        andPredicate.append(NSCompoundPredicate(andPredicateWithSubpredicates: attributeOrPredicate))
-        
-        return NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
-    }
     
     
     public func resetSearch() {

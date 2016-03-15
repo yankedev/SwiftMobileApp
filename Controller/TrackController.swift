@@ -18,9 +18,6 @@ import Foundation
 import UIKit
 
 
-
-
-
 public class TrackController<T : ScrollableDateProtocol> : UINavigationController, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
     
     
@@ -37,6 +34,8 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
     
     
     var customView:ScheduleControllerView?
+    
+    
     
     init() {
         super.init(navigationBarClass: nil, toolbarClass: nil)
@@ -142,10 +141,10 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
     
     func updateTitle() {
         if allTracks?.count == 0 {
-            self.pageViewController.navigationItem.title = "No data yet"
+            self.pageViewController.navigationItem.title = NSLocalizedString("No data", comment: "")
         }
         else {
-            self.pageViewController.navigationItem.title = "Tracks"
+            self.pageViewController.navigationItem.title = NSLocalizedString("Tracks", comment: "")
         }
     }
     
