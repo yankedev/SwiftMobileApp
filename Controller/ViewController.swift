@@ -10,15 +10,12 @@ import UIKit
 import CoreData
 
 
-
 class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheelDelegate {
     
     var slicesData:NSArray!
-    
     let wheelView = SelectionWheel()
     
-    
-    
+
     let color = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)
     let customTabController = UITabBarController()
     var currentSelectedIndex = 0
@@ -29,6 +26,13 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     var eventLocation:UILabel!
     var rotating = false
     
+    private struct AlertString {
+        struct NoDataError {
+            static let title = NSLocalizedString("No Data", comment: "")
+            static let content = NSLocalizedString("Please select another event", comment: "")
+            static let okButton = NSLocalizedString("Sure !", comment: "")
+        }
+    }
     
     
     
@@ -140,67 +144,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     func fetchFirst() {
         
     }
-    
-    /*
-    
-    func fetchSecond(value : String) {
-    
-    
-    
-    
-    //APIDataManager.updateCurrentEvent()
-    
-    
-    
-    
-    //if APIManager.currentEvent!.days.count == 0 {
-    //onError("toto")
-    //return
-    //}
-    
-    
-    
-    dispatch_group_enter(serviceGroup)
-    
-    //dispatch_group_enter(serviceGroup)
-    
-    for _ in 0...(SlotService.sharedInstance.getCfp()?.days.count)!-1 {
-    dispatch_group_enter(serviceGroup)
-    }
-    
-    
-    
-    
-    
-    
-    APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: AttributeService.sharedInstance, helper : TrackHelper(), isCritical: true, onSuccess: self.successGroup, onError: onError)
-    
-    
-    
-    //print(APIManager.currentEvent.floors.count)
-    
-    
-    
-    
-    
-    
-    
-    APIDataManager.loadDataFromURLS(SlotService.sharedInstance.getCfp()?.days, dataHelper: SlotHelper(), isCritical : true, onSuccess: self.successGroup, onError: self.onError)
-    
-    dispatch_group_notify(serviceGroup,dispatch_get_main_queue(), {
-    print("OK EVERYTHING IS LOADED FROM GROUP1")
-    self.rotating = false
-    self.loadIsFinihsed()
-    })
-    }
-    
-    */
-    
-    
-    
-    
-    
-    
+
     func prepareNext() {
         if let currentData = slicesData[currentSelectedIndex] as? EventProtocol {
             
@@ -215,9 +159,6 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             }
             
             
-            
-            
-            
             //defaults.setObject(currentData.identifier(), forKey: "currentEvent")
             rotating = true
             rotateOnce()
@@ -230,22 +171,6 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         }
     }
     
-    
-    
-    func onError(value : String) {
-        
-        
-        
-        // print("OnError = \(value)")
-        
-        if(APIManager.isCurrentEventEmpty()) {
-            let alert = UIAlertController(title: "No data", message: "No data for this event, select Belgium to test", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
-            self.rotating = false
-            self.presentViewController(alert, animated: true, completion: nil)
-            return
-        }
-    }
     
     func showStaticView(show : Bool) {
         self.wheelView.userInteractionEnabled = !show
@@ -504,8 +429,9 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             }
             else {
                     self.run_on_main_thread {
-                        let alert = UIAlertController(title: "No Data", message: "Please select another event", preferredStyle: UIAlertControllerStyle.Alert)
-                        alert.addAction(UIAlertAction(title: "Sure !", style: UIAlertActionStyle.Default, handler: nil))
+                        
+                        let alert = UIAlertController(title: AlertString.NoDataError.title, message: AlertString.NoDataError.content, preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: AlertString.NoDataError.okButton, style: UIAlertActionStyle.Default, handler: nil))
                         self.presentViewController(alert, animated: true, completion: nil)
                 }
             }
@@ -513,6 +439,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         });
         
     }
+    
+    
     
     
     func secondFetching() {
