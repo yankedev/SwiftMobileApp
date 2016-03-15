@@ -35,9 +35,53 @@
       <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2.1" build-num="7C1002"/>
     </header>
     <body>
+      <trans-unit id="About">
+        <source>About</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cancel">
+        <source>Cancel</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Change conference">
+        <source>Change conference</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Clear QR Code">
+        <source>Clear QR Code</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Content feedback :">
+        <source>Content feedback :</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Delivery remarks :">
+        <source>Delivery remarks :</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Leave a feedback (optional)">
+        <source>Leave a feedback (optional)</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Map">
+        <source>Map</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="No Data">
         <source>No Data</source>
-        <target>Pas de données</target>
+        <target>Il n'a y pas de données</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="No data">
+        <source>No data</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Ok !">
+        <source>Ok !</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Other :">
+        <source>Other :</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
       <trans-unit id="Please select another event">
@@ -45,9 +89,57 @@
         <target>Selectionnez un autre événement </target>
         <note>No comment provided by engineer.</note>
       </trans-unit>
+      <trans-unit id="Purchase a ticket">
+        <source>Purchase a ticket</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="QRCode has successfully been cleared">
+        <source>QRCode has successfully been cleared</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Quick access">
+        <source>Quick access</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Report an issue">
+        <source>Report an issue</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Schedule">
+        <source>Schedule</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Select stars">
+        <source>Select stars</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Settings">
+        <source>Settings</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Speakers">
+        <source>Speakers</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Success">
+        <source>Success</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
       <trans-unit id="Sure !">
         <source>Sure !</source>
         <target>Ok !</target>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Tracks">
+        <source>Tracks</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Type here...">
+        <source>Type here...</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Vote">
+        <source>Vote</source>
         <note>No comment provided by engineer.</note>
       </trans-unit>
     </body>
