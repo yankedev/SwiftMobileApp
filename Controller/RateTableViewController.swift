@@ -27,6 +27,19 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         static let vote = NSLocalizedString("Vote", comment: "")
     }
     
+    private struct RateLabelString {
+        static let selectStars = NSLocalizedString("Select stars", comment: "")
+        static let leaveFeedback = NSLocalizedString("Leave a feedback (optional)", comment: "")
+    }
+    
+    private struct RateQuestionString {
+        static let question0 = NSLocalizedString("Content feedback :", comment: "")
+        static let question1 = NSLocalizedString("Delivery remarks :", comment: "")
+        static let question2 = NSLocalizedString("Other :", comment: "")
+        static let defaultResponse = NSLocalizedString("Type here...", comment: "")
+        
+    }
+    
     override public func viewDidLoad() {
         self.view.backgroundColor = UIColor.lightGrayColor()
         self.tableView = UITableView(frame: self.tableView.frame, style: .Grouped)
@@ -55,10 +68,10 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
             return ""
         }
         if(section == KindOfSection.STARS.hashValue) {
-            return "Select stars"
+            return RateLabelString.selectStars
         }
         if(section == KindOfSection.TALK_CONTENT_FEEDBACK.hashValue) {
-            return "Leave a feedback (optional)"
+            return RateLabelString.leaveFeedback
         }
         return ""
     }
@@ -134,17 +147,17 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
             }
             
             if indexPath.row == 0 {
-                cell!.label.text = "Content feedback :"
+                cell!.label.text = RateQuestionString.question0
             }
             if indexPath.row == 1 {
-                cell!.label.text = "Delivery remarks :"
+                cell!.label.text = RateQuestionString.question1
             }
             if indexPath.row == 2 {
-                cell!.label.text = "Other :"
+                cell!.label.text = RateQuestionString.question2
             }
             
             
-            cell!.textView.text = "Type here..."
+            cell!.textView.text = RateQuestionString.defaultResponse
             
             return cell!
             
