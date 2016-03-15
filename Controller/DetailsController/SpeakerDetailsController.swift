@@ -12,14 +12,8 @@ import CoreData
 
 public class SpeakerDetailsController : AbstractDetailsController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol {
     
-    
-   
-    
+
     var talkList = SpeakerListView(frame: CGRectZero, style: .Grouped)
-    
-    
-    // var speakers: UITableView!
-    
     
     
     override public func viewDidLoad() {
@@ -63,6 +57,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
         view.addConstraints(constV)
         
+        print(detailObject)
         
         header.talkTitle.text = detailObject.getTitle()
         header.talkTrack.text = detailObject.getSubTitle()
@@ -76,6 +71,15 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
         actionButtonView2.hidden = true
         
+        TalkService.sharedInstance.fetchTalks(detailObject.getRelatedIds(), completionHandler: callBack)
+    }
+    
+    
+    
+    func callBack(talks : [DataHelperProtocol], error : TalksStoreError?) {
+        detailObject.setRelated(talks)
+        print(talks.count)
+        //self.details.right.reloadData()
     }
     
     
@@ -97,7 +101,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
         let originalString = detailObject.getTwitter()
         
-        let escapedString = originalString.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+        let escapedString = originalString?.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         
         let url = "https://twitter.com/intent/tweet?text=\(escapedString!)"
         
@@ -126,7 +130,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         if let relatedObject = detailObject.getRelatedDetailWithIndex(indexPath.row) {
             
             
-            
+            print(relatedObject.getPrimaryImage())
             cell!.leftIconView.imageView.image = relatedObject.getPrimaryImage()
             
             cell!.rightTextView.topTitleView.talkTrackName.text = relatedObject.getDetailInfoWithIndex(2)
@@ -134,6 +138,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
             
             cell!.rightTextView.locationView.label.text = relatedObject.getDetailInfoWithIndex(0)
             cell!.rightTextView.speakerView.label.text = relatedObject.getDetailInfoWithIndex(3)
+            
             
             
             if let fav = relatedObject as? FavoriteProtocol {
@@ -189,35 +194,19 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         fetchUpdate()
     }
     
-    
-    
-    
-    
-    
+
     public func fetchUpdate() {
-        APIReloadManager.fetchUpdate(fetchUrl(), service: SpeakerDetailService.sharedInstance, completedAction: fetchCompleted)
-        SpeakerService.sharedInstance.privateManagedObjectContext.refreshAllObjects()
+        APIReloadManager.fetchUpdate(detailObject.getFullLink(), service: SpeakerDetailService.sharedInstance, completedAction: fetchCompleted)
         
+        //APIReloadManager.fetchImg(detailObject.getFullLink(), service:SpeakerService.sharedInstance, completedAction: fetchCompleted)
     }
-    
+   
     public func fetchCompleted(msg : String) -> Void {
-        SpeakerService.sharedInstance.getSpeakerFromId(detailObject.getObjectId(), completionHandler : callBackUpdate)
-    }
-    
-    
-    
-    public func callBackUpdate(callBackObject : DetailableProtocol) {
-        detailObject = callBackObject
+        header.imageView.image = detailObject.getPrimaryImage()
         scroll.text = detailObject.getSummary()
         header.talkTrack.text = detailObject.getSubTitle()
         header.imageView.image = detailObject.getPrimaryImage()
         talkList.reloadData()
-        
-        APIReloadManager.fetchImg(detailObject.getImageFullLink(), id: detailObject.getObjectId(), service:SpeakerService.sharedInstance, completedAction: fetchCompletedImg)
-    }
-    
-    public func fetchCompletedImg(msg : String) -> Void {
-        header.imageView.image = detailObject.getPrimaryImage()
     }
     
     

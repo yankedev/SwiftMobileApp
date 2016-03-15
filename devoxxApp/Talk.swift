@@ -10,27 +10,35 @@ import Foundation
 import CoreData
 import UIKit
 
-@objc public protocol DetailableProtocol {
-    func getTitle() -> String
-    func getSubTitle() -> String
-    func getSummary() -> String
+public protocol DetailableProtocol {
+    func getTitle() -> String?
+    func getSubTitle() -> String?
+    func getSummary() -> String?
     func detailInfos() -> [String]
-    func getDetailInfoWithIndex(idx : Int) -> String?
     func getObjectId() -> NSManagedObjectID
     func getRelatedDetailsCount() -> Int
     func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol?
+    func getDetailInfoWithIndex(idx : Int) -> String?
     func getFullLink() -> String?
     func getImageFullLink() -> String?
     func getPrimaryImage() -> UIImage?
-    func getTwitter() -> String
-    func getHeaderTitle() -> String
+    func getTwitter() -> String?
+    func getHeaderTitle() -> String?
+    func getRelatedIds() -> [String]
+    func setRelated(data : [DataHelperProtocol])
 }
 
 protocol RatableProtocol {
     func getTitle() -> String
 }
 
-class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococol, SearchableItemProtocol, DetailableProtocol, RatableProtocol {
+
+protocol HelperableProtocol {
+    func toHelper() -> DataHelperProtocol
+}
+
+
+class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemProtocol, RatableProtocol, HelperableProtocol, FeedableProtocol {
     
     @NSManaged var id: String
     @NSManaged var lang: String
@@ -46,59 +54,6 @@ class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococo
     
     func getTitle() -> String {
         return title
-    }
-    
-    func getSubTitle() -> String {
-        return track
-    }
-    
-    func getSummary() -> String {
-        return summary
-    }
-    
-    func getTwitter() -> String {
-        return "\((slot.cfp?.hashtag)!) \(getTitle()) by \(getForthInformation(true)) \(getFullLink()!)"
-    }
-    
-    func detailInfos() -> [String] {
-        return [slot.roomName, getShortTalkTypeName(), slot.getFriendlyTime(), getForthInformation(false)]
-    }
-    
-    func getDetailInfoWithIndex(idx: Int) -> String? {
-        if idx < detailInfos().count {
-            return detailInfos()[idx]
-        }
-        return nil
-    }
-    
-    func getObjectId() -> NSManagedObjectID {
-        return objectID
-    }
-    
-    func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol? {
-        if let speakerArray = speakers.sortedArrayUsingDescriptors([NSSortDescriptor(key: "title", ascending: true)]) as?[DetailableProtocol] {
-            
-            if idx < speakerArray.count {
-                return speakerArray[idx]
-            }
-            
-            return nil
-        }
-        
-        return nil
-    }
-    
-    
-    func getFullLink() -> String? {
-        return "\(slot.cfp!.cfpEndpoint!)/conferences/\(slot.cfp!.id!)/talks/\(id)"
-    }
-    
-    func getImageFullLink() -> String? {
-        return nil
-    }
-    
-    func getRelatedDetailsCount() -> Int {
-        return speakers.count
     }
     
     func getIconFromTrackId() -> String {
@@ -200,6 +155,7 @@ class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococo
         return UIImage(named: getIconFromTrackId())
     }
     
+    
     func getFirstInformation() -> String {
         return title
     }
@@ -237,8 +193,14 @@ class Talk: NSManagedObject, FeedableProtocol, FavoriteProtocol, CellDataPrococo
         return isBreak
     }
     
-    public func getHeaderTitle() -> String {
-        return "Speakers"
+    func toHelper() -> DataHelperProtocol {
+        
+        var speakerHelpers = [String]()
+        for singleSpeaker in speakers {
+            speakerHelpers.append(singleSpeaker.getIdentifier())
+        }
+        
+        return TalkHelper(title: title, lang: lang, trackId: trackId, talkType: talkType, track: track, id: id, summary: summary, isBreak: isBreak, roomName: slot.roomName, friendlyTime: slot.getFriendlyTime(), speakerList : getFriendlySpeaker(", ", useTwitter : false), spealerListTwitter : getFriendlySpeaker(", ", useTwitter : true), speakersId : speakerHelpers)
     }
     
     

@@ -115,17 +115,16 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if let slot = getCell(indexPath) {
-            
+        if let slot = getCell(indexPath) as? HelperableProtocol {
+    
             let details = TalkDetailsController()
             //todo
             
-            details.detailObject = slot.getElement() as! DetailableProtocol
+            details.detailObject = slot.toHelper() as? DetailableProtocol
+            print(slot.toHelper())
+            
             details.delegate = self
-            
-            
-            
-            
+    
             details.configure()
             
             
@@ -139,6 +138,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
             
             
         }
+
     }
     
     

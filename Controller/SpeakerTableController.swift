@@ -14,14 +14,12 @@ import CoreData
 
 public class SpeakerTableController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
     
-    var cellDataArray:[CellDataPrococol]?
-    var searchedRow:[CellDataPrococol]?
+    var cellDataArray:[DataHelperProtocol]?
+    var searchedRow:[DataHelperProtocol]?
     
     
     var searchingString = ""
     var searchBar = UISearchBar(frame: CGRectMake(0,0,44,44))
-    
-    let speakerService = SpeakerService.sharedInstance
     
     public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         searchingString = searchText
@@ -29,14 +27,14 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     }
     
     
-    func callBack(speakers : [Speaker], error : SpeakerStoreError?) {
+    func callBack(speakers : [DataHelperProtocol], error : SpeakerStoreError?) {
         cellDataArray = speakers
         tableView.reloadData()
     }
     
     
     func fetchSpeaker() {
-        speakerService.fetchSpeakers(callBack)
+        SpeakerService.sharedInstance.fetchSpeakers(callBack)
     }
     
     
@@ -88,7 +86,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         }
         
         
-        var arrayToParse:[CellDataPrococol]!
+        var arrayToParse:[DataHelperProtocol]!
         if searchingString.isEmpty {
             arrayToParse = cellDataArray
         }
@@ -98,51 +96,54 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         
         let cellData = arrayToParse![indexPath.row]
-        cell!.firstInformation.text = cellData.getFirstInformation()
         
-        var shouldDisplay = false
-        if indexPath.row == 0 {
-            shouldDisplay = true
-        }
-        else {
-            let previousCellDataInfo = arrayToParse![indexPath.row - 1].getFirstInformation()
-            if cellData.getFirstInformation().characters.first == previousCellDataInfo.characters.first {
-                shouldDisplay = false
-            }
-            else {
+        
+        if let cellDataCast = cellData as? HelperableProtocol {
+        
+            let cellDataHelper = cellDataCast.toHelper() as? CellDataPrococol
+            cell!.firstInformation.text = cellDataHelper!.getFirstInformation()
+            
+            var shouldDisplay = false
+            if indexPath.row == 0 {
                 shouldDisplay = true
             }
+            else {
+                let previousCellData = arrayToParse![indexPath.row - 1] as! CellDataPrococol
+                let previousCellDataInfo = previousCellData.getFirstInformation()
+                if cellDataHelper!.getFirstInformation().characters.first == previousCellDataInfo.characters.first {
+                    shouldDisplay = false
+                }
+                else {
+                    shouldDisplay = true
+                }
+            }
+            
+            
+            
+            
+            if shouldDisplay {
+                cell!.initiale.text = "\(cellDataHelper!.getFirstInformation().characters.first!)"
+            }
+            else {
+                cell!.initiale.text = ""
+            }
+            
+            cell!.initiale.textColor = ColorManager.topNavigationBarColor
+            cell!.initiale.font = UIFont(name: "Pirulen", size: 25)
+            
+            cell!.accessoryView = UIImageView(image: cellDataHelper!.getPrimaryImage())
+            
+            
+            APIReloadManager.fetchImg(cellDataHelper!.getUrl(), id: cellDataHelper!.getObjectID(), service: SpeakerService.sharedInstance, completedAction: okUpdate)
+            
+            
+            
+            cell!.accessoryView?.frame = CGRectMake(0,200,44,44)
+            cell!.accessoryView!.layer.cornerRadius = cell!.accessoryView!.frame.size.width/2
+            cell!.accessoryView!.layer.masksToBounds = true
+        
         }
-        
-        
-        
-        
-        if shouldDisplay {
-            cell!.initiale.text = "\(cellData.getFirstInformation().characters.first!)"
-        }
-        else {
-            cell!.initiale.text = ""
-        }
-        
-        cell!.initiale.textColor = ColorManager.topNavigationBarColor
-        cell!.initiale.font = UIFont(name: "Pirulen", size: 25)
-        
-        cell!.accessoryView = UIImageView(image: cellData.getPrimaryImage())
-        
-        
-        APIReloadManager.fetchImg(cellData.getUrl(), id: cellData.getObjectID(), service: SpeakerService.sharedInstance, completedAction: okUpdate)
-        
-        
-        
-        cell!.accessoryView?.frame = CGRectMake(0,200,44,44)
-        cell!.accessoryView!.layer.cornerRadius = cell!.accessoryView!.frame.size.width/2
-        cell!.accessoryView!.layer.masksToBounds = true
-        
-        
-        
-        
-        
-        
+
         return cell!
         
     }
@@ -154,7 +155,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         
-        var arrayToParse:[CellDataPrococol]!
+        var arrayToParse:[DataHelperProtocol]!
         if searchingString.isEmpty {
             arrayToParse = cellDataArray
         }
@@ -163,7 +164,9 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         }
         
         
-        if let speaker = arrayToParse![indexPath.row] as? Speaker {
+        
+        
+        if let speaker = arrayToParse![indexPath.row] as? SpeakerHelper {
             
             
             //      print(speaker.speakerDetail.bio)
@@ -179,7 +182,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             details.configure()
             
             
-            details.setColor(speaker.isFav())
+            details.setColor(speaker.isFav!)
             
             
             

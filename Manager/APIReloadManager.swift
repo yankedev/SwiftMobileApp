@@ -18,9 +18,7 @@ protocol ImageFeedable {
 class APIReloadManager {
     
     
-    
-    
-    
+       
     class func fetchUpdate(url : String?, service : AbstractService, completedAction : (msg: String) -> Void) {
         
         if ResourceFetcherManager.isAllowedToFetch(url) {

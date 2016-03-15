@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import CoreData
+import UIKit
 
-class TalkHelper: DataHelperProtocol {
+class TalkHelper: DataHelperProtocol, DetailableProtocol {
     
     var title: String?
     var lang: String?
@@ -18,12 +20,19 @@ class TalkHelper: DataHelperProtocol {
     var id: String?
     var summary: String?
     var isBreak: Bool?
-    var speakerIds = [String]()
+    var objectID : NSManagedObjectID?
+    var speakerIds:[String]?
+    var roomName : String?
+    var friendlyTime : String?
+    var speakerList : String?
+    var speakerListTwitter : String?
+    var speakersId : [String]?
+    var relatedObjects: [DataHelperProtocol]?
     
     init() {
     }
     
-    init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?, isBreak: Bool) {
+    init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?, isBreak: Bool, roomName:String?, friendlyTime : String?, speakerList : String?, spealerListTwitter : String?, speakersId : [String]) {
         self.title = title ?? ""
         self.lang = lang ?? ""
         self.trackId = trackId ?? ""
@@ -32,6 +41,11 @@ class TalkHelper: DataHelperProtocol {
         self.id = id ?? ""
         self.summary = summary ?? ""
         self.isBreak = isBreak
+        self.roomName = roomName ?? ""
+        self.friendlyTime = friendlyTime ?? ""
+        self.speakerList = speakerList ?? ""
+        self.speakerListTwitter = speakerListTwitter ?? ""
+        self.speakersId = speakersId ?? [String]()
     }
     
     func getMainId() -> String {
@@ -56,9 +70,10 @@ class TalkHelper: DataHelperProtocol {
         summary = data["summary"].string
         
         if let speakerArray = data["speakers"].array {
+            speakerIds = [String]()
             for spk in speakerArray {
                 
-                speakerIds.append(spk["link"]["href"].string!)
+                speakerIds!.append(spk["link"]["href"].string!)
             }
         }
         
@@ -77,5 +92,85 @@ class TalkHelper: DataHelperProtocol {
         isBreak = false
         return [json["talk"]]
     }
+    
+    
+    
+    //detailable
+    func getTitle() -> String? {
+        return title
+    }
+    
+    func getSubTitle() -> String? {
+        return track
+    }
+    
+    func getSummary() -> String? {
+        return summary
+    }
+    
+    func getTwitter() -> String? {
+        return ""
+        //return "\((slot.cfp?.hashtag)!) \(getTitle()) by \(getForthInformation(true)) \(getFullLink()!)"
+    }
+    
+        
+    func getDetailInfoWithIndex(idx: Int) -> String? {
+        if idx < detailInfos().count {
+            return detailInfos()[idx]
+        }
+        return nil
+    }
+
+    
+    func detailInfos() -> [String] {
+        return [roomName!, HelperManager.getShortTalkTypeName(talkType!), friendlyTime!, speakerList!]
+    }
+    
+    func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol? {
+        if idx < relatedObjects?.count {
+            return relatedObjects?[idx] as? DetailableProtocol
+        }
+        return nil
+    }
+    
+    func getObjectId() -> NSManagedObjectID {
+        return objectID!
+    }
+    
+    func getFullLink() -> String? {
+        return nil
+        //return "\(slot.cfp!.cfpEndpoint!)/conferences/\(slot.cfp!.id!)/talks/\(id)"
+    }
+    
+    func getImageFullLink() -> String? {
+        return nil
+    }
+    
+    func getRelatedDetailsCount() -> Int {
+        if speakersId != nil {
+            return speakersId!.count
+        }
+        return 0
+    }
+    
+    func getPrimaryImage() -> UIImage? {
+        return UIImage(named: "icon_\(trackId!)")
+    }
+    
+    func getHeaderTitle() -> String? {
+        return "Speakers"
+    }
+
+    func getRelatedIds() -> [String] {
+        if speakersId == nil {
+            return [String]()
+        }
+        return speakersId!
+    }
+    
+    func setRelated(data: [DataHelperProtocol]) {
+        relatedObjects = data
+    }
+
     
 }

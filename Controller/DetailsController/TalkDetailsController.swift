@@ -13,16 +13,14 @@ import AVFoundation
 public class TalkDetailsController : AbstractDetailsController, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol {
     
     
-    
-    
     var txtField : UITextField!
-    
+    let details = GobalDetailView()
     
     override public func viewDidLoad() {
         
         super.viewDidLoad()
         
-        let details = GobalDetailView()
+        
         details.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(details)
         
@@ -78,8 +76,17 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         view.layoutIfNeeded()
         
         
+        SpeakerService.sharedInstance.fetchSpeakers(detailObject.getRelatedIds(), completionHandler: callBack)
         
         
+    }
+    
+  
+    
+    func callBack(speakers : [DataHelperProtocol], error : SpeakerStoreError?) {
+        detailObject.setRelated(speakers)
+        print(speakers.count)
+        self.details.right.reloadData()
     }
     
   
@@ -104,7 +111,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
             //todo
             
             details.detailObject = speaker
-            //details.delegate = self
+           
             
             details.configure()
             // details.setColor(slot.favorited())
@@ -125,7 +132,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         let originalString = detailObject.getTwitter()
         
         
-        let escapedString = originalString.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+        let escapedString = originalString?.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         
         let url = "https://twitter.com/intent/tweet?text=\(escapedString!)"
         

@@ -51,7 +51,6 @@ class SlotHelper: DataHelperProtocol {
         
         let subData = talkHelper.prepareArray(data)
         
-        
         talkHelper.feed(subData![0])
         talk = talkHelper
     }

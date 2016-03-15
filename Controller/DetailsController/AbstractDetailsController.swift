@@ -316,7 +316,8 @@ public class AbstractDetailsController : UIViewController {
     }
     
     public func fetchUrl() -> String? {
-        return detailObject.getFullLink()
+        //todo
+        return ""
     }
    
     

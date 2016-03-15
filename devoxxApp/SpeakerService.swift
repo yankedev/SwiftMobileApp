@@ -30,17 +30,6 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
         super.init()
     }
     
-    func getSpeakerFromId(id : NSManagedObjectID, completionHandler : (Speaker) -> Void)  {
-        
-        dispatch_async(dispatch_get_main_queue(),{
-            let spk = self.privateManagedObjectContext.objectWithID(id) as! Speaker
-            completionHandler(spk)
-        })
-
-    }
- 
-    
-    
     override func getHelper() -> DataHelperProtocol {
         return SpeakerHelper()
     }
@@ -100,9 +89,40 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
     }
     
     
+    func fetchSpeakers(ids : [String], completionHandler: (speakers: [DataHelperProtocol], error: SpeakerStoreError?) -> Void) {
+        privateManagedObjectContext.performBlock {
+            do {
+                
+                let predicateEvent = NSPredicate(format: "cfp.id = %@", super.getCfpId())
+                let predicate = NSPredicate(format: "uuid IN %@", ids)
+                let fetchRequest = NSFetchRequest(entityName: "Speaker")
+                fetchRequest.includesSubentities = true
+                fetchRequest.returnsObjectsAsFaults = false
+                fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateEvent, predicate])
+                let sortLast = NSSortDescriptor(key: "lastName", ascending: true)
+                let sortFirst = NSSortDescriptor(key: "firstName", ascending: true)
+                fetchRequest.sortDescriptors = [sortFirst, sortLast]
+                
+                
+                let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Speaker]
+                
+                let resultsHelper = results.map { $0.toHelper() }
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    completionHandler(speakers: resultsHelper, error: nil)
+                })
+            } catch {
+                dispatch_async(dispatch_get_main_queue(), {
+                    completionHandler(speakers: [], error: SpeakerStoreError.CannotFetch("Cannot fetch speakers"))
+                })
+                
+            }
+        }
+    }
+
 
     
-    func fetchSpeakers(completionHandler: (speakers: [Speaker], error: SpeakerStoreError?) -> Void) {
+    func fetchSpeakers(completionHandler: (speakers: [DataHelperProtocol], error: SpeakerStoreError?) -> Void) {
         privateManagedObjectContext.performBlock {
             do {
                 
@@ -118,8 +138,10 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
                 
                 let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Speaker]
                 
+                let resultsHelper = results.map { $0.toHelper() }
+                
                 dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(speakers: results, error: nil)
+                    completionHandler(speakers: resultsHelper, error: nil)
                 })
             } catch {
                 dispatch_async(dispatch_get_main_queue(), {

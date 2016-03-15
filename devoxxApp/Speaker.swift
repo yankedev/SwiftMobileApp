@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, SearchableItemProtocol, ImageFeedable, DetailableProtocol {
+public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, SearchableItemProtocol, ImageFeedable, HelperableProtocol {
     
     @NSManaged var uuid: String?
     @NSManaged var firstName: String?
@@ -22,67 +22,6 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
     @NSManaged var speakerDetail: SpeakerDetail
     @NSManaged var talks: NSSet
     @NSManaged var imgData: NSData
-    
-    public func getTwitter() -> String {
-        return "\((cfp?.hashtag)!) \(displayTwitter())"
-    }
-    
-    public func getTitle() -> String {
-        return getFullName()
-    }
-    
-    public func getSubTitle() -> String {
-        return speakerDetail.company
-    }
-    
-    public func getSummary() -> String {
-        return speakerDetail.bio
-    }
-    
-    public func detailInfos() -> [String] {
-        return []
-    }
-    
-    public func getDetailInfoWithIndex(idx: Int) -> String? {
-        if idx < detailInfos().count {
-            return detailInfos()[idx]
-        }
-        return nil
-    }
-    
-    public func getObjectId() -> NSManagedObjectID {
-        return objectID
-    }
-    
-    public func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol? {
-        if let speakerArray = talks.sortedArrayUsingDescriptors([NSSortDescriptor(key: "title", ascending: true)]) as? [Talk] {
-            
-            if idx < speakerArray.count {
-                return speakerArray[idx]
-            }
-            
-            return nil
-        }
-        return nil
-    }
-    
-    public func getFullLink() -> String? {
-        return href
-    }
-    
-    public func getImageFullLink() -> String? {
-        return avatarUrl
-    }
-    
-    
-    public func getRelatedDetailsCount() -> Int {
-        return talks.count
-    }
-    
-    
-    
-    
-    
     
     public func getObjectID() -> NSManagedObjectID {
         return objectID
@@ -187,6 +126,18 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
         return "Talks"
     }
     
+    func toHelper() -> DataHelperProtocol {
+        
+        print(talks.count)
+        
+        var talksId = [String]()
+       
+        for singleTalk in Array(talks) {
+            talksId.append(singleTalk.getIdentifier())
+        }
+
+        return SpeakerHelper(uuid: uuid, lastName: lastName, firstName: firstName, avatarUrl: avatarUrl, href: href, speakerDetailHelper: nil, isFav: isFavorited, talksId: talksId)
+    }
     
     
     

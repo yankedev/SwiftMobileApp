@@ -87,6 +87,38 @@ class TalkService : AbstractService {
         }
     }
     
+    
+    func fetchTalks(ids : [String], completionHandler: (talks: [DataHelperProtocol], error: TalksStoreError?) -> Void) {
+        privateManagedObjectContext.performBlock {
+            do {
+                
+                let predicateEvent = NSPredicate(format: "slot.cfp.id = %@", super.getCfpId())
+                let predicate = NSPredicate(format: "id IN %@", ids)
+                let fetchRequest = NSFetchRequest(entityName: "Talk")
+                fetchRequest.includesSubentities = true
+                fetchRequest.returnsObjectsAsFaults = false
+                fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateEvent, predicate])
+                let sortTitle = NSSortDescriptor(key: "title", ascending: true)
+                fetchRequest.sortDescriptors = [sortTitle]
+                
+                
+                let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Talk]
+                
+                let resultsHelper = results.map { $0.toHelper() }
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    completionHandler(talks: resultsHelper, error: nil)
+                })
+            } catch {
+                dispatch_async(dispatch_get_main_queue(), {
+                    completionHandler(talks: [], error: TalksStoreError.CannotFetch("Cannot fetch talks"))
+                })
+                
+            }
+        }
+    }
+
+    
     private func computePredicate(predicate : NSPredicate, searchPredicates : [String : [NSPredicate]]?) -> NSPredicate {
 
         var andPredicate = [NSPredicate]()
