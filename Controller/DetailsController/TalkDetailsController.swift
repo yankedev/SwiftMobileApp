@@ -88,7 +88,10 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     
     
-  
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        header.imageView.hidden = true
+    }
        
     
     
