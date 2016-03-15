@@ -26,8 +26,8 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     
     
     //ScrollableDateTableDatasource
-    var scrollableDateTableDatasource: ScrollableDateTableDatasource?
-    var scrollableDateTableDelegate: ScrollableDateTableDelegate?
+    weak var scrollableDateTableDatasource: ScrollableDateTableDatasource?
+    weak var scrollableDateTableDelegate: ScrollableDateTableDelegate?
     
     var allDates:NSArray!
     var allTracks:[Attribute]?

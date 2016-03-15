@@ -23,8 +23,8 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
     
     
     //ScrollableDateTableDatasource
-    var scrollableDateTableDatasource: ScrollableDateTableDatasource?
-    var scrollableDateTableDelegate: ScrollableDateTableDelegate?
+    weak var scrollableDateTableDatasource: ScrollableDateTableDatasource?
+    weak var scrollableDateTableDelegate: ScrollableDateTableDelegate?
     
     var allTracks:[Attribute]?
     
