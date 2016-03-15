@@ -7,121 +7,67 @@
 //
 
 
-
-
-
 import Foundation
-
 import UIKit
-
-
 
 public class SettingsController : UITableViewController, UIAlertViewDelegate {
     
-    
-    
-    enum KindOfClear: Equatable {
-        
-        case NON_SELECTED_TWEETS
-        
-        case SELECTED_TWEETS
-        
-        case ALL_TWEETS
-        
-    }
-    
-    
-    
     enum KindOfSection : Equatable {
-        
         case QUICK_ACCESS
-        
         case SETTINGS
-        
-        
     }
     
+    private struct SectionNameString {
+        struct QuickAccess {
+            static let title = NSLocalizedString("Quick access", comment: "")
+            static let purchaseTicket = NSLocalizedString("Purchase a ticket", comment: "")
+            static let reportIssue = NSLocalizedString("Report an issue", comment: "")
+            static let about = NSLocalizedString("About", comment: "")
+        }
+        struct Settings {
+            static let title = NSLocalizedString("Settings", comment: "")
+            static let changeConference = NSLocalizedString("Change conference", comment: "")
+            static let clearQRCode = NSLocalizedString("Clear QR Code", comment: "")
+        }
+    }
     
-    
-    
-    
-    let color = UIColor(red: 3/255, green: 166/255, blue: 244/255, alpha: 0.08)
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    private struct AlertQRCodeString {
+        static let title = NSLocalizedString("Success", comment: "")
+        static let content = NSLocalizedString("QRCode has successfully been cleared", comment: "")
+        static let okButton = NSLocalizedString("Ok !", comment: "")
+        
+    }
     
     override public func viewDidLoad() {
-        
         self.view.backgroundColor = UIColor.lightGrayColor()
-        
         self.tableView = UITableView(frame: self.tableView.frame, style: .Grouped)
-        
-        
-        
-        
-        self.navigationItem.title = "Settings"
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        self.navigationItem.title = NSLocalizedString("Settings", comment: "")
     }
-    
-    
-    
     
     
     public override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if(section == KindOfSection.QUICK_ACCESS.hashValue) {
-            return "Quick access"
+            return SectionNameString.QuickAccess.title
         }
         if(section == KindOfSection.SETTINGS.hashValue) {
-            return "Settings"
+            return SectionNameString.Settings.title
         }
-        return ""
+        return nil
     }
-    
-    
     
     public override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
     
-    
-    
-    
-    
     public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(section == KindOfSection.QUICK_ACCESS.hashValue) {
             return 3
         }
-        
         if(section == KindOfSection.SETTINGS.hashValue)  {
             return 2
         }
-        
         return 0
     }
-    
-    
-    
-    
-    
-    
     
     override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == KindOfSection.QUICK_ACCESS.hashValue {
@@ -153,17 +99,13 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             }
             if indexPath.row == 1 {
                 APIManager.clearQrCode()
-                let alert = UIAlertController(title: "Success !", message: "qrCore cleared !", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+                let alert = UIAlertController(title: AlertQRCodeString.title, message: AlertQRCodeString.content, preferredStyle: UIAlertControllerStyle.Alert)
+                alert.addAction(UIAlertAction(title: AlertQRCodeString.okButton, style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
         }
         
     }
-    
-    
-    
-    
     
     override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
@@ -178,14 +120,14 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         if(indexPath.section == KindOfSection.QUICK_ACCESS.hashValue) {
             
             if(indexPath.row == 0) {
-                cell!.textLabel!.text = "Purchase a ticket"
+                cell!.textLabel!.text = SectionNameString.QuickAccess.purchaseTicket
             }
             
             if(indexPath.row == 1) {
-                cell!.textLabel!.text = "Report issue"
+                cell!.textLabel!.text = SectionNameString.QuickAccess.reportIssue
             }
             if(indexPath.row == 2) {
-                cell!.textLabel!.text = "About"
+                cell!.textLabel!.text = SectionNameString.QuickAccess.about
             }
             
         }
@@ -193,11 +135,11 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         if (indexPath.section == KindOfSection.SETTINGS.hashValue) {
             
             if(indexPath.row == 0) {
-                cell!.textLabel!.text = "Change conference"
+                cell!.textLabel!.text = SectionNameString.Settings.changeConference
             }
             
             if(indexPath.row == 1) {
-                cell!.textLabel!.text = "Clear QR Code"
+                cell!.textLabel!.text = SectionNameString.Settings.clearQRCode
             }
         }
         
