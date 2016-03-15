@@ -12,7 +12,7 @@ import CoreData
 
 //TODO make CellData optional
 
-public class SpeakerTableController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchBarDelegate {
+public class SpeakerTableController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchBarDelegate, FavoritableProtocol {
     
     var cellDataArray:[DataHelperProtocol]?
     var searchedRow:[DataHelperProtocol]?
@@ -134,8 +134,11 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             
             cell!.accessoryView = UIImageView(image: cellDataCast.getPrimaryImage())
             
+            print(cellData)
             
-            //APIReloadManager.fetchImg(cellDataHelper!.getUrl(), id: cellDataHelper!.getObjectID(), service: SpeakerService.sharedInstance, completedAction: okUpdate)
+       
+            
+            APIReloadManager.fetchImg(cellDataCast.getUrl(), id: cellDataCast.getObjectID(), service: SpeakerService.sharedInstance, completedAction: okUpdate)
             
             
             
@@ -149,7 +152,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
     }
     
-    func okUpdate(msg : String) {
+    func okUpdate(data : CallbackProtocol) -> Void {
         fetchSpeaker()
     }
     
@@ -178,7 +181,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             //details.indexPath = indexPath
             
             details.detailObject = speaker
-            //details.delegate = self
+            details.delegate = self
             
             details.configure()
             
@@ -188,7 +191,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             
             
             
-            // details.setColor(slot.favorited())
+            //details.setColor(slot.favorited())
             
             self.navigationController?.pushViewController(details, animated: true)
             
@@ -204,6 +207,9 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         return 1
     }
     
+    public func favorite(id: NSManagedObjectID) -> Bool {
+        return SpeakerService.sharedInstance.invertFavorite(id)
+    }
     
     override public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         searchBar.resignFirstResponder()

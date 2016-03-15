@@ -22,6 +22,7 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol {
     var isBreak: Bool?
     var objectID : NSManagedObjectID?
     var speakerIds:[String]?
+    var isFav: Bool?
     var roomName : String?
     var friendlyTime : String?
     var speakerList : String?
@@ -32,7 +33,7 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol {
     init() {
     }
     
-    init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?, isBreak: Bool, roomName:String?, friendlyTime : String?, speakerList : String?, spealerListTwitter : String?, speakersId : [String]) {
+    init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?, isBreak: Bool, roomName:String?, friendlyTime : String?, speakerList : String?, spealerListTwitter : String?, speakersId : [String], objectID : NSManagedObjectID?, isFav : Bool) {
         self.title = title ?? ""
         self.lang = lang ?? ""
         self.trackId = trackId ?? ""
@@ -44,8 +45,10 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol {
         self.roomName = roomName ?? ""
         self.friendlyTime = friendlyTime ?? ""
         self.speakerList = speakerList ?? ""
+        self.objectID = objectID
         self.speakerListTwitter = speakerListTwitter ?? ""
         self.speakersId = speakersId ?? [String]()
+        self.isFav = isFav ?? false
     }
     
     func getMainId() -> String {
@@ -133,8 +136,8 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol {
         return nil
     }
     
-    func getObjectId() -> NSManagedObjectID {
-        return objectID!
+    func getObjectId() -> NSManagedObjectID? {
+        return objectID
     }
     
     func getFullLink() -> String? {
@@ -170,6 +173,13 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol {
     
     func setRelated(data: [DataHelperProtocol]) {
         relatedObjects = data
+    }
+    
+    func getObjectID() -> NSManagedObjectID? {
+        return objectID
+    }
+    func isFavorited() -> Bool {
+        return isFav!
     }
 
     

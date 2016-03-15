@@ -32,7 +32,7 @@ class DayService : AbstractService {
     
   
     
-    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
+    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
         
         privateManagedObjectContext.performBlock {
             

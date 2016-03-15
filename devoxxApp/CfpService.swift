@@ -138,7 +138,7 @@ class CfpService : AbstractService {
         return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/schedules"
     }
 
-    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
+    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
         
         privateManagedObjectContext.performBlock {
             
@@ -183,8 +183,8 @@ class CfpService : AbstractService {
         
     }
     
-    func floorsOk(msg : String) {
-        
+    func floorsOk(msg : CallbackProtocol) {
+        //todo
     }
 
     

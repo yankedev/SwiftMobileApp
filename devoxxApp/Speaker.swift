@@ -136,7 +136,7 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
             talksId.append(singleTalk.getIdentifier())
         }
 
-        return SpeakerHelper(uuid: uuid, lastName: lastName, firstName: firstName, avatarUrl: avatarUrl, href: href, speakerDetailHelper: nil, isFav: isFavorited, talksId: talksId)
+        return SpeakerHelper(uuid: uuid, lastName: lastName, firstName: firstName, avatarUrl: avatarUrl, objectID : objectID, href: href, bio : speakerDetail.bio , company: speakerDetail.company, isFav: isFavorited, talksId: talksId, imgData: imgData)
     }
     
     

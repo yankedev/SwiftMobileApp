@@ -504,7 +504,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         
     }
     
-    public func fetchCompleted(msg : String) -> Void {
+    public func fetchCompleted(msg : CallbackProtocol) -> Void {
         
     }
     

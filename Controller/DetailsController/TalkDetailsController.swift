@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 import AVFoundation
+import CoreData
 
-public class TalkDetailsController : AbstractDetailsController, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol {
+public class TalkDetailsController : AbstractDetailsController, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol, FavoritableProtocol {
     
     
     var txtField : UITextField!
@@ -71,7 +72,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         configure()
         
         
-        actionButtonView1.button.addTarget(self, action: Selector("clicked"), forControlEvents: .TouchUpInside)
+        
         
         view.layoutIfNeeded()
         
@@ -108,13 +109,14 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
             
             
             let details = SpeakerDetailsController()
+            details.delegate = self
             //todo
             
             details.detailObject = speaker
            
             
             details.configure()
-            // details.setColor(slot.favorited())
+            details.setColor(speaker.isFavorited())
             
             self.navigationController?.pushViewController(details, animated: true)
         }
@@ -196,11 +198,14 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
     }
     
-    public func fetchCompleted(msg : String) -> Void {
-        // print(self.debugDescription)
+    public func fetchCompleted(msg : CallbackProtocol) -> Void {
+        
     }
     
    
+    public func favorite(id : NSManagedObjectID) -> Bool {
+        return TalkService.sharedInstance.invertFavorite(id)
+    }
     
     public func scan() {
         let qrCodeScannerController = QRCodeScannerController()

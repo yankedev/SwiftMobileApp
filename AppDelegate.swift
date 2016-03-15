@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    func resourceReady(msg: String) -> Void {
+    func resourceReady(msg: CallbackProtocol) -> Void {
+        //TODO
         print("msg = \(msg)")
     }
     

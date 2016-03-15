@@ -34,9 +34,11 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
         return SpeakerHelper()
     }
     
-    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
+    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
         
         let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        
+      
         
         privateManagedObjectContext.performBlock {
             for singleHelper in helper {
@@ -70,8 +72,7 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
                         
                         coreDataObject2.speaker = coreDataObject as! Speaker
                         coreDataObject2.uuid = coreDataObject2.speaker.uuid!
-                        
-                        
+      
                     }
                     
                     
@@ -83,7 +84,10 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
 
             }
             
-            self.realSave(completionHandler)
+            
+            super.realSave(completionHandler)
+            
+            
         }
     
     }
@@ -160,23 +164,24 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
     }
     
     
-    func updateImageForId(id : NSManagedObjectID, withData data: NSData, completionHandler : (msg: String) -> Void) {
+    func updateImageForId(id : NSManagedObjectID, withData data: NSData, completionHandler : ((msg: CallbackProtocol) -> Void)?) {
         
         print("update image for speaker detail")
         
         privateManagedObjectContext.performBlock {
             
+            print(self.privateManagedObjectContext.objectWithID(id))
             if let obj = self.privateManagedObjectContext.objectWithID(id) as? ImageFeedable {
                 print("found")
                 obj.feedImageData(data)
+                super.saveImage(nil)
             }
             
-            self.realSave(completionHandler)
+            self.realSave(completionHandler, img: data)
         }
         
     }
 
-    
     
     
     

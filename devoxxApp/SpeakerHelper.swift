@@ -16,10 +16,12 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
     var lastName: String?
     var firstName: String?
     var avatarUrl: String?
-    var objectID : NSManagedObjectID!
+    var objectID : NSManagedObjectID?
     var href: String?
-    var speakerDetailHelper: SpeakerDetailHelper?
+    var bio : String?
+    var company : String?
     var isFav : Bool?
+    var imgData : NSData?
     var talksId : [String]?
     var relatedObjects: [DataHelperProtocol]?
     
@@ -30,15 +32,18 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
     init() {
     }
     
-    init(uuid: String?, lastName: String?, firstName: String?, avatarUrl: String?, href: String?, speakerDetailHelper: SpeakerDetailHelper?, isFav: Bool, talksId : [String]?) {
+    init(uuid: String?, lastName: String?, firstName: String?, avatarUrl: String?, objectID : NSManagedObjectID, href: String?, bio: String?, company: String?, isFav: Bool, talksId : [String]?, imgData : NSData?) {
         self.uuid = uuid ?? ""
         self.lastName = lastName ?? ""
         self.firstName = firstName ?? ""
+        self.objectID = objectID
         self.avatarUrl = avatarUrl ?? ""
         self.href = href ?? ""
-        self.speakerDetailHelper = speakerDetailHelper
+        self.bio = bio ?? ""
+        self.company = company ?? ""
         self.isFav = isFav
         self.talksId = talksId
+        self.imgData = imgData
     }
     
     func feed(data: JSON) {
@@ -79,11 +84,11 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
     }
     
     func getSubTitle() -> String? {
-        return speakerDetailHelper?.company
+        return company
     }
     
     func getSummary() -> String? {
-        return speakerDetailHelper?.bio
+        return bio
     }
     
     func detailInfos() -> [String] {
@@ -97,7 +102,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
         return nil
     }
     
-    func getObjectId() -> NSManagedObjectID {
+    func getObjectId() -> NSManagedObjectID? {
         return objectID
     }
     
@@ -129,7 +134,10 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
     }
 
     func getPrimaryImage() -> UIImage? {
-        return nil
+        if imgData == nil {
+            return nil
+        }
+        return UIImage(data: imgData!)
     }
     
     func getRelatedIds() -> [String] {
@@ -137,6 +145,10 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
             return [String]()
         }
         return talksId!
+    }
+    
+    func getObjectID() -> NSManagedObjectID? {
+        return objectID
     }
     
     func setRelated(data : [DataHelperProtocol]){
@@ -155,6 +167,9 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
             }
         }
         return nil
+    }
+    func isFavorited() -> Bool {
+        return isFav!
     }
     
 }

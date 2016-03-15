@@ -11,6 +11,6 @@ import CoreData
 
 protocol ImageServiceProtocol {
 
-    func updateImageForId(id : NSManagedObjectID, withData data: NSData, completionHandler : (msg: String) -> Void)
+    func updateImageForId(id : NSManagedObjectID, withData data: NSData, completionHandler : ((msg: CallbackProtocol) -> Void)?)
 
 }

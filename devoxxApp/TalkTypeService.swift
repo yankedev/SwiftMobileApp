@@ -16,7 +16,7 @@ class TalkTypeService : AbstractService {
         return TalkTypeHelper()
     }
     
-    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
+    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
         AttributeService.sharedInstance.updateWithHelper(helper, completionHandler: completionHandler)
     }
     

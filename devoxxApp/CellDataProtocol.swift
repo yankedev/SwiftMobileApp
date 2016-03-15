@@ -33,5 +33,6 @@ protocol CellDataDisplayPrococol {
     func getFirstInformation() -> String?
     func getPrimaryImage() -> UIImage?
     func getUrl() -> String?
+    func getObjectID() -> NSManagedObjectID?
     
 }

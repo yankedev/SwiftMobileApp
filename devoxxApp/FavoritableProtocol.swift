@@ -9,6 +9,6 @@
 import Foundation
 import CoreData
 
-public protocol FavoritableProtocol {
+public protocol FavoritableProtocol : class {
     func favorite(id : NSManagedObjectID) -> Bool
 }

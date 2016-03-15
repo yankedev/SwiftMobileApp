@@ -15,7 +15,6 @@ public protocol DetailableProtocol {
     func getSubTitle() -> String?
     func getSummary() -> String?
     func detailInfos() -> [String]
-    func getObjectId() -> NSManagedObjectID
     func getRelatedDetailsCount() -> Int
     func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol?
     func getDetailInfoWithIndex(idx : Int) -> String?
@@ -26,6 +25,8 @@ public protocol DetailableProtocol {
     func getHeaderTitle() -> String?
     func getRelatedIds() -> [String]
     func setRelated(data : [DataHelperProtocol])
+    func getObjectID() -> NSManagedObjectID?
+    func isFavorited() -> Bool
 }
 
 protocol RatableProtocol {
@@ -184,7 +185,7 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
     func getObjectID() -> NSManagedObjectID {
         return objectID
     }
-    
+
     func getUrl() -> String? {
         return ""
     }
@@ -200,7 +201,7 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
             speakerHelpers.append(singleSpeaker.getIdentifier())
         }
         
-        return TalkHelper(title: title, lang: lang, trackId: trackId, talkType: talkType, track: track, id: id, summary: summary, isBreak: isBreak, roomName: slot.roomName, friendlyTime: slot.getFriendlyTime(), speakerList : getFriendlySpeaker(", ", useTwitter : false), spealerListTwitter : getFriendlySpeaker(", ", useTwitter : true), speakersId : speakerHelpers)
+        return TalkHelper(title: title, lang: lang, trackId: trackId, talkType: talkType, track: track, id: id, summary: summary, isBreak: isBreak, roomName: slot.roomName, friendlyTime: slot.getFriendlyTime(), speakerList : getFriendlySpeaker(", ", useTwitter : false), spealerListTwitter : getFriendlySpeaker(", ", useTwitter : true), speakersId : speakerHelpers, objectID : objectID, isFav : isFavorited)
     }
     
     

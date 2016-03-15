@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-public class SpeakerDetailsController : AbstractDetailsController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol {
+public class SpeakerDetailsController : AbstractDetailsController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol, FavoritableProtocol {
     
 
     var talkList = SpeakerListView(frame: CGRectZero, style: .Grouped)
@@ -62,7 +62,6 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         header.talkTitle.text = detailObject.getTitle()
         header.talkTrack.text = detailObject.getSubTitle()
         scroll.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
-        //  print(speaker.speakerDetail.bio)
         scroll.text = detailObject.getSummary()
         //scroll.backgroundColor = UIColor.yellowColor()
         
@@ -78,8 +77,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     func callBack(talks : [DataHelperProtocol], error : TalksStoreError?) {
         detailObject.setRelated(talks)
-        print(talks.count)
-        //self.details.right.reloadData()
+        talkList.reloadData()
     }
     
     
@@ -158,6 +156,9 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     }
     
   
+    public func favorite(id : NSManagedObjectID) -> Bool {
+        return SpeakerService.sharedInstance.invertFavorite(id)
+    }
     
     
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -172,7 +173,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         if let talk = detailObject.getRelatedDetailWithIndex(indexPath.row) {
             
             let details = TalkDetailsController()
-            
+            details.delegate = self
             details.detailObject = talk
             
             details.configure()
@@ -192,21 +193,30 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         fetchUpdate()
+        talkList.reloadData()
     }
     
 
     public func fetchUpdate() {
         APIReloadManager.fetchUpdate(detailObject.getFullLink(), service: SpeakerDetailService.sharedInstance, completedAction: fetchCompleted)
         
-        //APIReloadManager.fetchImg(detailObject.getFullLink(), service:SpeakerService.sharedInstance, completedAction: fetchCompleted)
+        APIReloadManager.fetchImg(detailObject.getImageFullLink(), id : detailObject.getObjectID(), service:SpeakerService.sharedInstance, completedAction: callbackImg)
     }
    
-    public func fetchCompleted(msg : String) -> Void {
-        header.imageView.image = detailObject.getPrimaryImage()
+    public func fetchCompleted(newHelper : CallbackProtocol) -> Void {
+        print(newHelper.debug())
+        if let newDetailObject = newHelper.getHelper() as? DetailableProtocol {
+            detailObject = newDetailObject
+        }
+        
         scroll.text = detailObject.getSummary()
         header.talkTrack.text = detailObject.getSubTitle()
-        header.imageView.image = detailObject.getPrimaryImage()
-        talkList.reloadData()
+   }
+    
+    public func callbackImg(newHelper : CallbackProtocol) {
+        if let newDetailObjectData = newHelper.getImg() {
+            header.imageView.image = UIImage(data: newDetailObjectData)
+        }
     }
     
     

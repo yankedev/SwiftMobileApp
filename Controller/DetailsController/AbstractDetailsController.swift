@@ -15,7 +15,7 @@ public class AbstractDetailsController : UIViewController {
     var detailObject : DetailableProtocol!
     var header = ColoredHeaderView(frame: CGRectZero)
     
-    var delegate : FavoritableProtocol!
+    weak var delegate : FavoritableProtocol!
     
     var actionButtonView2 = ActionButtonView()
     var actionButtonView1 = ActionButtonView()
@@ -234,6 +234,8 @@ public class AbstractDetailsController : UIViewController {
         
         view.layoutIfNeeded()
         
+        actionButtonView1.button.addTarget(self, action: Selector("clicked"), forControlEvents: .TouchUpInside)
+        
         
     }
     
@@ -288,9 +290,12 @@ public class AbstractDetailsController : UIViewController {
     }
 
     
+    
     public func clicked() {
         if delegate != nil {
-            let response = delegate.favorite(detailObject.getObjectId())
+            print(detailObject)
+            print(detailObject.getObjectID())
+            let response = delegate.favorite(detailObject.getObjectID()!)
             setColor(response)
         }
     }

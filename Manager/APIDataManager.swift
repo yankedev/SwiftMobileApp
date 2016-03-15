@@ -35,13 +35,13 @@
         
         
         
-        class func completion(msg : String) {
-            //print("OK CREATED")
+        class func completion(msg : CallbackProtocol) {
+            //TODO
         }
         
         
         
-        class func createResource(url : String, completionHandler : (msg: String) -> Void) {
+        class func createResource(url : String, completionHandler : (msg: CallbackProtocol) -> Void) {
             let httpsUrl = url.stringByReplacingOccurrencesOfString("http:", withString: "https:")
             let helper = StoredResourceHelper(url: httpsUrl, etag: "", fallback: "")
             let storedResource = StoredResourceService.sharedInstance
@@ -62,18 +62,16 @@
         
         
         
-        class func loadDataFromURL(url: String, service : AbstractService, helper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
-            
-            //print("Make request with : \(url)")
+        class func loadDataFromURL(url: String, service : AbstractService, helper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
             
             return makeRequest(findResource(url)!, service : service, helper : service.getHelper(), isCritical : isCritical, onSuccess: onSuccess, onError: onError)
-            
         }
+
+            
         
         
         
-        
-        class func loadDataFromURLS(urls: NSSet?, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
+        class func loadDataFromURLS(urls: NSSet?, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
             
             
             for singleUrl in urls! {
@@ -84,7 +82,7 @@
             
         }
         
-        class func makeRequest(storedResource : StoredResource, service : AbstractService, helper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:String) -> Void, onError: (value:String)->Void) {
+        class func makeRequest(storedResource : StoredResource, service : AbstractService, helper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
             
             
             
@@ -93,7 +91,7 @@
             let headers = [
                 "If-None-Match": storedResource.etag
             ]
-            
+            print(storedResource.etag)
             config.HTTPAdditionalHeaders = headers
             config.requestCachePolicy = .ReloadIgnoringLocalCacheData
             config.timeoutIntervalForResource = 5
@@ -151,7 +149,7 @@
                     }
                         
                     else {
-                        onSuccess(value: storedResource.url)
+                        onSuccess(value: CompletionMessage(msg : ""))
                     }
                     
                     
@@ -179,7 +177,7 @@
                         }
                         else {
                             dispatch_async(dispatch_get_main_queue(),{
-                                onSuccess(value: storedResource.url)
+                                onSuccess(value: CompletionMessage(msg : ""))
                             })
                         }
                         
@@ -207,7 +205,7 @@
                         else {
                             
                             dispatch_async(dispatch_get_main_queue(),{
-                                onSuccess(value: storedResource.url)
+                                onSuccess(value: CompletionMessage(msg : ""))
                             })
                         }
                         

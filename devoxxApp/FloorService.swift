@@ -29,7 +29,7 @@ class FloorService : AbstractService, ImageServiceProtocol {
         super.init()
     }
     
-    override func updateWithHelper(helper : Array<DataHelperProtocol>, completionHandler : (msg: String) -> Void) {
+    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
         
         privateManagedObjectContext.performBlock {
             
@@ -103,24 +103,17 @@ class FloorService : AbstractService, ImageServiceProtocol {
 
    
     
-    func updateImageForId(id : NSManagedObjectID, withData data: NSData, completionHandler : (msg: String) -> Void) {
+    func updateImageForId(id : NSManagedObjectID, withData data: NSData, completionHandler : ((msg: CallbackProtocol) -> Void)?) {
         
         privateManagedObjectContext.performBlock {
             
             if let obj:ImageFeedable = APIDataManager.findEntityFromId(id, inContext: self.privateManagedObjectContext) {
                 obj.feedImageData(data)
-                
-                
-                dispatch_async(dispatch_get_main_queue(),{
-                    completionHandler(msg: "ok")
-                })
-                
-                
-                
-                
             }
             
         }
+        
+        self.realSave(completionHandler, img : data)
         
     }
     

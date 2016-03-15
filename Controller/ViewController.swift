@@ -184,7 +184,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     let cfpService = CfpService.sharedInstance
     let storedResourceService = StoredResourceService.sharedInstance
     
-    func loadWheel(msg : String) {
+    func loadWheel(msg : CallbackProtocol) {
         print("cfp has been fed")
         cfpService.fetchCfps(callBack)
     }
@@ -391,7 +391,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     
     
-    func success(msg : String) {
+    func success(msg : CallbackProtocol) {
         //print("Success \(msg)")
         dispatch_group_leave(group)
     }

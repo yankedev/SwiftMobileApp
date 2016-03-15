@@ -78,7 +78,7 @@ class APIManager {
     
     
     
-    class func handleData(inputData : NSData, service: AbstractService, storedResource : StoredResource?, etag : String?,completionHandler : (msg: String) -> Void) {
+    class func handleData(inputData : NSData, service: AbstractService, storedResource : StoredResource?, etag : String?,completionHandler : (msg: CallbackProtocol) -> Void) {
         
         
    
@@ -105,6 +105,7 @@ class APIManager {
         
         storedResource?.etag = etag ?? ""
         
+        
     }
     
     
@@ -113,7 +114,7 @@ class APIManager {
     }
     
     
-    class func firstFeed(completionHandler: (msg: String) -> Void, service : AbstractService) {
+    class func firstFeed(completionHandler: (msg: CallbackProtocol) -> Void, service : AbstractService) {
         singleCommonFeed(completionHandler, service : service)
     }
     
@@ -127,7 +128,7 @@ class APIManager {
     }
 
     
-    class func singleCommonFeed(completionHandler: (msg: String) -> Void, service : AbstractService) {
+    class func singleCommonFeed(completionHandler: (msg: CallbackProtocol) -> Void, service : AbstractService) {
         
     
  

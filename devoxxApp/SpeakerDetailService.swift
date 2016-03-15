@@ -43,8 +43,9 @@ class SpeakerDetailService : AbstractService {
         return SpeakerDetailHelper()
     }
     
-    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: String) -> Void) {
+    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
         
+        var foundSpeaker : NSManagedObject!
         privateManagedObjectContext.performBlock {
             
             for singleHelper in helper {
@@ -54,12 +55,13 @@ class SpeakerDetailService : AbstractService {
                     let fetchRequest = NSFetchRequest(entityName: "SpeakerDetail")
                     let predicate = NSPredicate(format: "uuid = %@", singleHelper.getMainId())
                     fetchRequest.predicate = predicate
-                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as? [SpeakerDetail]
                     
-                    if items.count > 0 {
-                        let found = items[0] as! FeedableProtocol
-                        (singleHelper as! SpeakerDetailHelper).speaker = (found as! SpeakerDetail).speaker
+                    if items!.count > 0 {
+                        let found = items![0]
+                        (singleHelper as! SpeakerDetailHelper).speaker = found.speaker
                         found.feedHelper(singleHelper)
+                        foundSpeaker = found.speaker
                     }
                     else {
                         print("not found")
@@ -71,7 +73,7 @@ class SpeakerDetailService : AbstractService {
 
             }
             
-            self.realSave(completionHandler)
+            self.realSave(completionHandler, obj: foundSpeaker)
         }
         
     }

@@ -19,18 +19,26 @@ class APIReloadManager {
     
     
        
-    class func fetchUpdate(url : String?, service : AbstractService, completedAction : (msg: String) -> Void) {
+    class func fetchUpdate(url : String?, service : AbstractService, completedAction : (newHelper: CallbackProtocol) -> Void) {
         
         if ResourceFetcherManager.isAllowedToFetch(url) {
             
             APIDataManager.loadDataFromURL(url!, service: service, helper: service.getHelper(), isCritical: false, onSuccess: completedAction, onError: onError)
             
         }
+        else {
+            completedAction(newHelper: CompletionMessage(msg : "not allowed"))
+        }
     }
     
+ 
     
-    class func fetchImg(url : String?, id : NSManagedObjectID, service : ImageServiceProtocol, completedAction : (msg: String) -> Void) {
+    class func fetchImg(url : String?, id : NSManagedObjectID?, service : ImageServiceProtocol, completedAction : (CallbackProtocol) -> Void) {
         
+        if id == nil {
+            completedAction(CompletionMessage(msg : "id is null"))
+        }
+ 
         if ResourceFetcherManager.isAllowedToFetch(url) {
             
             let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
@@ -47,7 +55,7 @@ class APIReloadManager {
                 else {
                     
                     
-                    service.updateImageForId(id, withData : data!, completionHandler: completedAction)
+                    service.updateImageForId(id!, withData : data!, completionHandler: completedAction)
                     
                     
                 }
@@ -60,6 +68,7 @@ class APIReloadManager {
     }
     
     
+        
     
     
     class func onError(value : String) -> Void {
