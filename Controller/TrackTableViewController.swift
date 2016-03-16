@@ -107,13 +107,13 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if let detailObject = getCell(indexPath) as? DetailableProtocol {
+        if let detailObject = getCell(indexPath) as? HelperableProtocol {
             
             
             
             
             let details = TalkDetailsController()
-            details.detailObject = detailObject
+            details.detailObject = detailObject.toHelper() as? DetailableProtocol
             details.delegate = self
             
             
