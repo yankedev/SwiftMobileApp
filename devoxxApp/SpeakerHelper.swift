@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayPrococol {
+class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayPrococol, SearchableItemProtocol {
     
     var uuid: String?
     var lastName: String?
@@ -170,6 +170,10 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
     }
     func isFavorited() -> Bool {
         return isFav!
+    }
+    
+    func isMatching(str : String) -> Bool {
+        return getTitle()!.lowercaseString.containsString(str.lowercaseString)
     }
     
 }

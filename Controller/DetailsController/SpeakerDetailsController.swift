@@ -191,13 +191,19 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     
     
+    func callBackTalks(talks : [DataHelperProtocol], error : TalksStoreError?) {
+        detailObject.setRelated(talks)
+        talkList.reloadData()
+    }
+    
+
+
     public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        
-
-        
         fetchUpdate()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            TalkService.sharedInstance.fetchTalks(self.detailObject.getRelatedIds(), completionHandler:self.callBackTalks)
+        })
         talkList.reloadData()
     }
     
@@ -210,6 +216,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
    
     public func fetchCompleted(newHelper : CallbackProtocol) -> Void {
     
+        
         if let newDetailObject = newHelper.getHelper() as? DetailableProtocol {
             detailObject = newDetailObject
         }

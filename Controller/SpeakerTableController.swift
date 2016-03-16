@@ -134,7 +134,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             
             cell!.accessoryView = UIImageView(image: cellDataCast.getPrimaryImage())
             
-            print(cellData)
+           
             
        
             

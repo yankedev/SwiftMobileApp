@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, SearchableItemProtocol, ImageFeedable, HelperableProtocol {
+public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, ImageFeedable, HelperableProtocol {
     
     @NSManaged var uuid: String?
     @NSManaged var firstName: String?
@@ -115,11 +115,6 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
     
     func getFullName() -> String {
         return "\(firstName!) \(lastName!)"
-    }
-    
-    
-    func isMatching(str : String) -> Bool {
-        return getFullName().lowercaseString.containsString(str.lowercaseString)
     }
     
     public func getHeaderTitle() -> String {
