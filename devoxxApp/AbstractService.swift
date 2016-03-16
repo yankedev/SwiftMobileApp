@@ -12,19 +12,16 @@ import UIKit
 
 class AbstractService  {
     
-    var mainManagedObjectContext: NSManagedObjectContext
+   
     var privateManagedObjectContext: NSManagedObjectContext
 
-   
-    
     var currentCfp:Cfp?
   
     init() {
        
-        mainManagedObjectContext = MainManager.sharedInstance.mainManagedObjectContext
-
-        privateManagedObjectContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        privateManagedObjectContext.parentContext = mainManagedObjectContext
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        privateManagedObjectContext = appDelegate.coreDataHelper.backgroundThreadContext!
+        
     }
     
     func invertFavorite(id : NSManagedObjectID) -> Bool {
@@ -42,7 +39,7 @@ class AbstractService  {
         return realSave(completionHandler, obj : nil, img : nil)
     }
     
-    func realSave(completionHandler : ((msg: CallbackProtocol) -> Void)?, obj : NSManagedObject?) {
+    func realSave(completionHandler : ((msg: CallbackProtocol) -> Void)?, obj : DataHelperProtocol?) {
         return realSave(completionHandler, obj : obj, img : nil)
     }
     
@@ -50,17 +47,18 @@ class AbstractService  {
         return realSave(completionHandler, obj : nil, img : img)
     }
     
-    func realSave(completionHandler : ((msg: CallbackProtocol) -> Void)?, obj :NSManagedObject?, img : NSData?) {
+    func realSave(completionHandler : ((msg: CallbackProtocol) -> Void)?, obj :DataHelperProtocol?, img : NSData?) {
+
+        
         do {
             try privateManagedObjectContext.save()
-            mainManagedObjectContext.performBlock {
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.coreDataHelper.mainThreadContext.performBlock {
                 do {
-                    try self.mainManagedObjectContext.save()
-                    dispatch_async(dispatch_get_main_queue(),{
-                        print(obj)
-                        
-                        if let objHelperable = obj as? HelperableProtocol {
-                            completionHandler?(msg: CompletionMessage(obj : objHelperable.toHelper()))
+                    try appDelegate.coreDataHelper.mainThreadContext.save()
+                    
+                        if obj != nil {
+                            completionHandler?(msg: CompletionMessage(obj : obj!))
                         }
                         else if img != nil {
                             completionHandler?(msg: CompletionMessage(img : img))
@@ -70,7 +68,7 @@ class AbstractService  {
                             
                         }
                         
-                    })
+                    
                 } catch let err as NSError {
                     print("Could not save main context: \(err.localizedDescription)")
                     dispatch_async(dispatch_get_main_queue(),{
@@ -89,9 +87,10 @@ class AbstractService  {
     func saveImage(completionHandler : ((data: NSData?) -> NSData)?) {
         do {
             try privateManagedObjectContext.save()
-            mainManagedObjectContext.performBlock {
+            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+            appDelegate.coreDataHelper.mainThreadContext.performBlock {
                 do {
-                    try self.mainManagedObjectContext.save()
+                    try appDelegate.coreDataHelper.mainThreadContext.save()
                     dispatch_async(dispatch_get_main_queue(),{
                         completionHandler?(data: nil)
                     })

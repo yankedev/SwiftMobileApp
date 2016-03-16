@@ -109,7 +109,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             else {
                 let previousCellData = arrayToParse![indexPath.row - 1] as! CellDataDisplayPrococol
                 let previousCellDataInfo = previousCellData.getFirstInformation()
-                print(previousCellDataInfo?.characters.first)
+       
                 if cellDataCast.getFirstInformation()?.characters.first == previousCellDataInfo?.characters.first {
                     shouldDisplay = false
                 }

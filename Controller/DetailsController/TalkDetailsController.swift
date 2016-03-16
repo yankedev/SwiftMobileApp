@@ -77,7 +77,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         view.layoutIfNeeded()
         
         
-        SpeakerService.sharedInstance.fetchSpeakers(detailObject.getRelatedIds(), completionHandler: callBack)
+        
         
         
     }
@@ -86,7 +86,6 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     func callBack(speakers : [DataHelperProtocol], error : SpeakerStoreError?) {
         detailObject.setRelated(speakers)
-        print(speakers.count)
         self.details.right.reloadData()
     }
     
@@ -98,6 +97,13 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        print(detailObject.getRelatedIds())
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            SpeakerService.sharedInstance.fetchSpeakers(self.detailObject.getRelatedIds(), completionHandler:self.callBack)
+        })
+        
+        
         header.imageView.hidden = true
     }
        
@@ -110,9 +116,10 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
             
             let details = SpeakerDetailsController()
             details.delegate = self
-            //todo
             
             details.detailObject = speaker
+     
+            
            
             
             details.configure()

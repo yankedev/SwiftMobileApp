@@ -21,6 +21,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         super.viewDidLoad()
         
         
+        
         view.addSubview(talkList)
         
         //talkList.backgroundColor = UIColor.redColor()
@@ -57,7 +58,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
         view.addConstraints(constV)
         
-        print(detailObject)
+        
         
         header.talkTitle.text = detailObject.getTitle()
         header.talkTrack.text = detailObject.getSubTitle()
@@ -128,7 +129,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         if let relatedObject = detailObject.getRelatedDetailWithIndex(indexPath.row) {
             
             
-            print(relatedObject.getPrimaryImage())
+        
             cell!.leftIconView.imageView.image = relatedObject.getPrimaryImage()
             
             cell!.rightTextView.topTitleView.talkTrackName.text = relatedObject.getDetailInfoWithIndex(2)
@@ -192,6 +193,10 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        
+
+        
         fetchUpdate()
         talkList.reloadData()
     }
@@ -204,11 +209,10 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     }
    
     public func fetchCompleted(newHelper : CallbackProtocol) -> Void {
-        print(newHelper.debug())
+    
         if let newDetailObject = newHelper.getHelper() as? DetailableProtocol {
             detailObject = newDetailObject
         }
-        
         scroll.text = detailObject.getSummary()
         header.talkTrack.text = detailObject.getSubTitle()
    }

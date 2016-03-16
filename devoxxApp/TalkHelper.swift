@@ -27,13 +27,13 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol {
     var friendlyTime : String?
     var speakerList : String?
     var speakerListTwitter : String?
-    var speakersId : [String]?
+    var speakersId : [NSManagedObjectID]?
     var relatedObjects: [DataHelperProtocol]?
     
     init() {
     }
     
-    init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?, isBreak: Bool, roomName:String?, friendlyTime : String?, speakerList : String?, spealerListTwitter : String?, speakersId : [String], objectID : NSManagedObjectID?, isFav : Bool) {
+    init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?, isBreak: Bool, roomName:String?, friendlyTime : String?, speakerList : String?, spealerListTwitter : String?, speakersId : [NSManagedObjectID], objectID : NSManagedObjectID?, isFav : Bool) {
         self.title = title ?? ""
         self.lang = lang ?? ""
         self.trackId = trackId ?? ""
@@ -47,7 +47,7 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol {
         self.speakerList = speakerList ?? ""
         self.objectID = objectID
         self.speakerListTwitter = speakerListTwitter ?? ""
-        self.speakersId = speakersId ?? [String]()
+        self.speakersId = speakersId ?? [NSManagedObjectID]()
         self.isFav = isFav ?? false
     }
     
@@ -164,9 +164,9 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol {
         return "Speakers"
     }
 
-    func getRelatedIds() -> [String] {
+    func getRelatedIds() -> [NSManagedObjectID] {
         if speakersId == nil {
-            return [String]()
+            return [NSManagedObjectID]()
         }
         return speakersId!
     }

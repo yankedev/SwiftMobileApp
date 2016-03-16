@@ -91,7 +91,6 @@
             let headers = [
                 "If-None-Match": storedResource.etag
             ]
-            print(storedResource.etag)
             config.HTTPAdditionalHeaders = headers
             config.requestCachePolicy = .ReloadIgnoringLocalCacheData
             config.timeoutIntervalForResource = 5

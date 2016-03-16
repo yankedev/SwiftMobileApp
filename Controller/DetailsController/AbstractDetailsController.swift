@@ -293,8 +293,6 @@ public class AbstractDetailsController : UIViewController {
     
     public func clicked() {
         if delegate != nil {
-            print(detailObject)
-            print(detailObject.getObjectID())
             let response = delegate.favorite(detailObject.getObjectID()!)
             setColor(response)
         }

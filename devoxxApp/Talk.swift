@@ -23,7 +23,7 @@ public protocol DetailableProtocol {
     func getPrimaryImage() -> UIImage?
     func getTwitter() -> String?
     func getHeaderTitle() -> String?
-    func getRelatedIds() -> [String]
+    func getRelatedIds() -> [NSManagedObjectID]
     func setRelated(data : [DataHelperProtocol])
     func getObjectID() -> NSManagedObjectID?
     func isFavorited() -> Bool
@@ -196,9 +196,9 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
     
     func toHelper() -> DataHelperProtocol {
         
-        var speakerHelpers = [String]()
+        var speakerHelpers = [NSManagedObjectID]()
         for singleSpeaker in speakers {
-            speakerHelpers.append(singleSpeaker.getIdentifier())
+            speakerHelpers.append(singleSpeaker.getObjectID())
         }
         
         return TalkHelper(title: title, lang: lang, trackId: trackId, talkType: talkType, track: track, id: id, summary: summary, isBreak: isBreak, roomName: slot.roomName, friendlyTime: slot.getFriendlyTime(), speakerList : getFriendlySpeaker(", ", useTwitter : false), spealerListTwitter : getFriendlySpeaker(", ", useTwitter : true), speakersId : speakerHelpers, objectID : objectID, isFav : isFavorited)

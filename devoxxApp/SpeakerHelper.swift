@@ -22,7 +22,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
     var company : String?
     var isFav : Bool?
     var imgData : NSData?
-    var talksId : [String]?
+    var talksId : [NSManagedObjectID]?
     var relatedObjects: [DataHelperProtocol]?
     
     func getMainId() -> String {
@@ -32,7 +32,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
     init() {
     }
     
-    init(uuid: String?, lastName: String?, firstName: String?, avatarUrl: String?, objectID : NSManagedObjectID, href: String?, bio: String?, company: String?, isFav: Bool, talksId : [String]?, imgData : NSData?) {
+    init(uuid: String?, lastName: String?, firstName: String?, avatarUrl: String?, objectID : NSManagedObjectID, href: String?, bio: String?, company: String?, isFav: Bool, talksId : [NSManagedObjectID]?, imgData : NSData?) {
         self.uuid = uuid ?? ""
         self.lastName = lastName ?? ""
         self.firstName = firstName ?? ""
@@ -140,9 +140,9 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
         return UIImage(data: imgData!)
     }
     
-    func getRelatedIds() -> [String] {
+    func getRelatedIds() -> [NSManagedObjectID] {
         if talksId == nil {
-            return [String]()
+            return [NSManagedObjectID]()
         }
         return talksId!
     }

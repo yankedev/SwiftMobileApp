@@ -88,33 +88,27 @@ class TalkService : AbstractService {
     }
     
     
-    func fetchTalks(ids : [String], completionHandler: (talks: [DataHelperProtocol], error: TalksStoreError?) -> Void) {
+    func fetchTalks(ids : [NSManagedObjectID], completionHandler: (talks: [DataHelperProtocol], error: TalksStoreError?) -> Void) {
         privateManagedObjectContext.performBlock {
-            do {
+            
+        
+            
+            var talksArray = [DataHelperProtocol]()
+            
+            for singleId in ids {
+                let obj = self.privateManagedObjectContext.objectWithID(singleId)
                 
-                let predicateEvent = NSPredicate(format: "slot.cfp.id = %@", super.getCfpId())
-                let predicate = NSPredicate(format: "id IN %@", ids)
-                let fetchRequest = NSFetchRequest(entityName: "Talk")
-                fetchRequest.includesSubentities = true
-                fetchRequest.returnsObjectsAsFaults = false
-                fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateEvent, predicate])
-                let sortTitle = NSSortDescriptor(key: "title", ascending: true)
-                fetchRequest.sortDescriptors = [sortTitle]
-                
-                
-                let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Talk]
-                
-                let resultsHelper = results.map { $0.toHelper() }
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(talks: resultsHelper, error: nil)
-                })
-            } catch {
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(talks: [], error: TalksStoreError.CannotFetch("Cannot fetch talks"))
-                })
+                if let objCast = obj as? HelperableProtocol {
+                    talksArray.append(objCast.toHelper())
+                }
                 
             }
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                completionHandler(talks: talksArray, error: nil)
+            })
+        
+        
         }
     }
 

@@ -148,9 +148,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             let defaults = NSUserDefaults.standardUserDefaults()
             
             if let _ = defaults.objectForKey("currentEvent") as? String {
-                print("SETTING 1 \(currentData.identifier())")
                 defaults.setObject(currentData.identifier(), forKey: "currentEvent")
-                print(currentData.identifier())
+               // print(currentData.identifier())
                 CfpService.sharedInstance.currentCfp = nil
             }
             
@@ -185,7 +184,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     let storedResourceService = StoredResourceService.sharedInstance
     
     func loadWheel(msg : CallbackProtocol) {
-        print("cfp has been fed")
+      //  print("cfp has been fed")
         cfpService.fetchCfps(callBack)
     }
     
@@ -301,17 +300,17 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         let defaults = NSUserDefaults.standardUserDefaults()
         
         if let currentEventIndex = defaults.objectForKey("currentEvent") as? String {
-            print("READDING 2 \(currentEventIndex)")
+          //  print("READDING 2 \(currentEventIndex)")
             if currentEventIndex == "" {
                 return
             }
             else {
-                print("coucou ->\(currentEventIndex)")
+             //   print("coucou ->\(currentEventIndex)")
                 prepareNext()
             }
         }
         else {
-            print("SETTINH 2 ")
+           // print("SETTINH 2 ")
             defaults.setObject("", forKey: "currentEvent")
             return
         }
@@ -409,9 +408,9 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     
     func firstFetching() {
-        print("--- Begin bootstrap --- ")
+       // print("--- Begin bootstrap --- ")
         dispatch_group_enter(group)
-        print(CfpService.sharedInstance.getEntryPoint())
+       // print(CfpService.sharedInstance.getEntryPoint())
         
         APIDataManager.loadDataFromURL(CfpService.sharedInstance.getEntryPoint(), service: DayService.sharedInstance, helper : DayHelper(), isCritical : true, onSuccess: self.success, onError: self.failure)
         
@@ -419,7 +418,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         APIDataManager.loadDataFromURL(SpeakerService.sharedInstance.getSpeakerUrl(), service: SpeakerService.sharedInstance, helper : SpeakerHelper(), isCritical : true, onSuccess: self.success, onError: self.failure)
         
         dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            print("--- End bootstrap --- ")
+          //  print("--- End bootstrap --- ")
             if self.rotating {
                 self.secondFetching()
             }

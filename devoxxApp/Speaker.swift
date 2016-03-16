@@ -128,12 +128,12 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
     
     func toHelper() -> DataHelperProtocol {
         
-        print(talks.count)
+       
         
-        var talksId = [String]()
+        var talksId = [NSManagedObjectID]()
        
         for singleTalk in Array(talks) {
-            talksId.append(singleTalk.getIdentifier())
+            talksId.append(singleTalk.getObjectID())
         }
 
         return SpeakerHelper(uuid: uuid, lastName: lastName, firstName: firstName, avatarUrl: avatarUrl, objectID : objectID, href: href, bio : speakerDetail.bio , company: speakerDetail.company, isFav: isFavorited, talksId: talksId, imgData: imgData)

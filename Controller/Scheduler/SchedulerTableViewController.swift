@@ -23,7 +23,6 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     HotReloadProtocol
 {
     
-    let talkService = TalkService.sharedInstance
     
     //ScrollableDateProtocol
     public var index:Int = 0
@@ -97,7 +96,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     
     
     public func fetchAll() {
-        talkService.fetchTalksByDate(self.currentDate, searchPredicates : self.searchPredicates, completionHandler: self.callBack)
+        TalkService.sharedInstance.fetchTalksByDate(self.currentDate, searchPredicates : self.searchPredicates, completionHandler: self.callBack)
     }
     
     public func resetSearch() {
@@ -121,7 +120,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
             //todo
             
             details.detailObject = slot.toHelper() as? DetailableProtocol
-            print(slot.toHelper())
+       
             
             details.delegate = self
     
@@ -341,7 +340,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     
     
     public func favorite(id : NSManagedObjectID) -> Bool {
-        return talkService.invertFavorite(id)
+        return TalkService.sharedInstance.invertFavorite(id)
     }
     
     

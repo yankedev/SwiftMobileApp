@@ -148,7 +148,7 @@ class AttributeService : AbstractService {
                     
                 }
                 catch {
-                    print("not found")
+           
                 }
 
             }

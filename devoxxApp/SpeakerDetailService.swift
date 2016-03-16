@@ -64,16 +64,22 @@ class SpeakerDetailService : AbstractService {
                         foundSpeaker = found.speaker
                     }
                     else {
-                        print("not found")
+                       
                     }
                 }
                 catch {
-                    print("in catch")
+                   
                 }
 
             }
             
-            self.realSave(completionHandler, obj: foundSpeaker)
+            
+            if let objHelperable = foundSpeaker as? HelperableProtocol {
+                self.realSave(completionHandler, obj: objHelperable.toHelper())
+            }
+            else {
+                self.realSave(completionHandler)
+            }
         }
         
     }
