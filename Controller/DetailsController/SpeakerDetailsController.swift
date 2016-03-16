@@ -201,9 +201,6 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         fetchUpdate()
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-            TalkService.sharedInstance.fetchTalks(self.detailObject.getRelatedIds(), completionHandler:self.callBackTalks)
-        })
         talkList.reloadData()
     }
     
@@ -222,6 +219,10 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         }
         scroll.text = detailObject.getSummary()
         header.talkTrack.text = detailObject.getSubTitle()
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            TalkService.sharedInstance.fetchTalks(self.detailObject.getRelatedIds(), completionHandler:self.callBackTalks)
+        })
    }
     
     public func callbackImg(newHelper : CallbackProtocol) {
