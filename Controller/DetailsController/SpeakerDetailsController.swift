@@ -179,10 +179,8 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
             
             details.configure()
             
-            if let talkFavorite = talk as? FavoriteProtocol {
-                details.setColor(talkFavorite.isFav())
-            }
-            
+            details.setColor(talk.isFavorited())
+        
             
             self.navigationController?.pushViewController(details, animated: true)
         }
