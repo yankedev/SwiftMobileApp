@@ -77,9 +77,10 @@ public class TrackTableViewController<T : CellDataPrococol>:
     }
     
     
-    
+
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBarHidden = false
         fetchAll()
         
         

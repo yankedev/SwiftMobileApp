@@ -142,6 +142,12 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     
     
     
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBarHidden = false
+    }
+    
+    
     
     public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         

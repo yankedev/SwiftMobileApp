@@ -215,6 +215,10 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         searchBar.resignFirstResponder()
     }
     
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBarHidden = false
+    }
     
     public func updateRowForSearch() {
         
