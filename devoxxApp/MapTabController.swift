@@ -29,11 +29,11 @@ public class MapTabController : UIViewController {
         self.floors = floors
         for floor in floors {
             seg.insertSegmentWithTitle(floor.title, atIndex: seg.numberOfSegments, animated: false)
-            //APIReloadManager.fetchImg(floor.img, id: floor.objectID, service : floorService, completedAction: completed)
+            APIReloadManager.fetchImg(floor.img, id: floor.objectID, service : floorService, completedAction: completed)
         }
     }
     
-    func completed(msg : String) {
+    func completed(callBack :CallbackProtocol) {
         //print("fetch img")
         change(seg)
     }
