@@ -50,11 +50,7 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
                     fetchRequest.predicate = predicate
                     let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
                     
-                    if items.count > 0 {
-                        
-                    }
-                        
-                    else {
+                    if items.count == 0 {
                         
                         let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
                         let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
@@ -74,6 +70,14 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
                         coreDataObject2.uuid = coreDataObject2.speaker.uuid!
       
                     }
+                    
+                    else {
+                        
+                        if let feedable = items[0] as? FeedableProtocol {
+                            feedable.feedHelper(singleHelper)
+                        }
+                        
+                     }
                     
                     
                     

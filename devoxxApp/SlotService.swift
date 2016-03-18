@@ -30,7 +30,7 @@ class SlotService : AbstractService {
         super.init()
     }
     
-   
+    
     
     
     func fetchCfpDay(completionHandler: (slots: NSArray, error: SlotStoreError?) -> Void) {
@@ -63,12 +63,12 @@ class SlotService : AbstractService {
     
     private func feed() {
     }
- 
+    
     
     
     override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
         
-
+        
         let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
         
         privateManagedObjectContext.performBlock {
@@ -82,98 +82,57 @@ class SlotService : AbstractService {
                     fetchRequest.predicate = predicate
                     let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
                     
+                    var entity:NSEntityDescription?
+                    var subEntity:NSEntityDescription?
+                    var coreDataObject:NSManagedObject?
+                    var subCoreDataObject:NSManagedObject?
+                    
                     if items.count == 0 {
                         
-                        let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
-                        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                        entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
+                        coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
                         
-                        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-                            coreDataObjectCast.feedHelper(singleHelper)
-                            
-                            
-                            
-                            
-                            coreDataObject.setValue(cfp, forKey: "cfp")
-                            
-                            let subEntity = NSEntityDescription.entityForName("Talk", inManagedObjectContext: self.privateManagedObjectContext)
-                            let subDataObject = NSManagedObject(entity: subEntity!, insertIntoManagedObjectContext: self.privateManagedObjectContext) as! FeedableProtocol
-                            
-                            if let helperSlot = singleHelper as? SlotHelper {
-                                subDataObject.feedHelper(helperSlot.talk!)
-                                
-                                if let array = helperSlot.talk!.speakerIds {
-                                
-                                    let fetch = NSFetchRequest(entityName: "Speaker")
-                                    
-                                    let predicate = NSPredicate(format: "href IN %@", array)
-                                    fetch.predicate = predicate
-                                    fetch.returnsObjectsAsFaults = false
-                                    
-                                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetch)
-                                    let nsm = subDataObject as! Talk
-                                    nsm.mutableSetValueForKey("speakers").addObjectsFromArray(items)
-                                }
-                                
-                                
-                                
-                            }
-                            
-                            coreDataObject.setValue(subDataObject as? AnyObject, forKey: "talk")
-                            
-                        }
-                        
+                        subEntity = NSEntityDescription.entityForName("Talk", inManagedObjectContext: self.privateManagedObjectContext)
+                        subCoreDataObject = NSManagedObject(entity: subEntity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
                         
                     }
                     else {
-                        
-                        let coreDataObject = items[0]
-                        
-                        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-                            coreDataObjectCast.feedHelper(singleHelper)
-                            
-                            
-                            
-                            
-                            coreDataObject.setValue(cfp, forKey: "cfp")
-                            
-                            let subDataObject = (coreDataObject as! Slot).talk
-                            
-                            if let helperSlot = singleHelper as? SlotHelper {
-                                subDataObject.feedHelper(helperSlot.talk!)
-                                
-                                if let array = helperSlot.talk!.speakerIds {
-                                    
-                                    let fetch = NSFetchRequest(entityName: "Speaker")
-                                    
-                                    let predicate = NSPredicate(format: "href IN %@", array)
-                                    fetch.predicate = predicate
-                                    fetch.returnsObjectsAsFaults = false
-                                    
-                                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetch)
-                                    let nsm = subDataObject as! Talk
-                                    nsm.mutableSetValueForKey("speakers").addObjectsFromArray(items)
-                                }
-                                
-                                
-                                
-                            }
-                            
-                            coreDataObject.setValue(subDataObject as? AnyObject, forKey: "talk")
-                            
-                        }
-
-                        
-                        
-                        
-                        
+                        coreDataObject = items[0] as? Slot
+                        subCoreDataObject = (coreDataObject as? Slot)?.talk
                     }
                     
+                    //feed (or update)
+                    
+                    coreDataObject?.setValue(cfp, forKey: "cfp")
+                    if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+                        coreDataObjectCast.feedHelper(singleHelper)
+                    }
+                    
+                    if let helperSlot = singleHelper as? SlotHelper  {
+                        if let subCoreDataObjectFeed = subCoreDataObject as? FeedableProtocol {
+                            subCoreDataObjectFeed.feedHelper(helperSlot.talk!)
+                        }
+                        
+                        if let array = helperSlot.talk!.speakerIds {
+                            let fetch = NSFetchRequest(entityName: "Speaker")
+                            let predicate = NSPredicate(format: "href IN %@", array)
+                            fetch.predicate = predicate
+                            fetch.returnsObjectsAsFaults = false
+                            
+                            let items = try self.privateManagedObjectContext.executeFetchRequest(fetch)
+                            let nsm = subCoreDataObject as? Talk
+                            nsm?.mutableSetValueForKey("speakers").addObjectsFromArray(items)
+                        }
+                    }
+                    
+                    coreDataObject?.setValue(subCoreDataObject as? AnyObject, forKey: "talk")
                     
                 }
+                    
                 catch {
                     
                 }
-
+                
                 
             }
             
@@ -182,9 +141,9 @@ class SlotService : AbstractService {
         
     }
     
-
     
-
+    
+    
     
     override func getHelper() -> DataHelperProtocol {
         return SlotHelper()
