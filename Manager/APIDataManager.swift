@@ -97,13 +97,7 @@
             
             let session = NSURLSession(configuration: config)
             
-            
-            if storedResource.url.hasPrefix("https://localhost") {
-                storedResource.url = storedResource.url.stringByReplacingOccurrencesOfString("https:", withString: "http:")
-            }
-            
-            
-            
+        
             let task = session.dataTaskWithURL(NSURL(string: storedResource.url)!) {
                 data, response1, error in
                 
