@@ -35,7 +35,6 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         static let title = NSLocalizedString("Success", comment: "")
         static let content = NSLocalizedString("QRCode has successfully been cleared", comment: "")
         static let okButton = NSLocalizedString("Ok !", comment: "")
-        
     }
     
     override public func viewDidLoad() {
@@ -81,9 +80,8 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
                 self.presentViewController(alert, animated: true, completion: nil)
             }
             if indexPath.row == 2 {
-                let alert = UIAlertController(title: "About", message: "go to about", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                let credits = CreditsController()
+                self.navigationController?.pushViewController(credits, animated: true)
             }
         }
         

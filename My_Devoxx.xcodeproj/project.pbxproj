@@ -199,6 +199,7 @@
 		E175E8D21C9640B3002A262A /* ScheduleBreakCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E8D11C9640B3002A262A /* ScheduleBreakCell.swift */; };
 		E175E8D31C964172002A262A /* pirulen.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E175E7C31C963DEE002A262A /* pirulen.ttf */; };
 		E175E8D41C964172002A262A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E175E7C41C963DEE002A262A /* Roboto-Regular.ttf */; };
+		E1ACC83D1C9B9443006B3C4A /* CreditsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ACC83C1C9B9443006B3C4A /* CreditsController.swift */; };
 		E1DF81141C985501002194C9 /* CallbackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81131C985501002194C9 /* CallbackProtocol.swift */; };
 		E1DF81181C99F4CE002194C9 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */; };
 		E1E9E4FD1C97807D00EC347D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E9E4FB1C97807D00EC347D /* Crashlytics.framework */; };
@@ -415,6 +416,7 @@
 		E175E8CD1C96401A002A262A /* AllDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllDetailsView.swift; path = View/AllDetailsView.swift; sourceTree = "<group>"; };
 		E175E8CF1C964082002A262A /* SchedulerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchedulerTableView.swift; path = devoxxApp/SchedulerTableView.swift; sourceTree = "<group>"; };
 		E175E8D11C9640B3002A262A /* ScheduleBreakCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleBreakCell.swift; path = View/ScheduleBreakCell.swift; sourceTree = "<group>"; };
+		E1ACC83C1C9B9443006B3C4A /* CreditsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreditsController.swift; path = Controller/CreditsController.swift; sourceTree = "<group>"; };
 		E1DF81131C985501002194C9 /* CallbackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackProtocol.swift; sourceTree = "<group>"; };
 		E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		E1E9E4FB1C97807D00EC347D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -657,6 +659,7 @@
 				E175E63D1C96391C002A262A /* QRCodeScannerController.swift */,
 				E175E63E1C96391C002A262A /* RateTableViewController.swift */,
 				E175E63F1C96391C002A262A /* SettingsController.swift */,
+				E1ACC83C1C9B9443006B3C4A /* CreditsController.swift */,
 				E175E6401C96391C002A262A /* SpeakerTableController.swift */,
 				E175E6411C96391C002A262A /* TrackController.swift */,
 				E175E6421C96391C002A262A /* TrackTableViewController.swift */,
@@ -1212,6 +1215,7 @@
 				E175E7D61C963DFC002A262A /* DayService.swift in Sources */,
 				E175E8BB1C963EBF002A262A /* Image.swift in Sources */,
 				E175E6481C96391C002A262A /* TrackController.swift in Sources */,
+				E1ACC83D1C9B9443006B3C4A /* CreditsController.swift in Sources */,
 				E175E8D01C964082002A262A /* SchedulerTableView.swift in Sources */,
 				E175E8BA1C963EBF002A262A /* Floor.swift in Sources */,
 				E175E6261C9638A2002A262A /* ScheduleCellView.swift in Sources */,

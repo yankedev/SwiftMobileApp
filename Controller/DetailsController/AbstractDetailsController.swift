@@ -243,7 +243,7 @@ public class AbstractDetailsController : UIViewController {
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = true
-        header.imageView.image = detailObject.getPrimaryImage()
+        header.imageView.image = detailObject?.getPrimaryImage()
     }
     
     
