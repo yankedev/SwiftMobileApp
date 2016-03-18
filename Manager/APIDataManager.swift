@@ -76,7 +76,6 @@
             
             for singleUrl in urls! {
                 if let singleUrlString = singleUrl as? Day {
-                    print(singleUrlString.url)
                     loadDataFromURL(singleUrlString.url, service: SlotService.sharedInstance, helper : SlotHelper(), isCritical: true, onSuccess: onSuccess, onError: onError)
                 }
             }
@@ -92,7 +91,7 @@
             let headers = [
                 "If-None-Match": storedResource.etag
             ]
-            //config.HTTPAdditionalHeaders = headers
+            config.HTTPAdditionalHeaders = headers
             config.requestCachePolicy = .ReloadIgnoringLocalCacheData
             config.timeoutIntervalForResource = 5
             
@@ -173,7 +172,7 @@
                     }
                     else if httpResponse.statusCode == 304 {
                         
-                        //print("304 for \(storedResource.url)")
+                        print("304 for \(storedResource.url)")
                         
                         
                         if isCritical && service.isEmpty() {
