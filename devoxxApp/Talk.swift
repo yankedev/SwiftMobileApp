@@ -39,7 +39,7 @@ protocol HelperableProtocol {
 }
 
 
-class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemProtocol, RatableProtocol, HelperableProtocol, FeedableProtocol {
+class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemProtocol, HelperableProtocol, FeedableProtocol {
     
     @NSManaged var id: String
     @NSManaged var lang: String
@@ -53,10 +53,7 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
     @NSManaged var isBreak : Bool
     @NSManaged var slot: Slot
     
-    func getTitle() -> String {
-        return title
-    }
-    
+        
     func getIconFromTrackId() -> String {
         return "icon_\(trackId)"
     }
@@ -201,7 +198,7 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
             speakerHelpers.append(singleSpeaker.getObjectID())
         }
         
-        return TalkHelper(title: title, lang: lang, trackId: trackId, talkType: talkType, track: track, id: id, summary: summary, isBreak: isBreak, roomName: slot.roomName, friendlyTime: slot.getFriendlyTime(), speakerList : getFriendlySpeaker(", ", useTwitter : false), spealerListTwitter : getFriendlySpeaker(", ", useTwitter : true), speakersId : speakerHelpers, objectID : objectID, isFav : isFavorited)
+        return TalkHelper(title: title, lang: lang, trackId: trackId, talkType: talkType, track: track, id: id, summary: summary, isBreak: isBreak, roomName: slot.roomName, friendlyTime: slot.getFriendlyTime(), speakerList : getFriendlySpeaker(", ", useTwitter : false), speakerListTwitter : getFriendlySpeaker(", ", useTwitter : true), speakersId : speakerHelpers, objectID : objectID, isFav : isFavorited)
     }
     
     

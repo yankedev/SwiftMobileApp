@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func resourceReady(msg: CallbackProtocol) -> Void {
         //TODO
-        print("msg = \(msg)")
+       
     }
     
     

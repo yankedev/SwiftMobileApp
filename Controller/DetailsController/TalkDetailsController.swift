@@ -97,7 +97,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print(detailObject.getRelatedIds())
+
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             SpeakerService.sharedInstance.fetchSpeakers(self.detailObject.getRelatedIds(), completionHandler:self.callBack)
@@ -139,7 +139,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     public func twitter() {
         
         let originalString = detailObject.getTwitter()
-        
+ 
         
         let escapedString = originalString?.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         

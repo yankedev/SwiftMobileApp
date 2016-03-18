@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class TalkHelper: DataHelperProtocol, DetailableProtocol {
+class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
     
     var title: String?
     var lang: String?
@@ -33,7 +33,7 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol {
     init() {
     }
     
-    init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?, isBreak: Bool, roomName:String?, friendlyTime : String?, speakerList : String?, spealerListTwitter : String?, speakersId : [NSManagedObjectID], objectID : NSManagedObjectID?, isFav : Bool) {
+    init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?, isBreak: Bool, roomName:String?, friendlyTime : String?, speakerList : String?, speakerListTwitter : String?, speakersId : [NSManagedObjectID], objectID : NSManagedObjectID?, isFav : Bool) {
         self.title = title ?? ""
         self.lang = lang ?? ""
         self.trackId = trackId ?? ""
@@ -112,8 +112,8 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol {
     }
     
     func getTwitter() -> String? {
-        return ""
-        //return "\((slot.cfp?.hashtag)!) \(getTitle()) by \(getForthInformation(true)) \(getFullLink()!)"
+        let hashtag = CfpService.sharedInstance.getHashtag()
+        return "\(hashtag) \(getTitle()) by \(speakerListTwitter!) \(getFullLink()!)"
     }
     
         
@@ -141,8 +141,7 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol {
     }
     
     func getFullLink() -> String? {
-        return nil
-        //return "\(slot.cfp!.cfpEndpoint!)/conferences/\(slot.cfp!.id!)/talks/\(id)"
+        return TalkService.sharedInstance.getTalkUrl(id!)
     }
     
     func getImageFullLink() -> String? {
@@ -181,6 +180,11 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol {
     func isFavorited() -> Bool {
         return isFav!
     }
+    
+    func getTitle() -> String {
+        return title!
+    }
+
 
     
 }

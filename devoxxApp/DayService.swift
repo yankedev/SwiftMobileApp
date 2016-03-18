@@ -36,7 +36,7 @@ class DayService : AbstractService {
         
         privateManagedObjectContext.performBlock {
             
-         
+   
             let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
             
             for singleHelper in helper {
@@ -63,7 +63,7 @@ class DayService : AbstractService {
                             
                             coreDataObject.setValue(cfp, forKey: "cfp")
                             
-                            print(coreDataObject)
+                            
                         }
                         
                         

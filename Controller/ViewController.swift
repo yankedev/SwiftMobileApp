@@ -15,7 +15,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     var slicesData:NSArray!
     let wheelView = SelectionWheel()
     
-
+    
     let color = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)
     let customTabController = UITabBarController()
     var currentSelectedIndex = 0
@@ -111,11 +111,11 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         speakerController.tabBarItem = UITabBarItem(title: TabNameString.speakers, image: speakerTabImage, tag:2)
         mapController.tabBarItem = UITabBarItem(title: TabNameString.map, image: mapTabImage, tag:3)
         settingsController.tabBarItem = UITabBarItem(title: TabNameString.settings, image: settingsTabImage, tag:4)
-
+        
         let speakerNavigationController = UINavigationController(rootViewController: speakerController)
-
+        
         let settingsNavigationController = UINavigationController(rootViewController: settingsController)
-
+        
         let mapNavigationController = UINavigationController(rootViewController: mapController)
         
         self.customTabController.viewControllers = [scheduleController, trackController, speakerNavigationController, mapNavigationController, settingsNavigationController]
@@ -136,22 +136,14 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
     }
     
-    
-    func fetchFirst() {
-        
-    }
-
     func prepareNext() {
         if let currentData = slicesData[currentSelectedIndex] as? EventProtocol {
             
             
             let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(currentData.identifier(), forKey: "currentEvent")
+            CfpService.sharedInstance.currentCfp = nil
             
-            if let _ = defaults.objectForKey("currentEvent") as? String {
-                defaults.setObject(currentData.identifier(), forKey: "currentEvent")
-               // print(currentData.identifier())
-                CfpService.sharedInstance.currentCfp = nil
-            }
             
             
             //defaults.setObject(currentData.identifier(), forKey: "currentEvent")
@@ -180,35 +172,12 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         super.viewWillAppear(animated)
     }
     
-    let cfpService = CfpService.sharedInstance
-    let storedResourceService = StoredResourceService.sharedInstance
-    
-    func loadWheel(msg : CallbackProtocol) {
-      //  print("cfp has been fed")
-        cfpService.fetchCfps(callBack)
-    }
-    
-    func callBack(cfps :[Cfp], error : CfpStoreError?) {
-        slicesData = cfps
-        
-        wheelView.datasource = self
-        wheelView.delegate = self
-        
-        wheelView.setup()
-        wheelView.click(0)
-        globeView = wheelView.globe
-        shouldByPass()
-    }
-    
-    
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         imgView = UIImageView()
         imgView.contentMode = .ScaleAspectFit
-        
         
         
         self.view.addSubview(imgView)
@@ -284,36 +253,77 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         goView.goButton.addTarget(self, action: Selector("prepareNext"), forControlEvents: .TouchUpInside)
         
         
+        APIManager.firstFeed(loadWheel, service: CfpService.sharedInstance)
         
+    }
+    
+    func loadWheel(msg : CallbackProtocol) {
+        CfpService.sharedInstance.fetchCfps(callBack)
+    }
+    
+    func callBack(cfps :[Cfp], error : CfpStoreError?) {
+        slicesData = cfps
         
+        wheelView.datasource = self
+        wheelView.delegate = self
         
+        wheelView.setup()
+        wheelView.click(0)
+        globeView = wheelView.globe
         
-        
-        
-        APIManager.firstFeed(loadWheel, service: cfpService)
-        
-        
+        shouldByPass()
     }
     
     func shouldByPass() {
         
+        let selectedEvent = APIManager.getSelectedEvent()
+        
+        if selectedEvent == "" {
+            wheelView.click(0)
+        }
+        else {
+            var idx = 0
+            for singleData in slicesData {
+                if let singleDataEvent = singleData as? EventProtocol {
+                    if singleDataEvent.identifier() == selectedEvent {
+                        break
+                    }
+                    else {
+                        idx++
+                    }
+                }
+            }
+       
+            
+            wheelView.click(idx)
+            showStaticView(true)
+            prepareNext()
+        }
+        
+        
+        
+        
+        
+        
+        /*
         let defaults = NSUserDefaults.standardUserDefaults()
         
         if let currentEventIndex = defaults.objectForKey("currentEvent") as? String {
-          //  print("READDING 2 \(currentEventIndex)")
-            if currentEventIndex == "" {
-                return
-            }
-            else {
-             //   print("coucou ->\(currentEventIndex)")
-                prepareNext()
-            }
+        //  print("READDING 2 \(currentEventIndex)")
+        if currentEventIndex == "" {
+        return
         }
         else {
-           // print("SETTINH 2 ")
-            defaults.setObject("", forKey: "currentEvent")
-            return
+        //   print("coucou ->\(currentEventIndex)")
+        prepareNext()
         }
+        }
+        else {
+        // print("SETTINH 2 ")
+        defaults.setObject("", forKey: "currentEvent")
+        return
+        }
+        */
     }
     
     
@@ -396,21 +406,20 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     func failure(msg : String) {
-        //print("Failure")
-        rotating = false
-        CfpService.sharedInstance.cfp = nil
+        hasFailed = true
         dispatch_group_leave(group)
     }
     
+    var hasFailed = false
     
     
     var group = dispatch_group_create()
     
     
     func firstFetching() {
-       // print("--- Begin bootstrap --- ")
+        // print("--- Begin bootstrap --- ")
         dispatch_group_enter(group)
-       // print(CfpService.sharedInstance.getEntryPoint())
+        // print(CfpService.sharedInstance.getEntryPoint())
         
         APIDataManager.loadDataFromURL(CfpService.sharedInstance.getEntryPoint(), service: DayService.sharedInstance, helper : DayHelper(), isCritical : true, onSuccess: self.success, onError: self.failure)
         
@@ -418,19 +427,28 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         APIDataManager.loadDataFromURL(SpeakerService.sharedInstance.getSpeakerUrl(), service: SpeakerService.sharedInstance, helper : SpeakerHelper(), isCritical : true, onSuccess: self.success, onError: self.failure)
         
         dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-          //  print("--- End bootstrap --- ")
-            if self.rotating {
+            
+            
+            if !self.hasFailed {
+                self.run_on_main_thread {
+                    self.showStaticView(false)
+                }
                 self.secondFetching()
             }
             else {
-                    self.run_on_main_thread {
-                        
-                        let alert = UIAlertController(title: AlertString.NoDataError.title, message: AlertString.NoDataError.content, preferredStyle: UIAlertControllerStyle.Alert)
-                        alert.addAction(UIAlertAction(title: AlertString.NoDataError.okButton, style: UIAlertActionStyle.Default, handler: nil))
-                        self.presentViewController(alert, animated: true, completion: nil)
+                self.run_on_main_thread {
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    defaults.setObject("", forKey: "currentEvent")
+                    CfpService.sharedInstance.cfp = nil
+                    self.rotating = false
+                    let alert = UIAlertController(title: AlertString.NoDataError.title, message: AlertString.NoDataError.content, preferredStyle: UIAlertControllerStyle.Alert)
+                    alert.addAction(UIAlertAction(title: AlertString.NoDataError.okButton, style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alert, animated: true, completion: nil)
+                    self.showStaticView(false)
                 }
             }
             
+            self.hasFailed = false
         });
         
     }
@@ -460,6 +478,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         dispatch_group_notify(group, dispatch_get_main_queue(), {
             self.rotating = false
+            self.showStaticView(false)
             self.loadIsFinihsed()
         });
     }

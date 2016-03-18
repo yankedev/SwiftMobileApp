@@ -500,17 +500,18 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     }
     
     public func fetchUpdate() {
-        
-        //APIReloadManager.fetchUpdate(fetchUrl(), helper: SlotHelper(), completedAction: fetchCompleted)
-        
+        APIReloadManager.fetchUpdate(fetchUrl(), service: SlotService.sharedInstance, completedAction: fetchCompleted)
     }
     
-    public func fetchCompleted(msg : CallbackProtocol) -> Void {
-        
+    public func fetchCompleted(newHelper : CallbackProtocol) -> Void {
+        print(newHelper.debug())
+        fetchAll()
     }
+
     
     public func fetchUrl() -> String? {
-        return "https://myFetchUrl.toto"
+        //return "http://cfp.devoxx.fr/api/conferences/DevoxxFR2016/schedules/wednesday/"
+        return "http://localhost:8888/devoxx/fake.txt"
     }
     
     public func scrollViewWillBeginDragging(scrollView: UIScrollView) {

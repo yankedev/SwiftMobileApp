@@ -189,6 +189,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         scheduleTableController.index = index
         
         if let dates = self.scrollableDateTableDatasource?.allDates {
+            
             scheduleTableController.currentDate = APIManager.getDateFromIndex(index, array: dates)
             
             

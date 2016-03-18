@@ -121,7 +121,6 @@ class AbstractService  {
     func getCfpId() -> String{
         let defaults = NSUserDefaults.standardUserDefaults()
         if let currentEventStr = defaults.objectForKey("currentEvent") as? String {
-            print("READIND 0 \(currentEventStr)")
             return currentEventStr
         }
         return ""

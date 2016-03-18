@@ -75,7 +75,6 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
             splashImgURL = castHelper.splashImgURL
             hashtag = castHelper.hashtag
             
-            
             let splashImgUrlLastComponent = APIManager.getLastFromUrl(splashImgURL!)
             
             if let path = NSBundle.mainBundle().pathForResource(splashImgUrlLastComponent, ofType: "") {

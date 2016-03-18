@@ -90,7 +90,6 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         if indexPath.section == KindOfSection.SETTINGS.hashValue {
             if indexPath.row == 0 {
                 let defaults = NSUserDefaults.standardUserDefaults()
-             
                 defaults.setObject("", forKey: "currentEvent")
                 CfpService.sharedInstance.cfp = nil
                 //CfpService.sharedInstance.clearAll()

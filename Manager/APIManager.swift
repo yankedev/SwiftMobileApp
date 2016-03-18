@@ -21,6 +21,14 @@ let commonUrl:[String : [String]] = ["StoredResource" : ["StoredResource"], "Cfp
 class APIManager {
     
     
+    class func getSelectedEvent() -> String {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let selectedEvent = defaults.objectForKey("currentEvent") as? String {
+            return selectedEvent
+        }
+        return ""
+    }
+    
     class func qrCodeAlreadyScanned() -> Bool {
         let defaults = NSUserDefaults.standardUserDefaults()
         if let _ = defaults.objectForKey("qrCode") as? String {
@@ -28,7 +36,6 @@ class APIManager {
         }
         return false
     }
-    
     
     class func clearQrCode() {
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -43,7 +50,15 @@ class APIManager {
     
     
     
-    
+    class func getFallBackData(storedResource : StoredResource) -> NSData? {
+        let testBundle = NSBundle.mainBundle()
+        let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
+ 
+        if filePath != nil {
+            return NSData(contentsOfFile: filePath!)!
+        }
+        return nil
+    }
     
     
     
@@ -73,11 +88,7 @@ class APIManager {
     }
     
     
-    
-    
-    
-    
-    
+
     class func handleData(inputData : NSData, service: AbstractService, storedResource : StoredResource?, etag : String?,completionHandler : (msg: CallbackProtocol) -> Void) {
         
         
@@ -129,15 +140,7 @@ class APIManager {
 
     
     class func singleCommonFeed(completionHandler: (msg: CallbackProtocol) -> Void, service : AbstractService) {
-        
-    
- 
-        
-    
-        
-        
-       
-        
+
         let url = commonUrl[service.getHelper().entityName()]
         
         let testBundle = NSBundle.mainBundle()
@@ -153,8 +156,7 @@ class APIManager {
             
             
             self.handleData(data, service: service, storedResource: nil, etag: nil, completionHandler: completionHandler)
-            
-            //self.handleData(data, dataHelper: helper, storedResource: nil, etag: nil)
+
         }
         
         

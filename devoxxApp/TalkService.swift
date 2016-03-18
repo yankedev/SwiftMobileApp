@@ -31,13 +31,14 @@ class TalkService : AbstractService {
     }
     
     func fetchTalksByDate(currentDate : NSDate, searchPredicates : [String : [NSPredicate]]?, completionHandler: (talks: NSFetchedResultsController?, error: TalksStoreError?) -> Void) {
+       
         fetchTalks(currentDate, searchPredicates : searchPredicates, sortByDate : true, completionHandler : completionHandler)
     }
     
     func fetchTalksByTrackId(currentTrack : NSManagedObjectID, completionHandler: (talks: NSFetchedResultsController?, error: TalksStoreError?) -> Void) {
         
         let attribute = self.privateManagedObjectContext.objectWithID(currentTrack) as! Attribute
-
+        
         fetchTalks(attribute.label!, searchPredicates : nil, sortByDate : false, completionHandler : completionHandler)
     }
     
@@ -49,14 +50,14 @@ class TalkService : AbstractService {
                 let sortAlpha = NSSortDescriptor(key: "title", ascending: true)
                 let sortFavorite = NSSortDescriptor(key: "isFavorited", ascending: false)
                 
-                
+               
                 
                 var sectionNameKeyPath:String
                 var predicate:NSPredicate
                 
                 if sortByDate {
                     sectionNameKeyPath = "slot.fromTime"
-                    predicate = NSPredicate(format: "slot.date = %@", criterion as! CVarArgType)
+                    predicate = NSPredicate(format: "slot.date = %@", criterion as! NSDate)
                     fetchRequest.sortDescriptors = [sortTime, sortFavorite, sortAlpha]
                 }
                 else {
@@ -128,5 +129,12 @@ class TalkService : AbstractService {
         andPredicate.append(NSCompoundPredicate(andPredicateWithSubpredicates: attributeOrPredicate))
         return NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
     }
+    
+    func getTalkUrl(talkId : String) -> String {
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/talks/\(talkId)"
+    }
+    
+
 
 }

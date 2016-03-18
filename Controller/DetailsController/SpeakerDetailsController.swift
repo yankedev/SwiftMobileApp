@@ -99,6 +99,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     public func twitter() {
         
         let originalString = detailObject.getTwitter()
+     
         
         let escapedString = originalString?.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
         

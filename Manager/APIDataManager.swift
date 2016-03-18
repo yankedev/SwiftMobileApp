@@ -76,6 +76,7 @@
             
             for singleUrl in urls! {
                 if let singleUrlString = singleUrl as? Day {
+                    print(singleUrlString.url)
                     loadDataFromURL(singleUrlString.url, service: SlotService.sharedInstance, helper : SlotHelper(), isCritical: true, onSuccess: onSuccess, onError: onError)
                 }
             }
@@ -91,14 +92,16 @@
             let headers = [
                 "If-None-Match": storedResource.etag
             ]
-            config.HTTPAdditionalHeaders = headers
+            //config.HTTPAdditionalHeaders = headers
             config.requestCachePolicy = .ReloadIgnoringLocalCacheData
             config.timeoutIntervalForResource = 5
             
             let session = NSURLSession(configuration: config)
             
             
-            
+            if storedResource.url.hasPrefix("https://localhost") {
+                storedResource.url = storedResource.url.stringByReplacingOccurrencesOfString("https:", withString: "http:")
+            }
             
             
             
@@ -119,32 +122,17 @@
                         //print("critical call")
                         
                         
-                        let testBundle = NSBundle.mainBundle()
-                        let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
-                        ////print("check for callback\(storedResource.fallback)")
-                        if filePath != nil {
-                            let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
-                            if(checkString == nil) {
-                                //print("should not be empty", terminator: "")
-                            }
-                            let fallbackData = NSData(contentsOfFile: filePath!)!
-                            
-                            
-                            ////print("fallBack data found")
-                            
-                            APIManager.handleData(fallbackData, service: service, storedResource: storedResource, etag: nil, completionHandler: onSuccess)
-                            
-                            
-                        }
-                        else {
+                        let data = APIManager.getFallBackData(storedResource)
+                        
+                        if data == nil {
                             dispatch_async(dispatch_get_main_queue(),{
                                 onError(value: storedResource.url)
                             })
                         }
-                        
-                        
-                        
-                        
+                        else {
+                            APIManager.handleData(data!, service: service, storedResource: storedResource, etag: nil, completionHandler: onSuccess)
+                        }
+     
                     }
                         
                     else {
@@ -176,7 +164,7 @@
                         }
                         else {
                             dispatch_async(dispatch_get_main_queue(),{
-                                onSuccess(value: CompletionMessage(msg : ""))
+                                onSuccess(value: CompletionMessage(msg : "not 200 nor 304, code = \(httpResponse.statusCode) url = \(storedResource.url)"))
                             })
                         }
                         
@@ -190,16 +178,19 @@
                         
                         if isCritical && service.isEmpty() {
                             
-                            let testBundle = NSBundle.mainBundle()
-                            let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
                             
-                            let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
-                            if(checkString == nil) {
-                                //print("should not be empty", terminator: "")
+                            let data = APIManager.getFallBackData(storedResource)
+                            
+                            if data == nil {
+                                dispatch_async(dispatch_get_main_queue(),{
+                                    onError(value: storedResource.url)
+                                })
                             }
-                            let fallbackData = NSData(contentsOfFile: filePath!)!
+                            else {
+                                APIManager.handleData(data!, service: service, storedResource: storedResource, etag: nil, completionHandler: onSuccess)
+                            }
+
                             
-                            APIManager.handleData(fallbackData, service: service, storedResource: storedResource, etag: nil, completionHandler: onSuccess)
                         }
                         else {
                             

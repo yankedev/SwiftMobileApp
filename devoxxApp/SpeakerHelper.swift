@@ -24,6 +24,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
     var imgData : NSData?
     var talksId : [NSManagedObjectID]?
     var relatedObjects: [DataHelperProtocol]?
+    var twitter : String?
     
     func getMainId() -> String {
         return uuid!
@@ -32,7 +33,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
     init() {
     }
     
-    init(uuid: String?, lastName: String?, firstName: String?, avatarUrl: String?, objectID : NSManagedObjectID, href: String?, bio: String?, company: String?, isFav: Bool, talksId : [NSManagedObjectID]?, imgData : NSData?) {
+    init(uuid: String?, lastName: String?, firstName: String?, avatarUrl: String?, objectID : NSManagedObjectID, href: String?, bio: String?, company: String?, twitter : String?, isFav: Bool, talksId : [NSManagedObjectID]?, imgData : NSData?) {
         self.uuid = uuid ?? ""
         self.lastName = lastName ?? ""
         self.firstName = firstName ?? ""
@@ -40,6 +41,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
         self.avatarUrl = avatarUrl ?? ""
         self.href = href ?? ""
         self.bio = bio ?? ""
+        self.twitter = twitter ?? ""
         self.company = company ?? ""
         self.isFav = isFav
         self.talksId = talksId
@@ -70,13 +72,18 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
     
     
     
-    
+    func displayTwitter() -> String {
+        if twitter != nil && twitter != "" {
+            return twitter!
+        }
+        return getTitle()!
+    }
     
     
     //detailable
     func getTwitter() -> String? {
-        return ""
-        //return "\((cfp?.hashtag)!) \(displayTwitter())"
+        let hashtag = CfpService.sharedInstance.getHashtag()
+        return "\(hashtag) \(displayTwitter())"
     }
     
     func getTitle() -> String? {
