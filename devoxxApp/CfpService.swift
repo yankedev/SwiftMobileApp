@@ -133,7 +133,7 @@ class CfpService : AbstractService {
         return cfp.regURL
     }
     
-    func getDays() -> NSSet {
+    func getDays() -> NSOrderedSet {
         let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
         return cfp.days
     }
@@ -141,6 +141,12 @@ class CfpService : AbstractService {
     func getEntryPoint() -> String {
         let cfp = self.privateManagedObjectContext.objectWithID(getCfp()) as! Cfp
         return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/schedules"
+    }
+    
+    func getDayUrl(index : Int) -> String? {
+        let cfp = self.privateManagedObjectContext.objectWithID(getCfp()) as? Cfp
+        let day = cfp?.days.objectAtIndex(index) as? Day
+        return day?.url
     }
 
     override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {

@@ -84,5 +84,14 @@ class SpeakerCell: UITableViewCell {
         
     }
     
+    func updateBackgroundColor(isFavorited : Bool) {
+        if(isFavorited) {
+            backgroundColor = ColorManager.favoriteBackgroundColor
+        }
+        else {
+            backgroundColor = UIColor.whiteColor()
+        }
+    }
+    
     
 }

@@ -41,7 +41,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     @NSManaged var regURL: String?
     @NSManaged var backgroundImageData: NSData?
     @NSManaged var floors: NSSet
-    @NSManaged var days: NSSet
+    @NSManaged var days: NSOrderedSet
     @NSManaged var attributes: NSSet
     
     func getId() -> NSManagedObject? {

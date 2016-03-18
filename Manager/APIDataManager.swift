@@ -71,7 +71,7 @@
         
         
         
-        class func loadDataFromURLS(urls: NSSet?, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
+        class func loadDataFromURLS(urls: NSOrderedSet?, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
             
             
             for singleUrl in urls! {

@@ -9,8 +9,7 @@
 import Foundation
 
 
-public protocol FavoriteProtocol : NSObjectProtocol {
-    func getIdentifier() -> String
+public protocol FavoriteProtocol {
     func isFav() -> Bool
     func invertFavorite()
 }

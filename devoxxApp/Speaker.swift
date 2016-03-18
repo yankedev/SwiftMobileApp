@@ -124,7 +124,7 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
             talksId.append(singleTalk.getObjectID())
         }
 
-        return SpeakerHelper(uuid: uuid, lastName: lastName, firstName: firstName, avatarUrl: avatarUrl, objectID : objectID, href: href, bio : speakerDetail.bio , company: speakerDetail.company, twitter : speakerDetail.twitter, isFav: isFavorited, talksId: talksId, imgData: imgData)
+        return SpeakerHelper(uuid: uuid, lastName: lastName, firstName: firstName, avatarUrl: avatarUrl, objectID : objectID, href: href, bio : speakerDetail.bio , company: speakerDetail.company, twitter : speakerDetail.twitter, isFavorite: isFavorited, talksId: talksId, imgData: imgData)
     }
     
     

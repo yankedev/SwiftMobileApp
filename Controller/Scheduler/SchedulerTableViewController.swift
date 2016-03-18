@@ -510,8 +510,8 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
 
     
     public func fetchUrl() -> String? {
-        //return "http://cfp.devoxx.fr/api/conferences/DevoxxFR2016/schedules/wednesday/"
-        return "http://localhost:8888/devoxx/fake.txt"
+        print(CfpService.sharedInstance.getDayUrl(index))
+        return CfpService.sharedInstance.getDayUrl(index)
     }
     
     public func scrollViewWillBeginDragging(scrollView: UIScrollView) {

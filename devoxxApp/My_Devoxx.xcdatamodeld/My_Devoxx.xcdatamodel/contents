@@ -26,7 +26,7 @@
         <attribute name="talkURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="venue" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="attributes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Attribute" inverseName="cfp" inverseEntity="Attribute" syncable="YES"/>
-        <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="cfp" inverseEntity="Day" syncable="YES"/>
+        <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Day" inverseName="cfp" inverseEntity="Day" syncable="YES"/>
         <relationship name="floors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Floor" inverseName="cfp" inverseEntity="Floor" syncable="YES"/>
         <relationship name="slots" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Slot" inverseName="cfp" inverseEntity="Slot" syncable="YES"/>
         <relationship name="speakers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Speaker" inverseName="cfp" inverseEntity="Speaker" syncable="YES"/>

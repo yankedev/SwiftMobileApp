@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayPrococol, SearchableItemProtocol {
+class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayPrococol, FavoriteProtocol, SearchableItemProtocol {
     
     var uuid: String?
     var lastName: String?
@@ -20,7 +20,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
     var href: String?
     var bio : String?
     var company : String?
-    var isFav : Bool?
+    var isFavorite : Bool?
     var imgData : NSData?
     var talksId : [NSManagedObjectID]?
     var relatedObjects: [DataHelperProtocol]?
@@ -33,7 +33,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
     init() {
     }
     
-    init(uuid: String?, lastName: String?, firstName: String?, avatarUrl: String?, objectID : NSManagedObjectID, href: String?, bio: String?, company: String?, twitter : String?, isFav: Bool, talksId : [NSManagedObjectID]?, imgData : NSData?) {
+    init(uuid: String?, lastName: String?, firstName: String?, avatarUrl: String?, objectID : NSManagedObjectID, href: String?, bio: String?, company: String?, twitter : String?, isFavorite: Bool, talksId : [NSManagedObjectID]?, imgData : NSData?) {
         self.uuid = uuid ?? ""
         self.lastName = lastName ?? ""
         self.firstName = firstName ?? ""
@@ -43,7 +43,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
         self.bio = bio ?? ""
         self.twitter = twitter ?? ""
         self.company = company ?? ""
-        self.isFav = isFav
+        self.isFavorite = isFavorite
         self.talksId = talksId
         self.imgData = imgData
     }
@@ -176,11 +176,18 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
         return nil
     }
     func isFavorited() -> Bool {
-        return isFav!
+        return isFavorite!
     }
     
     func isMatching(str : String) -> Bool {
         return getTitle()!.lowercaseString.containsString(str.lowercaseString)
+    }
+    
+    func invertFavorite() {
+        //nothing to do here
+    }
+    func isFav() -> Bool {
+        return isFavorite!
     }
     
 }

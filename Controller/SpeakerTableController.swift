@@ -98,8 +98,14 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         let cellData = arrayToParse![indexPath.row]
         
         
+        if let cellDataFav = cellData as? FavoriteProtocol {
+            cell!.updateBackgroundColor(cellDataFav.isFav())
+        }
+        
         if let cellDataCast = cellData as? CellDataDisplayPrococol {
         
+            
+            
             cell!.firstInformation.text = cellDataCast.getFirstInformation()
             
             var shouldDisplay = false
@@ -135,6 +141,8 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             cell!.accessoryView = UIImageView(image: cellDataCast.getPrimaryImage())
             
            
+            
+            
             
        
             
@@ -186,7 +194,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             details.configure()
             
             
-            details.setColor(speaker.isFav!)
+            details.setColor(speaker.isFavorite!)
             
             
             
