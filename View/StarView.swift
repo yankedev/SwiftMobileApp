@@ -20,6 +20,7 @@ class StarView : UITableViewCell {
     
     
     var nbStar = 0
+
     
     var starArray = [UIButton]()
     
@@ -119,6 +120,20 @@ class StarView : UITableViewCell {
             btn.tintColor = UIColor.lightGrayColor()
         }
         
+        
+    }
+    
+    func getSelectedStars() -> Int {
+        
+        var idx = 0
+        for btn in starArray {
+            if btn.tag == 0 {
+                break
+            }
+            idx++
+        }
+        
+        return idx
         
     }
     

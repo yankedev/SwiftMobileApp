@@ -48,6 +48,12 @@ class APIManager {
         defaults.setValue(str, forKey: "qrCode")
     }
     
+    class func getQrCode() -> String? {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.valueForKey("qrCode") as? String
+
+    }
+    
     
     
     class func getFallBackData(storedResource : StoredResource) -> NSData? {
@@ -115,7 +121,7 @@ class APIManager {
         }
         
         storedResource?.etag = etag ?? ""
-        
+        storedResource?.hasBeenLoaded = true
         
     }
     

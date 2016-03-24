@@ -62,29 +62,41 @@
         
         
         
-        class func loadDataFromURL(url: String, service : AbstractService, helper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
+        class func loadDataFromURL(url: String, service : AbstractService, helper : DataHelperProtocol, loadFromFile : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
             
-            return makeRequest(findResource(url)!, service : service, helper : service.getHelper(), isCritical : isCritical, onSuccess: onSuccess, onError: onError)
+            return makeRequest(findResource(url)!, service : service, helper : service.getHelper(), loadFromFile : loadFromFile, onSuccess: onSuccess, onError: onError)
         }
 
             
         
         
         
-        class func loadDataFromURLS(urls: NSOrderedSet?, dataHelper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
+        class func loadDataFromURLS(urls: NSOrderedSet?, dataHelper : DataHelperProtocol, loadFromFile : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
             
             
             for singleUrl in urls! {
                 if let singleUrlString = singleUrl as? Day {
-                    loadDataFromURL(singleUrlString.url, service: SlotService.sharedInstance, helper : SlotHelper(), isCritical: true, onSuccess: onSuccess, onError: onError)
+                    loadDataFromURL(singleUrlString.url, service: SlotService.sharedInstance, helper : SlotHelper(), loadFromFile: true, onSuccess: onSuccess, onError: onError)
                 }
             }
             
         }
         
-        class func makeRequest(storedResource : StoredResource, service : AbstractService, helper : DataHelperProtocol, isCritical : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
+        class func makeRequest(storedResource : StoredResource, service : AbstractService, helper : DataHelperProtocol, loadFromFile : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
             
             
+            if loadFromFile {
+                print("___")
+                print(storedResource.url)
+                print(storedResource.fallback)
+                print("___")
+                storedResource.url = ""
+            }
+            
+            if loadFromFile && storedResource.hasBeenLoaded {
+                onSuccess(value: CompletionMessage(msg : ""))
+                return
+            }
             
             let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
             
@@ -93,7 +105,7 @@
             ]
             config.HTTPAdditionalHeaders = headers
             config.requestCachePolicy = .ReloadIgnoringLocalCacheData
-            config.timeoutIntervalForResource = 5
+            config.timeoutIntervalForResource = 15
             
             let session = NSURLSession(configuration: config)
             
@@ -106,11 +118,12 @@
                 
                 if let _ = error {
                     
-                    //print("No internet for \(storedResource.url)")
-                    //print("Store callbal =  \(storedResource.fallback)")
+                    print("No internet for \(storedResource.url)")
+                    print("Error \(error)")
+                    print("Store callbal =  \(storedResource.fallback)")
                     
                     
-                    if isCritical {
+                    if loadFromFile {
                         
                         //print("critical call")
                         
@@ -136,12 +149,12 @@
                 } else if let httpResponse = response1 as? NSHTTPURLResponse {
                     if httpResponse.statusCode != 200 && httpResponse.statusCode != 304  {
                         
-                        ////print("Error code for \(storedResource.url)")
+                        print("Error code for \(storedResource.url)")
                         
                         let _ = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
                         
                         
-                        if isCritical {
+                        if loadFromFile {
                             
                             let testBundle = NSBundle.mainBundle()
                             let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
@@ -169,7 +182,7 @@
                         print("304 for \(storedResource.url)")
                         
                         
-                        if isCritical && service.isEmpty() {
+                        if loadFromFile && service.isEmpty() {
                             
                             
                             let data = APIManager.getFallBackData(storedResource)
@@ -197,7 +210,7 @@
                     }
                     else {
                         
-                        //print("200 for \(storedResource.url)")
+                        print("200 for \(storedResource.url)")
                         
                         APIManager.handleData(data!, service: service, storedResource: storedResource, etag : httpResponse.allHeaderFields["etag"] as? String, completionHandler: onSuccess)
                     }

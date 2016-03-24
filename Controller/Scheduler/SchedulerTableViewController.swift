@@ -64,6 +64,8 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     override public func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchUpdate()
+        
         
         
         schedulerTableView.delegate = self

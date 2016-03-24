@@ -87,6 +87,7 @@
     <entity name="StoredResource" representedClassName="My_Devoxx.StoredResource" syncable="YES">
         <attribute name="etag" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fallback" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasBeenLoaded" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Talk" representedClassName="My_Devoxx.Talk" syncable="YES">
@@ -122,7 +123,7 @@
         <element name="Slot" positionX="-63" positionY="-18" width="128" height="180"/>
         <element name="Speaker" positionX="-54" positionY="45" width="128" height="195"/>
         <element name="SpeakerDetail" positionX="-45" positionY="135" width="128" height="135"/>
-        <element name="StoredResource" positionX="-54" positionY="135" width="128" height="90"/>
+        <element name="StoredResource" positionX="-54" positionY="135" width="128" height="105"/>
         <element name="Talk" positionX="-54" positionY="-9" width="128" height="210"/>
         <element name="TalkType" positionX="-54" positionY="45" width="128" height="90"/>
         <element name="Track" positionX="-54" positionY="45" width="128" height="90"/>
