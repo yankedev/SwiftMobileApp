@@ -135,6 +135,7 @@ class TalkService : AbstractService {
         return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/talks/\(talkId)"
     }
     
+        
 
 
 }

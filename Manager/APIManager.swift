@@ -121,7 +121,7 @@ class APIManager {
         }
         
         storedResource?.etag = etag ?? ""
-        storedResource?.hasBeenLoaded = true
+       
         
     }
     

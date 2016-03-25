@@ -430,15 +430,23 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     func setupEvent(msg : CallbackProtocol) {
         print("========setupEvent")
         
-        for _ in 1...(CfpService.sharedInstance.getNbDays()) {
-            dispatch_group_enter(group)
+        
+        if CfpService.sharedInstance.getNbDays() > 0 {
+            for _ in 1...(CfpService.sharedInstance.getNbDays()) {
+                dispatch_group_enter(group)
+            }
+            APIDataManager.loadDataFromURLS(CfpService.sharedInstance.getDays(), dataHelper: SlotHelper(), loadFromFile : true, onSuccess: self.successDay, onError: self.failure)
+            dispatch_group_notify(group, dispatch_get_main_queue(), {
+                self.fetchTracks()
+            })
+        }
+        else {
+            run_on_main_thread({
+                self.failure("")
+            })
         }
         
-        APIDataManager.loadDataFromURLS(CfpService.sharedInstance.getDays(), dataHelper: SlotHelper(), loadFromFile : true, onSuccess: self.successDay, onError: self.failure)
         
-        dispatch_group_notify(group, dispatch_get_main_queue(), {
-            self.fetchTracks()
-        })
         
     }
     

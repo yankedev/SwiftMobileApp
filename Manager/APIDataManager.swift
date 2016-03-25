@@ -85,15 +85,15 @@
         class func makeRequest(storedResource : StoredResource, service : AbstractService, helper : DataHelperProtocol, loadFromFile : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
             
             
+             print("___________check for \(storedResource.url), fed = \(service.hasBeenAlreadyFed())")
+            
             if loadFromFile {
-                print("___")
-                print(storedResource.url)
-                print(storedResource.fallback)
-                print("___")
                 storedResource.url = ""
             }
             
-            if loadFromFile && storedResource.hasBeenLoaded {
+           
+            
+            if loadFromFile && service.hasBeenAlreadyFed() {
                 onSuccess(value: CompletionMessage(msg : ""))
                 return
             }

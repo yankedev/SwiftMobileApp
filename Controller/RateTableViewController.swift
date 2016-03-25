@@ -234,15 +234,15 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
             
             if indexPath.row == 0 {
                 cell!.label.text = RateQuestionString.question0
-                cell!.key = "content"
+                cell!.key = "Content"
             }
             if indexPath.row == 1 {
                 cell!.label.text = RateQuestionString.question1
-                cell!.key = "delivery"
+                cell!.key = "Delivery"
             }
             if indexPath.row == 2 {
                 cell!.label.text = RateQuestionString.question2
-                cell!.key = "other"
+                cell!.key = "Other"
             }
             
             

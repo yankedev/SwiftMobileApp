@@ -16,14 +16,12 @@ class StoredResource: NSManagedObject, FeedableProtocol {
     @NSManaged var url: String
     @NSManaged var etag: String
     @NSManaged var fallback: String
-    @NSManaged var hasBeenLoaded: Bool
     
     func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? StoredResourceHelper  {
             url = castHelper.url ?? ""
             etag = castHelper.etag ?? ""
             fallback = castHelper.fallback ?? ""
-            hasBeenLoaded = false
         }
     }
     

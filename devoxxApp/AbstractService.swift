@@ -131,6 +131,10 @@ class AbstractService  {
         return true
     }
     
+    func hasBeenAlreadyFed() -> Bool {
+        return false
+    }
+    
     
         
    

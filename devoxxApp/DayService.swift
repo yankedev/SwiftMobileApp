@@ -93,6 +93,21 @@ class DayService : AbstractService {
         return DayHelper()
     }
     
+    
+    override func hasBeenAlreadyFed() -> Bool {
+        do {
+            let fetchRequest = NSFetchRequest(entityName: "Day")
+            let predicateEvent = NSPredicate(format: "cfp.id = %@", super.getCfpId())
+            fetchRequest.predicate = predicateEvent
+            let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+            return results.count > 0
+        }
+        catch {
+            return false
+        }
+    }
+
+    
    
 
     
