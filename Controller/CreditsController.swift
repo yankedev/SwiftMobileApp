@@ -50,8 +50,14 @@ public class CreditsController : AbstractDetailsController {
         actionButtonView1.hidden = true
         actionButtonView2.hidden = true
         
+
+ 
     }
     
+    public override func viewWillAppear(animated: Bool) {
+        print(actionButtonViewBack.frame)
+        view.bringSubviewToFront(actionButtonViewBack)
+    }
     
     
     
