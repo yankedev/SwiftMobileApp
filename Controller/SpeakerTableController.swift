@@ -145,7 +145,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             
             
        
-            
+            print(cellDataCast.getUrl())
             APIReloadManager.fetchImg(cellDataCast.getUrl(), id: cellDataCast.getObjectID(), service: SpeakerService.sharedInstance, completedAction: okUpdate)
             
             
