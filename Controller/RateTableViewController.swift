@@ -10,11 +10,18 @@ import Foundation
 import UIKit
 
 
+protocol RatingDelegate {
+    func updateReview(key : String?, review : String)
+}
 
-public class RateTableViewController : UITableViewController, UIAlertViewDelegate {
+
+public class RateTableViewController : UITableViewController, UIAlertViewDelegate, RatingDelegate {
     
     
     var rateObject : RatableProtocol!
+    
+    
+    var reviewContent = Dictionary<String, String>()
     
     enum KindOfSection : Equatable {
         case TALK
@@ -40,6 +47,18 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         
     }
     
+    private struct VoteSuccessAlertString {
+        static let title = NSLocalizedString("Thanks !", comment: "")
+        static let content = NSLocalizedString("Thank you for your awesome vote", comment: "")
+        static let okButton = NSLocalizedString("Ok", comment: "")
+    }
+    
+    private struct VoteFailAlertString {
+        static let title = NSLocalizedString("Ouuups !", comment: "")
+        static let content = NSLocalizedString("Something went wrong ... please retry", comment: "")
+        static let okButton = NSLocalizedString("Ok", comment: "")
+    }
+    
     override public func viewDidLoad() {
         self.view.backgroundColor = UIColor.lightGrayColor()
         self.tableView = UITableView(frame: self.tableView.frame, style: .Grouped)
@@ -55,9 +74,88 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    public func vote() {
-        dismissViewControllerAnimated(true, completion: nil)
+    private func createDetails(nbStar : Int, aspectTitle : String?, reviewContent : String?) {
+    
         
+        
+        
+    }
+    
+    private func createDetailObject(rating : Int, key : String) -> JSON {
+        let review:String = reviewContent[key]!
+        return JSON(["aspect" : key, "rating" : rating, "review" : review])
+    }
+    
+    public func vote() {
+        
+        
+        let nbStar = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: KindOfSection.STARS.hashValue)) as? StarView
+
+        var tab = [JSON]()
+        
+        if nbStar != nil {
+            for key in reviewContent {
+                tab.append(createDetailObject(nbStar!.getSelectedStars(), key: key.0))
+            }
+        }
+        
+        var json:JSON = [:]
+        if tab.count > 0 {
+            json["details"] = JSON(tab)
+        }
+        json["rating"] = JSON(nbStar!.getSelectedStars())
+        json["talkId"] = JSON(rateObject.getIdentifier())
+        json["user"] = JSON(APIManager.getQrCode()!)
+        
+    
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://api-voting.devoxx.com/DevoxxFR2016/vote")!)
+        let session = NSURLSession.sharedSession()
+        request.HTTPMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+      
+        
+        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(json.object, options: [])
+        
+        
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            guard data != nil else {
+                self.alertFailure()
+                return
+            }
+            self.alertSucess()
+        }
+        
+        task.resume()
+  
+    }
+    
+    func alertSucess() {
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            let alert = UIAlertController(title: VoteSuccessAlertString.title, message: VoteSuccessAlertString.content, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: VoteSuccessAlertString.okButton, style: UIAlertActionStyle.Default, handler: self.dissmiss))
+            
+            self.parentViewController?.presentViewController(alert, animated: true, completion:  nil)
+            
+        })
+    }
+
+    func alertFailure() {
+        dispatch_async(dispatch_get_main_queue(), {
+            
+            let alert = UIAlertController(title: VoteFailAlertString.title, message: VoteFailAlertString.content, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: VoteFailAlertString.okButton, style: UIAlertActionStyle.Default, handler: nil))
+            
+            self.parentViewController?.presentViewController(alert, animated: true, completion:  nil)
+            
+        })
+    }
+
+    
+    func dissmiss(action : UIAlertAction) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     
@@ -148,16 +246,22 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
             
             if indexPath.row == 0 {
                 cell!.label.text = RateQuestionString.question0
+                cell!.key = "Content"
             }
             if indexPath.row == 1 {
                 cell!.label.text = RateQuestionString.question1
+                cell!.key = "Delivery"
             }
             if indexPath.row == 2 {
                 cell!.label.text = RateQuestionString.question2
+                cell!.key = "Other"
             }
             
             
+            
             cell!.textView.text = RateQuestionString.defaultResponse
+            
+            cell!.delegate = self
             
             return cell!
             
@@ -176,6 +280,14 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
     
     
     
+    func updateReview(key : String?, review: String) {
+        
+        if key != nil {
+            reviewContent[key!] = review
+        }
+        
+              
+    }
     
     
     

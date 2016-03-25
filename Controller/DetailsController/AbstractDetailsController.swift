@@ -66,9 +66,8 @@ public class AbstractDetailsController : UIViewController {
         actionButtonView1.tintColor = UIColor.whiteColor()
         actionButtonView1.setup(true)
         
-        let image2 = UIImage(named: "ic_rate")?.imageWithRenderingMode(.AlwaysTemplate)
+        let image2 = UIImage(named: CfpService.sharedInstance.getVotingImage())
         actionButtonView2.button.setImage(image2, forState: .Normal)
-        actionButtonView2.tintColor = UIColor.whiteColor()
         actionButtonView2.setup(true)
         
         actionButtonViewBack.button.addTarget(self, action: Selector("back"), forControlEvents: .TouchUpInside)

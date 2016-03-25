@@ -31,6 +31,7 @@ public protocol DetailableProtocol {
 
 protocol RatableProtocol {
     func getTitle() -> String
+    func getIdentifier() -> String
 }
 
 
@@ -63,6 +64,10 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
     }
     
     func resetId(id: NSManagedObject?) {
+    }
+    
+    func getIdentifier() -> String {
+        return id
     }
     
     
@@ -113,10 +118,7 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
         }
         return talkType
     }
-    
-    func getIdentifier() -> String {
-        return id
-    }
+  
     
     
     func feedHelper(helper: DataHelperProtocol) -> Void {

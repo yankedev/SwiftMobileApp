@@ -27,13 +27,14 @@ class CfpHelper: DataHelperProtocol {
     var fromDate: String?
     var regURL: String?
     var cfpEndpoint: String?
+    var votingImageName: String?
     
     var fedFloorsArray:Array<DataHelperProtocol>!
     
     init() {
     }
     
-    init(id: String?, confType: String?, confDescription: String?, venue: String?, address: String?, country: String?, capacity: String?, sessions: String?, latitude:String?, longitude:String?, splashImgURL: String?, hashtag: String?, fromDate: String?, talkURL: String?, regURL : String?, cfpEndpoint : String?) {
+    init(id: String?, confType: String?, confDescription: String?, venue: String?, address: String?, country: String?, capacity: String?, sessions: String?, latitude:String?, longitude:String?, splashImgURL: String?, hashtag: String?, fromDate: String?, talkURL: String?, regURL : String?, cfpEndpoint : String?, votingImageName : String?) {
         self.id = id ?? ""
         self.confType = confType ?? ""
         self.confDescription = confDescription ?? ""
@@ -50,6 +51,7 @@ class CfpHelper: DataHelperProtocol {
         self.longitude = longitude ?? ""
         self.splashImgURL = splashImgURL ?? ""
         self.hashtag = hashtag ?? ""
+        self.votingImageName = votingImageName ?? ""
         
     }
     
@@ -79,6 +81,7 @@ class CfpHelper: DataHelperProtocol {
         longitude = data["longitude"].string
         splashImgURL = data["splashImgURL"].string
         hashtag = data["hashtag"].string
+        votingImageName = data["votingImageName"].string
         
         fedFloorsArray = Array<FloorHelper>()
         

@@ -184,6 +184,11 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
     func getTitle() -> String {
         return title!
     }
+    
+    func getIdentifier() -> String {
+        return id!
+    }
+
 
 
     

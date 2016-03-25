@@ -149,8 +149,9 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             //defaults.setObject(currentData.identifier(), forKey: "currentEvent")
             rotating = true
             rotateOnce()
+            self.showStaticView(true)
             run_on_background_thread {
-                self.firstFetching()
+                self.fetchEvent()
                 self.run_on_main_thread{
                     self.rotateOnce()
                 }
@@ -400,103 +401,78 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     
     
-    func success(msg : CallbackProtocol) {
-        //print("Success \(msg)")
-        dispatch_group_leave(group)
-    }
     
     func failure(msg : String) {
-        hasFailed = true
-        dispatch_group_leave(group)
+        //print("FAILURE")
+        self.showStaticView(false)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject("", forKey: "currentEvent")
+        CfpService.sharedInstance.cfp = nil
+        self.rotating = false
+        let alert = UIAlertController(title: AlertString.NoDataError.title, message: AlertString.NoDataError.content, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: AlertString.NoDataError.okButton, style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    var hasFailed = false
+    
+    
+    func fetchEvent() {
+        APIDataManager.loadDataFromURL(CfpService.sharedInstance.getEntryPoint(), service: DayService.sharedInstance, helper : DayHelper(), loadFromFile : true, onSuccess: self.fetchSpeakers, onError: self.failure)
+    }
+    
+    func fetchSpeakers(msg : CallbackProtocol) {
+        APIDataManager.loadDataFromURL(SpeakerService.sharedInstance.getSpeakerUrl(), service: SpeakerService.sharedInstance, helper : SpeakerHelper(), loadFromFile : true, onSuccess: self.setupEvent, onError: self.failure)
+    }
     
     
     var group = dispatch_group_create()
     
-    
-    func firstFetching() {
-        // print("--- Begin bootstrap --- ")
-        dispatch_group_enter(group)
-        // print(CfpService.sharedInstance.getEntryPoint())
+    func setupEvent(msg : CallbackProtocol) {
+       // print("========setupEvent")
         
-        APIDataManager.loadDataFromURL(CfpService.sharedInstance.getEntryPoint(), service: DayService.sharedInstance, helper : DayHelper(), isCritical : true, onSuccess: self.success, onError: self.failure)
         
-        dispatch_group_enter(group)
-        APIDataManager.loadDataFromURL(SpeakerService.sharedInstance.getSpeakerUrl(), service: SpeakerService.sharedInstance, helper : SpeakerHelper(), isCritical : true, onSuccess: self.success, onError: self.failure)
-        
-        dispatch_group_notify(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            
-            
-            if !self.hasFailed {
-                self.run_on_main_thread {
-                    self.showStaticView(false)
-                }
-                self.secondFetching()
+        if CfpService.sharedInstance.getNbDays() > 0 {
+            for _ in 1...(CfpService.sharedInstance.getNbDays()) {
+                dispatch_group_enter(group)
             }
-            else {
-                self.run_on_main_thread {
-                    let defaults = NSUserDefaults.standardUserDefaults()
-                    defaults.setObject("", forKey: "currentEvent")
-                    CfpService.sharedInstance.cfp = nil
-                    self.rotating = false
-                    let alert = UIAlertController(title: AlertString.NoDataError.title, message: AlertString.NoDataError.content, preferredStyle: UIAlertControllerStyle.Alert)
-                    alert.addAction(UIAlertAction(title: AlertString.NoDataError.okButton, style: UIAlertActionStyle.Default, handler: nil))
-                    self.presentViewController(alert, animated: true, completion: nil)
-                    self.showStaticView(false)
-                }
-            }
-            
-            self.hasFailed = false
-        });
-        
-    }
-    
-    
-    
-    
-    func secondFetching() {
-        
-        //TODO check for empty event
-        
-        group = dispatch_group_create()
-        
-        
-        
-        
-        for _ in 0...(CfpService.sharedInstance.getNbDays())-1 {
-            dispatch_group_enter(group)
+            APIDataManager.loadDataFromURLS(CfpService.sharedInstance.getDays(), dataHelper: SlotHelper(), loadFromFile : true, onSuccess: self.successDay, onError: self.failure)
+            dispatch_group_notify(group, dispatch_get_main_queue(), {
+                self.fetchTracks()
+            })
         }
-        APIDataManager.loadDataFromURLS(CfpService.sharedInstance.getDays(), dataHelper: SlotHelper(), isCritical : true, onSuccess: self.success, onError: self.failure)
+        else {
+            run_on_main_thread({
+                self.failure("")
+            })
+        }
         
-        dispatch_group_enter(group)
-        APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: TrackService.sharedInstance, helper : TrackHelper(), isCritical: true, onSuccess: self.success, onError: failure)
         
-        dispatch_group_enter(group)
-        APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTalkTypeUrl(), service: TalkTypeService.sharedInstance, helper : TalkTypeHelper(), isCritical: true, onSuccess: self.success, onError: failure)
         
-        dispatch_group_notify(group, dispatch_get_main_queue(), {
-            self.rotating = false
-            self.showStaticView(false)
-            self.loadIsFinihsed()
-        });
+    }
+    
+    func successDay(msg : CallbackProtocol) {
+        dispatch_group_leave(group)
+    }
+    
+    func fetchTracks() {
+        //print("========fetchTracks")
+        APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: TrackService.sharedInstance, helper : TrackHelper(), loadFromFile: true, onSuccess: self.fetchTalkType, onError: failure)
     }
     
     
     
+    func fetchTalkType(msg : CallbackProtocol) {
+        //print("========fetchTalkType")
+        APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTalkTypeUrl(), service: TalkTypeService.sharedInstance, helper : TalkTypeHelper(), loadFromFile: true, onSuccess: self.finishFetching, onError: failure)
+    }
     
+    func finishFetching(msg : CallbackProtocol) {
+        self.rotating = false
+        self.showStaticView(false)
+        self.loadIsFinihsed()
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
 }
 

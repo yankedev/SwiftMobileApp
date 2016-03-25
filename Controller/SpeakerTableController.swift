@@ -12,7 +12,7 @@ import CoreData
 
 //TODO make CellData optional
 
-public class SpeakerTableController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchBarDelegate, FavoritableProtocol {
+public class SpeakerTableController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchBarDelegate, FavoritableProtocol, HotReloadProtocol {
     
     var cellDataArray:[DataHelperProtocol]?
     var searchedRow:[DataHelperProtocol]?
@@ -208,6 +208,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     }
     
     public override func viewDidAppear(animated: Bool) {
+        fetchUpdate()
         fetchSpeaker()
     }
     
@@ -261,6 +262,19 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         return 50.0
     }
     
+    
+    public func fetchUpdate() {
+        //print("goto : \(fetchUrl())")
+        APIReloadManager.fetchUpdate(fetchUrl(), service: SpeakerService.sharedInstance, completedAction: fetchCompleted)
+    }
+    
+    public func fetchCompleted(msg : CallbackProtocol) -> Void {
+        fetchSpeaker()
+    }
+    
+    public func fetchUrl() -> String? {
+        return SpeakerService.sharedInstance.getSpeakerUrl()
+    }
     
     
 }

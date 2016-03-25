@@ -230,6 +230,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         }
     }
     
+   
     
     
     

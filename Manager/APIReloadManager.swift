@@ -23,7 +23,9 @@ class APIReloadManager {
         
         if ResourceFetcherManager.isAllowedToFetch(url) {
             
-            APIDataManager.loadDataFromURL(url!, service: service, helper: service.getHelper(), isCritical: false, onSuccess: completedAction, onError: onError)
+            //print("allowed for \(url)")
+            
+            APIDataManager.loadDataFromURL(url!, service: service, helper: service.getHelper(), loadFromFile: false, onSuccess: completedAction, onError: onError)
             
         }
         else {

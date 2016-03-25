@@ -257,6 +257,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         pageViewController?.delegate = self
         
         let demo = viewControllerAtIndex(0)
+        
         let controls = [demo]
         
         pageViewController?.setViewControllers(controls, direction: .Forward, animated: false, completion: nil)

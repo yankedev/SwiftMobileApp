@@ -64,6 +64,8 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     override public func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchUpdate()
+        
         
         
         schedulerTableView.delegate = self
@@ -504,13 +506,11 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     }
     
     public func fetchCompleted(newHelper : CallbackProtocol) -> Void {
-        print(newHelper.debug())
         fetchAll()
     }
 
     
     public func fetchUrl() -> String? {
-        print(CfpService.sharedInstance.getDayUrl(index))
         return CfpService.sharedInstance.getDayUrl(index)
     }
     

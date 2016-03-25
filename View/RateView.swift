@@ -9,11 +9,16 @@
 import Foundation
 import UIKit
 
+
+
 class RateView : UITableViewCell, UITextViewDelegate {
     
     
     let label = UILabel()
     let textView = UITextView()
+    var key : String?
+    
+    var delegate : RatingDelegate?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -60,6 +65,10 @@ class RateView : UITableViewCell, UITextViewDelegate {
             textView.text = "Type here..."
         }
         textView.resignFirstResponder()
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        delegate?.updateReview(key, review: textView.text)
     }
     
     
