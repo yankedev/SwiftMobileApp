@@ -22,7 +22,7 @@
                     return object
                 }
             } catch let error1 as NSError {
-                print(error1)
+                //print(error1)
             }
             return nil
         }
@@ -85,7 +85,7 @@
         class func makeRequest(storedResource : StoredResource, service : AbstractService, helper : DataHelperProtocol, loadFromFile : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
             
             
-             print("___________check for \(storedResource.url), fed = \(service.hasBeenAlreadyFed())")
+             //print("___________check for \(storedResource.url), fed = \(service.hasBeenAlreadyFed())")
             
             if loadFromFile {
                 storedResource.url = ""
@@ -118,10 +118,10 @@
                 
                 if let _ = error {
                     
-                    print("No internet for \(storedResource.url)")
+                    /*print("No internet for \(storedResource.url)")
                     print("Error \(error)")
                     print("Store callbal =  \(storedResource.fallback)")
-                    
+                    */
                     
                     if loadFromFile {
                         
@@ -149,7 +149,7 @@
                 } else if let httpResponse = response1 as? NSHTTPURLResponse {
                     if httpResponse.statusCode != 200 && httpResponse.statusCode != 304  {
                         
-                        print("Error code for \(storedResource.url)")
+                        //print("Error code for \(storedResource.url)")
                         
                         let _ = NSError(domain:"devoxx", code:httpResponse.statusCode, userInfo:[NSLocalizedDescriptionKey : "HTTP status code has unexpected value."])
                         
@@ -179,7 +179,7 @@
                     }
                     else if httpResponse.statusCode == 304 {
                         
-                        print("304 for \(storedResource.url)")
+                        //print("304 for \(storedResource.url)")
                         
                         
                         if loadFromFile && service.isEmpty() {
@@ -210,7 +210,7 @@
                     }
                     else {
                         
-                        print("200 for \(storedResource.url)")
+                        //print("200 for \(storedResource.url)")
                         
                         APIManager.handleData(data!, service: service, storedResource: storedResource, etag : httpResponse.allHeaderFields["etag"] as? String, completionHandler: onSuccess)
                     }

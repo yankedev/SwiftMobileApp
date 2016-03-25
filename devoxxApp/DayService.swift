@@ -79,7 +79,7 @@ class DayService : AbstractService {
                     
                 }
                 catch {
-                    print("not found")
+                    //print("not found")
                 }
             }
             

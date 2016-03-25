@@ -403,7 +403,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     
     func failure(msg : String) {
-        print("FAILURE")
+        //print("FAILURE")
         self.showStaticView(false)
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject("", forKey: "currentEvent")
@@ -428,7 +428,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     var group = dispatch_group_create()
     
     func setupEvent(msg : CallbackProtocol) {
-        print("========setupEvent")
+       // print("========setupEvent")
         
         
         if CfpService.sharedInstance.getNbDays() > 0 {
@@ -455,14 +455,14 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     func fetchTracks() {
-        print("========fetchTracks")
+        //print("========fetchTracks")
         APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: TrackService.sharedInstance, helper : TrackHelper(), loadFromFile: true, onSuccess: self.fetchTalkType, onError: failure)
     }
     
     
     
     func fetchTalkType(msg : CallbackProtocol) {
-        print("========fetchTalkType")
+        //print("========fetchTalkType")
         APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTalkTypeUrl(), service: TalkTypeService.sharedInstance, helper : TalkTypeHelper(), loadFromFile: true, onSuccess: self.finishFetching, onError: failure)
     }
     

@@ -127,7 +127,7 @@ class APIManager {
     
     
     class func ok(msg:String) {
-        print("OK")
+        //print("OK")
     }
     
     
