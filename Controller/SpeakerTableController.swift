@@ -137,12 +137,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             
             cell!.accessoryView = UIImageView(image: cellDataCast.getPrimaryImage())
             
-           
-            
-            
-            
-       
-            print(cellDataCast.getUrl())
+
             APIReloadManager.fetchImg(cellDataCast.getUrl(), id: cellDataCast.getObjectID(), service: SpeakerService.sharedInstance, completedAction: okUpdate)
             
             

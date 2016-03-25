@@ -119,7 +119,7 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         json["talkId"] = JSON(rateObject.getIdentifier())
         json["user"] = JSON(APIManager.getQrCode()!)
         
-        print(json)
+    
         
     
         let request = NSMutableURLRequest(URL: NSURL(string: "https://api-voting.devoxx.com/DevoxxFR2016/vote")!)

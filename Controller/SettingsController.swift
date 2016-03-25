@@ -112,8 +112,8 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         if indexPath.section == KindOfSection.CREDITS.hashValue {
             
             if indexPath.row == 1 {
-                let url = CfpService.sharedInstance.getRegUrl()
-                UIApplication.sharedApplication().openURL(NSURL(string: url!)!)
+                let url = CfpService.sharedInstance.getCreditUrl()
+                UIApplication.sharedApplication().openURL(NSURL(string: url)!)
             }
             
         }

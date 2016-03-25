@@ -138,6 +138,10 @@ class CfpService : AbstractService {
         return cfp.regURL
     }
     
+    func getCreditUrl() -> String {
+        return "https://www.devoxx.be/credits"
+    }
+    
     func getDays() -> NSOrderedSet {
         let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
         return cfp.days
