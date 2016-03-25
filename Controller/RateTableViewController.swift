@@ -45,10 +45,11 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
     
     private struct RateQuestionString {
         static let question0 = NSLocalizedString("Content feedback :", comment: "")
+        static let placeHolder0 = NSLocalizedString("Awesome content?", comment: "")
         static let question1 = NSLocalizedString("Delivery remarks :", comment: "")
+        static let placeHolder1 = NSLocalizedString("Presentation skills?", comment: "")
         static let question2 = NSLocalizedString("Other :", comment: "")
-        static let defaultResponse = NSLocalizedString("Type here...", comment: "")
-        
+        static let placeHolder2 = NSLocalizedString("Compliments or ?", comment: "")
     }
     
     private struct VoteSuccessAlertString {
@@ -268,17 +269,17 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
             if indexPath.row == 0 {
                 cell?.label.text = RateQuestionString.question0
                 cell?.key = "Content"
-                cell?.review.placeholder = "Awesome content?"
+                cell?.review.placeholder = RateQuestionString.placeHolder0
             }
             if indexPath.row == 1 {
                 cell?.label.text = RateQuestionString.question1
                 cell?.key = "Delivery"
-                cell?.review.placeholder = "Presentation skills?"
+                cell?.review.placeholder = RateQuestionString.placeHolder1
             }
             if indexPath.row == 2 {
                 cell?.label.text = RateQuestionString.question2
                 cell?.key = "Other"
-                cell?.review.placeholder = "Compliments or ?"
+                cell?.review.placeholder = RateQuestionString.placeHolder2
             }
             
             cell?.delegate = self
