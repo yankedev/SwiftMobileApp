@@ -42,12 +42,7 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
     }
     
     public func getUrl() -> String? {
-        if avatarUrl != nil {
-            if avatarUrl!.hasPrefix("https") && (avatarUrl!.hasSuffix("png") || avatarUrl!.hasSuffix("jpg") || avatarUrl!.hasSuffix("jpeg") || avatarUrl!.hasSuffix("gif")) {
-                return avatarUrl
-            }
-        }
-        return ""
+       return avatarUrl
     }
     
     

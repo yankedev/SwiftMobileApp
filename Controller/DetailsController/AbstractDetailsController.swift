@@ -70,7 +70,7 @@ public class AbstractDetailsController : UIViewController {
         actionButtonView2.button.setImage(image2, forState: .Normal)
         actionButtonView2.setup(true)
         
-        actionButtonViewBack.button.addTarget(self, action: Selector("back"), forControlEvents: .TouchUpInside)
+        actionButtonViewBack.button.addTarget(self, action: #selector(AbstractDetailsController.back), forControlEvents: .TouchUpInside)
         
         view.backgroundColor = UIColor.whiteColor()
         

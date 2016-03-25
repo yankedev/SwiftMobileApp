@@ -168,12 +168,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
     }
     
     func getUrl() -> String? {
-        if avatarUrl != nil {
-            if avatarUrl!.hasPrefix("https") && (avatarUrl!.hasSuffix("png") || avatarUrl!.hasSuffix("jpg") || avatarUrl!.hasSuffix("jpeg") || avatarUrl!.hasSuffix("gif")) {
-                return avatarUrl
-            }
-        }
-        return nil
+        return avatarUrl
     }
     func isFavorited() -> Bool {
         return isFavorite!

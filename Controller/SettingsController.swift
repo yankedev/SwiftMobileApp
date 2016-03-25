@@ -15,6 +15,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
     enum KindOfSection : Equatable {
         case QUICK_ACCESS
         case SETTINGS
+        case CREDITS
     }
     
     private struct SectionNameString {
@@ -22,12 +23,17 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             static let title = NSLocalizedString("Quick access", comment: "")
             static let purchaseTicket = NSLocalizedString("Purchase a ticket", comment: "")
             static let reportIssue = NSLocalizedString("Report an issue", comment: "")
-            static let about = NSLocalizedString("About", comment: "")
         }
         struct Settings {
             static let title = NSLocalizedString("Settings", comment: "")
             static let changeConference = NSLocalizedString("Change conference", comment: "")
             static let clearQRCode = NSLocalizedString("Clear QR Code", comment: "")
+        }
+        
+        struct Credits {
+            static let title = NSLocalizedString("Credits", comment: "")
+            static let iosCredits = NSLocalizedString("App by Maxime David @xouuox", comment: "")
+            static let fullCredits = NSLocalizedString("View full credits", comment: "")
         }
     }
     
@@ -51,18 +57,24 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         if(section == KindOfSection.SETTINGS.hashValue) {
             return SectionNameString.Settings.title
         }
+        if(section == KindOfSection.CREDITS.hashValue) {
+            return SectionNameString.Credits.title
+        }
         return nil
     }
     
     public override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(section == KindOfSection.QUICK_ACCESS.hashValue) {
-            return 3
+            return 2
         }
         if(section == KindOfSection.SETTINGS.hashValue)  {
+            return 2
+        }
+        if(section == KindOfSection.CREDITS.hashValue)  {
             return 2
         }
         return 0
@@ -75,14 +87,9 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
                 UIApplication.sharedApplication().openURL(NSURL(string: url!)!)
             }
             if indexPath.row == 1 {
-                let alert = UIAlertController(title: "Report Issue", message: "go to report issue", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "Go", style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                reportIssue()
             }
-            if indexPath.row == 2 {
-                let credits = CreditsController()
-                self.navigationController?.pushViewController(credits, animated: true)
-            }
+    
         }
         
         if indexPath.section == KindOfSection.SETTINGS.hashValue {
@@ -100,6 +107,15 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
                 alert.addAction(UIAlertAction(title: AlertQRCodeString.okButton, style: UIAlertActionStyle.Default, handler: nil))
                 self.presentViewController(alert, animated: true, completion: nil)
             }
+        }
+        
+        if indexPath.section == KindOfSection.CREDITS.hashValue {
+            
+            if indexPath.row == 1 {
+                let url = CfpService.sharedInstance.getCreditUrl()
+                UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+            }
+            
         }
         
     }
@@ -123,9 +139,6 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             if(indexPath.row == 1) {
                 cell!.textLabel!.text = SectionNameString.QuickAccess.reportIssue
             }
-            if(indexPath.row == 2) {
-                cell!.textLabel!.text = SectionNameString.QuickAccess.about
-            }
             
         }
         
@@ -140,11 +153,30 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             }
         }
         
+        if (indexPath.section == KindOfSection.CREDITS.hashValue) {
+            
+            if(indexPath.row == 0) {
+                cell!.textLabel!.text = SectionNameString.Credits.iosCredits
+            }
+            
+            if(indexPath.row == 1) {
+                cell!.textLabel!.text = SectionNameString.Credits.fullCredits
+            }
+        }
+        
         return cell!
     }
     
-    
-    
+
+    func reportIssue() {
+        let email = "got2bex@gmail.com"
+        let subject = "My%20Devoxx%20-%20Issue"
+        let url = NSURL(string: "mailto:\(email)?subject=\(subject)")
+        if url != nil {
+            UIApplication.sharedApplication().openURL(url!)
+        }
+        
+    }
     
     
     

@@ -47,10 +47,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         searchBar.delegate = self
         
         
-        let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: Selector("searchSchedule"))
-        searchButton.tintColor = UIColor.whiteColor()
-        
-        
+    
         fetchSpeaker()
         
         
@@ -140,12 +137,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             
             cell!.accessoryView = UIImageView(image: cellDataCast.getPrimaryImage())
             
-           
-            
-            
-            
-       
-            
+
             APIReloadManager.fetchImg(cellDataCast.getUrl(), id: cellDataCast.getObjectID(), service: SpeakerService.sharedInstance, completedAction: okUpdate)
             
             

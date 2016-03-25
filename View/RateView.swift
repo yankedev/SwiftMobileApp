@@ -11,11 +11,11 @@ import UIKit
 
 
 
-class RateView : UITableViewCell, UITextViewDelegate {
+class RateView : UITableViewCell {
     
     
     let label = UILabel()
-    let textView = UITextView()
+    let review = UITextField()
     var key : String?
     
     var delegate : RatingDelegate?
@@ -23,52 +23,41 @@ class RateView : UITableViewCell, UITextViewDelegate {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(label)
-        addSubview(textView)
+        addSubview(review)
         
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        textView.translatesAutoresizingMaskIntoConstraints = false
+        review.translatesAutoresizingMaskIntoConstraints = false
         
-        let views = ["label": label, "textView" : textView]
+        let views = ["label": label, "review" : review]
         
         
-        let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[label(150)]-10-[textView]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
+        let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[label(150)]-10-[review]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
         
         let constV0 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[label]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
-        let constV1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[textView]-5-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constV1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[review]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
         
         addConstraints(constH0)
         addConstraints(constV0)
         addConstraints(constV1)
         
         
-        label.font = UIFont(name: "Roboto", size: 15)
+        label.font = UIFont(name: "Roboto", size: 17)
         label.textAlignment = .Right
         label.textColor = ColorManager.grayImageColor
-        textView.font = UIFont(name: "Roboto", size: 17)
+        review.font = UIFont(name: "Roboto", size: 17)
+ 
+       
+        review.addTarget(self, action: #selector(RateView.textFieldDidChange(_:)), forControlEvents: .EditingChanged)
         
-        textView.delegate = self
-        
     }
     
+   
+
     
-    func textViewDidBeginEditing(textView: UITextView) {
-        if textView.text == "Type here..." {
-            textView.text = ""
-        }
-        textView.becomeFirstResponder()
-    }
-    
-    func textViewDidEndEditing(textView: UITextView) {
-        if textView.text == "" {
-            textView.text = "Type here..."
-        }
-        textView.resignFirstResponder()
-    }
-    
-    func textViewDidChange(textView: UITextView) {
-        delegate?.updateReview(key, review: textView.text)
+    func textFieldDidChange(textView: UITextField) {
+        delegate?.updateReview(key, review: textView.text!)
     }
     
     

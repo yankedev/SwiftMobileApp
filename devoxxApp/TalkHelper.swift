@@ -185,6 +185,10 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
         return title!
     }
     
+    func getSubTitle() -> String {
+        return speakerList ?? ""
+    }
+    
     func getIdentifier() -> String {
         return id!
     }
