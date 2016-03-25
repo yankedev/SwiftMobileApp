@@ -88,6 +88,11 @@ class CfpService : AbstractService {
         return cfp.address
     }
     
+    func getVotingImage() -> String {
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return cfp.getVotingImage()
+    }
+    
     func getCoordLat() -> Double {
         let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
         return Double(cfp.latitude!)!

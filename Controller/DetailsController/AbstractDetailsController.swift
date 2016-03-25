@@ -66,7 +66,7 @@ public class AbstractDetailsController : UIViewController {
         actionButtonView1.tintColor = UIColor.whiteColor()
         actionButtonView1.setup(true)
         
-        let image2 = UIImage(named: "ic_beer")
+        let image2 = UIImage(named: CfpService.sharedInstance.getVotingImage())
         actionButtonView2.button.setImage(image2, forState: .Normal)
         actionButtonView2.setup(true)
         

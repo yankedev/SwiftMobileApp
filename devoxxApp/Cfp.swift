@@ -37,12 +37,14 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     @NSManaged var splashImgURL: String?
     @NSManaged var talkURL: String?
     @NSManaged var hashtag: String?
+    @NSManaged var votingImageName: String?
     @NSManaged var cfpEndpoint: String?
     @NSManaged var regURL: String?
     @NSManaged var backgroundImageData: NSData?
     @NSManaged var floors: NSSet
     @NSManaged var days: NSOrderedSet
     @NSManaged var attributes: NSSet
+    
     
     func getId() -> NSManagedObject? {
         return nil
@@ -72,6 +74,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
             cfpEndpoint = castHelper.cfpEndpoint
             latitude = castHelper.latitude
             longitude = castHelper.longitude
+            votingImageName = castHelper.votingImageName
             splashImgURL = castHelper.splashImgURL
             hashtag = castHelper.hashtag
             
@@ -148,6 +151,10 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     
     func backgroundImage() -> NSData {
         return backgroundImageData!
+    }
+    
+    func getVotingImage() -> String {
+        return "ic_\(votingImageName!)"
     }
     
     
