@@ -29,13 +29,18 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         case TALK_CONTENT_FEEDBACK
     }
     
+    enum TalkDescription : Equatable {
+        case TITLE
+        case SPEAKER
+    }
+    
     private struct NavigationButtonString {
         static let vote = NSLocalizedString("Send", comment: "")
     }
     
     private struct RateLabelString {
         static let selectStars = NSLocalizedString("Select stars", comment: "")
-        static let leaveFeedback = NSLocalizedString("Leave a feedback (optional)", comment: "")
+        static let leaveFeedback = NSLocalizedString("Optional feedback", comment: "")
     }
     
     private struct RateQuestionString {
@@ -69,6 +74,8 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Stop, target: self, action: #selector(RateTableViewController.cancel))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NavigationButtonString.vote, style: .Plain, target: self, action: #selector(RateTableViewController.vote))
         
+        tableView.separatorStyle = .None
+        
     }
     
     
@@ -97,7 +104,9 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         
         if nbStar != nil {
             for key in reviewContent {
-                tab.append(createDetailObject(nbStar!.getSelectedStars(), key: key.0))
+                if !key.1.isEmpty {
+                    tab.append(createDetailObject(nbStar!.getSelectedStars(), key: key.0))
+                }
             }
         }
         
@@ -108,6 +117,8 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         json["rating"] = JSON(nbStar!.getSelectedStars())
         json["talkId"] = JSON(rateObject.getIdentifier())
         json["user"] = JSON(APIManager.getQrCode()!)
+        
+        print(json)
         
     
         let request = NSMutableURLRequest(URL: NSURL(string: "https://api-voting.devoxx.com/DevoxxFR2016/vote")!)
@@ -186,7 +197,7 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
     
     public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(section == KindOfSection.TALK.hashValue) {
-            return 1
+            return 2
         }
         if(section == KindOfSection.STARS.hashValue) {
             return 1
@@ -208,19 +219,27 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         
         
         if indexPath.section == KindOfSection.TALK.hashValue  {
-            
-            var cell = tableView.dequeueReusableCellWithIdentifier("TALK")
-            
-            if cell == nil {
-                cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "TALK")
+            if indexPath.row == TalkDescription.TITLE.hashValue {
+                var cell = tableView.dequeueReusableCellWithIdentifier("TALK_TITLE")
+                if cell == nil {
+                    cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "TALK_TITLE")
+                }
+                cell?.textLabel?.font = UIFont(name: "Roboto", size: 17)
+                cell?.textLabel?.text = rateObject.getTitle()
+                cell?.textLabel?.numberOfLines = 0
+                return cell!
             }
-            
-            cell?.textLabel?.text = rateObject.getTitle()
-            cell?.textLabel?.numberOfLines = 0
-            
-            
-            return cell!
-            
+            else {
+                var cell = tableView.dequeueReusableCellWithIdentifier("TALK_SPEAKER")
+                if cell == nil {
+                    cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "TALK_SPEAKER")
+                }
+                cell?.textLabel?.font = UIFont(name: "Roboto", size: 13)
+                cell?.textLabel?.textColor = ColorManager.grayImageColor
+                cell?.textLabel?.text = rateObject.getSubTitle()
+                cell?.textLabel?.numberOfLines = 0
+                return cell!
+            }
         }
             
             
@@ -247,23 +266,22 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
             }
             
             if indexPath.row == 0 {
-                cell!.label.text = RateQuestionString.question0
-                cell!.key = "Content"
+                cell?.label.text = RateQuestionString.question0
+                cell?.key = "Content"
+                cell?.review.placeholder = "Awesome content?"
             }
             if indexPath.row == 1 {
-                cell!.label.text = RateQuestionString.question1
-                cell!.key = "Delivery"
+                cell?.label.text = RateQuestionString.question1
+                cell?.key = "Delivery"
+                cell?.review.placeholder = "Presentation skills?"
             }
             if indexPath.row == 2 {
-                cell!.label.text = RateQuestionString.question2
-                cell!.key = "Other"
+                cell?.label.text = RateQuestionString.question2
+                cell?.key = "Other"
+                cell?.review.placeholder = "Compliments or ?"
             }
             
-            
-            
-            cell!.textView.text = RateQuestionString.defaultResponse
-            
-            cell!.delegate = self
+            cell?.delegate = self
             
             return cell!
             
@@ -275,6 +293,14 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
     public override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == KindOfSection.STARS.hashValue  {
             return 60
+        }
+        
+        if indexPath.section == KindOfSection.TALK.hashValue && indexPath.row == TalkDescription.TITLE.hashValue {
+            return 40
+        }
+        
+        if indexPath.section == KindOfSection.TALK.hashValue && indexPath.row == TalkDescription.SPEAKER.hashValue {
+            return 30
         }
         
         return 70
