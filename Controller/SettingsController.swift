@@ -170,7 +170,8 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
 
     func reportIssue() {
         let email = "got2bex@gmail.com"
-        let url = NSURL(string: "mailto:\(email)?subject=MyDevoxx")
+        let subject = "My%20Devoxx%20-%20Issue"
+        let url = NSURL(string: "mailto:\(email)?subject=\(subject)")
         if url != nil {
             UIApplication.sharedApplication().openURL(url!)
         }
