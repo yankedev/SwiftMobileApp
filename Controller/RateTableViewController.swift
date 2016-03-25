@@ -30,8 +30,7 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
     }
     
     private struct NavigationButtonString {
-        static let cancel = NSLocalizedString("Cancel", comment: "")
-        static let vote = NSLocalizedString("Vote", comment: "")
+        static let vote = NSLocalizedString("Send", comment: "")
     }
     
     private struct RateLabelString {
@@ -63,9 +62,12 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         self.view.backgroundColor = UIColor.lightGrayColor()
         self.tableView = UITableView(frame: self.tableView.frame, style: .Grouped)
         
+        self.title = "Rate this talk"
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: NavigationButtonString.cancel, style: .Plain, target: self, action: Selector("cancel"))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NavigationButtonString.vote, style: .Plain, target: self, action: Selector("vote"))
+        
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Stop, target: self, action: #selector(RateTableViewController.cancel))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NavigationButtonString.vote, style: .Plain, target: self, action: #selector(RateTableViewController.vote))
         
     }
     

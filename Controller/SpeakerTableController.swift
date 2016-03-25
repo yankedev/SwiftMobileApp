@@ -47,10 +47,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         searchBar.delegate = self
         
         
-        let searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: Selector("searchSchedule"))
-        searchButton.tintColor = UIColor.whiteColor()
-        
-        
+    
         fetchSpeaker()
         
         
