@@ -23,6 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
     }
     
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Override point for customization after application launch.
+        return true
+    }
+    
+    /*
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -56,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                
         return true
     }
-    
+    */
     
     func application(application: UIApplication, supportedInterfaceOrientationsForWindow window: UIWindow?) -> UIInterfaceOrientationMask {
         return [.Portrait, .PortraitUpsideDown]

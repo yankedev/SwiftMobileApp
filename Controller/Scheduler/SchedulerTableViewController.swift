@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 
 
-public class SchedulerTableViewController<T : CellDataPrococol>:
+public class SchedulerTableViewController :
     UIViewController,
     FavoritableProtocol,
     FilterableTableProtocol,
@@ -57,9 +57,8 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     
     var savedFetchedResult : NSFetchedResultsController?
     
-    public required init() {
-        super.init(nibName: nil, bundle: nil)
-    }
+  
+ 
     
     override public func viewDidLoad() {
         super.viewDidLoad()

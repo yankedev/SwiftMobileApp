@@ -91,7 +91,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         
-        let scheduleController = ScheduleController<SchedulerTableViewController<Talk>>()
+        let scheduleController = ScheduleController()
         
         
         let trackController = TrackController<TrackTableViewController<Talk>>()

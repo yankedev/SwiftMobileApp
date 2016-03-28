@@ -20,6 +20,8 @@ let commonUrl:[String : [String]] = ["StoredResource" : ["StoredResource"], "Cfp
 
 class APIManager {
     
+    init() {
+    }
     
     class func getSelectedEvent() -> String {
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -95,7 +97,7 @@ class APIManager {
     
     
 
-    class func handleData(inputData : NSData, service: AbstractService, storedResource : StoredResource?, etag : String?,completionHandler : (msg: CallbackProtocol) -> Void) {
+    func handleData(inputData : NSData, service: AbstractService, storedResource : StoredResource?, etag : String?,completionHandler : (msg: CallbackProtocol) -> Void) {
         
         
    
@@ -132,7 +134,7 @@ class APIManager {
     
     
     class func firstFeed(completionHandler: (msg: CallbackProtocol) -> Void, service : AbstractService) {
-        singleCommonFeed(completionHandler, service : service)
+        APIManager().singleCommonFeed(completionHandler, service : service)
     }
     
     
@@ -144,10 +146,13 @@ class APIManager {
         Crashlytics.sharedInstance().setUserName("Test User")
     }
 
+    func getUrlList(service : AbstractService) -> [String]? {
+        return commonUrl[service.getHelper().entityName()]
+    }
     
-    class func singleCommonFeed(completionHandler: (msg: CallbackProtocol) -> Void, service : AbstractService) {
+    func singleCommonFeed(completionHandler: (msg: CallbackProtocol) -> Void, service : AbstractService) {
 
-        let url = commonUrl[service.getHelper().entityName()]
+        let url = getUrlList(service)
         
         let testBundle = NSBundle.mainBundle()
         
@@ -161,7 +166,7 @@ class APIManager {
             let data = NSData(contentsOfFile: filePath!)!
             
             
-            self.handleData(data, service: service, storedResource: nil, etag: nil, completionHandler: completionHandler)
+            handleData(data, service: service, storedResource: nil, etag: nil, completionHandler: completionHandler)
 
         }
         

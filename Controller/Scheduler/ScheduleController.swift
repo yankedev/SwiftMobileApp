@@ -21,7 +21,7 @@ public protocol ScrollableDateProtocol : NSObjectProtocol {
 
 
 
-public class ScheduleController<T : ScrollableDateProtocol> : UINavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
+public class ScheduleController : UINavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
     
     
     
@@ -40,14 +40,6 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     
     var customView:ScheduleControllerView?
     
-    init() {
-        super.init(navigationBarClass: nil, toolbarClass: nil)
-    }
-    
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     public override func viewDidLoad() {
         
@@ -152,7 +144,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
         var currentIndex = 0
-        if let demoController = viewController as? T {
+        if let demoController = viewController as? SchedulerTableViewController {
             currentIndex = demoController.index
         }
         
@@ -168,7 +160,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
         var currentIndex = 0
-        if let demoController = viewController as? T {
+        if let demoController = viewController as? SchedulerTableViewController {
             currentIndex = demoController.index
         }
         
@@ -185,7 +177,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     
     public func viewControllerAtIndex(index : NSInteger) -> UIViewController {
         
-        let scheduleTableController:T = T()
+        let scheduleTableController = SchedulerTableViewController()
         scheduleTableController.index = index
         
         if let dates = self.scrollableDateTableDatasource?.allDates {
@@ -251,7 +243,11 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
         self.navigationBar.translucent = false
         
-        pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
+        
+        
+        pageViewController = self.storyboard!.instantiateViewControllerWithIdentifier("SchedulerPageController") as! UIPageViewController
+        
+        //pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
         
         pageViewController?.dataSource = self
         pageViewController?.delegate = self

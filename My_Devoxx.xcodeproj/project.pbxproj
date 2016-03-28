@@ -10,8 +10,8 @@
 		E10E7AC61C18BF7100F6220B /* My_Devoxx.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E10E7AC41C18BF7100F6220B /* My_Devoxx.xcdatamodeld */; };
 		E10E7ACD1C18BF7100F6220B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACC1C18BF7100F6220B /* Images.xcassets */; };
 		E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACE1C18BF7100F6220B /* LaunchScreen.xib */; };
-		E10E7ADC1C18BF7100F6220B /* devoxxAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */; };
 		E14E94B31C980971006B6D8E /* HelperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14E94B21C980971006B6D8E /* HelperManager.swift */; };
+		E168846B1CA99A8600793A64 /* SpeakerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E6101C9638A2002A262A /* SpeakerCell.swift */; };
 		E17050DF1CA560F700818E79 /* ic_beer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17050DD1CA560F700818E79 /* ic_beer@2x.png */; };
 		E17050E01CA560F700818E79 /* ic_wine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17050DE1CA560F700818E79 /* ic_wine@2x.png */; };
 		E175E6161C9638A2002A262A /* ActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5FC1C9638A2002A262A /* ActionButtonView.swift */; };
@@ -34,7 +34,6 @@
 		E175E6271C9638A2002A262A /* ScheduleControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E60D1C9638A2002A262A /* ScheduleControllerView.swift */; };
 		E175E6281C9638A2002A262A /* SelectionWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E60E1C9638A2002A262A /* SelectionWheel.swift */; };
 		E175E6291C9638A2002A262A /* SimpleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E60F1C9638A2002A262A /* SimpleDetailView.swift */; };
-		E175E62A1C9638A2002A262A /* SpeakerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E6101C9638A2002A262A /* SpeakerCell.swift */; };
 		E175E62B1C9638A2002A262A /* SpeakerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E6111C9638A2002A262A /* SpeakerListView.swift */; };
 		E175E62C1C9638A2002A262A /* StarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E6121C9638A2002A262A /* StarView.swift */; };
 		E175E62D1C9638A2002A262A /* TopInfoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E6131C9638A2002A262A /* TopInfoDetailView.swift */; };
@@ -201,22 +200,24 @@
 		E175E8D21C9640B3002A262A /* ScheduleBreakCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E8D11C9640B3002A262A /* ScheduleBreakCell.swift */; };
 		E175E8D31C964172002A262A /* pirulen.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E175E7C31C963DEE002A262A /* pirulen.ttf */; };
 		E175E8D41C964172002A262A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E175E7C41C963DEE002A262A /* Roboto-Regular.ttf */; };
+		E17BEDE01CA9938100184287 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17BEDDF1CA9938100184287 /* MainTabBarController.swift */; };
+		E1C40CFF1CA95EFC008EABDF /* My_DevoxxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C40CFE1CA95EFC008EABDF /* My_DevoxxTests.swift */; };
+		E1C40D091CA990F5008EABDF /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C40D081CA990F5008EABDF /* Storyboard.storyboard */; };
 		E1DF81141C985501002194C9 /* CallbackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81131C985501002194C9 /* CallbackProtocol.swift */; };
 		E1DF81181C99F4CE002194C9 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */; };
 		E1E9E4FD1C97807D00EC347D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E9E4FB1C97807D00EC347D /* Crashlytics.framework */; };
 		E1E9E4FE1C97807D00EC347D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E9E4FC1C97807D00EC347D /* Fabric.framework */; };
 		E1E9E51D1C979BA800EC347D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E51F1C979BA800EC347D /* InfoPlist.strings */; };
-		E1E9E5221C979BA800EC347D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E5241C979BA800EC347D /* InfoPlist.strings */; };
 		E1E9E5271C979BA800EC347D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E5291C979BA800EC347D /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E10E7AD61C18BF7100F6220B /* PBXContainerItemProxy */ = {
+		E1C40D011CA95EFC008EABDF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E10E7AB51C18BF7100F6220B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E10E7ABC1C18BF7100F6220B;
-			remoteInfo = devoxxApp;
+			remoteInfo = My_Devoxx;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -226,9 +227,6 @@
 		E10E7AC51C18BF7100F6220B /* My_Devoxx.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = My_Devoxx.xcdatamodel; sourceTree = "<group>"; };
 		E10E7ACC1C18BF7100F6220B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E10E7ACF1C18BF7100F6220B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		E10E7AD51C18BF7100F6220B /* My_DevoxxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My_DevoxxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E10E7ADA1C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = devoxxAppTests.swift; sourceTree = "<group>"; };
 		E14E94B21C980971006B6D8E /* HelperManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperManager.swift; sourceTree = "<group>"; };
 		E17050DD1CA560F700818E79 /* ic_beer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_beer@2x.png"; sourceTree = "<group>"; };
 		E17050DE1CA560F700818E79 /* ic_wine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_wine@2x.png"; sourceTree = "<group>"; };
@@ -419,13 +417,17 @@
 		E175E8CD1C96401A002A262A /* AllDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllDetailsView.swift; path = View/AllDetailsView.swift; sourceTree = "<group>"; };
 		E175E8CF1C964082002A262A /* SchedulerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchedulerTableView.swift; path = devoxxApp/SchedulerTableView.swift; sourceTree = "<group>"; };
 		E175E8D11C9640B3002A262A /* ScheduleBreakCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleBreakCell.swift; path = View/ScheduleBreakCell.swift; sourceTree = "<group>"; };
+		E17BEDDF1CA9938100184287 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		E1C40CFC1CA95EFC008EABDF /* My_DevoxxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My_DevoxxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1C40CFE1CA95EFC008EABDF /* My_DevoxxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My_DevoxxTests.swift; sourceTree = "<group>"; };
+		E1C40D001CA95EFC008EABDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1C40D081CA990F5008EABDF /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		E1DF81131C985501002194C9 /* CallbackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackProtocol.swift; sourceTree = "<group>"; };
 		E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		E1E9E4FB1C97807D00EC347D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		E1E9E4FC1C97807D00EC347D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		E1E9E51A1C9792A500EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E1E9E51E1C979BA800EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		E1E9E5231C979BA800EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E1E9E5281C979BA800EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -439,7 +441,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E10E7AD21C18BF7100F6220B /* Frameworks */ = {
+		E1C40CF91CA95EFC008EABDF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -569,6 +571,8 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				E1C40D081CA990F5008EABDF /* Storyboard.storyboard */,
+				E17BEDDF1CA9938100184287 /* MainTabBarController.swift */,
 				E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */,
 				E175E70F1C963BDB002A262A /* AppDelegate.swift */,
 				E175E5F61C962295002A262A /* View */,
@@ -582,7 +586,7 @@
 				E175F2741C49B18E00D7AC0A /* Mock */,
 				E1FA9C401C1BFD2D0077C09A /* Model */,
 				E10E7ABF1C18BF7100F6220B /* devoxxApp */,
-				E10E7AD81C18BF7100F6220B /* devoxxAppTests */,
+				E1C40CFD1CA95EFC008EABDF /* My_DevoxxTests */,
 				E10E7ABE1C18BF7100F6220B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -591,7 +595,7 @@
 			isa = PBXGroup;
 			children = (
 				E10E7ABD1C18BF7100F6220B /* My Devoxx.app */,
-				E10E7AD51C18BF7100F6220B /* My_DevoxxTests.xctest */,
+				E1C40CFC1CA95EFC008EABDF /* My_DevoxxTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -613,24 +617,6 @@
 				E1E9E5291C979BA800EC347D /* Localizable.strings */,
 				E1E9E51F1C979BA800EC347D /* InfoPlist.strings */,
 				E10E7AC11C18BF7100F6220B /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E10E7AD81C18BF7100F6220B /* devoxxAppTests */ = {
-			isa = PBXGroup;
-			children = (
-				E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */,
-				E10E7AD91C18BF7100F6220B /* Supporting Files */,
-			);
-			path = devoxxAppTests;
-			sourceTree = "<group>";
-		};
-		E10E7AD91C18BF7100F6220B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E1E9E5241C979BA800EC347D /* InfoPlist.strings */,
-				E10E7ADA1C18BF7100F6220B /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -813,6 +799,15 @@
 			path = devoxxApp;
 			sourceTree = "<group>";
 		};
+		E1C40CFD1CA95EFC008EABDF /* My_DevoxxTests */ = {
+			isa = PBXGroup;
+			children = (
+				E1C40CFE1CA95EFC008EABDF /* My_DevoxxTests.swift */,
+				E1C40D001CA95EFC008EABDF /* Info.plist */,
+			);
+			path = My_DevoxxTests;
+			sourceTree = "<group>";
+		};
 		E1FA9BE91C1BE59A0077C09A /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -937,22 +932,22 @@
 			productReference = E10E7ABD1C18BF7100F6220B /* My Devoxx.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E10E7AD41C18BF7100F6220B /* My_DevoxxTests */ = {
+		E1C40CFB1CA95EFC008EABDF /* My_DevoxxTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E10E7AE21C18BF7100F6220B /* Build configuration list for PBXNativeTarget "My_DevoxxTests" */;
+			buildConfigurationList = E1C40D031CA95EFC008EABDF /* Build configuration list for PBXNativeTarget "My_DevoxxTests" */;
 			buildPhases = (
-				E10E7AD11C18BF7100F6220B /* Sources */,
-				E10E7AD21C18BF7100F6220B /* Frameworks */,
-				E10E7AD31C18BF7100F6220B /* Resources */,
+				E1C40CF81CA95EFC008EABDF /* Sources */,
+				E1C40CF91CA95EFC008EABDF /* Frameworks */,
+				E1C40CFA1CA95EFC008EABDF /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E10E7AD71C18BF7100F6220B /* PBXTargetDependency */,
+				E1C40D021CA95EFC008EABDF /* PBXTargetDependency */,
 			);
 			name = My_DevoxxTests;
-			productName = devoxxAppTests;
-			productReference = E10E7AD51C18BF7100F6220B /* My_DevoxxTests.xctest */;
+			productName = My_DevoxxTests;
+			productReference = E1C40CFC1CA95EFC008EABDF /* My_DevoxxTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -962,7 +957,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0720;
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = maximedavid;
 				TargetAttributes = {
@@ -970,8 +965,8 @@
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 7F9RT8TS76;
 					};
-					E10E7AD41C18BF7100F6220B = {
-						CreatedOnToolsVersion = 6.4;
+					E1C40CFB1CA95EFC008EABDF = {
+						CreatedOnToolsVersion = 7.3;
 						TestTargetID = E10E7ABC1C18BF7100F6220B;
 					};
 				};
@@ -990,7 +985,7 @@
 			projectRoot = "";
 			targets = (
 				E10E7ABC1C18BF7100F6220B /* My_Devoxx */,
-				E10E7AD41C18BF7100F6220B /* My_DevoxxTests */,
+				E1C40CFB1CA95EFC008EABDF /* My_DevoxxTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1079,6 +1074,7 @@
 				E175E8641C963E7B002A262A /* DevoxxFRExhibitionTablet.jpg in Resources */,
 				E175E82E1C963E4F002A262A /* icon_web.png in Resources */,
 				E175E8811C963E9B002A262A /* DevoxxFR2016-friday.json in Resources */,
+				E1C40D091CA990F5008EABDF /* Storyboard.storyboard in Resources */,
 				E175E8121C963E3E002A262A /* icon_start.png in Resources */,
 				E175E8741C963E91002A262A /* DV15-tracks.json in Resources */,
 				E175E82C1C963E4F002A262A /* icon_ssj.png in Resources */,
@@ -1097,11 +1093,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E10E7AD31C18BF7100F6220B /* Resources */ = {
+		E1C40CFA1CA95EFC008EABDF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1E9E5221C979BA800EC347D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1143,6 +1138,7 @@
 				E175E7DE1C963DFC002A262A /* TalkService.swift in Sources */,
 				E175E8C61C963F55002A262A /* MapTabController.swift in Sources */,
 				E1DF81181C99F4CE002194C9 /* CoreDataHelper.swift in Sources */,
+				E168846B1CA99A8600793A64 /* SpeakerCell.swift in Sources */,
 				E175E89D1C963EB4002A262A /* DataHelperProtocol.swift in Sources */,
 				E175E61C1C9638A2002A262A /* FilterViewCell.swift in Sources */,
 				E175E8C51C963F55002A262A /* MapController.swift in Sources */,
@@ -1186,7 +1182,6 @@
 				E175E6161C9638A2002A262A /* ActionButtonView.swift in Sources */,
 				E175E8CB1C963F9C002A262A /* SpeakerDetailsController.swift in Sources */,
 				E175E8C81C963F5C002A262A /* AbstractDetailsController.swift in Sources */,
-				E175E62A1C9638A2002A262A /* SpeakerCell.swift in Sources */,
 				E175E61B1C9638A2002A262A /* FilterTableView.swift in Sources */,
 				E175E64E1C963950002A262A /* FilterTableViewController.swift in Sources */,
 				E175E6271C9638A2002A262A /* ScheduleControllerView.swift in Sources */,
@@ -1226,6 +1221,7 @@
 				E175E7961C963DBB002A262A /* Swifty.swift in Sources */,
 				E175E6291C9638A2002A262A /* SimpleDetailView.swift in Sources */,
 				E175E7DC1C963DFC002A262A /* SpeakerService.swift in Sources */,
+				E17BEDE01CA9938100184287 /* MainTabBarController.swift in Sources */,
 				E175E6471C96391C002A262A /* SpeakerTableController.swift in Sources */,
 				E175E6441C96391C002A262A /* QRCodeScannerController.swift in Sources */,
 				E175E7BD1C963DDD002A262A /* FilterableTableProtocol.swift in Sources */,
@@ -1234,21 +1230,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E10E7AD11C18BF7100F6220B /* Sources */ = {
+		E1C40CF81CA95EFC008EABDF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E10E7ADC1C18BF7100F6220B /* devoxxAppTests.swift in Sources */,
+				E1C40CFF1CA95EFC008EABDF /* My_DevoxxTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E10E7AD71C18BF7100F6220B /* PBXTargetDependency */ = {
+		E1C40D021CA95EFC008EABDF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E10E7ABC1C18BF7100F6220B /* My_Devoxx */;
-			targetProxy = E10E7AD61C18BF7100F6220B /* PBXContainerItemProxy */;
+			targetProxy = E1C40D011CA95EFC008EABDF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1266,14 +1262,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E1E9E51E1C979BA800EC347D /* fr */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		E1E9E5241C979BA800EC347D /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E1E9E5231C979BA800EC347D /* fr */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1416,39 +1404,32 @@
 			};
 			name = Release;
 		};
-		E10E7AE31C18BF7100F6220B /* Debug */ = {
+		E1C40D041CA95EFC008EABDF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = devoxxAppTests/Info.plist;
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = My_DevoxxTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "maximedavid.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = My_DevoxxTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My_Devoxx.app/My_Devoxx";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.devoxx.mydevoxx.swift.My-DevoxxTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My Devoxx.app/My Devoxx";
 			};
 			name = Debug;
 		};
-		E10E7AE41C18BF7100F6220B /* Release */ = {
+		E1C40D051CA95EFC008EABDF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = devoxxAppTests/Info.plist;
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = My_DevoxxTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "maximedavid.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = My_DevoxxTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My_Devoxx.app/My_Devoxx";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.devoxx.mydevoxx.swift.My-DevoxxTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My Devoxx.app/My Devoxx";
 			};
 			name = Release;
 		};
@@ -1473,11 +1454,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E10E7AE21C18BF7100F6220B /* Build configuration list for PBXNativeTarget "My_DevoxxTests" */ = {
+		E1C40D031CA95EFC008EABDF /* Build configuration list for PBXNativeTarget "My_DevoxxTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E10E7AE31C18BF7100F6220B /* Debug */,
-				E10E7AE41C18BF7100F6220B /* Release */,
+				E1C40D041CA95EFC008EABDF /* Debug */,
+				E1C40D051CA95EFC008EABDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

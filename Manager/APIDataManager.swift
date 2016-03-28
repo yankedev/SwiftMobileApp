@@ -136,7 +136,7 @@
                             })
                         }
                         else {
-                            APIManager.handleData(data!, service: service, storedResource: storedResource, etag: nil, completionHandler: onSuccess)
+                            APIManager().handleData(data!, service: service, storedResource: storedResource, etag: nil, completionHandler: onSuccess)
                         }
      
                     }
@@ -165,7 +165,7 @@
                             
                             let fallbackData = NSData(contentsOfFile: filePath!)!
                             
-                            APIManager.handleData(fallbackData, service: service, storedResource: storedResource, etag: nil, completionHandler: onSuccess)
+                            APIManager().handleData(fallbackData, service: service, storedResource: storedResource, etag: nil, completionHandler: onSuccess)
                             
                         }
                         else {
@@ -193,7 +193,7 @@
                                 })
                             }
                             else {
-                                APIManager.handleData(data!, service: service, storedResource: storedResource, etag: nil, completionHandler: onSuccess)
+                                APIManager().handleData(data!, service: service, storedResource: storedResource, etag: nil, completionHandler: onSuccess)
                             }
 
                             
@@ -212,7 +212,7 @@
                         
                         //print("200 for \(storedResource.url)")
                         
-                        APIManager.handleData(data!, service: service, storedResource: storedResource, etag : httpResponse.allHeaderFields["etag"] as? String, completionHandler: onSuccess)
+                        APIManager().handleData(data!, service: service, storedResource: storedResource, etag : httpResponse.allHeaderFields["etag"] as? String, completionHandler: onSuccess)
                     }
                 }
             }

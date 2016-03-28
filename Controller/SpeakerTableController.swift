@@ -14,12 +14,14 @@ import CoreData
 
 public class SpeakerTableController: UITableViewController, NSFetchedResultsControllerDelegate, UISearchBarDelegate, FavoritableProtocol, HotReloadProtocol {
     
+
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var cellDataArray:[DataHelperProtocol]?
     var searchedRow:[DataHelperProtocol]?
     
-    
     var searchingString = ""
-    var searchBar = UISearchBar(frame: CGRectMake(0,0,44,44))
+    
     
     public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         searchingString = searchText
@@ -42,8 +44,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         super.viewDidLoad()
         self.tableView.separatorStyle = .None
         
-        
-        self.tableView.tableHeaderView = searchBar
+       
         searchBar.delegate = self
         
         
@@ -73,16 +74,9 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     
     override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_1") as? SpeakerCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("CELL_1") as? SpeakerCell
         
-        
-        if cell == nil {
-            cell = SpeakerCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
-            cell?.selectionStyle = .None
-            cell!.configureCell()
-        }
-        
-        
+     
         var arrayToParse:[DataHelperProtocol]!
         if searchingString.isEmpty {
             arrayToParse = cellDataArray
@@ -101,9 +95,12 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         
         if let cellDataCast = cellData as? CellDataDisplayPrococol {
         
+           
+          
+            
+            cell!.firstInformation?.text = cellDataCast.getFirstInformation()
             
             
-            cell!.firstInformation.text = cellDataCast.getFirstInformation()
             
             var shouldDisplay = false
             if indexPath.row == 0 {
@@ -126,14 +123,14 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             
             if shouldDisplay {
                 let firstChar = (cellDataCast.getFirstInformation()?.characters.first)!
-                cell!.initiale.text = "\(firstChar)"
+                cell!.initiale?.text = "\(firstChar)"
             }
             else {
-                cell!.initiale.text = ""
+                cell!.initiale?.text = ""
             }
             
-            cell!.initiale.textColor = ColorManager.topNavigationBarColor
-            cell!.initiale.font = UIFont(name: "Pirulen", size: 25)
+            cell!.initiale?.textColor = ColorManager.topNavigationBarColor
+            cell!.initiale?.font = UIFont(name: "Pirulen", size: 25)
             
             cell!.accessoryView = UIImageView(image: cellDataCast.getPrimaryImage())
             
@@ -142,13 +139,16 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             
             
             
-            cell!.accessoryView?.frame = CGRectMake(0,200,44,44)
-            cell!.accessoryView!.layer.cornerRadius = cell!.accessoryView!.frame.size.width/2
-            cell!.accessoryView!.layer.masksToBounds = true
+           
+            cell!.speakerProfilePicture!.layer.cornerRadius = cell!.speakerProfilePicture!.frame.size.width/2
+            cell!.speakerProfilePicture!.layer.masksToBounds = true
+            cell!.speakerProfilePicture!.backgroundColor = UIColor.redColor()
         
         }
 
+       
         return cell!
+ 
         
     }
     
@@ -247,6 +247,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
             updateRowForSearch()
             return searchedRow!.count
         }
+        print(cellDataArray!.count)
         return cellDataArray!.count
     }
     
