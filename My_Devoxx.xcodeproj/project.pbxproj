@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B991D3121CA985D500AA352E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B991D3101CA985D500AA352E /* Interface.storyboard */; };
+		B991D3141CA985D500AA352E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B991D3131CA985D500AA352E /* Assets.xcassets */; };
+		B991D31B1CA985D500AA352E /* Smartvoxx Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B991D31A1CA985D500AA352E /* Smartvoxx Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B991D3221CA985D500AA352E /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B991D3211CA985D500AA352E /* InterfaceController.swift */; };
+		B991D3241CA985D500AA352E /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B991D3231CA985D500AA352E /* ExtensionDelegate.swift */; };
+		B991D3261CA985D500AA352E /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B991D3251CA985D500AA352E /* NotificationController.swift */; };
+		B991D3281CA985D500AA352E /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B991D3271CA985D500AA352E /* GlanceController.swift */; };
+		B991D32A1CA985D500AA352E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B991D3291CA985D500AA352E /* ComplicationController.swift */; };
+		B991D32C1CA985D500AA352E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B991D32B1CA985D500AA352E /* Assets.xcassets */; };
+		B991D3301CA985D500AA352E /* Smartvoxx.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B991D30E1CA985D500AA352E /* Smartvoxx.app */; };
 		E10E7AC61C18BF7100F6220B /* My_Devoxx.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E10E7AC41C18BF7100F6220B /* My_Devoxx.xcdatamodeld */; };
 		E10E7ACD1C18BF7100F6220B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACC1C18BF7100F6220B /* Images.xcassets */; };
 		E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACE1C18BF7100F6220B /* LaunchScreen.xib */; };
@@ -211,6 +221,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B991D31C1CA985D500AA352E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E10E7AB51C18BF7100F6220B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B991D3191CA985D500AA352E;
+			remoteInfo = "Smartvoxx Extension";
+		};
+		B991D32E1CA985D500AA352E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E10E7AB51C18BF7100F6220B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B991D30D1CA985D500AA352E;
+			remoteInfo = Smartvoxx;
+		};
 		E10E7AD61C18BF7100F6220B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E10E7AB51C18BF7100F6220B /* Project object */;
@@ -220,7 +244,45 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B991D3361CA985D500AA352E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B991D31B1CA985D500AA352E /* Smartvoxx Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B991D3381CA985D500AA352E /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				B991D3301CA985D500AA352E /* Smartvoxx.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		B991D30E1CA985D500AA352E /* Smartvoxx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smartvoxx.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B991D3111CA985D500AA352E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		B991D3131CA985D500AA352E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B991D3151CA985D500AA352E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B991D31A1CA985D500AA352E /* Smartvoxx Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Smartvoxx Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B991D3201CA985D500AA352E /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		B991D3211CA985D500AA352E /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		B991D3231CA985D500AA352E /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		B991D3251CA985D500AA352E /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		B991D3271CA985D500AA352E /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		B991D3291CA985D500AA352E /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		B991D32B1CA985D500AA352E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B991D32D1CA985D500AA352E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10E7ABD1C18BF7100F6220B /* My Devoxx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Devoxx.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10E7AC11C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10E7AC51C18BF7100F6220B /* My_Devoxx.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = My_Devoxx.xcdatamodel; sourceTree = "<group>"; };
@@ -430,6 +492,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B991D3171CA985D500AA352E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E10E7ABA1C18BF7100F6220B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -566,6 +635,39 @@
 			path = devoxxApp;
 			sourceTree = "<group>";
 		};
+		B991D30F1CA985D500AA352E /* Smartvoxx */ = {
+			isa = PBXGroup;
+			children = (
+				B991D3101CA985D500AA352E /* Interface.storyboard */,
+				B991D3131CA985D500AA352E /* Assets.xcassets */,
+				B991D3151CA985D500AA352E /* Info.plist */,
+			);
+			path = Smartvoxx;
+			sourceTree = "<group>";
+		};
+		B991D31E1CA985D500AA352E /* Smartvoxx Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B991D3211CA985D500AA352E /* InterfaceController.swift */,
+				B991D3231CA985D500AA352E /* ExtensionDelegate.swift */,
+				B991D3251CA985D500AA352E /* NotificationController.swift */,
+				B991D3271CA985D500AA352E /* GlanceController.swift */,
+				B991D3291CA985D500AA352E /* ComplicationController.swift */,
+				B991D32B1CA985D500AA352E /* Assets.xcassets */,
+				B991D32D1CA985D500AA352E /* Info.plist */,
+				B991D31F1CA985D500AA352E /* Supporting Files */,
+			);
+			path = "Smartvoxx Extension";
+			sourceTree = "<group>";
+		};
+		B991D31F1CA985D500AA352E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B991D3201CA985D500AA352E /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
@@ -583,6 +685,8 @@
 				E1FA9C401C1BFD2D0077C09A /* Model */,
 				E10E7ABF1C18BF7100F6220B /* devoxxApp */,
 				E10E7AD81C18BF7100F6220B /* devoxxAppTests */,
+				B991D30F1CA985D500AA352E /* Smartvoxx */,
+				B991D31E1CA985D500AA352E /* Smartvoxx Extension */,
 				E10E7ABE1C18BF7100F6220B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -592,6 +696,8 @@
 			children = (
 				E10E7ABD1C18BF7100F6220B /* My Devoxx.app */,
 				E10E7AD51C18BF7100F6220B /* My_DevoxxTests.xctest */,
+				B991D30E1CA985D500AA352E /* Smartvoxx.app */,
+				B991D31A1CA985D500AA352E /* Smartvoxx Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -919,6 +1025,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B991D30D1CA985D500AA352E /* Smartvoxx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B991D3371CA985D500AA352E /* Build configuration list for PBXNativeTarget "Smartvoxx" */;
+			buildPhases = (
+				B991D30C1CA985D500AA352E /* Resources */,
+				B991D3361CA985D500AA352E /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B991D31D1CA985D500AA352E /* PBXTargetDependency */,
+			);
+			name = Smartvoxx;
+			productName = Smartvoxx;
+			productReference = B991D30E1CA985D500AA352E /* Smartvoxx.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		B991D3191CA985D500AA352E /* Smartvoxx Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B991D3351CA985D500AA352E /* Build configuration list for PBXNativeTarget "Smartvoxx Extension" */;
+			buildPhases = (
+				B991D3161CA985D500AA352E /* Sources */,
+				B991D3171CA985D500AA352E /* Frameworks */,
+				B991D3181CA985D500AA352E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Smartvoxx Extension";
+			productName = "Smartvoxx Extension";
+			productReference = B991D31A1CA985D500AA352E /* Smartvoxx Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		E10E7ABC1C18BF7100F6220B /* My_Devoxx */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E10E7ADF1C18BF7100F6220B /* Build configuration list for PBXNativeTarget "My_Devoxx" */;
@@ -927,10 +1067,12 @@
 				E10E7ABA1C18BF7100F6220B /* Frameworks */,
 				E10E7ABB1C18BF7100F6220B /* Resources */,
 				E1E9E4F61C977C3D00EC347D /* ShellScript */,
+				B991D3381CA985D500AA352E /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B991D32F1CA985D500AA352E /* PBXTargetDependency */,
 			);
 			name = My_Devoxx;
 			productName = devoxxApp;
@@ -962,10 +1104,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0720;
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = maximedavid;
 				TargetAttributes = {
+					B991D30D1CA985D500AA352E = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 7F9RT8TS76;
+					};
+					B991D3191CA985D500AA352E = {
+						CreatedOnToolsVersion = 7.3;
+					};
 					E10E7ABC1C18BF7100F6220B = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 7F9RT8TS76;
@@ -991,11 +1140,30 @@
 			targets = (
 				E10E7ABC1C18BF7100F6220B /* My_Devoxx */,
 				E10E7AD41C18BF7100F6220B /* My_DevoxxTests */,
+				B991D30D1CA985D500AA352E /* Smartvoxx */,
+				B991D3191CA985D500AA352E /* Smartvoxx Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B991D30C1CA985D500AA352E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B991D3141CA985D500AA352E /* Assets.xcassets in Resources */,
+				B991D3121CA985D500AA352E /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B991D3181CA985D500AA352E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B991D32C1CA985D500AA352E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E10E7ABB1C18BF7100F6220B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1124,6 +1292,18 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B991D3161CA985D500AA352E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B991D3261CA985D500AA352E /* NotificationController.swift in Sources */,
+				B991D3241CA985D500AA352E /* ExtensionDelegate.swift in Sources */,
+				B991D32A1CA985D500AA352E /* ComplicationController.swift in Sources */,
+				B991D3221CA985D500AA352E /* InterfaceController.swift in Sources */,
+				B991D3281CA985D500AA352E /* GlanceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E10E7AB91C18BF7100F6220B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1245,6 +1425,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B991D31D1CA985D500AA352E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B991D3191CA985D500AA352E /* Smartvoxx Extension */;
+			targetProxy = B991D31C1CA985D500AA352E /* PBXContainerItemProxy */;
+		};
+		B991D32F1CA985D500AA352E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B991D30D1CA985D500AA352E /* Smartvoxx */;
+			targetProxy = B991D32E1CA985D500AA352E /* PBXContainerItemProxy */;
+		};
 		E10E7AD71C18BF7100F6220B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E10E7ABC1C18BF7100F6220B /* My_Devoxx */;
@@ -1253,6 +1443,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B991D3101CA985D500AA352E /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B991D3111CA985D500AA352E /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		E10E7ACE1C18BF7100F6220B /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1289,6 +1487,78 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B991D3311CA985D500AA352E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = Smartvoxx_Extension;
+				INFOPLIST_FILE = Smartvoxx/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		B991D3321CA985D500AA352E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = Smartvoxx_Extension;
+				INFOPLIST_FILE = Smartvoxx/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
+		B991D3331CA985D500AA352E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = "Smartvoxx Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		B991D3341CA985D500AA352E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "Smartvoxx Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
 		E10E7ADD1C18BF7100F6220B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1455,6 +1725,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B991D3351CA985D500AA352E /* Build configuration list for PBXNativeTarget "Smartvoxx Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B991D3331CA985D500AA352E /* Debug */,
+				B991D3341CA985D500AA352E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B991D3371CA985D500AA352E /* Build configuration list for PBXNativeTarget "Smartvoxx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B991D3311CA985D500AA352E /* Debug */,
+				B991D3321CA985D500AA352E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		E10E7AB81C18BF7100F6220B /* Build configuration list for PBXProject "My_Devoxx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
