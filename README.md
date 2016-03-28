@@ -1,0 +1,3 @@
+When you check out this project for the first time, the first thing to do is to install CocoaPods dependencies by running 'pod install' (of course you need to install CocoaPods first if it's not done already).
+Once you have run this command, open My_Devoxx.xcworkspace and not My_Devoxx.xcproject anymore, otherwise your project won't compile anymore.
+For more information about CocoaPods, see http://www.cocoapods.org
