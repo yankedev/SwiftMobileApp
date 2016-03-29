@@ -280,6 +280,10 @@
         <scene sceneID="T2a-3f-eWQ">
             <objects>
                 <viewController id="NrP-8Y-wWA" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Sph-ta-6nm"/>
+                        <viewControllerLayoutGuide type="bottom" id="qtf-ce-CDb"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Gdq-NB-QeB">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
