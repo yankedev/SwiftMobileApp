@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="Roboto-Regular.ttf">
@@ -499,15 +500,8 @@
                                     <constraint firstItem="bJC-Rz-c9C" firstAttribute="top" secondItem="8EU-Lp-Gas" secondAttribute="bottom" constant="43" id="pfA-4I-EsK"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NmB-fg-4jb">
-                                <rect key="frame" x="0.0" y="450" width="600" height="150"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="LnL-t7-0iE"/>
-                                </constraints>
-                            </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RZp-Wd-qrM">
-                                <rect key="frame" x="0.0" y="150" width="600" height="299"/>
+                                <rect key="frame" x="0.0" y="301" width="600" height="299"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
                                     <fragment>
@@ -519,6 +513,26 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uxH-LL-gES" userLabel="Info">
+                                <rect key="frame" x="0.0" y="150" width="300" height="150"/>
+                                <color key="backgroundColor" red="1" green="0.97638068187839011" blue="0.56532178919673781" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="xPb-GE-s7a"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NmB-fg-4jb">
+                                <rect key="frame" x="300" y="175" width="300" height="125"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="JQz-Xw-dI9"/>
+                                    <constraint firstAttribute="height" constant="150" id="LnL-t7-0iE"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="LnL-t7-0iE"/>
+                                    </mask>
+                                </variation>
+                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ecp-JB-HnO" userLabel="Star">
                                 <rect key="frame" x="535" y="130" width="45" height="45"/>
                                 <subviews>
@@ -571,27 +585,42 @@
                         <constraints>
                             <constraint firstItem="fqL-Ps-Hve" firstAttribute="top" secondItem="OOI-1s-Txb" secondAttribute="top" id="0IV-qS-lwe"/>
                             <constraint firstItem="fqL-Ps-Hve" firstAttribute="leading" secondItem="OOI-1s-Txb" secondAttribute="leading" id="1WW-9K-zFh"/>
+                            <constraint firstItem="NmB-fg-4jb" firstAttribute="leading" secondItem="uxH-LL-gES" secondAttribute="trailing" id="2uD-oC-OSK"/>
                             <constraint firstItem="KtP-Ab-Eni" firstAttribute="top" secondItem="v3m-6q-Fjm" secondAttribute="bottom" constant="110" id="7zz-Pu-O1E"/>
                             <constraint firstItem="fqL-Ps-Hve" firstAttribute="leading" secondItem="RZp-Wd-qrM" secondAttribute="leading" id="8PR-x9-W8D"/>
                             <constraint firstItem="Ecp-JB-HnO" firstAttribute="top" secondItem="v3m-6q-Fjm" secondAttribute="bottom" constant="110" id="8ze-VC-m1t"/>
                             <constraint firstItem="NmB-fg-4jb" firstAttribute="top" secondItem="RZp-Wd-qrM" secondAttribute="bottom" constant="2" id="9TD-Hv-jeG"/>
                             <constraint firstAttribute="trailing" secondItem="fqL-Ps-Hve" secondAttribute="trailing" id="9ZA-rS-2jo"/>
                             <constraint firstItem="fqL-Ps-Hve" firstAttribute="trailing" secondItem="RZp-Wd-qrM" secondAttribute="trailing" id="AvP-KR-4nl"/>
+                            <constraint firstAttribute="trailing" secondItem="uxH-LL-gES" secondAttribute="trailing" constant="301" id="Bbf-L2-Asx"/>
+                            <constraint firstItem="NmB-fg-4jb" firstAttribute="top" secondItem="OOI-1s-Txb" secondAttribute="topMargin" constant="175" id="Fkj-QD-go4"/>
                             <constraint firstItem="KtP-Ab-Eni" firstAttribute="top" secondItem="OOI-1s-Txb" secondAttribute="topMargin" constant="130" id="G0g-j8-btZ"/>
-                            <constraint firstItem="RZp-Wd-qrM" firstAttribute="top" secondItem="fqL-Ps-Hve" secondAttribute="bottom" id="Hw5-0q-z8z"/>
+                            <constraint firstItem="uxH-LL-gES" firstAttribute="top" secondItem="fqL-Ps-Hve" secondAttribute="bottom" id="Hfw-H1-g6r"/>
+                            <constraint firstItem="RZp-Wd-qrM" firstAttribute="top" secondItem="fqL-Ps-Hve" secondAttribute="bottom" constant="151" id="Hw5-0q-z8z"/>
                             <constraint firstItem="Ecp-JB-HnO" firstAttribute="top" secondItem="OOI-1s-Txb" secondAttribute="topMargin" constant="130" id="J4Q-Hy-D7a"/>
-                            <constraint firstItem="fqL-Ps-Hve" firstAttribute="leading" secondItem="NmB-fg-4jb" secondAttribute="leading" id="MsT-5P-ZsE"/>
-                            <constraint firstItem="RZp-Wd-qrM" firstAttribute="centerY" secondItem="OOI-1s-Txb" secondAttribute="centerY" id="VGG-gP-inB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NmB-fg-4jb" secondAttribute="trailing" constant="-20" id="LfK-t2-eGU"/>
+                            <constraint firstItem="uxH-LL-gES" firstAttribute="width" secondItem="OOI-1s-Txb" secondAttribute="width" multiplier="0.5" id="MH0-kd-gEE"/>
+                            <constraint firstItem="fqL-Ps-Hve" firstAttribute="leading" secondItem="NmB-fg-4jb" secondAttribute="leading" constant="-300" id="MsT-5P-ZsE"/>
+                            <constraint firstItem="uxH-LL-gES" firstAttribute="leading" secondItem="OOI-1s-Txb" secondAttribute="leadingMargin" constant="-20" id="Ov1-8W-vWq"/>
+                            <constraint firstItem="RZp-Wd-qrM" firstAttribute="centerY" secondItem="OOI-1s-Txb" secondAttribute="centerY" constant="150.5" id="VGG-gP-inB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ecp-JB-HnO" secondAttribute="trailing" id="VP0-mV-EJl"/>
                             <constraint firstItem="4fZ-It-XtR" firstAttribute="top" secondItem="OOI-1s-Txb" secondAttribute="topMargin" constant="130" id="Wwj-c2-ltt"/>
                             <constraint firstItem="KtP-Ab-Eni" firstAttribute="leading" secondItem="4fZ-It-XtR" secondAttribute="trailing" constant="10" id="dhe-gA-w1r"/>
-                            <constraint firstItem="NmB-fg-4jb" firstAttribute="trailing" secondItem="RZp-Wd-qrM" secondAttribute="trailing" id="gjF-m8-UMs"/>
-                            <constraint firstAttribute="bottom" secondItem="NmB-fg-4jb" secondAttribute="bottom" id="qV5-9I-a8f"/>
+                            <constraint firstItem="uxH-LL-gES" firstAttribute="centerX" secondItem="OOI-1s-Txb" secondAttribute="centerX" id="g21-I8-ZGB"/>
+                            <constraint firstItem="NmB-fg-4jb" firstAttribute="trailing" secondItem="RZp-Wd-qrM" secondAttribute="trailing" multiplier="0.5" constant="300" id="gjF-m8-UMs"/>
+                            <constraint firstItem="NmB-fg-4jb" firstAttribute="leading" secondItem="uxH-LL-gES" secondAttribute="trailing" constant="1" id="hhy-GT-58n"/>
+                            <constraint firstAttribute="bottom" secondItem="NmB-fg-4jb" secondAttribute="bottom" constant="300" id="qV5-9I-a8f"/>
                             <constraint firstItem="Ecp-JB-HnO" firstAttribute="leading" secondItem="KtP-Ab-Eni" secondAttribute="trailing" constant="10" id="wYx-E5-M3E"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="MsT-5P-ZsE"/>
+                                <exclude reference="Bbf-L2-Asx"/>
+                                <exclude reference="g21-I8-ZGB"/>
                                 <exclude reference="9TD-Hv-jeG"/>
+                                <exclude reference="gjF-m8-UMs"/>
+                                <exclude reference="hhy-GT-58n"/>
+                                <exclude reference="qV5-9I-a8f"/>
                                 <exclude reference="7zz-Pu-O1E"/>
                                 <exclude reference="8ze-VC-m1t"/>
                             </mask>
