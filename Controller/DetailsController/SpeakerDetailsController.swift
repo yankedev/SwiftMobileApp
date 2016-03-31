@@ -184,12 +184,12 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
         if let talk = detailObject.getRelatedDetailWithIndex(indexPath.row) {
             
             let details = TalkDetailsController()
-            details.delegate = self
+            //details.delegate = self
             details.detailObject = talk
             
-            details.configure()
+           // details.configure()
             
-            details.setColor(talk.isFavorited())
+            //details.setColor(talk.isFavorited())
         
             
             self.navigationController?.pushViewController(details, animated: true)

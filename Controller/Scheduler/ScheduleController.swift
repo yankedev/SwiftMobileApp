@@ -45,7 +45,7 @@ public class ScheduleController : UINavigationController, DevoxxAppFilter, Scrol
         
         super.viewDidLoad()
         
-        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"))
+        customView = ScheduleControllerView(target: self, filterSelector: #selector(self.filterMe))
         
         
         
@@ -152,7 +152,7 @@ public class ScheduleController : UINavigationController, DevoxxAppFilter, Scrol
             return nil
         }
         
-        currentIndex--
+        currentIndex -= 1
         
         return viewControllerAtIndex(currentIndex)
     }
@@ -164,7 +164,7 @@ public class ScheduleController : UINavigationController, DevoxxAppFilter, Scrol
             currentIndex = demoController.index
         }
         
-        currentIndex++
+        currentIndex += 1
         
         
         if currentIndex == allDates.count {
@@ -177,7 +177,9 @@ public class ScheduleController : UINavigationController, DevoxxAppFilter, Scrol
     
     public func viewControllerAtIndex(index : NSInteger) -> UIViewController {
         
-        let scheduleTableController = SchedulerTableViewController()
+        
+        let scheduleTableController = self.storyboard!.instantiateViewControllerWithIdentifier("SchedulerTableViewController") as! SchedulerTableViewController
+    
         scheduleTableController.index = index
         
         if let dates = self.scrollableDateTableDatasource?.allDates {
@@ -187,7 +189,7 @@ public class ScheduleController : UINavigationController, DevoxxAppFilter, Scrol
             
             
         }
-        return (scheduleTableController as? UIViewController)!
+        return scheduleTableController
     }
     
     
@@ -258,8 +260,13 @@ public class ScheduleController : UINavigationController, DevoxxAppFilter, Scrol
         
         pageViewController?.setViewControllers(controls, direction: .Forward, animated: false, completion: nil)
         
-        pushViewController(pageViewController!, animated: false)
+        /*
+        self.addChildViewController(self.pageViewController)
+        self.view.addSubview(self.pageViewController.view)
+        self.pageViewController.didMoveToParentViewController(self)
+        */
         
+        pushViewController(pageViewController, animated: true)
         
         //self.pageViewController.navigationItem.rightBarButtonItems = [customView!.filterRightButton, customView!.favoriteSwitcher]
         self.pageViewController.navigationItem.rightBarButtonItem = customView!.filterRightButton

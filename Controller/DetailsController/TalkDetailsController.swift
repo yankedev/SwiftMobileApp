@@ -11,46 +11,61 @@ import UIKit
 import AVFoundation
 import CoreData
 
-public class TalkDetailsController : AbstractDetailsController {
-
-//, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol, FavoritableProtocol {
-    /*
+public class TalkDetailsController : UIViewController, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol, FavoritableProtocol {
     
+    @IBOutlet var backBtn: UIButton!
+    var detailObject : DetailableProtocol!
+    
+    @IBOutlet var talkList: UITableView!
+    @IBOutlet var scroll: UITextView!
+    @IBOutlet var starBtn: UIButton!
+    @IBOutlet var startBtn: UIButton!
+    @IBOutlet var tweetBtn: UIButton!
+    @IBOutlet var tweet: UIView!
+    @IBOutlet var star: UIView!
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var talkTitle: UILabel!
     var txtField : UITextField!
     let details = GobalDetailView()
+    @IBOutlet var header: UIImageView!
     
+
+    @IBOutlet var talkTrack: UILabel!
     override public func viewDidLoad() {
         
         super.viewDidLoad()
         
         
-        details.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(details)
         
-        let views = ["header": header, "scroll" : scroll, "details" : details]
-        
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[header]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        let constH5 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[details]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(150)]-[details(150)]-[scroll]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        view.addConstraints(constH)
-        view.addConstraints(constH2)
-        view.addConstraints(constH5)
-        
-        view.addConstraints(constV)
-        
-        
-        header.talkTitle.text = detailObject.getTitle()
-        header.talkTrack.text = detailObject.getSubTitle()
+        talkTitle.text = detailObject.getTitle()
+        talkTrack.text = detailObject.getSubTitle()
         scroll.text = detailObject.getSummary()
         
+        scroll.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
+        
+        tweet.backgroundColor = ColorManager.topNavigationBarColor
+        tweet.layer.cornerRadius = tweet.frame.size.width / 2
+        
+        star.backgroundColor = ColorManager.topNavigationBarColor
+        star.layer.cornerRadius = star.frame.size.width / 2
+        
+        let image0 = UIImage(named: "ic_twitter")?.imageWithRenderingMode(.AlwaysTemplate)
+        tweetBtn.setImage(image0, forState: .Normal)
+        tweetBtn.tintColor = UIColor.whiteColor()
         
         
-        details.layoutIfNeeded()
+        let image1 = UIImage(named: "ic_star")?.imageWithRenderingMode(.AlwaysTemplate)
+        starBtn.setImage(image1, forState: .Normal)
+        starBtn.tintColor = UIColor.whiteColor()
         
+        let image2 = UIImage(named: "ic_back")?.imageWithRenderingMode(.AlwaysTemplate)
+        backBtn.setImage(image2, forState: .Normal)
+        backBtn.tintColor = UIColor.whiteColor()
+        
+        
+        backBtn.addTarget(self, action: #selector(self.back), forControlEvents: .TouchUpInside)
+        
+     
         details.left.simpleDetailView1.textView.firstInfo.text = "Room"
         details.left.simpleDetailView1.textView.secondInfo.text = detailObject.getDetailInfoWithIndex(0)
         
@@ -62,26 +77,22 @@ public class TalkDetailsController : AbstractDetailsController {
         details.left.simpleDetailView3.textView.firstInfo.text = "Date and time"
         details.left.simpleDetailView3.textView.secondInfo.text = detailObject.getDetailInfoWithIndex(2)
         
-        
-        
-        
         details.right.dataSource = self
         details.right.delegate = self
         
         
-        
-        
-        configure()
-        
+      
         
         
         
-        view.layoutIfNeeded()
+        talkList.delegate = self
+        talkList.dataSource = self
         
         
-        
-        
-        
+    }
+    
+    func back() {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
   
@@ -92,6 +103,8 @@ public class TalkDetailsController : AbstractDetailsController {
     }
     
   
+  
+
     
     
     
@@ -99,6 +112,9 @@ public class TalkDetailsController : AbstractDetailsController {
     
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        parentViewController?.navigationController?.setNavigationBarHidden(true, animated: true)
 
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
@@ -106,13 +122,13 @@ public class TalkDetailsController : AbstractDetailsController {
         })
         
         
-        header.imageView.hidden = true
+        //header.imageView.hidden = true
     }
        
     
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        /*
         if let speaker = detailObject.getRelatedDetailWithIndex(indexPath.row) {
             
             
@@ -129,7 +145,7 @@ public class TalkDetailsController : AbstractDetailsController {
             
             self.navigationController?.pushViewController(details, animated: true)
         }
-        
+        */
         
         
         
@@ -140,7 +156,7 @@ public class TalkDetailsController : AbstractDetailsController {
     
     public func twitter() {
         
-        let originalString = detailObject.getTwitter()
+        /*let originalString = detailObject.getTwitter()
  
         
         let escapedString = originalString?.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
@@ -148,6 +164,8 @@ public class TalkDetailsController : AbstractDetailsController {
         let url = "https://twitter.com/intent/tweet?text=\(escapedString!)"
         
         UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+ 
+ */
     }
     
     
@@ -293,6 +311,27 @@ public class TalkDetailsController : AbstractDetailsController {
         
     }
     
-    */
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return detailObject.getRelatedDetailsCount()
+    }
+    
+    
+    
+    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+    
+    
+    public func fetchUrl() -> String? {
+        return ""
+        
+    }
+    
+ 
     
 }
