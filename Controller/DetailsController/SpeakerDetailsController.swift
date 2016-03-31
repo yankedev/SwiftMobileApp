@@ -12,17 +12,26 @@ import CoreData
 
 public class SpeakerDetailsController : AbstractDetailsController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol, FavoritableProtocol {
     
+    @IBOutlet var talkList: UITableView!
 
-    var talkList = SpeakerListView(frame: CGRectZero, style: .Grouped)
+    @IBOutlet var scroll: UITextView!
+    
+    @IBOutlet var header: UIView!
+    //var talkList = SpeakerListView(frame: CGRectZero, style: .Grouped)
+    
+    @IBOutlet var talkTitle: UILabel!
+    
+    @IBOutlet var talkTrack: UILabel!
     
     
+    @IBOutlet var imageView: UIImageView!
     override public func viewDidLoad() {
         
         super.viewDidLoad()
         
         
         
-        view.addSubview(talkList)
+        //view.addSubview(talkList)
         
         //talkList.backgroundColor = UIColor.redColor()
         talkList.delegate = self
@@ -31,37 +40,11 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
         
         
-        
-        let views = ["header": header, "scroll" : scroll, "talkList" : talkList]
-        
-        
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[header]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        let constH3 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkList]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
+      
         
         
-        
-        
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(150)]-[scroll]-[talkList(200)]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        
-        
-        
-        
-        
-        
-        view.addConstraints(constH)
-        view.addConstraints(constH2)
-        view.addConstraints(constH3)
-        
-        
-        view.addConstraints(constV)
-        
-        
-        
-        header.talkTitle.text = detailObject.getTitle()
-        header.talkTrack.text = detailObject.getSubTitle()
+        talkTitle.text = detailObject.getTitle()
+        talkTrack.text = detailObject.getSubTitle()
         scroll.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
         scroll.text = detailObject.getSummary()
         //scroll.backgroundColor = UIColor.yellowColor()
@@ -217,7 +200,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
             detailObject = newDetailObject
         }
         scroll.text = detailObject.getSummary()
-        header.talkTrack.text = detailObject.getSubTitle()
+        talkTrack.text = detailObject.getSubTitle()
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             TalkService.sharedInstance.fetchTalks(self.detailObject.getRelatedIds(), completionHandler:self.callBackTalks)
@@ -226,7 +209,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     public func callbackImg(newHelper : CallbackProtocol) {
         if let newDetailObjectData = newHelper.getImg() {
-            header.imageView.image = UIImage(data: newDetailObjectData)
+            imageView.image = UIImage(data: newDetailObjectData)
         }
     }
     

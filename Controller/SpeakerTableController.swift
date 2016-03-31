@@ -156,48 +156,44 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
         fetchSpeaker()
     }
     
+    override public func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showSpeakerDetails" {
+            
+            let path = self.tableView.indexPathForSelectedRow!
+            
+            var arrayToParse:[DataHelperProtocol]!
+            if searchingString.isEmpty {
+                arrayToParse = cellDataArray
+            }
+            else {
+                arrayToParse = searchedRow
+            }
+            
+            if let speaker = arrayToParse![path.row] as? SpeakerHelper {
+                
+                
+                //      print(speaker.speakerDetail.bio)
+                
+                
+                
+                
+                let details = segue.destinationViewController as? SpeakerDetailsController
+                details?.detailObject = speaker
+                details?.delegate = self
+                details?.configure()
+                details?.setColor(speaker.isFavorite!)
+
+                
+            }
+
+           
+            
+        }
+    }
+    
+    
     override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        
-        
-        var arrayToParse:[DataHelperProtocol]!
-        if searchingString.isEmpty {
-            arrayToParse = cellDataArray
-        }
-        else {
-            arrayToParse = searchedRow
-        }
-        
-        
-        
-        
-        if let speaker = arrayToParse![indexPath.row] as? SpeakerHelper {
-            
-            
-            //      print(speaker.speakerDetail.bio)
-            
-            
-            let details = SpeakerDetailsController()
-            //todo
-            //details.indexPath = indexPath
-            
-            details.detailObject = speaker
-            details.delegate = self
-            
-            details.configure()
-            
-            
-            details.setColor(speaker.isFavorite!)
-            
-            
-            
-            
-            //details.setColor(slot.favorited())
-            
-            self.navigationController?.pushViewController(details, animated: true)
-            
-            
-        }
+        self.performSegueWithIdentifier("showSpeakerDetails", sender: indexPath);
     }
     
     public override func viewDidAppear(animated: Bool) {

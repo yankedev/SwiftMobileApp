@@ -11,8 +11,10 @@ import UIKit
 import AVFoundation
 import CoreData
 
-public class TalkDetailsController : AbstractDetailsController, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol, FavoritableProtocol {
-    
+public class TalkDetailsController : AbstractDetailsController {
+
+//, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol, FavoritableProtocol {
+    /*
     
     var txtField : UITextField!
     let details = GobalDetailView()
@@ -291,6 +293,6 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
     }
     
-    
+    */
     
 }
