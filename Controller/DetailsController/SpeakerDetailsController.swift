@@ -24,6 +24,8 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
     @IBOutlet var star: UIView!
     @IBOutlet var tweet: UIView!
     
+    @IBOutlet var starBtn: UIButton!
+    @IBOutlet var tweetBtn: UIButton!
     
     var detailObject : DetailableProtocol!
     
@@ -60,6 +62,21 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
         //configure()
         
         //actionButtonView2.hidden = true
+        
+        
+        
+        
+        let image0 = UIImage(named: "ic_twitter")?.imageWithRenderingMode(.AlwaysTemplate)
+        tweetBtn.setImage(image0, forState: .Normal)
+        tweetBtn.tintColor = UIColor.whiteColor()
+       
+
+        let image1 = UIImage(named: "ic_star")?.imageWithRenderingMode(.AlwaysTemplate)
+        starBtn.setImage(image1, forState: .Normal)
+        starBtn.tintColor = UIColor.whiteColor()
+        
+        
+      
         
         TalkService.sharedInstance.fetchTalks(detailObject.getRelatedIds(), completionHandler: callBack)
     }

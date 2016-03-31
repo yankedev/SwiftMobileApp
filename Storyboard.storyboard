@@ -328,7 +328,7 @@
                                     <constraint firstAttribute="height" constant="150" id="B9s-jU-Npm"/>
                                 </constraints>
                             </tableView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5W-LH-QCD">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P5W-LH-QCD">
                                 <rect key="frame" x="0.0" y="150" width="600" height="299"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
@@ -343,6 +343,11 @@
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEn-6K-y7A" userLabel="Star">
                                 <rect key="frame" x="535" y="130" width="45" height="45"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEv-H2-PVa">
+                                        <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="8qg-tF-X63"/>
@@ -353,6 +358,11 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqu-De-fjt" userLabel="Tweet">
                                 <rect key="frame" x="480" y="130" width="45" height="45"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iw5-HE-29s">
+                                        <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="0fP-R3-Oec"/>
@@ -367,7 +377,9 @@
                             <constraint firstItem="x2B-0u-MeB" firstAttribute="top" secondItem="P5W-LH-QCD" secondAttribute="bottom" constant="2" id="02b-or-nWH"/>
                             <constraint firstItem="x2B-0u-MeB" firstAttribute="trailing" secondItem="P5W-LH-QCD" secondAttribute="trailing" id="6wg-Iy-hSb"/>
                             <constraint firstItem="z1h-4z-mcb" firstAttribute="leading" secondItem="x2B-0u-MeB" secondAttribute="leading" id="7eK-7Z-Azi"/>
+                            <constraint firstItem="JEn-6K-y7A" firstAttribute="top" secondItem="Gdq-NB-QeB" secondAttribute="topMargin" constant="130" id="D18-jn-xe4"/>
                             <constraint firstItem="bqu-De-fjt" firstAttribute="top" secondItem="Sph-ta-6nm" secondAttribute="bottom" constant="110" id="HvQ-ar-I9N"/>
+                            <constraint firstItem="bqu-De-fjt" firstAttribute="top" secondItem="Gdq-NB-QeB" secondAttribute="topMargin" constant="130" id="IPE-fC-ITG"/>
                             <constraint firstItem="P5W-LH-QCD" firstAttribute="centerY" secondItem="Gdq-NB-QeB" secondAttribute="centerY" id="Lld-oC-IDf"/>
                             <constraint firstAttribute="bottom" secondItem="x2B-0u-MeB" secondAttribute="bottom" id="UCF-jy-USm"/>
                             <constraint firstItem="JEn-6K-y7A" firstAttribute="leading" secondItem="bqu-De-fjt" secondAttribute="trailing" constant="10" id="Ytm-AG-b7n"/>
@@ -383,6 +395,8 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="02b-or-nWH"/>
+                                <exclude reference="HvQ-ar-I9N"/>
+                                <exclude reference="r24-bP-VA7"/>
                             </mask>
                         </variation>
                     </view>
@@ -392,10 +406,12 @@
                         <outlet property="imageView" destination="wi9-xZ-gWB" id="V2g-aS-Uz3"/>
                         <outlet property="scroll" destination="P5W-LH-QCD" id="VCC-xZ-R8T"/>
                         <outlet property="star" destination="JEn-6K-y7A" id="hmz-Zl-TwT"/>
+                        <outlet property="starBtn" destination="iw5-HE-29s" id="nZi-Zq-WLz"/>
                         <outlet property="talkList" destination="x2B-0u-MeB" id="uhq-Av-vz8"/>
                         <outlet property="talkTitle" destination="ejN-71-f6O" id="Rl4-OP-jDI"/>
                         <outlet property="talkTrack" destination="q0g-zI-eSQ" id="iVl-BV-aAj"/>
                         <outlet property="tweet" destination="bqu-De-fjt" id="XqY-DG-5ID"/>
+                        <outlet property="tweetBtn" destination="XEv-H2-PVa" id="xla-bf-y6M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8S-sr-7S5" userLabel="First Responder" sceneMemberID="firstResponder"/>
