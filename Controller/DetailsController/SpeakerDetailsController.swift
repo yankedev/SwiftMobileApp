@@ -27,6 +27,9 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
     @IBOutlet var starBtn: UIButton!
     @IBOutlet var tweetBtn: UIButton!
     
+    
+    @IBOutlet var backBtn: UIButton!
+    
     var detailObject : DetailableProtocol!
     
     override public func viewDidLoad() {
@@ -75,13 +78,25 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
         starBtn.setImage(image1, forState: .Normal)
         starBtn.tintColor = UIColor.whiteColor()
         
+        let image2 = UIImage(named: "ic_back")?.imageWithRenderingMode(.AlwaysTemplate)
+        backBtn.setImage(image2, forState: .Normal)
+        backBtn.tintColor = UIColor.whiteColor()
         
+        
+        backBtn.addTarget(self, action: #selector(self.back), forControlEvents: .TouchUpInside)
       
         
         TalkService.sharedInstance.fetchTalks(detailObject.getRelatedIds(), completionHandler: callBack)
     }
     
+    func back() {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
     
     func callBack(talks : [DataHelperProtocol], error : TalksStoreError?) {
         detailObject.setRelated(talks)

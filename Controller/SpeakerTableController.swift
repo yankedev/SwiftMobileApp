@@ -177,6 +177,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
                 
                 
                 
+                
                 let details = segue.destinationViewController as? SpeakerDetailsController
                 details?.detailObject = speaker
                 //details?.delegate = self
