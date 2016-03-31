@@ -515,24 +515,58 @@
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uxH-LL-gES" userLabel="Info">
                                 <rect key="frame" x="0.0" y="150" width="300" height="150"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_place.png" translatesAutoresizingMaskIntoConstraints="NO" id="1ji-Nd-tBu">
+                                        <rect key="frame" x="8" y="6" width="44" height="44"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_microphone.png" translatesAutoresizingMaskIntoConstraints="NO" id="AEd-ta-1rw">
+                                        <rect key="frame" x="8" y="55" width="44" height="44"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_star.png" translatesAutoresizingMaskIntoConstraints="NO" id="pX9-aL-wIZ">
+                                        <rect key="frame" x="8" y="103" width="44" height="44"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTe-Z6-PXG" userLabel="Room Label">
+                                        <rect key="frame" x="60" y="8" width="240" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmP-aK-2c0" userLabel="Talk Type Label">
+                                        <rect key="frame" x="60" y="55" width="240" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzb-8G-25c" userLabel="Time Label">
+                                        <rect key="frame" x="60" y="103" width="240" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6V-dB-Bc1" userLabel="Room Value Label">
+                                        <rect key="frame" x="60" y="29" width="240" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBa-dv-Hz9" userLabel="Talk Type Label">
+                                        <rect key="frame" x="60" y="78" width="240" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQ6-js-GC6" userLabel="Time Value Label">
+                                        <rect key="frame" x="60" y="126" width="240" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" red="1" green="0.97638068187839011" blue="0.56532178919673781" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="xPb-GE-s7a"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NmB-fg-4jb">
-                                <rect key="frame" x="300" y="175" width="300" height="125"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="125" id="JQz-Xw-dI9"/>
-                                    <constraint firstAttribute="height" constant="150" id="LnL-t7-0iE"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="LnL-t7-0iE"/>
-                                    </mask>
-                                </variation>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ecp-JB-HnO" userLabel="Star">
                                 <rect key="frame" x="535" y="130" width="45" height="45"/>
                                 <subviews>
@@ -580,6 +614,38 @@
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="45" id="tBF-wh-bTB"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NmB-fg-4jb">
+                                <rect key="frame" x="300" y="175" width="300" height="125"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="JQz-Xw-dI9"/>
+                                    <constraint firstAttribute="height" constant="150" id="LnL-t7-0iE"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CELL_10" textLabel="xLq-aS-wCM" style="IBUITableViewCellStyleDefault" id="6Lp-UJ-x6a">
+                                        <rect key="frame" x="0.0" y="28" width="300" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6Lp-UJ-x6a" id="RPq-t3-bKj">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xLq-aS-wCM">
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="LnL-t7-0iE"/>
+                                    </mask>
+                                </variation>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -635,12 +701,18 @@
                         <outlet property="imageView" destination="ZWV-A2-RVx" id="Ylf-BL-1WT"/>
                         <outlet property="rate" destination="4fZ-It-XtR" id="8bJ-Ij-Kmp"/>
                         <outlet property="rateBtn" destination="eDB-Hm-oKN" id="oyg-7u-ays"/>
+                        <outlet property="roomLabel" destination="fTe-Z6-PXG" id="EIi-fT-HDw"/>
+                        <outlet property="roomValueLabel" destination="L6V-dB-Bc1" id="Ve6-OL-w7h"/>
                         <outlet property="scroll" destination="RZp-Wd-qrM" id="YNf-1v-QQ4"/>
                         <outlet property="star" destination="Ecp-JB-HnO" id="RsD-f1-Ugn"/>
                         <outlet property="starBtn" destination="Rqb-bR-xCk" id="FXb-Hb-yGj"/>
                         <outlet property="talkList" destination="NmB-fg-4jb" id="M1d-Oe-8zC"/>
                         <outlet property="talkTitle" destination="anb-5K-TQy" id="1FB-WL-nnW"/>
                         <outlet property="talkTrack" destination="bJC-Rz-c9C" id="cJl-IU-FwM"/>
+                        <outlet property="talkTypeLabel" destination="gmP-aK-2c0" id="hcN-m9-FTg"/>
+                        <outlet property="talkTypeValueLabel" destination="lBa-dv-Hz9" id="gKT-M6-Fg3"/>
+                        <outlet property="timeLabel" destination="kzb-8G-25c" id="fv1-gm-ubs"/>
+                        <outlet property="timeValueLabel" destination="EQ6-js-GC6" id="V2L-ss-kWf"/>
                         <outlet property="tweet" destination="KtP-Ab-Eni" id="jHp-Yy-yAy"/>
                         <outlet property="tweetBtn" destination="8Ob-3t-2et" id="gkl-Gh-BYh"/>
                     </connections>
@@ -651,6 +723,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_microphone.png" width="37" height="37"/>
+        <image name="ic_place.png" width="37" height="37"/>
+        <image name="ic_star.png" width="37" height="37"/>
         <image name="talk_background.png" width="1080" height="721"/>
     </resources>
 </document>

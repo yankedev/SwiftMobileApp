@@ -16,6 +16,16 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     @IBOutlet var backBtn: UIButton!
     var detailObject : DetailableProtocol!
     
+    @IBOutlet var roomLabel: UILabel!
+    
+    @IBOutlet var roomValueLabel: UILabel!
+
+ 
+    @IBOutlet var talkTypeLabel: UILabel!
+    @IBOutlet var talkTypeValueLabel: UILabel!
+    
+    @IBOutlet var timeValueLabel: UILabel!
+    @IBOutlet var timeLabel: UILabel!
     @IBOutlet var talkList: UITableView!
     @IBOutlet var scroll: UITextView!
     @IBOutlet var starBtn: UIButton!
@@ -78,16 +88,16 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         backBtn.addTarget(self, action: #selector(self.back), forControlEvents: .TouchUpInside)
         
      
-        details.left.simpleDetailView1.textView.firstInfo.text = "Room"
-        details.left.simpleDetailView1.textView.secondInfo.text = detailObject.getDetailInfoWithIndex(0)
+        roomLabel.text = "Room"
+        roomValueLabel.text = detailObject.getDetailInfoWithIndex(0)
         
-        details.left.simpleDetailView2.textView.firstInfo.text = "Format"
-        details.left.simpleDetailView2.textView.secondInfo.text = detailObject.getDetailInfoWithIndex(1)
+        talkTypeLabel.text = "Format"
+        talkTypeValueLabel.text = detailObject.getDetailInfoWithIndex(1)
         
         
         
-        details.left.simpleDetailView3.textView.firstInfo.text = "Date and time"
-        details.left.simpleDetailView3.textView.secondInfo.text = detailObject.getDetailInfoWithIndex(2)
+        timeLabel.text = "Date and time"
+        timeValueLabel.text = detailObject.getDetailInfoWithIndex(2)
         
         details.right.dataSource = self
         details.right.delegate = self
@@ -111,7 +121,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     
     func callBack(speakers : [DataHelperProtocol], error : SpeakerStoreError?) {
         detailObject.setRelated(speakers)
-        self.details.right.reloadData()
+        talkList.reloadData()
     }
     
   
@@ -186,17 +196,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10")
-        
-        if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
-            cell?.selectionStyle = .None
-        }
-        
-        
-        
-        
-        
+        let cell = tableView.dequeueReusableCellWithIdentifier("CELL_10")
         
         cell?.textLabel?.font = UIFont(name: "Roboto", size: 15)
         cell?.textLabel?.text = detailObject.getRelatedDetailWithIndex(indexPath.row)?.getTitle()
