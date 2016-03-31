@@ -209,6 +209,8 @@
                     <connections>
                         <segue destination="sWC-1Y-YzW" kind="relationship" relationship="viewControllers" id="sHI-Oq-Q89"/>
                         <segue destination="Bwp-0K-spA" kind="relationship" relationship="viewControllers" id="Vlk-Nc-koA"/>
+                        <segue destination="Oap-BY-k7R" kind="relationship" relationship="viewControllers" id="0NL-Gs-64w"/>
+                        <segue destination="rDd-sW-lBi" kind="relationship" relationship="viewControllers" id="kyL-JF-i4P"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RxC-ln-7TQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -233,7 +235,7 @@
                     <navigationItem key="navigationItem" id="QPZ-vC-Rt8"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="-1172" y="-1739"/>
+            <point key="canvasLocation" x="-1620" y="-1763"/>
         </scene>
         <!--Item-->
         <scene sceneID="bYk-WQ-AOl">
