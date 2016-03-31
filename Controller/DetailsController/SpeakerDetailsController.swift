@@ -18,9 +18,12 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
     //var talkList = SpeakerListView(frame: CGRectZero, style: .Grouped)
     
     @IBOutlet var talkTitle: UILabel!
-    
     @IBOutlet var talkTrack: UILabel!
     @IBOutlet var imageView: UIImageView!
+    
+    @IBOutlet var star: UIView!
+    @IBOutlet var tweet: UIView!
+    
     
     var detailObject : DetailableProtocol!
     
@@ -47,6 +50,12 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
         imageView.layer.masksToBounds = true
         imageView.image = detailObject.getPrimaryImage()
         
+        
+        tweet.backgroundColor = ColorManager.topNavigationBarColor
+        tweet.layer.cornerRadius = tweet.frame.size.width / 2
+        
+        star.backgroundColor = ColorManager.topNavigationBarColor
+        star.layer.cornerRadius = star.frame.size.width / 2
         
         //configure()
         

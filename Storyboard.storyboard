@@ -391,9 +391,11 @@
                         <outlet property="header" destination="z1h-4z-mcb" id="e75-3t-95C"/>
                         <outlet property="imageView" destination="wi9-xZ-gWB" id="V2g-aS-Uz3"/>
                         <outlet property="scroll" destination="P5W-LH-QCD" id="VCC-xZ-R8T"/>
+                        <outlet property="star" destination="JEn-6K-y7A" id="hmz-Zl-TwT"/>
                         <outlet property="talkList" destination="x2B-0u-MeB" id="uhq-Av-vz8"/>
                         <outlet property="talkTitle" destination="ejN-71-f6O" id="Rl4-OP-jDI"/>
                         <outlet property="talkTrack" destination="q0g-zI-eSQ" id="iVl-BV-aAj"/>
+                        <outlet property="tweet" destination="bqu-De-fjt" id="XqY-DG-5ID"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8S-sr-7S5" userLabel="First Responder" sceneMemberID="firstResponder"/>
