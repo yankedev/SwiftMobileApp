@@ -13,18 +13,15 @@ import CoreData
 public class SpeakerDetailsController : AbstractDetailsController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol, FavoritableProtocol {
     
     @IBOutlet var talkList: UITableView!
-
     @IBOutlet var scroll: UITextView!
-    
     @IBOutlet var header: UIView!
     //var talkList = SpeakerListView(frame: CGRectZero, style: .Grouped)
     
     @IBOutlet var talkTitle: UILabel!
     
     @IBOutlet var talkTrack: UILabel!
-    
-    
     @IBOutlet var imageView: UIImageView!
+    
     override public func viewDidLoad() {
         
         super.viewDidLoad()
@@ -37,17 +34,16 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         talkList.delegate = self
         talkList.dataSource = self
         
-        
-        
-        
-      
-        
-        
+ 
         talkTitle.text = detailObject.getTitle()
         talkTrack.text = detailObject.getSubTitle()
         scroll.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
         scroll.text = detailObject.getSummary()
         //scroll.backgroundColor = UIColor.yellowColor()
+        
+        imageView.layer.cornerRadius = 70 / 2
+        imageView.layer.masksToBounds = true
+        imageView.image = detailObject.getPrimaryImage()
         
         
         configure()
@@ -64,20 +60,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         talkList.reloadData()
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     public func twitter() {
         
@@ -114,7 +97,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
             
             
         
-            cell!.leftIconView.imageView.image = relatedObject.getPrimaryImage()
+            //cell!.imageView.image = relatedObject.getPrimaryImage()
             
             cell!.rightTextView.topTitleView.talkTrackName.text = relatedObject.getDetailInfoWithIndex(2)
             cell!.rightTextView.topTitleView.talkTitle.text = relatedObject.getTitle()
@@ -195,7 +178,6 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
    
     public func fetchCompleted(newHelper : CallbackProtocol) -> Void {
     
-        
         if let newDetailObject = newHelper.getHelper() as? DetailableProtocol {
             detailObject = newDetailObject
         }
@@ -209,6 +191,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     public func callbackImg(newHelper : CallbackProtocol) {
         if let newDetailObjectData = newHelper.getImg() {
+            imageView.backgroundColor = UIColor.redColor()
             imageView.image = UIImage(data: newDetailObjectData)
         }
     }

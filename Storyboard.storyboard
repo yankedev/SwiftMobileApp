@@ -8,7 +8,6 @@
     <customFonts key="customFonts">
         <mutableArray key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
-            <string>Roboto-Regular</string>
         </mutableArray>
         <mutableArray key="pirulen.ttf">
             <string>PirulenRg-Regular</string>
@@ -68,7 +67,7 @@
                                     <outlet property="firstInformation" destination="GXU-tR-HHX" id="TdD-TA-fuW"/>
                                     <outlet property="initiale" destination="ALg-7a-gBS" id="Q2e-zx-A7j"/>
                                     <outlet property="speakerProfilePicture" destination="pc5-Gv-XUn" id="nFZ-Gt-Ebs"/>
-                                    <segue destination="NrP-8Y-wWA" kind="showDetail" identifier="showSpeakerDetails" id="Pbe-WR-dpS"/>
+                                    <segue destination="NrP-8Y-wWA" kind="show" identifier="showSpeakerDetails" action="showDetailViewController:sender:" id="Pbe-WR-dpS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -289,33 +288,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z1h-4z-mcb" userLabel="HeaderView">
+                            <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z1h-4z-mcb" userLabel="HeaderView" customClass="UIImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="151"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejN-71-f6O">
+                                    <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="talk_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Un-EG-OtW">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="151"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejN-71-f6O">
                                         <rect key="frame" x="22" y="45" width="267" height="67"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="267" id="Fhh-pC-v3v"/>
                                             <constraint firstAttribute="height" constant="67" id="UPL-qo-twQ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0g-zI-eSQ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0g-zI-eSQ">
                                         <rect key="frame" x="22" y="107" width="164" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="b6c-DB-vYX"/>
                                             <constraint firstAttribute="width" constant="164" id="u3Q-j1-I8g"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wi9-xZ-gWB">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wi9-xZ-gWB">
                                         <rect key="frame" x="473" y="19" width="119" height="119"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="119" id="4bu-zD-bdK"/>
+                                            <constraint firstAttribute="height" constant="70" id="7Qu-zP-O4e"/>
+                                            <constraint firstAttribute="width" constant="70" id="p0n-rm-1eQ"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -330,13 +333,6 @@
                                     <constraint firstItem="wi9-xZ-gWB" firstAttribute="top" secondItem="z1h-4z-mcb" secondAttribute="top" constant="19" id="ciZ-lq-x1D"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5W-LH-QCD">
-                                <rect key="frame" x="0.0" y="151" width="600" height="297"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="19"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x2B-0u-MeB">
                                 <rect key="frame" x="0.0" y="450" width="600" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -345,6 +341,19 @@
                                     <constraint firstAttribute="width" constant="600" id="Jgl-tV-FDz"/>
                                 </constraints>
                             </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5W-LH-QCD">
+                                <rect key="frame" x="0.0" y="151" width="600" height="297"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <attributes>
+                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -360,6 +369,7 @@
                             <constraint firstItem="z1h-4z-mcb" firstAttribute="leading" secondItem="Gdq-NB-QeB" secondAttribute="leadingMargin" constant="-20" id="pbD-Oe-QPk"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="header" destination="z1h-4z-mcb" id="e75-3t-95C"/>
                         <outlet property="imageView" destination="wi9-xZ-gWB" id="V2g-aS-Uz3"/>
@@ -374,4 +384,7 @@
             <point key="canvasLocation" x="2798" y="-697"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="talk_background.png" width="1080" height="721"/>
+    </resources>
 </document>
