@@ -341,20 +341,24 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JEn-6K-y7A">
-                                <rect key="frame" x="530" y="130" width="45" height="45"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEn-6K-y7A" userLabel="Star">
+                                <rect key="frame" x="535" y="130" width="45" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="8qg-tF-X63"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="adQ-sZ-XPe"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="dG6-6G-Y84"/>
                                     <constraint firstAttribute="height" constant="45" id="xan-Jd-7Wv"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bqu-De-fjt">
-                                <rect key="frame" x="466" y="130" width="45" height="45"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqu-De-fjt" userLabel="Tweet">
+                                <rect key="frame" x="480" y="130" width="45" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="0fP-R3-Oec"/>
                                     <constraint firstAttribute="height" constant="45" id="2Au-S4-YOB"/>
                                     <constraint firstAttribute="width" constant="45" id="UJV-kN-xhF"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="blk-Zz-LpB"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -363,11 +367,15 @@
                             <constraint firstItem="x2B-0u-MeB" firstAttribute="top" secondItem="P5W-LH-QCD" secondAttribute="bottom" constant="2" id="02b-or-nWH"/>
                             <constraint firstItem="x2B-0u-MeB" firstAttribute="trailing" secondItem="P5W-LH-QCD" secondAttribute="trailing" id="6wg-Iy-hSb"/>
                             <constraint firstItem="z1h-4z-mcb" firstAttribute="leading" secondItem="x2B-0u-MeB" secondAttribute="leading" id="7eK-7Z-Azi"/>
+                            <constraint firstItem="bqu-De-fjt" firstAttribute="top" secondItem="Sph-ta-6nm" secondAttribute="bottom" constant="110" id="HvQ-ar-I9N"/>
                             <constraint firstItem="P5W-LH-QCD" firstAttribute="centerY" secondItem="Gdq-NB-QeB" secondAttribute="centerY" id="Lld-oC-IDf"/>
                             <constraint firstAttribute="bottom" secondItem="x2B-0u-MeB" secondAttribute="bottom" id="UCF-jy-USm"/>
+                            <constraint firstItem="JEn-6K-y7A" firstAttribute="leading" secondItem="bqu-De-fjt" secondAttribute="trailing" constant="10" id="Ytm-AG-b7n"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JEn-6K-y7A" secondAttribute="trailing" id="ePO-AM-DPn"/>
                             <constraint firstItem="P5W-LH-QCD" firstAttribute="top" secondItem="z1h-4z-mcb" secondAttribute="bottom" id="fY4-9V-hkM"/>
                             <constraint firstItem="z1h-4z-mcb" firstAttribute="leading" secondItem="P5W-LH-QCD" secondAttribute="leading" id="ndS-Jx-jij"/>
                             <constraint firstItem="z1h-4z-mcb" firstAttribute="leading" secondItem="Gdq-NB-QeB" secondAttribute="leading" id="oce-mM-FTV"/>
+                            <constraint firstItem="JEn-6K-y7A" firstAttribute="top" secondItem="Sph-ta-6nm" secondAttribute="bottom" constant="110" id="r24-bP-VA7"/>
                             <constraint firstItem="z1h-4z-mcb" firstAttribute="trailing" secondItem="P5W-LH-QCD" secondAttribute="trailing" id="rdn-Za-utt"/>
                             <constraint firstItem="z1h-4z-mcb" firstAttribute="top" secondItem="Gdq-NB-QeB" secondAttribute="top" id="ric-GA-goB"/>
                             <constraint firstAttribute="trailing" secondItem="z1h-4z-mcb" secondAttribute="trailing" id="zam-Zu-GLw"/>
