@@ -22,6 +22,8 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     @IBOutlet var startBtn: UIButton!
     @IBOutlet var tweetBtn: UIButton!
     @IBOutlet var tweet: UIView!
+    @IBOutlet var rateBtn: UIButton!
+    @IBOutlet var rate: UIView!
     @IBOutlet var star: UIView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var talkTitle: UILabel!
@@ -49,6 +51,9 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         star.backgroundColor = ColorManager.topNavigationBarColor
         star.layer.cornerRadius = star.frame.size.width / 2
         
+        rate.backgroundColor = ColorManager.topNavigationBarColor
+        rate.layer.cornerRadius = rate.frame.size.width / 2
+        
         let image0 = UIImage(named: "ic_twitter")?.imageWithRenderingMode(.AlwaysTemplate)
         tweetBtn.setImage(image0, forState: .Normal)
         tweetBtn.tintColor = UIColor.whiteColor()
@@ -61,6 +66,13 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         let image2 = UIImage(named: "ic_back")?.imageWithRenderingMode(.AlwaysTemplate)
         backBtn.setImage(image2, forState: .Normal)
         backBtn.tintColor = UIColor.whiteColor()
+        
+        let image3 = UIImage(named: CfpService.sharedInstance.getVotingImage())
+        rateBtn.setImage(image3, forState: .Normal)
+
+
+
+
         
         
         backBtn.addTarget(self, action: #selector(self.back), forControlEvents: .TouchUpInside)
@@ -236,7 +248,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     
     public func scan() {
         let qrCodeScannerController = QRCodeScannerController()
-        qrCodeScannerController.completionOnceScanned = rate
+        qrCodeScannerController.completionOnceScanned = goToRate
         let qrCodeNavigationController = UINavigationController(rootViewController: qrCodeScannerController)
         presentViewController(qrCodeNavigationController, animated: true, completion: nil)
     }
@@ -278,7 +290,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     
     
     
-    public func rate() {
+    public func goToRate() {
         
         if let rateObj = detailObject as? RatableProtocol {
             
@@ -297,7 +309,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     public func tryToRate() {
         
         if APIManager.qrCodeAlreadyScanned() {
-            rate()
+            goToRate()
         }
         else {
             let alert = UIAlertController(title: "QRCode", message: "Please scan your badge QRCode or enter the code on your badge to authenticate yourself for presentation voting", preferredStyle: UIAlertControllerStyle.Alert)

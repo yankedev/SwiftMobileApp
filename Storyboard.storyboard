@@ -549,6 +549,23 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="ayl-K2-wts"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4fZ-It-XtR" userLabel="Rate">
+                                <rect key="frame" x="425" y="130" width="45" height="45"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDB-Hm-oKN" userLabel="Rate Btn">
+                                        <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="7SM-wF-2S1"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="SKD-93-2pe"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="45" id="XxB-fm-Pe3"/>
+                                    <constraint firstAttribute="height" constant="45" id="hfC-ZZ-tJk"/>
+                                    <constraint firstAttribute="width" constant="45" id="lOJ-id-FPp"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="45" id="tBF-wh-bTB"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -566,6 +583,8 @@
                             <constraint firstItem="fqL-Ps-Hve" firstAttribute="leading" secondItem="NmB-fg-4jb" secondAttribute="leading" id="MsT-5P-ZsE"/>
                             <constraint firstItem="RZp-Wd-qrM" firstAttribute="centerY" secondItem="OOI-1s-Txb" secondAttribute="centerY" id="VGG-gP-inB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ecp-JB-HnO" secondAttribute="trailing" id="VP0-mV-EJl"/>
+                            <constraint firstItem="4fZ-It-XtR" firstAttribute="top" secondItem="OOI-1s-Txb" secondAttribute="topMargin" constant="130" id="Wwj-c2-ltt"/>
+                            <constraint firstItem="KtP-Ab-Eni" firstAttribute="leading" secondItem="4fZ-It-XtR" secondAttribute="trailing" constant="10" id="dhe-gA-w1r"/>
                             <constraint firstItem="NmB-fg-4jb" firstAttribute="trailing" secondItem="RZp-Wd-qrM" secondAttribute="trailing" id="gjF-m8-UMs"/>
                             <constraint firstAttribute="bottom" secondItem="NmB-fg-4jb" secondAttribute="bottom" id="qV5-9I-a8f"/>
                             <constraint firstItem="Ecp-JB-HnO" firstAttribute="leading" secondItem="KtP-Ab-Eni" secondAttribute="trailing" constant="10" id="wYx-E5-M3E"/>
@@ -585,6 +604,8 @@
                         <outlet property="backBtn" destination="Gmf-Cj-ACt" id="HPL-Mb-EfV"/>
                         <outlet property="header" destination="fqL-Ps-Hve" id="mse-v1-R0H"/>
                         <outlet property="imageView" destination="ZWV-A2-RVx" id="Ylf-BL-1WT"/>
+                        <outlet property="rate" destination="4fZ-It-XtR" id="8bJ-Ij-Kmp"/>
+                        <outlet property="rateBtn" destination="eDB-Hm-oKN" id="oyg-7u-ays"/>
                         <outlet property="scroll" destination="RZp-Wd-qrM" id="YNf-1v-QQ4"/>
                         <outlet property="star" destination="Ecp-JB-HnO" id="RsD-f1-Ugn"/>
                         <outlet property="starBtn" destination="Rqb-bR-xCk" id="FXb-Hb-yGj"/>
