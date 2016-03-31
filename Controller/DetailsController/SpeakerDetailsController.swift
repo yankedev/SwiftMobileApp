@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreData
 
-public class SpeakerDetailsController : AbstractDetailsController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol, FavoritableProtocol {
+public class SpeakerDetailsController : UIViewController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol, FavoritableProtocol {
     
     @IBOutlet var talkList: UITableView!
     @IBOutlet var scroll: UITextView!
@@ -21,6 +21,8 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     @IBOutlet var talkTrack: UILabel!
     @IBOutlet var imageView: UIImageView!
+    
+    var detailObject : DetailableProtocol!
     
     override public func viewDidLoad() {
         
@@ -46,9 +48,9 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         imageView.image = detailObject.getPrimaryImage()
         
         
-        configure()
+        //configure()
         
-        actionButtonView2.hidden = true
+        //actionButtonView2.hidden = true
         
         TalkService.sharedInstance.fetchTalks(detailObject.getRelatedIds(), completionHandler: callBack)
     }
@@ -196,7 +198,28 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         }
     }
     
+    
+    
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return detailObject.getRelatedDetailsCount()
+    }
+    
+    
+    
+    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
    
+    
+    public func fetchUrl() -> String? {
+        return ""
+        
+    }
     
     
     

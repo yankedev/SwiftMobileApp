@@ -289,7 +289,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z1h-4z-mcb" userLabel="HeaderView" customClass="UIImageView">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="151"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
                                 <subviews>
                                     <imageView autoresizesSubviews="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="talk_background.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Un-EG-OtW">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="151"/>
@@ -318,7 +318,7 @@
                                 <constraints>
                                     <constraint firstItem="wi9-xZ-gWB" firstAttribute="top" secondItem="z1h-4z-mcb" secondAttribute="top" constant="19" id="8CE-qU-SjZ"/>
                                     <constraint firstAttribute="trailing" secondItem="wi9-xZ-gWB" secondAttribute="trailing" constant="8" id="MeL-ib-odu"/>
-                                    <constraint firstAttribute="height" constant="151" id="Uei-ac-JjD"/>
+                                    <constraint firstAttribute="height" constant="150" id="Uei-ac-JjD"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="x2B-0u-MeB">
@@ -329,7 +329,7 @@
                                 </constraints>
                             </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P5W-LH-QCD">
-                                <rect key="frame" x="0.0" y="151" width="600" height="297"/>
+                                <rect key="frame" x="0.0" y="150" width="600" height="299"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <attributedString key="attributedText">
                                     <fragment>
@@ -341,6 +341,22 @@
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JEn-6K-y7A">
+                                <rect key="frame" x="530" y="130" width="45" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="8qg-tF-X63"/>
+                                    <constraint firstAttribute="height" constant="45" id="xan-Jd-7Wv"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bqu-De-fjt">
+                                <rect key="frame" x="466" y="130" width="45" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="2Au-S4-YOB"/>
+                                    <constraint firstAttribute="width" constant="45" id="UJV-kN-xhF"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -356,6 +372,11 @@
                             <constraint firstItem="z1h-4z-mcb" firstAttribute="top" secondItem="Gdq-NB-QeB" secondAttribute="top" id="ric-GA-goB"/>
                             <constraint firstAttribute="trailing" secondItem="z1h-4z-mcb" secondAttribute="trailing" id="zam-Zu-GLw"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="02b-or-nWH"/>
+                            </mask>
+                        </variation>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
