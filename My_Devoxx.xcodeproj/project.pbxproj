@@ -17,6 +17,32 @@
 		B991D32A1CA985D500AA352E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B991D3291CA985D500AA352E /* ComplicationController.swift */; };
 		B991D32C1CA985D500AA352E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B991D32B1CA985D500AA352E /* Assets.xcassets */; };
 		B991D3301CA985D500AA352E /* Smartvoxx.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B991D30E1CA985D500AA352E /* Smartvoxx.app */; };
+		B9EE199A1CB00BE70019F778 /* DevoxxCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19981CB00BE70019F778 /* DevoxxCache.swift */; };
+		B9EE199B1CB00BE70019F778 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19991CB00BE70019F778 /* DataController.swift */; };
+		B9EE199D1CB00C1A0019F778 /* Smartvoxx.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B9EE199C1CB00C1A0019F778 /* Smartvoxx.xcdatamodel */; };
+		B9EE19AD1CB00C740019F778 /* Track+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE199F1CB00C740019F778 /* Track+CoreDataProperties.swift */; };
+		B9EE19AE1CB00C740019F778 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19A01CB00C740019F778 /* Track.swift */; };
+		B9EE19AF1CB00C740019F778 /* TalkSlot+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19A11CB00C740019F778 /* TalkSlot+CoreDataProperties.swift */; };
+		B9EE19B01CB00C740019F778 /* TalkSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19A21CB00C740019F778 /* TalkSlot.swift */; };
+		B9EE19B11CB00C740019F778 /* Speaker+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19A31CB00C740019F778 /* Speaker+CoreDataProperties.swift */; };
+		B9EE19B21CB00C740019F778 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19A41CB00C740019F778 /* Speaker.swift */; };
+		B9EE19B31CB00C740019F778 /* Slot+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19A51CB00C740019F778 /* Slot+CoreDataProperties.swift */; };
+		B9EE19B41CB00C740019F778 /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19A61CB00C740019F778 /* Slot.swift */; };
+		B9EE19B51CB00C740019F778 /* Conference+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19A71CB00C740019F778 /* Conference+CoreDataProperties.swift */; };
+		B9EE19B61CB00C740019F778 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19A81CB00C740019F778 /* Conference.swift */; };
+		B9EE19B71CB00C740019F778 /* BreakSlot+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19A91CB00C740019F778 /* BreakSlot+CoreDataProperties.swift */; };
+		B9EE19B81CB00C740019F778 /* BreakSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19AA1CB00C740019F778 /* BreakSlot.swift */; };
+		B9EE19B91CB00C740019F778 /* Schedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19AB1CB00C740019F778 /* Schedule+CoreDataProperties.swift */; };
+		B9EE19BA1CB00C740019F778 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19AC1CB00C740019F778 /* Schedule.swift */; };
+		B9EE19C31CB00C910019F778 /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19BB1CB00C910019F778 /* ScheduleController.swift */; };
+		B9EE19C41CB00C910019F778 /* SlotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19BC1CB00C910019F778 /* SlotController.swift */; };
+		B9EE19C51CB00C910019F778 /* SpeakerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19BD1CB00C910019F778 /* SpeakerController.swift */; };
+		B9EE19C61CB00C910019F778 /* ScheduleRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19BE1CB00C910019F778 /* ScheduleRowController.swift */; };
+		B9EE19C71CB00C910019F778 /* TimeRangeRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19BF1CB00C910019F778 /* TimeRangeRowController.swift */; };
+		B9EE19C81CB00C910019F778 /* SlotRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19C01CB00C910019F778 /* SlotRowController.swift */; };
+		B9EE19C91CB00C910019F778 /* SpeakerRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19C11CB00C910019F778 /* SpeakerRowController.swift */; };
+		B9EE19CA1CB00C910019F778 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9EE19C21CB00C910019F778 /* UIColorExtension.swift */; };
+		B9EE19CC1CB00CC20019F778 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9EE19CB1CB00CC20019F778 /* CoreData.framework */; };
 		E10E7AC61C18BF7100F6220B /* My_Devoxx.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E10E7AC41C18BF7100F6220B /* My_Devoxx.xcdatamodeld */; };
 		E10E7ACD1C18BF7100F6220B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACC1C18BF7100F6220B /* Images.xcassets */; };
 		E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACE1C18BF7100F6220B /* LaunchScreen.xib */; };
@@ -283,6 +309,32 @@
 		B991D3291CA985D500AA352E /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		B991D32B1CA985D500AA352E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B991D32D1CA985D500AA352E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9EE19981CB00BE70019F778 /* DevoxxCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevoxxCache.swift; sourceTree = "<group>"; };
+		B9EE19991CB00BE70019F778 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		B9EE199C1CB00C1A0019F778 /* Smartvoxx.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Smartvoxx.xcdatamodel; sourceTree = "<group>"; };
+		B9EE199F1CB00C740019F778 /* Track+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Track+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B9EE19A01CB00C740019F778 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		B9EE19A11CB00C740019F778 /* TalkSlot+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TalkSlot+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B9EE19A21CB00C740019F778 /* TalkSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkSlot.swift; sourceTree = "<group>"; };
+		B9EE19A31CB00C740019F778 /* Speaker+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Speaker+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B9EE19A41CB00C740019F778 /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
+		B9EE19A51CB00C740019F778 /* Slot+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Slot+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B9EE19A61CB00C740019F778 /* Slot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slot.swift; sourceTree = "<group>"; };
+		B9EE19A71CB00C740019F778 /* Conference+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Conference+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B9EE19A81CB00C740019F778 /* Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
+		B9EE19A91CB00C740019F778 /* BreakSlot+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BreakSlot+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B9EE19AA1CB00C740019F778 /* BreakSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakSlot.swift; sourceTree = "<group>"; };
+		B9EE19AB1CB00C740019F778 /* Schedule+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Schedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B9EE19AC1CB00C740019F778 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		B9EE19BB1CB00C910019F778 /* ScheduleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleController.swift; sourceTree = "<group>"; };
+		B9EE19BC1CB00C910019F778 /* SlotController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotController.swift; sourceTree = "<group>"; };
+		B9EE19BD1CB00C910019F778 /* SpeakerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerController.swift; sourceTree = "<group>"; };
+		B9EE19BE1CB00C910019F778 /* ScheduleRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleRowController.swift; sourceTree = "<group>"; };
+		B9EE19BF1CB00C910019F778 /* TimeRangeRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRangeRowController.swift; sourceTree = "<group>"; };
+		B9EE19C01CB00C910019F778 /* SlotRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotRowController.swift; sourceTree = "<group>"; };
+		B9EE19C11CB00C910019F778 /* SpeakerRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerRowController.swift; sourceTree = "<group>"; };
+		B9EE19C21CB00C910019F778 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		B9EE19CB1CB00CC20019F778 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		E10E7ABD1C18BF7100F6220B /* My Devoxx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Devoxx.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10E7AC11C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10E7AC51C18BF7100F6220B /* My_Devoxx.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = My_Devoxx.xcdatamodel; sourceTree = "<group>"; };
@@ -496,6 +548,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9EE19CC1CB00CC20019F778 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,11 +701,20 @@
 		B991D31E1CA985D500AA352E /* Smartvoxx Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B9EE19971CB00BD70019F778 /* Data */,
 				B991D3211CA985D500AA352E /* InterfaceController.swift */,
 				B991D3231CA985D500AA352E /* ExtensionDelegate.swift */,
 				B991D3251CA985D500AA352E /* NotificationController.swift */,
 				B991D3271CA985D500AA352E /* GlanceController.swift */,
 				B991D3291CA985D500AA352E /* ComplicationController.swift */,
+				B9EE19BB1CB00C910019F778 /* ScheduleController.swift */,
+				B9EE19BC1CB00C910019F778 /* SlotController.swift */,
+				B9EE19BD1CB00C910019F778 /* SpeakerController.swift */,
+				B9EE19BE1CB00C910019F778 /* ScheduleRowController.swift */,
+				B9EE19BF1CB00C910019F778 /* TimeRangeRowController.swift */,
+				B9EE19C01CB00C910019F778 /* SlotRowController.swift */,
+				B9EE19C11CB00C910019F778 /* SpeakerRowController.swift */,
+				B9EE19C21CB00C910019F778 /* UIColorExtension.swift */,
 				B991D32B1CA985D500AA352E /* Assets.xcassets */,
 				B991D32D1CA985D500AA352E /* Info.plist */,
 				B991D31F1CA985D500AA352E /* Supporting Files */,
@@ -668,9 +730,42 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B9EE19971CB00BD70019F778 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B9EE199E1CB00C580019F778 /* ManagedObjects */,
+				B9EE199C1CB00C1A0019F778 /* Smartvoxx.xcdatamodel */,
+				B9EE19981CB00BE70019F778 /* DevoxxCache.swift */,
+				B9EE19991CB00BE70019F778 /* DataController.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		B9EE199E1CB00C580019F778 /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				B9EE199F1CB00C740019F778 /* Track+CoreDataProperties.swift */,
+				B9EE19A01CB00C740019F778 /* Track.swift */,
+				B9EE19A11CB00C740019F778 /* TalkSlot+CoreDataProperties.swift */,
+				B9EE19A21CB00C740019F778 /* TalkSlot.swift */,
+				B9EE19A31CB00C740019F778 /* Speaker+CoreDataProperties.swift */,
+				B9EE19A41CB00C740019F778 /* Speaker.swift */,
+				B9EE19A51CB00C740019F778 /* Slot+CoreDataProperties.swift */,
+				B9EE19A61CB00C740019F778 /* Slot.swift */,
+				B9EE19A71CB00C740019F778 /* Conference+CoreDataProperties.swift */,
+				B9EE19A81CB00C740019F778 /* Conference.swift */,
+				B9EE19A91CB00C740019F778 /* BreakSlot+CoreDataProperties.swift */,
+				B9EE19AA1CB00C740019F778 /* BreakSlot.swift */,
+				B9EE19AB1CB00C740019F778 /* Schedule+CoreDataProperties.swift */,
+				B9EE19AC1CB00C740019F778 /* Schedule.swift */,
+			);
+			name = ManagedObjects;
+			sourceTree = "<group>";
+		};
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				B9EE19CB1CB00CC20019F778 /* CoreData.framework */,
 				E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */,
 				E175E70F1C963BDB002A262A /* AppDelegate.swift */,
 				E175E5F61C962295002A262A /* View */,
@@ -1296,11 +1391,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9EE19B11CB00C740019F778 /* Speaker+CoreDataProperties.swift in Sources */,
+				B9EE19B81CB00C740019F778 /* BreakSlot.swift in Sources */,
+				B9EE19BA1CB00C740019F778 /* Schedule.swift in Sources */,
+				B9EE199B1CB00BE70019F778 /* DataController.swift in Sources */,
+				B9EE19AF1CB00C740019F778 /* TalkSlot+CoreDataProperties.swift in Sources */,
+				B9EE19AE1CB00C740019F778 /* Track.swift in Sources */,
+				B9EE19B71CB00C740019F778 /* BreakSlot+CoreDataProperties.swift in Sources */,
+				B9EE19B91CB00C740019F778 /* Schedule+CoreDataProperties.swift in Sources */,
 				B991D3261CA985D500AA352E /* NotificationController.swift in Sources */,
+				B9EE19AD1CB00C740019F778 /* Track+CoreDataProperties.swift in Sources */,
 				B991D3241CA985D500AA352E /* ExtensionDelegate.swift in Sources */,
+				B9EE19B41CB00C740019F778 /* Slot.swift in Sources */,
+				B9EE19C51CB00C910019F778 /* SpeakerController.swift in Sources */,
+				B9EE19C31CB00C910019F778 /* ScheduleController.swift in Sources */,
+				B9EE19C41CB00C910019F778 /* SlotController.swift in Sources */,
+				B9EE19C91CB00C910019F778 /* SpeakerRowController.swift in Sources */,
 				B991D32A1CA985D500AA352E /* ComplicationController.swift in Sources */,
+				B9EE19CA1CB00C910019F778 /* UIColorExtension.swift in Sources */,
+				B9EE19C71CB00C910019F778 /* TimeRangeRowController.swift in Sources */,
+				B9EE19B61CB00C740019F778 /* Conference.swift in Sources */,
 				B991D3221CA985D500AA352E /* InterfaceController.swift in Sources */,
+				B9EE199D1CB00C1A0019F778 /* Smartvoxx.xcdatamodel in Sources */,
+				B9EE199A1CB00BE70019F778 /* DevoxxCache.swift in Sources */,
+				B9EE19B31CB00C740019F778 /* Slot+CoreDataProperties.swift in Sources */,
+				B9EE19B51CB00C740019F778 /* Conference+CoreDataProperties.swift in Sources */,
+				B9EE19B21CB00C740019F778 /* Speaker.swift in Sources */,
+				B9EE19C81CB00C910019F778 /* SlotRowController.swift in Sources */,
+				B9EE19C61CB00C910019F778 /* ScheduleRowController.swift in Sources */,
 				B991D3281CA985D500AA352E /* GlanceController.swift in Sources */,
+				B9EE19B01CB00C740019F778 /* TalkSlot.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1732,6 +1852,7 @@
 				B991D3341CA985D500AA352E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B991D3371CA985D500AA352E /* Build configuration list for PBXNativeTarget "Smartvoxx" */ = {
 			isa = XCConfigurationList;
@@ -1740,6 +1861,7 @@
 				B991D3321CA985D500AA352E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E10E7AB81C18BF7100F6220B /* Build configuration list for PBXProject "My_Devoxx" */ = {
 			isa = XCConfigurationList;

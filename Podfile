@@ -10,3 +10,6 @@ target 'My_DevoxxTests' do
 
 end
 
+target 'Smartvoxx Extension' do
+    
+end

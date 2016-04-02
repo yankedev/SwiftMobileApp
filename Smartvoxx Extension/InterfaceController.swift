@@ -1,31 +1,51 @@
 //
 //  InterfaceController.swift
-//  Smartvoxx Extension
+//  SmartvoxxOnWrist Extension
 //
-//  Created by Sebastien Arbogast on 28/03/2016.
-//  Copyright © 2016 maximedavid. All rights reserved.
+//  Created by Sebastien Arbogast on 23/08/2015.
+//  Copyright © 2015 Epseelon. All rights reserved.
 //
 
 import WatchKit
 import Foundation
 
-
 class InterfaceController: WKInterfaceController {
-
+    @IBOutlet var activityIndicator: WKInterfaceImage!
+    @IBOutlet var table: WKInterfaceTable!
+    
+    var schedules: [Schedule]?
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        // Configure interface objects here.
+        self.activityIndicator.setImageNamed("Activity")
     }
-
+    
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        self.activityIndicator.setHidden(false)
+        self.activityIndicator.startAnimatingWithImagesInRange(NSMakeRange(0, 30), duration: 1.0, repeatCount: 0)
+        
+        DataController.sharedInstance.getSchedules { (schedules:[Schedule]) -> (Void) in
+            self.schedules = schedules
+            self.activityIndicator.stopAnimating()
+            self.activityIndicator.setHidden(true)
+            
+            self.table.setNumberOfRows(self.schedules!.count, withRowType: "schedule")
+            for (index,schedule) in self.schedules!.enumerate() {
+                if let row = self.table.rowControllerAtIndex(index) as? ScheduleRowController {
+                    row.label.setText(schedule.title!.stringByReplacingOccurrencesOfString(NSLocalizedString("Schedule for ", comment:""), withString: ""))
+                }
+            }
+        }
     }
-
+    
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+        DataController.sharedInstance.cancelSchedules()
     }
-
+    
+    override func contextForSegueWithIdentifier(segueIdentifier: String, inTable table: WKInterfaceTable, rowIndex: Int) -> AnyObject? {
+        return self.schedules![rowIndex]
+    }
 }
