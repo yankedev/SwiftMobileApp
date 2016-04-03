@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Nry-S3-RZ2">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -220,7 +219,6 @@
         <!--Schedule Controller-->
         <scene sceneID="ZXE-sQ-D1v">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OBB-v9-UyB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="I0R-HM-p86" customClass="ScheduleController" customModule="My_Devoxx" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WhH-Wi-4DI"/>
@@ -234,6 +232,7 @@
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="QPZ-vC-Rt8"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OBB-v9-UyB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1620" y="-1763"/>
         </scene>
@@ -518,14 +517,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uxH-LL-gES" userLabel="Info">
                                 <rect key="frame" x="0.0" y="150" width="300" height="150"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_place.png" translatesAutoresizingMaskIntoConstraints="NO" id="1ji-Nd-tBu">
-                                        <rect key="frame" x="8" y="6" width="44" height="44"/>
-                                    </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_microphone.png" translatesAutoresizingMaskIntoConstraints="NO" id="AEd-ta-1rw">
                                         <rect key="frame" x="8" y="55" width="44" height="44"/>
+                                        <color key="tintColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_star.png" translatesAutoresizingMaskIntoConstraints="NO" id="pX9-aL-wIZ">
                                         <rect key="frame" x="8" y="103" width="44" height="44"/>
+                                        <color key="tintColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTe-Z6-PXG" userLabel="Room Label">
                                         <rect key="frame" x="60" y="8" width="240" height="21"/>
@@ -563,6 +561,10 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_place.png" translatesAutoresizingMaskIntoConstraints="NO" id="1ji-Nd-tBu">
+                                        <rect key="frame" x="8" y="6" width="44" height="44"/>
+                                        <color key="tintColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.97638068187839011" blue="0.56532178919673781" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
