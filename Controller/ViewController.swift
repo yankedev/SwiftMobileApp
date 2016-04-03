@@ -127,12 +127,40 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         self.customTabController.selectedIndex = 0
         
-        self.navigationController?.pushViewController(self.customTabController, animated: true)
+        //self.navigationController?.pushViewController(self.customTabController, animated: true)
         
         
         
         self.addChildViewController(self.customTabController)
         self.view.addSubview(self.customTabController.view)
+        
+        prepareHuntly()
+        
+    }
+    
+    func prepareHuntly() {
+        print(HuntlyManager.getUUID())
+        HuntlyManager.storeToken()
+        HuntlyManager.completeFirstLaunchQuest(hunltyManager)
+        print(HuntlyManager.getToken())
+    }
+    
+    func hunltyManager() {
+        print(UIStoryboard(name: "Huntly", bundle: nil).instantiateViewControllerWithIdentifier("HuntlyPopup") as? HuntlyPopup)
+        if let viewController = UIStoryboard(name: "Huntly", bundle: nil).instantiateViewControllerWithIdentifier("HuntlyPopup") as? HuntlyPopup {
+            print("should present")
+            print(viewController)
+            print(viewController.view)
+            
+            viewController.titleBonus.text = "Welcome bonus"
+            viewController.pointLbl.text = "Points"
+            viewController.pointValueLbl.text = "+40"
+            
+        
+            self.customTabController.presentViewController(viewController, animated: true, completion: nil)
+
+            
+        }
         
     }
     

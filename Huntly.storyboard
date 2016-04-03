@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Huntly Popup-->
+        <scene sceneID="uLh-4L-ZQ4">
+            <objects>
+                <viewController storyboardIdentifier="HuntlyPopup" id="ihe-oz-IOT" customClass="HuntlyPopup" customModule="My_Devoxx" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="d4w-yf-zFP"/>
+                        <viewControllerLayoutGuide type="bottom" id="yzW-Q9-QW3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wn1-Bo-ka4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uM-QF-Dvb">
+                                <rect key="frame" x="150" y="140" width="300" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="LLX-Ez-liS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2qg-aE-mxh">
+                                <rect key="frame" x="35" y="560" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="Hue-JB-gRx"/>
+                                    <constraint firstAttribute="height" constant="30" id="Tzb-My-6WC"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="coy-6X-b8p">
+                                <rect key="frame" x="486" y="560" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Vqs-WA-WC7"/>
+                                    <constraint firstAttribute="width" constant="80" id="qjo-Yf-gFW"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7UJ-h4-UeY">
+                                <rect key="frame" x="150" y="177" width="300" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="0dK-WB-MvJ"/>
+                                    <constraint firstAttribute="width" constant="300" id="rSU-Qt-NAB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQM-gL-nMX">
+                                <rect key="frame" x="150" y="233" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="Vs6-uc-kWP"/>
+                                    <constraint firstAttribute="height" constant="30" id="oVP-sT-ePY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTi-qA-Bnk">
+                                <rect key="frame" x="0.0" y="459" width="600" height="86"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="tickets.png" translatesAutoresizingMaskIntoConstraints="NO" id="kBn-IE-bVh">
+                                        <rect key="frame" x="162" y="10" width="131" height="66"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcG-3s-ygh">
+                                        <rect key="frame" x="301" y="8" width="131" height="66"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="86" id="BTg-wK-XHZ"/>
+                                    <constraint firstAttribute="width" constant="600" id="DPI-dg-oQd"/>
+                                </constraints>
+                            </view>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="LogoDevoxxHuntly.png" translatesAutoresizingMaskIntoConstraints="NO" id="HBO-No-j5n">
+                                <rect key="frame" x="189" y="50" width="223" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="63" id="1tF-0w-62a"/>
+                                    <constraint firstAttribute="width" constant="223" id="2Uj-bP-9sT"/>
+                                    <constraint firstAttribute="height" constant="63" id="Xti-Au-XgN"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="223" id="qsz-x8-li1"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="223" id="wV0-ce-Kcc"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7UJ-h4-UeY" firstAttribute="centerX" secondItem="Wn1-Bo-ka4" secondAttribute="centerX" id="0Pd-mq-8O7"/>
+                            <constraint firstItem="HBO-No-j5n" firstAttribute="centerX" secondItem="Wn1-Bo-ka4" secondAttribute="centerX" id="1l0-ut-abI"/>
+                            <constraint firstItem="9uM-QF-Dvb" firstAttribute="centerX" secondItem="Wn1-Bo-ka4" secondAttribute="centerX" id="81J-KX-Okt"/>
+                            <constraint firstItem="TTi-qA-Bnk" firstAttribute="centerX" secondItem="Wn1-Bo-ka4" secondAttribute="centerX" id="8EJ-nR-gYP"/>
+                            <constraint firstItem="yzW-Q9-QW3" firstAttribute="top" secondItem="2qg-aE-mxh" secondAttribute="bottom" constant="10" id="HIL-mn-RpX"/>
+                            <constraint firstItem="TTi-qA-Bnk" firstAttribute="leading" secondItem="Wn1-Bo-ka4" secondAttribute="leadingMargin" id="K1a-3n-z95"/>
+                            <constraint firstItem="2qg-aE-mxh" firstAttribute="leading" secondItem="Wn1-Bo-ka4" secondAttribute="leadingMargin" constant="15" id="Klq-4Z-aSe"/>
+                            <constraint firstItem="9uM-QF-Dvb" firstAttribute="top" secondItem="Wn1-Bo-ka4" secondAttribute="topMargin" constant="140" id="PkS-ht-FOR"/>
+                            <constraint firstItem="TTi-qA-Bnk" firstAttribute="centerX" secondItem="Wn1-Bo-ka4" secondAttribute="centerX" id="SjK-cL-Ure"/>
+                            <constraint firstItem="HBO-No-j5n" firstAttribute="centerY" secondItem="Wn1-Bo-ka4" secondAttribute="centerY" id="ZwQ-jR-KHQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="coy-6X-b8p" secondAttribute="trailing" constant="14" id="b3k-F0-w8b"/>
+                            <constraint firstItem="yzW-Q9-QW3" firstAttribute="top" secondItem="coy-6X-b8p" secondAttribute="bottom" constant="10" id="cCz-Vz-bqx"/>
+                            <constraint firstItem="dQM-gL-nMX" firstAttribute="top" secondItem="Wn1-Bo-ka4" secondAttribute="topMargin" constant="233" id="d5M-VA-7iX"/>
+                            <constraint firstItem="dQM-gL-nMX" firstAttribute="centerX" secondItem="Wn1-Bo-ka4" secondAttribute="centerX" id="e9v-kw-mBk"/>
+                            <constraint firstItem="HBO-No-j5n" firstAttribute="top" secondItem="Wn1-Bo-ka4" secondAttribute="topMargin" constant="50" id="gDO-u1-Smj"/>
+                            <constraint firstItem="7UJ-h4-UeY" firstAttribute="top" secondItem="Wn1-Bo-ka4" secondAttribute="topMargin" constant="177" id="hmN-ia-qm3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TTi-qA-Bnk" secondAttribute="trailing" id="kBq-fD-tW6"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="TTi-qA-Bnk" secondAttribute="bottom" constant="55" id="n0W-9j-awc"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="ZwQ-jR-KHQ"/>
+                                <exclude reference="K1a-3n-z95"/>
+                                <exclude reference="kBq-fD-tW6"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
+                    <connections>
+                        <outlet property="okBtn" destination="2qg-aE-mxh" id="sqt-Kw-BA5"/>
+                        <outlet property="playMoreBtn" destination="coy-6X-b8p" id="SP2-HY-Awt"/>
+                        <outlet property="pointLbl" destination="dQM-gL-nMX" id="xdi-Hq-Txh"/>
+                        <outlet property="pointValueLbl" destination="7UJ-h4-UeY" id="ysp-6e-uwm"/>
+                        <outlet property="prizeView" destination="TTi-qA-Bnk" id="VUb-D5-7H1"/>
+                        <outlet property="promoLabel" destination="hcG-3s-ygh" id="a2R-0G-Pur"/>
+                        <outlet property="titleBonus" destination="9uM-QF-Dvb" id="drt-rF-The"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3zv-re-iBt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="267" y="226"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="LogoDevoxxHuntly.png" width="223" height="63"/>
+        <image name="tickets.png" width="131" height="66"/>
+    </resources>
+</document>

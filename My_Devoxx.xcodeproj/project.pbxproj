@@ -12,6 +12,16 @@
 		E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACE1C18BF7100F6220B /* LaunchScreen.xib */; };
 		E10E7ADC1C18BF7100F6220B /* devoxxAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */; };
 		E14E94B31C980971006B6D8E /* HelperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14E94B21C980971006B6D8E /* HelperManager.swift */; };
+		E15D04131CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D040D1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png */; };
+		E15D04141CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D040E1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png */; };
+		E15D04151CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D040F1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@3x.png */; };
+		E15D04161CB1A016003301C8 /* LogoDevoxxHuntly@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D04101CB1A016003301C8 /* LogoDevoxxHuntly@1x.png */; };
+		E15D04171CB1A016003301C8 /* LogoDevoxxHuntly@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D04111CB1A016003301C8 /* LogoDevoxxHuntly@2x.png */; };
+		E15D04181CB1A016003301C8 /* LogoDevoxxHuntly@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D04121CB1A016003301C8 /* LogoDevoxxHuntly@3x.png */; };
+		E15D041A1CB1A080003301C8 /* HuntlyPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15D04191CB1A080003301C8 /* HuntlyPopup.swift */; };
+		E15D041C1CB1AD4B003301C8 /* tickets.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D041B1CB1AD4B003301C8 /* tickets.png */; };
+		E15D041E1CB1AD59003301C8 /* tickets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D041D1CB1AD59003301C8 /* tickets@2x.png */; };
+		E15D04201CB1AD5E003301C8 /* tickets@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D041F1CB1AD5E003301C8 /* tickets@3x.png */; };
 		E17050DF1CA560F700818E79 /* ic_beer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17050DD1CA560F700818E79 /* ic_beer@2x.png */; };
 		E17050E01CA560F700818E79 /* ic_wine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17050DE1CA560F700818E79 /* ic_wine@2x.png */; };
 		E175E6161C9638A2002A262A /* ActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5FC1C9638A2002A262A /* ActionButtonView.swift */; };
@@ -201,6 +211,8 @@
 		E175E8D21C9640B3002A262A /* ScheduleBreakCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E8D11C9640B3002A262A /* ScheduleBreakCell.swift */; };
 		E175E8D31C964172002A262A /* pirulen.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E175E7C31C963DEE002A262A /* pirulen.ttf */; };
 		E175E8D41C964172002A262A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E175E7C41C963DEE002A262A /* Roboto-Regular.ttf */; };
+		E1C9E1681CB16B1900796D02 /* Huntly.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C9E1671CB16B1900796D02 /* Huntly.storyboard */; };
+		E1C9E16A1CB17B8300796D02 /* HuntlyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C9E1691CB17B8300796D02 /* HuntlyManager.swift */; };
 		E1DF81141C985501002194C9 /* CallbackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81131C985501002194C9 /* CallbackProtocol.swift */; };
 		E1DF81181C99F4CE002194C9 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */; };
 		E1E9E4FD1C97807D00EC347D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E9E4FB1C97807D00EC347D /* Crashlytics.framework */; };
@@ -208,6 +220,7 @@
 		E1E9E51D1C979BA800EC347D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E51F1C979BA800EC347D /* InfoPlist.strings */; };
 		E1E9E5221C979BA800EC347D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E5241C979BA800EC347D /* InfoPlist.strings */; };
 		E1E9E5271C979BA800EC347D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E5291C979BA800EC347D /* Localizable.strings */; };
+		FED65436CAE2428FB1717F98 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3ECDBE21D69151AF0720F57 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -221,6 +234,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B355571783C0C57AFF5FC0DB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		BFE257431E7FF1C85754CE8A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E10E7ABD1C18BF7100F6220B /* My Devoxx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Devoxx.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10E7AC11C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10E7AC51C18BF7100F6220B /* My_Devoxx.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = My_Devoxx.xcdatamodel; sourceTree = "<group>"; };
@@ -230,6 +245,16 @@
 		E10E7ADA1C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = devoxxAppTests.swift; sourceTree = "<group>"; };
 		E14E94B21C980971006B6D8E /* HelperManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperManager.swift; sourceTree = "<group>"; };
+		E15D040D1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevoxxHuntlyIntegrationIcon.png; sourceTree = "<group>"; };
+		E15D040E1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DevoxxHuntlyIntegrationIcon@2x.png"; sourceTree = "<group>"; };
+		E15D040F1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DevoxxHuntlyIntegrationIcon@3x.png"; sourceTree = "<group>"; };
+		E15D04101CB1A016003301C8 /* LogoDevoxxHuntly@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoDevoxxHuntly@1x.png"; sourceTree = "<group>"; };
+		E15D04111CB1A016003301C8 /* LogoDevoxxHuntly@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoDevoxxHuntly@2x.png"; sourceTree = "<group>"; };
+		E15D04121CB1A016003301C8 /* LogoDevoxxHuntly@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoDevoxxHuntly@3x.png"; sourceTree = "<group>"; };
+		E15D04191CB1A080003301C8 /* HuntlyPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntlyPopup.swift; sourceTree = "<group>"; };
+		E15D041B1CB1AD4B003301C8 /* tickets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tickets.png; sourceTree = "<group>"; };
+		E15D041D1CB1AD59003301C8 /* tickets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tickets@2x.png"; sourceTree = "<group>"; };
+		E15D041F1CB1AD5E003301C8 /* tickets@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tickets@3x.png"; sourceTree = "<group>"; };
 		E17050DD1CA560F700818E79 /* ic_beer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_beer@2x.png"; sourceTree = "<group>"; };
 		E17050DE1CA560F700818E79 /* ic_wine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_wine@2x.png"; sourceTree = "<group>"; };
 		E175E5FC1C9638A2002A262A /* ActionButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionButtonView.swift; path = View/ActionButtonView.swift; sourceTree = "<group>"; };
@@ -419,6 +444,8 @@
 		E175E8CD1C96401A002A262A /* AllDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllDetailsView.swift; path = View/AllDetailsView.swift; sourceTree = "<group>"; };
 		E175E8CF1C964082002A262A /* SchedulerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchedulerTableView.swift; path = devoxxApp/SchedulerTableView.swift; sourceTree = "<group>"; };
 		E175E8D11C9640B3002A262A /* ScheduleBreakCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleBreakCell.swift; path = View/ScheduleBreakCell.swift; sourceTree = "<group>"; };
+		E1C9E1671CB16B1900796D02 /* Huntly.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Huntly.storyboard; sourceTree = "<group>"; };
+		E1C9E1691CB17B8300796D02 /* HuntlyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntlyManager.swift; sourceTree = "<group>"; };
 		E1DF81131C985501002194C9 /* CallbackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackProtocol.swift; sourceTree = "<group>"; };
 		E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		E1E9E4FB1C97807D00EC347D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -427,6 +454,7 @@
 		E1E9E51E1C979BA800EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E1E9E5231C979BA800EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E1E9E5281C979BA800EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F3ECDBE21D69151AF0720F57 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -436,6 +464,7 @@
 			files = (
 				E1E9E4FD1C97807D00EC347D /* Crashlytics.framework in Frameworks */,
 				E1E9E4FE1C97807D00EC347D /* Fabric.framework in Frameworks */,
+				FED65436CAE2428FB1717F98 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,9 +595,27 @@
 			path = devoxxApp;
 			sourceTree = "<group>";
 		};
+		62ACD2D20B977D6D51F3C490 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3ECDBE21D69151AF0720F57 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C14F5424D9A9A4C738A22A11 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B355571783C0C57AFF5FC0DB /* Pods.debug.xcconfig */,
+				BFE257431E7FF1C85754CE8A /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				E15D040C1CB1A000003301C8 /* Huntly */,
 				E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */,
 				E175E70F1C963BDB002A262A /* AppDelegate.swift */,
 				E175E5F61C962295002A262A /* View */,
@@ -584,6 +631,8 @@
 				E10E7ABF1C18BF7100F6220B /* devoxxApp */,
 				E10E7AD81C18BF7100F6220B /* devoxxAppTests */,
 				E10E7ABE1C18BF7100F6220B /* Products */,
+				C14F5424D9A9A4C738A22A11 /* Pods */,
+				62ACD2D20B977D6D51F3C490 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -633,6 +682,25 @@
 				E10E7ADA1C18BF7100F6220B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E15D040C1CB1A000003301C8 /* Huntly */ = {
+			isa = PBXGroup;
+			children = (
+				E15D040D1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png */,
+				E15D040E1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png */,
+				E15D040F1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@3x.png */,
+				E15D04101CB1A016003301C8 /* LogoDevoxxHuntly@1x.png */,
+				E15D04111CB1A016003301C8 /* LogoDevoxxHuntly@2x.png */,
+				E15D04121CB1A016003301C8 /* LogoDevoxxHuntly@3x.png */,
+				E15D041B1CB1AD4B003301C8 /* tickets.png */,
+				E15D041D1CB1AD59003301C8 /* tickets@2x.png */,
+				E15D041F1CB1AD5E003301C8 /* tickets@3x.png */,
+				E1C9E1691CB17B8300796D02 /* HuntlyManager.swift */,
+				E1C9E1671CB16B1900796D02 /* Huntly.storyboard */,
+				E15D04191CB1A080003301C8 /* HuntlyPopup.swift */,
+			);
+			name = Huntly;
 			sourceTree = "<group>";
 		};
 		E175E5D71C93BF37002A262A /* Service */ = {
@@ -923,10 +991,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E10E7ADF1C18BF7100F6220B /* Build configuration list for PBXNativeTarget "My_Devoxx" */;
 			buildPhases = (
+				66A2C4919FD08DBF1851017E /* Check Pods Manifest.lock */,
 				E10E7AB91C18BF7100F6220B /* Sources */,
 				E10E7ABA1C18BF7100F6220B /* Frameworks */,
 				E10E7ABB1C18BF7100F6220B /* Resources */,
 				E1E9E4F61C977C3D00EC347D /* ShellScript */,
+				111378D7DE6CB3595BD72DFC /* Embed Pods Frameworks */,
+				6C0E30A7E4114E2121ABBEAD /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1003,6 +1074,7 @@
 				E175E8D31C964172002A262A /* pirulen.ttf in Resources */,
 				E175E8D41C964172002A262A /* Roboto-Regular.ttf in Resources */,
 				E175E8231C963E4F002A262A /* icon_archisec.png in Resources */,
+				E15D04201CB1AD5E003301C8 /* tickets@3x.png in Resources */,
 				E175E8001C963E32002A262A /* checkboxOn.png in Resources */,
 				E175E7FF1C963E32002A262A /* checkboxOff.png in Resources */,
 				E175E8341C963E5C002A262A /* tabIconMap@2x.png in Resources */,
@@ -1024,6 +1096,7 @@
 				E175E84C1C963E67002A262A /* ic_back@2x.png in Resources */,
 				E175E84B1C963E67002A262A /* event.png in Resources */,
 				E175E82D1C963E4F002A262A /* icon_startup.png in Resources */,
+				E1C9E1681CB16B1900796D02 /* Huntly.storyboard in Resources */,
 				E175E86F1C963E91002A262A /* DV15-friday.json in Resources */,
 				E1E9E5271C979BA800EC347D /* Localizable.strings in Resources */,
 				E175E7FC1C963E29002A262A /* talk_background.png in Resources */,
@@ -1048,6 +1121,7 @@
 				E175E8561C963E67002A262A /* micro@2x.png in Resources */,
 				E175E8761C963E91002A262A /* DV15-wednesday.json in Resources */,
 				E175E80B1C963E3E002A262A /* icon_bof.png in Resources */,
+				E15D04141CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png in Resources */,
 				E175E7EB1C963E1F002A262A /* globe.png in Resources */,
 				E175E82B1C963E4F002A262A /* icon_mobile.png in Resources */,
 				E175E80F1C963E3E002A262A /* icon_lab.png in Resources */,
@@ -1056,6 +1130,8 @@
 				E175E8801C963E9B002A262A /* DevoxxFR2016-conferences.json in Resources */,
 				E175E8701C963E91002A262A /* DV15-monday.json in Resources */,
 				E175E7EC1C963E1F002A262A /* splash_btn_DevoxxFR2016@2x.png in Resources */,
+				E15D04161CB1A016003301C8 /* LogoDevoxxHuntly@1x.png in Resources */,
+				E15D04171CB1A016003301C8 /* LogoDevoxxHuntly@2x.png in Resources */,
 				E175E84E1C963E67002A262A /* ic_filter_inactive@2x.png in Resources */,
 				E175E8611C963E7B002A262A /* devoxxExhibitionFloorPhone.jpg in Resources */,
 				E175E8731C963E91002A262A /* DV15-thursday.json in Resources */,
@@ -1064,6 +1140,7 @@
 				E175E8261C963E4F002A262A /* icon_cloud.png in Resources */,
 				E175E8101C963E3E002A262A /* icon_other.png in Resources */,
 				E175E8841C963E9B002A262A /* DevoxxFR2016-speaker.json in Resources */,
+				E15D04131CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png in Resources */,
 				E175E7E41C963E17002A262A /* logo.png in Resources */,
 				E175E80C1C963E3E002A262A /* icon_conf.png in Resources */,
 				E175E88C1C963EA6002A262A /* StoredResource.json in Resources */,
@@ -1076,16 +1153,20 @@
 				E175E84A1C963E67002A262A /* down@2x.png in Resources */,
 				E175E7FB1C963E29002A262A /* DevoxxUKHomePage.jpg in Resources */,
 				E175E8511C963E67002A262A /* ic_rate.png in Resources */,
+				E15D041C1CB1AD4B003301C8 /* tickets.png in Resources */,
 				E175E8641C963E7B002A262A /* DevoxxFRExhibitionTablet.jpg in Resources */,
+				E15D04181CB1A016003301C8 /* LogoDevoxxHuntly@3x.png in Resources */,
 				E175E82E1C963E4F002A262A /* icon_web.png in Resources */,
 				E175E8811C963E9B002A262A /* DevoxxFR2016-friday.json in Resources */,
 				E175E8121C963E3E002A262A /* icon_start.png in Resources */,
+				E15D04151CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@3x.png in Resources */,
 				E175E8741C963E91002A262A /* DV15-tracks.json in Resources */,
 				E175E82C1C963E4F002A262A /* icon_ssj.png in Resources */,
 				E175E86E1C963E91002A262A /* DV15-conferences.json in Resources */,
 				E175E7F91C963E29002A262A /* DevoxxMoroccoHomePage.jpg in Resources */,
 				E175E8541C963E67002A262A /* ic_twitter@2x.png in Resources */,
 				E175E8381C963E5C002A262A /* tabIconTracks@2x.png in Resources */,
+				E15D041E1CB1AD59003301C8 /* tickets@2x.png in Resources */,
 				E175E8351C963E5C002A262A /* tabIconSchedule@2x.png in Resources */,
 				E175E7F01C963E1F002A262A /* splash_btn_DV15@2x.png in Resources */,
 				E175E8881C963E9B002A262A /* DevoxxFR2016-wednesday.json in Resources */,
@@ -1108,6 +1189,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		111378D7DE6CB3595BD72DFC /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66A2C4919FD08DBF1851017E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6C0E30A7E4114E2121ABBEAD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E1E9E4F61C977C3D00EC347D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1180,6 +1306,7 @@
 				E175E7D51C963DFC002A262A /* CfpService.swift in Sources */,
 				E175E6501C963950002A262A /* SchedulerTableViewController.swift in Sources */,
 				E175E7BF1C963DDD002A262A /* ScrollableTableProtocol.swift in Sources */,
+				E15D041A1CB1A080003301C8 /* HuntlyPopup.swift in Sources */,
 				E175E8BD1C963EBF002A262A /* Speaker.swift in Sources */,
 				E175E6461C96391C002A262A /* SettingsController.swift in Sources */,
 				E175E64F1C963950002A262A /* ScheduleController.swift in Sources */,
@@ -1205,6 +1332,7 @@
 				E175E8B71C963EBF002A262A /* Day.swift in Sources */,
 				E175E62C1C9638A2002A262A /* StarView.swift in Sources */,
 				E175E8D21C9640B3002A262A /* ScheduleBreakCell.swift in Sources */,
+				E1C9E16A1CB17B8300796D02 /* HuntlyManager.swift in Sources */,
 				E175E8B81C963EBF002A262A /* Etag.swift in Sources */,
 				E175E8A21C963EB4002A262A /* SlotHelper.swift in Sources */,
 				E14E94B31C980971006B6D8E /* HelperManager.swift in Sources */,
@@ -1375,6 +1503,7 @@
 		};
 		E10E7AE01C18BF7100F6220B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B355571783C0C57AFF5FC0DB /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1397,6 +1526,7 @@
 		};
 		E10E7AE11C18BF7100F6220B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFE257431E7FF1C85754CE8A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

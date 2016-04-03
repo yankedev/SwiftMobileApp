@@ -1,0 +1,6 @@
+framework module Pods_My_Devoxx {
+  umbrella header "Pods-My_Devoxx-umbrella.h"
+
+  export *
+  module * { export * }
+}

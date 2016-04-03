@@ -52,10 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = nav
         self.window!.makeKeyAndVisible()
         
-        
-               
+   
         return true
     }
+    
     
     
     func application(application: UIApplication, supportedInterfaceOrientationsForWindow window: UIWindow?) -> UIInterfaceOrientationMask {
