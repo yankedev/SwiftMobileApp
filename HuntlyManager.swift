@@ -13,6 +13,7 @@ import Alamofire
 
 class HuntlyManager {
 
+    static let API = "https://huntly-devel.scalac.io"
     static let TOKEN_STRING = "huntlyToken"
     static let QUEST_COMPLETED = "questCompleted"
     static let ACTIVITY_COMPLETED = "activityCompleted"
@@ -81,7 +82,7 @@ class HuntlyManager {
                        "X-AUTH-TOKEN" : getToken()]
         
         
-        Alamofire.request(.GET, "https://huntly-devel.scalac.io/deployments/7/quests/activity/list", headers : headers)
+        Alamofire.request(.GET, "\(API)/deployments/7/quests/activity/list", headers : headers)
             .responseJSON { response in
             
                 if let JSON = response.result.value as? NSArray {
@@ -120,7 +121,7 @@ class HuntlyManager {
         
         Alamofire.upload(
             .POST,
-            "https://huntly-devel.scalac.io/quests/activity/complete",
+            "\(API)/quests/activity/complete",
             headers: headers,
             multipartFormData: { multipartFormData in
                 multipartFormData.appendBodyPart(data: questIdValue.dataUsingEncoding(NSUTF8StringEncoding)!, name: "questId")
@@ -163,7 +164,7 @@ class HuntlyManager {
         let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
                        "X-AUTH-TOKEN" : getToken()]
         
-        Alamofire.request(.GET, "https://huntly-devel.scalac.io/deployments/7/user", headers : headers)
+        Alamofire.request(.GET, "\(API)/deployments/7/user", headers : headers)
             .responseJSON { response in
 
                 if let JSON = response.result.value {
@@ -177,6 +178,24 @@ class HuntlyManager {
     }
     
     
+    class func postExtraData() {
+        
+        let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
+                       "X-AUTH-TOKEN" : getToken()]
+
+        let parameters = [
+            "externalUserId": APIManager.getQrCode() ?? ""
+        ]
+        
+        Alamofire.request(.POST, "\(API)/deployments/7/profile/fill", parameters: parameters, encoding: .JSON, headers: headers)
+            .responseJSON { response in
+                
+                if let JSON = response.result.value {
+                    print(JSON)
+                }
+        }
+        
+    }
     
     class func storeToken(str : String, handlerSuccess : (Void) -> (), handlerFailure : (Void) -> ())  {
         
@@ -194,7 +213,7 @@ class HuntlyManager {
         
         Alamofire.upload(
             .POST,
-            "https://huntly-devel.scalac.io/users/login/platform",
+            "\(API)/users/login/platform",
             headers: headers,
             multipartFormData: { multipartFormData in
                 multipartFormData.appendBodyPart(data: UIdValue.dataUsingEncoding(NSUTF8StringEncoding)!, name: "uid")
