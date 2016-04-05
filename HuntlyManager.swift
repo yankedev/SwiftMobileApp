@@ -15,17 +15,24 @@ class HuntlyManager {
 
     static let TOKEN_STRING = "huntlyToken"
     static let QUEST_COMPLETED = "questCompleted"
+    static let ACTIVITY_COMPLETED = "activityCompleted"
+    static let FIRST_APP_RUN_QUEST = "firstAppRun"
+    static let POINTS = "points"
+    static let VOTE_QUEST = "vote"
     
     class func getEventId() -> Int {
         //to do
         return 7
     }
     
-    class func getFirstLaunchQuestId() -> String {
-        //to do
-        return "108"
+    class func getStoredId(str: String) -> String {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let questId = defaults.objectForKey(str) as? Int {
+            return "\(questId)"
+        }
+        return "-1"
     }
-
+    
     class func getUUID() -> String {
         return UIDevice.currentDevice().identifierForVendor?.UUIDString ?? ""
     }
@@ -34,7 +41,9 @@ class HuntlyManager {
         return "ios"
     }
     
+   
     class func getToken() -> String {
+      
         let defaults = NSUserDefaults.standardUserDefaults()
         if let currentEventStr = defaults.objectForKey(TOKEN_STRING) as? String {
             return currentEventStr
@@ -50,10 +59,61 @@ class HuntlyManager {
         defaults.setObject(token, forKey: TOKEN_STRING)
     }
     
-    class func completeFirstLaunchQuest(handler : (() -> Void)) {
+    class func setHuntlyPoints(pts : String) {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(pts, forKey: POINTS)
+    }
     
+    class func getHuntlyPoints() -> String {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.stringForKey(POINTS) ?? "0"
+    }
+    
+    class func findQuestId(str : String, handlerSuccess : (() -> Void), handlerFailure : (() -> Void)) {
         
-        let questIdValue = getFirstLaunchQuestId()
+        if getStoredId(str) != "-1" {
+            completeQuest(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
+            return
+        }
+        
+        
+        let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
+                       "X-AUTH-TOKEN" : getToken()]
+        
+        
+        Alamofire.request(.GET, "https://huntly-devel.scalac.io/deployments/7/quests/activity/list", headers : headers)
+            .responseJSON { response in
+            
+                if let JSON = response.result.value as? NSArray {
+                    for jsonPart in JSON {
+                        if let actName = jsonPart.objectForKey("activity") as? String {
+                            if actName == str {
+                                if let questId = jsonPart.objectForKey("questId") as? Int {
+                                    let defaults = NSUserDefaults.standardUserDefaults()
+                                    defaults.setObject(questId, forKey: str)
+                                    completeQuest(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
+                                    return;
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+                handlerFailure()
+        }
+        
+    }
+
+    
+    
+    class func completeQuest(str : String, handlerSuccess : (() -> Void), handlerFailure : (() -> Void)) {
+        
+        if getStoredId(str) == "-1" {
+            findQuestId(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
+            return
+        }
+        
+        let questIdValue = getStoredId(str)
 
         let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
                        "X-AUTH-TOKEN" : getToken()]
@@ -73,18 +133,19 @@ class HuntlyManager {
                        
                         guard response.result.value == nil else {
                             let response = JSON(response.result.value!)
-                            if response["status"].string == QUEST_COMPLETED {
+                            if response["status"].string == QUEST_COMPLETED || response["status"].string == ACTIVITY_COMPLETED {
                                 print("SHOULD SHOW POPUP")
-                                handler()
+                                handlerSuccess()
                             }
                             else {
                                 print("SHOULD NOT SHOW POPUP")
+                                handlerFailure()
                             }
                             return
                         }
 
                         print("SHOULD NOT SHOW POPUP")
-                       
+                        handlerFailure()
                         
                     }
                     
@@ -96,11 +157,33 @@ class HuntlyManager {
 
     
     }
-    
-    
-    
-    class func storeToken() {
+
+    class func updateScore(handlerSuccess : ((String) -> Void)) {
         
+        let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
+                       "X-AUTH-TOKEN" : getToken()]
+        
+        Alamofire.request(.GET, "https://huntly-devel.scalac.io/deployments/7/user", headers : headers)
+            .responseJSON { response in
+
+                if let JSON = response.result.value {
+                    print(JSON)
+                    if let pts = JSON.objectForKey("points") as? Int {
+                        setHuntlyPoints("\(pts)")
+                        handlerSuccess("\(pts)")
+                    }
+                }
+        }
+    }
+    
+    
+    
+    class func storeToken(str : String, handlerSuccess : (Void) -> (), handlerFailure : (Void) -> ())  {
+        
+        if getToken() != "" {
+            completeQuest(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
+            return
+        }
         
         let UIdValue = getUUID()
         let platformId = getPlatform()
@@ -125,11 +208,11 @@ class HuntlyManager {
                         
                         let response = JSON(response.result.value!)
                         setToken(response["user"]["token"].string)
-                        
+                        completeQuest(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
                     }
 
                 case .Failure(let encodingError):
-                    print(encodingError)
+                    handlerFailure()
                 }
             }
         )

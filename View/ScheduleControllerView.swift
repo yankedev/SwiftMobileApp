@@ -16,12 +16,11 @@ protocol TopFilterableProtocol {
 
 class ScheduleControllerView : UIView, TopFilterableProtocol {
     
-    
+
+    var huntlyLeftButton:UIBarButtonItem
     var filterRightButton:UIBarButtonItem
-    
-    
-    
-    
+
+    let huntlyPointLbl = UILabel(frame : CGRectMake(0, 0, 30, 30))
     
     init(target: AnyObject?, filterSelector:Selector) {
         
@@ -29,8 +28,20 @@ class ScheduleControllerView : UIView, TopFilterableProtocol {
         let img = UIImage(named: "ic_filter_inactive")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         filterRightButton = UIBarButtonItem(image: img, style: UIBarButtonItemStyle.Plain, target: target, action: filterSelector)
         
+        let huntlyPointView = UIImageView(frame : CGRectMake(0, 0, 30, 30))
+        huntlyPointView.image = UIImage(named: "DevoxxHuntlyIntegrationIcon")
         
         
+        huntlyPointLbl.text = HuntlyManager.getHuntlyPoints()
+        huntlyPointLbl.font = UIFont(name: "Roboto", size: 12)
+        huntlyPointView.addSubview(huntlyPointLbl)
+        huntlyPointLbl.textAlignment = .Center
+     
+        
+        
+        
+        
+        huntlyLeftButton = UIBarButtonItem(customView: huntlyPointView)
         
         
         
@@ -41,6 +52,7 @@ class ScheduleControllerView : UIView, TopFilterableProtocol {
     
     
     override init(frame: CGRect) {
+        self.huntlyLeftButton = UIBarButtonItem()
         self.filterRightButton = UIBarButtonItem()
         super.init(frame: frame)
         self.initialize()

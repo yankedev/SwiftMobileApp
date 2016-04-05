@@ -145,6 +145,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = false
+        HuntlyManager.updateScore(updateScore)
     }
     
     
@@ -226,6 +227,8 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
                     reloadable.fetchUpdate()
                 }
                 
+                HuntlyManager.updateScore(updateScore)
+  
                 
                 
             }
@@ -233,6 +236,9 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
     }
     
+    func updateScore(newScore : String) {
+        customView!.huntlyPointLbl.text = "\(newScore)"
+    }
     
     //ScrollableDateTableDelegate
     func feedDate() {
@@ -266,7 +272,9 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
         
         //self.pageViewController.navigationItem.rightBarButtonItems = [customView!.filterRightButton, customView!.favoriteSwitcher]
+        self.pageViewController.navigationItem.leftBarButtonItem = customView!.huntlyLeftButton
         self.pageViewController.navigationItem.rightBarButtonItem = customView!.filterRightButton
+        
         
         if allDates.count == 0 {
             self.pageViewController.navigationItem.title = "No data yet"

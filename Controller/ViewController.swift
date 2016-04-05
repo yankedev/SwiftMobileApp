@@ -137,12 +137,12 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         prepareHuntly()
         
     }
+    func fail() {
+    }
     
     func prepareHuntly() {
         print(HuntlyManager.getUUID())
-        HuntlyManager.storeToken()
-        HuntlyManager.completeFirstLaunchQuest(hunltyManager)
-        print(HuntlyManager.getToken())
+        HuntlyManager.storeToken("firstAppRun", handlerSuccess : hunltyManager, handlerFailure: fail)
     }
     
     func hunltyManager() {

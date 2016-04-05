@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9uM-QF-Dvb">
-                                <rect key="frame" x="150" y="140" width="300" height="29"/>
+                                <rect key="frame" x="150" y="201" width="300" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="LLX-Ez-liS"/>
                                 </constraints>
@@ -43,8 +43,18 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                             </button>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="LogoDevoxxHuntly.png" translatesAutoresizingMaskIntoConstraints="NO" id="HBO-No-j5n">
+                                <rect key="frame" x="189" y="50" width="223" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="63" id="1tF-0w-62a"/>
+                                    <constraint firstAttribute="width" constant="223" id="2Uj-bP-9sT"/>
+                                    <constraint firstAttribute="height" constant="63" id="Xti-Au-XgN"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="223" id="qsz-x8-li1"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="223" id="wV0-ce-Kcc"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7UJ-h4-UeY">
-                                <rect key="frame" x="150" y="177" width="300" height="70"/>
+                                <rect key="frame" x="150" y="265" width="300" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="0dK-WB-MvJ"/>
                                     <constraint firstAttribute="width" constant="300" id="rSU-Qt-NAB"/>
@@ -54,7 +64,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQM-gL-nMX">
-                                <rect key="frame" x="150" y="233" width="300" height="30"/>
+                                <rect key="frame" x="150" y="325" width="300" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="Vs6-uc-kWP"/>
                                     <constraint firstAttribute="height" constant="30" id="oVP-sT-ePY"/>
@@ -64,7 +74,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTi-qA-Bnk">
-                                <rect key="frame" x="0.0" y="459" width="600" height="86"/>
+                                <rect key="frame" x="0.0" y="425" width="600" height="86"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="tickets.png" translatesAutoresizingMaskIntoConstraints="NO" id="kBn-IE-bVh">
                                         <rect key="frame" x="162" y="10" width="131" height="66"/>
@@ -82,16 +92,6 @@
                                     <constraint firstAttribute="width" constant="600" id="DPI-dg-oQd"/>
                                 </constraints>
                             </view>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="LogoDevoxxHuntly.png" translatesAutoresizingMaskIntoConstraints="NO" id="HBO-No-j5n">
-                                <rect key="frame" x="189" y="50" width="223" height="63"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="63" id="1tF-0w-62a"/>
-                                    <constraint firstAttribute="width" constant="223" id="2Uj-bP-9sT"/>
-                                    <constraint firstAttribute="height" constant="63" id="Xti-Au-XgN"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="223" id="qsz-x8-li1"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="223" id="wV0-ce-Kcc"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -99,9 +99,13 @@
                             <constraint firstItem="HBO-No-j5n" firstAttribute="centerX" secondItem="Wn1-Bo-ka4" secondAttribute="centerX" id="1l0-ut-abI"/>
                             <constraint firstItem="9uM-QF-Dvb" firstAttribute="centerX" secondItem="Wn1-Bo-ka4" secondAttribute="centerX" id="81J-KX-Okt"/>
                             <constraint firstItem="TTi-qA-Bnk" firstAttribute="centerX" secondItem="Wn1-Bo-ka4" secondAttribute="centerX" id="8EJ-nR-gYP"/>
+                            <constraint firstItem="dQM-gL-nMX" firstAttribute="top" secondItem="9uM-QF-Dvb" secondAttribute="bottom" constant="95" id="9lz-fe-kdI"/>
+                            <constraint firstItem="dQM-gL-nMX" firstAttribute="top" secondItem="9uM-QF-Dvb" secondAttribute="bottom" constant="50" id="AVg-cV-Jd9"/>
+                            <constraint firstItem="TTi-qA-Bnk" firstAttribute="top" secondItem="7UJ-h4-UeY" secondAttribute="bottom" constant="90" id="FH6-BR-jwC"/>
                             <constraint firstItem="yzW-Q9-QW3" firstAttribute="top" secondItem="2qg-aE-mxh" secondAttribute="bottom" constant="10" id="HIL-mn-RpX"/>
                             <constraint firstItem="TTi-qA-Bnk" firstAttribute="leading" secondItem="Wn1-Bo-ka4" secondAttribute="leadingMargin" id="K1a-3n-z95"/>
                             <constraint firstItem="2qg-aE-mxh" firstAttribute="leading" secondItem="Wn1-Bo-ka4" secondAttribute="leadingMargin" constant="15" id="Klq-4Z-aSe"/>
+                            <constraint firstItem="dQM-gL-nMX" firstAttribute="top" secondItem="9uM-QF-Dvb" secondAttribute="bottom" constant="30" id="LWa-Mw-mNe"/>
                             <constraint firstItem="9uM-QF-Dvb" firstAttribute="top" secondItem="Wn1-Bo-ka4" secondAttribute="topMargin" constant="140" id="PkS-ht-FOR"/>
                             <constraint firstItem="TTi-qA-Bnk" firstAttribute="centerX" secondItem="Wn1-Bo-ka4" secondAttribute="centerX" id="SjK-cL-Ure"/>
                             <constraint firstItem="HBO-No-j5n" firstAttribute="centerY" secondItem="Wn1-Bo-ka4" secondAttribute="centerY" id="ZwQ-jR-KHQ"/>
@@ -112,13 +116,22 @@
                             <constraint firstItem="HBO-No-j5n" firstAttribute="top" secondItem="Wn1-Bo-ka4" secondAttribute="topMargin" constant="50" id="gDO-u1-Smj"/>
                             <constraint firstItem="7UJ-h4-UeY" firstAttribute="top" secondItem="Wn1-Bo-ka4" secondAttribute="topMargin" constant="177" id="hmN-ia-qm3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TTi-qA-Bnk" secondAttribute="trailing" id="kBq-fD-tW6"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="TTi-qA-Bnk" secondAttribute="bottom" constant="55" id="n0W-9j-awc"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="TTi-qA-Bnk" secondAttribute="bottom" constant="89" id="n0W-9j-awc"/>
+                            <constraint firstItem="dQM-gL-nMX" firstAttribute="top" secondItem="7UJ-h4-UeY" secondAttribute="bottom" constant="-10" id="ukr-EO-4y0"/>
+                            <constraint firstItem="7UJ-h4-UeY" firstAttribute="centerY" secondItem="Wn1-Bo-ka4" secondAttribute="centerY" id="xgk-VS-ofg"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="ZwQ-jR-KHQ"/>
+                                <exclude reference="PkS-ht-FOR"/>
+                                <exclude reference="hmN-ia-qm3"/>
+                                <exclude reference="AVg-cV-Jd9"/>
+                                <exclude reference="LWa-Mw-mNe"/>
+                                <exclude reference="d5M-VA-7iX"/>
                                 <exclude reference="K1a-3n-z95"/>
+                                <exclude reference="SjK-cL-Ure"/>
                                 <exclude reference="kBq-fD-tW6"/>
+                                <exclude reference="n0W-9j-awc"/>
                             </mask>
                         </variation>
                     </view>

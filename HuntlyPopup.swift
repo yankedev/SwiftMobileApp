@@ -28,8 +28,9 @@ class HuntlyPopup : UIViewController {
         okBtn.setTitle("OK", forState: .Normal)
         playMoreBtn.setTitle("Play more", forState: .Normal)
         
-        promoLabel.text = "Play more & win tickets to Devoxx FR 2017!"
-        
+        promoLabel.text = "Play more & win Devoxx tickets"
+        pointLbl.textColor = ColorManager.huntlyOrangeColor
+        pointValueLbl.textColor = ColorManager.huntlyOrangeColor
         prizeView.backgroundColor = ColorManager.huntlyOrangeColor
     }
     
@@ -38,7 +39,10 @@ class HuntlyPopup : UIViewController {
     }
     
     func playMoreBtnSelector() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        let url = NSURL(string : "itms-apps://itunes.apple.com/us/app/apple-store/id992261510?mt=8")
+        if url != nil {
+            UIApplication.sharedApplication().openURL(url!)
+        }
     }
 
 }
