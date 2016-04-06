@@ -25,9 +25,10 @@ public class HuntlyNavigationController : UINavigationController {
         huntlyPointLbl.font = UIFont(name: "Roboto", size: 12)
         huntlyPointView.addSubview(huntlyPointLbl)
         huntlyPointLbl.textAlignment = .Center
-        
         huntlyLeftButton = UIBarButtonItem(customView: huntlyPointView)
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.clickScore))
+        huntlyPointView.addGestureRecognizer(tapGesture)
     }
 
     public override func viewWillAppear(animated: Bool) {
@@ -36,5 +37,10 @@ public class HuntlyNavigationController : UINavigationController {
     
     func updateScore(newScore : String) {
         huntlyPointLbl.text = "\(newScore)"
+    }
+    
+    func clickScore() {
+        print("clickScore")
+        HuntlyManagerService.sharedInstance.playMoreBtnSelector()
     }
 }
