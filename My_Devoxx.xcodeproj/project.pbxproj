@@ -22,6 +22,7 @@
 		E15D041C1CB1AD4B003301C8 /* tickets.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D041B1CB1AD4B003301C8 /* tickets.png */; };
 		E15D041E1CB1AD59003301C8 /* tickets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D041D1CB1AD59003301C8 /* tickets@2x.png */; };
 		E15D04201CB1AD5E003301C8 /* tickets@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D041F1CB1AD5E003301C8 /* tickets@3x.png */; };
+		E15D04261CB5B3FA003301C8 /* HuntlyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15D04251CB5B3FA003301C8 /* HuntlyNavigationController.swift */; };
 		E17050DF1CA560F700818E79 /* ic_beer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17050DD1CA560F700818E79 /* ic_beer@2x.png */; };
 		E17050E01CA560F700818E79 /* ic_wine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17050DE1CA560F700818E79 /* ic_wine@2x.png */; };
 		E175E6161C9638A2002A262A /* ActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5FC1C9638A2002A262A /* ActionButtonView.swift */; };
@@ -255,6 +256,7 @@
 		E15D041B1CB1AD4B003301C8 /* tickets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tickets.png; sourceTree = "<group>"; };
 		E15D041D1CB1AD59003301C8 /* tickets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tickets@2x.png"; sourceTree = "<group>"; };
 		E15D041F1CB1AD5E003301C8 /* tickets@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tickets@3x.png"; sourceTree = "<group>"; };
+		E15D04251CB5B3FA003301C8 /* HuntlyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntlyNavigationController.swift; sourceTree = "<group>"; };
 		E17050DD1CA560F700818E79 /* ic_beer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_beer@2x.png"; sourceTree = "<group>"; };
 		E17050DE1CA560F700818E79 /* ic_wine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_wine@2x.png"; sourceTree = "<group>"; };
 		E175E5FC1C9638A2002A262A /* ActionButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionButtonView.swift; path = View/ActionButtonView.swift; sourceTree = "<group>"; };
@@ -699,6 +701,7 @@
 				E1C9E1691CB17B8300796D02 /* HuntlyManager.swift */,
 				E1C9E1671CB16B1900796D02 /* Huntly.storyboard */,
 				E15D04191CB1A080003301C8 /* HuntlyPopup.swift */,
+				E15D04251CB5B3FA003301C8 /* HuntlyNavigationController.swift */,
 			);
 			name = Huntly;
 			sourceTree = "<group>";
@@ -1302,6 +1305,7 @@
 				E175E89E1C963EB4002A262A /* DayHelper.swift in Sources */,
 				E175E6621C963A16002A262A /* APIManager.swift in Sources */,
 				E175E89C1C963EB4002A262A /* CfpHelper.swift in Sources */,
+				E15D04261CB5B3FA003301C8 /* HuntlyNavigationController.swift in Sources */,
 				E175E8A31C963EB4002A262A /* SpeakerDetailHelper.swift in Sources */,
 				E175E7D51C963DFC002A262A /* CfpService.swift in Sources */,
 				E175E6501C963950002A262A /* SchedulerTableViewController.swift in Sources */,

@@ -112,11 +112,11 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         mapController.tabBarItem = UITabBarItem(title: TabNameString.map, image: mapTabImage, tag:3)
         settingsController.tabBarItem = UITabBarItem(title: TabNameString.settings, image: settingsTabImage, tag:4)
         
-        let speakerNavigationController = UINavigationController(rootViewController: speakerController)
+        let speakerNavigationController = HuntlyNavigationController(rootViewController: speakerController)
         
-        let settingsNavigationController = UINavigationController(rootViewController: settingsController)
+        let settingsNavigationController = HuntlyNavigationController(rootViewController: settingsController)
         
-        let mapNavigationController = UINavigationController(rootViewController: mapController)
+        let mapNavigationController = HuntlyNavigationController(rootViewController: mapController)
         
         self.customTabController.viewControllers = [scheduleController, trackController, speakerNavigationController, mapNavigationController, settingsNavigationController]
         self.customTabController.tabBar.translucent = false

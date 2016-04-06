@@ -21,7 +21,7 @@ public protocol ScrollableDateProtocol : NSObjectProtocol {
 
 
 
-public class ScheduleController<T : ScrollableDateProtocol> : UINavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
+public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
     
     
     
@@ -53,9 +53,12 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
         super.viewDidLoad()
         
+      
+        
+        
         customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"))
         
-        
+       
         
         feedDate()
         
@@ -259,6 +262,8 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         
         pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
         
+        self.pageViewController.navigationItem.leftBarButtonItem = huntlyLeftButton
+        
         pageViewController?.dataSource = self
         pageViewController?.delegate = self
         
@@ -271,8 +276,8 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         pushViewController(pageViewController!, animated: false)
         
         
-        //self.pageViewController.navigationItem.rightBarButtonItems = [customView!.filterRightButton, customView!.favoriteSwitcher]
-        self.pageViewController.navigationItem.leftBarButtonItem = customView!.huntlyLeftButton
+        
+        
         self.pageViewController.navigationItem.rightBarButtonItem = customView!.filterRightButton
         
         
@@ -294,5 +299,6 @@ public class ScheduleController<T : ScrollableDateProtocol> : UINavigationContro
         return dateFormatter.stringFromDate(date)
     }
     
+  
     
 }

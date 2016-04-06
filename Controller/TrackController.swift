@@ -18,7 +18,7 @@ import Foundation
 import UIKit
 
 
-public class TrackController<T : ScrollableDateProtocol> : UINavigationController, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
+public class TrackController<T : ScrollableDateProtocol> : HuntlyNavigationController, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
     
     
     
@@ -67,6 +67,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
         pageViewController?.dataSource = self
         pageViewController?.delegate = self
         
+        self.pageViewController.navigationItem.leftBarButtonItem = huntlyLeftButton
         
         self.view.addSubview(customView!)
         

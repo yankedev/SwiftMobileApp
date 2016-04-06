@@ -44,6 +44,10 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
     }
     
     override public func viewDidLoad() {
+        super.viewDidLoad()
+        if let nav = self.navigationController as? HuntlyNavigationController {
+            self.navigationItem.leftBarButtonItem = nav.huntlyLeftButton
+        }
         self.view.backgroundColor = UIColor.lightGrayColor()
         self.tableView = UITableView(frame: self.tableView.frame, style: .Grouped)
         self.navigationItem.title = NSLocalizedString("Settings", comment: "")

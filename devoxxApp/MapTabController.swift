@@ -40,6 +40,10 @@ public class MapTabController : UIViewController {
     
     override public func viewDidLoad() {
         
+        super.viewDidLoad()
+        if let nav = self.navigationController as? HuntlyNavigationController {
+            self.navigationItem.leftBarButtonItem = nav.huntlyLeftButton
+        }
         
         seg = UISegmentedControl()
         seg.translatesAutoresizingMaskIntoConstraints = false
