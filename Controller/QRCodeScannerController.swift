@@ -122,7 +122,7 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
             if metadataObj.stringValue != nil {
                 var qrCodeId = metadataObj.stringValue.characters.split{$0 == ","}.map(String.init)
                 APIManager.setQrCode(qrCodeId[0])
-                HuntlyManager.postExtraData()
+                HuntlyManagerService.sharedInstance.postExtraData()
                 dismissViewControllerAnimated(true, completion: completionOnceScanned)
             }
         }

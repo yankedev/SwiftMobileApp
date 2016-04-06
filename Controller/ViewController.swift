@@ -141,8 +141,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     func prepareHuntly() {
-        print(HuntlyManager.getUUID())
-        HuntlyManager.storeToken("firstAppRun", handlerSuccess : hunltyManager, handlerFailure: fail)
+        print(HuntlyManagerService.sharedInstance.getUUID())
+        HuntlyManagerService.sharedInstance.storeToken("firstAppRun", handlerSuccess : hunltyManager, handlerFailure: fail)
     }
     
     func hunltyManager() {
@@ -154,7 +154,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             
             viewController.titleBonus.text = "Welcome bonus"
             viewController.pointLbl.text = "Points"
-            viewController.pointValueLbl.text = "+40"
+            viewController.pointValueLbl.text = "+\(HuntlyManagerService.sharedInstance.FIRST_APP_RUN_QUEST_POINTS)"
             
         
             self.customTabController.presentViewController(viewController, animated: true, completion: nil)

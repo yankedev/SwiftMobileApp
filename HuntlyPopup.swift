@@ -40,7 +40,7 @@ class HuntlyPopup : UIViewController {
     
     func playMoreBtnSelector() {
         
-        let urlInApp = NSURL(string : "huntly://quests_screen")
+        let urlInApp = NSURL(string : "devoxxhuntly://quests_screen")
         let urlAppStore = NSURL(string : "itms-apps://itunes.apple.com/us/app/apple-store/id992261510?mt=8")
         
         let isInstalled = UIApplication.sharedApplication().canOpenURL(urlInApp!)

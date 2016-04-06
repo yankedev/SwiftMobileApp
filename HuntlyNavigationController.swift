@@ -12,15 +12,16 @@ import UIKit
 public class HuntlyNavigationController : UINavigationController {
 
     var huntlyLeftButton:UIBarButtonItem?
+    var huntlyPointLbl:UILabel!
 
     override public func viewDidLoad() {
         print("HuntlyNavigationController")
         let huntlyPointView = UIImageView(frame : CGRectMake(0, 0, 30, 30))
         huntlyPointView.image = UIImage(named: "DevoxxHuntlyIntegrationIcon")
         
-        let huntlyPointLbl = UILabel(frame : CGRectMake(0, 0, 30, 30))
+        huntlyPointLbl = UILabel(frame : CGRectMake(0, 0, 30, 30))
         
-        huntlyPointLbl.text = HuntlyManager.getHuntlyPoints()
+        huntlyPointLbl.text = HuntlyManagerService.sharedInstance.getHuntlyPoints()
         huntlyPointLbl.font = UIFont(name: "Roboto", size: 12)
         huntlyPointView.addSubview(huntlyPointLbl)
         huntlyPointLbl.textAlignment = .Center
@@ -29,4 +30,11 @@ public class HuntlyNavigationController : UINavigationController {
         
     }
 
+    public override func viewWillAppear(animated: Bool) {
+        HuntlyManagerService.sharedInstance.updateScore(updateScore)
+    }
+    
+    func updateScore(newScore : String) {
+        huntlyPointLbl.text = "\(newScore)"
+    }
 }

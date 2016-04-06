@@ -79,7 +79,7 @@
 	<false/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>huntly</string>
+		<string>huntlydevoxx</string>
 	</array>
 </dict>
 </plist>

@@ -148,7 +148,6 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = false
-        HuntlyManager.updateScore(updateScore)
     }
     
     
@@ -229,19 +228,12 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
                 if let reloadable = pageViewController.viewControllers![0] as? HotReloadProtocol {
                     reloadable.fetchUpdate()
                 }
-                
-                HuntlyManager.updateScore(updateScore)
-  
-                
-                
+ 
             }
         }
         
     }
-    
-    func updateScore(newScore : String) {
-        customView!.huntlyPointLbl.text = "\(newScore)"
-    }
+
     
     //ScrollableDateTableDelegate
     func feedDate() {

@@ -1,5 +1,5 @@
 //
-//  HuntlyManager.swift
+//  HuntlyManagerService.swift
 //  My_Devoxx
 //
 //  Created by Maxime on 03/04/16.
@@ -11,39 +11,66 @@ import UIKit
 import Alamofire
 
 
-class HuntlyManager {
-
-    static let API = "https://huntly-test.scalac.io"
-    static let TOKEN_STRING = "huntlyToken"
-    static let QUEST_COMPLETED = "questCompleted"
-    static let ACTIVITY_COMPLETED = "activityCompleted"
-    static let FIRST_APP_RUN_QUEST = "firstAppRun"
-    static let POINTS = "points"
-    static let VOTE_QUEST = "vote"
+class HuntlyManagerService {
     
-    class func getEventId() -> Int {
-        //to do
+    static let sharedInstance = HuntlyManagerService()
+
+    let API = "https://huntly-test.scalac.io"
+    let TOKEN_STRING = "huntlyToken"
+    let QUEST_COMPLETED = "questCompleted"
+    let ACTIVITY_COMPLETED = "activityCompleted"
+    let FIRST_APP_RUN_QUEST = "firstAppRun"
+    let POINTS = "points"
+    let VOTE_QUEST = "vote"
+    
+    let PLATFORM = "ios"
+    
+    var FIRST_APP_RUN_QUEST_ID = -1
+    var VOTE_QUEST_ID = -1
+    
+    var FIRST_APP_RUN_QUEST_POINTS = 0
+    var VOTE_QUEST_POINTS = 0
+    
+    
+    func getEventId() -> Int {
         return 56
     }
     
-    class func getStoredId(str: String) -> String {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let questId = defaults.objectForKey(str) as? Int {
-            return "\(questId)"
+    func setStoredId(str: String, value : Int) {
+        if(str == FIRST_APP_RUN_QUEST) {
+            FIRST_APP_RUN_QUEST_ID = value
         }
-        return "-1"
+        if(str == VOTE_QUEST) {
+            VOTE_QUEST_ID = value
+        }
     }
     
-    class func getUUID() -> String {
+    func setQuestPoints(str: String, value : Int) {
+        if(str == FIRST_APP_RUN_QUEST) {
+            FIRST_APP_RUN_QUEST_POINTS = value
+        }
+        if(str == VOTE_QUEST) {
+            VOTE_QUEST_POINTS = value
+        }
+    }
+    
+    func getStoredId(str: String) -> Int {
+        if(str == FIRST_APP_RUN_QUEST) {
+            return FIRST_APP_RUN_QUEST_ID
+        }
+        if(str == VOTE_QUEST) {
+            return VOTE_QUEST_ID
+        }
+        return -1
+    }
+    
+  
+    
+    func getUUID() -> String {
         return UIDevice.currentDevice().identifierForVendor?.UUIDString ?? ""
     }
-    
-    class func getPlatform() -> String {
-        return "ios"
-    }
-    
-   
-    class func getToken() -> String {
+
+    func getToken() -> String {
       
         let defaults = NSUserDefaults.standardUserDefaults()
         if let currentEventStr = defaults.objectForKey(TOKEN_STRING) as? String {
@@ -52,7 +79,7 @@ class HuntlyManager {
         return ""
     }
     
-    class func setToken(token : String?) {
+    func setToken(token : String?) {
         if token == nil {
             return
         }
@@ -60,19 +87,19 @@ class HuntlyManager {
         defaults.setObject(token, forKey: TOKEN_STRING)
     }
     
-    class func setHuntlyPoints(pts : String) {
+    func setHuntlyPoints(pts : String) {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(pts, forKey: POINTS)
     }
     
-    class func getHuntlyPoints() -> String {
+    func getHuntlyPoints() -> String {
         let defaults = NSUserDefaults.standardUserDefaults()
         return defaults.stringForKey(POINTS) ?? "0"
     }
     
-    class func findQuestId(str : String, handlerSuccess : (() -> Void), handlerFailure : (() -> Void)) {
+    func findQuestId(str : String, handlerSuccess : (() -> Void), handlerFailure : (() -> Void)) {
         
-        if getStoredId(str) != "-1" {
+        if getStoredId(str) != -1 {
             completeQuest(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
             return
         }
@@ -89,10 +116,10 @@ class HuntlyManager {
                     for jsonPart in JSON {
                         if let actName = jsonPart.objectForKey("activity") as? String {
                             if actName == str {
-                                if let questId = jsonPart.objectForKey("questId") as? Int {
-                                    let defaults = NSUserDefaults.standardUserDefaults()
-                                    defaults.setObject(questId, forKey: str)
-                                    completeQuest(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
+                                if let questId = jsonPart.objectForKey("questId") as? Int, let points = jsonPart.objectForKey("singleReward") as? Int {
+                                    self.setStoredId(str, value: questId)
+                                    self.setQuestPoints(str, value: points)
+                                    self.completeQuest(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
                                     return;
                                 }
                             }
@@ -107,14 +134,14 @@ class HuntlyManager {
 
     
     
-    class func completeQuest(str : String, handlerSuccess : (() -> Void), handlerFailure : (() -> Void)) {
+    func completeQuest(str : String, handlerSuccess : (() -> Void), handlerFailure : (() -> Void)) {
         
-        if getStoredId(str) == "-1" {
+        if getStoredId(str) == -1 {
             findQuestId(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
             return
         }
         
-        let questIdValue = getStoredId(str)
+        let questIdValue = "\(getStoredId(str))"
 
         let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
                        "X-AUTH-TOKEN" : getToken()]
@@ -134,9 +161,9 @@ class HuntlyManager {
                        
                         guard response.result.value == nil else {
                             let response = JSON(response.result.value!)
-                            if response["status"].string == QUEST_COMPLETED || response["status"].string == ACTIVITY_COMPLETED {
+                            if response["status"].string == self.QUEST_COMPLETED || response["status"].string == self.ACTIVITY_COMPLETED {
                                 print(response)
-                                print(getToken())
+                                print(self.getToken())
                                 print("SHOULD SHOW POPUP")
                                 handlerSuccess()
                             }
@@ -161,7 +188,7 @@ class HuntlyManager {
     
     }
 
-    class func updateScore(handlerSuccess : ((String) -> Void)) {
+    func updateScore(handlerSuccess : ((String) -> Void)) {
         
         let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
                        "X-AUTH-TOKEN" : getToken()]
@@ -172,7 +199,7 @@ class HuntlyManager {
                 if let JSON = response.result.value {
                     print(JSON)
                     if let pts = JSON.objectForKey("points") as? Int {
-                        setHuntlyPoints("\(pts)")
+                        self.setHuntlyPoints("\(pts)")
                         handlerSuccess("\(pts)")
                     }
                 }
@@ -180,7 +207,7 @@ class HuntlyManager {
     }
     
     
-    class func postExtraData() {
+    func postExtraData() {
         
         let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
                        "X-AUTH-TOKEN" : getToken()]
@@ -199,7 +226,7 @@ class HuntlyManager {
         
     }
     
-    class func storeToken(str : String, handlerSuccess : (Void) -> (), handlerFailure : (Void) -> ())  {
+    func storeToken(str : String, handlerSuccess : (Void) -> (), handlerFailure : (Void) -> ())  {
         
         if getToken() != "" {
             completeQuest(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
@@ -207,7 +234,6 @@ class HuntlyManager {
         }
         
         let UIdValue = getUUID()
-        let platformId = getPlatform()
         
         let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ=="]
         
@@ -219,7 +245,7 @@ class HuntlyManager {
             headers: headers,
             multipartFormData: { multipartFormData in
                 multipartFormData.appendBodyPart(data: UIdValue.dataUsingEncoding(NSUTF8StringEncoding)!, name: "uid")
-                multipartFormData.appendBodyPart(data: platformId.dataUsingEncoding(NSUTF8StringEncoding)!, name: "platform")
+                multipartFormData.appendBodyPart(data: self.PLATFORM.dataUsingEncoding(NSUTF8StringEncoding)!, name: "platform")
 },
             encodingCompletion: { encodingResult in
                 switch encodingResult {
@@ -228,8 +254,8 @@ class HuntlyManager {
                     upload.responseJSON { response in
                         
                         let response = JSON(response.result.value!)
-                        setToken(response["user"]["token"].string)
-                        completeQuest(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
+                        self.setToken(response["user"]["token"].string)
+                        self.completeQuest(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
                     }
 
                 case .Failure(let encodingError):

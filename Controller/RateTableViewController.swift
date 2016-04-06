@@ -170,7 +170,7 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
     
     
     func prepareHuntly() {
-        HuntlyManager.storeToken("vote", handlerSuccess: hunltyManager, handlerFailure : dismiss)
+        HuntlyManagerService.sharedInstance.storeToken("vote", handlerSuccess: hunltyManager, handlerFailure : dismiss)
     }
     
     func hunltyManager() {
@@ -182,7 +182,7 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
             
             viewController.titleBonus.text = "You just won"
             viewController.pointLbl.text = "Points"
-            viewController.pointValueLbl.text = "+2"
+            viewController.pointValueLbl.text = "+\(HuntlyManagerService.sharedInstance.VOTE_QUEST_POINTS)"
             
             viewController.okBtn.addTarget(self, action: #selector(RateTableViewController.dismiss), forControlEvents: .TouchUpInside)
 
