@@ -182,7 +182,7 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
             
             viewController.titleBonus.text = "You just won"
             viewController.pointLbl.text = "Points"
-            viewController.pointValueLbl.text = "+10"
+            viewController.pointValueLbl.text = "+2"
             
             viewController.okBtn.addTarget(self, action: #selector(RateTableViewController.dismiss), forControlEvents: .TouchUpInside)
 

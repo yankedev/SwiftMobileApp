@@ -13,7 +13,7 @@ import Alamofire
 
 class HuntlyManager {
 
-    static let API = "https://huntly-devel.scalac.io"
+    static let API = "https://huntly-test.scalac.io"
     static let TOKEN_STRING = "huntlyToken"
     static let QUEST_COMPLETED = "questCompleted"
     static let ACTIVITY_COMPLETED = "activityCompleted"
@@ -23,7 +23,7 @@ class HuntlyManager {
     
     class func getEventId() -> Int {
         //to do
-        return 7
+        return 56
     }
     
     class func getStoredId(str: String) -> String {
@@ -82,7 +82,7 @@ class HuntlyManager {
                        "X-AUTH-TOKEN" : getToken()]
         
         
-        Alamofire.request(.GET, "\(API)/deployments/7/quests/activity/list", headers : headers)
+        Alamofire.request(.GET, "\(API)/deployments/\(getEventId())/quests/activity/list", headers : headers)
             .responseJSON { response in
             
                 if let JSON = response.result.value as? NSArray {
@@ -135,6 +135,8 @@ class HuntlyManager {
                         guard response.result.value == nil else {
                             let response = JSON(response.result.value!)
                             if response["status"].string == QUEST_COMPLETED || response["status"].string == ACTIVITY_COMPLETED {
+                                print(response)
+                                print(getToken())
                                 print("SHOULD SHOW POPUP")
                                 handlerSuccess()
                             }
@@ -164,7 +166,7 @@ class HuntlyManager {
         let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
                        "X-AUTH-TOKEN" : getToken()]
         
-        Alamofire.request(.GET, "\(API)/deployments/7/user", headers : headers)
+        Alamofire.request(.GET, "\(API)/deployments/\(getEventId())/user", headers : headers)
             .responseJSON { response in
 
                 if let JSON = response.result.value {
@@ -187,7 +189,7 @@ class HuntlyManager {
             "externalUserId": APIManager.getQrCode() ?? ""
         ]
         
-        Alamofire.request(.POST, "\(API)/deployments/7/profile/fill", parameters: parameters, encoding: .JSON, headers: headers)
+        Alamofire.request(.POST, "\(API)/deployments/\(getEventId())/profile/fill", parameters: parameters, encoding: .JSON, headers: headers)
             .responseJSON { response in
                 
                 if let JSON = response.result.value {
