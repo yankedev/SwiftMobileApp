@@ -84,11 +84,9 @@
         
         class func makeRequest(storedResource : StoredResource, service : AbstractService, helper : DataHelperProtocol, loadFromFile : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
             
-            
-             //print("___________check for \(storedResource.url), fed = \(service.hasBeenAlreadyFed())")
-            
+            var urlToFetch = storedResource.url
             if loadFromFile {
-                storedResource.url = ""
+                urlToFetch = ""
             }
             
            
@@ -110,7 +108,7 @@
             let session = NSURLSession(configuration: config)
             
         
-            let task = session.dataTaskWithURL(NSURL(string: storedResource.url)!) {
+            let task = session.dataTaskWithURL(NSURL(string: urlToFetch)!) {
                 data, response1, error in
                 
                 
@@ -118,20 +116,22 @@
                 
                 if let _ = error {
                     
-                    /*print("No internet for \(storedResource.url)")
+                    print("No internet for \(storedResource.url)")
                     print("Error \(error)")
                     print("Store callbal =  \(storedResource.fallback)")
-                    */
+                    print("Store callbal =  \(storedResource.fallback)")
+                    
                     
                     if loadFromFile {
                         
-                        //print("critical call")
+                        print("critical call")
                         
                         
                         let data = APIManager.getFallBackData(storedResource)
                         
                         if data == nil {
                             dispatch_async(dispatch_get_main_queue(),{
+                                print("on error \(storedResource.fallback)")
                                 onError(value: storedResource.url)
                             })
                         }

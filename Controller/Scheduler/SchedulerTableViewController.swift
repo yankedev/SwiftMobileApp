@@ -93,6 +93,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
             for _ in sections {
                 openedSections.append(true)
             }
+            print("cb retour, sections \(sections.count)")
         }
         schedulerTableView.reloadData()
     }
