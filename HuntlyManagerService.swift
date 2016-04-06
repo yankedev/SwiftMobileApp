@@ -256,7 +256,10 @@ class HuntlyManagerService {
                 case .Success(let upload, _, _):
                     
                     upload.responseJSON { response in
-                        
+                        if response.result.value == nil {
+                            handlerFailure()
+                            return
+                        }
                         let response = JSON(response.result.value!)
                         self.setToken(response["user"]["token"].string)
                         self.completeQuest(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)

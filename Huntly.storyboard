@@ -74,7 +74,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTi-qA-Bnk">
-                                <rect key="frame" x="0.0" y="425" width="600" height="86"/>
+                                <rect key="frame" x="0.0" y="405" width="600" height="86"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="tickets.png" translatesAutoresizingMaskIntoConstraints="NO" id="kBn-IE-bVh">
                                         <rect key="frame" x="162" y="10" width="131" height="66"/>
@@ -101,7 +101,7 @@
                             <constraint firstItem="TTi-qA-Bnk" firstAttribute="centerX" secondItem="Wn1-Bo-ka4" secondAttribute="centerX" id="8EJ-nR-gYP"/>
                             <constraint firstItem="dQM-gL-nMX" firstAttribute="top" secondItem="9uM-QF-Dvb" secondAttribute="bottom" constant="95" id="9lz-fe-kdI"/>
                             <constraint firstItem="dQM-gL-nMX" firstAttribute="top" secondItem="9uM-QF-Dvb" secondAttribute="bottom" constant="50" id="AVg-cV-Jd9"/>
-                            <constraint firstItem="TTi-qA-Bnk" firstAttribute="top" secondItem="7UJ-h4-UeY" secondAttribute="bottom" constant="90" id="FH6-BR-jwC"/>
+                            <constraint firstItem="TTi-qA-Bnk" firstAttribute="top" secondItem="7UJ-h4-UeY" secondAttribute="bottom" constant="70" id="FH6-BR-jwC"/>
                             <constraint firstItem="yzW-Q9-QW3" firstAttribute="top" secondItem="2qg-aE-mxh" secondAttribute="bottom" constant="10" id="HIL-mn-RpX"/>
                             <constraint firstItem="TTi-qA-Bnk" firstAttribute="leading" secondItem="Wn1-Bo-ka4" secondAttribute="leadingMargin" id="K1a-3n-z95"/>
                             <constraint firstItem="2qg-aE-mxh" firstAttribute="leading" secondItem="Wn1-Bo-ka4" secondAttribute="leadingMargin" constant="15" id="Klq-4Z-aSe"/>
