@@ -164,7 +164,7 @@ class HuntlyManagerService {
                             if response["status"].string == self.QUEST_COMPLETED || response["status"].string == self.ACTIVITY_COMPLETED {
                                 print(response)
                                 print(self.getToken())
-                                print("SHOULD SHOW POPUP")
+                                self.postExtraData()
                                 handlerSuccess()
                             }
                             else {
@@ -209,13 +209,17 @@ class HuntlyManagerService {
     
     func postExtraData() {
         
+        if APIManager.getQrCode() == nil {
+            return
+        }
+        
         let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
                        "X-AUTH-TOKEN" : getToken()]
 
         let parameters = [
             "externalUserId": APIManager.getQrCode() ?? ""
         ]
-        
+        print(parameters)
         Alamofire.request(.POST, "\(API)/deployments/\(getEventId())/profile/fill", parameters: parameters, encoding: .JSON, headers: headers)
             .responseJSON { response in
                 
