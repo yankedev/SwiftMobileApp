@@ -213,21 +213,48 @@ class HuntlyManagerService {
             return
         }
         
+        
         let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
                        "X-AUTH-TOKEN" : getToken()]
-
-        let parameters = [
-            "externalUserId": APIManager.getQrCode() ?? ""
-        ]
-        print(parameters)
-        Alamofire.request(.POST, "\(API)/deployments/\(getEventId())/profile/fill", parameters: parameters, encoding: .JSON, headers: headers)
-            .responseJSON { response in
-                
-                if let JSON = response.result.value {
-                    print(JSON)
-                }
-        }
         
+        let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
+        
+       
+        config.HTTPAdditionalHeaders = headers
+        config.requestCachePolicy = .ReloadIgnoringLocalCacheData
+        config.timeoutIntervalForResource = 15
+        
+        let session = NSURLSession(configuration: config)
+
+        
+
+        let params:[String: String] = [
+            "key" : "userId",
+            "value" : APIManager.getQrCode()! ]
+        
+        let url = NSURL(string:"\(API)/deployments/\(getEventId())/profile/fill")
+        let request = NSMutableURLRequest(URL: url!)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.HTTPMethod = "POST"
+        request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject([params], options: NSJSONWritingOptions())
+       
+        
+        let task = session.dataTaskWithRequest(request) {
+            data, response, error in
+            
+            if let httpResponse = response as? NSHTTPURLResponse {
+                if httpResponse.statusCode != 200 {
+                    print(request)
+                    print("response was not 200: \(response)")
+                    return
+                }
+            }
+            if (error != nil) {
+                print("error submitting request: \(error)")
+                return
+            }
+        }
+        task.resume()
     }
     
     func storeToken(str : String, handlerSuccess : (Void) -> (), handlerFailure : (Void) -> ())  {
