@@ -447,7 +447,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         
         headerView.tag = section
         headerView.upDown.tag = section
-        headerView.upDown.addTarget(self, action: Selector("openCloseButton:"), forControlEvents: .TouchUpInside)
+        headerView.upDown.addTarget(self, action: #selector(self.openCloseButton(_:)), forControlEvents: .TouchUpInside)
         headerView.upDown.selected = openedSections[section]
         
         if breakSlot {
@@ -462,7 +462,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
             
             headerView.numberOfTalkString.text = "\(nbTalks) \(pluralTalks) in \(set.count) \(pluralTracks)"
             
-            let tap = UITapGestureRecognizer(target: self, action: Selector("openCloseView:"))
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.openCloseView(_:)))
             headerView.addGestureRecognizer(tap)
         }
         

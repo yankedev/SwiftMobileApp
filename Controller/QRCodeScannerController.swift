@@ -34,7 +34,7 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
         
         
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title:  NSLocalizedString("Cancel", comment: ""), style: .Plain, target: self, action: Selector("cancel"))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title:  NSLocalizedString("Cancel", comment: ""), style: .Plain, target: self, action: #selector(self.cancel))
         
         scan()
         

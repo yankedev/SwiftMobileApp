@@ -53,7 +53,7 @@ public class MapTabController : UIViewController {
         
         setupSegments()
         
-        seg.addTarget(self, action: Selector("change:"), forControlEvents: .ValueChanged)
+        seg.addTarget(self, action: #selector(self.change(_:)), forControlEvents: .ValueChanged)
         
         seg.tintColor = ColorManager.topNavigationBarColor
         

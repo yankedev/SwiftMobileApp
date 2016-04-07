@@ -82,7 +82,7 @@ class StarView : UITableViewCell {
         let image0 = UIImage(named: "ic_star")?.imageWithRenderingMode(.AlwaysTemplate)
         btn.setImage(image0, forState: .Normal)
         btn.tintColor = UIColor.whiteColor()
-        btn.addTarget(self, action: Selector("clickStar:"), forControlEvents: .TouchUpInside)
+        btn.addTarget(self, action: #selector(self.clickStar(_:)), forControlEvents: .TouchUpInside)
         btn.tag = 0
     }
     
@@ -108,7 +108,7 @@ class StarView : UITableViewCell {
                 nbStar = idx
                 search.tag = 1
                 search.tintColor = ColorManager.topNavigationBarColor
-                idx++
+                idx += 1
                 search = starArray[idx]
             }
             
@@ -130,7 +130,7 @@ class StarView : UITableViewCell {
             if btn.tag == 0 {
                 break
             }
-            idx++
+            idx += 1
         }
         
         return idx

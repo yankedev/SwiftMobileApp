@@ -233,7 +233,7 @@ public class AbstractDetailsController : UIViewController {
         
         view.layoutIfNeeded()
         
-        actionButtonView1.button.addTarget(self, action: Selector("clicked"), forControlEvents: .TouchUpInside)
+        actionButtonView1.button.addTarget(self, action: #selector(self.clicked), forControlEvents: .TouchUpInside)
         
         
     }
@@ -262,7 +262,7 @@ public class AbstractDetailsController : UIViewController {
         
         actionButtonView2.button.addTarget(self, action: Selector("tryToRate"), forControlEvents: .TouchUpInside)
         
-        actionButtonViewBack.button.addTarget(self, action: Selector("back"), forControlEvents: .TouchUpInside)
+        actionButtonViewBack.button.addTarget(self, action: #selector(self.back), forControlEvents: .TouchUpInside)
         
         actionButtonViewBack.setup(false)
         actionButtonView0.setup(true)
@@ -321,6 +321,8 @@ public class AbstractDetailsController : UIViewController {
         //todo
         return ""
     }
+    
+    
    
     
     

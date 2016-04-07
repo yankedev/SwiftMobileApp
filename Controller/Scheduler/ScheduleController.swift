@@ -56,7 +56,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
       
         
         
-        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"))
+        customView = ScheduleControllerView(target: self, filterSelector: #selector(self.filterMe))
         
        
         
@@ -163,7 +163,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
             return nil
         }
         
-        currentIndex--
+        currentIndex -= 1
         
         return viewControllerAtIndex(currentIndex)
     }
@@ -175,7 +175,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
             currentIndex = demoController.index
         }
         
-        currentIndex++
+        currentIndex += 1
         
         
         if currentIndex == allDates.count {

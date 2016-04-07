@@ -69,14 +69,14 @@ class AbstractService  {
                         }
                         
                     
-                } catch let err as NSError {
+                } catch _ as NSError {
                     //print("Could not save main context: \(err.localizedDescription)")
                     dispatch_async(dispatch_get_main_queue(),{
                         completionHandler?(msg: CompletionMessage(msg: "KO"))
                     })
                 }
             }
-        } catch let err as NSError {
+        } catch _ as NSError {
             //print("Could not save private context: \(err.localizedDescription)")
             dispatch_async(dispatch_get_main_queue(),{
                 completionHandler?(msg: CompletionMessage(msg: "KO"))
@@ -94,14 +94,14 @@ class AbstractService  {
                     dispatch_async(dispatch_get_main_queue(),{
                         completionHandler?(data: nil)
                     })
-                } catch let err as NSError {
+                } catch _ as NSError {
                     //print("Could not save main context: \(err.localizedDescription)")
                     dispatch_async(dispatch_get_main_queue(),{
                         completionHandler
                     })
                 }
             }
-        } catch let err as NSError {
+        } catch _ as NSError {
             //print("Could not save private context: \(err.localizedDescription)")
             dispatch_async(dispatch_get_main_queue(),{
                 completionHandler

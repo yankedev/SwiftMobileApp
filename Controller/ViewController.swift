@@ -279,7 +279,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         
-        goView.goButton.addTarget(self, action: Selector("prepareNext"), forControlEvents: .TouchUpInside)
+        goView.goButton.addTarget(self, action: #selector(self.prepareNext), forControlEvents: .TouchUpInside)
         
         
         APIManager.firstFeed(loadWheel, service: CfpService.sharedInstance)
@@ -318,7 +318,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                         break
                     }
                     else {
-                        idx++
+                        idx += 1
                     }
                 }
             }

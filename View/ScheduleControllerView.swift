@@ -18,10 +18,7 @@ class ScheduleControllerView : UIView, TopFilterableProtocol {
     
     var filterRightButton:UIBarButtonItem
 
-    let huntlyPointLbl = UILabel(frame : CGRectMake(0, 0, 30, 30))
-    
     init(target: AnyObject?, filterSelector:Selector) {
-        
         
         let img = UIImage(named: "ic_filter_inactive")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         filterRightButton = UIBarButtonItem(image: img, style: UIBarButtonItemStyle.Plain, target: target, action: filterSelector)

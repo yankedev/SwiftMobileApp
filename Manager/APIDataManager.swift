@@ -21,7 +21,7 @@
                 if let object = try context.existingObjectWithID(id) as? T {
                     return object
                 }
-            } catch let error1 as NSError {
+            } catch _ as NSError {
                 //print(error1)
             }
             return nil

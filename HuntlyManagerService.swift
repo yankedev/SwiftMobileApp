@@ -265,7 +265,7 @@ class HuntlyManagerService {
                         self.completeQuest(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
                     }
 
-                case .Failure(let encodingError):
+                case .Failure( _):
                     handlerFailure()
                 }
             }
