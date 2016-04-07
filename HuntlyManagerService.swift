@@ -31,6 +31,9 @@ class HuntlyManagerService {
     var FIRST_APP_RUN_QUEST_POINTS = 0
     var VOTE_QUEST_POINTS = 0
     
+    var APP_STORE_LINK = ""
+    var SCHEME_URL = ""
+    
     
     func getEventId() -> Int {
         return 56
@@ -300,17 +303,39 @@ class HuntlyManagerService {
         
     }
     
-    func playMoreBtnSelector() {
-        
-        let urlInApp = NSURL(string : "devoxxhuntly://quests_screen")
-        let urlAppStore = NSURL(string : "itms-apps://itunes.apple.com/us/app/apple-store/id992261510?mt=8")
-        
-        let isInstalled = UIApplication.sharedApplication().canOpenURL(urlInApp!)
-        if isInstalled {
-            UIApplication.sharedApplication().openURL(urlInApp!)
+    func goDeepLink() {
+    
+        if APP_STORE_LINK == "" {
+            
+            let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ=="]
+            
+            Alamofire.request(.GET, "\(API)/deployments/\(getEventId())/deeplink", headers : headers)
+                .responseJSON { response in
+                    
+                    if let JSON = response.result.value {
+                        print(JSON)
+                        if let appStoreUri = JSON.objectForKey("appStoreUri") as? String, let urlScheme = JSON.objectForKey("deepLink") as? String {
+                            self.APP_STORE_LINK = appStoreUri
+                            self.SCHEME_URL = urlScheme
+                            self.playMoreBtnSelector()
+                        }
+                    }
+            }
         }
         else {
-            UIApplication.sharedApplication().openURL(urlAppStore!)
+            playMoreBtnSelector()
+        }
+    
+    }
+    
+    func playMoreBtnSelector() {
+    
+        let isInstalled = UIApplication.sharedApplication().canOpenURL(NSURL(string:SCHEME_URL)!)
+        if isInstalled {
+            UIApplication.sharedApplication().openURL(NSURL(string:SCHEME_URL)!)
+        }
+        else {
+            UIApplication.sharedApplication().openURL(NSURL(string:APP_STORE_LINK)!)
         }
     }
 }

@@ -40,7 +40,6 @@ public class HuntlyNavigationController : UINavigationController {
     }
     
     func clickScore() {
-        print("clickScore")
-        HuntlyManagerService.sharedInstance.playMoreBtnSelector()
+        HuntlyManagerService.sharedInstance.goDeepLink()
     }
 }
