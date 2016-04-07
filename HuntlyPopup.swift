@@ -39,7 +39,10 @@ class HuntlyPopup : UIViewController {
     }
     
     func playMoreBtnSelector() {
-        HuntlyManagerService.sharedInstance.playMoreBtnSelector()
+        self.dismissViewControllerAnimated(true, completion: {
+            HuntlyManagerService.sharedInstance.playMoreBtnSelector()
+            }
+        )
     }
 
 }
