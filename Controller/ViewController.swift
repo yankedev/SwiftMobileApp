@@ -134,14 +134,17 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         self.addChildViewController(self.customTabController)
         self.view.addSubview(self.customTabController.view)
         
-        prepareHuntly()
+        feedEventId()
         
     }
     func fail() {
     }
     
+    func feedEventId() {
+        HuntlyManagerService.sharedInstance.feedEventId(prepareHuntly)
+    }
+    
     func prepareHuntly() {
-        print(HuntlyManagerService.sharedInstance.getUUID())
         HuntlyManagerService.sharedInstance.storeToken("firstAppRun", handlerSuccess : hunltyManager, handlerFailure: fail)
     }
     

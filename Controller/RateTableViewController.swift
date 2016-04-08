@@ -167,11 +167,14 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         })
     }
 
-    
+    func feedEventId() {
+        HuntlyManagerService.sharedInstance.feedEventId(prepareHuntly)
+    }
     
     func prepareHuntly() {
         HuntlyManagerService.sharedInstance.storeToken("vote", handlerSuccess: hunltyManager, handlerFailure : dismiss)
     }
+    
     
     func hunltyManager() {
         print(UIStoryboard(name: "Huntly", bundle: nil).instantiateViewControllerWithIdentifier("HuntlyPopup") as? HuntlyPopup)
@@ -199,7 +202,7 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         dismissViewControllerAnimated(true, completion: nil)
     }
     func dissmiss(action : UIAlertAction) {
-        prepareHuntly()
+        feedEventId()
     }
     
     

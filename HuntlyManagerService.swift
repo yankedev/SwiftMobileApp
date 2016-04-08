@@ -34,9 +34,38 @@ class HuntlyManagerService {
     var APP_STORE_LINK = ""
     var SCHEME_URL = ""
     
+    var EVENT_ID = -1
     
-    func getEventId() -> Int {
-        return 56
+    
+    func feedEventId(callBack : () -> Void) {
+        
+        if EVENT_ID != -1 {
+            callBack()
+            return
+        }
+        
+        let integration_id = CfpService.sharedInstance.getIntegrationId()
+            
+            let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ=="]
+            
+            Alamofire.request(.GET, "\(API)/deployments", headers : headers)
+                .responseJSON { response in
+           
+                if let JSON = response.result.value {
+                        
+                    if let arrayJSON = JSON as? NSArray {
+                        for singleDeployment in arrayJSON {
+                            if singleDeployment.objectForKey("externalId") as? String == integration_id {
+                                self.EVENT_ID = (singleDeployment.objectForKey("eventId") as? Int) ?? -1
+                                callBack()
+                                return
+                            }
+                        }
+                    }
+                }
+        }
+            
+        
     }
     
     func setStoredId(str: String, value : Int) {
@@ -112,7 +141,7 @@ class HuntlyManagerService {
                        "X-AUTH-TOKEN" : getToken()]
         
         
-        Alamofire.request(.GET, "\(API)/deployments/\(getEventId())/quests/activity/list", headers : headers)
+        Alamofire.request(.GET, "\(API)/deployments/\(EVENT_ID)/quests/activity/list", headers : headers)
             .responseJSON { response in
             
                 if let JSON = response.result.value as? NSArray {
@@ -196,7 +225,7 @@ class HuntlyManagerService {
         let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
                        "X-AUTH-TOKEN" : getToken()]
         
-        Alamofire.request(.GET, "\(API)/deployments/\(getEventId())/user", headers : headers)
+        Alamofire.request(.GET, "\(API)/deployments/\(EVENT_ID)/user", headers : headers)
             .responseJSON { response in
 
                 if let JSON = response.result.value {
@@ -235,7 +264,7 @@ class HuntlyManagerService {
             "key" : "userId",
             "value" : APIManager.getQrCode()! ]
         
-        let url = NSURL(string:"\(API)/deployments/\(getEventId())/profile/fill")
+        let url = NSURL(string:"\(API)/deployments/\(EVENT_ID)/profile/fill")
         let request = NSMutableURLRequest(URL: url!)
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod = "POST"
@@ -309,11 +338,11 @@ class HuntlyManagerService {
             
             let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ=="]
             
-            Alamofire.request(.GET, "\(API)/deployments/\(getEventId())/deeplink", headers : headers)
+            Alamofire.request(.GET, "\(API)/deployments/\(EVENT_ID)/deeplink", headers : headers)
                 .responseJSON { response in
                     
                     if let JSON = response.result.value {
-                        print(JSON)
+    
                         if let appStoreUri = JSON.objectForKey("appStoreUri") as? String, let urlScheme = JSON.objectForKey("deepLink") as? String {
                             self.APP_STORE_LINK = appStoreUri
                             self.SCHEME_URL = urlScheme

@@ -103,6 +103,11 @@ class CfpService : AbstractService {
         return Double(cfp.longitude!)!
     }
     
+    func getIntegrationId() -> String {
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return cfp.integration_id ?? ""
+    }
+    
     func fetchCfps(completionHandler: (cfps: [Cfp], error: CfpStoreError?) -> Void) {
         privateManagedObjectContext.performBlock {
             do {
@@ -182,6 +187,11 @@ class CfpService : AbstractService {
                         }
                         
                         
+                    }
+                    else {
+                        if let feedable = items[0] as? FeedableProtocol {
+                            feedable.feedHelper(singleHelper)
+                        }
                     }
                     
                     if let cfpHelper = singleHelper as? CfpHelper {

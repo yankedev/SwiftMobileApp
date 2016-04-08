@@ -15,7 +15,7 @@
              {"img": "https://s3-eu-west-1.amazonaws.com/cfpdevoxx/france/DevoxxExposantsPhone.jpg", "title": "Exposants", "tabpos": "2", "target": "phone"},
              {"img": "https://s3-eu-west-1.amazonaws.com/cfpdevoxx/france/DevoxxExposantsTablet.jpg", "title": "Exposants", "tabpos": "2", "target": "tablet"}
              ],
-  "capacity": "2501",
+  "capacity": "2700",
   "sessions": "200",
   "hashtag": "#DevoxxFR",
   "splashImgURL": "https://s3-eu-west-1.amazonaws.com/cfpdevoxx/france/DevoxxFranceHomePage.jpg",
@@ -30,7 +30,8 @@
   "votingImageName": "wine",
   "cfpEndpoint": "https://cfp.devoxx.fr/api",
   "cfpVersion": "1.0",
-  "youTubeURL": "https://www.youtube.com/c/devoxx2015"
+  "youTubeURL": "https://www.youtube.com/c/devoxx2015",
+  "integration_id":"devoxx_france"
   },
   {
   "id": "DevoxxUK2016",
@@ -63,7 +64,8 @@
   "votingImageName": "beer",
   "cfpEndpoint": "https://cfp.devoxx.co.uk/api",
   "cfpVersion": "1.0",
-  "youTubeURL": "https://www.youtube.com/c/devoxx2015"
+  "youTubeURL": "https://www.youtube.com/c/devoxx2015",
+  "integration_id":"devoxx_uk"
   },
   {
   "id": "DevoxxPL2015",
@@ -96,7 +98,8 @@
   "votingImageName": "vodka",
   "cfpEndpoint": "http://cfp.devoxx.pl/api",
   "cfpVersion": "1.0",
-  "youTubeURL": "https://www.youtube.com/c/devoxx2015"
+  "youTubeURL": "https://www.youtube.com/c/devoxx2015",
+  "integration_id":"devoxx_poland"
   },
   {
   "id": "DV15",
@@ -129,7 +132,8 @@
   "votingImageName": "beer",
   "cfpEndpoint": "https://cfp.devoxx.be/api",
   "cfpVersion": "1.0",
-  "youTubeURL": "https://www.youtube.com/c/devoxx2015"
+  "youTubeURL": "https://www.youtube.com/c/devoxx2015",
+  "integration_id":"devoxx_belgium"
   },
   {
   "id": "DevoxxMA2015",
@@ -162,7 +166,7 @@
   "votingImageName": "thee",
   "cfpEndpoint": "http://cfp.devoxx.ma/api",
   "cfpVersion": "1.0",
-  "youTubeURL": "https://www.youtube.com/user/JMaghreb"
+  "youTubeURL": "https://www.youtube.com/user/JMaghreb",
+  "integration_id":"devoxx_morocco"
   }
   ]
-

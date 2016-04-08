@@ -12,6 +12,7 @@ class CfpHelper: DataHelperProtocol {
     
     
     var id: String?
+    var integration_id: String?
     var confType: String?
     var confDescription: String?
     var venue: String?
@@ -34,8 +35,9 @@ class CfpHelper: DataHelperProtocol {
     init() {
     }
     
-    init(id: String?, confType: String?, confDescription: String?, venue: String?, address: String?, country: String?, capacity: String?, sessions: String?, latitude:String?, longitude:String?, splashImgURL: String?, hashtag: String?, fromDate: String?, talkURL: String?, regURL : String?, cfpEndpoint : String?, votingImageName : String?) {
+    init(id: String?, integration_id: String?, confType: String?, confDescription: String?, venue: String?, address: String?, country: String?, capacity: String?, sessions: String?, latitude:String?, longitude:String?, splashImgURL: String?, hashtag: String?, fromDate: String?, talkURL: String?, regURL : String?, cfpEndpoint : String?, votingImageName : String?) {
         self.id = id ?? ""
+        self.integration_id = integration_id ?? ""
         self.confType = confType ?? ""
         self.confDescription = confDescription ?? ""
         self.venue = venue ?? ""
@@ -66,6 +68,7 @@ class CfpHelper: DataHelperProtocol {
     func feed(data: JSON) {
         
         id = data["id"].string
+        integration_id = data["integration_id"].string
         confType = data["confType"].string
         confDescription = data["confDescription"].string
         venue = data["venue"].string
