@@ -141,7 +141,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     func feedEventId() {
-        HuntlyManagerService.sharedInstance.feedEventId(prepareHuntly)
+        HuntlyManagerService.sharedInstance.feedEventId(prepareHuntly, callbackFailure: fail)
     }
     
     func prepareHuntly() {

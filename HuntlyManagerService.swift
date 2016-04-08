@@ -35,9 +35,9 @@ class HuntlyManagerService {
     var SCHEME_URL = ""
     
     var EVENT_ID = -1
+
     
-    
-    func feedEventId(callBack : () -> Void) {
+    func feedEventId(callBack : () -> Void, callbackFailure : () -> Void) {
         
         if EVENT_ID != -1 {
             callBack()
@@ -63,6 +63,7 @@ class HuntlyManagerService {
                         }
                     }
                 }
+                callbackFailure()
         }
             
         
@@ -220,7 +221,7 @@ class HuntlyManagerService {
     
     }
 
-    func updateScore(handlerSuccess : ((String) -> Void)) {
+    func updateScore(handlerSuccess : (() -> Void)) {
         
         let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
                        "X-AUTH-TOKEN" : getToken()]
@@ -232,7 +233,7 @@ class HuntlyManagerService {
                     print(JSON)
                     if let pts = JSON.objectForKey("points") as? Int {
                         self.setHuntlyPoints("\(pts)")
-                        handlerSuccess("\(pts)")
+                        handlerSuccess()
                     }
                 }
         }
@@ -366,5 +367,22 @@ class HuntlyManagerService {
         else {
             UIApplication.sharedApplication().openURL(NSURL(string:APP_STORE_LINK)!)
         }
+    }
+    
+    func reset() {
+        
+        FIRST_APP_RUN_QUEST_ID = -1
+        VOTE_QUEST_ID = -1
+        
+        FIRST_APP_RUN_QUEST_POINTS = 0
+        VOTE_QUEST_POINTS = 0
+        
+        APP_STORE_LINK = ""
+        SCHEME_URL = ""
+        
+        EVENT_ID = -1
+        
+        setHuntlyPoints("0")
+        
     }
 }

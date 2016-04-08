@@ -101,6 +101,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject("", forKey: "currentEvent")
                 CfpService.sharedInstance.cfp = nil
+                HuntlyManagerService.sharedInstance.reset()
                 //CfpService.sharedInstance.clearAll()
                 self.parentViewController!.parentViewController?.view!.removeFromSuperview()
                 self.parentViewController?.parentViewController?.removeFromParentViewController()

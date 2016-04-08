@@ -32,11 +32,15 @@ public class HuntlyNavigationController : UINavigationController {
     }
 
     public override func viewWillAppear(animated: Bool) {
-        HuntlyManagerService.sharedInstance.updateScore(updateScore)
+        HuntlyManagerService.sharedInstance.feedEventId(updateScore, callbackFailure: updateScore)
     }
     
-    func updateScore(newScore : String) {
-        huntlyPointLbl.text = "\(newScore)"
+    func updateScore() {
+        HuntlyManagerService.sharedInstance.updateScore(refreshScore)
+    }
+    
+    func refreshScore() {
+        huntlyPointLbl.text = HuntlyManagerService.sharedInstance.getHuntlyPoints()
     }
     
     func clickScore() {

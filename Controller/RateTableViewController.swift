@@ -168,7 +168,7 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
     }
 
     func feedEventId() {
-        HuntlyManagerService.sharedInstance.feedEventId(prepareHuntly)
+        HuntlyManagerService.sharedInstance.feedEventId(prepareHuntly, callbackFailure : dismiss)
     }
     
     func prepareHuntly() {
