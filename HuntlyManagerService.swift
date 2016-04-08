@@ -102,11 +102,11 @@ class HuntlyManagerService {
     
     func getUUID() -> String {
         let keychain = Keychain(service : "com.devoxx")
-        if let uuid = keychain["uuid"] {
+        if let uuid = keychain["HuntlyService"] {
             return uuid
         }
         let uuid = UIDevice.currentDevice().identifierForVendor?.UUIDString ?? ""
-        keychain["uuid"] = uuid
+        keychain["HuntlyService"] = uuid
         return uuid
     }
 
