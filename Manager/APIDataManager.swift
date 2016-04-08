@@ -114,6 +114,7 @@
                 
                 
                 
+                
                 if let _ = error {
                     
                     print("No internet for \(storedResource.url)")
