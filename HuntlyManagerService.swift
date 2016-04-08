@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import KeychainAccess
 
 
 class HuntlyManagerService {
@@ -100,7 +101,13 @@ class HuntlyManagerService {
   
     
     func getUUID() -> String {
-        return UIDevice.currentDevice().identifierForVendor?.UUIDString ?? ""
+        let keychain = Keychain(service : "com.devoxx")
+        if let uuid = keychain["uuid"] {
+            return uuid
+        }
+        let uuid = UIDevice.currentDevice().identifierForVendor?.UUIDString ?? ""
+        keychain["uuid"] = uuid
+        return uuid
     }
 
     func getToken() -> String {

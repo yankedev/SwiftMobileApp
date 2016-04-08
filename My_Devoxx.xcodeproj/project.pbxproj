@@ -271,6 +271,7 @@
 		E15D042C1CB732F3003301C8 /* DevoxxUK2016-thursday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-thursday.json"; sourceTree = "<group>"; };
 		E15D042D1CB732F3003301C8 /* DevoxxUK2016-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-tracks.json"; sourceTree = "<group>"; };
 		E15D042E1CB732F3003301C8 /* DevoxxUK2016-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-wednesday.json"; sourceTree = "<group>"; };
+		E15D04361CB788BB003301C8 /* My Devoxx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "My Devoxx.entitlements"; sourceTree = "<group>"; };
 		E17050DD1CA560F700818E79 /* ic_beer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_beer@2x.png"; sourceTree = "<group>"; };
 		E17050DE1CA560F700818E79 /* ic_wine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_wine@2x.png"; sourceTree = "<group>"; };
 		E175E5FC1C9638A2002A262A /* ActionButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionButtonView.swift; path = View/ActionButtonView.swift; sourceTree = "<group>"; };
@@ -631,6 +632,7 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				E15D04361CB788BB003301C8 /* My Devoxx.entitlements */,
 				E15D040C1CB1A000003301C8 /* Huntly */,
 				E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */,
 				E175E70F1C963BDB002A262A /* AppDelegate.swift */,
@@ -1072,6 +1074,11 @@
 					E10E7ABC1C18BF7100F6220B = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 7F9RT8TS76;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					E10E7AD41C18BF7100F6220B = {
 						CreatedOnToolsVersion = 6.4;
@@ -1548,6 +1555,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "My Devoxx.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1571,6 +1579,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "My Devoxx.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
