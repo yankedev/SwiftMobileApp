@@ -11,6 +11,12 @@ import CoreData
 
 class Schedule: NSManagedObject {
 
-// Insert code here to add functionality to your managed object subclass
+    var purgedTitle:String {
+        if let title = self.title {
+            return title.stringByReplacingOccurrencesOfString("Schedule for ", withString: "").stringByReplacingOccurrencesOfString("Journée du ", withString: "")
+        } else {
+            return ""
+        }
+    }
 
 }

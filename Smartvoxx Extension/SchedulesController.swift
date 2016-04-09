@@ -42,7 +42,7 @@ class SchedulesController: WKInterfaceController {
                 self.table.setNumberOfRows(self.schedules!.count, withRowType: "schedule")
                 for (index,schedule) in self.schedules!.enumerate() {
                     if let row = self.table.rowControllerAtIndex(index) as? ScheduleRowController {
-                        row.label.setText(schedule.title!.stringByReplacingOccurrencesOfString(NSLocalizedString("Schedule for ", comment:""), withString: ""))
+                        row.label.setText(schedule.purgedTitle)
                     }
                 }
             }

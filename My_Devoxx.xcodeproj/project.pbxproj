@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B91DE8BB1CB950C900D4F09F /* ConferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91DE8BA1CB950C900D4F09F /* ConferencesController.swift */; };
 		B91DE8BD1CB9529100D4F09F /* ConferenceRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91DE8BC1CB9529100D4F09F /* ConferenceRowController.swift */; };
+		B91DE8C01CB95B7900D4F09F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B91DE8C21CB95B7900D4F09F /* Localizable.strings */; };
 		B991D3121CA985D500AA352E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B991D3101CA985D500AA352E /* Interface.storyboard */; };
 		B991D3141CA985D500AA352E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B991D3131CA985D500AA352E /* Assets.xcassets */; };
 		B991D31B1CA985D500AA352E /* Smartvoxx Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B991D31A1CA985D500AA352E /* Smartvoxx Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -300,6 +301,7 @@
 /* Begin PBXFileReference section */
 		B91DE8BA1CB950C900D4F09F /* ConferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferencesController.swift; sourceTree = "<group>"; };
 		B91DE8BC1CB9529100D4F09F /* ConferenceRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceRowController.swift; sourceTree = "<group>"; };
+		B91DE8C11CB95B7900D4F09F /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B991D30E1CA985D500AA352E /* Smartvoxx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smartvoxx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B991D3111CA985D500AA352E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		B991D3131CA985D500AA352E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -705,6 +707,7 @@
 		B991D31E1CA985D500AA352E /* Smartvoxx Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B91DE8C21CB95B7900D4F09F /* Localizable.strings */,
 				B9EE19971CB00BD70019F778 /* Data */,
 				B91DE8BA1CB950C900D4F09F /* ConferencesController.swift */,
 				B91DE8BC1CB9529100D4F09F /* ConferenceRowController.swift */,
@@ -1262,6 +1265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B991D32C1CA985D500AA352E /* Assets.xcassets in Resources */,
+				B91DE8C01CB95B7900D4F09F /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1571,6 +1575,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B91DE8C21CB95B7900D4F09F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B91DE8C11CB95B7900D4F09F /* fr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		B991D3101CA985D500AA352E /* Interface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

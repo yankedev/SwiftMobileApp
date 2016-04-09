@@ -30,9 +30,7 @@ class ScheduleController: WKInterfaceController {
         super.willActivate()
 
         if let schedule = self.schedule {
-            if let date = schedule.title {
-                self.setTitle(date.componentsSeparatedByString(",")[0])
-            }
+            self.setTitle(schedule.purgedTitle)
             self.activityIndicator.setHidden(false)
             self.activityIndicator.startAnimatingWithImagesInRange(NSMakeRange(0, 30), duration: 1.0, repeatCount: 0)
 
