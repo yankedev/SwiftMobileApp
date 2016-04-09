@@ -1,14 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9056" systemVersion="15A284" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
     <entity name="BreakSlot" representedClassName=".BreakSlot" parentEntity="Slot" syncable="YES">
         <attribute name="breakId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameEN" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameFR" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Conference" representedClassName=".Conference" syncable="YES">
-        <attribute name="eventCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="localisation" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="capacity" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="cfpEndpointUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cfpUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cfpVersion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="conferenceDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="conferenceIconUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="conferenceId" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="conferenceType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fromDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hashtag" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="integrationId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="numberOfSessions" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="registrationUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="splashImageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="talkUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="toDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="venue" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="votingEnabled" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="votingImageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="votingUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="websiteUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="youtubeUrl" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="schedules" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Schedule" inverseName="conference" inverseEntity="Schedule" syncable="YES"/>
     </entity>
     <entity name="Schedule" representedClassName=".Schedule" syncable="YES">
@@ -59,7 +82,7 @@
     </entity>
     <elements>
         <element name="BreakSlot" positionX="826" positionY="3701" width="128" height="88"/>
-        <element name="Conference" positionX="207" positionY="3312" width="128" height="103"/>
+        <element name="Conference" positionX="-47" positionY="3276" width="128" height="448"/>
         <element name="Schedule" positionX="477" positionY="3411" width="128" height="103"/>
         <element name="Slot" positionX="729" positionY="3483" width="128" height="178"/>
         <element name="Speaker" positionX="342" positionY="3761" width="128" height="208"/>

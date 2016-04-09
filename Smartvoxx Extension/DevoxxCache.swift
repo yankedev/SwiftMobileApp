@@ -59,25 +59,122 @@ class DevoxxCache: NSObject {
         }
     }
     
-    func getSchedules() -> [Schedule] {
-        return self.getSchedules(fromContext: self.mainObjectContext)
+    func getConferences() -> [Conference] {
+        return self.getConferences(fromContext: self.mainObjectContext)
     }
     
-    func saveSchedulesFromData(data: NSData) {
-        self.saveSchedulesFromData(data, inContext: self.privateObjectContext)
+    func saveConferencesFromData(data:NSData) {
+        self.saveConferencesFromData(data, inContext:self.privateObjectContext)
     }
     
-    private func getSchedules(fromContext context: NSManagedObjectContext) -> [Schedule] {
+    private func getConferences(fromContext context:NSManagedObjectContext) -> [Conference] {
+        var conferences = [Conference]()
+        
+        context.performBlockAndWait { 
+            let request = NSFetchRequest(entityName: "Conference")
+            do {
+                let results = try context.executeFetchRequest(request)
+                if results.count > 0 {
+                    conferences = results as! [Conference]
+                }
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+        
+        return conferences
+    }
+    
+    private func saveConferencesFromData(data:NSData, inContext context:NSManagedObjectContext) {
+        context.performBlockAndWait {
+            () -> Void in
+            if data.length > 0 {
+                do {
+                    let conferencesDict = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                    if let conferencesDict = conferencesDict as? [NSDictionary] {
+                        for conferenceDict in conferencesDict {
+                            guard let conference = self.getOrCreateConferenceForId(conferenceDict["id"] as! String, inContext:context) else {
+                                print("Could not retrieve or create conference")
+                                return
+                            }
+                            conference.conferenceId = conferenceDict["id"] as? String
+                            conference.conferenceType = conferenceDict["confType"] as? String
+                            conference.conferenceDescription = conferenceDict["confDescription"] as? String
+                            conference.conferenceIconUrl = conferenceDict["confIcon"] as? String
+                            conference.venue = conferenceDict["venue"] as? String
+                            conference.address = conferenceDict["address"] as? String
+                            conference.country = conferenceDict["country"] as? String
+                            conference.latitude = conferenceDict["latitude"] as? NSNumber
+                            conference.longitude = conferenceDict["longitude"] as? NSNumber
+                            conference.capacity = conferenceDict["capacity"] as? NSNumber
+                            conference.numberOfSessions = conferenceDict["sessions"] as? NSNumber
+                            conference.hashtag = conferenceDict["hashtag"] as? String
+                            conference.splashImageUrl = conferenceDict["splashImgURL"] as? String
+                            conference.fromDate = conferenceDict["fromDate"] as? String
+                            conference.toDate = conferenceDict["toDate"] as? String
+                            conference.websiteUrl = conferenceDict["wwwURL"] as? String
+                            conference.registrationUrl = conferenceDict["regURL"] as? String
+                            conference.cfpUrl = conferenceDict["cfpURL"] as? String
+                            conference.talkUrl = conferenceDict["talkURL"] as? String
+                            conference.votingUrl = conferenceDict["votingURL"] as? String
+                            conference.votingEnabled = (conferenceDict["votingEnabled"] as? String == "true")
+                            conference.votingImageName = conferenceDict["votingImageName"] as? String
+                            conference.cfpEndpointUrl = conferenceDict["cfpEndpoint"] as? String
+                            conference.cfpVersion = conferenceDict["cfpVersion"] as? String
+                            conference.youtubeUrl = conferenceDict["youTubeURL"] as? String
+                            conference.integrationId = conferenceDict["integration_id"] as? String
+                        }
+                        self.saveContext(context)
+                    }
+                } catch let jsonError as NSError {
+                    print(jsonError)
+                }
+            }
+        }
+    }
+    
+    private func getOrCreateConferenceForId(id:String, inContext context:NSManagedObjectContext) -> Conference? {
+        let request = NSFetchRequest(entityName: "Conference")
+        request.predicate = NSPredicate(format: "conferenceId=%@", id)
+        var conference: Conference?
+        
+        context.performBlockAndWait {
+            do {
+                let results = try context.executeFetchRequest(request)
+                if results.count > 0 {
+                    conference = results[0] as? Conference
+                } else {
+                    conference = NSEntityDescription.insertNewObjectForEntityForName("Conference", inManagedObjectContext: context) as? Conference
+                    conference?.conferenceId = id
+                    self.saveContext(context)
+                }
+            } catch let error as NSError {
+                print(error)
+            }
+        }
+        
+        return conference
+    }
+    
+    func getSchedulesForConferenceWithId(conferenceId:String) -> [Schedule] {
+        return self.getSchedulesForConferenceWithId(conferenceId, fromContext: self.mainObjectContext)
+    }
+    
+    func saveSchedulesFromData(data: NSData, forConferenceWithId conferenceId:String) {
+        self.saveSchedulesFromData(data, forConferenceWithId:conferenceId, inContext: self.privateObjectContext)
+    }
+    
+    private func getSchedulesForConferenceWithId(conferenceId:String, fromContext context: NSManagedObjectContext) -> [Schedule] {
         var schedules = [Schedule]()
         
         context.performBlockAndWait {
             () -> Void in
             let request = NSFetchRequest(entityName: "Conference")
-            request.predicate = NSPredicate(format: "eventCode=%@", "DV15")
+            request.predicate = NSPredicate(format: "conferenceId=%@", conferenceId)
             do {
                 let results = try context.executeFetchRequest(request)
                 if results.count > 0 {
-                    guard let devoxx15 = results[0] as? Conference, scheduleSet = devoxx15.schedules, scheduleArray = scheduleSet.array as? [Schedule] else {
+                    guard let conference = results[0] as? Conference, scheduleSet = conference.schedules, scheduleArray = scheduleSet.array as? [Schedule] else {
                         schedules = [Schedule]()
                         return
                     }
@@ -89,32 +186,6 @@ class DevoxxCache: NSObject {
         }
         
         return schedules
-    }
-    
-    private func getOrCreateDevoxx15(inContext context: NSManagedObjectContext) -> Conference? {
-        let request = NSFetchRequest(entityName: "Conference")
-        request.predicate = NSPredicate(format: "eventCode=%@", "DV15")
-        var devoxx15: Conference?
-        
-        context.performBlockAndWait {
-            () -> Void in
-            do {
-                let results = try context.executeFetchRequest(request)
-                if results.count > 0 {
-                    devoxx15 = results[0] as? Conference
-                } else {
-                    devoxx15 = NSEntityDescription.insertNewObjectForEntityForName("Conference", inManagedObjectContext: context) as? Conference
-                    devoxx15!.eventCode = "DV15"
-                    devoxx15!.label = "Devoxx 2015"
-                    devoxx15!.localisation = "Antwerp, Belgium"
-                    self.saveContext(context)
-                }
-            } catch let error as NSError {
-                print(error)
-            }
-        }
-        
-        return devoxx15
     }
     
     private func getOrCreateScheduleForHref(href: String, inContext context: NSManagedObjectContext) -> Schedule? {
@@ -139,14 +210,14 @@ class DevoxxCache: NSObject {
         return schedule
     }
     
-    private func saveSchedulesFromData(data: NSData, inContext context: NSManagedObjectContext) {
+    private func saveSchedulesFromData(data: NSData, forConferenceWithId conferenceId:String, inContext context: NSManagedObjectContext) {
         context.performBlockAndWait {
             () -> Void in
             if data.length > 0 {
                 do {
                     let schedulesDict = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
                     if let schedulesDict = schedulesDict as? NSDictionary, schedulesArray = schedulesDict["links"] as? NSArray {
-                        guard let devoxx15 = self.getOrCreateDevoxx15(inContext: context) else {
+                        guard let devoxx15 = self.getOrCreateConferenceForId(conferenceId, inContext: context) else {
                             print("Could not retrieve Devoxx15 conference")
                             return
                         }

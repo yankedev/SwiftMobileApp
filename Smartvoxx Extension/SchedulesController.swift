@@ -9,16 +9,21 @@
 import WatchKit
 import Foundation
 
-class InterfaceController: WKInterfaceController {
+class SchedulesController: WKInterfaceController {
     @IBOutlet var activityIndicator: WKInterfaceImage!
     @IBOutlet var table: WKInterfaceTable!
     
+    var conference: Conference?
     var schedules: [Schedule]?
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
         self.activityIndicator.setImageNamed("Activity")
+        
+        if let context = context as? Conference {
+            self.conference = context
+        }
     }
     
     override func willActivate() {
@@ -26,15 +31,19 @@ class InterfaceController: WKInterfaceController {
         self.activityIndicator.setHidden(false)
         self.activityIndicator.startAnimatingWithImagesInRange(NSMakeRange(0, 30), duration: 1.0, repeatCount: 0)
         
-        DataController.sharedInstance.getSchedules { (schedules:[Schedule]) -> (Void) in
-            self.schedules = schedules
-            self.activityIndicator.stopAnimating()
-            self.activityIndicator.setHidden(true)
+        if let conference = self.conference {
+            self.setTitle(conference.conferenceDescription)
             
-            self.table.setNumberOfRows(self.schedules!.count, withRowType: "schedule")
-            for (index,schedule) in self.schedules!.enumerate() {
-                if let row = self.table.rowControllerAtIndex(index) as? ScheduleRowController {
-                    row.label.setText(schedule.title!.stringByReplacingOccurrencesOfString(NSLocalizedString("Schedule for ", comment:""), withString: ""))
+            DataController.sharedInstance.getSchedulesForConference(conference) { (schedules:[Schedule]) -> (Void) in
+                self.schedules = schedules
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.setHidden(true)
+                
+                self.table.setNumberOfRows(self.schedules!.count, withRowType: "schedule")
+                for (index,schedule) in self.schedules!.enumerate() {
+                    if let row = self.table.rowControllerAtIndex(index) as? ScheduleRowController {
+                        row.label.setText(schedule.title!.stringByReplacingOccurrencesOfString(NSLocalizedString("Schedule for ", comment:""), withString: ""))
+                    }
                 }
             }
         }

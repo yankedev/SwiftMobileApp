@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B91DE8BB1CB950C900D4F09F /* ConferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91DE8BA1CB950C900D4F09F /* ConferencesController.swift */; };
+		B91DE8BD1CB9529100D4F09F /* ConferenceRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B91DE8BC1CB9529100D4F09F /* ConferenceRowController.swift */; };
 		B991D3121CA985D500AA352E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B991D3101CA985D500AA352E /* Interface.storyboard */; };
 		B991D3141CA985D500AA352E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B991D3131CA985D500AA352E /* Assets.xcassets */; };
 		B991D31B1CA985D500AA352E /* Smartvoxx Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B991D31A1CA985D500AA352E /* Smartvoxx Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		B991D3221CA985D500AA352E /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B991D3211CA985D500AA352E /* InterfaceController.swift */; };
+		B991D3221CA985D500AA352E /* SchedulesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B991D3211CA985D500AA352E /* SchedulesController.swift */; };
 		B991D3241CA985D500AA352E /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B991D3231CA985D500AA352E /* ExtensionDelegate.swift */; };
 		B991D3261CA985D500AA352E /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B991D3251CA985D500AA352E /* NotificationController.swift */; };
 		B991D3281CA985D500AA352E /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B991D3271CA985D500AA352E /* GlanceController.swift */; };
@@ -296,13 +298,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B91DE8BA1CB950C900D4F09F /* ConferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferencesController.swift; sourceTree = "<group>"; };
+		B91DE8BC1CB9529100D4F09F /* ConferenceRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceRowController.swift; sourceTree = "<group>"; };
 		B991D30E1CA985D500AA352E /* Smartvoxx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smartvoxx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B991D3111CA985D500AA352E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		B991D3131CA985D500AA352E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B991D3151CA985D500AA352E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B991D31A1CA985D500AA352E /* Smartvoxx Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Smartvoxx Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B991D3201CA985D500AA352E /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		B991D3211CA985D500AA352E /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		B991D3211CA985D500AA352E /* SchedulesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesController.swift; sourceTree = "<group>"; };
 		B991D3231CA985D500AA352E /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		B991D3251CA985D500AA352E /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		B991D3271CA985D500AA352E /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
@@ -702,7 +706,9 @@
 			isa = PBXGroup;
 			children = (
 				B9EE19971CB00BD70019F778 /* Data */,
-				B991D3211CA985D500AA352E /* InterfaceController.swift */,
+				B91DE8BA1CB950C900D4F09F /* ConferencesController.swift */,
+				B91DE8BC1CB9529100D4F09F /* ConferenceRowController.swift */,
+				B991D3211CA985D500AA352E /* SchedulesController.swift */,
 				B991D3231CA985D500AA352E /* ExtensionDelegate.swift */,
 				B991D3251CA985D500AA352E /* NotificationController.swift */,
 				B991D3271CA985D500AA352E /* GlanceController.swift */,
@@ -1394,6 +1400,7 @@
 				B9EE19B11CB00C740019F778 /* Speaker+CoreDataProperties.swift in Sources */,
 				B9EE19B81CB00C740019F778 /* BreakSlot.swift in Sources */,
 				B9EE19BA1CB00C740019F778 /* Schedule.swift in Sources */,
+				B91DE8BB1CB950C900D4F09F /* ConferencesController.swift in Sources */,
 				B9EE199B1CB00BE70019F778 /* DataController.swift in Sources */,
 				B9EE19AF1CB00C740019F778 /* TalkSlot+CoreDataProperties.swift in Sources */,
 				B9EE19AE1CB00C740019F778 /* Track.swift in Sources */,
@@ -1402,6 +1409,7 @@
 				B991D3261CA985D500AA352E /* NotificationController.swift in Sources */,
 				B9EE19AD1CB00C740019F778 /* Track+CoreDataProperties.swift in Sources */,
 				B991D3241CA985D500AA352E /* ExtensionDelegate.swift in Sources */,
+				B91DE8BD1CB9529100D4F09F /* ConferenceRowController.swift in Sources */,
 				B9EE19B41CB00C740019F778 /* Slot.swift in Sources */,
 				B9EE19C51CB00C910019F778 /* SpeakerController.swift in Sources */,
 				B9EE19C31CB00C910019F778 /* ScheduleController.swift in Sources */,
@@ -1411,7 +1419,7 @@
 				B9EE19CA1CB00C910019F778 /* UIColorExtension.swift in Sources */,
 				B9EE19C71CB00C910019F778 /* TimeRangeRowController.swift in Sources */,
 				B9EE19B61CB00C740019F778 /* Conference.swift in Sources */,
-				B991D3221CA985D500AA352E /* InterfaceController.swift in Sources */,
+				B991D3221CA985D500AA352E /* SchedulesController.swift in Sources */,
 				B9EE199D1CB00C1A0019F778 /* Smartvoxx.xcdatamodel in Sources */,
 				B9EE199A1CB00BE70019F778 /* DevoxxCache.swift in Sources */,
 				B9EE19B31CB00C740019F778 /* Slot+CoreDataProperties.swift in Sources */,

@@ -16,6 +16,7 @@ class DataController: NSObject {
     private var session:NSURLSession
     private var cache:DevoxxCache
     
+    private var conferencesTask:NSURLSessionDataTask?
     private var schedulesTask:NSURLSessionDataTask?
     private var slotsTasks = [String:NSURLSessionDataTask]()
     private var speakerTasks = [String:NSURLSessionDataTask]()
@@ -37,24 +38,59 @@ class DataController: NSObject {
         }
     }
     
-    func getSchedules(callback:([Schedule] -> Void)) {
-        let schedules = cache.getSchedules()
+    func getConferences(callback:([Conference] -> Void)) {
+        let conferences = cache.getConferences()
+        if conferences.count > 0 {
+            dispatch_async(dispatch_get_main_queue(), { 
+                callback(conferences)
+            })
+        }
+        
+        let cfpUrl = NSBundle.mainBundle().infoDictionary!["CFP_URL"] as! String
+        let url = NSURL(string: cfpUrl)!
+        self.conferencesTask = self.session.dataTaskWithURL(url) { (data:NSData?, response:NSURLResponse?, error:NSError?) in
+            guard let data = data else {
+                print(error)
+                return
+            }
+            
+            self.cache.saveConferencesFromData(data)
+            dispatch_async(dispatch_get_main_queue(), { 
+                callback(self.cache.getConferences())
+            })
+        }
+        self.conferencesTask?.resume()
+    }
+    
+    func cancelConferences() {
+        self.cancelTask(self.conferencesTask)
+    }
+    
+    func getSchedulesForConference(conference: Conference, callback:([Schedule] -> Void)) {
+        guard let conferenceId = conference.conferenceId else {
+            dispatch_async(dispatch_get_main_queue(), { 
+                callback([Schedule]())
+            })
+            return
+        }
+        let schedules = cache.getSchedulesForConferenceWithId(conferenceId)
         if schedules.count > 0 {
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 callback(schedules)
             })
         }
         
-        let url = (NSURL(string: "http://cfp.devoxx.fr/api/conferences/DV16/schedules/"))!
+        let schedulesUrl = "\(conference.cfpEndpointUrl!)/conferences/\(conferenceId)/schedules/"
+        let url = (NSURL(string: schedulesUrl))!
         self.schedulesTask = self.session.dataTaskWithURL(url) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
             
             guard let data = data else {
                 print(error)
                 return
             }
-            self.cache.saveSchedulesFromData(data)
+            self.cache.saveSchedulesFromData(data, forConferenceWithId: conferenceId)
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                callback(self.cache.getSchedules())
+                callback(self.cache.getSchedulesForConferenceWithId(conferenceId))
             })
         }
         self.schedulesTask?.resume()

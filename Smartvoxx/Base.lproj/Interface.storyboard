@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zfQ-2b-qEX">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eLW-Uq-hcf">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
     </dependencies>
     <scenes>
-        <!--Devoxx 2015-->
+        <!--Conference-->
         <scene sceneID="1JW-hg-d6H">
             <objects>
-                <controller title="Devoxx 2015" id="zfQ-2b-qEX" customClass="InterfaceController" customModule="Smartvoxx_Extension">
+                <controller title="Conference" id="zfQ-2b-qEX" customClass="SchedulesController" customModule="Smartvoxx_Extension">
                     <items>
                         <imageView width="1" height="1" alignment="center" hidden="YES" image="Activity1" contentMode="center" id="hiT-F5-07a"/>
                         <table alignment="left" id="EeZ-ky-OFj">
@@ -35,7 +35,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="235" y="347"/>
+            <point key="canvasLocation" x="525" y="342"/>
         </scene>
         <!--Schedule Controller-->
         <scene sceneID="iFc-fM-DlV">
@@ -104,7 +104,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="458" y="347"/>
+            <point key="canvasLocation" x="814" y="342"/>
         </scene>
         <!--Slot Controller-->
         <scene sceneID="CXM-oJ-Xp5">
@@ -171,7 +171,39 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="705" y="347"/>
+            <point key="canvasLocation" x="1116" y="341.5"/>
+        </scene>
+        <!--Conferences Controller-->
+        <scene sceneID="uKU-Oc-MLC">
+            <objects>
+                <controller id="eLW-Uq-hcf" customClass="ConferencesController" customModule="Smartvoxx_Extension">
+                    <items>
+                        <imageView width="1" height="1" alignment="left" hidden="YES" image="Activity1" contentMode="center" id="rzi-FR-f7l"/>
+                        <table alignment="left" id="H0J-cd-3RR">
+                            <items>
+                                <tableRow identifier="conference" id="eCG-KS-rOr" customClass="ConferenceRowController" customModule="Smartvoxx_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="LIl-Ta-SjC">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="Label" numberOfLines="0" id="jsG-tV-DVp"/>
+                                        </items>
+                                        <connections>
+                                            <segue destination="zfQ-2b-qEX" kind="push" identifier="showConference" id="LyD-S2-TpD"/>
+                                        </connections>
+                                    </group>
+                                    <connections>
+                                        <outlet property="label" destination="jsG-tV-DVp" id="1jU-8l-xGU"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="activityIndicator" destination="rzi-FR-f7l" id="wLs-bl-f4L"/>
+                        <outlet property="table" destination="H0J-cd-3RR" id="hi2-uK-0Zl"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="235" y="342"/>
         </scene>
         <!--Speaker Controller-->
         <scene sceneID="MDv-fz-HdA">
@@ -201,7 +233,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="942" y="347"/>
+            <point key="canvasLocation" x="1407" y="342"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="xmS-r1-y4A">
@@ -228,7 +260,7 @@
                     </connections>
                 </glanceController>
             </objects>
-            <point key="canvasLocation" x="235" y="672"/>
+            <point key="canvasLocation" x="235" y="674"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="Ylg-Yt-BnF">
