@@ -1,6 +1,0 @@
-framework module Pods_My_DevoxxTests {
-  umbrella header "Pods-My_DevoxxTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
