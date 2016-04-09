@@ -7,14 +7,19 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'Alamofire', '~> 3.0'
-pod 'KeychainAccess'
-
 target 'My_Devoxx' do
-
+    pod 'Alamofire', '~> 3.0'
+    pod 'KeychainAccess'
 end
 
 target 'My_DevoxxTests' do
 
 end
 
+target 'Smartvoxx' do
+    
+end
+
+target 'Smartvoxx Extension' do
+    
+end
