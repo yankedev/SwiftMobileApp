@@ -47,7 +47,7 @@ class HuntlyManagerService {
         
         let integration_id = CfpService.sharedInstance.getIntegrationId()
             
-            let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ=="]
+            let headers = getHeaders()
             
             Alamofire.request(.GET, "\(API)/deployments", headers : headers)
                 .responseJSON { response in
@@ -145,8 +145,7 @@ class HuntlyManagerService {
         }
         
         
-        let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
-                       "X-AUTH-TOKEN" : getToken()]
+        let headers = getHeadersWithUserToken()
         
         
         Alamofire.request(.GET, "\(API)/deployments/\(EVENT_ID)/quests/activity/list", headers : headers)
@@ -183,8 +182,7 @@ class HuntlyManagerService {
         
         let questIdValue = "\(getStoredId(str))"
 
-        let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
-                       "X-AUTH-TOKEN" : getToken()]
+        let headers = getHeadersWithUserToken()
         
         Alamofire.upload(
             .POST,
@@ -230,8 +228,7 @@ class HuntlyManagerService {
 
     func updateScore(handlerSuccess : (() -> Void)) {
         
-        let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
-                       "X-AUTH-TOKEN" : getToken()]
+        let headers = getHeadersWithUserToken()
         
         Alamofire.request(.GET, "\(API)/deployments/\(EVENT_ID)/user", headers : headers)
             .responseJSON { response in
@@ -254,8 +251,7 @@ class HuntlyManagerService {
         }
         
         
-        let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
-                       "X-AUTH-TOKEN" : getToken()]
+        let headers = getHeadersWithUserToken()
         
         let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         
@@ -306,9 +302,7 @@ class HuntlyManagerService {
         
         let UIdValue = getUUID()
         
-        let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ=="]
-        
-                       //"X-AUTH-TOKEN" : "d0d696d7b68794b371892ecebf11313eef488363db346c226a417f41f87011742c9ccf2e8466129be693b63bf5165e3822f963103994e4e0307272a9f3ebcd0d"]
+        let headers = getHeaders()
         
         Alamofire.upload(
             .POST,
@@ -344,7 +338,7 @@ class HuntlyManagerService {
     
         if APP_STORE_LINK == "" {
             
-            let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ=="]
+            let headers = getHeaders()
             
             Alamofire.request(.GET, "\(API)/deployments/\(EVENT_ID)/deeplink", headers : headers)
                 .responseJSON { response in
@@ -391,5 +385,17 @@ class HuntlyManagerService {
         
         setHuntlyPoints("0")
         
+    }
+    
+    
+    func getHeaders() ->  [String : String] {
+        let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ=="]
+        return headers
+    }
+    
+    func getHeadersWithUserToken() ->  [String : String] {
+        let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
+                       "X-AUTH-TOKEN" : getToken()]
+        return headers
     }
 }
