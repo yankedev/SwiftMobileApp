@@ -22,7 +22,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         struct QuickAccess {
             static let title = NSLocalizedString("Quick access", comment: "")
             static let purchaseTicket = NSLocalizedString("Purchase a ticket", comment: "")
-            static let reportIssue = NSLocalizedString("Report an issue", comment: "")
+            static let reportIssue = NSLocalizedString("Report an issue. v", comment: "")
         }
         struct Settings {
             static let title = NSLocalizedString("Settings", comment: "")
@@ -142,7 +142,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             }
             
             if(indexPath.row == 1) {
-                cell!.textLabel!.text = SectionNameString.QuickAccess.reportIssue
+                cell!.textLabel!.text = "\(SectionNameString.QuickAccess.reportIssue)\(getVersion())"
             }
             
         }
@@ -175,7 +175,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
 
     func reportIssue() {
         let email = "got2bex@gmail.com"
-        let subject = "My%20Devoxx%20-%20Issue"
+        let subject = "My%20Devoxx%20-%20Issue%20-%20\(getVersion())"
         let url = NSURL(string: "mailto:\(email)?subject=\(subject)")
         if url != nil {
             UIApplication.sharedApplication().openURL(url!)
@@ -183,6 +183,11 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         
     }
     
+    func getVersion() -> String {
+        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String
+        let buildNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as? String
+        return "\(version ?? "").\(buildNumber ?? "")"
+    }
     
     
     
