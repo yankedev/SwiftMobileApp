@@ -1285,6 +1285,7 @@
 				111378D7DE6CB3595BD72DFC /* Embed Pods Frameworks */,
 				6C0E30A7E4114E2121ABBEAD /* Copy Pods Resources */,
 				B95C58431CB96EF9007BD5A3 /* Embed Watch Content */,
+				E103FB1E1CBAC924001036FC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1562,6 +1563,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-My_Devoxx/Pods-My_Devoxx-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		E103FB1E1CBAC924001036FC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#taken and adapted from https://www.mapbox.com/help/ios-private-access-token/\ntoken_file=huntlyToken.secret\ntoken=\"$(cat $token_file)\"\nif [ \"$token\" ]; then\nplutil -replace HuntlyAccessToken -string $token \"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\nelse\necho 'error: Missing Huntly token (should be in huntlyToken.secret)'\nexit 1\nfi\n";
 		};
 		E1E9E4F61C977C3D00EC347D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

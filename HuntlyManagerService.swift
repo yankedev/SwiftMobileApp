@@ -388,13 +388,18 @@ class HuntlyManagerService {
     }
     
     
+    func getHuntlyToken() -> String {
+        return NSBundle.mainBundle().objectForInfoDictionaryKey("HuntlyAccessToken") as? String ?? ""
+    }
+    
     func getHeaders() ->  [String : String] {
-        let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ=="]
+    
+        let headers = ["Authorization": "Basic-Auth: \(getHuntlyToken())"]
         return headers
     }
     
     func getHeadersWithUserToken() ->  [String : String] {
-        let headers = ["Authorization": "Basic-Auth: Z2FtaWNvbjpYNThTZ1ByNQ==",
+        let headers = ["Authorization": "Basic-Auth: \(getHuntlyToken())",
                        "X-AUTH-TOKEN" : getToken()]
         return headers
     }
