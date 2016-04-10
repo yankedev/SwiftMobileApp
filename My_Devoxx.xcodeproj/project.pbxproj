@@ -261,6 +261,11 @@
 		E175E8D31C964172002A262A /* pirulen.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E175E7C31C963DEE002A262A /* pirulen.ttf */; };
 		E175E8D41C964172002A262A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E175E7C41C963DEE002A262A /* Roboto-Regular.ttf */; };
 		E1863EE71CBAFFA300EA5DDA /* icon_wm.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EE61CBAFFA300EA5DDA /* icon_wm.png */; };
+		E1863EEC1CBB04FC00EA5DDA /* icon_bd.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EE81CBB04FC00EA5DDA /* icon_bd.png */; };
+		E1863EED1CBB04FC00EA5DDA /* icon_cld.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EE91CBB04FC00EA5DDA /* icon_cld.png */; };
+		E1863EEE1CBB04FC00EA5DDA /* icon_m.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EEA1CBB04FC00EA5DDA /* icon_m.png */; };
+		E1863EEF1CBB04FC00EA5DDA /* icon_webHtml5.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EEB1CBB04FC00EA5DDA /* icon_webHtml5.png */; };
+		E1863EF11CBB051600EA5DDA /* icon_jse.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EF01CBB051600EA5DDA /* icon_jse.png */; };
 		E1C9E1681CB16B1900796D02 /* Huntly.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C9E1671CB16B1900796D02 /* Huntly.storyboard */; };
 		E1C9E16A1CB17B8300796D02 /* HuntlyManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C9E1691CB17B8300796D02 /* HuntlyManagerService.swift */; };
 		E1DF81141C985501002194C9 /* CallbackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81131C985501002194C9 /* CallbackProtocol.swift */; };
@@ -587,6 +592,11 @@
 		E175E8CF1C964082002A262A /* SchedulerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchedulerTableView.swift; path = devoxxApp/SchedulerTableView.swift; sourceTree = "<group>"; };
 		E175E8D11C9640B3002A262A /* ScheduleBreakCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleBreakCell.swift; path = View/ScheduleBreakCell.swift; sourceTree = "<group>"; };
 		E1863EE61CBAFFA300EA5DDA /* icon_wm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_wm.png; sourceTree = "<group>"; };
+		E1863EE81CBB04FC00EA5DDA /* icon_bd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bd.png; sourceTree = "<group>"; };
+		E1863EE91CBB04FC00EA5DDA /* icon_cld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cld.png; sourceTree = "<group>"; };
+		E1863EEA1CBB04FC00EA5DDA /* icon_m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_m.png; sourceTree = "<group>"; };
+		E1863EEB1CBB04FC00EA5DDA /* icon_webHtml5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_webHtml5.png; sourceTree = "<group>"; };
+		E1863EF01CBB051600EA5DDA /* icon_jse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_jse.png; sourceTree = "<group>"; };
 		E1C9E1671CB16B1900796D02 /* Huntly.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Huntly.storyboard; sourceTree = "<group>"; };
 		E1C9E1691CB17B8300796D02 /* HuntlyManagerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntlyManagerService.swift; sourceTree = "<group>"; };
 		E1DF81131C985501002194C9 /* CallbackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackProtocol.swift; sourceTree = "<group>"; };
@@ -1161,6 +1171,11 @@
 		E1FA9C0D1C1BFBFE0077C09A /* Track */ = {
 			isa = PBXGroup;
 			children = (
+				E1863EE81CBB04FC00EA5DDA /* icon_bd.png */,
+				E1863EF01CBB051600EA5DDA /* icon_jse.png */,
+				E1863EE91CBB04FC00EA5DDA /* icon_cld.png */,
+				E1863EEA1CBB04FC00EA5DDA /* icon_m.png */,
+				E1863EEB1CBB04FC00EA5DDA /* icon_webHtml5.png */,
 				E1863EE61CBAFFA300EA5DDA /* icon_wm.png */,
 				E175E8151C963E4F002A262A /* icon_agTest.png */,
 				E175E8161C963E4F002A262A /* icon_archisec.png */,
@@ -1411,7 +1426,9 @@
 				E175E7FA1C963E29002A262A /* DevoxxPolandHomePage.jpg in Resources */,
 				E175E8831C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json in Resources */,
 				E175E8141C963E3E002A262A /* icon_uni.png in Resources */,
+				E1863EEC1CBB04FC00EA5DDA /* icon_bd.png in Resources */,
 				E175E8221C963E4F002A262A /* icon_agTest.png in Resources */,
+				E1863EED1CBB04FC00EA5DDA /* icon_cld.png in Resources */,
 				E175E8871C963E9B002A262A /* DevoxxFR2016-tuesday.json in Resources */,
 				E175E8531C963E67002A262A /* ic_time@2x.png in Resources */,
 				E175E8241C963E4F002A262A /* icon_bigd.png in Resources */,
@@ -1439,6 +1456,7 @@
 				E175E8491C963E67002A262A /* cofeeCup.png in Resources */,
 				E175E8601C963E7B002A262A /* devoxxCinameFloorTablet.jpg in Resources */,
 				E175E7F71C963E29002A262A /* DevoxxBelgiumHomePage.jpg in Resources */,
+				E1863EEF1CBB04FC00EA5DDA /* icon_webHtml5.png in Resources */,
 				E1863EE71CBAFFA300EA5DDA /* icon_wm.png in Resources */,
 				E175E8271C963E4F002A262A /* icon_future.png in Resources */,
 				E175E8251C963E4F002A262A /* icon_cldops.png in Resources */,
@@ -1449,6 +1467,7 @@
 				E175E80E1C963E3E002A262A /* icon_key.png in Resources */,
 				E175E8561C963E67002A262A /* micro@2x.png in Resources */,
 				E175E8761C963E91002A262A /* DV15-wednesday.json in Resources */,
+				E1863EEE1CBB04FC00EA5DDA /* icon_m.png in Resources */,
 				E175E80B1C963E3E002A262A /* icon_bof.png in Resources */,
 				E15D04141CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png in Resources */,
 				E15D04321CB732F3003301C8 /* DevoxxUK2016-speaker.json in Resources */,
@@ -1475,6 +1494,7 @@
 				E175E80C1C963E3E002A262A /* icon_conf.png in Resources */,
 				E15D04301CB732F3003301C8 /* DevoxxUK2016-friday.json in Resources */,
 				E175E88C1C963EA6002A262A /* StoredResource.json in Resources */,
+				E1863EF11CBB051600EA5DDA /* icon_jse.png in Resources */,
 				E175E8571C963E67002A262A /* star@2x.png in Resources */,
 				E175E8131C963E3E002A262A /* icon_tia.png in Resources */,
 				E175E8111C963E3E002A262A /* icon_quick.png in Resources */,

@@ -149,12 +149,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     func hunltyManager() {
-        print(UIStoryboard(name: "Huntly", bundle: nil).instantiateViewControllerWithIdentifier("HuntlyPopup") as? HuntlyPopup)
+
         if let viewController = UIStoryboard(name: "Huntly", bundle: nil).instantiateViewControllerWithIdentifier("HuntlyPopup") as? HuntlyPopup {
-            print("should present")
-            print(viewController)
-            print(viewController.view)
-            
             viewController.titleBonus.text = "Welcome bonus"
             viewController.pointLbl.text = "Points"
             viewController.pointValueLbl.text = "+\(HuntlyManagerService.sharedInstance.FIRST_APP_RUN_QUEST_POINTS)"

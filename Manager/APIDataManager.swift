@@ -106,22 +106,12 @@
                 
                 if let _ = error {
                     
-                    print("No internet for \(storedResource.url)")
-                    print("Error \(error)")
-                    print("Store callbal =  \(storedResource.fallback)")
-                    print("Store callbal =  \(storedResource.fallback)")
-                    
-                    
                     if loadFromFile {
-                        
-                        print("critical call")
-                        
-                        
+                       
                         let data = APIManager.getFallBackData(storedResource)
                         
                         if data == nil {
                             dispatch_async(dispatch_get_main_queue(),{
-                                print("on error \(storedResource.fallback)")
                                 onError(value: storedResource.url)
                             })
                         }

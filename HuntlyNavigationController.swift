@@ -15,7 +15,6 @@ public class HuntlyNavigationController : UINavigationController {
     var huntlyPointLbl:UILabel!
 
     override public func viewDidLoad() {
-        print("HuntlyNavigationController")
         let huntlyPointView = UIImageView(frame : CGRectMake(0, 0, 30, 30))
         huntlyPointView.image = UIImage(named: "DevoxxHuntlyIntegrationIcon")
         

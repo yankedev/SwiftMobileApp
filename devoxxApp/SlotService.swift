@@ -108,6 +108,8 @@ class SlotService : AbstractService {
                         coreDataObjectCast.feedHelper(singleHelper)
                     }
                     
+                    objc_sync_enter(self)
+                    
                     if let helperSlot = singleHelper as? SlotHelper  {
                         if let subCoreDataObjectFeed = subCoreDataObject as? FeedableProtocol {
                             subCoreDataObjectFeed.feedHelper(helperSlot.talk!)
@@ -125,12 +127,14 @@ class SlotService : AbstractService {
                         }
                     }
                     
+                    objc_sync_exit(self)
+                    
                     coreDataObject?.setValue(subCoreDataObject as? AnyObject, forKey: "talk")
                     
                 }
                     
                 catch {
-                    
+                    objc_sync_exit(self)
                 }
                 
                 
