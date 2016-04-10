@@ -482,7 +482,11 @@ class DevoxxCache: NSObject {
                                     }
                                 }
                             }
-                            schedule.slots = NSOrderedSet(array: slots)
+                            let sortedSlots = NSArray(array: slots).sortedArrayUsingDescriptors([
+                                NSSortDescriptor(key: "timeRange", ascending: true),
+                                NSSortDescriptor(key: "roomName", ascending: true)
+                            ])
+                            schedule.slots = NSOrderedSet(array: sortedSlots)
                             self.saveContext(context)
                         }
                     }

@@ -51,12 +51,10 @@ class ScheduleController: WKInterfaceController {
                 var rowTypes = [String]()
                 self.dataSource = [AnyObject]()
                 for slot in slots {
-                    let timeRange = "\(slot.fromTime!) - \(slot.toTime!)"
-                    
-                    if !timeRanges.contains(timeRange) {
-                        timeRanges.append(timeRange)
+                    if !timeRanges.contains(slot.timeRange) {
+                        timeRanges.append(slot.timeRange)
                         rowTypes.append("timerange")
-                        self.dataSource.append(timeRange)
+                        self.dataSource.append(slot.timeRange)
                     }
                     
                     rowTypes.append("slot")

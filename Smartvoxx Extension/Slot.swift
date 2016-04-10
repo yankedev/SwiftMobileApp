@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 class Slot: NSManagedObject {
-
-// Insert code here to add functionality to your managed object subclass
-
+    var timeRange:String {
+        return "\(self.fromTime!) - \(self.toTime!)"
+    }
 }
