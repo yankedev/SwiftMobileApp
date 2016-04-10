@@ -33,6 +33,7 @@ protocol RatableProtocol {
     func getTitle() -> String
     func getIdentifier() -> String
     func getSubTitle() -> String
+    func isEnabled() -> Bool
 }
 
 

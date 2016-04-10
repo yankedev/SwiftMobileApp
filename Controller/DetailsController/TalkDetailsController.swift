@@ -21,6 +21,11 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
         super.viewDidLoad()
         
+        if let rateDetails = detailObject as? RatableProtocol {
+            if !rateDetails.isEnabled() {
+                actionButtonView2.hidden = true
+            }
+        }
         
         details.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(details)

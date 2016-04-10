@@ -192,6 +192,13 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
     func getIdentifier() -> String {
         return id!
     }
+    
+    func isEnabled() -> Bool {
+        if isBreak == nil {
+            return false
+        }
+        return !(isBreak!)
+    }
 
 
 
