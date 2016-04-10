@@ -137,8 +137,13 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
     
     func invertFavorite() {
         isFavorited = !isFavorited
+        
         if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
             appDelegate.updateFavoriteStatus(isFavorited, forTalkWithId: self.getIdentifier(), inConferenceWithId: self.slot.cfp!.identifier())
+            appDelegate.unscheduleLocalNotificationForTalkWithId(self.getIdentifier())
+            if isFavorited {
+                appDelegate.scheduleLocalNotificationForTalkWithId(self.getIdentifier(), title: self.title, room: self.slot.roomName, fromTime: self.slot.fromTime, toTime: self.slot.toTime, fromTimeMillis: self.slot.fromTimeMillis)
+            }
         }
     }
     

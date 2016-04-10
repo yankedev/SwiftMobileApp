@@ -141,38 +141,17 @@ extension AppDelegate: WCSessionDelegate {
     
     private func processMessage(message:[String: AnyObject]) {
         if let favorite = message["favorite"] as? [String:AnyObject] {
-            let id = favorite["talkId"] as? String
-            
-            for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
-                if let userInfo = notification.userInfo {
-                    if let talkId = userInfo["id"] as? String {
-                        if talkId == id {
-                            UIApplication.sharedApplication().cancelLocalNotification(notification)
-                        }
-                    }
-                }
-            }
-            
-            let value = favorite["favorite"] as? NSNumber
-            
-            if let fav = value?.boolValue {
-                self.setFavoriteStatus(fav, forTalkWithId:id!)
+            if let id = favorite["talkId"] as? String, fav = (favorite["favorite"] as? NSNumber)?.boolValue {
+                unscheduleLocalNotificationForTalkWithId(id)
+                self.setFavoriteStatus(fav, forTalkWithId:id)
                 if fav {
                     let title = favorite["title"] as? String
                     let room = favorite["room"] as? String
-                    
                     let fromTimeMillis = favorite["fromTimeMillis"] as? NSNumber
                     let fromTime = favorite["fromTime"] as? String
                     let toTime = favorite["toTime"] as? String
                     
-                    let date = NSDate(timeIntervalSince1970: fromTimeMillis!.doubleValue / 1000)
-                    let notification = UILocalNotification()
-                    notification.fireDate = date.dateByAddingTimeInterval(-10*60)
-                    notification.timeZone = NSTimeZone.localTimeZone()
-                    notification.userInfo = favorite as [NSObject : AnyObject]
-                    notification.alertTitle = title
-                    notification.alertBody = String(format: NSLocalizedString("From %@ to %@ in %@", comment: ""), arguments: [fromTime!, toTime!, room!])
-                    UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                    scheduleLocalNotificationForTalkWithId(id, title: title!, room: room!, fromTime: fromTime!, toTime: toTime!, fromTimeMillis: fromTimeMillis!)
                 }
             }
         }
@@ -180,6 +159,36 @@ extension AppDelegate: WCSessionDelegate {
     
     private func setFavoriteStatus(fav:Bool, forTalkWithId talkId:String) {
         //TODO
+    }
+    
+    func scheduleLocalNotificationForTalkWithId(id:String, title:String, room:String, fromTime:String, toTime:String, fromTimeMillis:NSNumber){
+        let date = NSDate(timeIntervalSince1970: fromTimeMillis.doubleValue / 1000)
+        let notification = UILocalNotification()
+        notification.fireDate = date.dateByAddingTimeInterval(-10*60)
+        notification.timeZone = NSTimeZone.localTimeZone()
+        notification.userInfo = [
+            "id": id,
+            "title":title,
+            "room":room,
+            "fromTimeMillis":fromTimeMillis,
+            "fromTime":fromTime,
+            "toTime":toTime
+        ]
+        notification.alertTitle = title
+        notification.alertBody = String(format: NSLocalizedString("From %@ to %@ in %@", comment: ""), arguments: [fromTime, toTime, room])
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+    }
+    
+    func unscheduleLocalNotificationForTalkWithId(id:String) {
+        for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
+            if let userInfo = notification.userInfo {
+                if let talkId = userInfo["id"] as? String {
+                    if talkId == id {
+                        UIApplication.sharedApplication().cancelLocalNotification(notification)
+                    }
+                }
+            }
+        }
     }
 }
 

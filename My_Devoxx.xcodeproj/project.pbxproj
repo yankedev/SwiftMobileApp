@@ -774,6 +774,7 @@
 			children = (
 				B95C585F1CB96FD5007BD5A3 /* Data */,
 				B95C585D1CB96FCE007BD5A3 /* Localizable.strings */,
+				B95C582E1CB96EF9007BD5A3 /* ExtensionDelegate.swift */,
 				B95C58471CB96FB3007BD5A3 /* ConferencesController.swift */,
 				B95C58481CB96FB3007BD5A3 /* ConferenceRowController.swift */,
 				B95C58491CB96FB3007BD5A3 /* SchedulesController.swift */,
@@ -785,7 +786,6 @@
 				B95C584F1CB96FB3007BD5A3 /* SlotRowController.swift */,
 				B95C58501CB96FB3007BD5A3 /* SpeakerRowController.swift */,
 				B95C58511CB96FB3007BD5A3 /* UIColorExtension.swift */,
-				B95C582E1CB96EF9007BD5A3 /* ExtensionDelegate.swift */,
 				B95C58301CB96EF9007BD5A3 /* NotificationController.swift */,
 				B95C58321CB96EF9007BD5A3 /* GlanceController.swift */,
 				B95C58341CB96EF9007BD5A3 /* ComplicationController.swift */,
