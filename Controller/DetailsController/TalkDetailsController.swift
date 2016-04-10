@@ -149,7 +149,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
    
     
     
-    public func twitter() {
+    public override func twitter() {
         
         let originalString = detailObject.getTwitter()
  
@@ -287,7 +287,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
     }
     
-    public func tryToRate() {
+    public override func tryToRate() {
         
         if APIManager.qrCodeAlreadyScanned() {
             rate()

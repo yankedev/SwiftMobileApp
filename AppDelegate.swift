@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Crashlytics.sharedInstance().debugMode = true
         
         //dunno why, first time UITextView is called, the UI freezes for about 1 sec, so by doing it here, the user wont be affected (workaround)
-        UITextView()
+        let _ = UITextView()
         
         APIManager.firstFeed(resourceReady, service: StoredResourceService.sharedInstance)
         

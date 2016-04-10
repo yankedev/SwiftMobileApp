@@ -268,9 +268,9 @@ public class AbstractDetailsController : UIViewController {
     
     public func configure() {
         
-        actionButtonView0.button.addTarget(self, action: Selector("twitter"), forControlEvents: .TouchUpInside)
+        actionButtonView0.button.addTarget(self, action: #selector(AbstractDetailsController.twitter), forControlEvents: .TouchUpInside)
         
-        actionButtonView2.button.addTarget(self, action: Selector("tryToRate"), forControlEvents: .TouchUpInside)
+        actionButtonView2.button.addTarget(self, action: #selector(AbstractDetailsController.tryToRate), forControlEvents: .TouchUpInside)
         
         actionButtonViewBack.button.addTarget(self, action: #selector(self.back), forControlEvents: .TouchUpInside)
         
@@ -332,6 +332,11 @@ public class AbstractDetailsController : UIViewController {
         return ""
     }
     
+    public func twitter() {
+    }
+    
+    public func tryToRate() {
+    }
     
    
     

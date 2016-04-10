@@ -96,7 +96,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     
     
-    public func twitter() {
+    public override func twitter() {
         
         let originalString = detailObject.getTwitter()
      
