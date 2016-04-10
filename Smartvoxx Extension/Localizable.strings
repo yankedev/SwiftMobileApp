@@ -29,7 +29,10 @@
 "Launch Smartvoxx to load Devoxx 2015 schedule" = "Lancez Smartvoxx pour charger l'agenda de Devoxx 2015";
 
 /* No comment provided by engineer. */
-"Next" = "Suivant";
+"Next" = "A venir";
+
+/* No comment provided by engineer. */
+"in %@" = "à %@";
 
 /* No comment provided by engineer. */
 "No more upcoming favorite talk" = "Plus de présentation favorite à venir";
@@ -44,7 +47,7 @@
 "See you next year!" = "A l'année prochaine!";
 
 /* No comment provided by engineer. */
-"in Devoxx 2015" = "à Devoxx 2015";
+"favorite talks" = "présentations favorites";
 
 /* No comment provided by engineer. */
 "until Devoxx 2015" = "jusqu'à Devoxx 2015";

@@ -13,7 +13,6 @@
 		B95C581D1CB96EF9007BD5A3 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95C581B1CB96EF9007BD5A3 /* Interface.storyboard */; };
 		B95C581F1CB96EF9007BD5A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B95C581E1CB96EF9007BD5A3 /* Assets.xcassets */; };
 		B95C58261CB96EF9007BD5A3 /* Smartvoxx Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B95C58251CB96EF9007BD5A3 /* Smartvoxx Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		B95C582D1CB96EF9007BD5A3 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C582C1CB96EF9007BD5A3 /* InterfaceController.swift */; };
 		B95C582F1CB96EF9007BD5A3 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C582E1CB96EF9007BD5A3 /* ExtensionDelegate.swift */; };
 		B95C58311CB96EF9007BD5A3 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58301CB96EF9007BD5A3 /* NotificationController.swift */; };
 		B95C58331CB96EF9007BD5A3 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58321CB96EF9007BD5A3 /* GlanceController.swift */; };
@@ -334,7 +333,6 @@
 		B95C58201CB96EF9007BD5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B95C58251CB96EF9007BD5A3 /* Smartvoxx Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Smartvoxx Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95C582B1CB96EF9007BD5A3 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		B95C582C1CB96EF9007BD5A3 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		B95C582E1CB96EF9007BD5A3 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		B95C58301CB96EF9007BD5A3 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		B95C58321CB96EF9007BD5A3 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
@@ -789,7 +787,6 @@
 				B95C58301CB96EF9007BD5A3 /* NotificationController.swift */,
 				B95C58321CB96EF9007BD5A3 /* GlanceController.swift */,
 				B95C58341CB96EF9007BD5A3 /* ComplicationController.swift */,
-				B95C582C1CB96EF9007BD5A3 /* InterfaceController.swift */,
 				B95C58361CB96EF9007BD5A3 /* Assets.xcassets */,
 				B95C58381CB96EF9007BD5A3 /* Info.plist */,
 				B95C582A1CB96EF9007BD5A3 /* Supporting Files */,
@@ -1614,7 +1611,6 @@
 				B95C585A1CB96FB3007BD5A3 /* SlotRowController.swift in Sources */,
 				B95C58801CB96FFF007BD5A3 /* BreakSlot.swift in Sources */,
 				B95C58351CB96EF9007BD5A3 /* ComplicationController.swift in Sources */,
-				B95C582D1CB96EF9007BD5A3 /* InterfaceController.swift in Sources */,
 				B95C587D1CB96FFF007BD5A3 /* Conference+CoreDataProperties.swift in Sources */,
 				B95C58331CB96EF9007BD5A3 /* GlanceController.swift in Sources */,
 				B95C58761CB96FFF007BD5A3 /* Track.swift in Sources */,

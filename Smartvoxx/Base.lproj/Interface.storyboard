@@ -241,13 +241,13 @@
                 <glanceController spacing="0.0" topTemplateType="mediumBody1" bottomTemplateType="groupBody1Footer" id="WKM-L9-75N" customClass="GlanceController" customModule="Smartvoxx" customModuleProvider="target">
                     <items>
                         <label alignment="left" text="1234" id="475-sm-mNt"/>
-                        <label alignment="left" text="Label" id="9eH-TW-QWu"/>
+                        <label alignment="left" text="Label" minimumScaleFactor="0.5" id="9eH-TW-QWu"/>
                         <group alignment="left" id="4WQ-HF-K8v">
                             <items>
                                 <label alignment="left" text="Label" numberOfLines="0" id="V0G-wU-iUy"/>
                             </items>
                         </group>
-                        <label alignment="left" text="Label" id="Apj-SP-x5P"/>
+                        <label alignment="left" text="Label" minimumScaleFactor="0.5" id="Apj-SP-x5P"/>
                         <label alignment="left" text="Footer" id="Fkt-B4-REK"/>
                     </items>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>

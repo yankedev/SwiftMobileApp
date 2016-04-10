@@ -23,9 +23,7 @@ class GlanceController: WKInterfaceController {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        
         self.headerLabel.setText(NSLocalizedString("Next", comment: ""))
-        self.subtitleLabel.setText(NSLocalizedString("in Devoxx 2015", comment: ""))
     }
     
     override func willActivate() {
@@ -42,6 +40,7 @@ class GlanceController: WKInterfaceController {
                 }
             }
             if let nextFavoriteSlot = nextFavoriteSlot {
+                self.subtitleLabel.setText(String(format:NSLocalizedString("in %@", comment: ""), nextFavoriteSlot.schedule!.conference!.conferenceDescription!))
                 self.titleLabel.setText(nextFavoriteSlot.title)
                 
                 self.roomLabel.setHidden(false)
@@ -53,13 +52,15 @@ class GlanceController: WKInterfaceController {
                 formatter.dateStyle = NSDateFormatterStyle.LongStyle
                 formatter.timeStyle = NSDateFormatterStyle.NoStyle
                 let day = formatter.stringFromDate(startDate)
-                self.dateLabel.setText("\(day), \(nextFavoriteSlot.fromTime!) - \(nextFavoriteSlot.toTime!)")
+                self.dateLabel.setText("\(day), \(nextFavoriteSlot.timeRange)")
             } else {
+                self.subtitleLabel.setText("")
                 self.titleLabel.setText(NSLocalizedString("No more upcoming favorite talk.", comment: ""))
                 self.roomLabel.setHidden(true)
                 self.dateLabel.setHidden(true)
             }
         } else {
+            self.subtitleLabel.setText("")
             self.titleLabel.setText(NSLocalizedString("No more upcoming favorite talk.", comment: ""))
             self.roomLabel.setHidden(true)
             self.dateLabel.setHidden(true)
