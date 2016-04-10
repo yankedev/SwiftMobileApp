@@ -21,8 +21,6 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleNotification(_:)), name:"UpdateFavorite", object: nil)
-        
         if let rateDetails = detailObject as? RatableProtocol {
             if !rateDetails.isEnabled() {
                 actionButtonView2.hidden = true
@@ -112,8 +110,16 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
         
         header.imageView.hidden = true
+        
+        //sync with watch
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleNotification(_:)), name:"UpdateFavorite", object: nil)
     }
-       
+    
+    
+    public override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateFavorite", object: nil)
+    }
     
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

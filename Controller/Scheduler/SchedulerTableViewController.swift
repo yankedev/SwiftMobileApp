@@ -64,12 +64,8 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleNotification(_:)), name:"UpdateFavorite", object: nil)
-        
         fetchUpdate()
-        
-        
-        
+
         schedulerTableView.delegate = self
         schedulerTableView.dataSource = self
         
@@ -84,8 +80,15 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         self.navigationController?.navigationBarHidden = false
         fetchAll()
         self.schedulerTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        //sync with watch
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleNotification(_:)), name:"UpdateFavorite", object: nil)
     }
     
+    public override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateFavorite", object: nil)
+    }
     
     
     
