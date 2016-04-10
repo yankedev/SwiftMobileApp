@@ -78,6 +78,11 @@ class CfpService : AbstractService {
         return cfp.title()
     }
     
+    func getTalkURL() -> String {
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return cfp.talkURL ?? ""
+    }
+    
     func getHashtag() -> String {
         let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
         return cfp.hashtag!
