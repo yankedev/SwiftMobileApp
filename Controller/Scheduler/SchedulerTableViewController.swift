@@ -64,6 +64,9 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     override public func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleNotification(_:)), name:"UpdateFavorite", object: nil)
+        
         fetchUpdate()
         
         
@@ -519,6 +522,10 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         schedulerTableView.searchBar.resignFirstResponder()
     }
     
+    
+    func handleNotification(notification: NSNotification){
+        schedulerTableView.reloadData()
+    }
     
     
     

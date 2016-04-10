@@ -158,7 +158,15 @@ extension AppDelegate: WCSessionDelegate {
     }
     
     private func setFavoriteStatus(fav:Bool, forTalkWithId talkId:String) {
-        //TODO
+        TalkService.sharedInstance.setFavoriteStatus(fav, forTalkWithId: talkId, completion : sendNotif)
+    }
+    
+    
+    
+    private func sendNotif(msg : CallbackProtocol) {
+        if msg.getMessage() == "OK" {
+            NSNotificationCenter.defaultCenter().postNotificationName("UpdateFavorite", object: nil)
+        }
     }
     
     func scheduleLocalNotificationForTalkWithId(id:String, title:String, room:String, fromTime:String, toTime:String, fromTimeMillis:NSNumber){
