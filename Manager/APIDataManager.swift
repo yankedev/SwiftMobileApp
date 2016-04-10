@@ -91,12 +91,7 @@
             
            
             let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
-            
-            let headers = [
-                "If-None-Match": storedResource.etag
-            ]
-            config.HTTPAdditionalHeaders = headers
-            config.requestCachePolicy = .ReloadIgnoringLocalCacheData
+
             config.timeoutIntervalForResource = 15
             
             let session = NSURLSession(configuration: config)
