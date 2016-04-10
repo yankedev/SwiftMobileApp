@@ -497,10 +497,23 @@ class DevoxxCache: NSObject {
         self.swapFavoriteStatusForTalkSlotWithTalkId(talkId, inContext:self.privateObjectContext)
     }
     
+    func setFavorite(favorite:Bool, forTalkSlotWithId talkId:String) {
+        self.setFavorite(favorite, forTalkSlotWithId: talkId, inContext:self.privateObjectContext)
+    }
+    
     private func swapFavoriteStatusForTalkSlotWithTalkId(talkId:String, inContext context:NSManagedObjectContext) {
         context.performBlockAndWait { () -> Void in
             if let talkSlot = self.getOrCreateTalkSlotWithTalkId(talkId, inContext: context) {
                 talkSlot.favorite = NSNumber(bool: !(talkSlot.favorite!.boolValue))
+                self.saveContext(context)
+            }
+        }
+    }
+    
+    private func setFavorite(favorite:Bool, forTalkSlotWithId talkId:String, inContext context:NSManagedObjectContext) {
+        context.performBlockAndWait { 
+            if let talkSlot = self.getOrCreateTalkSlotWithTalkId(talkId, inContext: context) {
+                talkSlot.favorite = NSNumber(bool: favorite)
                 self.saveContext(context)
             }
         }

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import WatchConnectivity
 
 //Fabric/CrashAnalytics
 import Fabric
@@ -17,6 +18,7 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var session: WCSession?
     
     func resourceReady(msg: CallbackProtocol) -> Void {
         //TODO
@@ -25,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        initWatchConnectivity()
         
         Fabric.with([Crashlytics.self])
 
@@ -101,9 +105,81 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let coreDataHelper = CoreDataHelper()
         return coreDataHelper
     }()
+}
+
+extension AppDelegate: WCSessionDelegate {
+    func initWatchConnectivity() {
+        if WCSession.isSupported() {
+            session = WCSession.defaultSession()
+            session?.delegate = self
+            session?.activateSession()
+        }
+    }
     
- 
+    func updateFavoriteStatus(favorite:Bool, forTalkWithId talkId:String, inConferenceWithId conferenceId:String) {
+        if let session = session {
+            let message = ["favorite":["value":favorite, "talkId":talkId, "conferenceId":conferenceId]]
+            if session.reachable {
+                session.sendMessage(message, replyHandler: { (reply:[String : AnyObject]) in
+                    
+                    }, errorHandler: { (error:NSError) in
+                        print(error)
+                })
+            } else {
+                session.transferUserInfo(message)
+            }
+        }
+    }
     
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject]) {
+        processMessage(message)
+    }
     
+    func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
+        processMessage(userInfo)
+    }
+    
+    private func processMessage(message:[String: AnyObject]) {
+        if let favorite = message["favorite"] as? [String:AnyObject] {
+            let id = favorite["talkId"] as? String
+            
+            for notification in UIApplication.sharedApplication().scheduledLocalNotifications! {
+                if let userInfo = notification.userInfo {
+                    if let talkId = userInfo["id"] as? String {
+                        if talkId == id {
+                            UIApplication.sharedApplication().cancelLocalNotification(notification)
+                        }
+                    }
+                }
+            }
+            
+            let value = favorite["favorite"] as? NSNumber
+            
+            if let fav = value?.boolValue {
+                self.setFavoriteStatus(fav, forTalkWithId:id!)
+                if fav {
+                    let title = favorite["title"] as? String
+                    let room = favorite["room"] as? String
+                    
+                    let fromTimeMillis = favorite["fromTimeMillis"] as? NSNumber
+                    let fromTime = favorite["fromTime"] as? String
+                    let toTime = favorite["toTime"] as? String
+                    
+                    let date = NSDate(timeIntervalSince1970: fromTimeMillis!.doubleValue / 1000)
+                    let notification = UILocalNotification()
+                    notification.fireDate = date.dateByAddingTimeInterval(-10*60)
+                    notification.timeZone = NSTimeZone.localTimeZone()
+                    notification.userInfo = favorite as [NSObject : AnyObject]
+                    notification.alertTitle = title
+                    notification.alertBody = String(format: NSLocalizedString("From %@ to %@ in %@", comment: ""), arguments: [fromTime!, toTime!, room!])
+                    UIApplication.sharedApplication().scheduleLocalNotification(notification)
+                }
+            }
+        }
+    }
+    
+    private func setFavoriteStatus(fav:Bool, forTalkWithId talkId:String) {
+        //TODO
+    }
 }
 

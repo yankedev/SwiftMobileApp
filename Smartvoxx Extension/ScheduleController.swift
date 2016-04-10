@@ -15,6 +15,7 @@ class ScheduleController: WKInterfaceController {
     @IBOutlet var table: WKInterfaceTable!
     var schedule: Schedule?
     var dataSource = [AnyObject]()
+    private var notificationObserver:AnyObject?
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -28,35 +29,41 @@ class ScheduleController: WKInterfaceController {
 
     override func willActivate() {
         super.willActivate()
+        self.notificationObserver = NSNotificationCenter.defaultCenter().addObserverForName("talkFavoriteStatusChanged", object: nil, queue: nil) { (notification:NSNotification) in
+            self.reloadData()
+        }
+        reloadData()
+    }
 
+    private func reloadData() {
         if let schedule = self.schedule {
             self.setTitle(schedule.purgedTitle)
             self.activityIndicator.setHidden(false)
             self.activityIndicator.startAnimatingWithImagesInRange(NSMakeRange(0, 30), duration: 1.0, repeatCount: 0)
-
+            
             DataController.sharedInstance.getSlotsForSchedule(schedule) {
                 (slots: [Slot]) -> (Void) in
                 self.schedule?.slots = NSOrderedSet(array: slots)
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.setHidden(true)
-
+                
                 var timeRanges = [String]()
                 var rowTypes = [String]()
                 self.dataSource = [AnyObject]()
                 for slot in slots {
                     let timeRange = "\(slot.fromTime!) - \(slot.toTime!)"
-
+                    
                     if !timeRanges.contains(timeRange) {
                         timeRanges.append(timeRange)
                         rowTypes.append("timerange")
                         self.dataSource.append(timeRange)
                     }
-
+                    
                     rowTypes.append("slot")
                     self.dataSource.append(slot)
                 }
                 self.table.setRowTypes(rowTypes)
-
+                
                 var index = 0
                 for item in self.dataSource {
                     if let timeRangeRowController = self.table.rowControllerAtIndex(index) as? TimeRangeRowController {
@@ -66,7 +73,7 @@ class ScheduleController: WKInterfaceController {
                     } else if let slotRowController = self.table.rowControllerAtIndex(index) as? SlotRowController {
                         if let slot = item as? Slot {
                             slotRowController.roomLabel.setText(slot.roomName!)
-
+                            
                             if let breakSlot = item as? BreakSlot {
                                 slotRowController.titleLabel.setText(breakSlot.nameEN!)
                                 slotRowController.trackSeparator.setBackgroundColor(UIColor.clearColor())
@@ -78,7 +85,7 @@ class ScheduleController: WKInterfaceController {
                                 } else {
                                     slotRowController.trackSeparator.setBackgroundColor(UIColor.clearColor())
                                 }
-
+                                
                                 if let favorite = talkSlot.favorite?.boolValue where favorite {
                                     slotRowController.favoriteImage.setHidden(false)
                                     slotRowController.favoriteImage.setImageNamed("FavoriteOn")
@@ -95,12 +102,14 @@ class ScheduleController: WKInterfaceController {
             }
         }
     }
-
+    
     override func didDeactivate() {
         if let schedule = self.schedule {
             DataController.sharedInstance.cancelSlotsForSchedule(schedule)
         }
-
+        if let notificationObserver = self.notificationObserver {
+            NSNotificationCenter.defaultCenter().removeObserver(notificationObserver)
+        }
         super.didDeactivate()
     }
 

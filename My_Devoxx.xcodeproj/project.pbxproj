@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8985D88EA997D39C857767DA /* Pods_My_Devoxx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47CEF9376C5B292EF5D1A9B0 /* Pods_My_Devoxx.framework */; };
+		B904E26C1CB9B65700330EC0 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B904E26B1CB9B65700330EC0 /* WatchConnectivity.framework */; };
 		B9520A631CB9719C00AF60F3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9520A621CB9719C00AF60F3 /* CoreData.framework */; };
 		B95C581D1CB96EF9007BD5A3 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95C581B1CB96EF9007BD5A3 /* Interface.storyboard */; };
 		B95C581F1CB96EF9007BD5A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B95C581E1CB96EF9007BD5A3 /* Assets.xcassets */; };
@@ -325,6 +326,7 @@
 		0FB185179EB1A53D28BD306A /* Pods-My_Devoxx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Devoxx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My_Devoxx/Pods-My_Devoxx.debug.xcconfig"; sourceTree = "<group>"; };
 		47CEF9376C5B292EF5D1A9B0 /* Pods_My_Devoxx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Devoxx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6174ADBC7F4F4EA4AF5CA638 /* Pods-My_Devoxx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Devoxx.release.xcconfig"; path = "Pods/Target Support Files/Pods-My_Devoxx/Pods-My_Devoxx.release.xcconfig"; sourceTree = "<group>"; };
+		B904E26B1CB9B65700330EC0 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 		B9520A621CB9719C00AF60F3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		B95C58191CB96EF9007BD5A3 /* Smartvoxx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smartvoxx.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95C581C1CB96EF9007BD5A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -611,6 +613,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B904E26C1CB9B65700330EC0 /* WatchConnectivity.framework in Frameworks */,
 				E1E9E4FD1C97807D00EC347D /* Crashlytics.framework in Frameworks */,
 				E1E9E4FE1C97807D00EC347D /* Fabric.framework in Frameworks */,
 				FED65436CAE2428FB1717F98 /* Pods.framework in Frameworks */,
@@ -748,6 +751,7 @@
 		62ACD2D20B977D6D51F3C490 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B904E26B1CB9B65700330EC0 /* WatchConnectivity.framework */,
 				B9520A621CB9719C00AF60F3 /* CoreData.framework */,
 				F3ECDBE21D69151AF0720F57 /* Pods.framework */,
 				47CEF9376C5B292EF5D1A9B0 /* Pods_My_Devoxx.framework */,
@@ -1915,7 +1919,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1954,7 +1958,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

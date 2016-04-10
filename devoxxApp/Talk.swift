@@ -137,6 +137,9 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
     
     func invertFavorite() {
         isFavorited = !isFavorited
+        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+            appDelegate.updateFavoriteStatus(isFavorited, forTalkWithId: self.getIdentifier(), inConferenceWithId: self.slot.cfp!.identifier())
+        }
     }
     
     func isFav() -> Bool {

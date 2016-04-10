@@ -8,9 +8,8 @@
 
 import WatchKit
 import Foundation
-import WatchConnectivity
 
-class SlotController: WKInterfaceController, WCSessionDelegate {
+class SlotController: WKInterfaceController {
     @IBOutlet var titleLabel: WKInterfaceLabel!
     @IBOutlet var trackLabel: WKInterfaceLabel!
     @IBOutlet var roomLabel: WKInterfaceLabel!
@@ -24,7 +23,7 @@ class SlotController: WKInterfaceController, WCSessionDelegate {
     
     var slot:Slot?
     var speakers:[Speaker]?
-    var session:WCSession?
+    private var notificationObserver:AnyObject?
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -38,20 +37,20 @@ class SlotController: WKInterfaceController, WCSessionDelegate {
         }
         
         self.updateMenu()
-        startSession()
-    }
-    
-    private func startSession() {
-        if WCSession.isSupported() {
-            session = WCSession.defaultSession()
-            session?.delegate = self
-            session?.activateSession()
-        }
     }
 
     override func willActivate() {
         super.willActivate()
-                
+        self.notificationObserver = NSNotificationCenter.defaultCenter().addObserverForName("talkFavoriteStatusChanged", object: nil, queue: nil) { (notification:NSNotification) in
+            if let userInfo = notification.userInfo, talkSlot = userInfo["talkSlot"] as? TalkSlot, selfTalkSlot = self.slot as? TalkSlot where talkSlot.talkId == selfTalkSlot.talkId {
+                self.slot = talkSlot
+                self.updateMenu()
+            }
+        }
+        refresh()
+    }
+    
+    func refresh() {
         if let talkSlot = self.slot as? TalkSlot {
             self.slot = talkSlot
             self.titleLabel.setText(talkSlot.title!)
@@ -112,7 +111,10 @@ class SlotController: WKInterfaceController, WCSessionDelegate {
     }
 
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
+        if let notificationObserver = self.notificationObserver {
+            NSNotificationCenter.defaultCenter().removeObserver(notificationObserver)
+        }
+        
         super.didDeactivate()
     }
 
@@ -129,38 +131,13 @@ class SlotController: WKInterfaceController, WCSessionDelegate {
             DataController.sharedInstance.swapFavoriteStatusForTalkSlot(talkSlot, callback: { (talkSlot:TalkSlot) -> Void in
                 self.slot = talkSlot
                 self.updateMenu()
-                self.scheduleNotification()
+                if let extensionDelegate = WKExtension.sharedExtension().delegate as? ExtensionDelegate {
+                    extensionDelegate.updateFavoriteStatusForTalkSlot(talkSlot)
+                }
             })
         }
     }
     
     @IBAction func cancelMenuSelected() {
-    }
-    
-    private func scheduleNotification() {
-        if let talkSlot = self.slot as? TalkSlot {
-            let talkSlotMessage = [
-                "title":talkSlot.title!,
-                "room":talkSlot.roomName!,
-                "talkId":talkSlot.talkId!,
-                "track":talkSlot.track!.name!,
-                "favorite":talkSlot.favorite!,
-                "fromTimeMillis":talkSlot.fromTimeMillis!,
-                "fromTime":talkSlot.fromTime!,
-                "toTime":talkSlot.toTime!
-            ]
-            
-            if WCSession.isSupported() {
-                if let session = self.session where session.reachable {
-                    session.sendMessage(["talkSlot" : talkSlotMessage as NSDictionary], replyHandler: { (reply:[String : AnyObject]) -> Void in
-                        
-                        }, errorHandler: { (error:NSError) -> Void in
-                            print(error)
-                    })
-                } else {
-                    session?.transferUserInfo(["talkSlot" : talkSlotMessage as NSDictionary])
-                }
-            }
-        }
     }
 }

@@ -218,4 +218,41 @@ class DataController: NSObject {
     func getLastTalk() -> TalkSlot? {
         return cache.getLastTalk()
     }
+    
+    func setFavorite(favorite:Bool, forTalkWithId talkId:String, inConferenceWithId conferenceId:String, callback:(TalkSlot -> Void)) {
+        /*self.getConferences { (conferences:[Conference]) in
+            for conference in conferences {
+                if conference.conferenceId == conferenceId {
+                    self.getSchedulesForConference(conference, callback: { (schedules:[Schedule]) in
+                        var scheduleFound = false
+                        for schedule in schedules {
+                            self.getSlotsForSchedule(schedule, callback: { (slots:[Slot]) in
+                                for slot in slots {
+                                    if let talkSlot = slot as? TalkSlot {
+                                        if talkSlot.talkId == talkId {
+                                            self.setFavorite(favorite, forTalkSlot:talkSlot, callback: { (modifiedSlot:TalkSlot) in
+                                                callback(modifiedSlot)
+                                            })
+                                            scheduleFound = true
+                                            break
+                                        }
+                                    }
+                                }
+                            })
+                            if scheduleFound {
+                                break
+                            }
+                        }
+                    })
+                    break
+                }
+            }
+        }*/
+        cache.setFavorite(favorite, forTalkSlotWithId: talkId)
+        dispatch_async(dispatch_get_main_queue()) {
+            if let modifiedSlot = self.cache.getTalkSlotWithTalkId(talkId) {
+                callback(modifiedSlot)
+            }
+        }
+    }
 }

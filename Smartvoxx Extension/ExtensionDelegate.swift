@@ -7,11 +7,13 @@
 //
 
 import WatchKit
+import WatchConnectivity
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
+    private var session:WCSession?
 
     func applicationDidFinishLaunching() {
-        // Perform any final initialization of your application.
+        initWatchConnectivity()
     }
 
     func applicationDidBecomeActive() {
@@ -23,4 +25,57 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         // Use this method to pause ongoing tasks, disable timers, etc.
     }
 
+}
+
+extension ExtensionDelegate:WCSessionDelegate {
+    func initWatchConnectivity() {
+        if WCSession.isSupported() {
+            session = WCSession.defaultSession()
+            session?.delegate = self
+            session?.activateSession()
+        }
+    }
+    
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
+        processMessage(message)
+    }
+    
+    func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
+        processMessage(userInfo)
+    }
+    
+    private func processMessage(message:[String:AnyObject]) {
+        if let favorite = message["favorite"] as? [String:AnyObject] {
+            if let value = favorite["value"] as? Bool, talkId = favorite["talkId"] as? String, conferenceId = favorite["conferenceId"] as? String {
+                DataController.sharedInstance.setFavorite(value, forTalkWithId:talkId, inConferenceWithId:conferenceId) { (talkSlot:TalkSlot) in
+                    print("\(talkSlot.talkId!):\(talkSlot.favorite!)")
+                    NSNotificationCenter.defaultCenter().postNotificationName("talkFavoriteStatusChanged", object: nil, userInfo: ["talkSlot":talkSlot])
+                }
+            }
+        }
+    }
+    
+    func updateFavoriteStatusForTalkSlot(talkSlot:TalkSlot) {
+         let talkSlotMessage = [
+            "title":talkSlot.title!,
+            "room":talkSlot.roomName!,
+            "talkId":talkSlot.talkId!,
+            "conferenceId":talkSlot.schedule!.conference!.conferenceId!,
+            "track":talkSlot.track!.name!,
+            "favorite":talkSlot.favorite!,
+            "fromTimeMillis":talkSlot.fromTimeMillis!,
+            "fromTime":talkSlot.fromTime!,
+            "toTime":talkSlot.toTime!
+         ]
+         
+         if let session = self.session where session.reachable {
+            session.sendMessage(["favorite" : talkSlotMessage], replyHandler: { (reply:[String : AnyObject]) -> Void in
+         
+                }, errorHandler: { (error:NSError) -> Void in
+                    print(error)
+            })
+         } else {
+            session?.transferUserInfo(["favorite" : talkSlotMessage as NSDictionary])
+         }
+    }
 }
