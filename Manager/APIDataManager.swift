@@ -90,7 +90,7 @@
             }
             
            
-            let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
+            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
 
             config.timeoutIntervalForResource = 15
             
