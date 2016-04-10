@@ -162,8 +162,7 @@ public class TrackController<T : ScrollableDateProtocol> : HuntlyNavigationContr
     
     //ScrollableDateTableDelegate
     func feedDate() {
-        let trackService = AttributeService()
-        trackService.fetchTracks(callBack)
+        AttributeService.sharedInstance.fetchTracks(callBack)
     }
     
     

@@ -90,12 +90,6 @@
             }
             
            
-            
-            if loadFromFile && service.hasBeenAlreadyFed() {
-                onSuccess(value: CompletionMessage(msg : ""))
-                return
-            }
-            
             let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
             
             let headers = [
