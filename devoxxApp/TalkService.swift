@@ -47,7 +47,7 @@ class TalkService : AbstractService {
             do {
                 let fetchRequest = NSFetchRequest(entityName: "Talk")
                 let sortTime = NSSortDescriptor(key: "slot.fromTime", ascending: true)
-                let sortAlpha = NSSortDescriptor(key: "title", ascending: true)
+                let sortAlpha = NSSortDescriptor(key: "slot.roomName", ascending: true)
                 let sortFavorite = NSSortDescriptor(key: "isFavorited", ascending: false)
                 
                

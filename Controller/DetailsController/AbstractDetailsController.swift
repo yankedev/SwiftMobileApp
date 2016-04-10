@@ -254,7 +254,17 @@ public class AbstractDetailsController : UIViewController {
             actionButtonView1.button.tintColor = UIColor.whiteColor()
         }
     }
+
     
+    public func invertColor() {
+        if actionButtonView1.button.tintColor == ColorManager.grayImageColor {
+            actionButtonView1.button.tintColor = UIColor.whiteColor()
+        }
+        else {
+            actionButtonView1.button.tintColor = ColorManager.grayImageColor
+        }
+    }
+
     
     public func configure() {
         

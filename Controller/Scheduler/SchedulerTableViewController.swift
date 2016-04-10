@@ -64,7 +64,6 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleNotification(_:)), name:"UpdateFavorite", object: nil)
         
         fetchUpdate()

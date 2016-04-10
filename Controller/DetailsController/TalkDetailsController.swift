@@ -21,6 +21,8 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
         super.viewDidLoad()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleNotification(_:)), name:"UpdateFavorite", object: nil)
+        
         if let rateDetails = detailObject as? RatableProtocol {
             if !rateDetails.isEnabled() {
                 actionButtonView2.hidden = true
@@ -297,5 +299,10 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     }
     
     
+    func handleNotification(notification: NSNotification){
+        invertColor()
+    }
+    
+
     
 }
