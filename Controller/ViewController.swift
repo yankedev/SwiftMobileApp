@@ -453,21 +453,14 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         APIDataManager.loadDataFromURL(SpeakerService.sharedInstance.getSpeakerUrl(), service: SpeakerService.sharedInstance, helper : SpeakerHelper(), loadFromFile : true, onSuccess: self.setupEvent, onError: self.failure)
     }
     
-    
-    var group = dispatch_group_create()
+
     
     func setupEvent(msg : CallbackProtocol) {
        // print("========setupEvent")
         
         
         if CfpService.sharedInstance.getNbDays() > 0 {
-            for _ in 1...(CfpService.sharedInstance.getNbDays()) {
-                dispatch_group_enter(group)
-            }
-            APIDataManager.loadDataFromURLS(CfpService.sharedInstance.getDays(), dataHelper: SlotHelper(), loadFromFile : true, onSuccess: self.successDay, onError: self.failure)
-            dispatch_group_notify(group, dispatch_get_main_queue(), {
-                self.fetchTracks()
-            })
+            APIDataManager.loadDataFromURL(CfpService.sharedInstance.getFileTalkUrl(), service: SlotService.sharedInstance, helper: SlotHelper(), loadFromFile : true, onSuccess: self.fetchTracks, onError: self.failure)
         }
         else {
             run_on_main_thread({
@@ -479,11 +472,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
     }
     
-    func successDay(msg : CallbackProtocol) {
-        dispatch_group_leave(group)
-    }
-    
-    func fetchTracks() {
+    func fetchTracks(msg : CallbackProtocol) {
         //print("========fetchTracks")
         APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: TrackService.sharedInstance, helper : TrackHelper(), loadFromFile: true, onSuccess: self.fetchTalkType, onError: failure)
     }

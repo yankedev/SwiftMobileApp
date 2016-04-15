@@ -65,12 +65,10 @@
 		E15D04201CB1AD5E003301C8 /* tickets@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D041F1CB1AD5E003301C8 /* tickets@3x.png */; };
 		E15D04261CB5B3FA003301C8 /* HuntlyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15D04251CB5B3FA003301C8 /* HuntlyNavigationController.swift */; };
 		E15D042F1CB732F3003301C8 /* DevoxxUK2016-conferences.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D04281CB732F3003301C8 /* DevoxxUK2016-conferences.json */; };
-		E15D04301CB732F3003301C8 /* DevoxxUK2016-friday.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D04291CB732F3003301C8 /* DevoxxUK2016-friday.json */; };
 		E15D04311CB732F3003301C8 /* DevoxxUK2016-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D042A1CB732F3003301C8 /* DevoxxUK2016-proposalTypes.json */; };
 		E15D04321CB732F3003301C8 /* DevoxxUK2016-speaker.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D042B1CB732F3003301C8 /* DevoxxUK2016-speaker.json */; };
-		E15D04331CB732F3003301C8 /* DevoxxUK2016-thursday.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D042C1CB732F3003301C8 /* DevoxxUK2016-thursday.json */; };
+		E15D04331CB732F3003301C8 /* DevoxxUK2016-talks.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D042C1CB732F3003301C8 /* DevoxxUK2016-talks.json */; };
 		E15D04341CB732F3003301C8 /* DevoxxUK2016-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D042D1CB732F3003301C8 /* DevoxxUK2016-tracks.json */; };
-		E15D04351CB732F3003301C8 /* DevoxxUK2016-wednesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D042E1CB732F3003301C8 /* DevoxxUK2016-wednesday.json */; };
 		E17050DF1CA560F700818E79 /* ic_beer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17050DD1CA560F700818E79 /* ic_beer@2x.png */; };
 		E17050E01CA560F700818E79 /* ic_wine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17050DE1CA560F700818E79 /* ic_wine@2x.png */; };
 		E175E6161C9638A2002A262A /* ActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5FC1C9638A2002A262A /* ActionButtonView.swift */; };
@@ -205,23 +203,15 @@
 		E175E8631C963E7B002A262A /* DevoxxFRExhibitionPhone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E175E85D1C963E7B002A262A /* DevoxxFRExhibitionPhone.jpg */; };
 		E175E8641C963E7B002A262A /* DevoxxFRExhibitionTablet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E175E85E1C963E7B002A262A /* DevoxxFRExhibitionTablet.jpg */; };
 		E175E86E1C963E91002A262A /* DV15-conferences.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8651C963E91002A262A /* DV15-conferences.json */; };
-		E175E86F1C963E91002A262A /* DV15-friday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8661C963E91002A262A /* DV15-friday.json */; };
-		E175E8701C963E91002A262A /* DV15-monday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8671C963E91002A262A /* DV15-monday.json */; };
 		E175E8711C963E91002A262A /* DV15-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8681C963E91002A262A /* DV15-proposalTypes.json */; };
 		E175E8721C963E91002A262A /* DV15-speakers.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8691C963E91002A262A /* DV15-speakers.json */; };
-		E175E8731C963E91002A262A /* DV15-thursday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E86A1C963E91002A262A /* DV15-thursday.json */; };
 		E175E8741C963E91002A262A /* DV15-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E86B1C963E91002A262A /* DV15-tracks.json */; };
-		E175E8751C963E91002A262A /* DV15-tuesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E86C1C963E91002A262A /* DV15-tuesday.json */; };
-		E175E8761C963E91002A262A /* DV15-wednesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E86D1C963E91002A262A /* DV15-wednesday.json */; };
+		E175E8761C963E91002A262A /* DV15-talks.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E86D1C963E91002A262A /* DV15-talks.json */; };
 		E175E8801C963E9B002A262A /* DevoxxFR2016-conferences.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8771C963E9B002A262A /* DevoxxFR2016-conferences.json */; };
-		E175E8811C963E9B002A262A /* DevoxxFR2016-friday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8781C963E9B002A262A /* DevoxxFR2016-friday.json */; };
-		E175E8821C963E9B002A262A /* DevoxxFR2016-monday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8791C963E9B002A262A /* DevoxxFR2016-monday.json */; };
+		E175E8811C963E9B002A262A /* DevoxxFR2016-talks.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8781C963E9B002A262A /* DevoxxFR2016-talks.json */; };
 		E175E8831C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87A1C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json */; };
 		E175E8841C963E9B002A262A /* DevoxxFR2016-speaker.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87B1C963E9B002A262A /* DevoxxFR2016-speaker.json */; };
-		E175E8851C963E9B002A262A /* DevoxxFR2016-thursday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87C1C963E9B002A262A /* DevoxxFR2016-thursday.json */; };
 		E175E8861C963E9B002A262A /* DEVOXXFR2016-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87D1C963E9B002A262A /* DEVOXXFR2016-tracks.json */; };
-		E175E8871C963E9B002A262A /* DevoxxFR2016-tuesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87E1C963E9B002A262A /* DevoxxFR2016-tuesday.json */; };
-		E175E8881C963E9B002A262A /* DevoxxFR2016-wednesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87F1C963E9B002A262A /* DevoxxFR2016-wednesday.json */; };
 		E175E88B1C963EA6002A262A /* Cfp.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8891C963EA6002A262A /* Cfp.json */; };
 		E175E88C1C963EA6002A262A /* StoredResource.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E88A1C963EA6002A262A /* StoredResource.json */; };
 		E175E89B1C963EB4002A262A /* AttributeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E88D1C963EB4002A262A /* AttributeHelper.swift */; };
@@ -394,12 +384,10 @@
 		E15D041F1CB1AD5E003301C8 /* tickets@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tickets@3x.png"; sourceTree = "<group>"; };
 		E15D04251CB5B3FA003301C8 /* HuntlyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntlyNavigationController.swift; sourceTree = "<group>"; };
 		E15D04281CB732F3003301C8 /* DevoxxUK2016-conferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-conferences.json"; sourceTree = "<group>"; };
-		E15D04291CB732F3003301C8 /* DevoxxUK2016-friday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-friday.json"; sourceTree = "<group>"; };
 		E15D042A1CB732F3003301C8 /* DevoxxUK2016-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-proposalTypes.json"; sourceTree = "<group>"; };
 		E15D042B1CB732F3003301C8 /* DevoxxUK2016-speaker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-speaker.json"; sourceTree = "<group>"; };
-		E15D042C1CB732F3003301C8 /* DevoxxUK2016-thursday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-thursday.json"; sourceTree = "<group>"; };
+		E15D042C1CB732F3003301C8 /* DevoxxUK2016-talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-talks.json"; sourceTree = "<group>"; };
 		E15D042D1CB732F3003301C8 /* DevoxxUK2016-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-tracks.json"; sourceTree = "<group>"; };
-		E15D042E1CB732F3003301C8 /* DevoxxUK2016-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-wednesday.json"; sourceTree = "<group>"; };
 		E15D04361CB788BB003301C8 /* My Devoxx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "My Devoxx.entitlements"; sourceTree = "<group>"; };
 		E17050DD1CA560F700818E79 /* ic_beer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_beer@2x.png"; sourceTree = "<group>"; };
 		E17050DE1CA560F700818E79 /* ic_wine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_wine@2x.png"; sourceTree = "<group>"; };
@@ -537,23 +525,15 @@
 		E175E85D1C963E7B002A262A /* DevoxxFRExhibitionPhone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxFRExhibitionPhone.jpg; sourceTree = "<group>"; };
 		E175E85E1C963E7B002A262A /* DevoxxFRExhibitionTablet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxFRExhibitionTablet.jpg; sourceTree = "<group>"; };
 		E175E8651C963E91002A262A /* DV15-conferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-conferences.json"; sourceTree = "<group>"; };
-		E175E8661C963E91002A262A /* DV15-friday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-friday.json"; sourceTree = "<group>"; };
-		E175E8671C963E91002A262A /* DV15-monday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-monday.json"; sourceTree = "<group>"; };
 		E175E8681C963E91002A262A /* DV15-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-proposalTypes.json"; sourceTree = "<group>"; };
 		E175E8691C963E91002A262A /* DV15-speakers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-speakers.json"; sourceTree = "<group>"; };
-		E175E86A1C963E91002A262A /* DV15-thursday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-thursday.json"; sourceTree = "<group>"; };
 		E175E86B1C963E91002A262A /* DV15-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-tracks.json"; sourceTree = "<group>"; };
-		E175E86C1C963E91002A262A /* DV15-tuesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-tuesday.json"; sourceTree = "<group>"; };
-		E175E86D1C963E91002A262A /* DV15-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-wednesday.json"; sourceTree = "<group>"; };
+		E175E86D1C963E91002A262A /* DV15-talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-talks.json"; sourceTree = "<group>"; };
 		E175E8771C963E9B002A262A /* DevoxxFR2016-conferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-conferences.json"; sourceTree = "<group>"; };
-		E175E8781C963E9B002A262A /* DevoxxFR2016-friday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-friday.json"; sourceTree = "<group>"; };
-		E175E8791C963E9B002A262A /* DevoxxFR2016-monday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-monday.json"; sourceTree = "<group>"; };
+		E175E8781C963E9B002A262A /* DevoxxFR2016-talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-talks.json"; sourceTree = "<group>"; };
 		E175E87A1C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DEVOXXFR2016-proposalTypes.json"; sourceTree = "<group>"; };
 		E175E87B1C963E9B002A262A /* DevoxxFR2016-speaker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-speaker.json"; sourceTree = "<group>"; };
-		E175E87C1C963E9B002A262A /* DevoxxFR2016-thursday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-thursday.json"; sourceTree = "<group>"; };
 		E175E87D1C963E9B002A262A /* DEVOXXFR2016-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DEVOXXFR2016-tracks.json"; sourceTree = "<group>"; };
-		E175E87E1C963E9B002A262A /* DevoxxFR2016-tuesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-tuesday.json"; sourceTree = "<group>"; };
-		E175E87F1C963E9B002A262A /* DevoxxFR2016-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-wednesday.json"; sourceTree = "<group>"; };
 		E175E8891C963EA6002A262A /* Cfp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cfp.json; sourceTree = "<group>"; };
 		E175E88A1C963EA6002A262A /* StoredResource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoredResource.json; sourceTree = "<group>"; };
 		E175E88D1C963EB4002A262A /* AttributeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeHelper.swift; sourceTree = "<group>"; };
@@ -954,12 +934,10 @@
 			isa = PBXGroup;
 			children = (
 				E15D04281CB732F3003301C8 /* DevoxxUK2016-conferences.json */,
-				E15D04291CB732F3003301C8 /* DevoxxUK2016-friday.json */,
 				E15D042A1CB732F3003301C8 /* DevoxxUK2016-proposalTypes.json */,
 				E15D042B1CB732F3003301C8 /* DevoxxUK2016-speaker.json */,
-				E15D042C1CB732F3003301C8 /* DevoxxUK2016-thursday.json */,
+				E15D042C1CB732F3003301C8 /* DevoxxUK2016-talks.json */,
 				E15D042D1CB732F3003301C8 /* DevoxxUK2016-tracks.json */,
-				E15D042E1CB732F3003301C8 /* DevoxxUK2016-wednesday.json */,
 			);
 			name = DevoxxUK2016;
 			sourceTree = "<group>";
@@ -1074,14 +1052,10 @@
 			isa = PBXGroup;
 			children = (
 				E175E8651C963E91002A262A /* DV15-conferences.json */,
-				E175E8661C963E91002A262A /* DV15-friday.json */,
-				E175E8671C963E91002A262A /* DV15-monday.json */,
 				E175E8681C963E91002A262A /* DV15-proposalTypes.json */,
 				E175E8691C963E91002A262A /* DV15-speakers.json */,
-				E175E86A1C963E91002A262A /* DV15-thursday.json */,
 				E175E86B1C963E91002A262A /* DV15-tracks.json */,
-				E175E86C1C963E91002A262A /* DV15-tuesday.json */,
-				E175E86D1C963E91002A262A /* DV15-wednesday.json */,
+				E175E86D1C963E91002A262A /* DV15-talks.json */,
 			);
 			name = DV15;
 			sourceTree = "<group>";
@@ -1090,14 +1064,10 @@
 			isa = PBXGroup;
 			children = (
 				E175E8771C963E9B002A262A /* DevoxxFR2016-conferences.json */,
-				E175E8781C963E9B002A262A /* DevoxxFR2016-friday.json */,
-				E175E8791C963E9B002A262A /* DevoxxFR2016-monday.json */,
+				E175E8781C963E9B002A262A /* DevoxxFR2016-talks.json */,
 				E175E87A1C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json */,
 				E175E87B1C963E9B002A262A /* DevoxxFR2016-speaker.json */,
-				E175E87C1C963E9B002A262A /* DevoxxFR2016-thursday.json */,
 				E175E87D1C963E9B002A262A /* DEVOXXFR2016-tracks.json */,
-				E175E87E1C963E9B002A262A /* DevoxxFR2016-tuesday.json */,
-				E175E87F1C963E9B002A262A /* DevoxxFR2016-wednesday.json */,
 			);
 			name = DEVOXXFR2016;
 			sourceTree = "<group>";
@@ -1412,7 +1382,6 @@
 			files = (
 				E175E8D31C964172002A262A /* pirulen.ttf in Resources */,
 				E175E8D41C964172002A262A /* Roboto-Regular.ttf in Resources */,
-				E15D04351CB732F3003301C8 /* DevoxxUK2016-wednesday.json in Resources */,
 				E175E8231C963E4F002A262A /* icon_archisec.png in Resources */,
 				E15D04201CB1AD5E003301C8 /* tickets@3x.png in Resources */,
 				E175E8001C963E32002A262A /* checkboxOn.png in Resources */,
@@ -1427,10 +1396,8 @@
 				E1863EEC1CBB04FC00EA5DDA /* icon_bd.png in Resources */,
 				E175E8221C963E4F002A262A /* icon_agTest.png in Resources */,
 				E1863EED1CBB04FC00EA5DDA /* icon_cld.png in Resources */,
-				E175E8871C963E9B002A262A /* DevoxxFR2016-tuesday.json in Resources */,
 				E175E8531C963E67002A262A /* ic_time@2x.png in Resources */,
 				E175E8241C963E4F002A262A /* icon_bigd.png in Resources */,
-				E175E8751C963E91002A262A /* DV15-tuesday.json in Resources */,
 				E175E85F1C963E7B002A262A /* devoxxCinameFloorPhone.jpg in Resources */,
 				E175E8521C963E67002A262A /* ic_star@2x.png in Resources */,
 				E175E8621C963E7B002A262A /* devoxxExhibitionFloorTablet.jpg in Resources */,
@@ -1440,7 +1407,6 @@
 				E175E84B1C963E67002A262A /* event.png in Resources */,
 				E175E82D1C963E4F002A262A /* icon_startup.png in Resources */,
 				E1C9E1681CB16B1900796D02 /* Huntly.storyboard in Resources */,
-				E175E86F1C963E91002A262A /* DV15-friday.json in Resources */,
 				E1E9E5271C979BA800EC347D /* Localizable.strings in Resources */,
 				E175E7FC1C963E29002A262A /* talk_background.png in Resources */,
 				E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */,
@@ -1449,7 +1415,6 @@
 				E1E9E51D1C979BA800EC347D /* InfoPlist.strings in Resources */,
 				E175E8361C963E5C002A262A /* tabIconSettings@2x.png in Resources */,
 				E175E8551C963E67002A262A /* location@2x.png in Resources */,
-				E175E8851C963E9B002A262A /* DevoxxFR2016-thursday.json in Resources */,
 				E175E7EF1C963E1F002A262A /* splash_btn_DevoxxUK2016@2x.png in Resources */,
 				E175E8491C963E67002A262A /* cofeeCup.png in Resources */,
 				E175E8601C963E7B002A262A /* devoxxCinameFloorTablet.jpg in Resources */,
@@ -1458,13 +1423,12 @@
 				E1863EE71CBAFFA300EA5DDA /* icon_wm.png in Resources */,
 				E175E8271C963E4F002A262A /* icon_future.png in Resources */,
 				E175E8251C963E4F002A262A /* icon_cldops.png in Resources */,
-				E175E8821C963E9B002A262A /* DevoxxFR2016-monday.json in Resources */,
 				E175E8711C963E91002A262A /* DV15-proposalTypes.json in Resources */,
 				E10E7ACD1C18BF7100F6220B /* Images.xcassets in Resources */,
 				E175E7F81C963E29002A262A /* DevoxxFranceHomePage.jpg in Resources */,
 				E175E80E1C963E3E002A262A /* icon_key.png in Resources */,
 				E175E8561C963E67002A262A /* micro@2x.png in Resources */,
-				E175E8761C963E91002A262A /* DV15-wednesday.json in Resources */,
+				E175E8761C963E91002A262A /* DV15-talks.json in Resources */,
 				E1863EEE1CBB04FC00EA5DDA /* icon_m.png in Resources */,
 				E175E80B1C963E3E002A262A /* icon_bof.png in Resources */,
 				E15D04141CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png in Resources */,
@@ -1475,13 +1439,11 @@
 				E17050E01CA560F700818E79 /* ic_wine@2x.png in Resources */,
 				E17050DF1CA560F700818E79 /* ic_beer@2x.png in Resources */,
 				E175E8801C963E9B002A262A /* DevoxxFR2016-conferences.json in Resources */,
-				E175E8701C963E91002A262A /* DV15-monday.json in Resources */,
 				E175E7EC1C963E1F002A262A /* splash_btn_DevoxxFR2016@2x.png in Resources */,
 				E15D04161CB1A016003301C8 /* LogoDevoxxHuntly@1x.png in Resources */,
 				E15D04171CB1A016003301C8 /* LogoDevoxxHuntly@2x.png in Resources */,
 				E175E84E1C963E67002A262A /* ic_filter_inactive@2x.png in Resources */,
 				E175E8611C963E7B002A262A /* devoxxExhibitionFloorPhone.jpg in Resources */,
-				E175E8731C963E91002A262A /* DV15-thursday.json in Resources */,
 				E175E7EE1C963E1F002A262A /* splash_btn_DevoxxPL2015@2x.png in Resources */,
 				E175E8581C963E67002A262A /* up@2x.png in Resources */,
 				E175E8261C963E4F002A262A /* icon_cloud.png in Resources */,
@@ -1490,7 +1452,6 @@
 				E15D04131CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png in Resources */,
 				E175E7E41C963E17002A262A /* logo.png in Resources */,
 				E175E80C1C963E3E002A262A /* icon_conf.png in Resources */,
-				E15D04301CB732F3003301C8 /* DevoxxUK2016-friday.json in Resources */,
 				E175E88C1C963EA6002A262A /* StoredResource.json in Resources */,
 				E1863EF11CBB051600EA5DDA /* icon_jse.png in Resources */,
 				E175E8571C963E67002A262A /* star@2x.png in Resources */,
@@ -1508,20 +1469,19 @@
 				E175E8641C963E7B002A262A /* DevoxxFRExhibitionTablet.jpg in Resources */,
 				E15D04181CB1A016003301C8 /* LogoDevoxxHuntly@3x.png in Resources */,
 				E175E82E1C963E4F002A262A /* icon_web.png in Resources */,
-				E175E8811C963E9B002A262A /* DevoxxFR2016-friday.json in Resources */,
+				E175E8811C963E9B002A262A /* DevoxxFR2016-talks.json in Resources */,
 				E175E8121C963E3E002A262A /* icon_start.png in Resources */,
 				E15D04151CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@3x.png in Resources */,
 				E175E8741C963E91002A262A /* DV15-tracks.json in Resources */,
 				E175E82C1C963E4F002A262A /* icon_ssj.png in Resources */,
 				E175E86E1C963E91002A262A /* DV15-conferences.json in Resources */,
-				E15D04331CB732F3003301C8 /* DevoxxUK2016-thursday.json in Resources */,
+				E15D04331CB732F3003301C8 /* DevoxxUK2016-talks.json in Resources */,
 				E175E7F91C963E29002A262A /* DevoxxMoroccoHomePage.jpg in Resources */,
 				E175E8541C963E67002A262A /* ic_twitter@2x.png in Resources */,
 				E175E8381C963E5C002A262A /* tabIconTracks@2x.png in Resources */,
 				E15D041E1CB1AD59003301C8 /* tickets@2x.png in Resources */,
 				E175E8351C963E5C002A262A /* tabIconSchedule@2x.png in Resources */,
 				E175E7F01C963E1F002A262A /* splash_btn_DV15@2x.png in Resources */,
-				E175E8881C963E9B002A262A /* DevoxxFR2016-wednesday.json in Resources */,
 				E175E8281C963E4F002A262A /* icon_java.png in Resources */,
 				E175E84D1C963E67002A262A /* ic_filter_active@2x.png in Resources */,
 				E175E88B1C963EA6002A262A /* Cfp.json in Resources */,

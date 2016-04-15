@@ -78,6 +78,11 @@ class CfpService : AbstractService {
         return cfp.title()
     }
     
+    func getFileTalkUrl() -> String {
+        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/fileTalks"
+    }
+    
     func getTalkURL() -> String {
         let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
         return cfp.talkURL ?? ""

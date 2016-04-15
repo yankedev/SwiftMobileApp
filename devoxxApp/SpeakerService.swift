@@ -157,6 +157,8 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
         return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/speakers"
     }
     
+   
+    
     
     func updateImageForId(id : NSManagedObjectID, withData data: NSData, completionHandler : ((msg: CallbackProtocol) -> Void)?) {
         
