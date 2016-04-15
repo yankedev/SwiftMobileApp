@@ -16,7 +16,6 @@
 		B95C582F1CB96EF9007BD5A3 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C582E1CB96EF9007BD5A3 /* ExtensionDelegate.swift */; };
 		B95C58311CB96EF9007BD5A3 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58301CB96EF9007BD5A3 /* NotificationController.swift */; };
 		B95C58331CB96EF9007BD5A3 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58321CB96EF9007BD5A3 /* GlanceController.swift */; };
-		B95C58351CB96EF9007BD5A3 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58341CB96EF9007BD5A3 /* ComplicationController.swift */; };
 		B95C58371CB96EF9007BD5A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B95C58361CB96EF9007BD5A3 /* Assets.xcassets */; };
 		B95C583B1CB96EF9007BD5A3 /* Smartvoxx.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B95C58191CB96EF9007BD5A3 /* Smartvoxx.app */; };
 		B95C58521CB96FB3007BD5A3 /* ConferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58471CB96FB3007BD5A3 /* ConferencesController.swift */; };
@@ -331,7 +330,6 @@
 		B95C582E1CB96EF9007BD5A3 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		B95C58301CB96EF9007BD5A3 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		B95C58321CB96EF9007BD5A3 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
-		B95C58341CB96EF9007BD5A3 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		B95C58361CB96EF9007BD5A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B95C58381CB96EF9007BD5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B95C58471CB96FB3007BD5A3 /* ConferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferencesController.swift; sourceTree = "<group>"; };
@@ -776,7 +774,6 @@
 				B95C58511CB96FB3007BD5A3 /* UIColorExtension.swift */,
 				B95C58301CB96EF9007BD5A3 /* NotificationController.swift */,
 				B95C58321CB96EF9007BD5A3 /* GlanceController.swift */,
-				B95C58341CB96EF9007BD5A3 /* ComplicationController.swift */,
 				B95C58361CB96EF9007BD5A3 /* Assets.xcassets */,
 				B95C58381CB96EF9007BD5A3 /* Info.plist */,
 				B95C582A1CB96EF9007BD5A3 /* Supporting Files */,
@@ -1606,7 +1603,6 @@
 				B95C58821CB96FFF007BD5A3 /* Schedule.swift in Sources */,
 				B95C585A1CB96FB3007BD5A3 /* SlotRowController.swift in Sources */,
 				B95C58801CB96FFF007BD5A3 /* BreakSlot.swift in Sources */,
-				B95C58351CB96EF9007BD5A3 /* ComplicationController.swift in Sources */,
 				B95C587D1CB96FFF007BD5A3 /* Conference+CoreDataProperties.swift in Sources */,
 				B95C58331CB96EF9007BD5A3 /* GlanceController.swift in Sources */,
 				B95C58761CB96FFF007BD5A3 /* Track.swift in Sources */,
@@ -1846,7 +1842,7 @@
 		B95C583E1CB96EF9007BD5A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = "";
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
@@ -1866,7 +1862,7 @@
 		B95C583F1CB96EF9007BD5A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = "";
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";

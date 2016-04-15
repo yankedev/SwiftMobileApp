@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>109</string>
+	<string>110</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -47,6 +47,10 @@
 	</dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>devoxxhuntly</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -77,9 +81,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>devoxxhuntly</string>
-	</array>
 </dict>
 </plist>
