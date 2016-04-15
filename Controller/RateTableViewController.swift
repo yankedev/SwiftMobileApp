@@ -180,13 +180,14 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         print(UIStoryboard(name: "Huntly", bundle: nil).instantiateViewControllerWithIdentifier("HuntlyPopup") as? HuntlyPopup)
         if let viewController = UIStoryboard(name: "Huntly", bundle: nil).instantiateViewControllerWithIdentifier("HuntlyPopup") as? HuntlyPopup {
             
-            viewController.titleBonus.text = "You just won"
-            viewController.pointLbl.text = "Points"
-            viewController.pointValueLbl.text = "+\(HuntlyManagerService.sharedInstance.VOTE_QUEST_POINTS)"
-            
-            viewController.okBtn.addTarget(self, action: #selector(RateTableViewController.dismiss), forControlEvents: .TouchUpInside)
+            self.navigationController?.presentViewController(viewController, animated: true, completion: {
+                viewController.titleBonus.text = "You just won"
+                viewController.pointLbl.text = "Points"
+                viewController.pointValueLbl.text = "+\(HuntlyManagerService.sharedInstance.VOTE_QUEST_POINTS)"
+                
+                viewController.okBtn.addTarget(self, action: #selector(RateTableViewController.dismiss), forControlEvents: .TouchUpInside)
 
-            self.navigationController?.presentViewController(viewController, animated: true, completion: nil)
+            })
  
         }
         else {

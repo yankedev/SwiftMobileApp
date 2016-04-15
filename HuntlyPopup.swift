@@ -27,7 +27,9 @@ class HuntlyPopup : UIViewController {
         
         okBtn.setTitle("OK", forState: .Normal)
         playMoreBtn.setTitle("Play more", forState: .Normal)
-        
+        titleBonus.text = ""
+        pointLbl.text = ""
+        pointValueLbl.text = ""
         promoLabel.text = "Play more & win Devoxx tickets"
         pointLbl.textColor = ColorManager.huntlyOrangeColor
         pointValueLbl.textColor = ColorManager.huntlyOrangeColor
