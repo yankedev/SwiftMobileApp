@@ -24,10 +24,6 @@
 	<string>108</string>
 	<key>CFP_URL</key>
 	<string>https://s3-eu-west-1.amazonaws.com/cfpdevoxx/cfp.json</string>
-	<key>CLKComplicationPrincipalClass</key>
-	<string>$(PRODUCT_MODULE_NAME).ComplicationController</string>
-	<key>CLKComplicationSupportedFamilies</key>
-	<array/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
