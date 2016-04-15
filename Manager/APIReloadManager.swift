@@ -43,7 +43,7 @@ class APIReloadManager {
  
         if ResourceFetcherManager.isAllowedToFetch(url) {
             
-            let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
+            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
             
             let session = NSURLSession(configuration: config)
             

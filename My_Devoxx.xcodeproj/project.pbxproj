@@ -16,7 +16,6 @@
 		B95C582F1CB96EF9007BD5A3 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C582E1CB96EF9007BD5A3 /* ExtensionDelegate.swift */; };
 		B95C58311CB96EF9007BD5A3 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58301CB96EF9007BD5A3 /* NotificationController.swift */; };
 		B95C58331CB96EF9007BD5A3 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58321CB96EF9007BD5A3 /* GlanceController.swift */; };
-		B95C58351CB96EF9007BD5A3 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58341CB96EF9007BD5A3 /* ComplicationController.swift */; };
 		B95C58371CB96EF9007BD5A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B95C58361CB96EF9007BD5A3 /* Assets.xcassets */; };
 		B95C583B1CB96EF9007BD5A3 /* Smartvoxx.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B95C58191CB96EF9007BD5A3 /* Smartvoxx.app */; };
 		B95C58521CB96FB3007BD5A3 /* ConferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58471CB96FB3007BD5A3 /* ConferencesController.swift */; };
@@ -260,6 +259,12 @@
 		E175E8D21C9640B3002A262A /* ScheduleBreakCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E8D11C9640B3002A262A /* ScheduleBreakCell.swift */; };
 		E175E8D31C964172002A262A /* pirulen.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E175E7C31C963DEE002A262A /* pirulen.ttf */; };
 		E175E8D41C964172002A262A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E175E7C41C963DEE002A262A /* Roboto-Regular.ttf */; };
+		E1863EE71CBAFFA300EA5DDA /* icon_wm.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EE61CBAFFA300EA5DDA /* icon_wm.png */; };
+		E1863EEC1CBB04FC00EA5DDA /* icon_bd.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EE81CBB04FC00EA5DDA /* icon_bd.png */; };
+		E1863EED1CBB04FC00EA5DDA /* icon_cld.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EE91CBB04FC00EA5DDA /* icon_cld.png */; };
+		E1863EEE1CBB04FC00EA5DDA /* icon_m.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EEA1CBB04FC00EA5DDA /* icon_m.png */; };
+		E1863EEF1CBB04FC00EA5DDA /* icon_webHtml5.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EEB1CBB04FC00EA5DDA /* icon_webHtml5.png */; };
+		E1863EF11CBB051600EA5DDA /* icon_jse.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EF01CBB051600EA5DDA /* icon_jse.png */; };
 		E1C9E1681CB16B1900796D02 /* Huntly.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C9E1671CB16B1900796D02 /* Huntly.storyboard */; };
 		E1C9E16A1CB17B8300796D02 /* HuntlyManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C9E1691CB17B8300796D02 /* HuntlyManagerService.swift */; };
 		E1DF81141C985501002194C9 /* CallbackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81131C985501002194C9 /* CallbackProtocol.swift */; };
@@ -269,7 +274,6 @@
 		E1E9E51D1C979BA800EC347D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E51F1C979BA800EC347D /* InfoPlist.strings */; };
 		E1E9E5221C979BA800EC347D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E5241C979BA800EC347D /* InfoPlist.strings */; };
 		E1E9E5271C979BA800EC347D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E5291C979BA800EC347D /* Localizable.strings */; };
-		FED65436CAE2428FB1717F98 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3ECDBE21D69151AF0720F57 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -336,7 +340,6 @@
 		B95C582E1CB96EF9007BD5A3 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		B95C58301CB96EF9007BD5A3 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		B95C58321CB96EF9007BD5A3 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
-		B95C58341CB96EF9007BD5A3 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		B95C58361CB96EF9007BD5A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B95C58381CB96EF9007BD5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B95C58471CB96FB3007BD5A3 /* ConferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferencesController.swift; sourceTree = "<group>"; };
@@ -585,6 +588,12 @@
 		E175E8CD1C96401A002A262A /* AllDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllDetailsView.swift; path = View/AllDetailsView.swift; sourceTree = "<group>"; };
 		E175E8CF1C964082002A262A /* SchedulerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchedulerTableView.swift; path = devoxxApp/SchedulerTableView.swift; sourceTree = "<group>"; };
 		E175E8D11C9640B3002A262A /* ScheduleBreakCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleBreakCell.swift; path = View/ScheduleBreakCell.swift; sourceTree = "<group>"; };
+		E1863EE61CBAFFA300EA5DDA /* icon_wm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_wm.png; sourceTree = "<group>"; };
+		E1863EE81CBB04FC00EA5DDA /* icon_bd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bd.png; sourceTree = "<group>"; };
+		E1863EE91CBB04FC00EA5DDA /* icon_cld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cld.png; sourceTree = "<group>"; };
+		E1863EEA1CBB04FC00EA5DDA /* icon_m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_m.png; sourceTree = "<group>"; };
+		E1863EEB1CBB04FC00EA5DDA /* icon_webHtml5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_webHtml5.png; sourceTree = "<group>"; };
+		E1863EF01CBB051600EA5DDA /* icon_jse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_jse.png; sourceTree = "<group>"; };
 		E1C9E1671CB16B1900796D02 /* Huntly.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Huntly.storyboard; sourceTree = "<group>"; };
 		E1C9E1691CB17B8300796D02 /* HuntlyManagerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntlyManagerService.swift; sourceTree = "<group>"; };
 		E1DF81131C985501002194C9 /* CallbackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackProtocol.swift; sourceTree = "<group>"; };
@@ -614,7 +623,6 @@
 				B904E26C1CB9B65700330EC0 /* WatchConnectivity.framework in Frameworks */,
 				E1E9E4FD1C97807D00EC347D /* Crashlytics.framework in Frameworks */,
 				E1E9E4FE1C97807D00EC347D /* Fabric.framework in Frameworks */,
-				FED65436CAE2428FB1717F98 /* Pods.framework in Frameworks */,
 				8985D88EA997D39C857767DA /* Pods_My_Devoxx.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -786,7 +794,6 @@
 				B95C58511CB96FB3007BD5A3 /* UIColorExtension.swift */,
 				B95C58301CB96EF9007BD5A3 /* NotificationController.swift */,
 				B95C58321CB96EF9007BD5A3 /* GlanceController.swift */,
-				B95C58341CB96EF9007BD5A3 /* ComplicationController.swift */,
 				B95C58361CB96EF9007BD5A3 /* Assets.xcassets */,
 				B95C58381CB96EF9007BD5A3 /* Info.plist */,
 				B95C582A1CB96EF9007BD5A3 /* Supporting Files */,
@@ -1159,6 +1166,12 @@
 		E1FA9C0D1C1BFBFE0077C09A /* Track */ = {
 			isa = PBXGroup;
 			children = (
+				E1863EE81CBB04FC00EA5DDA /* icon_bd.png */,
+				E1863EF01CBB051600EA5DDA /* icon_jse.png */,
+				E1863EE91CBB04FC00EA5DDA /* icon_cld.png */,
+				E1863EEA1CBB04FC00EA5DDA /* icon_m.png */,
+				E1863EEB1CBB04FC00EA5DDA /* icon_webHtml5.png */,
+				E1863EE61CBAFFA300EA5DDA /* icon_wm.png */,
 				E175E8151C963E4F002A262A /* icon_agTest.png */,
 				E175E8161C963E4F002A262A /* icon_archisec.png */,
 				E175E8171C963E4F002A262A /* icon_bigd.png */,
@@ -1408,7 +1421,9 @@
 				E175E7FA1C963E29002A262A /* DevoxxPolandHomePage.jpg in Resources */,
 				E175E8831C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json in Resources */,
 				E175E8141C963E3E002A262A /* icon_uni.png in Resources */,
+				E1863EEC1CBB04FC00EA5DDA /* icon_bd.png in Resources */,
 				E175E8221C963E4F002A262A /* icon_agTest.png in Resources */,
+				E1863EED1CBB04FC00EA5DDA /* icon_cld.png in Resources */,
 				E175E8871C963E9B002A262A /* DevoxxFR2016-tuesday.json in Resources */,
 				E175E8531C963E67002A262A /* ic_time@2x.png in Resources */,
 				E175E8241C963E4F002A262A /* icon_bigd.png in Resources */,
@@ -1436,6 +1451,8 @@
 				E175E8491C963E67002A262A /* cofeeCup.png in Resources */,
 				E175E8601C963E7B002A262A /* devoxxCinameFloorTablet.jpg in Resources */,
 				E175E7F71C963E29002A262A /* DevoxxBelgiumHomePage.jpg in Resources */,
+				E1863EEF1CBB04FC00EA5DDA /* icon_webHtml5.png in Resources */,
+				E1863EE71CBAFFA300EA5DDA /* icon_wm.png in Resources */,
 				E175E8271C963E4F002A262A /* icon_future.png in Resources */,
 				E175E8251C963E4F002A262A /* icon_cldops.png in Resources */,
 				E175E8821C963E9B002A262A /* DevoxxFR2016-monday.json in Resources */,
@@ -1445,6 +1462,7 @@
 				E175E80E1C963E3E002A262A /* icon_key.png in Resources */,
 				E175E8561C963E67002A262A /* micro@2x.png in Resources */,
 				E175E8761C963E91002A262A /* DV15-wednesday.json in Resources */,
+				E1863EEE1CBB04FC00EA5DDA /* icon_m.png in Resources */,
 				E175E80B1C963E3E002A262A /* icon_bof.png in Resources */,
 				E15D04141CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png in Resources */,
 				E15D04321CB732F3003301C8 /* DevoxxUK2016-speaker.json in Resources */,
@@ -1471,6 +1489,7 @@
 				E175E80C1C963E3E002A262A /* icon_conf.png in Resources */,
 				E15D04301CB732F3003301C8 /* DevoxxUK2016-friday.json in Resources */,
 				E175E88C1C963EA6002A262A /* StoredResource.json in Resources */,
+				E1863EF11CBB051600EA5DDA /* icon_jse.png in Resources */,
 				E175E8571C963E67002A262A /* star@2x.png in Resources */,
 				E175E8131C963E3E002A262A /* icon_tia.png in Resources */,
 				E175E8111C963E3E002A262A /* icon_quick.png in Resources */,
@@ -1624,7 +1643,6 @@
 				B95C58821CB96FFF007BD5A3 /* Schedule.swift in Sources */,
 				B95C585A1CB96FB3007BD5A3 /* SlotRowController.swift in Sources */,
 				B95C58801CB96FFF007BD5A3 /* BreakSlot.swift in Sources */,
-				B95C58351CB96EF9007BD5A3 /* ComplicationController.swift in Sources */,
 				B95C587D1CB96FFF007BD5A3 /* Conference+CoreDataProperties.swift in Sources */,
 				B95C58331CB96EF9007BD5A3 /* GlanceController.swift in Sources */,
 				B95C58761CB96FFF007BD5A3 /* Track.swift in Sources */,
@@ -1825,12 +1843,14 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = Smartvoxx_Extension;
 				INFOPLIST_FILE = Smartvoxx/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -1845,11 +1865,13 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = Smartvoxx_Extension;
 				INFOPLIST_FILE = Smartvoxx/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -1860,14 +1882,16 @@
 		B95C583E1CB96EF9007BD5A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = "";
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = "Smartvoxx Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -1878,13 +1902,15 @@
 		B95C583F1CB96EF9007BD5A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = "";
 				CLANG_ANALYZER_NONNULL = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Smartvoxx Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -1932,6 +1958,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "3e0c3b1d-4a3e-4f62-bbdc-f984c5bbf521";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1955,7 +1982,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Java Community BVBA (7F9RT8TS76)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1970,6 +1997,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "3e0c3b1d-4a3e-4f62-bbdc-f984c5bbf521";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

@@ -48,7 +48,6 @@ extension ExtensionDelegate:WCSessionDelegate {
         if let favorite = message["favorite"] as? [String:AnyObject] {
             if let value = favorite["value"] as? Bool, talkId = favorite["talkId"] as? String, conferenceId = favorite["conferenceId"] as? String {
                 DataController.sharedInstance.setFavorite(value, forTalkWithId:talkId, inConferenceWithId:conferenceId) { (talkSlot:TalkSlot) in
-                    print("\(talkSlot.talkId!):\(talkSlot.favorite!)")
                     NSNotificationCenter.defaultCenter().postNotificationName("talkFavoriteStatusChanged", object: nil, userInfo: ["talkSlot":talkSlot])
                 }
             }

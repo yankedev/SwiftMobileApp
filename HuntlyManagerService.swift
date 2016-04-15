@@ -200,21 +200,15 @@ class HuntlyManagerService {
                         guard response.result.value == nil else {
                             let response = JSON(response.result.value!)
                             if response["status"].string == self.QUEST_COMPLETED || response["status"].string == self.ACTIVITY_COMPLETED {
-                                print(response)
-                                print(self.getToken())
                                 self.postExtraData()
                                 handlerSuccess()
                             }
                             else {
-                                print("SHOULD NOT SHOW POPUP")
                                 handlerFailure()
                             }
                             return
                         }
-
-                        print("SHOULD NOT SHOW POPUP")
                         handlerFailure()
-                        
                     }
                     
                 case .Failure(let encodingError):
@@ -234,7 +228,6 @@ class HuntlyManagerService {
             .responseJSON { response in
 
                 if let JSON = response.result.value {
-                    print(JSON)
                     if let pts = JSON.objectForKey("points") as? Int {
                         self.setHuntlyPoints("\(pts)")
                         handlerSuccess()
@@ -280,13 +273,10 @@ class HuntlyManagerService {
             
             if let httpResponse = response as? NSHTTPURLResponse {
                 if httpResponse.statusCode != 200 {
-                    print(request)
-                    print("response was not 200: \(response)")
                     return
                 }
             }
             if (error != nil) {
-                print("error submitting request: \(error)")
                 return
             }
         }

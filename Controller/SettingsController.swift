@@ -32,7 +32,8 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         
         struct Credits {
             static let title = NSLocalizedString("Credits", comment: "")
-            static let iosCredits = NSLocalizedString("App by Maxime David @xouuox", comment: "")
+            static let iosCredits = NSLocalizedString("App by Maxime David\n@xouuox", comment: "")
+            static let watchCredits = NSLocalizedString("Apple Watch App by Sébastien Arbogast\n@sarbogast", comment: "")
             static let fullCredits = NSLocalizedString("View full credits", comment: "")
         }
     }
@@ -79,7 +80,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             return 2
         }
         if(section == KindOfSection.CREDITS.hashValue)  {
-            return 2
+            return 3
         }
         return 0
     }
@@ -116,7 +117,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         
         if indexPath.section == KindOfSection.CREDITS.hashValue {
             
-            if indexPath.row == 1 {
+            if indexPath.row == 2 {
                 let url = CfpService.sharedInstance.getCreditUrl()
                 UIApplication.sharedApplication().openURL(NSURL(string: url)!)
             }
@@ -162,9 +163,15 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             
             if(indexPath.row == 0) {
                 cell!.textLabel!.text = SectionNameString.Credits.iosCredits
+                cell!.textLabel!.numberOfLines = 2
             }
             
             if(indexPath.row == 1) {
+                cell!.textLabel!.text = SectionNameString.Credits.watchCredits
+                cell!.textLabel!.numberOfLines = 2
+            }
+            
+            if(indexPath.row == 2) {
                 cell!.textLabel!.text = SectionNameString.Credits.fullCredits
             }
         }
@@ -190,6 +197,19 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
     }
     
     
+    public override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        if (indexPath.section == KindOfSection.CREDITS.hashValue) {
+            
+            if(indexPath.row == 0 || indexPath.row == 1) {
+                return 60
+            }
+        }
+        
+        return 44
+        
+
+    }
     
     
     

@@ -149,24 +149,22 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     func hunltyManager() {
-        print(UIStoryboard(name: "Huntly", bundle: nil).instantiateViewControllerWithIdentifier("HuntlyPopup") as? HuntlyPopup)
+
         if let viewController = UIStoryboard(name: "Huntly", bundle: nil).instantiateViewControllerWithIdentifier("HuntlyPopup") as? HuntlyPopup {
-            print("should present")
-            print(viewController)
-            print(viewController.view)
+ 
+            self.customTabController.presentViewController(viewController, animated: true, completion: {
             
-            viewController.titleBonus.text = "Welcome bonus"
-            viewController.pointLbl.text = "Points"
-            viewController.pointValueLbl.text = "+\(HuntlyManagerService.sharedInstance.FIRST_APP_RUN_QUEST_POINTS)"
-            
-        
-            self.customTabController.presentViewController(viewController, animated: true, completion: nil)
+                viewController.titleBonus.text = "Welcome bonus"
+                viewController.pointLbl.text = "Points"
+                viewController.pointValueLbl.text = "+\(HuntlyManagerService.sharedInstance.FIRST_APP_RUN_QUEST_POINTS)"
+                
+            })
 
             
         }
         
     }
-    
+       
     func prepareNext() {
         if let currentData = slicesData[currentSelectedIndex] as? EventProtocol {
             
