@@ -1,13 +1,19 @@
 PODS:
   - Alamofire (3.3.1)
   - KeychainAccess (2.3.5)
+  - ReactKit (0.12.0):
+    - SwiftTask (~> 4.0.0)
+  - SwiftTask (4.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
   - KeychainAccess
+  - ReactKit
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   KeychainAccess: e283c1981a6c5655e1984cd411c6faf16fa165ae
+  ReactKit: a2b705e8a8674b9cb38b8112c07891df87e8e62b
+  SwiftTask: 724ff63fc8bd9b366d242696d4aff098f6de3c3a
 
 COCOAPODS: 0.39.0

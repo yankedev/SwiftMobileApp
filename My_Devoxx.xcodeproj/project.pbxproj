@@ -255,6 +255,7 @@
 		E1863EEE1CBB04FC00EA5DDA /* icon_m.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EEA1CBB04FC00EA5DDA /* icon_m.png */; };
 		E1863EEF1CBB04FC00EA5DDA /* icon_webHtml5.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EEB1CBB04FC00EA5DDA /* icon_webHtml5.png */; };
 		E1863EF11CBB051600EA5DDA /* icon_jse.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EF01CBB051600EA5DDA /* icon_jse.png */; };
+		E1C497761CCBBD710010A085 /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C497751CCBBD710010A085 /* CacheService.swift */; };
 		E1C9E1681CB16B1900796D02 /* Huntly.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C9E1671CB16B1900796D02 /* Huntly.storyboard */; };
 		E1C9E16A1CB17B8300796D02 /* HuntlyManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C9E1691CB17B8300796D02 /* HuntlyManagerService.swift */; };
 		E1DF81141C985501002194C9 /* CallbackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81131C985501002194C9 /* CallbackProtocol.swift */; };
@@ -574,6 +575,7 @@
 		E1863EEA1CBB04FC00EA5DDA /* icon_m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_m.png; sourceTree = "<group>"; };
 		E1863EEB1CBB04FC00EA5DDA /* icon_webHtml5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_webHtml5.png; sourceTree = "<group>"; };
 		E1863EF01CBB051600EA5DDA /* icon_jse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_jse.png; sourceTree = "<group>"; };
+		E1C497751CCBBD710010A085 /* CacheService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = SOURCE_ROOT; };
 		E1C9E1671CB16B1900796D02 /* Huntly.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Huntly.storyboard; sourceTree = "<group>"; };
 		E1C9E1691CB17B8300796D02 /* HuntlyManagerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntlyManagerService.swift; sourceTree = "<group>"; };
 		E1DF81131C985501002194C9 /* CallbackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackProtocol.swift; sourceTree = "<group>"; };
@@ -837,6 +839,7 @@
 				E15D040C1CB1A000003301C8 /* Huntly */,
 				E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */,
 				E175E70F1C963BDB002A262A /* AppDelegate.swift */,
+				E1C497751CCBBD710010A085 /* CacheService.swift */,
 				E175E5F61C962295002A262A /* View */,
 				E175E5F41C962257002A262A /* Controller */,
 				E175E5F71C9624A3002A262A /* Manager */,
@@ -1594,6 +1597,7 @@
 				B95C58561CB96FB3007BD5A3 /* SlotController.swift in Sources */,
 				B95C58581CB96FB3007BD5A3 /* ScheduleRowController.swift in Sources */,
 				B95C58651CB96FE8007BD5A3 /* DataController.swift in Sources */,
+				E1C497761CCBBD710010A085 /* CacheService.swift in Sources */,
 				B95C58641CB96FE8007BD5A3 /* DevoxxCache.swift in Sources */,
 				B95C582F1CB96EF9007BD5A3 /* ExtensionDelegate.swift in Sources */,
 				B95C58751CB96FFF007BD5A3 /* Track+CoreDataProperties.swift in Sources */,
