@@ -1,19 +1,38 @@
 PODS:
   - Alamofire (3.3.1)
   - KeychainAccess (2.3.5)
-  - ReactKit (0.12.0):
-    - SwiftTask (~> 4.0.0)
-  - SwiftTask (4.0.0)
+  - OMGHTTPURLRQ (3.1.1):
+    - OMGHTTPURLRQ/RQ (= 3.1.1)
+  - OMGHTTPURLRQ/FormURLEncode (3.1.1)
+  - OMGHTTPURLRQ/RQ (3.1.1):
+    - OMGHTTPURLRQ/FormURLEncode
+    - OMGHTTPURLRQ/UserAgent
+  - OMGHTTPURLRQ/UserAgent (3.1.1)
+  - PromiseKit (3.1.1):
+    - PromiseKit/Foundation (= 3.1.1)
+    - PromiseKit/QuartzCore (= 3.1.1)
+    - PromiseKit/UIKit (= 3.1.1)
+  - PromiseKit/CorePromise (3.1.1)
+  - PromiseKit/Foundation (3.1.1):
+    - OMGHTTPURLRQ (~> 3.1.0)
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (3.1.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (3.1.1):
+    - PromiseKit/CorePromise
+  - Unbox (1.4)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
   - KeychainAccess
-  - ReactKit
+  - PromiseKit (~> 3.0)
+  - Unbox
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
   KeychainAccess: e283c1981a6c5655e1984cd411c6faf16fa165ae
-  ReactKit: a2b705e8a8674b9cb38b8112c07891df87e8e62b
-  SwiftTask: 724ff63fc8bd9b366d242696d4aff098f6de3c3a
+  OMGHTTPURLRQ: 633f98ee745aeda02345935a52eec1784cddb589
+  PromiseKit: 4e8127c22a9b29d1b44958ab2ec762ea6115cbfb
+  Unbox: 34a7f7a978553a2b57f226251c70ada170fbb16b
 
 COCOAPODS: 0.39.0

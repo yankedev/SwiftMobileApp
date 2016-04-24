@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol DataHelperProtocol {
-    func feed(data: JSON)
+    mutating func feed(data: JSON)
     func entityName() -> String
     func prepareArray(json : JSON) -> [JSON]?
     func typeName() -> String

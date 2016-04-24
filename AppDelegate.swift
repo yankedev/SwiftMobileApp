@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import WatchConnectivity
+import PromiseKit
+import Unbox
 
 //Fabric/CrashAnalytics
 import Fabric
@@ -30,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         initWatchConnectivity()
         
-        Fabric.with([Crashlytics.self])
+        //Fabric.with([Crashlytics.self])
 
         //Crashlytics.sharedInstance().debugMode = true
         
@@ -56,12 +58,67 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = nav
         self.window!.makeKeyAndVisible()
         
-       
-    
+        loadCache()
+        
         return true
     }
     
-    func t() {}
+    
+    func loadCache() {
+        firstly {
+            CfpService.sharedInstance.fetchCfps()
+        }
+        .then { (cfps: [Cfp]) -> Void in
+            print("get cfps OK, size = \(cfps.count)")
+        }
+        .error { error in
+            print(error)
+        }
+    }
+    
+    
+    func initCfp() {
+        firstly {
+            CacheService.getCfpEntryPoints()
+        }
+        .then { (cfps : [CfpHelper]) -> Void in
+            CacheService.feedCfp(cfps)
+        }
+        .error { error in
+            let castError = error as NSError
+            
+            guard let failedUrl = castError.userInfo["NSErrorFailingURLKey"] as? NSURL else {
+                print(error)
+                return
+            }
+            
+            guard let fallbackFilePath = self.constructFallback(failedUrl) else {
+                print("Can't find a fallback file path for the following url : \(failedUrl.absoluteString)")
+                return
+            }
+            
+            let data = NSData(contentsOfFile: fallbackFilePath)
+            
+            do {
+                let cfps:[CfpHelper] = try UnboxOrThrow(data!)
+                CacheService.feedCfp(cfps)
+                
+            } catch {
+                print("Impossible to construct cfps from the given fallback file")
+                return
+            }
+        }
+    }
+    
+    func constructFallbackFileName(url : NSURL) -> String {
+        return url.lastPathComponent ?? ""
+    }
+    
+    func constructFallback(url : NSURL) -> String? {
+        let fallbackFileName = constructFallbackFileName(url)
+        let mainBundle = NSBundle.mainBundle()
+        return mainBundle.pathForResource(fallbackFileName, ofType: "")
+    }
     
     
     func application(application: UIApplication, supportedInterfaceOrientationsForWindow window: UIWindow?) -> UIInterfaceOrientationMask {

@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import UIKit
+import Unbox
 
 
 public protocol EventProtocol  {
@@ -45,7 +46,6 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     @NSManaged var floors: NSSet
     @NSManaged var days: NSOrderedSet
     @NSManaged var attributes: NSSet
-    
     
     func getId() -> NSManagedObject? {
         return nil

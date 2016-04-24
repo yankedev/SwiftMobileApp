@@ -288,7 +288,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     func loadWheel(msg : CallbackProtocol) {
-        CfpService.sharedInstance.fetchCfps(callBack)
+        //CfpService.sharedInstance.fetchCfps(callBack)
     }
     
     func callBack(cfps :[Cfp], error : CfpStoreError?) {

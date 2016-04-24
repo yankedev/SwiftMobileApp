@@ -211,7 +211,7 @@
 		E175E8831C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87A1C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json */; };
 		E175E8841C963E9B002A262A /* DevoxxFR2016-speaker.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87B1C963E9B002A262A /* DevoxxFR2016-speaker.json */; };
 		E175E8861C963E9B002A262A /* DEVOXXFR2016-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87D1C963E9B002A262A /* DEVOXXFR2016-tracks.json */; };
-		E175E88B1C963EA6002A262A /* Cfp.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8891C963EA6002A262A /* Cfp.json */; };
+		E175E88B1C963EA6002A262A /* cfp.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8891C963EA6002A262A /* cfp.json */; };
 		E175E88C1C963EA6002A262A /* StoredResource.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E88A1C963EA6002A262A /* StoredResource.json */; };
 		E175E89B1C963EB4002A262A /* AttributeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E88D1C963EB4002A262A /* AttributeHelper.swift */; };
 		E175E89C1C963EB4002A262A /* CfpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E88E1C963EB4002A262A /* CfpHelper.swift */; };
@@ -255,7 +255,7 @@
 		E1863EEE1CBB04FC00EA5DDA /* icon_m.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EEA1CBB04FC00EA5DDA /* icon_m.png */; };
 		E1863EEF1CBB04FC00EA5DDA /* icon_webHtml5.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EEB1CBB04FC00EA5DDA /* icon_webHtml5.png */; };
 		E1863EF11CBB051600EA5DDA /* icon_jse.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EF01CBB051600EA5DDA /* icon_jse.png */; };
-		E1C497761CCBBD710010A085 /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C497751CCBBD710010A085 /* CacheService.swift */; };
+		E1C497771CCBBED20010A085 /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C497751CCBBD710010A085 /* CacheService.swift */; };
 		E1C9E1681CB16B1900796D02 /* Huntly.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C9E1671CB16B1900796D02 /* Huntly.storyboard */; };
 		E1C9E16A1CB17B8300796D02 /* HuntlyManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C9E1691CB17B8300796D02 /* HuntlyManagerService.swift */; };
 		E1DF81141C985501002194C9 /* CallbackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81131C985501002194C9 /* CallbackProtocol.swift */; };
@@ -533,7 +533,7 @@
 		E175E87A1C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DEVOXXFR2016-proposalTypes.json"; sourceTree = "<group>"; };
 		E175E87B1C963E9B002A262A /* DevoxxFR2016-speaker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-speaker.json"; sourceTree = "<group>"; };
 		E175E87D1C963E9B002A262A /* DEVOXXFR2016-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DEVOXXFR2016-tracks.json"; sourceTree = "<group>"; };
-		E175E8891C963EA6002A262A /* Cfp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cfp.json; sourceTree = "<group>"; };
+		E175E8891C963EA6002A262A /* cfp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cfp.json; sourceTree = "<group>"; };
 		E175E88A1C963EA6002A262A /* StoredResource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoredResource.json; sourceTree = "<group>"; };
 		E175E88D1C963EB4002A262A /* AttributeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeHelper.swift; sourceTree = "<group>"; };
 		E175E88E1C963EB4002A262A /* CfpHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CfpHelper.swift; sourceTree = "<group>"; };
@@ -1104,7 +1104,7 @@
 			isa = PBXGroup;
 			children = (
 				E15D04271CB730FD003301C8 /* DevoxxUK2016 */,
-				E175E8891C963EA6002A262A /* Cfp.json */,
+				E175E8891C963EA6002A262A /* cfp.json */,
 				E175E88A1C963EA6002A262A /* StoredResource.json */,
 				E175E5FA1C962597002A262A /* DEVOXXFR2016 */,
 				E175E5F91C962586002A262A /* DV15 */,
@@ -1484,7 +1484,7 @@
 				E175E7F01C963E1F002A262A /* splash_btn_DV15@2x.png in Resources */,
 				E175E8281C963E4F002A262A /* icon_java.png in Resources */,
 				E175E84D1C963E67002A262A /* ic_filter_active@2x.png in Resources */,
-				E175E88B1C963EA6002A262A /* Cfp.json in Resources */,
+				E175E88B1C963EA6002A262A /* cfp.json in Resources */,
 				E175E8861C963E9B002A262A /* DEVOXXFR2016-tracks.json in Resources */,
 				E175E8631C963E7B002A262A /* DevoxxFRExhibitionPhone.jpg in Resources */,
 			);
@@ -1597,7 +1597,6 @@
 				B95C58561CB96FB3007BD5A3 /* SlotController.swift in Sources */,
 				B95C58581CB96FB3007BD5A3 /* ScheduleRowController.swift in Sources */,
 				B95C58651CB96FE8007BD5A3 /* DataController.swift in Sources */,
-				E1C497761CCBBD710010A085 /* CacheService.swift in Sources */,
 				B95C58641CB96FE8007BD5A3 /* DevoxxCache.swift in Sources */,
 				B95C582F1CB96EF9007BD5A3 /* ExtensionDelegate.swift in Sources */,
 				B95C58751CB96FFF007BD5A3 /* Track+CoreDataProperties.swift in Sources */,
@@ -1627,6 +1626,7 @@
 				E175E6181C9638A2002A262A /* ButtonView.swift in Sources */,
 				E175E64A1C96391C002A262A /* ViewController.swift in Sources */,
 				E175E61A1C9638A2002A262A /* ColoredHeaderView.swift in Sources */,
+				E1C497771CCBBED20010A085 /* CacheService.swift in Sources */,
 				E175E62E1C9638A2002A262A /* TopTitleView.swift in Sources */,
 				E175E8BE1C963EBF002A262A /* SpeakerDetail.swift in Sources */,
 				E175E8C01C963EBF002A262A /* Talk.swift in Sources */,

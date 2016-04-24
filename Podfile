@@ -10,7 +10,8 @@ use_frameworks!
 target 'My_Devoxx' do
     pod 'Alamofire', '~> 3.0'
     pod 'KeychainAccess'
-    pod 'ReactKit'
+    pod 'PromiseKit', '~> 3.0'
+    pod 'Unbox'
 end
 
 target 'My_DevoxxTests' do

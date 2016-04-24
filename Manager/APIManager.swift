@@ -112,7 +112,7 @@ class APIManager {
             
             
             for appDict in appArray {
-                let newHelper = service.getHelper()
+                var newHelper = service.getHelper()
                 newHelper.feed(appDict)
                 arrayHelper.append(newHelper)
             }
@@ -132,7 +132,7 @@ class APIManager {
     
     
     class func firstFeed(completionHandler: (msg: CallbackProtocol) -> Void, service : AbstractService) {
-        singleCommonFeed(completionHandler, service : service)
+        //singleCommonFeed(completionHandler, service : service)
     }
     
     

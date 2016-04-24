@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import Unbox
 
-class CfpHelper: DataHelperProtocol {
+struct CfpHelper: Unboxable, DataHelperProtocol {
     
     
     var id: String?
@@ -34,6 +35,29 @@ class CfpHelper: DataHelperProtocol {
     
     init() {
     }
+    
+    init(unboxer: Unboxer) {
+        self.id = unboxer.unbox("id")
+        self.integration_id = unboxer.unbox("integration_id")
+        self.confType = unboxer.unbox("confType")
+        self.confDescription = unboxer.unbox("confDescription")
+        self.venue = unboxer.unbox("venue")
+        self.address = unboxer.unbox("address")
+        self.country = unboxer.unbox("country")
+        self.capacity = unboxer.unbox("capacity")
+        self.sessions = unboxer.unbox("sessions")
+        self.latitude = unboxer.unbox("latitude")
+        self.longitude = unboxer.unbox("longitude")
+        self.talkURL = unboxer.unbox("talkURL")
+        self.splashImgURL = unboxer.unbox("splashImgURL")
+        self.hashtag = unboxer.unbox("hashtag")
+        self.confType = unboxer.unbox("confType")
+        self.fromDate = unboxer.unbox("fromDate")
+        self.regURL = unboxer.unbox("regURL")
+        self.cfpEndpoint = unboxer.unbox("cfpEndpoint")
+        self.votingImageName = unboxer.unbox("votingImageName")
+    }
+    
     
     init(id: String?, integration_id: String?, confType: String?, confDescription: String?, venue: String?, address: String?, country: String?, capacity: String?, sessions: String?, latitude:String?, longitude:String?, splashImgURL: String?, hashtag: String?, fromDate: String?, talkURL: String?, regURL : String?, cfpEndpoint : String?, votingImageName : String?) {
         self.id = id ?? ""
@@ -65,7 +89,7 @@ class CfpHelper: DataHelperProtocol {
         return id!
     }
     
-    func feed(data: JSON) {
+    mutating func feed(data: JSON) {
         
         id = data["id"].string
         integration_id = data["integration_id"].string

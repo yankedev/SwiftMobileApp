@@ -7,10 +7,63 @@
 //
 
 import Foundation
+import Alamofire
+import PromiseKit
+import Unbox
 
 class CacheService {
-
-
     
+    class func feedCfp(cfps : [CfpHelper]) {
+        
+        firstly {
+            CfpService.sharedInstance.updateWithHelper(cfps)
+        }
+        .then { _ in
+            print("cfps have been persisted in base")
+        }
+        .error { error in
+            print(error)
+        }
     
+    }
+
+    class func getCfpEntryPoints() -> Promise<[CfpHelper]> {
+        
+        return Promise{ fulfill, reject in
+            
+            let myDevoxxCfpUrlOpt = NSBundle.mainBundle().objectForInfoDictionaryKey("MyDevoxx_CFP_URL") as? String
+            
+            
+            guard let myDevoxxCfpUrl = myDevoxxCfpUrlOpt else {
+                reject(NSError(domain: "Can't read MyDevoxx_CFP_URL from info.plist", code: 0, userInfo: nil))
+                return
+            }
+            
+            Alamofire.request(.GET, myDevoxxCfpUrl).response { (_, _, data, error) in
+                if error == nil {
+            
+                    do {
+                        let cfps : [CfpHelper] = try UnboxOrThrow(data!)
+                        fulfill(cfps)
+                    } catch {
+                        reject(NSError(domain: "Cant't unbox CFP object from the cfp JSON file", code: 0, userInfo: nil))
+                        return
+                    }
+                } else {
+                    reject(error!)
+                }
+            }
+        }
+    }
 }
+/*
+
+fetchCfp.json from cache
+found ?
+    yes -> return the content of the cache
+    check if time is OK ->
+       yes -> doNothing
+       no -> checkForUpdate
+    no -> load from file
+*/
+

@@ -8,7 +8,8 @@
 
 import Foundation
 import CoreData
-
+import PromiseKit
+import UIKit
 
 public enum CfpStoreError: Equatable, ErrorType {
     case CannotFetch(String)
@@ -34,7 +35,8 @@ class CfpService : AbstractService {
     }
     
     override func getHelper() -> DataHelperProtocol {
-        return CfpHelper()
+        return FloorHelper()
+        //return CfpHelper()
     }
     
     /*
@@ -118,26 +120,19 @@ class CfpService : AbstractService {
         return cfp.integration_id ?? ""
     }
     
-    func fetchCfps(completionHandler: (cfps: [Cfp], error: CfpStoreError?) -> Void) {
-        privateManagedObjectContext.performBlock {
-            do {
-                
-                let fetchRequest = NSFetchRequest(entityName: "Cfp")
-                fetchRequest.includesSubentities = true
-                fetchRequest.returnsObjectsAsFaults = false
-                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-                
-                
-                let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Cfp]
-                
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(cfps: results, error: nil)
-                })
-            } catch {
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(cfps: [], error: CfpStoreError.CannotFetch("Cannot fetch cfps"))
-                })
-                
+    func fetchCfps() -> Promise<[Cfp]> {
+        return Promise{ fulfill, reject in
+            privateManagedObjectContext.performBlock {
+                do {
+                    let fetchRequest = NSFetchRequest(entityName: "Cfp")
+                    fetchRequest.includesSubentities = true
+                    fetchRequest.returnsObjectsAsFaults = false
+                    fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+                    let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Cfp]
+                    fulfill(results)
+                } catch {
+                    reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))
+                }
             }
         }
     }
@@ -255,10 +250,63 @@ class CfpService : AbstractService {
         return cfp!
     }
 
-   
+    
+    
+    
+    
+    ///////
+    func updateWithHelper(helper : [CfpHelper]) -> Promise<Void> {
+        
+        return Promise{ fulfill, reject in
+            
+            privateManagedObjectContext.performBlock {
+            
+                for singleHelper in helper {
+                
+                    do {
+                    
+                        let fetchRequest = NSFetchRequest(entityName: "Cfp")
+                        let predicate = NSPredicate(format: "id = %@", singleHelper.getMainId())
+                        fetchRequest.predicate = predicate
+                        let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+                    
+                    
+                        for singleItem in items {
+                            self.privateManagedObjectContext.deleteObject(singleItem as! NSManagedObject)
+                        }
+
+                    
+                        let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
+                        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                        
+                        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
+                            coreDataObjectCast.feedHelper(singleHelper)
+                        }
+  
+                    }
+                    catch {
+                        reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))
+                    }
+                 
+                }
+                do {
+                    try self.privateManagedObjectContext.save()
+                    fulfill()
+                }
+                catch {
+                    reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))
+                }
+    
+            }
+        }
+        
+    }
     
     
     
 
-        
+    
+    
+
+    
 }
