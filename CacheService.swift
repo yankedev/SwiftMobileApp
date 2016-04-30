@@ -14,6 +14,53 @@ import CoreData
 
 class CacheService {
     
+    
+    class func initSpeakers<T : NSManagedObject>(cfpId : NSManagedObjectID) -> Promise<[T]> {
+        return Promise{ fulfill, reject in
+            CacheService.getSpeakerEntryPoints().then { (speakers : [SpeakerHelper]) -> Void in
+                CacheService.feedSpeaker(cfpId, speakers : speakers).then { (speakers : [T]) -> Void in
+                    fulfill(speakers)
+                }
+                }
+                .error { error in
+                    let castError = error as NSError
+                    guard let failedUrl = castError.userInfo["NSErrorFailingURLKey"] as? NSURL else {
+                        reject(error)
+                        return
+                    }
+                    guard let fallbackFilePath = self.constructFallback(failedUrl) else {
+                        reject(NSError(domain: "Can't find a fallback file path for the following url : \(failedUrl.absoluteString)", code: 0, userInfo: nil))
+                        return
+                    }
+                    let data = NSData(contentsOfFile: fallbackFilePath)
+                    do {
+                        let speakersHelper:[SpeakerHelper] = try UnboxOrThrow(data!)
+                        CacheService.feedSpeaker(cfpId, speakers : speakersHelper).then { (speakers : [T]) -> Void in
+                            fulfill(speakers)
+                        }
+                        
+                    } catch {
+                        reject(NSError(domain: "Impossible to construct cfps from the given fallback file", code: 0, userInfo: nil))
+                        return
+                    }
+                    reject(NSError(domain: "Impossible to construct cfps from the given fallback file", code: 0, userInfo: nil))
+            }
+        }
+    }
+    
+    
+    class func constructFallbackFileName(url : NSURL) -> String {
+        return url.lastPathComponent ?? ""
+    }
+    
+    class func constructFallback(url : NSURL) -> String? {
+        let fallbackFileName = constructFallbackFileName(url)
+        let mainBundle = NSBundle.mainBundle()
+        return mainBundle.pathForResource(fallbackFileName, ofType: "")
+    }
+
+    
+    
     class func feedCfp(cfps : [CfpHelper]) -> Promise<[Cfp]> {
         
         return Promise{ fulfill, reject in
@@ -32,14 +79,14 @@ class CacheService {
     
     }
     
-    class func feedSpeaker(cfpId : NSManagedObjectID, speakers : [SpeakerHelper]) -> Promise<[Speaker]> {
+    class func feedSpeaker<T : NSManagedObject>(cfpId : NSManagedObjectID, speakers : [SpeakerHelper]) -> Promise<[T]> {
         
         return Promise{ fulfill, reject in
             
             firstly {
                 SpeakerService.sharedInstance.updateWithHelper(cfpId, helper : speakers)
                 }
-                .then { (speakers: [Speaker]) -> Void in
+                .then { (speakers: [T]) -> Void in
                     fulfill(speakers)
                 }
                 .error { error in

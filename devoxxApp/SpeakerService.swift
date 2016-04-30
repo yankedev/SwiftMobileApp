@@ -35,7 +35,7 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
         return SpeakerHelper()
     }
     
-    func updateWithHelper(cfpId : NSManagedObjectID, helper : [SpeakerHelper]) -> Promise<[Speaker]> {
+    func updateWithHelper<T : NSManagedObject>(cfpId : NSManagedObjectID, helper : [SpeakerHelper]) -> Promise<[T]> {
         
         return Promise{ fulfill, reject in
             
@@ -94,7 +94,7 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
                     try self.privateManagedObjectContext.save()
                     
                     self.fetchSpeakers(cfpId)
-                        .then { (speakers: [Speaker]) -> Void in
+                        .then { (speakers: [T]) -> Void in
                             fulfill(speakers)
                     }
                 }
@@ -205,7 +205,7 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
     }
 
     
-    func fetchSpeakers(cfpId : NSManagedObjectID) -> Promise<[Speaker]> {
+    func fetchSpeakers<T : NSManagedObject>(cfpId : NSManagedObjectID) -> Promise<[T]> {
         return Promise{ fulfill, reject in
             privateManagedObjectContext.performBlock {
                 do {
@@ -222,7 +222,7 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
                     let sortFirst = NSSortDescriptor(key: "firstName", ascending: true)
                     fetchRequest.sortDescriptors = [sortFirst, sortLast]
 
-                    let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Speaker]
+                    let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [T]
                     fulfill(results)
                 } catch {
                     reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))

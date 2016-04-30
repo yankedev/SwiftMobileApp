@@ -508,12 +508,12 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
  
     
     
-    func loadSpeakers(cfpId : NSManagedObjectID) -> Promise<[Speaker]> {
+    func loadSpeakers<T : NSManagedObject>(cfpId : NSManagedObjectID) -> Promise<[T]> {
         return Promise{ fulfill, reject in
-            SpeakerService.sharedInstance.fetchSpeakers(cfpId).then {(speakers: [Speaker]) -> Void in
+            SpeakerService.sharedInstance.fetchSpeakers(cfpId).then {(speakers: [T]) -> Void in
                 
                 if(speakers.count == 0) {
-                    self.initSpeakers(cfpId).then { (speakers: [Speaker]) -> Void in
+                    CacheService.initSpeakers(cfpId).then { (speakers: [T]) -> Void in
                         fulfill(speakers)
                     }
                 }
@@ -570,7 +570,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                     reject(error)
                     return
                 }
-                guard let fallbackFilePath = self.constructFallback(failedUrl) else {
+                guard let fallbackFilePath = CacheService.constructFallback(failedUrl) else {
                     reject(NSError(domain: "Can't find a fallback file path for the following url : \(failedUrl.absoluteString)", code: 0, userInfo: nil))
                     return
                 }
@@ -591,50 +591,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
 
     
-    func initSpeakers(cfpId : NSManagedObjectID) -> Promise<[Speaker]> {
-        return Promise{ fulfill, reject in
-            CacheService.getSpeakerEntryPoints().then { (speakers : [SpeakerHelper]) -> Void in
-                CacheService.feedSpeaker(cfpId, speakers : speakers).then { (speakers : [Speaker]) -> Void in
-                    fulfill(speakers)
-                }
-                }
-                .error { error in
-                    let castError = error as NSError
-                    guard let failedUrl = castError.userInfo["NSErrorFailingURLKey"] as? NSURL else {
-                        reject(error)
-                        return
-                    }
-                    guard let fallbackFilePath = self.constructFallback(failedUrl) else {
-                        reject(NSError(domain: "Can't find a fallback file path for the following url : \(failedUrl.absoluteString)", code: 0, userInfo: nil))
-                        return
-                    }
-                    let data = NSData(contentsOfFile: fallbackFilePath)
-                    do {
-                        let speakers:[SpeakerHelper] = try UnboxOrThrow(data!)
-                        CacheService.feedSpeaker(cfpId, speakers : speakers).then { (speakers : [Speaker]) -> Void in
-                            fulfill(speakers)
-                        }
-                        
-                    } catch {
-                        reject(NSError(domain: "Impossible to construct cfps from the given fallback file", code: 0, userInfo: nil))
-                        return
-                    }
-                    reject(NSError(domain: "Impossible to construct cfps from the given fallback file", code: 0, userInfo: nil))
-            }
-        }
-    }
-
     
-    func constructFallbackFileName(url : NSURL) -> String {
-        return url.lastPathComponent ?? ""
-    }
-    
-    func constructFallback(url : NSURL) -> String? {
-        let fallbackFileName = constructFallbackFileName(url)
-        let mainBundle = NSBundle.mainBundle()
-        return mainBundle.pathForResource(fallbackFileName, ofType: "")
-    }
-    
+       
     
     
     
