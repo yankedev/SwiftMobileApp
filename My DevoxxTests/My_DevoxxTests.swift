@@ -108,6 +108,33 @@ class My_DevoxxTests: XCTestCase {
         waitForExpectationsWithTimeout(10.0, handler:nil)
     }
 
+    func testLoadCache_error() {
+        class FakeViewController : ViewController {
+            override func getService() -> CfpService {
+                return FakeCfpService()
+            }
+        }
+        
+        class FakeCfpService : CfpService {
+            
+            override func fetchCfps() -> Promise<[Cfp]> {
+                return Promise{ fulfill, reject in
+                    reject(NSError(domain: "hi", code: 0, userInfo: nil))
+                }
+            }
+        }
+        
+        let expectation = expectationWithDescription("reject")
+        let vc = FakeViewController()
+        vc.loadCache().then { (cfps : [Cfp]) -> Void in
+            XCTFail()
+        }.error { error in
+            expectation.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(10.0, handler:nil)
+    }
+
 
     
 }

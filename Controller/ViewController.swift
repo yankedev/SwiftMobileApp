@@ -509,9 +509,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     func loadCache() -> Promise<[Cfp]> {
         return Promise{ fulfill, reject in
             //first thing to do is check for already existing CFP in CoreData
-            let aa = getService()
-            print(aa)
-            aa.fetchCfps().then {(cfps: [Cfp]) -> Void in
+            getService().fetchCfps().then {(cfps: [Cfp]) -> Void in
                 //if no cfp found, let's init them
                 if(cfps.count == 0) {
                      self.initCfp().then { (cfps: [Cfp]) -> Void in
