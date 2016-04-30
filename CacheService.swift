@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import PromiseKit
 import Unbox
+import CoreData
 
 class CacheService {
     
@@ -29,6 +30,24 @@ class CacheService {
             }
         }
     
+    }
+    
+    class func feedSpeaker(cfpId : NSManagedObjectID, speakers : [SpeakerHelper]) -> Promise<[Speaker]> {
+        
+        return Promise{ fulfill, reject in
+            
+            firstly {
+                SpeakerService.sharedInstance.updateWithHelper(cfpId, helper : speakers)
+                }
+                .then { (speakers: [Speaker]) -> Void in
+                    fulfill(speakers)
+                }
+                .error { error in
+                    print(error)
+                    reject(error)
+            }
+        }
+        
     }
 
     class func getCfpEntryPoints() -> Promise<[CfpHelper]> {
@@ -61,6 +80,35 @@ class CacheService {
             }
         }
     }
+    
+    
+    class func getSpeakerEntryPoints() -> Promise<[SpeakerHelper]> {
+        
+        return Promise{ fulfill, reject in
+            
+            
+            
+            let myDevoxxSpeakerUrl = "http://cfp.devoxx.fr/api/conferences/DevoxxFR2016/speakers"
+            
+            
+            Alamofire.request(.GET, myDevoxxSpeakerUrl).response { (_, _, data, error) in
+                if error == nil {
+                    
+                    do {
+                        let speakers : [SpeakerHelper] = try UnboxOrThrow(data!)
+                        fulfill(speakers)
+                    } catch {
+                        reject(NSError(domain: "err", code: 0, userInfo: nil))
+                        return
+                    }
+                } else {
+                    reject(error!)
+                }
+            }
+        }
+    }
+
+
 }
 /*
 

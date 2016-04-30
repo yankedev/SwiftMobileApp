@@ -257,6 +257,7 @@
 		E1C497771CCBBED20010A085 /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C497751CCBBD710010A085 /* CacheService.swift */; };
 		E1C9E1681CB16B1900796D02 /* Huntly.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C9E1671CB16B1900796D02 /* Huntly.storyboard */; };
 		E1C9E16A1CB17B8300796D02 /* HuntlyManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C9E1691CB17B8300796D02 /* HuntlyManagerService.swift */; };
+		E1D645761CD53D04009DA161 /* GenericCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D645751CD53D04009DA161 /* GenericCache.swift */; };
 		E1DF81141C985501002194C9 /* CallbackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81131C985501002194C9 /* CallbackProtocol.swift */; };
 		E1DF81181C99F4CE002194C9 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */; };
 		E1E3C6BF1CD4F05600AF8994 /* MyDevoxxCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E3C6BE1CD4F05600AF8994 /* MyDevoxxCache.swift */; };
@@ -577,6 +578,7 @@
 		E1C497751CCBBD710010A085 /* CacheService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = SOURCE_ROOT; };
 		E1C9E1671CB16B1900796D02 /* Huntly.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Huntly.storyboard; sourceTree = "<group>"; };
 		E1C9E1691CB17B8300796D02 /* HuntlyManagerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntlyManagerService.swift; sourceTree = "<group>"; };
+		E1D645751CD53D04009DA161 /* GenericCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenericCache.swift; path = Pods/GenericCache.swift; sourceTree = "<group>"; };
 		E1DF81131C985501002194C9 /* CallbackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackProtocol.swift; sourceTree = "<group>"; };
 		E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		E1E3C6BE1CD4F05600AF8994 /* MyDevoxxCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDevoxxCache.swift; sourceTree = "<group>"; };
@@ -839,6 +841,7 @@
 			isa = PBXGroup;
 			children = (
 				E1E3C6BE1CD4F05600AF8994 /* MyDevoxxCache.swift */,
+				E1D645751CD53D04009DA161 /* GenericCache.swift */,
 				E15D04361CB788BB003301C8 /* My Devoxx.entitlements */,
 				E15D040C1CB1A000003301C8 /* Huntly */,
 				E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */,
@@ -1663,6 +1666,7 @@
 				E175E8A61C963EB4002A262A /* TalkHelper.swift in Sources */,
 				E175E7BB1C963DDD002A262A /* FeedableProtocol.swift in Sources */,
 				E175E7DB1C963DFC002A262A /* SpeakerDetailService.swift in Sources */,
+				E1D645761CD53D04009DA161 /* GenericCache.swift in Sources */,
 				E175E6191C9638A2002A262A /* CellDataViewCell.swift in Sources */,
 				E1DF81141C985501002194C9 /* CallbackProtocol.swift in Sources */,
 				E175E8B91C963EBF002A262A /* Favorite.swift in Sources */,
@@ -2105,6 +2109,7 @@
 				E1E3C6CD1CD5094C00AF8994 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

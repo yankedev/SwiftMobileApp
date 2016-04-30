@@ -20,6 +20,7 @@ public protocol EventProtocol  {
     func daysLeft() -> String
     func backgroundImage() -> NSData
     func identifier() -> String
+    func getObjectID() -> NSManagedObjectID
 }
 
 class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
@@ -62,6 +63,9 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
         return id!
     }
     
+    func getObjectID() -> NSManagedObjectID {
+        return objectID
+    }
     
     func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? CfpHelper  {

@@ -134,7 +134,16 @@ class My_DevoxxTests: XCTestCase {
         
         waitForExpectationsWithTimeout(10.0, handler:nil)
     }
-
-
     
+    func testConstructFallbackFileName() {
+        let vc = ViewController()
+        let urlOK = NSURL(string: "http://lastPath.com/thisIsTheLastPath")
+        let urlKO = NSURL()
+        
+        XCTAssertEqual("", vc.constructFallbackFileName(urlKO))
+        XCTAssertEqual("thisIsTheLastPath", vc.constructFallbackFileName(urlOK!))
+        
+    }
+    
+   
 }

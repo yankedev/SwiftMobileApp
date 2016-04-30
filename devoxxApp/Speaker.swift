@@ -127,4 +127,6 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
     
     
     
+    
+    
 }

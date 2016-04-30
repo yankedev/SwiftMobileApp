@@ -9,8 +9,9 @@
 import Foundation
 import CoreData
 import UIKit
+import Unbox
 
-class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayPrococol, FavoriteProtocol, SearchableItemProtocol {
+class SpeakerHelper: Unboxable, DataHelperProtocol, DetailableProtocol, CellDataDisplayPrococol, FavoriteProtocol, SearchableItemProtocol {
     
     var uuid: String?
     var lastName: String?
@@ -47,6 +48,15 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
         self.talksId = talksId
         self.imgData = imgData
     }
+    
+    required init(unboxer: Unboxer) {
+        self.uuid = unboxer.unbox("uuid")
+        self.lastName = unboxer.unbox("lastName")
+        self.firstName = unboxer.unbox("firstName")
+        self.avatarUrl = unboxer.unbox("avatarUrl")
+        self.href = unboxer.unbox("href")
+    }
+
     
     func feed(data: JSON) {
         uuid = data["uuid"].string

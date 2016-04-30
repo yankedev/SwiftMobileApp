@@ -90,9 +90,6 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     func loadIsFinihsed() {
         
-        
-        
-        
         let scheduleController = ScheduleController<SchedulerTableViewController<Talk>>()
         
         
@@ -172,10 +169,17 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             
             
             let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject(currentData.identifier(), forKey: "currentEvent")
+            //defaults.setObject(currentData.identifier(), forKey: "currentEvent")
             CfpService.sharedInstance.currentCfp = nil
             
+            print("Selected = \(currentData.identifier())")
             
+            loadSpeakers(currentData.getObjectID()).then { (speakers : [Speaker]) -> Void in
+                print("speakers OK = \(speakers.count)")
+            }
+            
+            
+            /*
             
             //defaults.setObject(currentData.identifier(), forKey: "currentEvent")
             rotating = true
@@ -187,6 +191,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                     self.rotateOnce()
                 }
             }
+ 
+             */
         }
     }
     
@@ -277,24 +283,19 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         goView.goButton.addTarget(self, action: #selector(self.prepareNext), forControlEvents: .TouchUpInside)
         
         
-        /*
+        
         firstly {
             loadCache()
         }
         .then { (cfps: [Cfp]) -> Void in
             print("after load cache")
+            self.callBack(cfps, error: nil)
                 
         }
         .error { error in
             print("after load cache + error")
                 
         }
-        
-*/
-        
-        
-        
-        //APIManager.firstFeed(loadWheel, service: CfpService.sharedInstance)
         
     }
     
@@ -506,6 +507,32 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
 
  
     
+    
+    func loadSpeakers(cfpId : NSManagedObjectID) -> Promise<[Speaker]> {
+        return Promise{ fulfill, reject in
+            SpeakerService.sharedInstance.fetchSpeakers(cfpId).then {(speakers: [Speaker]) -> Void in
+                
+                if(speakers.count == 0) {
+                    self.initSpeakers(cfpId).then { (speakers: [Speaker]) -> Void in
+                        fulfill(speakers)
+                    }
+                }
+                else {
+                    fulfill(speakers)
+                }
+
+                
+            }.error { error in
+                reject(error)
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
     func loadCache() -> Promise<[Cfp]> {
         return Promise{ fulfill, reject in
             //first thing to do is check for already existing CFP in CoreData
@@ -527,6 +554,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
 
     
+    
+    //
     
     func initCfp() -> Promise<[Cfp]> {
         return Promise{ fulfill, reject in
@@ -557,6 +586,40 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                     return
                 }
                 reject(NSError(domain: "Impossible to construct cfps from the given fallback file", code: 0, userInfo: nil))  
+            }
+        }
+    }
+
+    
+    func initSpeakers(cfpId : NSManagedObjectID) -> Promise<[Speaker]> {
+        return Promise{ fulfill, reject in
+            CacheService.getSpeakerEntryPoints().then { (speakers : [SpeakerHelper]) -> Void in
+                CacheService.feedSpeaker(cfpId, speakers : speakers).then { (speakers : [Speaker]) -> Void in
+                    fulfill(speakers)
+                }
+                }
+                .error { error in
+                    let castError = error as NSError
+                    guard let failedUrl = castError.userInfo["NSErrorFailingURLKey"] as? NSURL else {
+                        reject(error)
+                        return
+                    }
+                    guard let fallbackFilePath = self.constructFallback(failedUrl) else {
+                        reject(NSError(domain: "Can't find a fallback file path for the following url : \(failedUrl.absoluteString)", code: 0, userInfo: nil))
+                        return
+                    }
+                    let data = NSData(contentsOfFile: fallbackFilePath)
+                    do {
+                        let speakers:[SpeakerHelper] = try UnboxOrThrow(data!)
+                        CacheService.feedSpeaker(cfpId, speakers : speakers).then { (speakers : [Speaker]) -> Void in
+                            fulfill(speakers)
+                        }
+                        
+                    } catch {
+                        reject(NSError(domain: "Impossible to construct cfps from the given fallback file", code: 0, userInfo: nil))
+                        return
+                    }
+                    reject(NSError(domain: "Impossible to construct cfps from the given fallback file", code: 0, userInfo: nil))
             }
         }
     }
