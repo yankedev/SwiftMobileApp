@@ -260,6 +260,7 @@
 		E1C9E16A1CB17B8300796D02 /* HuntlyManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C9E1691CB17B8300796D02 /* HuntlyManagerService.swift */; };
 		E1DF81141C985501002194C9 /* CallbackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81131C985501002194C9 /* CallbackProtocol.swift */; };
 		E1DF81181C99F4CE002194C9 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */; };
+		E1E3C6BF1CD4F05600AF8994 /* MyDevoxxCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E3C6BE1CD4F05600AF8994 /* MyDevoxxCache.swift */; };
 		E1E9E4FD1C97807D00EC347D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E9E4FB1C97807D00EC347D /* Crashlytics.framework */; };
 		E1E9E4FE1C97807D00EC347D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E9E4FC1C97807D00EC347D /* Fabric.framework */; };
 		E1E9E51D1C979BA800EC347D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E51F1C979BA800EC347D /* InfoPlist.strings */; };
@@ -580,6 +581,7 @@
 		E1C9E1691CB17B8300796D02 /* HuntlyManagerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntlyManagerService.swift; sourceTree = "<group>"; };
 		E1DF81131C985501002194C9 /* CallbackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackProtocol.swift; sourceTree = "<group>"; };
 		E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		E1E3C6BE1CD4F05600AF8994 /* MyDevoxxCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDevoxxCache.swift; sourceTree = "<group>"; };
 		E1E9E4FB1C97807D00EC347D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		E1E9E4FC1C97807D00EC347D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		E1E9E51A1C9792A500EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -835,6 +837,7 @@
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
+				E1E3C6BE1CD4F05600AF8994 /* MyDevoxxCache.swift */,
 				E15D04361CB788BB003301C8 /* My Devoxx.entitlements */,
 				E15D040C1CB1A000003301C8 /* Huntly */,
 				E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */,
@@ -1719,6 +1722,7 @@
 				E175E7961C963DBB002A262A /* Swifty.swift in Sources */,
 				E175E6291C9638A2002A262A /* SimpleDetailView.swift in Sources */,
 				E175E7DC1C963DFC002A262A /* SpeakerService.swift in Sources */,
+				E1E3C6BF1CD4F05600AF8994 /* MyDevoxxCache.swift in Sources */,
 				E175E6471C96391C002A262A /* SpeakerTableController.swift in Sources */,
 				E175E6441C96391C002A262A /* QRCodeScannerController.swift in Sources */,
 				E175E7BD1C963DDD002A262A /* FilterableTableProtocol.swift in Sources */,

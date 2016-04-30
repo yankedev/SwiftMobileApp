@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import PromiseKit
+import Unbox
 
 
 class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheelDelegate {
@@ -270,26 +272,33 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         view.layoutIfNeeded()
         wheelView.layoutIfNeeded()
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
         goView.goButton.addTarget(self, action: #selector(self.prepareNext), forControlEvents: .TouchUpInside)
         
         
-        APIManager.firstFeed(loadWheel, service: CfpService.sharedInstance)
+        
+        firstly {
+            loadCache()
+        }
+        .then { (cfps: [Cfp]) -> Void in
+            print("after load cache")
+                
+        }
+        .error { error in
+            print("after load cache + error")
+                
+        }
+        
+
+        
+        
+        
+        //APIManager.firstFeed(loadWheel, service: CfpService.sharedInstance)
         
     }
     
-    func loadWheel(msg : CallbackProtocol) {
-        //CfpService.sharedInstance.fetchCfps(callBack)
-    }
+   
     
     func callBack(cfps :[Cfp], error : CfpStoreError?) {
         slicesData = cfps
@@ -491,6 +500,120 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
 
+ 
+    
+    func loadCache() -> Promise<[Cfp]> {
+        
+        return Promise{ fulfill, reject in
+            
+            //first thing to do is check for already existing CFP in CoreData
+            firstly {
+                CfpService.sharedInstance.fetchCfps()
+            }
+            .then { (cfps: [Cfp]) -> Void in
+                    
+                //if no cfp found, let's init them
+                if(cfps.count == 0) {
+                    
+                     self.initCfp()
+                    .then { (cfps: [Cfp]) -> Void in
+                        fulfill(cfps)
+                    }
+                }
+                else {
+                    print("ok, got the cfp")
+                    fulfill(cfps)
+                }
+                    
+            }
+            .error { error in
+                reject(error)
+            }
+        }
+    }
+
+    
+    
+    func initCfp() -> Promise<[Cfp]> {
+    
+    
+        return Promise{ fulfill, reject in
+
+           
+            
+            firstly {
+                CacheService.getCfpEntryPoints()
+            }
+            .then { (cfps : [CfpHelper]) -> Void in
+                
+               
+                
+                
+                CacheService.feedCfp(cfps)
+                .then { (cfps : [Cfp]) -> Void in
+                    fulfill(cfps)
+                }
+    
+            }
+        
+            .error { error in
+                /*
+                let castError = error as NSError
+                
+                guard let failedUrl = castError.userInfo["NSErrorFailingURLKey"] as? NSURL else {
+                    reject(error)
+                    return
+                }
+                
+                guard let fallbackFilePath = self.constructFallback(failedUrl) else {
+                    reject(NSError(domain: "Can't find a fallback file path for the following url : \(failedUrl.absoluteString)", code: 0, userInfo: nil))
+                    return
+                }
+                
+                let data = NSData(contentsOfFile: fallbackFilePath)
+                
+                do {
+                    let cfps:[CfpHelper] = try UnboxOrThrow(data!)
+                    
+                    CacheService.feedCfp(cfps)
+                        .then { (cfps : [Cfp]) -> Void in
+                            fulfill(cfps)
+                    }
+                    
+                } catch {
+                    reject(NSError(domain: "Impossible to construct cfps from the given fallback file", code: 0, userInfo: nil))
+                    return
+                }
+                reject(NSError(domain: "Impossible to construct cfps from the given fallback file", code: 0, userInfo: nil))
+                 */
+                reject(error)
+                
+            }
+        }
+    }
+
+    
+    func constructFallbackFileName(url : NSURL) -> String {
+        return url.lastPathComponent ?? ""
+    }
+    
+    func constructFallback(url : NSURL) -> String? {
+        let fallbackFileName = constructFallbackFileName(url)
+        let mainBundle = NSBundle.mainBundle()
+        return mainBundle.pathForResource(fallbackFileName, ofType: "")
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
 

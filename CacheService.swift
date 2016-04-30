@@ -13,16 +13,20 @@ import Unbox
 
 class CacheService {
     
-    class func feedCfp(cfps : [CfpHelper]) {
+    class func feedCfp(cfps : [CfpHelper]) -> Promise<[Cfp]> {
         
-        firstly {
-            CfpService.sharedInstance.updateWithHelper(cfps)
-        }
-        .then { _ in
-            print("cfps have been persisted in base")
-        }
-        .error { error in
-            print(error)
+        return Promise{ fulfill, reject in
+       
+            firstly {
+                CfpService.sharedInstance.updateWithHelper(cfps)
+            }
+            .then { (cfps: [Cfp]) -> Void in
+                fulfill(cfps)
+            }
+            .error { error in
+                print(error)
+                reject(error)
+            }
         }
     
     }
@@ -30,6 +34,8 @@ class CacheService {
     class func getCfpEntryPoints() -> Promise<[CfpHelper]> {
         
         return Promise{ fulfill, reject in
+            
+            //fulfill([CfpHelper]())
             
             let myDevoxxCfpUrlOpt = NSBundle.mainBundle().objectForInfoDictionaryKey("MyDevoxx_CFP_URL") as? String
             

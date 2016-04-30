@@ -255,7 +255,7 @@ class CfpService : AbstractService {
     
     
     ///////
-    func updateWithHelper(helper : [CfpHelper]) -> Promise<Void> {
+    func updateWithHelper(helper : [CfpHelper]) -> Promise<[Cfp]> {
         
         return Promise{ fulfill, reject in
             
@@ -291,7 +291,11 @@ class CfpService : AbstractService {
                 }
                 do {
                     try self.privateManagedObjectContext.save()
-                    fulfill()
+                    
+                    self.fetchCfps()
+                    .then { (cfps: [Cfp]) -> Void in
+                        fulfill(cfps)
+                    }
                 }
                 catch {
                     reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))
