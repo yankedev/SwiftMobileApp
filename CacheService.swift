@@ -35,7 +35,7 @@ class CacheService {
         
         return Promise{ fulfill, reject in
             
-            //fulfill([CfpHelper]())
+    
             
             let myDevoxxCfpUrlOpt = NSBundle.mainBundle().objectForInfoDictionaryKey("MyDevoxx_CFP_URL") as? String
             

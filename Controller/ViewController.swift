@@ -545,10 +545,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                 CacheService.getCfpEntryPoints()
             }
             .then { (cfps : [CfpHelper]) -> Void in
-                
-               
-                
-                
+ 
                 CacheService.feedCfp(cfps)
                 .then { (cfps : [Cfp]) -> Void in
                     fulfill(cfps)
@@ -557,7 +554,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             }
         
             .error { error in
-                /*
+                
                 let castError = error as NSError
                 
                 guard let failedUrl = castError.userInfo["NSErrorFailingURLKey"] as? NSURL else {
@@ -585,8 +582,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                     return
                 }
                 reject(NSError(domain: "Impossible to construct cfps from the given fallback file", code: 0, userInfo: nil))
-                 */
-                reject(error)
+                
+                
                 
             }
         }
