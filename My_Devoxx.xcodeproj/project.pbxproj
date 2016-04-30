@@ -50,7 +50,6 @@
 		E10E7AC61C18BF7100F6220B /* My_Devoxx.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E10E7AC41C18BF7100F6220B /* My_Devoxx.xcdatamodeld */; };
 		E10E7ACD1C18BF7100F6220B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACC1C18BF7100F6220B /* Images.xcassets */; };
 		E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACE1C18BF7100F6220B /* LaunchScreen.xib */; };
-		E10E7ADC1C18BF7100F6220B /* devoxxAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */; };
 		E14E94B31C980971006B6D8E /* HelperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14E94B21C980971006B6D8E /* HelperManager.swift */; };
 		E15D04131CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D040D1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png */; };
 		E15D04141CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D040E1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png */; };
@@ -261,10 +260,10 @@
 		E1DF81141C985501002194C9 /* CallbackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81131C985501002194C9 /* CallbackProtocol.swift */; };
 		E1DF81181C99F4CE002194C9 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */; };
 		E1E3C6BF1CD4F05600AF8994 /* MyDevoxxCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E3C6BE1CD4F05600AF8994 /* MyDevoxxCache.swift */; };
+		E1E3C6C71CD5094C00AF8994 /* My_DevoxxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E3C6C61CD5094C00AF8994 /* My_DevoxxTests.swift */; };
 		E1E9E4FD1C97807D00EC347D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E9E4FB1C97807D00EC347D /* Crashlytics.framework */; };
 		E1E9E4FE1C97807D00EC347D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E9E4FC1C97807D00EC347D /* Fabric.framework */; };
 		E1E9E51D1C979BA800EC347D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E51F1C979BA800EC347D /* InfoPlist.strings */; };
-		E1E9E5221C979BA800EC347D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E5241C979BA800EC347D /* InfoPlist.strings */; };
 		E1E9E5271C979BA800EC347D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E5291C979BA800EC347D /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -283,12 +282,12 @@
 			remoteGlobalIDString = B95C58181CB96EF9007BD5A3;
 			remoteInfo = Smartvoxx;
 		};
-		E10E7AD61C18BF7100F6220B /* PBXContainerItemProxy */ = {
+		E1E3C6C91CD5094C00AF8994 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E10E7AB51C18BF7100F6220B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E10E7ABC1C18BF7100F6220B;
-			remoteInfo = devoxxApp;
+			remoteInfo = My_Devoxx;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -368,7 +367,6 @@
 		E10E7AC51C18BF7100F6220B /* My_Devoxx.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = My_Devoxx.xcdatamodel; sourceTree = "<group>"; };
 		E10E7ACC1C18BF7100F6220B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E10E7ACF1C18BF7100F6220B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		E10E7AD51C18BF7100F6220B /* My_DevoxxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My_DevoxxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10E7ADA1C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = devoxxAppTests.swift; sourceTree = "<group>"; };
 		E14E94B21C980971006B6D8E /* HelperManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperManager.swift; sourceTree = "<group>"; };
@@ -582,6 +580,9 @@
 		E1DF81131C985501002194C9 /* CallbackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackProtocol.swift; sourceTree = "<group>"; };
 		E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		E1E3C6BE1CD4F05600AF8994 /* MyDevoxxCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDevoxxCache.swift; sourceTree = "<group>"; };
+		E1E3C6C41CD5094B00AF8994 /* My DevoxxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "My DevoxxTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1E3C6C61CD5094C00AF8994 /* My_DevoxxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My_DevoxxTests.swift; sourceTree = "<group>"; };
+		E1E3C6C81CD5094C00AF8994 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1E9E4FB1C97807D00EC347D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		E1E9E4FC1C97807D00EC347D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		E1E9E51A1C9792A500EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -611,7 +612,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E10E7AD21C18BF7100F6220B /* Frameworks */ = {
+		E1E3C6C11CD5094B00AF8994 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -857,6 +858,7 @@
 				E10E7AD81C18BF7100F6220B /* devoxxAppTests */,
 				B95C581A1CB96EF9007BD5A3 /* Smartvoxx */,
 				B95C58291CB96EF9007BD5A3 /* Smartvoxx Extension */,
+				E1E3C6C51CD5094C00AF8994 /* My DevoxxTests */,
 				E10E7ABE1C18BF7100F6220B /* Products */,
 				C14F5424D9A9A4C738A22A11 /* Pods */,
 				62ACD2D20B977D6D51F3C490 /* Frameworks */,
@@ -867,9 +869,9 @@
 			isa = PBXGroup;
 			children = (
 				E10E7ABD1C18BF7100F6220B /* My Devoxx.app */,
-				E10E7AD51C18BF7100F6220B /* My_DevoxxTests.xctest */,
 				B95C58191CB96EF9007BD5A3 /* Smartvoxx.app */,
 				B95C58251CB96EF9007BD5A3 /* Smartvoxx Extension.appex */,
+				E1E3C6C41CD5094B00AF8994 /* My DevoxxTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1116,6 +1118,15 @@
 			path = devoxxApp;
 			sourceTree = "<group>";
 		};
+		E1E3C6C51CD5094C00AF8994 /* My DevoxxTests */ = {
+			isa = PBXGroup;
+			children = (
+				E1E3C6C61CD5094C00AF8994 /* My_DevoxxTests.swift */,
+				E1E3C6C81CD5094C00AF8994 /* Info.plist */,
+			);
+			path = "My DevoxxTests";
+			sourceTree = "<group>";
+		};
 		E1FA9BE91C1BE59A0077C09A /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -1286,22 +1297,22 @@
 			productReference = E10E7ABD1C18BF7100F6220B /* My Devoxx.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E10E7AD41C18BF7100F6220B /* My_DevoxxTests */ = {
+		E1E3C6C31CD5094B00AF8994 /* My DevoxxTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E10E7AE21C18BF7100F6220B /* Build configuration list for PBXNativeTarget "My_DevoxxTests" */;
+			buildConfigurationList = E1E3C6CB1CD5094C00AF8994 /* Build configuration list for PBXNativeTarget "My DevoxxTests" */;
 			buildPhases = (
-				E10E7AD11C18BF7100F6220B /* Sources */,
-				E10E7AD21C18BF7100F6220B /* Frameworks */,
-				E10E7AD31C18BF7100F6220B /* Resources */,
+				E1E3C6C01CD5094B00AF8994 /* Sources */,
+				E1E3C6C11CD5094B00AF8994 /* Frameworks */,
+				E1E3C6C21CD5094B00AF8994 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E10E7AD71C18BF7100F6220B /* PBXTargetDependency */,
+				E1E3C6CA1CD5094C00AF8994 /* PBXTargetDependency */,
 			);
-			name = My_DevoxxTests;
-			productName = devoxxAppTests;
-			productReference = E10E7AD51C18BF7100F6220B /* My_DevoxxTests.xctest */;
+			name = "My DevoxxTests";
+			productName = "My DevoxxTests";
+			productReference = E1E3C6C41CD5094B00AF8994 /* My DevoxxTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1332,8 +1343,8 @@
 							};
 						};
 					};
-					E10E7AD41C18BF7100F6220B = {
-						CreatedOnToolsVersion = 6.4;
+					E1E3C6C31CD5094B00AF8994 = {
+						CreatedOnToolsVersion = 7.3;
 						TestTargetID = E10E7ABC1C18BF7100F6220B;
 					};
 				};
@@ -1353,9 +1364,9 @@
 			projectRoot = "";
 			targets = (
 				E10E7ABC1C18BF7100F6220B /* My_Devoxx */,
-				E10E7AD41C18BF7100F6220B /* My_DevoxxTests */,
 				B95C58181CB96EF9007BD5A3 /* Smartvoxx */,
 				B95C58241CB96EF9007BD5A3 /* Smartvoxx Extension */,
+				E1E3C6C31CD5094B00AF8994 /* My DevoxxTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1493,11 +1504,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E10E7AD31C18BF7100F6220B /* Resources */ = {
+		E1E3C6C21CD5094B00AF8994 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1E9E5221C979BA800EC347D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1731,11 +1741,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E10E7AD11C18BF7100F6220B /* Sources */ = {
+		E1E3C6C01CD5094B00AF8994 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E10E7ADC1C18BF7100F6220B /* devoxxAppTests.swift in Sources */,
+				E1E3C6C71CD5094C00AF8994 /* My_DevoxxTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1752,10 +1762,10 @@
 			target = B95C58181CB96EF9007BD5A3 /* Smartvoxx */;
 			targetProxy = B95C58391CB96EF9007BD5A3 /* PBXContainerItemProxy */;
 		};
-		E10E7AD71C18BF7100F6220B /* PBXTargetDependency */ = {
+		E1E3C6CA1CD5094C00AF8994 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E10E7ABC1C18BF7100F6220B /* My_Devoxx */;
-			targetProxy = E10E7AD61C18BF7100F6220B /* PBXContainerItemProxy */;
+			targetProxy = E1E3C6C91CD5094C00AF8994 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2019,39 +2029,33 @@
 			};
 			name = Release;
 		};
-		E10E7AE31C18BF7100F6220B /* Debug */ = {
+		E1E3C6CC1CD5094C00AF8994 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = devoxxAppTests/Info.plist;
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = "My DevoxxTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "maximedavid.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = My_DevoxxTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My_Devoxx.app/My_Devoxx";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.devoxx.mydevoxx.swift.My-DevoxxTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My Devoxx.app/My Devoxx";
 			};
 			name = Debug;
 		};
-		E10E7AE41C18BF7100F6220B /* Release */ = {
+		E1E3C6CD1CD5094C00AF8994 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = devoxxAppTests/Info.plist;
+				CLANG_ANALYZER_NONNULL = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "My DevoxxTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "maximedavid.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = My_DevoxxTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My_Devoxx.app/My_Devoxx";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.devoxx.mydevoxx.swift.My-DevoxxTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My Devoxx.app/My Devoxx";
 			};
 			name = Release;
 		};
@@ -2094,14 +2098,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E10E7AE21C18BF7100F6220B /* Build configuration list for PBXNativeTarget "My_DevoxxTests" */ = {
+		E1E3C6CB1CD5094C00AF8994 /* Build configuration list for PBXNativeTarget "My DevoxxTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E10E7AE31C18BF7100F6220B /* Debug */,
-				E10E7AE41C18BF7100F6220B /* Release */,
+				E1E3C6CC1CD5094C00AF8994 /* Debug */,
+				E1E3C6CD1CD5094C00AF8994 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
