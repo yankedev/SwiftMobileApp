@@ -118,13 +118,15 @@ class AttributeService : AbstractService {
     
     
     func getTracksUrl() -> String {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/tracks"
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/tracks"
+        return ""
     }
     
     func getTalkTypeUrl() -> String {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/proposalTypes"
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/proposalTypes"
+        return ""
     }
     
     

@@ -74,7 +74,7 @@ class FloorService : AbstractService, ImageServiceProtocol {
 
     
     func fetchFloors(completionHandler: (floors: [Floor], error: FloorStoreError?) -> Void) {
-        privateManagedObjectContext.performBlock {
+        /*privateManagedObjectContext.performBlock {
             do {
                 let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
                 let predicateEvent = NSPredicate(format: "id = %@", cfp.id!)
@@ -98,7 +98,7 @@ class FloorService : AbstractService, ImageServiceProtocol {
                 })
                 
             }
-        }
+        }*/
     }
 
    

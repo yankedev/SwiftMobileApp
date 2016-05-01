@@ -154,8 +154,10 @@ class TalkService : AbstractService {
     }
     
     func getTalkUrl(talkId : String) -> String {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/talks/\(talkId)"
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/talks/\(talkId)"
+        
+        return ""
     }
     
         

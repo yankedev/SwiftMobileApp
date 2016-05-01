@@ -70,6 +70,7 @@ class SlotService : AbstractService {
     
     override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
         
+        /*
         
         let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
         
@@ -140,7 +141,7 @@ class SlotService : AbstractService {
             
             self.realSave(completionHandler)
         }
-        
+        */
     }
     
     

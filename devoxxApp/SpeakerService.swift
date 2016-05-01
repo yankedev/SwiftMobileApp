@@ -127,8 +127,9 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
     
     
     func getSpeakerUrl() -> String {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/speakers"
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/speakers"
+        return ""
     }
     
    
