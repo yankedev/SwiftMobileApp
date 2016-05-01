@@ -233,7 +233,7 @@ public class AbstractDetailsController : UIViewController {
         
         view.layoutIfNeeded()
         
-        actionButtonView1.button.addTarget(self, action: Selector("clicked"), forControlEvents: .TouchUpInside)
+        actionButtonView1.button.addTarget(self, action: #selector(self.clicked), forControlEvents: .TouchUpInside)
         
         
     }
@@ -254,15 +254,25 @@ public class AbstractDetailsController : UIViewController {
             actionButtonView1.button.tintColor = UIColor.whiteColor()
         }
     }
+
     
+    public func invertColor() {
+        if actionButtonView1.button.tintColor == ColorManager.grayImageColor {
+            actionButtonView1.button.tintColor = UIColor.whiteColor()
+        }
+        else {
+            actionButtonView1.button.tintColor = ColorManager.grayImageColor
+        }
+    }
+
     
     public func configure() {
         
-        actionButtonView0.button.addTarget(self, action: Selector("twitter"), forControlEvents: .TouchUpInside)
+        actionButtonView0.button.addTarget(self, action: #selector(AbstractDetailsController.twitter), forControlEvents: .TouchUpInside)
         
-        actionButtonView2.button.addTarget(self, action: Selector("tryToRate"), forControlEvents: .TouchUpInside)
+        actionButtonView2.button.addTarget(self, action: #selector(AbstractDetailsController.tryToRate), forControlEvents: .TouchUpInside)
         
-        actionButtonViewBack.button.addTarget(self, action: Selector("back"), forControlEvents: .TouchUpInside)
+        actionButtonViewBack.button.addTarget(self, action: #selector(self.back), forControlEvents: .TouchUpInside)
         
         actionButtonViewBack.setup(false)
         actionButtonView0.setup(true)
@@ -321,6 +331,13 @@ public class AbstractDetailsController : UIViewController {
         //todo
         return ""
     }
+    
+    public func twitter() {
+    }
+    
+    public func tryToRate() {
+    }
+    
    
     
     

@@ -47,7 +47,7 @@ class TalkService : AbstractService {
             do {
                 let fetchRequest = NSFetchRequest(entityName: "Talk")
                 let sortTime = NSSortDescriptor(key: "slot.fromTime", ascending: true)
-                let sortAlpha = NSSortDescriptor(key: "title", ascending: true)
+                let sortAlpha = NSSortDescriptor(key: "slot.roomName", ascending: true)
                 let sortFavorite = NSSortDescriptor(key: "isFavorited", ascending: false)
                 
                
@@ -88,6 +88,29 @@ class TalkService : AbstractService {
         }
     }
     
+    
+    func setFavoriteStatus(fav:Bool, forTalkWithId talkId:String, completion : (msg: CallbackProtocol) -> Void) {
+        privateManagedObjectContext.performBlock {
+            do {
+                
+                let fetchRequest = NSFetchRequest(entityName: "Talk")
+                let predicate = NSPredicate(format: "id = %@", talkId)
+                fetchRequest.predicate = predicate
+                
+                let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+                
+                if items.count > 0 {
+                    let talk = items[0] as! Talk
+                    talk.isFavorited = fav
+                    super.realSave(completion)
+                }
+                
+            } catch {
+                
+            }
+        }
+
+    }
     
     func fetchTalks(ids : [NSManagedObjectID], completionHandler: (talks: [DataHelperProtocol], error: TalksStoreError?) -> Void) {
         privateManagedObjectContext.performBlock {

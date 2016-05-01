@@ -167,9 +167,40 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         })
     }
 
+    func feedEventId() {
+        HuntlyManagerService.sharedInstance.feedEventId(prepareHuntly, callbackFailure : dismiss)
+    }
     
-    func dissmiss(action : UIAlertAction) {
+    func prepareHuntly() {
+        HuntlyManagerService.sharedInstance.storeToken("vote", handlerSuccess: hunltyManager, handlerFailure : dismiss)
+    }
+    
+    
+    func hunltyManager() {
+        print(UIStoryboard(name: "Huntly", bundle: nil).instantiateViewControllerWithIdentifier("HuntlyPopup") as? HuntlyPopup)
+        if let viewController = UIStoryboard(name: "Huntly", bundle: nil).instantiateViewControllerWithIdentifier("HuntlyPopup") as? HuntlyPopup {
+            
+            self.navigationController?.presentViewController(viewController, animated: true, completion: {
+                viewController.titleBonus.text = "You just won"
+                viewController.pointLbl.text = "Points"
+                viewController.pointValueLbl.text = "+\(HuntlyManagerService.sharedInstance.VOTE_QUEST_POINTS)"
+                
+                viewController.okBtn.addTarget(self, action: #selector(RateTableViewController.dismiss), forControlEvents: .TouchUpInside)
+
+            })
+ 
+        }
+        else {
+            dismiss()
+        }
+        
+    }
+    
+    func dismiss() {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    func dissmiss(action : UIAlertAction) {
+        feedEventId()
     }
     
     

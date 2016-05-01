@@ -44,7 +44,7 @@ class SelectionWheel: UIView {
         
         //backgroundColor = UIColor.blueColor()
         
-        let tap = UITapGestureRecognizer(target: self, action: Selector("check:"))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.check(_:)))
         addGestureRecognizer(tap)
         
         
@@ -68,7 +68,7 @@ class SelectionWheel: UIView {
                 click(i)
                 return
             }
-            ++i
+            i += 1
         }
     }
     

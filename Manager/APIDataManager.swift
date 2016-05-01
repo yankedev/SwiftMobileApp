@@ -21,7 +21,7 @@
                 if let object = try context.existingObjectWithID(id) as? T {
                     return object
                 }
-            } catch let error1 as NSError {
+            } catch _ as NSError {
                 //print(error1)
             }
             return nil
@@ -84,50 +84,30 @@
         
         class func makeRequest(storedResource : StoredResource, service : AbstractService, helper : DataHelperProtocol, loadFromFile : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
             
-            
-             //print("___________check for \(storedResource.url), fed = \(service.hasBeenAlreadyFed())")
-            
+            var urlToFetch = storedResource.url
             if loadFromFile {
-                storedResource.url = ""
+                urlToFetch = ""
             }
             
            
-            
-            if loadFromFile && service.hasBeenAlreadyFed() {
-                onSuccess(value: CompletionMessage(msg : ""))
-                return
-            }
-            
-            let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
-            
-            let headers = [
-                "If-None-Match": storedResource.etag
-            ]
-            config.HTTPAdditionalHeaders = headers
-            config.requestCachePolicy = .ReloadIgnoringLocalCacheData
+            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+
             config.timeoutIntervalForResource = 15
             
             let session = NSURLSession(configuration: config)
             
         
-            let task = session.dataTaskWithURL(NSURL(string: storedResource.url)!) {
+            let task = session.dataTaskWithURL(NSURL(string: urlToFetch)!) {
                 data, response1, error in
+                
                 
                 
                 
                 
                 if let _ = error {
                     
-                    /*print("No internet for \(storedResource.url)")
-                    print("Error \(error)")
-                    print("Store callbal =  \(storedResource.fallback)")
-                    */
-                    
                     if loadFromFile {
-                        
-                        //print("critical call")
-                        
-                        
+                       
                         let data = APIManager.getFallBackData(storedResource)
                         
                         if data == nil {

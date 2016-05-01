@@ -13,6 +13,7 @@ public protocol CallbackProtocol {
     func getHelper() -> DataHelperProtocol?
     func getImg() -> NSData?
     func debug() -> String
+    func getMessage() -> String
 
 
 }
@@ -37,6 +38,10 @@ class CompletionMessage : CallbackProtocol {
     }
     func getImg() -> NSData? {
         return img
+    }
+    
+    func getMessage() -> String {
+        return msg ?? ""
     }
     
     func debug() -> String {

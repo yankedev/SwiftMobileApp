@@ -135,6 +135,58 @@
 		"fallback": "DevoxxFR2016-speaker.json"
   }
   
+,
+
+
+
+
+
+
+
+
+ {
+		"url": "https://cfp.devoxx.co.uk/api/conferences/DevoxxUK2016/tracks",
+		"etag": "1370925856",
+		"fallback": "DevoxxUK2016-tracks.json"
+  },
+  
+  
+  {
+		"url": "https://cfp.devoxx.co.uk/api/conferences/DevoxxUK2016/proposalTypes",
+		"etag": "-1196935546",
+		"fallback": "DevoxxUK2016-proposalTypes.json"
+  },
+  
+  
+  
+  
+    {
+		"url": "https://cfp.devoxx.co.uk/api/conferences/DevoxxUK2016/schedules",
+		"etag": "1565948479",
+		"fallback": "DevoxxUK2016-conferences.json"
+  },
+  
+  
+  
+ {
+		"url": "http://cfp.devoxx.co.uk/api/conferences/DevoxxUK2016/schedules/wednesday/",
+		"etag": "v2_191239292______",
+		"fallback": "DevoxxUK2016-wednesday.json"
+  }, {
+		"url": "http://cfp.devoxx.co.uk/api/conferences/DevoxxUK2016/schedules/thursday/",
+		"etag": "v2_-1795626702______",
+		"fallback": "DevoxxUK2016-thursday.json"
+  }, {
+		"url": "http://cfp.devoxx.co.uk/api/conferences/DevoxxUK2016/schedules/friday/",
+		"etag": "v2_-1385439971______",
+		"fallback": "DevoxxUK2016-friday.json"
+  },
+  {
+		"url": "https://cfp.devoxx.co.uk/api/conferences/DevoxxFR2016/speakers",
+		"etag": "1834998537______",
+		"fallback": "DevoxxUK2016-speaker.json"
+  }
+  
   
 
   

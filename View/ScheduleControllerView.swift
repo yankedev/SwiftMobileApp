@@ -16,24 +16,12 @@ protocol TopFilterableProtocol {
 
 class ScheduleControllerView : UIView, TopFilterableProtocol {
     
-    
     var filterRightButton:UIBarButtonItem
-    
-    
-    
-    
-    
+
     init(target: AnyObject?, filterSelector:Selector) {
-        
         
         let img = UIImage(named: "ic_filter_inactive")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
         filterRightButton = UIBarButtonItem(image: img, style: UIBarButtonItemStyle.Plain, target: target, action: filterSelector)
-        
-        
-        
-        
-        
-        
         
         super.init(frame: CGRectZero)
         self.initialize()

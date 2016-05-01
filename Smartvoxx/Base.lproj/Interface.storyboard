@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WXo-JT-RMn">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
+    </dependencies>
+    <scenes>
+        <!--Conference-->
+        <scene sceneID="cP0-ia-s8t">
+            <objects>
+                <controller title="Conference" id="yBv-IY-S6R" customClass="SchedulesController" customModule="Smartvoxx_Extension">
+                    <items>
+                        <imageView width="1" height="1" alignment="center" hidden="YES" image="Activity1" contentMode="center" id="gTg-j0-gzw"/>
+                        <table alignment="left" id="9MN-Pt-jtd">
+                            <items>
+                                <tableRow identifier="schedule" id="hHb-ts-UB3" customClass="ScheduleRowController" customModule="Smartvoxx_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="pab-97-Y2a">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="Label" numberOfLines="0" id="9L9-le-ywq"/>
+                                        </items>
+                                        <connections>
+                                            <segue destination="kVp-bo-yTh" kind="push" identifier="showSchedule" id="Ynd-xm-v5s"/>
+                                        </connections>
+                                    </group>
+                                    <connections>
+                                        <outlet property="label" destination="9L9-le-ywq" id="YZI-9J-kBm"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="activityIndicator" destination="gTg-j0-gzw" id="O1x-kB-r9O"/>
+                        <outlet property="table" destination="9MN-Pt-jtd" id="wTK-xb-RCZ"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="525" y="342"/>
+        </scene>
+        <!--Schedule Controller-->
+        <scene sceneID="lsh-F0-hle">
+            <objects>
+                <controller hidesWhenLoading="NO" id="kVp-bo-yTh" customClass="ScheduleController" customModule="Smartvoxx_Extension">
+                    <items>
+                        <imageView width="1" height="1" alignment="left" hidden="YES" image="Activity1" contentMode="center" id="vy3-a8-cXZ"/>
+                        <table alignment="left" id="8oT-lF-3jh">
+                            <items>
+                                <tableRow identifier="timerange" selectable="NO" id="AAO-rc-Rhs" customClass="TimeRangeRowController" customModule="Smartvoxx_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="SQ6-ns-SLA">
+                                        <items>
+                                            <label alignment="left" text="Label" id="KcK-zT-nCf">
+                                                <color key="textColor" red="0.71372549019999998" green="0.71372549019999998" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="label" destination="KcK-zT-nCf" id="ZAO-QR-lWx"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow identifier="slot" id="EpX-yC-FgD" customClass="SlotRowController" customModule="Smartvoxx_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" spacing="3" id="8ho-eK-01q">
+                                        <items>
+                                            <group width="5" height="1" alignment="left" verticalAlignment="center" radius="2" spacing="0.0" id="c1P-or-RGG">
+                                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </group>
+                                            <group width="1" alignment="left" layout="vertical" id="ioY-lO-1G1">
+                                                <items>
+                                                    <label alignment="left" text="Lorem ipsum dolor sit amet" numberOfLines="0" id="kBn-b1-aHv">
+                                                        <color key="textColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                                    </label>
+                                                    <group width="0.97999999999999998" alignment="left" id="72j-LT-bIv">
+                                                        <items>
+                                                            <label alignment="left" text="Label" numberOfLines="0" id="xXl-yB-M8z">
+                                                                <color key="textColor" red="0.55294117649999996" green="0.55294117649999996" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                                                            </label>
+                                                            <imageView width="16" height="16" alignment="right" image="FavoriteOff" id="HWY-W5-EfY">
+                                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </imageView>
+                                                        </items>
+                                                    </group>
+                                                </items>
+                                            </group>
+                                        </items>
+                                        <edgeInsets key="margins" left="2" right="2" top="2" bottom="2"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="favoriteImage" destination="HWY-W5-EfY" id="0SO-nl-ouC"/>
+                                        <outlet property="roomLabel" destination="xXl-yB-M8z" id="l8a-ae-7Ab"/>
+                                        <outlet property="titleLabel" destination="kBn-b1-aHv" id="ViK-iU-Dy8"/>
+                                        <outlet property="trackSeparator" destination="c1P-or-RGG" id="uP4-Sd-HaM"/>
+                                        <segue destination="L8m-E2-m8I" kind="push" identifier="showSlot" id="WOO-H3-gCw"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="activityIndicator" destination="vy3-a8-cXZ" id="D1R-9R-z0h"/>
+                        <outlet property="table" destination="8oT-lF-3jh" id="yLa-g8-bhQ"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="814" y="342"/>
+        </scene>
+        <!--Slot Controller-->
+        <scene sceneID="Ug4-yW-kr9">
+            <objects>
+                <controller hidesWhenLoading="NO" id="L8m-E2-m8I" customClass="SlotController" customModule="Smartvoxx_Extension">
+                    <items>
+                        <group width="1" alignment="left" layout="vertical" id="HIj-Xy-9qg">
+                            <items>
+                                <label alignment="left" text="title" numberOfLines="0" id="2BJ-YN-ri2">
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
+                            </items>
+                        </group>
+                        <group width="1" alignment="left" id="Xht-RU-s9c">
+                            <items>
+                                <label alignment="left" text="track" numberOfLines="0" id="4Kn-XX-0pG">
+                                    <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                                </label>
+                                <imageView width="16" height="16" alignment="right" image="FavoriteOff" id="XKL-zW-2Q4">
+                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </imageView>
+                            </items>
+                        </group>
+                        <separator alignment="left" alpha="0.20000000000000001" id="iwx-mN-Zrk"/>
+                        <label alignment="left" text="room" numberOfLines="0" id="od6-eb-tpa">
+                            <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
+                        </label>
+                        <label alignment="left" text="date" numberOfLines="0" id="bTj-am-BK2">
+                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                        </label>
+                        <label alignment="left" text="times" numberOfLines="0" id="vaT-AP-yyf">
+                            <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                        </label>
+                        <separator alignment="left" alpha="0.20000000000000001" id="q2d-aE-pvR"/>
+                        <label alignment="left" text="summary" numberOfLines="0" id="ctn-Aw-owd"/>
+                        <separator alignment="left" alpha="0.20000000000000001" id="D1R-kg-sfx"/>
+                        <table alignment="left" id="2Yt-Oy-auu">
+                            <items>
+                                <tableRow identifier="speaker" id="dGM-MB-q0d" customClass="SpeakerRowController" customModule="Smartvoxx_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="A0B-ZI-Tgj">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="John Doe" numberOfLines="0" id="zrM-Jh-X7A"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="nameLabel" destination="zrM-Jh-X7A" id="Nde-f9-Xpq"/>
+                                        <segue destination="LYk-wg-fSb" kind="push" id="igf-aw-gIJ"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="dateLabel" destination="bTj-am-BK2" id="3Md-l5-FEc"/>
+                        <outlet property="favoriteImage" destination="XKL-zW-2Q4" id="4aG-yj-SQj"/>
+                        <outlet property="roomLabel" destination="od6-eb-tpa" id="wiB-Pt-Syb"/>
+                        <outlet property="speakersSeparator" destination="D1R-kg-sfx" id="dfr-h1-tm0"/>
+                        <outlet property="speakersTable" destination="2Yt-Oy-auu" id="i4q-WW-LGA"/>
+                        <outlet property="summaryLabel" destination="ctn-Aw-owd" id="TcF-G9-2zv"/>
+                        <outlet property="summarySeparator" destination="q2d-aE-pvR" id="Hnk-H1-05Q"/>
+                        <outlet property="timesLabel" destination="vaT-AP-yyf" id="vG7-gu-Aef"/>
+                        <outlet property="titleLabel" destination="2BJ-YN-ri2" id="inG-2o-0DP"/>
+                        <outlet property="trackLabel" destination="4Kn-XX-0pG" id="29g-yp-Iew"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="1116" y="341.5"/>
+        </scene>
+        <!--Conferences Controller-->
+        <scene sceneID="7Gs-Dw-0jZ">
+            <objects>
+                <controller id="WXo-JT-RMn" customClass="ConferencesController" customModule="Smartvoxx_Extension">
+                    <items>
+                        <imageView width="1" height="1" alignment="left" hidden="YES" image="Activity1" contentMode="center" id="clV-2A-SLh"/>
+                        <table alignment="left" id="yBK-ty-Qqe">
+                            <items>
+                                <tableRow identifier="conference" id="9G2-8u-XbZ" customClass="ConferenceRowController" customModule="Smartvoxx_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="zZs-Jb-n5R">
+                                        <items>
+                                            <label alignment="left" verticalAlignment="center" text="Label" numberOfLines="0" id="3af-8T-KVB"/>
+                                        </items>
+                                        <connections>
+                                            <segue destination="yBv-IY-S6R" kind="push" identifier="showConference" id="DXN-fb-K6n"/>
+                                        </connections>
+                                    </group>
+                                    <connections>
+                                        <outlet property="label" destination="3af-8T-KVB" id="0Mj-zI-qpg"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="activityIndicator" destination="clV-2A-SLh" id="hsS-Su-Gu2"/>
+                        <outlet property="table" destination="yBK-ty-Qqe" id="hnI-AC-NaE"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="235" y="342"/>
+        </scene>
+        <!--Speaker Controller-->
+        <scene sceneID="J05-w4-Hd4">
+            <objects>
+                <controller hidesWhenLoading="NO" id="LYk-wg-fSb" customClass="SpeakerController" customModule="Smartvoxx_Extension">
+                    <items>
+                        <imageView width="1" height="1" alignment="center" hidden="YES" image="Activity1" contentMode="center" id="ZOv-Ym-P0e"/>
+                        <group width="1" alignment="left" layout="vertical" id="1ls-8e-nGI">
+                            <items>
+                                <label alignment="center" text="Name" textAlignment="left" numberOfLines="0" id="JN7-H2-FeV">
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
+                                <imageView alignment="center" id="bJu-8k-XBw"/>
+                                <label alignment="center" text="Company" numberOfLines="0" id="zl0-jl-H8y">
+                                    <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                </label>
+                                <label alignment="left" text="Bio" numberOfLines="0" id="AAo-CK-3dE"/>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="activityIndicator" destination="ZOv-Ym-P0e" id="Fv1-jD-h4Q"/>
+                        <outlet property="avatarImage" destination="bJu-8k-XBw" id="ANs-xS-Hq3"/>
+                        <outlet property="bioLabel" destination="AAo-CK-3dE" id="esO-sH-Tqv"/>
+                        <outlet property="companyLabel" destination="zl0-jl-H8y" id="L5x-lx-b8Q"/>
+                        <outlet property="nameLabel" destination="JN7-H2-FeV" id="hjZ-3p-DJo"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="1407" y="342"/>
+        </scene>
+        <!--Glance Interface Controller-->
+        <scene sceneID="Lcb-Zj-qye">
+            <objects>
+                <glanceController spacing="0.0" topTemplateType="mediumBody1" bottomTemplateType="groupBody1Footer" id="WKM-L9-75N" customClass="GlanceController" customModule="Smartvoxx" customModuleProvider="target">
+                    <items>
+                        <label alignment="left" text="1234" id="475-sm-mNt"/>
+                        <label alignment="left" text="Label" minimumScaleFactor="0.5" id="9eH-TW-QWu"/>
+                        <group alignment="left" id="4WQ-HF-K8v">
+                            <items>
+                                <label alignment="left" text="Label" numberOfLines="0" id="V0G-wU-iUy"/>
+                            </items>
+                        </group>
+                        <label alignment="left" text="Label" minimumScaleFactor="0.5" id="Apj-SP-x5P"/>
+                        <label alignment="left" text="Footer" id="Fkt-B4-REK"/>
+                    </items>
+                    <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
+                    <connections>
+                        <outlet property="dateLabel" destination="Fkt-B4-REK" id="9AP-nV-AxV"/>
+                        <outlet property="headerLabel" destination="475-sm-mNt" id="WhO-aR-vPZ"/>
+                        <outlet property="roomLabel" destination="Apj-SP-x5P" id="a3R-x5-iGh"/>
+                        <outlet property="subtitleLabel" destination="9eH-TW-QWu" id="OID-GE-jHD"/>
+                        <outlet property="titleLabel" destination="V0G-wU-iUy" id="hpr-33-x8b"/>
+                    </connections>
+                </glanceController>
+            </objects>
+            <point key="canvasLocation" x="235" y="674"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="BVv-Ij-169">
+            <objects>
+                <notificationController id="qy3-7C-WPS">
+                    <items>
+                        <label alignment="left" text="Alert Label" numberOfLines="0" id="Mvb-xd-5Uu"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="EFT-BF-nUk"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="Mvb-xd-5Uu" id="F9r-c8-CBC"/>
+                        <segue destination="Wni-Br-ysG" kind="relationship" relationship="dynamicNotificationInterface" id="HNh-pd-1fI"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="235" y="1001"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="9MP-eb-2Pp">
+            <objects>
+                <controller id="Wni-Br-ysG" customClass="NotificationController" customModule="Smartvoxx" customModuleProvider="target">
+                    <items>
+                        <group width="1" alignment="left" layout="vertical" id="A3P-5g-u03">
+                            <items>
+                                <label alignment="left" text="title" numberOfLines="0" id="cQm-Kv-9CQ">
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
+                                <label alignment="left" text="track" numberOfLines="0" id="1kD-v9-tSy">
+                                    <fontDescription key="font" style="UICTFontTextStyleSubhead"/>
+                                </label>
+                                <separator alignment="left" alpha="0.20000000000000001" id="Xdq-aV-QSm"/>
+                                <label alignment="left" text="room" minimumScaleFactor="0.90000000000000002" id="j7d-OP-Yx7">
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption1"/>
+                                </label>
+                                <label alignment="left" text="times" numberOfLines="0" id="hfV-eR-nbO">
+                                    <fontDescription key="font" style="UICTFontTextStyleCaption2"/>
+                                </label>
+                            </items>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="roomLabel" destination="j7d-OP-Yx7" id="Llp-VZ-jtp"/>
+                        <outlet property="timesLabel" destination="hfV-eR-nbO" id="ddt-3X-dEv"/>
+                        <outlet property="titleLabel" destination="cQm-Kv-9CQ" id="oMP-MG-3es"/>
+                        <outlet property="trackLabel" destination="1kD-v9-tSy" id="si7-D2-bPz"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="553" y="1001"/>
+        </scene>
+    </scenes>
+</document>

@@ -47,6 +47,11 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         
         super.viewDidLoad()
         
+        if let rateDetails = detailObject as? RatableProtocol {
+            if !rateDetails.isEnabled() {
+                //actionButtonView2.hidden = true
+            }
+        }
         
         
         talkTitle.text = detailObject.getTitle()
@@ -144,9 +149,18 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         })
         
         
+
         //header.imageView.hidden = true
+        
+        //sync with watch
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleNotification(_:)), name:"UpdateFavorite", object: nil)
     }
-       
+    
+    
+    public override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateFavorite", object: nil)
+    }
     
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -174,21 +188,8 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     }
     
    
+
     
-    
-    public func twitter() {
-        
-        /*let originalString = detailObject.getTwitter()
- 
-        
-        let escapedString = originalString?.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
-        
-        let url = "https://twitter.com/intent/tweet?text=\(escapedString!)"
-        
-        UIApplication.sharedApplication().openURL(NSURL(string: url)!)
- 
- */
-    }
     
     
     
@@ -306,7 +307,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
         
     }
     
-    public func tryToRate() {
+    public  func tryToRate() {
         
         if APIManager.qrCodeAlreadyScanned() {
             goToRate()
@@ -328,6 +329,7 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     }
     
     
+
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return detailObject.getRelatedDetailsCount()
     }
@@ -345,5 +347,12 @@ public class TalkDetailsController : UIViewController, UITableViewDataSource, UI
     }
     
  
+
+    func handleNotification(notification: NSNotification){
+        //invertColor()
+    }
+    
+
+
     
 }

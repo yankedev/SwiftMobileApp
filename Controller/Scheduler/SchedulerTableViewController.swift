@@ -64,9 +64,7 @@ public class SchedulerTableViewController :
         super.viewDidLoad()
         
         fetchUpdate()
-        
-        
-        
+
         schedulerTableView.delegate = self
         schedulerTableView.dataSource = self
         
@@ -81,8 +79,15 @@ public class SchedulerTableViewController :
         self.navigationController?.navigationBarHidden = false
         fetchAll()
         self.schedulerTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        //sync with watch
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleNotification(_:)), name:"UpdateFavorite", object: nil)
     }
     
+    public override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateFavorite", object: nil)
+    }
     
     
     
@@ -451,7 +456,7 @@ public class SchedulerTableViewController :
         
         headerView.tag = section
         headerView.upDown.tag = section
-        headerView.upDown.addTarget(self, action: Selector("openCloseButton:"), forControlEvents: .TouchUpInside)
+        headerView.upDown.addTarget(self, action: #selector(self.openCloseButton(_:)), forControlEvents: .TouchUpInside)
         headerView.upDown.selected = openedSections[section]
         
         if breakSlot {
@@ -466,7 +471,7 @@ public class SchedulerTableViewController :
             
             headerView.numberOfTalkString.text = "\(nbTalks) \(pluralTalks) in \(set.count) \(pluralTracks)"
             
-            let tap = UITapGestureRecognizer(target: self, action: Selector("openCloseView:"))
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.openCloseView(_:)))
             headerView.addGestureRecognizer(tap)
         }
         
@@ -523,6 +528,10 @@ public class SchedulerTableViewController :
         schedulerTableView.searchBar.resignFirstResponder()
     }
     
+    
+    func handleNotification(notification: NSNotification){
+        schedulerTableView.reloadData()
+    }
     
     
     

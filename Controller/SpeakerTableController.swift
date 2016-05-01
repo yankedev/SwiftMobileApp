@@ -41,7 +41,12 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     
     
     override public func viewDidLoad() {
+        
         super.viewDidLoad()
+        if let nav = self.navigationController as? HuntlyNavigationController {
+            self.navigationItem.leftBarButtonItem = nav.huntlyLeftButton
+        }
+        
         self.tableView.separatorStyle = .None
         
        

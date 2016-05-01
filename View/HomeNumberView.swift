@@ -23,17 +23,17 @@ class HomeNumberView : UIView {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         
-        number1.font = UIFont(name: "Pirulen", size: 26)!
+        number1.font = UIFont(name: "Pirulen", size: 24)!
         number1.textColor = UIColor.whiteColor()
         number1.textAlignment = .Center
         number1.translatesAutoresizingMaskIntoConstraints = false
         
-        number2.font = UIFont(name: "Pirulen", size: 26)!
+        number2.font = UIFont(name: "Pirulen", size: 24)!
         number2.textColor = UIColor.whiteColor()
         number2.textAlignment = .Center
         number2.translatesAutoresizingMaskIntoConstraints = false
         
-        number3.font = UIFont(name: "Pirulen", size: 26)!
+        number3.font = UIFont(name: "Pirulen", size: 24)!
         number3.textColor = UIColor.whiteColor()
         number3.textAlignment = .Center
         number3.translatesAutoresizingMaskIntoConstraints = false

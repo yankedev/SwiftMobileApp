@@ -40,6 +40,10 @@ public class MapTabController : UIViewController {
     
     override public func viewDidLoad() {
         
+        super.viewDidLoad()
+        if let nav = self.navigationController as? HuntlyNavigationController {
+            self.navigationItem.leftBarButtonItem = nav.huntlyLeftButton
+        }
         
         seg = UISegmentedControl()
         seg.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +53,7 @@ public class MapTabController : UIViewController {
         
         setupSegments()
         
-        seg.addTarget(self, action: Selector("change:"), forControlEvents: .ValueChanged)
+        seg.addTarget(self, action: #selector(self.change(_:)), forControlEvents: .ValueChanged)
         
         seg.tintColor = ColorManager.topNavigationBarColor
         

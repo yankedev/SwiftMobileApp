@@ -24,6 +24,7 @@ public protocol EventProtocol  {
 class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     
     @NSManaged var id: String?
+    @NSManaged var integration_id: String?
     @NSManaged var confType: String?
     @NSManaged var confDescription: String?
     @NSManaged var venue: String?
@@ -61,6 +62,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
         if let castHelper = helper as? CfpHelper  {
             
             id = castHelper.id
+            integration_id = castHelper.integration_id
             confType = castHelper.confType
             confDescription = castHelper.confDescription
             venue = castHelper.venue

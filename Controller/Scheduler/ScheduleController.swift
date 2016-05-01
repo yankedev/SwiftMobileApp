@@ -21,7 +21,9 @@ public protocol ScrollableDateProtocol : NSObjectProtocol {
 
 
 
+
 public class ScheduleController : UINavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
+
     
     
     
@@ -45,9 +47,12 @@ public class ScheduleController : UINavigationController, DevoxxAppFilter, Scrol
         
         super.viewDidLoad()
         
+
+        
+        
         customView = ScheduleControllerView(target: self, filterSelector: #selector(self.filterMe))
         
-        
+       
         
         feedDate()
         
@@ -219,14 +224,12 @@ public class ScheduleController : UINavigationController, DevoxxAppFilter, Scrol
                 if let reloadable = pageViewController.viewControllers![0] as? HotReloadProtocol {
                     reloadable.fetchUpdate()
                 }
-                
-                
-                
+ 
             }
         }
         
     }
-    
+
     
     //ScrollableDateTableDelegate
     func feedDate() {
@@ -251,6 +254,8 @@ public class ScheduleController : UINavigationController, DevoxxAppFilter, Scrol
         
         //pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
         
+        //self.pageViewController.navigationItem.leftBarButtonItem = huntlyLeftButton
+        
         pageViewController?.dataSource = self
         pageViewController?.delegate = self
         
@@ -268,8 +273,10 @@ public class ScheduleController : UINavigationController, DevoxxAppFilter, Scrol
         
         pushViewController(pageViewController, animated: true)
         
-        //self.pageViewController.navigationItem.rightBarButtonItems = [customView!.filterRightButton, customView!.favoriteSwitcher]
+        
+        
         self.pageViewController.navigationItem.rightBarButtonItem = customView!.filterRightButton
+        
         
         if allDates.count == 0 {
             self.pageViewController.navigationItem.title = "No data yet"
@@ -289,5 +296,6 @@ public class ScheduleController : UINavigationController, DevoxxAppFilter, Scrol
         return dateFormatter.stringFromDate(date)
     }
     
+  
     
 }

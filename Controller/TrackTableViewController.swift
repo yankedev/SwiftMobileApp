@@ -65,8 +65,6 @@ public class TrackTableViewController<T : CellDataPrococol>:
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         schedulerTableView.delegate = self
         schedulerTableView.dataSource = self
         
@@ -86,9 +84,17 @@ public class TrackTableViewController<T : CellDataPrococol>:
         
         
         self.schedulerTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell2")
-        
-
+    
+        //sync with watch
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleNotification(_:)), name:"UpdateFavorite", object: nil)
     }
+    
+    
+    public override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateFavorite", object: nil)
+    }
+
     
     
     
@@ -339,6 +345,9 @@ public class TrackTableViewController<T : CellDataPrococol>:
         return UIView()
     }
     
+    func handleNotification(notification: NSNotification){
+        schedulerTableView.reloadData()
+    }
     
     
     

@@ -34,7 +34,7 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
         
         
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title:  NSLocalizedString("Cancel", comment: ""), style: .Plain, target: self, action: Selector("cancel"))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title:  NSLocalizedString("Cancel", comment: ""), style: .Plain, target: self, action: #selector(self.cancel))
         
         scan()
         
@@ -120,7 +120,8 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
             if metadataObj.stringValue != nil {
-                APIManager.setQrCode(metadataObj.stringValue)
+                var qrCodeId = metadataObj.stringValue.characters.split{$0 == ","}.map(String.init)
+                APIManager.setQrCode(qrCodeId[0])
                 dismissViewControllerAnimated(true, completion: completionOnceScanned)
             }
         }

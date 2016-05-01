@@ -141,7 +141,7 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
     }
     
     func getFullLink() -> String? {
-        return TalkService.sharedInstance.getTalkUrl(id!)
+        return "\(CfpService.sharedInstance.getTalkURL())\(id!)"
     }
     
     func getImageFullLink() -> String? {
@@ -191,6 +191,13 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
     
     func getIdentifier() -> String {
         return id!
+    }
+    
+    func isEnabled() -> Bool {
+        if isBreak == nil {
+            return false
+        }
+        return !(isBreak!)
     }
 
 

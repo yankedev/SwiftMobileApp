@@ -18,7 +18,7 @@ import Foundation
 import UIKit
 
 
-public class TrackController<T : ScrollableDateProtocol> : UINavigationController, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
+public class TrackController<T : ScrollableDateProtocol> : HuntlyNavigationController, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
     
     
     
@@ -50,7 +50,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
         
         super.viewDidLoad()
         
-        customView = ScheduleControllerView(target: self, filterSelector: Selector("filterMe"))
+        customView = ScheduleControllerView()
         
         
         
@@ -67,6 +67,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
         pageViewController?.dataSource = self
         pageViewController?.delegate = self
         
+        self.pageViewController.navigationItem.leftBarButtonItem = huntlyLeftButton
         
         self.view.addSubview(customView!)
         
@@ -89,7 +90,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
             return nil
         }
         
-        currentIndex--
+        currentIndex -= 1
         
         return viewControllerAtIndex(currentIndex)
     }
@@ -101,7 +102,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
             currentIndex = demoController.index
         }
         
-        currentIndex++
+        currentIndex += 1
         
         
         if currentIndex == allTracks?.count {
@@ -161,8 +162,7 @@ public class TrackController<T : ScrollableDateProtocol> : UINavigationControlle
     
     //ScrollableDateTableDelegate
     func feedDate() {
-        let trackService = AttributeService()
-        trackService.fetchTracks(callBack)
+        AttributeService.sharedInstance.fetchTracks(callBack)
     }
     
     

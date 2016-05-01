@@ -105,7 +105,7 @@ public class SpeakerDetailsController : UIViewController, UITableViewDelegate, U
     
 
     
-    public func twitter() {
+    public  func twitter() {
         
         let originalString = detailObject.getTwitter()
      

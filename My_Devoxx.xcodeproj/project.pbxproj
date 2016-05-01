@@ -7,11 +7,68 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8985D88EA997D39C857767DA /* Pods_My_Devoxx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47CEF9376C5B292EF5D1A9B0 /* Pods_My_Devoxx.framework */; };
+		B904E26C1CB9B65700330EC0 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B904E26B1CB9B65700330EC0 /* WatchConnectivity.framework */; };
+		B9520A631CB9719C00AF60F3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9520A621CB9719C00AF60F3 /* CoreData.framework */; };
+		B95C581D1CB96EF9007BD5A3 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95C581B1CB96EF9007BD5A3 /* Interface.storyboard */; };
+		B95C581F1CB96EF9007BD5A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B95C581E1CB96EF9007BD5A3 /* Assets.xcassets */; };
+		B95C58261CB96EF9007BD5A3 /* Smartvoxx Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B95C58251CB96EF9007BD5A3 /* Smartvoxx Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B95C582F1CB96EF9007BD5A3 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C582E1CB96EF9007BD5A3 /* ExtensionDelegate.swift */; };
+		B95C58311CB96EF9007BD5A3 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58301CB96EF9007BD5A3 /* NotificationController.swift */; };
+		B95C58331CB96EF9007BD5A3 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58321CB96EF9007BD5A3 /* GlanceController.swift */; };
+		B95C58371CB96EF9007BD5A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B95C58361CB96EF9007BD5A3 /* Assets.xcassets */; };
+		B95C583B1CB96EF9007BD5A3 /* Smartvoxx.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B95C58191CB96EF9007BD5A3 /* Smartvoxx.app */; };
+		B95C58521CB96FB3007BD5A3 /* ConferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58471CB96FB3007BD5A3 /* ConferencesController.swift */; };
+		B95C58531CB96FB3007BD5A3 /* ConferenceRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58481CB96FB3007BD5A3 /* ConferenceRowController.swift */; };
+		B95C58541CB96FB3007BD5A3 /* SchedulesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58491CB96FB3007BD5A3 /* SchedulesController.swift */; };
+		B95C58551CB96FB3007BD5A3 /* ScheduleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C584A1CB96FB3007BD5A3 /* ScheduleController.swift */; };
+		B95C58561CB96FB3007BD5A3 /* SlotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C584B1CB96FB3007BD5A3 /* SlotController.swift */; };
+		B95C58571CB96FB3007BD5A3 /* SpeakerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C584C1CB96FB3007BD5A3 /* SpeakerController.swift */; };
+		B95C58581CB96FB3007BD5A3 /* ScheduleRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C584D1CB96FB3007BD5A3 /* ScheduleRowController.swift */; };
+		B95C58591CB96FB3007BD5A3 /* TimeRangeRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C584E1CB96FB3007BD5A3 /* TimeRangeRowController.swift */; };
+		B95C585A1CB96FB3007BD5A3 /* SlotRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C584F1CB96FB3007BD5A3 /* SlotRowController.swift */; };
+		B95C585B1CB96FB3007BD5A3 /* SpeakerRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58501CB96FB3007BD5A3 /* SpeakerRowController.swift */; };
+		B95C585C1CB96FB3007BD5A3 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58511CB96FB3007BD5A3 /* UIColorExtension.swift */; };
+		B95C585E1CB96FCE007BD5A3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B95C585D1CB96FCE007BD5A3 /* Localizable.strings */; };
+		B95C58631CB96FE8007BD5A3 /* Smartvoxx.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = B95C58601CB96FE8007BD5A3 /* Smartvoxx.xcdatamodel */; };
+		B95C58641CB96FE8007BD5A3 /* DevoxxCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58611CB96FE8007BD5A3 /* DevoxxCache.swift */; };
+		B95C58651CB96FE8007BD5A3 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58621CB96FE8007BD5A3 /* DataController.swift */; };
+		B95C58751CB96FFF007BD5A3 /* Track+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58671CB96FFF007BD5A3 /* Track+CoreDataProperties.swift */; };
+		B95C58761CB96FFF007BD5A3 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58681CB96FFF007BD5A3 /* Track.swift */; };
+		B95C58771CB96FFF007BD5A3 /* TalkSlot+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58691CB96FFF007BD5A3 /* TalkSlot+CoreDataProperties.swift */; };
+		B95C58781CB96FFF007BD5A3 /* TalkSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C586A1CB96FFF007BD5A3 /* TalkSlot.swift */; };
+		B95C58791CB96FFF007BD5A3 /* Speaker+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C586B1CB96FFF007BD5A3 /* Speaker+CoreDataProperties.swift */; };
+		B95C587A1CB96FFF007BD5A3 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C586C1CB96FFF007BD5A3 /* Speaker.swift */; };
+		B95C587B1CB96FFF007BD5A3 /* Slot+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C586D1CB96FFF007BD5A3 /* Slot+CoreDataProperties.swift */; };
+		B95C587C1CB96FFF007BD5A3 /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C586E1CB96FFF007BD5A3 /* Slot.swift */; };
+		B95C587D1CB96FFF007BD5A3 /* Conference+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C586F1CB96FFF007BD5A3 /* Conference+CoreDataProperties.swift */; };
+		B95C587E1CB96FFF007BD5A3 /* Conference.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58701CB96FFF007BD5A3 /* Conference.swift */; };
+		B95C587F1CB96FFF007BD5A3 /* BreakSlot+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58711CB96FFF007BD5A3 /* BreakSlot+CoreDataProperties.swift */; };
+		B95C58801CB96FFF007BD5A3 /* BreakSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58721CB96FFF007BD5A3 /* BreakSlot.swift */; };
+		B95C58811CB96FFF007BD5A3 /* Schedule+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58731CB96FFF007BD5A3 /* Schedule+CoreDataProperties.swift */; };
+		B95C58821CB96FFF007BD5A3 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95C58741CB96FFF007BD5A3 /* Schedule.swift */; };
 		E10E7AC61C18BF7100F6220B /* My_Devoxx.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E10E7AC41C18BF7100F6220B /* My_Devoxx.xcdatamodeld */; };
 		E10E7ACD1C18BF7100F6220B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACC1C18BF7100F6220B /* Images.xcassets */; };
 		E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACE1C18BF7100F6220B /* LaunchScreen.xib */; };
+		E10E7ADC1C18BF7100F6220B /* devoxxAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */; };
+		E11463651CD6265400A6F739 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11463641CD6265400A6F739 /* Storyboard.storyboard */; };
 		E14E94B31C980971006B6D8E /* HelperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14E94B21C980971006B6D8E /* HelperManager.swift */; };
-		E168846B1CA99A8600793A64 /* SpeakerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E6101C9638A2002A262A /* SpeakerCell.swift */; };
+		E15D04131CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D040D1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png */; };
+		E15D04141CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D040E1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png */; };
+		E15D04151CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D040F1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@3x.png */; };
+		E15D04161CB1A016003301C8 /* LogoDevoxxHuntly@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D04101CB1A016003301C8 /* LogoDevoxxHuntly@1x.png */; };
+		E15D04171CB1A016003301C8 /* LogoDevoxxHuntly@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D04111CB1A016003301C8 /* LogoDevoxxHuntly@2x.png */; };
+		E15D04181CB1A016003301C8 /* LogoDevoxxHuntly@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D04121CB1A016003301C8 /* LogoDevoxxHuntly@3x.png */; };
+		E15D041A1CB1A080003301C8 /* HuntlyPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15D04191CB1A080003301C8 /* HuntlyPopup.swift */; };
+		E15D041C1CB1AD4B003301C8 /* tickets.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D041B1CB1AD4B003301C8 /* tickets.png */; };
+		E15D041E1CB1AD59003301C8 /* tickets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D041D1CB1AD59003301C8 /* tickets@2x.png */; };
+		E15D04201CB1AD5E003301C8 /* tickets@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D041F1CB1AD5E003301C8 /* tickets@3x.png */; };
+		E15D04261CB5B3FA003301C8 /* HuntlyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15D04251CB5B3FA003301C8 /* HuntlyNavigationController.swift */; };
+		E15D042F1CB732F3003301C8 /* DevoxxUK2016-conferences.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D04281CB732F3003301C8 /* DevoxxUK2016-conferences.json */; };
+		E15D04311CB732F3003301C8 /* DevoxxUK2016-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D042A1CB732F3003301C8 /* DevoxxUK2016-proposalTypes.json */; };
+		E15D04321CB732F3003301C8 /* DevoxxUK2016-speaker.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D042B1CB732F3003301C8 /* DevoxxUK2016-speaker.json */; };
+		E15D04331CB732F3003301C8 /* DevoxxUK2016-talks.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D042C1CB732F3003301C8 /* DevoxxUK2016-talks.json */; };
+		E15D04341CB732F3003301C8 /* DevoxxUK2016-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D042D1CB732F3003301C8 /* DevoxxUK2016-tracks.json */; };
 		E17050DF1CA560F700818E79 /* ic_beer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17050DD1CA560F700818E79 /* ic_beer@2x.png */; };
 		E17050E01CA560F700818E79 /* ic_wine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17050DE1CA560F700818E79 /* ic_wine@2x.png */; };
 		E175E6161C9638A2002A262A /* ActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5FC1C9638A2002A262A /* ActionButtonView.swift */; };
@@ -34,6 +91,7 @@
 		E175E6271C9638A2002A262A /* ScheduleControllerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E60D1C9638A2002A262A /* ScheduleControllerView.swift */; };
 		E175E6281C9638A2002A262A /* SelectionWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E60E1C9638A2002A262A /* SelectionWheel.swift */; };
 		E175E6291C9638A2002A262A /* SimpleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E60F1C9638A2002A262A /* SimpleDetailView.swift */; };
+		E175E62A1C9638A2002A262A /* SpeakerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E6101C9638A2002A262A /* SpeakerCell.swift */; };
 		E175E62B1C9638A2002A262A /* SpeakerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E6111C9638A2002A262A /* SpeakerListView.swift */; };
 		E175E62C1C9638A2002A262A /* StarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E6121C9638A2002A262A /* StarView.swift */; };
 		E175E62D1C9638A2002A262A /* TopInfoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E6131C9638A2002A262A /* TopInfoDetailView.swift */; };
@@ -145,23 +203,15 @@
 		E175E8631C963E7B002A262A /* DevoxxFRExhibitionPhone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E175E85D1C963E7B002A262A /* DevoxxFRExhibitionPhone.jpg */; };
 		E175E8641C963E7B002A262A /* DevoxxFRExhibitionTablet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E175E85E1C963E7B002A262A /* DevoxxFRExhibitionTablet.jpg */; };
 		E175E86E1C963E91002A262A /* DV15-conferences.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8651C963E91002A262A /* DV15-conferences.json */; };
-		E175E86F1C963E91002A262A /* DV15-friday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8661C963E91002A262A /* DV15-friday.json */; };
-		E175E8701C963E91002A262A /* DV15-monday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8671C963E91002A262A /* DV15-monday.json */; };
 		E175E8711C963E91002A262A /* DV15-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8681C963E91002A262A /* DV15-proposalTypes.json */; };
 		E175E8721C963E91002A262A /* DV15-speakers.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8691C963E91002A262A /* DV15-speakers.json */; };
-		E175E8731C963E91002A262A /* DV15-thursday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E86A1C963E91002A262A /* DV15-thursday.json */; };
 		E175E8741C963E91002A262A /* DV15-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E86B1C963E91002A262A /* DV15-tracks.json */; };
-		E175E8751C963E91002A262A /* DV15-tuesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E86C1C963E91002A262A /* DV15-tuesday.json */; };
-		E175E8761C963E91002A262A /* DV15-wednesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E86D1C963E91002A262A /* DV15-wednesday.json */; };
+		E175E8761C963E91002A262A /* DV15-talks.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E86D1C963E91002A262A /* DV15-talks.json */; };
 		E175E8801C963E9B002A262A /* DevoxxFR2016-conferences.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8771C963E9B002A262A /* DevoxxFR2016-conferences.json */; };
-		E175E8811C963E9B002A262A /* DevoxxFR2016-friday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8781C963E9B002A262A /* DevoxxFR2016-friday.json */; };
-		E175E8821C963E9B002A262A /* DevoxxFR2016-monday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8791C963E9B002A262A /* DevoxxFR2016-monday.json */; };
+		E175E8811C963E9B002A262A /* DevoxxFR2016-talks.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8781C963E9B002A262A /* DevoxxFR2016-talks.json */; };
 		E175E8831C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87A1C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json */; };
 		E175E8841C963E9B002A262A /* DevoxxFR2016-speaker.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87B1C963E9B002A262A /* DevoxxFR2016-speaker.json */; };
-		E175E8851C963E9B002A262A /* DevoxxFR2016-thursday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87C1C963E9B002A262A /* DevoxxFR2016-thursday.json */; };
 		E175E8861C963E9B002A262A /* DEVOXXFR2016-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87D1C963E9B002A262A /* DEVOXXFR2016-tracks.json */; };
-		E175E8871C963E9B002A262A /* DevoxxFR2016-tuesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87E1C963E9B002A262A /* DevoxxFR2016-tuesday.json */; };
-		E175E8881C963E9B002A262A /* DevoxxFR2016-wednesday.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87F1C963E9B002A262A /* DevoxxFR2016-wednesday.json */; };
 		E175E88B1C963EA6002A262A /* Cfp.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8891C963EA6002A262A /* Cfp.json */; };
 		E175E88C1C963EA6002A262A /* StoredResource.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E88A1C963EA6002A262A /* StoredResource.json */; };
 		E175E89B1C963EB4002A262A /* AttributeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E88D1C963EB4002A262A /* AttributeHelper.swift */; };
@@ -200,34 +250,145 @@
 		E175E8D21C9640B3002A262A /* ScheduleBreakCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E8D11C9640B3002A262A /* ScheduleBreakCell.swift */; };
 		E175E8D31C964172002A262A /* pirulen.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E175E7C31C963DEE002A262A /* pirulen.ttf */; };
 		E175E8D41C964172002A262A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E175E7C41C963DEE002A262A /* Roboto-Regular.ttf */; };
-		E17BEDE01CA9938100184287 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17BEDDF1CA9938100184287 /* MainTabBarController.swift */; };
-		E1C40CFF1CA95EFC008EABDF /* My_DevoxxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C40CFE1CA95EFC008EABDF /* My_DevoxxTests.swift */; };
-		E1C40D091CA990F5008EABDF /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C40D081CA990F5008EABDF /* Storyboard.storyboard */; };
+		E1863EE71CBAFFA300EA5DDA /* icon_wm.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EE61CBAFFA300EA5DDA /* icon_wm.png */; };
+		E1863EEC1CBB04FC00EA5DDA /* icon_bd.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EE81CBB04FC00EA5DDA /* icon_bd.png */; };
+		E1863EED1CBB04FC00EA5DDA /* icon_cld.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EE91CBB04FC00EA5DDA /* icon_cld.png */; };
+		E1863EEE1CBB04FC00EA5DDA /* icon_m.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EEA1CBB04FC00EA5DDA /* icon_m.png */; };
+		E1863EEF1CBB04FC00EA5DDA /* icon_webHtml5.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EEB1CBB04FC00EA5DDA /* icon_webHtml5.png */; };
+		E1863EF11CBB051600EA5DDA /* icon_jse.png in Resources */ = {isa = PBXBuildFile; fileRef = E1863EF01CBB051600EA5DDA /* icon_jse.png */; };
+		E1C9E1681CB16B1900796D02 /* Huntly.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1C9E1671CB16B1900796D02 /* Huntly.storyboard */; };
+		E1C9E16A1CB17B8300796D02 /* HuntlyManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C9E1691CB17B8300796D02 /* HuntlyManagerService.swift */; };
 		E1DF81141C985501002194C9 /* CallbackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81131C985501002194C9 /* CallbackProtocol.swift */; };
 		E1DF81181C99F4CE002194C9 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */; };
 		E1E9E4FD1C97807D00EC347D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E9E4FB1C97807D00EC347D /* Crashlytics.framework */; };
 		E1E9E4FE1C97807D00EC347D /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1E9E4FC1C97807D00EC347D /* Fabric.framework */; };
 		E1E9E51D1C979BA800EC347D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E51F1C979BA800EC347D /* InfoPlist.strings */; };
+		E1E9E5221C979BA800EC347D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E5241C979BA800EC347D /* InfoPlist.strings */; };
 		E1E9E5271C979BA800EC347D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E5291C979BA800EC347D /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E1C40D011CA95EFC008EABDF /* PBXContainerItemProxy */ = {
+		B95C58271CB96EF9007BD5A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E10E7AB51C18BF7100F6220B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B95C58241CB96EF9007BD5A3;
+			remoteInfo = "Smartvoxx Extension";
+		};
+		B95C58391CB96EF9007BD5A3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E10E7AB51C18BF7100F6220B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B95C58181CB96EF9007BD5A3;
+			remoteInfo = Smartvoxx;
+		};
+		E10E7AD61C18BF7100F6220B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E10E7AB51C18BF7100F6220B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E10E7ABC1C18BF7100F6220B;
-			remoteInfo = My_Devoxx;
+			remoteInfo = devoxxApp;
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B95C58411CB96EF9007BD5A3 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B95C58261CB96EF9007BD5A3 /* Smartvoxx Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B95C58431CB96EF9007BD5A3 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				B95C583B1CB96EF9007BD5A3 /* Smartvoxx.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0FB185179EB1A53D28BD306A /* Pods-My_Devoxx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Devoxx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My_Devoxx/Pods-My_Devoxx.debug.xcconfig"; sourceTree = "<group>"; };
+		47CEF9376C5B292EF5D1A9B0 /* Pods_My_Devoxx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Devoxx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6174ADBC7F4F4EA4AF5CA638 /* Pods-My_Devoxx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Devoxx.release.xcconfig"; path = "Pods/Target Support Files/Pods-My_Devoxx/Pods-My_Devoxx.release.xcconfig"; sourceTree = "<group>"; };
+		B904E26B1CB9B65700330EC0 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
+		B9520A621CB9719C00AF60F3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
+		B95C58191CB96EF9007BD5A3 /* Smartvoxx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smartvoxx.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B95C581C1CB96EF9007BD5A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		B95C581E1CB96EF9007BD5A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B95C58201CB96EF9007BD5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B95C58251CB96EF9007BD5A3 /* Smartvoxx Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Smartvoxx Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B95C582B1CB96EF9007BD5A3 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		B95C582E1CB96EF9007BD5A3 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		B95C58301CB96EF9007BD5A3 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		B95C58321CB96EF9007BD5A3 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		B95C58361CB96EF9007BD5A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B95C58381CB96EF9007BD5A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B95C58471CB96FB3007BD5A3 /* ConferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferencesController.swift; sourceTree = "<group>"; };
+		B95C58481CB96FB3007BD5A3 /* ConferenceRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferenceRowController.swift; sourceTree = "<group>"; };
+		B95C58491CB96FB3007BD5A3 /* SchedulesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulesController.swift; sourceTree = "<group>"; };
+		B95C584A1CB96FB3007BD5A3 /* ScheduleController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleController.swift; sourceTree = "<group>"; };
+		B95C584B1CB96FB3007BD5A3 /* SlotController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotController.swift; sourceTree = "<group>"; };
+		B95C584C1CB96FB3007BD5A3 /* SpeakerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerController.swift; sourceTree = "<group>"; };
+		B95C584D1CB96FB3007BD5A3 /* ScheduleRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleRowController.swift; sourceTree = "<group>"; };
+		B95C584E1CB96FB3007BD5A3 /* TimeRangeRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRangeRowController.swift; sourceTree = "<group>"; };
+		B95C584F1CB96FB3007BD5A3 /* SlotRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotRowController.swift; sourceTree = "<group>"; };
+		B95C58501CB96FB3007BD5A3 /* SpeakerRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeakerRowController.swift; sourceTree = "<group>"; };
+		B95C58511CB96FB3007BD5A3 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		B95C585D1CB96FCE007BD5A3 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		B95C58601CB96FE8007BD5A3 /* Smartvoxx.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Smartvoxx.xcdatamodel; sourceTree = "<group>"; };
+		B95C58611CB96FE8007BD5A3 /* DevoxxCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevoxxCache.swift; sourceTree = "<group>"; };
+		B95C58621CB96FE8007BD5A3 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		B95C58671CB96FFF007BD5A3 /* Track+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Track+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B95C58681CB96FFF007BD5A3 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		B95C58691CB96FFF007BD5A3 /* TalkSlot+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TalkSlot+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B95C586A1CB96FFF007BD5A3 /* TalkSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkSlot.swift; sourceTree = "<group>"; };
+		B95C586B1CB96FFF007BD5A3 /* Speaker+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Speaker+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B95C586C1CB96FFF007BD5A3 /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
+		B95C586D1CB96FFF007BD5A3 /* Slot+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Slot+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B95C586E1CB96FFF007BD5A3 /* Slot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slot.swift; sourceTree = "<group>"; };
+		B95C586F1CB96FFF007BD5A3 /* Conference+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Conference+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B95C58701CB96FFF007BD5A3 /* Conference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conference.swift; sourceTree = "<group>"; };
+		B95C58711CB96FFF007BD5A3 /* BreakSlot+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BreakSlot+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B95C58721CB96FFF007BD5A3 /* BreakSlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreakSlot.swift; sourceTree = "<group>"; };
+		B95C58731CB96FFF007BD5A3 /* Schedule+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Schedule+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B95C58741CB96FFF007BD5A3 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		E10E7ABD1C18BF7100F6220B /* My Devoxx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Devoxx.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10E7AC11C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10E7AC51C18BF7100F6220B /* My_Devoxx.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = My_Devoxx.xcdatamodel; sourceTree = "<group>"; };
 		E10E7ACC1C18BF7100F6220B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E10E7ACF1C18BF7100F6220B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		E10E7AD51C18BF7100F6220B /* My_DevoxxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My_DevoxxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E10E7ADA1C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = devoxxAppTests.swift; sourceTree = "<group>"; };
+		E11463641CD6265400A6F739 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		E14E94B21C980971006B6D8E /* HelperManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperManager.swift; sourceTree = "<group>"; };
+		E15D040D1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevoxxHuntlyIntegrationIcon.png; sourceTree = "<group>"; };
+		E15D040E1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DevoxxHuntlyIntegrationIcon@2x.png"; sourceTree = "<group>"; };
+		E15D040F1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DevoxxHuntlyIntegrationIcon@3x.png"; sourceTree = "<group>"; };
+		E15D04101CB1A016003301C8 /* LogoDevoxxHuntly@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoDevoxxHuntly@1x.png"; sourceTree = "<group>"; };
+		E15D04111CB1A016003301C8 /* LogoDevoxxHuntly@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoDevoxxHuntly@2x.png"; sourceTree = "<group>"; };
+		E15D04121CB1A016003301C8 /* LogoDevoxxHuntly@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoDevoxxHuntly@3x.png"; sourceTree = "<group>"; };
+		E15D04191CB1A080003301C8 /* HuntlyPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntlyPopup.swift; sourceTree = "<group>"; };
+		E15D041B1CB1AD4B003301C8 /* tickets.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tickets.png; sourceTree = "<group>"; };
+		E15D041D1CB1AD59003301C8 /* tickets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tickets@2x.png"; sourceTree = "<group>"; };
+		E15D041F1CB1AD5E003301C8 /* tickets@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tickets@3x.png"; sourceTree = "<group>"; };
+		E15D04251CB5B3FA003301C8 /* HuntlyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntlyNavigationController.swift; sourceTree = "<group>"; };
+		E15D04281CB732F3003301C8 /* DevoxxUK2016-conferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-conferences.json"; sourceTree = "<group>"; };
+		E15D042A1CB732F3003301C8 /* DevoxxUK2016-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-proposalTypes.json"; sourceTree = "<group>"; };
+		E15D042B1CB732F3003301C8 /* DevoxxUK2016-speaker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-speaker.json"; sourceTree = "<group>"; };
+		E15D042C1CB732F3003301C8 /* DevoxxUK2016-talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-talks.json"; sourceTree = "<group>"; };
+		E15D042D1CB732F3003301C8 /* DevoxxUK2016-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-tracks.json"; sourceTree = "<group>"; };
+		E15D04361CB788BB003301C8 /* My Devoxx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "My Devoxx.entitlements"; sourceTree = "<group>"; };
 		E17050DD1CA560F700818E79 /* ic_beer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_beer@2x.png"; sourceTree = "<group>"; };
 		E17050DE1CA560F700818E79 /* ic_wine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_wine@2x.png"; sourceTree = "<group>"; };
 		E175E5FC1C9638A2002A262A /* ActionButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionButtonView.swift; path = View/ActionButtonView.swift; sourceTree = "<group>"; };
@@ -364,23 +525,15 @@
 		E175E85D1C963E7B002A262A /* DevoxxFRExhibitionPhone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxFRExhibitionPhone.jpg; sourceTree = "<group>"; };
 		E175E85E1C963E7B002A262A /* DevoxxFRExhibitionTablet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxFRExhibitionTablet.jpg; sourceTree = "<group>"; };
 		E175E8651C963E91002A262A /* DV15-conferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-conferences.json"; sourceTree = "<group>"; };
-		E175E8661C963E91002A262A /* DV15-friday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-friday.json"; sourceTree = "<group>"; };
-		E175E8671C963E91002A262A /* DV15-monday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-monday.json"; sourceTree = "<group>"; };
 		E175E8681C963E91002A262A /* DV15-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-proposalTypes.json"; sourceTree = "<group>"; };
 		E175E8691C963E91002A262A /* DV15-speakers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-speakers.json"; sourceTree = "<group>"; };
-		E175E86A1C963E91002A262A /* DV15-thursday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-thursday.json"; sourceTree = "<group>"; };
 		E175E86B1C963E91002A262A /* DV15-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-tracks.json"; sourceTree = "<group>"; };
-		E175E86C1C963E91002A262A /* DV15-tuesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-tuesday.json"; sourceTree = "<group>"; };
-		E175E86D1C963E91002A262A /* DV15-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-wednesday.json"; sourceTree = "<group>"; };
+		E175E86D1C963E91002A262A /* DV15-talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-talks.json"; sourceTree = "<group>"; };
 		E175E8771C963E9B002A262A /* DevoxxFR2016-conferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-conferences.json"; sourceTree = "<group>"; };
-		E175E8781C963E9B002A262A /* DevoxxFR2016-friday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-friday.json"; sourceTree = "<group>"; };
-		E175E8791C963E9B002A262A /* DevoxxFR2016-monday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-monday.json"; sourceTree = "<group>"; };
+		E175E8781C963E9B002A262A /* DevoxxFR2016-talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-talks.json"; sourceTree = "<group>"; };
 		E175E87A1C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DEVOXXFR2016-proposalTypes.json"; sourceTree = "<group>"; };
 		E175E87B1C963E9B002A262A /* DevoxxFR2016-speaker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-speaker.json"; sourceTree = "<group>"; };
-		E175E87C1C963E9B002A262A /* DevoxxFR2016-thursday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-thursday.json"; sourceTree = "<group>"; };
 		E175E87D1C963E9B002A262A /* DEVOXXFR2016-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DEVOXXFR2016-tracks.json"; sourceTree = "<group>"; };
-		E175E87E1C963E9B002A262A /* DevoxxFR2016-tuesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-tuesday.json"; sourceTree = "<group>"; };
-		E175E87F1C963E9B002A262A /* DevoxxFR2016-wednesday.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-wednesday.json"; sourceTree = "<group>"; };
 		E175E8891C963EA6002A262A /* Cfp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cfp.json; sourceTree = "<group>"; };
 		E175E88A1C963EA6002A262A /* StoredResource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoredResource.json; sourceTree = "<group>"; };
 		E175E88D1C963EB4002A262A /* AttributeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeHelper.swift; sourceTree = "<group>"; };
@@ -417,31 +570,46 @@
 		E175E8CD1C96401A002A262A /* AllDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllDetailsView.swift; path = View/AllDetailsView.swift; sourceTree = "<group>"; };
 		E175E8CF1C964082002A262A /* SchedulerTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SchedulerTableView.swift; path = devoxxApp/SchedulerTableView.swift; sourceTree = "<group>"; };
 		E175E8D11C9640B3002A262A /* ScheduleBreakCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScheduleBreakCell.swift; path = View/ScheduleBreakCell.swift; sourceTree = "<group>"; };
-		E17BEDDF1CA9938100184287 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		E1C40CFC1CA95EFC008EABDF /* My_DevoxxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My_DevoxxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E1C40CFE1CA95EFC008EABDF /* My_DevoxxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My_DevoxxTests.swift; sourceTree = "<group>"; };
-		E1C40D001CA95EFC008EABDF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E1C40D081CA990F5008EABDF /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		E1863EE61CBAFFA300EA5DDA /* icon_wm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_wm.png; sourceTree = "<group>"; };
+		E1863EE81CBB04FC00EA5DDA /* icon_bd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_bd.png; sourceTree = "<group>"; };
+		E1863EE91CBB04FC00EA5DDA /* icon_cld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_cld.png; sourceTree = "<group>"; };
+		E1863EEA1CBB04FC00EA5DDA /* icon_m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_m.png; sourceTree = "<group>"; };
+		E1863EEB1CBB04FC00EA5DDA /* icon_webHtml5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_webHtml5.png; sourceTree = "<group>"; };
+		E1863EF01CBB051600EA5DDA /* icon_jse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_jse.png; sourceTree = "<group>"; };
+		E1C9E1671CB16B1900796D02 /* Huntly.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Huntly.storyboard; sourceTree = "<group>"; };
+		E1C9E1691CB17B8300796D02 /* HuntlyManagerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntlyManagerService.swift; sourceTree = "<group>"; };
 		E1DF81131C985501002194C9 /* CallbackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallbackProtocol.swift; sourceTree = "<group>"; };
 		E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		E1E9E4FB1C97807D00EC347D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		E1E9E4FC1C97807D00EC347D /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		E1E9E51A1C9792A500EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		E1E9E51E1C979BA800EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E1E9E5231C979BA800EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E1E9E5281C979BA800EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F3ECDBE21D69151AF0720F57 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B95C58221CB96EF9007BD5A3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9520A631CB9719C00AF60F3 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E10E7ABA1C18BF7100F6220B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B904E26C1CB9B65700330EC0 /* WatchConnectivity.framework in Frameworks */,
 				E1E9E4FD1C97807D00EC347D /* Crashlytics.framework in Frameworks */,
 				E1E9E4FE1C97807D00EC347D /* Fabric.framework in Frameworks */,
+				8985D88EA997D39C857767DA /* Pods_My_Devoxx.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1C40CF91CA95EFC008EABDF /* Frameworks */ = {
+		E10E7AD21C18BF7100F6220B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -568,11 +736,108 @@
 			path = devoxxApp;
 			sourceTree = "<group>";
 		};
+		62ACD2D20B977D6D51F3C490 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B904E26B1CB9B65700330EC0 /* WatchConnectivity.framework */,
+				B9520A621CB9719C00AF60F3 /* CoreData.framework */,
+				F3ECDBE21D69151AF0720F57 /* Pods.framework */,
+				47CEF9376C5B292EF5D1A9B0 /* Pods_My_Devoxx.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B95C581A1CB96EF9007BD5A3 /* Smartvoxx */ = {
+			isa = PBXGroup;
+			children = (
+				B95C581B1CB96EF9007BD5A3 /* Interface.storyboard */,
+				B95C581E1CB96EF9007BD5A3 /* Assets.xcassets */,
+				B95C58201CB96EF9007BD5A3 /* Info.plist */,
+			);
+			path = Smartvoxx;
+			sourceTree = "<group>";
+		};
+		B95C58291CB96EF9007BD5A3 /* Smartvoxx Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B95C585F1CB96FD5007BD5A3 /* Data */,
+				B95C585D1CB96FCE007BD5A3 /* Localizable.strings */,
+				B95C582E1CB96EF9007BD5A3 /* ExtensionDelegate.swift */,
+				B95C58471CB96FB3007BD5A3 /* ConferencesController.swift */,
+				B95C58481CB96FB3007BD5A3 /* ConferenceRowController.swift */,
+				B95C58491CB96FB3007BD5A3 /* SchedulesController.swift */,
+				B95C584A1CB96FB3007BD5A3 /* ScheduleController.swift */,
+				B95C584B1CB96FB3007BD5A3 /* SlotController.swift */,
+				B95C584C1CB96FB3007BD5A3 /* SpeakerController.swift */,
+				B95C584D1CB96FB3007BD5A3 /* ScheduleRowController.swift */,
+				B95C584E1CB96FB3007BD5A3 /* TimeRangeRowController.swift */,
+				B95C584F1CB96FB3007BD5A3 /* SlotRowController.swift */,
+				B95C58501CB96FB3007BD5A3 /* SpeakerRowController.swift */,
+				B95C58511CB96FB3007BD5A3 /* UIColorExtension.swift */,
+				B95C58301CB96EF9007BD5A3 /* NotificationController.swift */,
+				B95C58321CB96EF9007BD5A3 /* GlanceController.swift */,
+				B95C58361CB96EF9007BD5A3 /* Assets.xcassets */,
+				B95C58381CB96EF9007BD5A3 /* Info.plist */,
+				B95C582A1CB96EF9007BD5A3 /* Supporting Files */,
+			);
+			path = "Smartvoxx Extension";
+			sourceTree = "<group>";
+		};
+		B95C582A1CB96EF9007BD5A3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B95C582B1CB96EF9007BD5A3 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B95C585F1CB96FD5007BD5A3 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B95C58661CB96FEF007BD5A3 /* ManagedObjects */,
+				B95C58601CB96FE8007BD5A3 /* Smartvoxx.xcdatamodel */,
+				B95C58611CB96FE8007BD5A3 /* DevoxxCache.swift */,
+				B95C58621CB96FE8007BD5A3 /* DataController.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		B95C58661CB96FEF007BD5A3 /* ManagedObjects */ = {
+			isa = PBXGroup;
+			children = (
+				B95C58671CB96FFF007BD5A3 /* Track+CoreDataProperties.swift */,
+				B95C58681CB96FFF007BD5A3 /* Track.swift */,
+				B95C58691CB96FFF007BD5A3 /* TalkSlot+CoreDataProperties.swift */,
+				B95C586A1CB96FFF007BD5A3 /* TalkSlot.swift */,
+				B95C586B1CB96FFF007BD5A3 /* Speaker+CoreDataProperties.swift */,
+				B95C586C1CB96FFF007BD5A3 /* Speaker.swift */,
+				B95C586D1CB96FFF007BD5A3 /* Slot+CoreDataProperties.swift */,
+				B95C586E1CB96FFF007BD5A3 /* Slot.swift */,
+				B95C586F1CB96FFF007BD5A3 /* Conference+CoreDataProperties.swift */,
+				B95C58701CB96FFF007BD5A3 /* Conference.swift */,
+				B95C58711CB96FFF007BD5A3 /* BreakSlot+CoreDataProperties.swift */,
+				B95C58721CB96FFF007BD5A3 /* BreakSlot.swift */,
+				B95C58731CB96FFF007BD5A3 /* Schedule+CoreDataProperties.swift */,
+				B95C58741CB96FFF007BD5A3 /* Schedule.swift */,
+			);
+			name = ManagedObjects;
+			sourceTree = "<group>";
+		};
+		C14F5424D9A9A4C738A22A11 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0FB185179EB1A53D28BD306A /* Pods-My_Devoxx.debug.xcconfig */,
+				6174ADBC7F4F4EA4AF5CA638 /* Pods-My_Devoxx.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
-				E1C40D081CA990F5008EABDF /* Storyboard.storyboard */,
-				E17BEDDF1CA9938100184287 /* MainTabBarController.swift */,
+				E11463641CD6265400A6F739 /* Storyboard.storyboard */,
+				E15D04361CB788BB003301C8 /* My Devoxx.entitlements */,
+				E15D040C1CB1A000003301C8 /* Huntly */,
 				E1DF81171C99F4CE002194C9 /* CoreDataHelper.swift */,
 				E175E70F1C963BDB002A262A /* AppDelegate.swift */,
 				E175E5F61C962295002A262A /* View */,
@@ -586,8 +851,12 @@
 				E175F2741C49B18E00D7AC0A /* Mock */,
 				E1FA9C401C1BFD2D0077C09A /* Model */,
 				E10E7ABF1C18BF7100F6220B /* devoxxApp */,
-				E1C40CFD1CA95EFC008EABDF /* My_DevoxxTests */,
+				E10E7AD81C18BF7100F6220B /* devoxxAppTests */,
+				B95C581A1CB96EF9007BD5A3 /* Smartvoxx */,
+				B95C58291CB96EF9007BD5A3 /* Smartvoxx Extension */,
 				E10E7ABE1C18BF7100F6220B /* Products */,
+				C14F5424D9A9A4C738A22A11 /* Pods */,
+				62ACD2D20B977D6D51F3C490 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -595,7 +864,9 @@
 			isa = PBXGroup;
 			children = (
 				E10E7ABD1C18BF7100F6220B /* My Devoxx.app */,
-				E1C40CFC1CA95EFC008EABDF /* My_DevoxxTests.xctest */,
+				E10E7AD51C18BF7100F6220B /* My_DevoxxTests.xctest */,
+				B95C58191CB96EF9007BD5A3 /* Smartvoxx.app */,
+				B95C58251CB96EF9007BD5A3 /* Smartvoxx Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -619,6 +890,56 @@
 				E10E7AC11C18BF7100F6220B /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E10E7AD81C18BF7100F6220B /* devoxxAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */,
+				E10E7AD91C18BF7100F6220B /* Supporting Files */,
+			);
+			path = devoxxAppTests;
+			sourceTree = "<group>";
+		};
+		E10E7AD91C18BF7100F6220B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E1E9E5241C979BA800EC347D /* InfoPlist.strings */,
+				E10E7ADA1C18BF7100F6220B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E15D040C1CB1A000003301C8 /* Huntly */ = {
+			isa = PBXGroup;
+			children = (
+				E15D040D1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png */,
+				E15D040E1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png */,
+				E15D040F1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@3x.png */,
+				E15D04101CB1A016003301C8 /* LogoDevoxxHuntly@1x.png */,
+				E15D04111CB1A016003301C8 /* LogoDevoxxHuntly@2x.png */,
+				E15D04121CB1A016003301C8 /* LogoDevoxxHuntly@3x.png */,
+				E15D041B1CB1AD4B003301C8 /* tickets.png */,
+				E15D041D1CB1AD59003301C8 /* tickets@2x.png */,
+				E15D041F1CB1AD5E003301C8 /* tickets@3x.png */,
+				E1C9E1691CB17B8300796D02 /* HuntlyManagerService.swift */,
+				E1C9E1671CB16B1900796D02 /* Huntly.storyboard */,
+				E15D04191CB1A080003301C8 /* HuntlyPopup.swift */,
+				E15D04251CB5B3FA003301C8 /* HuntlyNavigationController.swift */,
+			);
+			name = Huntly;
+			sourceTree = "<group>";
+		};
+		E15D04271CB730FD003301C8 /* DevoxxUK2016 */ = {
+			isa = PBXGroup;
+			children = (
+				E15D04281CB732F3003301C8 /* DevoxxUK2016-conferences.json */,
+				E15D042A1CB732F3003301C8 /* DevoxxUK2016-proposalTypes.json */,
+				E15D042B1CB732F3003301C8 /* DevoxxUK2016-speaker.json */,
+				E15D042C1CB732F3003301C8 /* DevoxxUK2016-talks.json */,
+				E15D042D1CB732F3003301C8 /* DevoxxUK2016-tracks.json */,
+			);
+			name = DevoxxUK2016;
 			sourceTree = "<group>";
 		};
 		E175E5D71C93BF37002A262A /* Service */ = {
@@ -731,14 +1052,10 @@
 			isa = PBXGroup;
 			children = (
 				E175E8651C963E91002A262A /* DV15-conferences.json */,
-				E175E8661C963E91002A262A /* DV15-friday.json */,
-				E175E8671C963E91002A262A /* DV15-monday.json */,
 				E175E8681C963E91002A262A /* DV15-proposalTypes.json */,
 				E175E8691C963E91002A262A /* DV15-speakers.json */,
-				E175E86A1C963E91002A262A /* DV15-thursday.json */,
 				E175E86B1C963E91002A262A /* DV15-tracks.json */,
-				E175E86C1C963E91002A262A /* DV15-tuesday.json */,
-				E175E86D1C963E91002A262A /* DV15-wednesday.json */,
+				E175E86D1C963E91002A262A /* DV15-talks.json */,
 			);
 			name = DV15;
 			sourceTree = "<group>";
@@ -747,14 +1064,10 @@
 			isa = PBXGroup;
 			children = (
 				E175E8771C963E9B002A262A /* DevoxxFR2016-conferences.json */,
-				E175E8781C963E9B002A262A /* DevoxxFR2016-friday.json */,
-				E175E8791C963E9B002A262A /* DevoxxFR2016-monday.json */,
+				E175E8781C963E9B002A262A /* DevoxxFR2016-talks.json */,
 				E175E87A1C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json */,
 				E175E87B1C963E9B002A262A /* DevoxxFR2016-speaker.json */,
-				E175E87C1C963E9B002A262A /* DevoxxFR2016-thursday.json */,
 				E175E87D1C963E9B002A262A /* DEVOXXFR2016-tracks.json */,
-				E175E87E1C963E9B002A262A /* DevoxxFR2016-tuesday.json */,
-				E175E87F1C963E9B002A262A /* DevoxxFR2016-wednesday.json */,
 			);
 			name = DEVOXXFR2016;
 			sourceTree = "<group>";
@@ -790,6 +1103,7 @@
 		E175F2741C49B18E00D7AC0A /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				E15D04271CB730FD003301C8 /* DevoxxUK2016 */,
 				E175E8891C963EA6002A262A /* Cfp.json */,
 				E175E88A1C963EA6002A262A /* StoredResource.json */,
 				E175E5FA1C962597002A262A /* DEVOXXFR2016 */,
@@ -797,15 +1111,6 @@
 			);
 			name = Mock;
 			path = devoxxApp;
-			sourceTree = "<group>";
-		};
-		E1C40CFD1CA95EFC008EABDF /* My_DevoxxTests */ = {
-			isa = PBXGroup;
-			children = (
-				E1C40CFE1CA95EFC008EABDF /* My_DevoxxTests.swift */,
-				E1C40D001CA95EFC008EABDF /* Info.plist */,
-			);
-			path = My_DevoxxTests;
 			sourceTree = "<group>";
 		};
 		E1FA9BE91C1BE59A0077C09A /* ThirdParty */ = {
@@ -834,6 +1139,12 @@
 		E1FA9C0D1C1BFBFE0077C09A /* Track */ = {
 			isa = PBXGroup;
 			children = (
+				E1863EE81CBB04FC00EA5DDA /* icon_bd.png */,
+				E1863EF01CBB051600EA5DDA /* icon_jse.png */,
+				E1863EE91CBB04FC00EA5DDA /* icon_cld.png */,
+				E1863EEA1CBB04FC00EA5DDA /* icon_m.png */,
+				E1863EEB1CBB04FC00EA5DDA /* icon_webHtml5.png */,
+				E1863EE61CBAFFA300EA5DDA /* icon_wm.png */,
 				E175E8151C963E4F002A262A /* icon_agTest.png */,
 				E175E8161C963E4F002A262A /* icon_archisec.png */,
 				E175E8171C963E4F002A262A /* icon_bigd.png */,
@@ -914,40 +1225,80 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E10E7ABC1C18BF7100F6220B /* My_Devoxx */ = {
+		B95C58181CB96EF9007BD5A3 /* Smartvoxx */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E10E7ADF1C18BF7100F6220B /* Build configuration list for PBXNativeTarget "My_Devoxx" */;
+			buildConfigurationList = B95C58421CB96EF9007BD5A3 /* Build configuration list for PBXNativeTarget "Smartvoxx" */;
 			buildPhases = (
-				E10E7AB91C18BF7100F6220B /* Sources */,
-				E10E7ABA1C18BF7100F6220B /* Frameworks */,
-				E10E7ABB1C18BF7100F6220B /* Resources */,
-				E1E9E4F61C977C3D00EC347D /* ShellScript */,
+				B95C58171CB96EF9007BD5A3 /* Resources */,
+				B95C58411CB96EF9007BD5A3 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B95C58281CB96EF9007BD5A3 /* PBXTargetDependency */,
+			);
+			name = Smartvoxx;
+			productName = Smartvoxx;
+			productReference = B95C58191CB96EF9007BD5A3 /* Smartvoxx.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		B95C58241CB96EF9007BD5A3 /* Smartvoxx Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B95C58401CB96EF9007BD5A3 /* Build configuration list for PBXNativeTarget "Smartvoxx Extension" */;
+			buildPhases = (
+				B95C58211CB96EF9007BD5A3 /* Sources */,
+				B95C58221CB96EF9007BD5A3 /* Frameworks */,
+				B95C58231CB96EF9007BD5A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Smartvoxx Extension";
+			productName = "Smartvoxx Extension";
+			productReference = B95C58251CB96EF9007BD5A3 /* Smartvoxx Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		E10E7ABC1C18BF7100F6220B /* My_Devoxx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E10E7ADF1C18BF7100F6220B /* Build configuration list for PBXNativeTarget "My_Devoxx" */;
+			buildPhases = (
+				66A2C4919FD08DBF1851017E /* Check Pods Manifest.lock */,
+				E10E7AB91C18BF7100F6220B /* Sources */,
+				E10E7ABA1C18BF7100F6220B /* Frameworks */,
+				E10E7ABB1C18BF7100F6220B /* Resources */,
+				E1E9E4F61C977C3D00EC347D /* ShellScript */,
+				111378D7DE6CB3595BD72DFC /* Embed Pods Frameworks */,
+				6C0E30A7E4114E2121ABBEAD /* Copy Pods Resources */,
+				B95C58431CB96EF9007BD5A3 /* Embed Watch Content */,
+				E103FB1E1CBAC924001036FC /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B95C583A1CB96EF9007BD5A3 /* PBXTargetDependency */,
 			);
 			name = My_Devoxx;
 			productName = devoxxApp;
 			productReference = E10E7ABD1C18BF7100F6220B /* My Devoxx.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E1C40CFB1CA95EFC008EABDF /* My_DevoxxTests */ = {
+		E10E7AD41C18BF7100F6220B /* My_DevoxxTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E1C40D031CA95EFC008EABDF /* Build configuration list for PBXNativeTarget "My_DevoxxTests" */;
+			buildConfigurationList = E10E7AE21C18BF7100F6220B /* Build configuration list for PBXNativeTarget "My_DevoxxTests" */;
 			buildPhases = (
-				E1C40CF81CA95EFC008EABDF /* Sources */,
-				E1C40CF91CA95EFC008EABDF /* Frameworks */,
-				E1C40CFA1CA95EFC008EABDF /* Resources */,
+				E10E7AD11C18BF7100F6220B /* Sources */,
+				E10E7AD21C18BF7100F6220B /* Frameworks */,
+				E10E7AD31C18BF7100F6220B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E1C40D021CA95EFC008EABDF /* PBXTargetDependency */,
+				E10E7AD71C18BF7100F6220B /* PBXTargetDependency */,
 			);
 			name = My_DevoxxTests;
-			productName = My_DevoxxTests;
-			productReference = E1C40CFC1CA95EFC008EABDF /* My_DevoxxTests.xctest */;
+			productName = devoxxAppTests;
+			productReference = E10E7AD51C18BF7100F6220B /* My_DevoxxTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -961,12 +1312,25 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = maximedavid;
 				TargetAttributes = {
+					B95C58181CB96EF9007BD5A3 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 7F9RT8TS76;
+					};
+					B95C58241CB96EF9007BD5A3 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 7F9RT8TS76;
+					};
 					E10E7ABC1C18BF7100F6220B = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 7F9RT8TS76;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
-					E1C40CFB1CA95EFC008EABDF = {
-						CreatedOnToolsVersion = 7.3;
+					E10E7AD41C18BF7100F6220B = {
+						CreatedOnToolsVersion = 6.4;
 						TestTargetID = E10E7ABC1C18BF7100F6220B;
 					};
 				};
@@ -978,6 +1342,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = E10E7AB41C18BF7100F6220B;
 			productRefGroup = E10E7ABE1C18BF7100F6220B /* Products */;
@@ -985,12 +1350,32 @@
 			projectRoot = "";
 			targets = (
 				E10E7ABC1C18BF7100F6220B /* My_Devoxx */,
-				E1C40CFB1CA95EFC008EABDF /* My_DevoxxTests */,
+				E10E7AD41C18BF7100F6220B /* My_DevoxxTests */,
+				B95C58181CB96EF9007BD5A3 /* Smartvoxx */,
+				B95C58241CB96EF9007BD5A3 /* Smartvoxx Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B95C58171CB96EF9007BD5A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B95C581F1CB96EF9007BD5A3 /* Assets.xcassets in Resources */,
+				B95C581D1CB96EF9007BD5A3 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B95C58231CB96EF9007BD5A3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B95C58371CB96EF9007BD5A3 /* Assets.xcassets in Resources */,
+				B95C585E1CB96FCE007BD5A3 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E10E7ABB1C18BF7100F6220B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -998,19 +1383,21 @@
 				E175E8D31C964172002A262A /* pirulen.ttf in Resources */,
 				E175E8D41C964172002A262A /* Roboto-Regular.ttf in Resources */,
 				E175E8231C963E4F002A262A /* icon_archisec.png in Resources */,
+				E15D04201CB1AD5E003301C8 /* tickets@3x.png in Resources */,
 				E175E8001C963E32002A262A /* checkboxOn.png in Resources */,
 				E175E7FF1C963E32002A262A /* checkboxOff.png in Resources */,
 				E175E8341C963E5C002A262A /* tabIconMap@2x.png in Resources */,
+				E15D042F1CB732F3003301C8 /* DevoxxUK2016-conferences.json in Resources */,
 				E175E8371C963E5C002A262A /* tabIconSpeaker@2x.png in Resources */,
 				E175E84F1C963E67002A262A /* ic_microphone@2x.png in Resources */,
 				E175E7FA1C963E29002A262A /* DevoxxPolandHomePage.jpg in Resources */,
 				E175E8831C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json in Resources */,
 				E175E8141C963E3E002A262A /* icon_uni.png in Resources */,
+				E1863EEC1CBB04FC00EA5DDA /* icon_bd.png in Resources */,
 				E175E8221C963E4F002A262A /* icon_agTest.png in Resources */,
-				E175E8871C963E9B002A262A /* DevoxxFR2016-tuesday.json in Resources */,
+				E1863EED1CBB04FC00EA5DDA /* icon_cld.png in Resources */,
 				E175E8531C963E67002A262A /* ic_time@2x.png in Resources */,
 				E175E8241C963E4F002A262A /* icon_bigd.png in Resources */,
-				E175E8751C963E91002A262A /* DV15-tuesday.json in Resources */,
 				E175E85F1C963E7B002A262A /* devoxxCinameFloorPhone.jpg in Resources */,
 				E175E8521C963E67002A262A /* ic_star@2x.png in Resources */,
 				E175E8621C963E7B002A262A /* devoxxExhibitionFloorTablet.jpg in Resources */,
@@ -1019,7 +1406,7 @@
 				E175E84C1C963E67002A262A /* ic_back@2x.png in Resources */,
 				E175E84B1C963E67002A262A /* event.png in Resources */,
 				E175E82D1C963E4F002A262A /* icon_startup.png in Resources */,
-				E175E86F1C963E91002A262A /* DV15-friday.json in Resources */,
+				E1C9E1681CB16B1900796D02 /* Huntly.storyboard in Resources */,
 				E1E9E5271C979BA800EC347D /* Localizable.strings in Resources */,
 				E175E7FC1C963E29002A262A /* talk_background.png in Resources */,
 				E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */,
@@ -1028,63 +1415,74 @@
 				E1E9E51D1C979BA800EC347D /* InfoPlist.strings in Resources */,
 				E175E8361C963E5C002A262A /* tabIconSettings@2x.png in Resources */,
 				E175E8551C963E67002A262A /* location@2x.png in Resources */,
-				E175E8851C963E9B002A262A /* DevoxxFR2016-thursday.json in Resources */,
 				E175E7EF1C963E1F002A262A /* splash_btn_DevoxxUK2016@2x.png in Resources */,
 				E175E8491C963E67002A262A /* cofeeCup.png in Resources */,
 				E175E8601C963E7B002A262A /* devoxxCinameFloorTablet.jpg in Resources */,
 				E175E7F71C963E29002A262A /* DevoxxBelgiumHomePage.jpg in Resources */,
+				E1863EEF1CBB04FC00EA5DDA /* icon_webHtml5.png in Resources */,
+				E1863EE71CBAFFA300EA5DDA /* icon_wm.png in Resources */,
 				E175E8271C963E4F002A262A /* icon_future.png in Resources */,
 				E175E8251C963E4F002A262A /* icon_cldops.png in Resources */,
-				E175E8821C963E9B002A262A /* DevoxxFR2016-monday.json in Resources */,
 				E175E8711C963E91002A262A /* DV15-proposalTypes.json in Resources */,
 				E10E7ACD1C18BF7100F6220B /* Images.xcassets in Resources */,
 				E175E7F81C963E29002A262A /* DevoxxFranceHomePage.jpg in Resources */,
 				E175E80E1C963E3E002A262A /* icon_key.png in Resources */,
 				E175E8561C963E67002A262A /* micro@2x.png in Resources */,
-				E175E8761C963E91002A262A /* DV15-wednesday.json in Resources */,
+				E175E8761C963E91002A262A /* DV15-talks.json in Resources */,
+				E1863EEE1CBB04FC00EA5DDA /* icon_m.png in Resources */,
 				E175E80B1C963E3E002A262A /* icon_bof.png in Resources */,
+				E15D04141CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png in Resources */,
+				E15D04321CB732F3003301C8 /* DevoxxUK2016-speaker.json in Resources */,
 				E175E7EB1C963E1F002A262A /* globe.png in Resources */,
 				E175E82B1C963E4F002A262A /* icon_mobile.png in Resources */,
 				E175E80F1C963E3E002A262A /* icon_lab.png in Resources */,
 				E17050E01CA560F700818E79 /* ic_wine@2x.png in Resources */,
 				E17050DF1CA560F700818E79 /* ic_beer@2x.png in Resources */,
 				E175E8801C963E9B002A262A /* DevoxxFR2016-conferences.json in Resources */,
-				E175E8701C963E91002A262A /* DV15-monday.json in Resources */,
 				E175E7EC1C963E1F002A262A /* splash_btn_DevoxxFR2016@2x.png in Resources */,
+				E15D04161CB1A016003301C8 /* LogoDevoxxHuntly@1x.png in Resources */,
+				E15D04171CB1A016003301C8 /* LogoDevoxxHuntly@2x.png in Resources */,
 				E175E84E1C963E67002A262A /* ic_filter_inactive@2x.png in Resources */,
 				E175E8611C963E7B002A262A /* devoxxExhibitionFloorPhone.jpg in Resources */,
-				E175E8731C963E91002A262A /* DV15-thursday.json in Resources */,
 				E175E7EE1C963E1F002A262A /* splash_btn_DevoxxPL2015@2x.png in Resources */,
 				E175E8581C963E67002A262A /* up@2x.png in Resources */,
 				E175E8261C963E4F002A262A /* icon_cloud.png in Resources */,
 				E175E8101C963E3E002A262A /* icon_other.png in Resources */,
 				E175E8841C963E9B002A262A /* DevoxxFR2016-speaker.json in Resources */,
+				E15D04131CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png in Resources */,
 				E175E7E41C963E17002A262A /* logo.png in Resources */,
 				E175E80C1C963E3E002A262A /* icon_conf.png in Resources */,
 				E175E88C1C963EA6002A262A /* StoredResource.json in Resources */,
+				E1863EF11CBB051600EA5DDA /* icon_jse.png in Resources */,
 				E175E8571C963E67002A262A /* star@2x.png in Resources */,
 				E175E8131C963E3E002A262A /* icon_tia.png in Resources */,
 				E175E8111C963E3E002A262A /* icon_quick.png in Resources */,
 				E175E8501C963E67002A262A /* ic_place@2x.png in Resources */,
+				E15D04341CB732F3003301C8 /* DevoxxUK2016-tracks.json in Resources */,
+				E15D04311CB732F3003301C8 /* DevoxxUK2016-proposalTypes.json in Resources */,
 				E175E8291C963E4F002A262A /* icon_lang.png in Resources */,
 				E175E82A1C963E4F002A262A /* icon_methodevops.png in Resources */,
 				E175E84A1C963E67002A262A /* down@2x.png in Resources */,
 				E175E7FB1C963E29002A262A /* DevoxxUKHomePage.jpg in Resources */,
 				E175E8511C963E67002A262A /* ic_rate.png in Resources */,
+				E15D041C1CB1AD4B003301C8 /* tickets.png in Resources */,
 				E175E8641C963E7B002A262A /* DevoxxFRExhibitionTablet.jpg in Resources */,
+				E15D04181CB1A016003301C8 /* LogoDevoxxHuntly@3x.png in Resources */,
 				E175E82E1C963E4F002A262A /* icon_web.png in Resources */,
-				E175E8811C963E9B002A262A /* DevoxxFR2016-friday.json in Resources */,
-				E1C40D091CA990F5008EABDF /* Storyboard.storyboard in Resources */,
+				E175E8811C963E9B002A262A /* DevoxxFR2016-talks.json in Resources */,
 				E175E8121C963E3E002A262A /* icon_start.png in Resources */,
+				E15D04151CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@3x.png in Resources */,
 				E175E8741C963E91002A262A /* DV15-tracks.json in Resources */,
 				E175E82C1C963E4F002A262A /* icon_ssj.png in Resources */,
 				E175E86E1C963E91002A262A /* DV15-conferences.json in Resources */,
+				E15D04331CB732F3003301C8 /* DevoxxUK2016-talks.json in Resources */,
 				E175E7F91C963E29002A262A /* DevoxxMoroccoHomePage.jpg in Resources */,
 				E175E8541C963E67002A262A /* ic_twitter@2x.png in Resources */,
 				E175E8381C963E5C002A262A /* tabIconTracks@2x.png in Resources */,
+				E15D041E1CB1AD59003301C8 /* tickets@2x.png in Resources */,
 				E175E8351C963E5C002A262A /* tabIconSchedule@2x.png in Resources */,
+				E11463651CD6265400A6F739 /* Storyboard.storyboard in Resources */,
 				E175E7F01C963E1F002A262A /* splash_btn_DV15@2x.png in Resources */,
-				E175E8881C963E9B002A262A /* DevoxxFR2016-wednesday.json in Resources */,
 				E175E8281C963E4F002A262A /* icon_java.png in Resources */,
 				E175E84D1C963E67002A262A /* ic_filter_active@2x.png in Resources */,
 				E175E88B1C963EA6002A262A /* Cfp.json in Resources */,
@@ -1093,16 +1491,75 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1C40CFA1CA95EFC008EABDF /* Resources */ = {
+		E10E7AD31C18BF7100F6220B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1E9E5221C979BA800EC347D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		111378D7DE6CB3595BD72DFC /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-My_Devoxx/Pods-My_Devoxx-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66A2C4919FD08DBF1851017E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6C0E30A7E4114E2121ABBEAD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-My_Devoxx/Pods-My_Devoxx-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E103FB1E1CBAC924001036FC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#taken and adapted from https://www.mapbox.com/help/ios-private-access-token/\ntoken_file=huntlyToken.secret\ntoken=\"$(cat $token_file)\"\nif [ \"$token\" ]; then\nplutil -replace HuntlyAccessToken -string $token \"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\nelse\necho 'error: Missing Huntly token (should be in huntlyToken.secret)'\nexit 1\nfi\n";
+		};
 		E1E9E4F61C977C3D00EC347D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1119,6 +1576,44 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B95C58211CB96EF9007BD5A3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B95C58571CB96FB3007BD5A3 /* SpeakerController.swift in Sources */,
+				B95C58771CB96FFF007BD5A3 /* TalkSlot+CoreDataProperties.swift in Sources */,
+				B95C58631CB96FE8007BD5A3 /* Smartvoxx.xcdatamodel in Sources */,
+				B95C58781CB96FFF007BD5A3 /* TalkSlot.swift in Sources */,
+				B95C58541CB96FB3007BD5A3 /* SchedulesController.swift in Sources */,
+				B95C58311CB96EF9007BD5A3 /* NotificationController.swift in Sources */,
+				B95C58551CB96FB3007BD5A3 /* ScheduleController.swift in Sources */,
+				B95C587B1CB96FFF007BD5A3 /* Slot+CoreDataProperties.swift in Sources */,
+				B95C587A1CB96FFF007BD5A3 /* Speaker.swift in Sources */,
+				B95C58531CB96FB3007BD5A3 /* ConferenceRowController.swift in Sources */,
+				B95C585B1CB96FB3007BD5A3 /* SpeakerRowController.swift in Sources */,
+				B95C58521CB96FB3007BD5A3 /* ConferencesController.swift in Sources */,
+				B95C58811CB96FFF007BD5A3 /* Schedule+CoreDataProperties.swift in Sources */,
+				B95C58791CB96FFF007BD5A3 /* Speaker+CoreDataProperties.swift in Sources */,
+				B95C587E1CB96FFF007BD5A3 /* Conference.swift in Sources */,
+				B95C58561CB96FB3007BD5A3 /* SlotController.swift in Sources */,
+				B95C58581CB96FB3007BD5A3 /* ScheduleRowController.swift in Sources */,
+				B95C58651CB96FE8007BD5A3 /* DataController.swift in Sources */,
+				B95C58641CB96FE8007BD5A3 /* DevoxxCache.swift in Sources */,
+				B95C582F1CB96EF9007BD5A3 /* ExtensionDelegate.swift in Sources */,
+				B95C58751CB96FFF007BD5A3 /* Track+CoreDataProperties.swift in Sources */,
+				B95C587C1CB96FFF007BD5A3 /* Slot.swift in Sources */,
+				B95C58591CB96FB3007BD5A3 /* TimeRangeRowController.swift in Sources */,
+				B95C585C1CB96FB3007BD5A3 /* UIColorExtension.swift in Sources */,
+				B95C58821CB96FFF007BD5A3 /* Schedule.swift in Sources */,
+				B95C585A1CB96FB3007BD5A3 /* SlotRowController.swift in Sources */,
+				B95C58801CB96FFF007BD5A3 /* BreakSlot.swift in Sources */,
+				B95C587D1CB96FFF007BD5A3 /* Conference+CoreDataProperties.swift in Sources */,
+				B95C58331CB96EF9007BD5A3 /* GlanceController.swift in Sources */,
+				B95C58761CB96FFF007BD5A3 /* Track.swift in Sources */,
+				B95C587F1CB96FFF007BD5A3 /* BreakSlot+CoreDataProperties.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E10E7AB91C18BF7100F6220B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1138,7 +1633,6 @@
 				E175E7DE1C963DFC002A262A /* TalkService.swift in Sources */,
 				E175E8C61C963F55002A262A /* MapTabController.swift in Sources */,
 				E1DF81181C99F4CE002194C9 /* CoreDataHelper.swift in Sources */,
-				E168846B1CA99A8600793A64 /* SpeakerCell.swift in Sources */,
 				E175E89D1C963EB4002A262A /* DataHelperProtocol.swift in Sources */,
 				E175E61C1C9638A2002A262A /* FilterViewCell.swift in Sources */,
 				E175E8C51C963F55002A262A /* MapController.swift in Sources */,
@@ -1172,16 +1666,19 @@
 				E175E89E1C963EB4002A262A /* DayHelper.swift in Sources */,
 				E175E6621C963A16002A262A /* APIManager.swift in Sources */,
 				E175E89C1C963EB4002A262A /* CfpHelper.swift in Sources */,
+				E15D04261CB5B3FA003301C8 /* HuntlyNavigationController.swift in Sources */,
 				E175E8A31C963EB4002A262A /* SpeakerDetailHelper.swift in Sources */,
 				E175E7D51C963DFC002A262A /* CfpService.swift in Sources */,
 				E175E6501C963950002A262A /* SchedulerTableViewController.swift in Sources */,
 				E175E7BF1C963DDD002A262A /* ScrollableTableProtocol.swift in Sources */,
+				E15D041A1CB1A080003301C8 /* HuntlyPopup.swift in Sources */,
 				E175E8BD1C963EBF002A262A /* Speaker.swift in Sources */,
 				E175E6461C96391C002A262A /* SettingsController.swift in Sources */,
 				E175E64F1C963950002A262A /* ScheduleController.swift in Sources */,
 				E175E6161C9638A2002A262A /* ActionButtonView.swift in Sources */,
 				E175E8CB1C963F9C002A262A /* SpeakerDetailsController.swift in Sources */,
 				E175E8C81C963F5C002A262A /* AbstractDetailsController.swift in Sources */,
+				E175E62A1C9638A2002A262A /* SpeakerCell.swift in Sources */,
 				E175E61B1C9638A2002A262A /* FilterTableView.swift in Sources */,
 				E175E64E1C963950002A262A /* FilterTableViewController.swift in Sources */,
 				E175E6271C9638A2002A262A /* ScheduleControllerView.swift in Sources */,
@@ -1200,6 +1697,7 @@
 				E175E8B71C963EBF002A262A /* Day.swift in Sources */,
 				E175E62C1C9638A2002A262A /* StarView.swift in Sources */,
 				E175E8D21C9640B3002A262A /* ScheduleBreakCell.swift in Sources */,
+				E1C9E16A1CB17B8300796D02 /* HuntlyManagerService.swift in Sources */,
 				E175E8B81C963EBF002A262A /* Etag.swift in Sources */,
 				E175E8A21C963EB4002A262A /* SlotHelper.swift in Sources */,
 				E14E94B31C980971006B6D8E /* HelperManager.swift in Sources */,
@@ -1221,7 +1719,6 @@
 				E175E7961C963DBB002A262A /* Swifty.swift in Sources */,
 				E175E6291C9638A2002A262A /* SimpleDetailView.swift in Sources */,
 				E175E7DC1C963DFC002A262A /* SpeakerService.swift in Sources */,
-				E17BEDE01CA9938100184287 /* MainTabBarController.swift in Sources */,
 				E175E6471C96391C002A262A /* SpeakerTableController.swift in Sources */,
 				E175E6441C96391C002A262A /* QRCodeScannerController.swift in Sources */,
 				E175E7BD1C963DDD002A262A /* FilterableTableProtocol.swift in Sources */,
@@ -1230,25 +1727,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1C40CF81CA95EFC008EABDF /* Sources */ = {
+		E10E7AD11C18BF7100F6220B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1C40CFF1CA95EFC008EABDF /* My_DevoxxTests.swift in Sources */,
+				E10E7ADC1C18BF7100F6220B /* devoxxAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E1C40D021CA95EFC008EABDF /* PBXTargetDependency */ = {
+		B95C58281CB96EF9007BD5A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B95C58241CB96EF9007BD5A3 /* Smartvoxx Extension */;
+			targetProxy = B95C58271CB96EF9007BD5A3 /* PBXContainerItemProxy */;
+		};
+		B95C583A1CB96EF9007BD5A3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B95C58181CB96EF9007BD5A3 /* Smartvoxx */;
+			targetProxy = B95C58391CB96EF9007BD5A3 /* PBXContainerItemProxy */;
+		};
+		E10E7AD71C18BF7100F6220B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E10E7ABC1C18BF7100F6220B /* My_Devoxx */;
-			targetProxy = E1C40D011CA95EFC008EABDF /* PBXContainerItemProxy */;
+			targetProxy = E10E7AD61C18BF7100F6220B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B95C581B1CB96EF9007BD5A3 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B95C581C1CB96EF9007BD5A3 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		E10E7ACE1C18BF7100F6220B /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1266,6 +1781,14 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
+		E1E9E5241C979BA800EC347D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1E9E5231C979BA800EC347D /* fr */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		E1E9E5291C979BA800EC347D /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1277,6 +1800,88 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B95C583C1CB96EF9007BD5A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = Smartvoxx_Extension;
+				INFOPLIST_FILE = Smartvoxx/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		B95C583D1CB96EF9007BD5A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = Smartvoxx_Extension;
+				INFOPLIST_FILE = Smartvoxx/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
+		B95C583E1CB96EF9007BD5A3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = "";
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = "Smartvoxx Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		B95C583F1CB96EF9007BD5A3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = "";
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "Smartvoxx Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
 		E10E7ADD1C18BF7100F6220B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1314,9 +1919,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "3e0c3b1d-4a3e-4f62-bbdc-f984c5bbf521";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1340,7 +1946,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Java Community BVBA (7F9RT8TS76)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1353,8 +1959,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "3e0c3b1d-4a3e-4f62-bbdc-f984c5bbf521";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1363,10 +1970,12 @@
 		};
 		E10E7AE01C18BF7100F6220B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FB185179EB1A53D28BD306A /* Pods-My_Devoxx.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "My Devoxx.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1379,16 +1988,18 @@
 				PRODUCT_NAME = "My Devoxx";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		E10E7AE11C18BF7100F6220B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6174ADBC7F4F4EA4AF5CA638 /* Pods-My_Devoxx.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "My Devoxx.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1400,42 +2011,67 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift;
 				PRODUCT_NAME = "My Devoxx";
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
-		E1C40D041CA95EFC008EABDF /* Debug */ = {
+		E10E7AE31C18BF7100F6220B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = My_DevoxxTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = devoxxAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.devoxx.mydevoxx.swift.My-DevoxxTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My Devoxx.app/My Devoxx";
+				PRODUCT_BUNDLE_IDENTIFIER = "maximedavid.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = My_DevoxxTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My_Devoxx.app/My_Devoxx";
 			};
 			name = Debug;
 		};
-		E1C40D051CA95EFC008EABDF /* Release */ = {
+		E10E7AE41C18BF7100F6220B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				INFOPLIST_FILE = My_DevoxxTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = devoxxAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.devoxx.mydevoxx.swift.My-DevoxxTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My Devoxx.app/My Devoxx";
+				PRODUCT_BUNDLE_IDENTIFIER = "maximedavid.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = My_DevoxxTests;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/My_Devoxx.app/My_Devoxx";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B95C58401CB96EF9007BD5A3 /* Build configuration list for PBXNativeTarget "Smartvoxx Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B95C583E1CB96EF9007BD5A3 /* Debug */,
+				B95C583F1CB96EF9007BD5A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B95C58421CB96EF9007BD5A3 /* Build configuration list for PBXNativeTarget "Smartvoxx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B95C583C1CB96EF9007BD5A3 /* Debug */,
+				B95C583D1CB96EF9007BD5A3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E10E7AB81C18BF7100F6220B /* Build configuration list for PBXProject "My_Devoxx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1454,11 +2090,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E1C40D031CA95EFC008EABDF /* Build configuration list for PBXNativeTarget "My_DevoxxTests" */ = {
+		E10E7AE21C18BF7100F6220B /* Build configuration list for PBXNativeTarget "My_DevoxxTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E1C40D041CA95EFC008EABDF /* Debug */,
-				E1C40D051CA95EFC008EABDF /* Release */,
+				E10E7AE31C18BF7100F6220B /* Debug */,
+				E10E7AE41C18BF7100F6220B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

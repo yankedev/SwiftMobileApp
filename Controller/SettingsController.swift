@@ -22,7 +22,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         struct QuickAccess {
             static let title = NSLocalizedString("Quick access", comment: "")
             static let purchaseTicket = NSLocalizedString("Purchase a ticket", comment: "")
-            static let reportIssue = NSLocalizedString("Report an issue", comment: "")
+            static let reportIssue = NSLocalizedString("Report an issue. v", comment: "")
         }
         struct Settings {
             static let title = NSLocalizedString("Settings", comment: "")
@@ -32,7 +32,8 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         
         struct Credits {
             static let title = NSLocalizedString("Credits", comment: "")
-            static let iosCredits = NSLocalizedString("App by Maxime David @xouuox", comment: "")
+            static let iosCredits = NSLocalizedString("App by Maxime David\n@xouuox", comment: "")
+            static let watchCredits = NSLocalizedString("Apple Watch App by Sébastien Arbogast\n@sarbogast", comment: "")
             static let fullCredits = NSLocalizedString("View full credits", comment: "")
         }
     }
@@ -44,6 +45,10 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
     }
     
     override public func viewDidLoad() {
+        super.viewDidLoad()
+        if let nav = self.navigationController as? HuntlyNavigationController {
+            self.navigationItem.leftBarButtonItem = nav.huntlyLeftButton
+        }
         self.view.backgroundColor = UIColor.lightGrayColor()
         self.tableView = UITableView(frame: self.tableView.frame, style: .Grouped)
         self.navigationItem.title = NSLocalizedString("Settings", comment: "")
@@ -75,7 +80,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             return 2
         }
         if(section == KindOfSection.CREDITS.hashValue)  {
-            return 2
+            return 3
         }
         return 0
     }
@@ -97,6 +102,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
                 let defaults = NSUserDefaults.standardUserDefaults()
                 defaults.setObject("", forKey: "currentEvent")
                 CfpService.sharedInstance.cfp = nil
+                HuntlyManagerService.sharedInstance.reset()
                 //CfpService.sharedInstance.clearAll()
                 self.parentViewController!.parentViewController?.view!.removeFromSuperview()
                 self.parentViewController?.parentViewController?.removeFromParentViewController()
@@ -111,7 +117,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         
         if indexPath.section == KindOfSection.CREDITS.hashValue {
             
-            if indexPath.row == 1 {
+            if indexPath.row == 2 {
                 let url = CfpService.sharedInstance.getCreditUrl()
                 UIApplication.sharedApplication().openURL(NSURL(string: url)!)
             }
@@ -137,7 +143,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             }
             
             if(indexPath.row == 1) {
-                cell!.textLabel!.text = SectionNameString.QuickAccess.reportIssue
+                cell!.textLabel!.text = "\(SectionNameString.QuickAccess.reportIssue)\(getVersion())"
             }
             
         }
@@ -157,9 +163,15 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             
             if(indexPath.row == 0) {
                 cell!.textLabel!.text = SectionNameString.Credits.iosCredits
+                cell!.textLabel!.numberOfLines = 2
             }
             
             if(indexPath.row == 1) {
+                cell!.textLabel!.text = SectionNameString.Credits.watchCredits
+                cell!.textLabel!.numberOfLines = 2
+            }
+            
+            if(indexPath.row == 2) {
                 cell!.textLabel!.text = SectionNameString.Credits.fullCredits
             }
         }
@@ -170,7 +182,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
 
     func reportIssue() {
         let email = "got2bex@gmail.com"
-        let subject = "My%20Devoxx%20-%20Issue"
+        let subject = "My%20Devoxx%20-%20Issue%20-%20\(getVersion())"
         let url = NSURL(string: "mailto:\(email)?subject=\(subject)")
         if url != nil {
             UIApplication.sharedApplication().openURL(url!)
@@ -178,8 +190,26 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         
     }
     
+    func getVersion() -> String {
+        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String
+        let buildNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as? String
+        return "\(version ?? "").\(buildNumber ?? "")"
+    }
     
     
+    public override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        if (indexPath.section == KindOfSection.CREDITS.hashValue) {
+            
+            if(indexPath.row == 0 || indexPath.row == 1) {
+                return 60
+            }
+        }
+        
+        return 44
+        
+
+    }
     
     
     

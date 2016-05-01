@@ -112,11 +112,11 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         mapController.tabBarItem = UITabBarItem(title: TabNameString.map, image: mapTabImage, tag:3)
         settingsController.tabBarItem = UITabBarItem(title: TabNameString.settings, image: settingsTabImage, tag:4)
         
-        let speakerNavigationController = UINavigationController(rootViewController: speakerController)
+        let speakerNavigationController = HuntlyNavigationController(rootViewController: speakerController)
         
-        let settingsNavigationController = UINavigationController(rootViewController: settingsController)
+        let settingsNavigationController = HuntlyNavigationController(rootViewController: settingsController)
         
-        let mapNavigationController = UINavigationController(rootViewController: mapController)
+        let mapNavigationController = HuntlyNavigationController(rootViewController: mapController)
         
         self.customTabController.viewControllers = [scheduleController, trackController, speakerNavigationController, mapNavigationController, settingsNavigationController]
         self.customTabController.tabBar.translucent = false
@@ -127,15 +127,44 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         self.customTabController.selectedIndex = 0
         
-        self.navigationController?.pushViewController(self.customTabController, animated: true)
+        //self.navigationController?.pushViewController(self.customTabController, animated: true)
         
         
         
         self.addChildViewController(self.customTabController)
         self.view.addSubview(self.customTabController.view)
         
+        feedEventId()
+        
+    }
+    func fail() {
     }
     
+    func feedEventId() {
+        HuntlyManagerService.sharedInstance.feedEventId(prepareHuntly, callbackFailure: fail)
+    }
+    
+    func prepareHuntly() {
+        HuntlyManagerService.sharedInstance.storeToken("firstAppRun", handlerSuccess : hunltyManager, handlerFailure: fail)
+    }
+    
+    func hunltyManager() {
+
+        if let viewController = UIStoryboard(name: "Huntly", bundle: nil).instantiateViewControllerWithIdentifier("HuntlyPopup") as? HuntlyPopup {
+ 
+            self.customTabController.presentViewController(viewController, animated: true, completion: {
+            
+                viewController.titleBonus.text = "Welcome bonus"
+                viewController.pointLbl.text = "Points"
+                viewController.pointValueLbl.text = "+\(HuntlyManagerService.sharedInstance.FIRST_APP_RUN_QUEST_POINTS)"
+                
+            })
+
+            
+        }
+        
+    }
+       
     func prepareNext() {
         if let currentData = slicesData[currentSelectedIndex] as? EventProtocol {
             
@@ -251,7 +280,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         
-        goView.goButton.addTarget(self, action: Selector("prepareNext"), forControlEvents: .TouchUpInside)
+        goView.goButton.addTarget(self, action: #selector(self.prepareNext), forControlEvents: .TouchUpInside)
         
         
         APIManager.firstFeed(loadWheel, service: CfpService.sharedInstance)
@@ -290,7 +319,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                         break
                     }
                     else {
-                        idx++
+                        idx += 1
                     }
                 }
             }
@@ -424,21 +453,14 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         APIDataManager.loadDataFromURL(SpeakerService.sharedInstance.getSpeakerUrl(), service: SpeakerService.sharedInstance, helper : SpeakerHelper(), loadFromFile : true, onSuccess: self.setupEvent, onError: self.failure)
     }
     
-    
-    var group = dispatch_group_create()
+
     
     func setupEvent(msg : CallbackProtocol) {
        // print("========setupEvent")
         
         
         if CfpService.sharedInstance.getNbDays() > 0 {
-            for _ in 1...(CfpService.sharedInstance.getNbDays()) {
-                dispatch_group_enter(group)
-            }
-            APIDataManager.loadDataFromURLS(CfpService.sharedInstance.getDays(), dataHelper: SlotHelper(), loadFromFile : true, onSuccess: self.successDay, onError: self.failure)
-            dispatch_group_notify(group, dispatch_get_main_queue(), {
-                self.fetchTracks()
-            })
+            APIDataManager.loadDataFromURL(CfpService.sharedInstance.getFileTalkUrl(), service: SlotService.sharedInstance, helper: SlotHelper(), loadFromFile : true, onSuccess: self.fetchTracks, onError: self.failure)
         }
         else {
             run_on_main_thread({
@@ -450,11 +472,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
     }
     
-    func successDay(msg : CallbackProtocol) {
-        dispatch_group_leave(group)
-    }
-    
-    func fetchTracks() {
+    func fetchTracks(msg : CallbackProtocol) {
         //print("========fetchTracks")
         APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: TrackService.sharedInstance, helper : TrackHelper(), loadFromFile: true, onSuccess: self.fetchTalkType, onError: failure)
     }
