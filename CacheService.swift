@@ -15,11 +15,12 @@ import CoreData
 class CacheService {
     
     
-    class func initSpeakers<T : NSManagedObject>(cfpId : NSManagedObjectID) -> Promise<[T]> {
+    class func initItems(cfpId : NSManagedObjectID, service : AbstractService) -> Promise<[NSManagedObject]> {
         return Promise{ fulfill, reject in
-            CacheService.getSpeakerEntryPoints().then { (speakers : [SpeakerHelper]) -> Void in
-                CacheService.feedSpeaker(cfpId, speakers : speakers).then { (speakers : [T]) -> Void in
-                    fulfill(speakers)
+            CacheService.fetchFromEntryPoint(cfpId, service : service).then { (itemsHelper : [NSManagedObject]) -> Void in
+                
+                CacheService.feed(cfpId, service : service, items : itemsHelper).then { (itemsHelper : [NSManagedObject]) -> Void in
+                    fulfill(itemsHelper)
                 }
                 }
                 .error { error in
@@ -34,8 +35,8 @@ class CacheService {
                     }
                     let data = NSData(contentsOfFile: fallbackFilePath)
                     do {
-                        let speakersHelper:[SpeakerHelper] = try UnboxOrThrow(data!)
-                        CacheService.feedSpeaker(cfpId, speakers : speakersHelper).then { (speakers : [T]) -> Void in
+                        let speakersHelper:[Speaker] = try UnboxOrThrow(data!)
+                        CacheService.feed(cfpId, service : service, items : speakersHelper).then { (speakers : [NSManagedObject]) -> Void in
                             fulfill(speakers)
                         }
                         
@@ -79,14 +80,14 @@ class CacheService {
     
     }
     
-    class func feedSpeaker<T : NSManagedObject>(cfpId : NSManagedObjectID, speakers : [SpeakerHelper]) -> Promise<[T]> {
+    class func feed(cfpId : NSManagedObjectID, service : AbstractService, items : [NSManagedObject]) -> Promise<[NSManagedObject]> {
         
         return Promise{ fulfill, reject in
             
             firstly {
-                SpeakerService.sharedInstance.updateWithHelper(cfpId, helper : speakers)
+                service.update(cfpId, items : items)
                 }
-                .then { (speakers: [T]) -> Void in
+                .then { (speakers: [NSManagedObject]) -> Void in
                     fulfill(speakers)
                 }
                 .error { error in
@@ -129,25 +130,23 @@ class CacheService {
     }
     
     
-    class func getSpeakerEntryPoints() -> Promise<[SpeakerHelper]> {
+    class func fetchFromEntryPoint(cfpId : NSManagedObjectID, service : AbstractService) -> Promise<[NSManagedObject]> {
         
         return Promise{ fulfill, reject in
             
+            let entryPoint = service.entryPoint()
             
+            print("FETCHING \(entryPoint)")
             
-            let myDevoxxSpeakerUrl = "http://cfp.devoxx.fr/api/conferences/DevoxxFR2016/speakers"
-            
-            
-            Alamofire.request(.GET, myDevoxxSpeakerUrl).response { (_, _, data, error) in
-                if error == nil {
+            Alamofire.request(.GET, entryPoint).response { (_, _, data, error) in
+                if error == nil && data != nil {
                     
-                    do {
-                        let speakers : [SpeakerHelper] = try UnboxOrThrow(data!)
-                        fulfill(speakers)
-                    } catch {
-                        reject(NSError(domain: "err", code: 0, userInfo: nil))
-                        return
+                    let unboxedData = service.unboxData(data!)
+                        
+                    CacheService.feed(cfpId, service : service, items : unboxedData).then { (itemsHelper : [NSManagedObject]) -> Void in
+                        fulfill(unboxedData)
                     }
+                    
                 } else {
                     reject(error!)
                 }
@@ -157,14 +156,4 @@ class CacheService {
 
 
 }
-/*
-
-fetchCfp.json from cache
-found ?
-    yes -> return the content of the cache
-    check if time is OK ->
-       yes -> doNothing
-       no -> checkForUpdate
-    no -> load from file
-*/
 

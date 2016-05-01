@@ -8,7 +8,8 @@
 
 import Foundation
 import CoreData
-
+import PromiseKit
+import Unbox
 
 public enum AttributeStoreError: Equatable, ErrorType {
     case CannotFetch(String)
@@ -113,52 +114,35 @@ class AttributeService : AbstractService {
     }
     
     
-    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
+    override func update(cfpId : NSManagedObjectID, items : [NSManagedObject]) -> Promise<[NSManagedObject]> {
         
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        
-        privateManagedObjectContext.performBlock {
+        return Promise{ fulfill, reject in
             
-            for singleHelper in helper {
+            privateManagedObjectContext.performBlock {
+                
+                let cfp = self.privateManagedObjectContext.objectWithID(cfpId) as! Cfp
+                
+                for attribute in items {
+                    guard let attributeCast = attribute as? Attribute else {
+                        reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))
+                        return
+                    }
+                    attributeCast.setValue(cfp, forKey: "cfp")
+                }
                 do {
-                    
-                    let fetchRequest = NSFetchRequest(entityName: "Attribute")
-                    let predicate = NSPredicate(format: "id = %@", singleHelper.getMainId())
-                    fetchRequest.predicate = predicate
-                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
-                    
-                    if items.count == 0 {
-                        
-                        
-                        let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
-                        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
-                        
-                        if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-                            coreDataObjectCast.feedHelper(singleHelper)
-                            
-                            coreDataObject.setValue(cfp, forKey: "cfp")
-                            
-                        }
- 
-                    }
-                    else {
-              
-                    }
-                    
-                    
+                    try self.privateManagedObjectContext.save()
+                    fulfill(items)
                 }
                 catch {
-           
+                    reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))
                 }
-
+                
             }
-            
-            self.realSave(completionHandler)
-            
         }
         
     }
 
+    
     
     func getTracksUrl() -> String {
         let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
@@ -169,7 +153,52 @@ class AttributeService : AbstractService {
         let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
         return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/proposalTypes"
     }
+    
+    
+    
+    
+    override func entryPoint() -> String {
+        return "http://cfp.devoxx.fr/api/conferences/DevoxxFR2016/tracks"
+    }
+    
+    
+    
+    
+    override func fetch(cfpId : NSManagedObjectID) -> Promise<[NSManagedObject]> {
+        return Promise{ fulfill, reject in
+            privateManagedObjectContext.performBlock {
+                do {
+                    
+                    let cfp = self.privateManagedObjectContext.objectWithID(cfpId) as! Cfp
+                    
+                    let predicateEvent = NSPredicate(format: "cfp.id = %@", cfp.id!)
+                    let fetchRequest = NSFetchRequest(entityName: "Attribute")
+                    fetchRequest.includesSubentities = true
+                    fetchRequest.returnsObjectsAsFaults = false
+                    fetchRequest.predicate = predicateEvent
+                    let sortLast = NSSortDescriptor(key: "label", ascending: true)
+                    fetchRequest.sortDescriptors = [sortLast]
+                    
+                    let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+                    fulfill(results)
+                } catch {
+                    reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))
+                }
+            }
+        }
+    }
 
+    override func unboxData(data : NSData) -> [NSManagedObject] {
+        do {
+            let json = JSON(data: data)
+            let arrayToParse = try json["tracks"].rawData()
+            let arr : [Attribute] = try UnboxOrThrow(arrayToParse)
+            return arr
+        }
+        catch {
+            return [Attribute]()
+        }
+    }
 
 }
 

@@ -9,8 +9,9 @@
 import Foundation
 import CoreData
 import UIKit
+import PromiseKit
 
-class AbstractService  {
+public class AbstractService  {
     
    
     var privateManagedObjectContext: NSManagedObjectContext
@@ -114,6 +115,10 @@ class AbstractService  {
         return SpeakerHelper()
     }
     
+    func unboxData(data : NSData) -> [NSManagedObject] {
+        return [NSManagedObject]()
+    }
+    
     func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
         
     }
@@ -136,7 +141,22 @@ class AbstractService  {
     }
     
     
-        
+    func fetch(cfpId : NSManagedObjectID) -> Promise<[NSManagedObject]> {
+        return Promise{ fulfill, reject in
+            reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))
+        }
+    }
+    
+    func entryPoint() -> String {
+        return ""
+    }
+    
+    func update(cfpId : NSManagedObjectID, items : [NSManagedObject]) -> Promise<[NSManagedObject]> {
+        return Promise{ fulfill, reject in
+            reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))
+        }
+    }
+
    
 
 }

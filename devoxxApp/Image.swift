@@ -30,5 +30,10 @@ class Image: NSManagedObject, FeedableProtocol {
     func resetId(id: NSManagedObject?) {
     }
     
+    //TODO
+    func service() -> AbstractService {
+        return FloorService.sharedInstance
+    }
+    
     
 }

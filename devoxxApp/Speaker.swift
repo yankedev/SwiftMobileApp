@@ -9,8 +9,9 @@
 import Foundation
 import CoreData
 import UIKit
+import Unbox
 
-public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, ImageFeedable, HelperableProtocol {
+public class Speaker: NSManagedObject, Unboxable, CellDataPrococol, FeedableProtocol, FavoriteProtocol, ImageFeedable, HelperableProtocol {
     
     @NSManaged var uuid: String?
     @NSManaged var firstName: String?
@@ -22,6 +23,22 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
     @NSManaged var speakerDetail: SpeakerDetail
     @NSManaged var talks: NSSet
     @NSManaged var imgData: NSData
+    
+    convenience init() {
+        let context = SpeakerService.sharedInstance.privateManagedObjectContext
+        let entityDescription = NSEntityDescription.entityForName("Speaker", inManagedObjectContext: context)!
+        self.init(entity: entityDescription, insertIntoManagedObjectContext: context)
+    }
+    
+    convenience public required init(unboxer: Unboxer) {
+        self.init()
+        self.uuid = unboxer.unbox("uuid")
+        self.lastName = unboxer.unbox("lastName")
+        self.firstName = unboxer.unbox("firstName")
+        self.avatarUrl = unboxer.unbox("avatarUrl")
+        self.href = unboxer.unbox("href")
+    }
+
     
     public func getObjectID() -> NSManagedObjectID {
         return objectID
@@ -122,7 +139,9 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
         return SpeakerHelper(uuid: uuid, lastName: lastName, firstName: firstName, avatarUrl: avatarUrl, objectID : objectID, href: href, bio : speakerDetail.bio , company: speakerDetail.company, twitter : speakerDetail.twitter, isFavorite: isFavorited, talksId: talksId, imgData: imgData)
     }
     
-    
+    public func service() -> AbstractService {
+        return SpeakerService.sharedInstance
+    }
     
     
     

@@ -48,11 +48,6 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     @NSManaged var days: NSOrderedSet
     @NSManaged var attributes: NSSet
     
-    convenience init(context: NSManagedObjectContext) {
-        let entityDescription = NSEntityDescription.entityForName("Cfp", inManagedObjectContext: context)!
-        self.init(entity: entityDescription, insertIntoManagedObjectContext: context)
-    }
-    
     func getId() -> NSManagedObject? {
         return nil
     }
@@ -166,6 +161,10 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     
     func getVotingImage() -> String {
         return "ic_\(votingImageName!)"
+    }
+    
+    func service() -> AbstractService {
+        return CfpService.sharedInstance
     }
     
 }

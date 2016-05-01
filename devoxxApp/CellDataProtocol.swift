@@ -23,7 +23,7 @@ import UIKit
     func isSpecial() -> Bool
     func getObjectID() -> NSManagedObjectID
     
-    init()
+ 
     
 }
 

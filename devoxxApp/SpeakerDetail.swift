@@ -40,5 +40,10 @@ class SpeakerDetail: NSManagedObject, FeedableProtocol {
         self.speaker = id as! Speaker
     }
     
+    //TODO
+    func service() -> AbstractService {
+        return FloorService.sharedInstance
+    }
+    
     
 }

@@ -28,6 +28,9 @@ class Day: NSManagedObject, FeedableProtocol {
     func resetId(id: NSManagedObject?) {
     }
     
+    func service() -> AbstractService {
+        return DayService.sharedInstance
+    }
     
 }
 

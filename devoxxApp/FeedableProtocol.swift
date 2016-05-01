@@ -11,8 +11,9 @@ import CoreData
 import UIKit
 
 
-public protocol FeedableProtocol  {
+public protocol FeedableProtocol : AnyObject  {
     func feedHelper(help: DataHelperProtocol)
     func getId() -> NSManagedObject?
     func resetId(id : NSManagedObject?)
+    func service() -> AbstractService
 }

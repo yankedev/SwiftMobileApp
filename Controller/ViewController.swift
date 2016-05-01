@@ -174,8 +174,12 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             
             print("Selected = \(currentData.identifier())")
             
-            loadSpeakers(currentData.getObjectID()).then { (speakers : [Speaker]) -> Void in
+            load(currentData.getObjectID(), service: SpeakerService.sharedInstance).then { (speakers : [NSManagedObject]) -> Void in
                 print("speakers OK = \(speakers.count)")
+            }
+            
+            load(currentData.getObjectID(), service: AttributeService.sharedInstance).then { (tracks : [NSManagedObject]) -> Void in
+                print("tracks OK = \(tracks.count)")
             }
             
             
@@ -508,17 +512,18 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
  
     
     
-    func loadSpeakers<T : NSManagedObject>(cfpId : NSManagedObjectID) -> Promise<[T]> {
+    func load(cfpId : NSManagedObjectID, service : AbstractService) -> Promise<[NSManagedObject]> {
         return Promise{ fulfill, reject in
-            SpeakerService.sharedInstance.fetchSpeakers(cfpId).then {(speakers: [T]) -> Void in
+            
+           service.fetch(cfpId).then {(items: [NSManagedObject]) -> Void in
                 
-                if(speakers.count == 0) {
-                    CacheService.initSpeakers(cfpId).then { (speakers: [T]) -> Void in
-                        fulfill(speakers)
+                if(items.count == 0) {
+                    CacheService.initItems(cfpId, service : service).then { (items: [NSManagedObject]) -> Void in
+                        fulfill(items)
                     }
                 }
                 else {
-                    fulfill(speakers)
+                    fulfill(items)
                 }
 
                 

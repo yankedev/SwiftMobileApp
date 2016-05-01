@@ -68,6 +68,9 @@ class Slot: NSManagedObject, FeedableProtocol {
     
     
     
+    func service() -> AbstractService {
+        return SlotService.sharedInstance
+    }
     
     
     

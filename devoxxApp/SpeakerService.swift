@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import PromiseKit
+import Unbox
 
 
 public enum SpeakerStoreError: Equatable, ErrorType {
@@ -35,68 +36,30 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
         return SpeakerHelper()
     }
     
-    func updateWithHelper<T : NSManagedObject>(cfpId : NSManagedObjectID, helper : [SpeakerHelper]) -> Promise<[T]> {
+    override func update(cfpId : NSManagedObjectID, items : [NSManagedObject]) -> Promise<[NSManagedObject]> {
         
         return Promise{ fulfill, reject in
-            
             
             privateManagedObjectContext.performBlock {
                 
                 let cfp = self.privateManagedObjectContext.objectWithID(cfpId) as! Cfp
                 
-                for singleHelper in helper {
-                    do {
-                    
-                    
-                        let fetchRequest = NSFetchRequest(entityName: "Speaker")
-                        let predicate = NSPredicate(format: "uuid = %@", singleHelper.getMainId())
-                        fetchRequest.predicate = predicate
-                        let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
-                    
-                        if items.count == 0 {
-                        
-                            let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
-                            let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
-                        
-                            if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
-                                coreDataObjectCast.feedHelper(singleHelper)
-                            
-                                coreDataObject.setValue(cfp, forKey: "cfp")
-                            }
-                        
-                        
-                        
-                            let entity2 = NSEntityDescription.entityForName("SpeakerDetail", inManagedObjectContext: self.privateManagedObjectContext)
-                            let coreDataObject2 = SpeakerDetail(entity: entity2!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
-                        
-                            coreDataObject2.speaker = coreDataObject as! Speaker
-                            coreDataObject2.uuid = coreDataObject2.speaker.uuid!
-      
-                        }
-                    
-                        else {
-                        
-                            if let feedable = items[0] as? FeedableProtocol {
-                                feedable.feedHelper(singleHelper)
-                            }
-                        
-                        }
-                    
-                    
-                    
-                    }
-                    catch {
+                for speaker in items {
+                    guard let speakerCast = speaker as? Speaker else {
                         reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))
+                        return
                     }
-                    
+                    speakerCast.setValue(cfp, forKey: "cfp")
+                            
+                    let entity2 = NSEntityDescription.entityForName("SpeakerDetail", inManagedObjectContext: self.privateManagedObjectContext)
+                    let coreDataObject2 = SpeakerDetail(entity: entity2!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                        
+                    coreDataObject2.speaker = speakerCast
+                    coreDataObject2.uuid = coreDataObject2.speaker.uuid!
                 }
                 do {
                     try self.privateManagedObjectContext.save()
-                    
-                    self.fetchSpeakers(cfpId)
-                        .then { (speakers: [T]) -> Void in
-                            fulfill(speakers)
-                    }
+                    fulfill(items)
                 }
                 catch {
                     reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))
@@ -205,11 +168,10 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
     }
 
     
-    func fetchSpeakers<T : NSManagedObject>(cfpId : NSManagedObjectID) -> Promise<[T]> {
+    override func fetch(cfpId : NSManagedObjectID) -> Promise<[NSManagedObject]> {
         return Promise{ fulfill, reject in
             privateManagedObjectContext.performBlock {
                 do {
-                    
                     
                     let cfp = self.privateManagedObjectContext.objectWithID(cfpId) as! Cfp
                     
@@ -222,7 +184,7 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
                     let sortFirst = NSSortDescriptor(key: "firstName", ascending: true)
                     fetchRequest.sortDescriptors = [sortFirst, sortLast]
 
-                    let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [T]
+                    let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
                     fulfill(results)
                 } catch {
                     reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))
@@ -233,7 +195,20 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
 
     
  
+    override func entryPoint() -> String {
+        return "http://cfp.devoxx.fr/api/conferences/DevoxxFR2016/speakers"
+    }
 
+    
+    override func unboxData(data : NSData) -> [NSManagedObject] {
+        do {
+            let arr : [Speaker] = try UnboxOrThrow(data)
+            return arr
+        }
+        catch {
+            return [Speaker]()
+        }
+    }
     
   
     

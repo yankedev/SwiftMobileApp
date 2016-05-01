@@ -214,5 +214,9 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
     }
     
     
+    func service() -> AbstractService {
+        return TalkService.sharedInstance
+    }
+    
     
 }

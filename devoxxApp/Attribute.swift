@@ -9,9 +9,10 @@
 import Foundation
 import CoreData
 import UIKit
+import Unbox
 
 
-class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
+class Attribute: NSManagedObject, Unboxable, FeedableProtocol, FilterableProtocol {
     
     @NSManaged var id: String?
     @NSManaged var label: String?
@@ -19,6 +20,19 @@ class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
     @NSManaged var type: String?
     @NSManaged var cfp: Cfp?
     
+    convenience init() {
+        let context = AttributeService.sharedInstance.privateManagedObjectContext
+        let entityDescription = NSEntityDescription.entityForName("Attribute", inManagedObjectContext: context)!
+        self.init(entity: entityDescription, insertIntoManagedObjectContext: context)
+    }
+    
+    convenience internal required init(unboxer: Unboxer) {
+        self.init()
+        self.id = unboxer.unbox("id")
+        self.label = unboxer.unbox("title")
+        self.attributeDescription = unboxer.unbox("description")
+        self.type = "track"
+    }
     
     func feedHelper(helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? AttributeHelper  {
@@ -59,6 +73,10 @@ class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
     }
     
     func resetId(id: NSManagedObject?) {
+    }
+    
+    func service() -> AbstractService {
+        return AttributeService.sharedInstance
     }
     
     
