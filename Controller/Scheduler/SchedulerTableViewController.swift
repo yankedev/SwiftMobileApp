@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 
 
-public class SchedulerTableViewController<T : CellDataPrococol>:
+public class SchedulerTableViewController :
     UIViewController,
     FavoritableProtocol,
     FilterableTableProtocol,
@@ -57,9 +57,8 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     
     var savedFetchedResult : NSFetchedResultsController?
     
-    public required init() {
-        super.init(nibName: nil, bundle: nil)
-    }
+  
+ 
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -120,37 +119,43 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
    
     
     //TableView
+
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        if let slot = getCell(indexPath) as? HelperableProtocol {
-    
-            let details = TalkDetailsController()
-            //todo
-            
-            details.detailObject = slot.toHelper() as? DetailableProtocol
-       
-            
-            details.delegate = self
-    
-            details.configure()
-            
-            
-            if let slotFavorite = slot as? FavoriteProtocol {
-                details.setColor(slotFavorite.isFav())
-            }
-            
-            //details.setColor(slot.talk.isFavorited)
-            
-            self.navigationController?.pushViewController(details, animated: true)
-            
-            
-        }
-
+        self.performSegueWithIdentifier("showTalkDetails", sender: indexPath);
     }
     
     
-    
+    override public func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showTalkDetails" {
+            
+            
+            if let slot = getCell(schedulerTableView.indexPathForSelectedRow!) as? HelperableProtocol {
+                
+                
+                let details = segue.destinationViewController as? TalkDetailsController
+                details?.detailObject = slot.toHelper() as? DetailableProtocol
+                
+                /*
+                details.delegate = self
+                
+                details.configure()
+                
+                
+                if let slotFavorite = slot as? FavoriteProtocol {
+                    details.setColor(slotFavorite.isFav())
+                }
+                
+                //details.setColor(slot.talk.isFavorited)
+                
+                self.navigationController?.pushViewController(details, animated: true)
+                */
+                
+            }
+            
+        }
+    }
+
     
     
     

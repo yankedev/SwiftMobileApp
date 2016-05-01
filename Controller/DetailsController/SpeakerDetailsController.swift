@@ -10,11 +10,27 @@ import Foundation
 import UIKit
 import CoreData
 
-public class SpeakerDetailsController : AbstractDetailsController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol, FavoritableProtocol {
+public class SpeakerDetailsController : UIViewController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol, FavoritableProtocol {
     
-
-    var talkList = SpeakerListView(frame: CGRectZero, style: .Grouped)
+    @IBOutlet var talkList: UITableView!
+    @IBOutlet var scroll: UITextView!
+    @IBOutlet var header: UIView!
+    //var talkList = SpeakerListView(frame: CGRectZero, style: .Grouped)
     
+    @IBOutlet var talkTitle: UILabel!
+    @IBOutlet var talkTrack: UILabel!
+    @IBOutlet var imageView: UIImageView!
+    
+    @IBOutlet var star: UIView!
+    @IBOutlet var tweet: UIView!
+    
+    @IBOutlet var starBtn: UIButton!
+    @IBOutlet var tweetBtn: UIButton!
+    
+    
+    @IBOutlet var backBtn: UIButton!
+    
+    var detailObject : DetailableProtocol!
     
     override public func viewDidLoad() {
         
@@ -22,81 +38,74 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
         
         
-        view.addSubview(talkList)
+        //view.addSubview(talkList)
         
         //talkList.backgroundColor = UIColor.redColor()
         talkList.delegate = self
         talkList.dataSource = self
         
-        
-        
-        
-        
-        let views = ["header": header, "scroll" : scroll, "talkList" : talkList]
-        
-        
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[header]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        let constH3 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkList]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        
-        
-        
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(150)]-[scroll]-[talkList(200)]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        
-        
-        
-        
-        
-        
-        view.addConstraints(constH)
-        view.addConstraints(constH2)
-        view.addConstraints(constH3)
-        
-        
-        view.addConstraints(constV)
-        
-        
-        
-        header.talkTitle.text = detailObject.getTitle()
-        header.talkTrack.text = detailObject.getSubTitle()
+ 
+        talkTitle.text = detailObject.getTitle()
+        talkTrack.text = detailObject.getSubTitle()
         scroll.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
         scroll.text = detailObject.getSummary()
         //scroll.backgroundColor = UIColor.yellowColor()
         
+        imageView.layer.cornerRadius = 70 / 2
+        imageView.layer.masksToBounds = true
+        imageView.image = detailObject.getPrimaryImage()
         
-        configure()
         
-        actionButtonView2.hidden = true
+        tweet.backgroundColor = ColorManager.topNavigationBarColor
+        tweet.layer.cornerRadius = tweet.frame.size.width / 2
+        
+        star.backgroundColor = ColorManager.topNavigationBarColor
+        star.layer.cornerRadius = star.frame.size.width / 2
+        
+        //configure()
+        
+        //actionButtonView2.hidden = true
+        
+        
+        
+        
+        let image0 = UIImage(named: "ic_twitter")?.imageWithRenderingMode(.AlwaysTemplate)
+        tweetBtn.setImage(image0, forState: .Normal)
+        tweetBtn.tintColor = UIColor.whiteColor()
+       
+
+        let image1 = UIImage(named: "ic_star")?.imageWithRenderingMode(.AlwaysTemplate)
+        starBtn.setImage(image1, forState: .Normal)
+        starBtn.tintColor = UIColor.whiteColor()
+        
+        let image2 = UIImage(named: "ic_back")?.imageWithRenderingMode(.AlwaysTemplate)
+        backBtn.setImage(image2, forState: .Normal)
+        backBtn.tintColor = UIColor.whiteColor()
+        
+        
+        backBtn.addTarget(self, action: #selector(self.back), forControlEvents: .TouchUpInside)
+      
         
         TalkService.sharedInstance.fetchTalks(detailObject.getRelatedIds(), completionHandler: callBack)
     }
     
+    func back() {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
     
     func callBack(talks : [DataHelperProtocol], error : TalksStoreError?) {
         detailObject.setRelated(talks)
         talkList.reloadData()
     }
     
+
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public override func twitter() {
+    public  func twitter() {
         
         let originalString = detailObject.getTwitter()
      
@@ -131,7 +140,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
             
             
         
-            cell!.leftIconView.imageView.image = relatedObject.getPrimaryImage()
+            //cell!.imageView.image = relatedObject.getPrimaryImage()
             
             cell!.rightTextView.topTitleView.talkTrackName.text = relatedObject.getDetailInfoWithIndex(2)
             cell!.rightTextView.topTitleView.talkTitle.text = relatedObject.getTitle()
@@ -175,12 +184,12 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         if let talk = detailObject.getRelatedDetailWithIndex(indexPath.row) {
             
             let details = TalkDetailsController()
-            details.delegate = self
+            //details.delegate = self
             details.detailObject = talk
             
-            details.configure()
+           // details.configure()
             
-            details.setColor(talk.isFavorited())
+            //details.setColor(talk.isFavorited())
         
             
             self.navigationController?.pushViewController(details, animated: true)
@@ -212,12 +221,11 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
    
     public func fetchCompleted(newHelper : CallbackProtocol) -> Void {
     
-        
         if let newDetailObject = newHelper.getHelper() as? DetailableProtocol {
             detailObject = newDetailObject
         }
         scroll.text = detailObject.getSummary()
-        header.talkTrack.text = detailObject.getSubTitle()
+        talkTrack.text = detailObject.getSubTitle()
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
             TalkService.sharedInstance.fetchTalks(self.detailObject.getRelatedIds(), completionHandler:self.callBackTalks)
@@ -226,11 +234,33 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     public func callbackImg(newHelper : CallbackProtocol) {
         if let newDetailObjectData = newHelper.getImg() {
-            header.imageView.image = UIImage(data: newDetailObjectData)
+            imageView.backgroundColor = UIColor.redColor()
+            imageView.image = UIImage(data: newDetailObjectData)
         }
     }
     
+    
+    
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return detailObject.getRelatedDetailsCount()
+    }
+    
+    
+    
+    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
    
+    
+    public func fetchUrl() -> String? {
+        return ""
+        
+    }
     
     
     

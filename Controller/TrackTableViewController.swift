@@ -121,13 +121,13 @@ public class TrackTableViewController<T : CellDataPrococol>:
             
             let details = TalkDetailsController()
             details.detailObject = detailObject.toHelper() as? DetailableProtocol
-            details.delegate = self
+            //details.delegate = self
             
             
-            details.configure()
+            //details.configure()
             
             if let favorite = detailObject as? FavoriteProtocol {
-                details.setColor(favorite.isFav())
+                //details.setColor(favorite.isFav())
             }
             self.navigationController?.pushViewController(details, animated: true)
             

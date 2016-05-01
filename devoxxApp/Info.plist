@@ -63,6 +63,8 @@
 		<string>Roboto-Regular.ttf</string>
 		<string>pirulen.ttf</string>
 	</array>
+	<key>UIMainStoryboardFile</key>
+	<string>Storyboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -73,6 +75,8 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MyDevoxx_CFP_URL</key>
 	<string>https://s3-eu-west-1.amazonaws.com/cfpdevoxx/cfp.json</string>

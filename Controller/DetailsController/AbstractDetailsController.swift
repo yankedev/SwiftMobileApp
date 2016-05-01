@@ -11,9 +11,9 @@ import UIKit
 
 public class AbstractDetailsController : UIViewController {
     
-    var scroll : UITextView!
+    //var scroll : UITextView!
     var detailObject : DetailableProtocol!
-    var header = ColoredHeaderView(frame: CGRectZero)
+   // var header = ColoredHeaderView(frame: CGRectZero)
     
     weak var delegate : FavoritableProtocol!
     
@@ -25,7 +25,7 @@ public class AbstractDetailsController : UIViewController {
     public override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+        /*
         scroll = UITextView()
         scroll.backgroundColor = UIColor.whiteColor()
         scroll.translatesAutoresizingMaskIntoConstraints = false
@@ -33,13 +33,13 @@ public class AbstractDetailsController : UIViewController {
         scroll.font = UIFont(name: "Roboto", size:  18)
         scroll.editable = false
         
-        
+        */
         let inputImage = UIImage(named: "talk_background.png")
-        header.image = inputImage
+        //header.image = inputImage
         
         
-        view.addSubview(header)
-        view.addSubview(scroll)
+        //view.addSubview(header)
+        
         
         view.addSubview(actionButtonViewBack)
         view.addSubview(actionButtonView0)
@@ -242,7 +242,7 @@ public class AbstractDetailsController : UIViewController {
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = true
-        header.imageView.image = detailObject?.getPrimaryImage()
+        //header.imageView.image = detailObject?.getPrimaryImage()
     }
     
     

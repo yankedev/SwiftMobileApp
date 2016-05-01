@@ -90,7 +90,10 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     func loadIsFinihsed() {
         
-        let scheduleController = ScheduleController<SchedulerTableViewController<Talk>>()
+
+        
+        let scheduleController = ScheduleController()
+
         
         
         let trackController = TrackController<TrackTableViewController<Talk>>()

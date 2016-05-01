@@ -14,7 +14,7 @@ target 'My_Devoxx' do
     pod 'Unbox'
 end
 
-target 'My_DevoxxTests' do
+target 'My DevoxxTests' do
 
 end
 

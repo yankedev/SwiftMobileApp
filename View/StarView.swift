@@ -53,20 +53,7 @@ class StarView : UITableViewCell {
         
         
         
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[star0]-0-[star1(==star0)]-0-[star2(==star0)]-0-[star3(==star0)]-0-[star4]-0-|", options: .AlignAllBaseline, metrics: nil, views: views)
         
-        let constV0 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[star0]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let constV1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[star1]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let constV2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[star2]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let constV3 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[star3]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let constV4 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[star4]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        
-        addConstraints(constH)
-        addConstraints(constV0)
-        addConstraints(constV1)
-        addConstraints(constV2)
-        addConstraints(constV3)
-        addConstraints(constV4)
         
         for btn in starArray {
             addSubview(btn)

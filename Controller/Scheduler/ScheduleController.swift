@@ -21,7 +21,9 @@ public protocol ScrollableDateProtocol : NSObjectProtocol {
 
 
 
-public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
+
+public class ScheduleController : UINavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
+
     
     
     
@@ -40,20 +42,12 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
     
     var customView:ScheduleControllerView?
     
-    init() {
-        super.init(navigationBarClass: nil, toolbarClass: nil)
-    }
-    
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     public override func viewDidLoad() {
         
         super.viewDidLoad()
         
-      
+
         
         
         customView = ScheduleControllerView(target: self, filterSelector: #selector(self.filterMe))
@@ -155,7 +149,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
     public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
         var currentIndex = 0
-        if let demoController = viewController as? T {
+        if let demoController = viewController as? SchedulerTableViewController {
             currentIndex = demoController.index
         }
         
@@ -171,7 +165,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
     public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
         var currentIndex = 0
-        if let demoController = viewController as? T {
+        if let demoController = viewController as? SchedulerTableViewController {
             currentIndex = demoController.index
         }
         
@@ -188,7 +182,9 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
     
     public func viewControllerAtIndex(index : NSInteger) -> UIViewController {
         
-        let scheduleTableController:T = T()
+        
+        let scheduleTableController = self.storyboard!.instantiateViewControllerWithIdentifier("SchedulerTableViewController") as! SchedulerTableViewController
+    
         scheduleTableController.index = index
         
         if let dates = self.scrollableDateTableDatasource?.allDates {
@@ -198,7 +194,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
             
             
         }
-        return (scheduleTableController as? UIViewController)!
+        return scheduleTableController
     }
     
     
@@ -252,9 +248,13 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
         
         self.navigationBar.translucent = false
         
-        pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
         
-        self.pageViewController.navigationItem.leftBarButtonItem = huntlyLeftButton
+        
+        pageViewController = self.storyboard!.instantiateViewControllerWithIdentifier("SchedulerPageController") as! UIPageViewController
+        
+        //pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
+        
+        //self.pageViewController.navigationItem.leftBarButtonItem = huntlyLeftButton
         
         pageViewController?.dataSource = self
         pageViewController?.delegate = self
@@ -265,8 +265,13 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
         
         pageViewController?.setViewControllers(controls, direction: .Forward, animated: false, completion: nil)
         
-        pushViewController(pageViewController!, animated: false)
+        /*
+        self.addChildViewController(self.pageViewController)
+        self.view.addSubview(self.pageViewController.view)
+        self.pageViewController.didMoveToParentViewController(self)
+        */
         
+        pushViewController(pageViewController, animated: true)
         
         
         

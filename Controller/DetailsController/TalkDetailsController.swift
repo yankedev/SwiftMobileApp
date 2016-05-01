@@ -11,90 +11,127 @@ import UIKit
 import AVFoundation
 import CoreData
 
-public class TalkDetailsController : AbstractDetailsController, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol, FavoritableProtocol {
+public class TalkDetailsController : UIViewController, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol, FavoritableProtocol {
     
+    @IBOutlet var backBtn: UIButton!
+    var detailObject : DetailableProtocol!
     
+    @IBOutlet var roomLabel: UILabel!
+    
+    @IBOutlet var roomValueLabel: UILabel!
+
+ 
+    @IBOutlet var talkTypeLabel: UILabel!
+    @IBOutlet var talkTypeValueLabel: UILabel!
+    
+    @IBOutlet var timeValueLabel: UILabel!
+    @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var talkList: UITableView!
+    @IBOutlet var scroll: UITextView!
+    @IBOutlet var starBtn: UIButton!
+    @IBOutlet var startBtn: UIButton!
+    @IBOutlet var tweetBtn: UIButton!
+    @IBOutlet var tweet: UIView!
+    @IBOutlet var rateBtn: UIButton!
+    @IBOutlet var rate: UIView!
+    @IBOutlet var star: UIView!
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var talkTitle: UILabel!
     var txtField : UITextField!
     let details = GobalDetailView()
+    @IBOutlet var header: UIImageView!
     
+
+    @IBOutlet var talkTrack: UILabel!
     override public func viewDidLoad() {
         
         super.viewDidLoad()
         
         if let rateDetails = detailObject as? RatableProtocol {
             if !rateDetails.isEnabled() {
-                actionButtonView2.hidden = true
+                //actionButtonView2.hidden = true
             }
         }
         
-        details.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(details)
         
-        let views = ["header": header, "scroll" : scroll, "details" : details]
-        
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[header]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        let constH5 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[details]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(150)]-[details(150)]-[scroll]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        view.addConstraints(constH)
-        view.addConstraints(constH2)
-        view.addConstraints(constH5)
-        
-        view.addConstraints(constV)
-        
-        
-        header.talkTitle.text = detailObject.getTitle()
-        header.talkTrack.text = detailObject.getSubTitle()
+        talkTitle.text = detailObject.getTitle()
+        talkTrack.text = detailObject.getSubTitle()
         scroll.text = detailObject.getSummary()
         
+        scroll.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
+        
+        tweet.backgroundColor = ColorManager.topNavigationBarColor
+        tweet.layer.cornerRadius = tweet.frame.size.width / 2
+        
+        star.backgroundColor = ColorManager.topNavigationBarColor
+        star.layer.cornerRadius = star.frame.size.width / 2
+        
+        rate.backgroundColor = ColorManager.topNavigationBarColor
+        rate.layer.cornerRadius = rate.frame.size.width / 2
+        
+        let image0 = UIImage(named: "ic_twitter")?.imageWithRenderingMode(.AlwaysTemplate)
+        tweetBtn.setImage(image0, forState: .Normal)
+        tweetBtn.tintColor = UIColor.whiteColor()
         
         
-        details.layoutIfNeeded()
+        let image1 = UIImage(named: "ic_star")?.imageWithRenderingMode(.AlwaysTemplate)
+        starBtn.setImage(image1, forState: .Normal)
+        starBtn.tintColor = UIColor.whiteColor()
         
-        details.left.simpleDetailView1.textView.firstInfo.text = "Room"
-        details.left.simpleDetailView1.textView.secondInfo.text = detailObject.getDetailInfoWithIndex(0)
+        let image2 = UIImage(named: "ic_back")?.imageWithRenderingMode(.AlwaysTemplate)
+        backBtn.setImage(image2, forState: .Normal)
+        backBtn.tintColor = UIColor.whiteColor()
         
-        details.left.simpleDetailView2.textView.firstInfo.text = "Format"
-        details.left.simpleDetailView2.textView.secondInfo.text = detailObject.getDetailInfoWithIndex(1)
+        let image3 = UIImage(named: CfpService.sharedInstance.getVotingImage())
+        rateBtn.setImage(image3, forState: .Normal)
+
+
+
+
+        
+        
+        backBtn.addTarget(self, action: #selector(self.back), forControlEvents: .TouchUpInside)
+        
+     
+        roomLabel.text = "Room"
+        roomValueLabel.text = detailObject.getDetailInfoWithIndex(0)
+        
+        talkTypeLabel.text = "Format"
+        talkTypeValueLabel.text = detailObject.getDetailInfoWithIndex(1)
         
         
         
-        details.left.simpleDetailView3.textView.firstInfo.text = "Date and time"
-        details.left.simpleDetailView3.textView.secondInfo.text = detailObject.getDetailInfoWithIndex(2)
-        
-        
-        
+        timeLabel.text = "Date and time"
+        timeValueLabel.text = detailObject.getDetailInfoWithIndex(2)
         
         details.right.dataSource = self
         details.right.delegate = self
         
         
-        
-        
-        configure()
-        
+      
         
         
         
-        view.layoutIfNeeded()
+        talkList.delegate = self
+        talkList.dataSource = self
         
         
-        
-        
-        
+    }
+    
+    func back() {
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
   
     
     func callBack(speakers : [DataHelperProtocol], error : SpeakerStoreError?) {
         detailObject.setRelated(speakers)
-        self.details.right.reloadData()
+        talkList.reloadData()
     }
     
   
+  
+
     
     
     
@@ -102,6 +139,9 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        parentViewController?.navigationController?.setNavigationBarHidden(true, animated: true)
 
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
@@ -109,7 +149,8 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         })
         
         
-        header.imageView.hidden = true
+
+        //header.imageView.hidden = true
         
         //sync with watch
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleNotification(_:)), name:"UpdateFavorite", object: nil)
@@ -123,7 +164,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        /*
         if let speaker = detailObject.getRelatedDetailWithIndex(indexPath.row) {
             
             
@@ -140,26 +181,15 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
             
             self.navigationController?.pushViewController(details, animated: true)
         }
-        
+        */
         
         
         
     }
     
    
+
     
-    
-    public override func twitter() {
-        
-        let originalString = detailObject.getTwitter()
- 
-        
-        let escapedString = originalString?.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
-        
-        let url = "https://twitter.com/intent/tweet?text=\(escapedString!)"
-        
-        UIApplication.sharedApplication().openURL(NSURL(string: url)!)
-    }
     
     
     
@@ -167,17 +197,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10")
-        
-        if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
-            cell?.selectionStyle = .None
-        }
-        
-        
-        
-        
-        
+        let cell = tableView.dequeueReusableCellWithIdentifier("CELL_10")
         
         cell?.textLabel?.font = UIFont(name: "Roboto", size: 15)
         cell?.textLabel?.text = detailObject.getRelatedDetailWithIndex(indexPath.row)?.getTitle()
@@ -229,7 +249,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     public func scan() {
         let qrCodeScannerController = QRCodeScannerController()
-        qrCodeScannerController.completionOnceScanned = rate
+        qrCodeScannerController.completionOnceScanned = goToRate
         let qrCodeNavigationController = UINavigationController(rootViewController: qrCodeScannerController)
         presentViewController(qrCodeNavigationController, animated: true, completion: nil)
     }
@@ -271,7 +291,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     
     
-    public func rate() {
+    public func goToRate() {
         
         if let rateObj = detailObject as? RatableProtocol {
             
@@ -287,10 +307,10 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
     }
     
-    public override func tryToRate() {
+    public  func tryToRate() {
         
         if APIManager.qrCodeAlreadyScanned() {
-            rate()
+            goToRate()
         }
         else {
             let alert = UIAlertController(title: "QRCode", message: "Please scan your badge QRCode or enter the code on your badge to authenticate yourself for presentation voting", preferredStyle: UIAlertControllerStyle.Alert)
@@ -304,11 +324,35 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
     }
     
-    
-    func handleNotification(notification: NSNotification){
-        invertColor()
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
     
+    
+
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return detailObject.getRelatedDetailsCount()
+    }
+    
+    
+    
+    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+    
+    
+    public func fetchUrl() -> String? {
+        return ""
+        
+    }
+    
+ 
+
+    func handleNotification(notification: NSNotification){
+        //invertColor()
+    }
+    
+
 
     
 }
