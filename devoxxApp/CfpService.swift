@@ -76,48 +76,57 @@ class CfpService : AbstractService {
     */
     
     func getTitle() -> String {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return cfp.title()
+        return ""
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return cfp.title()
     }
     
     func getFileTalkUrl() -> String {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/fileTalks"
+        return ""
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/fileTalks"
     }
     
     func getTalkURL() -> String {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return cfp.talkURL ?? ""
+        return ""
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return cfp.talkURL ?? ""
     }
     
     func getHashtag() -> String {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return cfp.hashtag!
+        return ""
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return cfp.hashtag!
     }
     
     func getAdress() -> String? {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return cfp.address
+        return ""
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return cfp.address
     }
     
     func getVotingImage() -> String {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return cfp.getVotingImage()
+        return ""
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return cfp.getVotingImage()
     }
     
     func getCoordLat() -> Double {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return Double(cfp.latitude!)!
+        return 0
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return Double(cfp.latitude!)!
     }
 
     func getCoordLong() -> Double {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return Double(cfp.longitude!)!
+        return 0
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return Double(cfp.longitude!)!
     }
     
     func getIntegrationId() -> String {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return cfp.integration_id ?? ""
+        return "OK"
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return cfp.integration_id ?? ""
     }
     
     func fetchCfps() -> Promise<[Cfp]> {
@@ -139,13 +148,15 @@ class CfpService : AbstractService {
 
     
     func getNbDays() -> Int {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return cfp.days.count
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return cfp.days.count
+        return 3
     }
     
     func getRegUrl() -> String? {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return cfp.regURL
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return cfp.regURL
+        return nil
     }
     
     func getCreditUrl() -> String {
@@ -153,19 +164,23 @@ class CfpService : AbstractService {
     }
     
     func getDays() -> NSOrderedSet {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
-        return cfp.days
+        //let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        //return cfp.days
+        return NSOrderedSet()
     }
     
     func getEntryPoint() -> String {
-        let cfp = self.privateManagedObjectContext.objectWithID(getCfp()) as! Cfp
-        return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/schedules"
+        //let cfp = self.privateManagedObjectContext.objectWithID(getCfp()) as! Cfp
+        //return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/schedules"
+        return ""
     }
     
     func getDayUrl(index : Int) -> String? {
-        let cfp = self.privateManagedObjectContext.objectWithID(getCfp()) as? Cfp
+        /*let cfp = self.privateManagedObjectContext.objectWithID(getCfp()) as? Cfp
         let day = cfp?.days.objectAtIndex(index) as? Day
         return day?.url
+    */
+        return ""
     }
 
     override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
@@ -223,33 +238,7 @@ class CfpService : AbstractService {
     }
 
     
-    var cfp:NSManagedObjectID? = nil
-    
-    func getCfp() -> NSManagedObjectID {
-        
-        if cfp != nil {
-            //print("NOT NIL")
-            return cfp!
-        }
-        
-        do {
-            let fetchRequest = NSFetchRequest(entityName: "Cfp")
-            let predicate = NSPredicate(format: "id = %@", getCfpId())
-            fetchRequest.predicate = predicate
-            let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Cfp]
-            if items.count > 0 {
-                cfp = items[0].objectID
-                return cfp!
-            }
-        }
-        catch {
-            //TODO
-            cfp = nil
-        }
-        
-        return cfp!
-    }
-
+   
     
     
     

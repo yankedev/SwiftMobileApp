@@ -191,6 +191,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             }
             
             
+            loadIsFinihsed()
+            
             /*
             
             //defaults.setObject(currentData.identifier(), forKey: "currentEvent")
@@ -379,24 +381,6 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     
-    //Delegate
-    //some sample messages when actions are triggered (open/close slices)
-    func didOpenSliceAtIndex(index: Int) {
-        
-    }
-    
-    func didCloseSliceAtIndex(index: Int) {
-        
-    }
-    
-    func willOpenSliceAtIndex(index: Int) {
-        
-        
-    }
-    
-    func willCloseSliceAtIndex(index: Int) {
-        
-    }
     
     //Datasource
     func colorForSliceAtIndex(index:Int) -> UIColor {
@@ -453,58 +437,6 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     
     
-    func failure(msg : String) {
-        //print("FAILURE")
-        self.showStaticView(false)
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject("", forKey: "currentEvent")
-        CfpService.sharedInstance.cfp = nil
-        self.rotating = false
-        let alert = UIAlertController(title: AlertString.NoDataError.title, message: AlertString.NoDataError.content, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: AlertString.NoDataError.okButton, style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    
-    
-    func fetchEvent() {
-        APIDataManager.loadDataFromURL(CfpService.sharedInstance.getEntryPoint(), service: DayService.sharedInstance, helper : DayHelper(), loadFromFile : true, onSuccess: self.fetchSpeakers, onError: self.failure)
-    }
-    
-    func fetchSpeakers(msg : CallbackProtocol) {
-        APIDataManager.loadDataFromURL(SpeakerService.sharedInstance.getSpeakerUrl(), service: SpeakerService.sharedInstance, helper : SpeakerHelper(), loadFromFile : true, onSuccess: self.setupEvent, onError: self.failure)
-    }
-    
-
-    
-    func setupEvent(msg : CallbackProtocol) {
-       // print("========setupEvent")
-        
-        
-        if CfpService.sharedInstance.getNbDays() > 0 {
-            APIDataManager.loadDataFromURL(CfpService.sharedInstance.getFileTalkUrl(), service: SlotService.sharedInstance, helper: SlotHelper(), loadFromFile : true, onSuccess: self.fetchTracks, onError: self.failure)
-        }
-        else {
-            run_on_main_thread({
-                self.failure("")
-            })
-        }
-        
-        
-        
-    }
-    
-    func fetchTracks(msg : CallbackProtocol) {
-        //print("========fetchTracks")
-        APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: TrackService.sharedInstance, helper : TrackHelper(), loadFromFile: true, onSuccess: self.fetchTalkType, onError: failure)
-    }
-    
-    
-    
-    func fetchTalkType(msg : CallbackProtocol) {
-        //print("========fetchTalkType")
-        APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTalkTypeUrl(), service: TalkTypeService.sharedInstance, helper : TalkTypeHelper(), loadFromFile: true, onSuccess: self.finishFetching, onError: failure)
-    }
     
     func finishFetching(msg : CallbackProtocol) {
         self.rotating = false
@@ -603,20 +535,6 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         }
     }
 
-    
-    
-       
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
 
