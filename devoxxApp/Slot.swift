@@ -9,8 +9,9 @@
 import Foundation
 import CoreData
 import UIKit
+import Unbox
 
-class Slot: NSManagedObject, FeedableProtocol {
+class Slot: NSManagedObject, FeedableProtocol, Unboxable {
     
     @NSManaged var roomName: String
     @NSManaged var slotId: String
@@ -23,6 +24,31 @@ class Slot: NSManagedObject, FeedableProtocol {
     
     @NSManaged var talk: Talk
     
+    
+    convenience init() {
+        let context = SlotService.sharedInstance.privateManagedObjectContext
+        let entityDescription = NSEntityDescription.entityForName("Slot", inManagedObjectContext: context)!
+        self.init(entity: entityDescription, insertIntoManagedObjectContext: context)
+    }
+    
+    convenience internal required init(unboxer: Unboxer) {
+        self.init()
+        self.roomName = unboxer.unbox("roomName")
+        self.slotId = unboxer.unbox("slotId")
+        self.fromTime = unboxer.unbox("fromTime")
+        self.toTime = unboxer.unbox("toTime")
+        self.day = unboxer.unbox("day")
+        
+        let savedDate =  NSDate(timeIntervalSince1970: fromTimeMillis.doubleValue/1000)
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Year, .Month, .Day], fromDate:  savedDate)
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        self.date = dateFormatter.dateFromString("\(components.year)-\(components.month)-\(components.day) 08:00:00")!
+    }
+
     
     
     func getId() -> NSManagedObject? {

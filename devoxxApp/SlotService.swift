@@ -8,6 +8,8 @@
 
 import Foundation
 import CoreData
+import PromiseKit
+import Unbox
 
 
 public enum SlotStoreError: Equatable, ErrorType {
@@ -161,6 +163,100 @@ class SlotService : AbstractService {
     override func getHelper() -> DataHelperProtocol {
         return SlotHelper()
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /////
+    
+    override func entryPoint() -> [String] {
+        return ["http://cfp.devoxx.fr/api/conferences/DevoxxFR2016/schedules/wednesday/", "http://cfp.devoxx.fr/api/conferences/DevoxxFR2016/schedules/thursday/", "http://cfp.devoxx.fr/api/conferences/DevoxxFR2016/schedules/friday/"]
+    }
+    
+    
+    
+    
+    override func fetch(cfpId : NSManagedObjectID) -> Promise<[NSManagedObject]> {
+        return Promise{ fulfill, reject in
+            privateManagedObjectContext.performBlock {
+                do {
+                    
+                    let cfp = self.privateManagedObjectContext.objectWithID(cfpId) as! Cfp
+                    
+                    let predicateEvent = NSPredicate(format: "cfp.id = %@", cfp.id!)
+                    let fetchRequest = NSFetchRequest(entityName: "Slot")
+                    fetchRequest.includesSubentities = true
+                    fetchRequest.returnsObjectsAsFaults = false
+                    fetchRequest.predicate = predicateEvent
+                    let sortLast = NSSortDescriptor(key: "date", ascending: true)
+                    fetchRequest.sortDescriptors = [sortLast]
+                    
+                    let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [NSManagedObject]
+                    fulfill(results)
+                } catch {
+                    reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))
+                }
+            }
+        }
+    }
+    
+    override func unboxData(data : NSData) -> [NSManagedObject] {
+        do {
+            let json = JSON(data: data)
+            let arrayToParse = try json["slots"].rawData()
+            let arr : [Slot] = try UnboxOrThrow(arrayToParse)
+            return arr
+        }
+        catch {
+            return [Slot]()
+        }
+    }
+    
+    override func update(cfpId : NSManagedObjectID, items : [NSManagedObject]) -> Promise<[NSManagedObject]> {
+        
+        return Promise{ fulfill, reject in
+            
+            privateManagedObjectContext.performBlock {
+                
+                let cfp = self.privateManagedObjectContext.objectWithID(cfpId) as! Cfp
+                
+                for attribute in items {
+                    guard let attributeCast = attribute as? Slot else {
+                        reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))
+                        return
+                    }
+                    attributeCast.cfp = cfp
+                }
+                do {
+                    try self.privateManagedObjectContext.save()
+                    fulfill(items)
+                }
+                catch {
+                    reject(NSError(domain: "myDevoxx", code: 0, userInfo: nil))
+                }
+                
+            }
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 }

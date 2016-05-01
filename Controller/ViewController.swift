@@ -178,8 +178,16 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
                 print("speakers OK = \(speakers.count)")
             }
             
-            load(currentData.getObjectID(), service: AttributeService.sharedInstance).then { (tracks : [NSManagedObject]) -> Void in
+            load(currentData.getObjectID(), service: TrackService.sharedInstance).then { (tracks : [NSManagedObject]) -> Void in
                 print("tracks OK = \(tracks.count)")
+            }
+            
+            load(currentData.getObjectID(), service: TalkTypeService.sharedInstance).then { (talkTypes: [NSManagedObject]) -> Void in
+                print("talkType OK = \(talkTypes.count)")
+            }
+            
+            load(currentData.getObjectID(), service: SlotService.sharedInstance).then { (slots : [NSManagedObject]) -> Void in
+                print("slots OK = \(slots.count)")
             }
             
             

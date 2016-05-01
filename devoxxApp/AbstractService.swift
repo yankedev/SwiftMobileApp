@@ -147,8 +147,8 @@ public class AbstractService  {
         }
     }
     
-    func entryPoint() -> String {
-        return ""
+    func entryPoint() -> [String] {
+        return [""]
     }
     
     func update(cfpId : NSManagedObjectID, items : [NSManagedObject]) -> Promise<[NSManagedObject]> {

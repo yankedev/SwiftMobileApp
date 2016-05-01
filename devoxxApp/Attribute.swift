@@ -31,7 +31,6 @@ class Attribute: NSManagedObject, Unboxable, FeedableProtocol, FilterableProtoco
         self.id = unboxer.unbox("id")
         self.label = unboxer.unbox("title")
         self.attributeDescription = unboxer.unbox("description")
-        self.type = "track"
     }
     
     func feedHelper(helper: DataHelperProtocol) -> Void {

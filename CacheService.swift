@@ -17,9 +17,21 @@ class CacheService {
     
     class func initItems(cfpId : NSManagedObjectID, service : AbstractService) -> Promise<[NSManagedObject]> {
         return Promise{ fulfill, reject in
-            CacheService.fetchFromEntryPoint(cfpId, service : service).then { (itemsHelper : [NSManagedObject]) -> Void in
+            
+            var promiseArray = [Promise<[NSManagedObject]>]()
+            
+            for urlToFetch in service.entryPoint() {
+                promiseArray.append(CacheService.fetchFromEntryPoint(cfpId, entryPoint : urlToFetch, service: service))
+            }
+            
+            when(promiseArray).then { (itemsHelper : [[NSManagedObject]]) -> Void in
                 
-                CacheService.feed(cfpId, service : service, items : itemsHelper).then { (itemsHelper : [NSManagedObject]) -> Void in
+                var items = [NSManagedObject]()
+                for subItem in itemsHelper {
+                    items.appendContentsOf(subItem)
+                }
+                 
+                CacheService.feed(cfpId, service : service, items : items).then { (itemsHelper : [NSManagedObject]) -> Void in
                     fulfill(itemsHelper)
                 }
                 }
@@ -130,14 +142,12 @@ class CacheService {
     }
     
     
-    class func fetchFromEntryPoint(cfpId : NSManagedObjectID, service : AbstractService) -> Promise<[NSManagedObject]> {
+    class func fetchFromEntryPoint(cfpId : NSManagedObjectID, entryPoint : String, service : AbstractService) -> Promise<[NSManagedObject]> {
         
         return Promise{ fulfill, reject in
             
-            let entryPoint = service.entryPoint()
-            
             print("FETCHING \(entryPoint)")
-            
+
             Alamofire.request(.GET, entryPoint).response { (_, _, data, error) in
                 if error == nil && data != nil {
                     

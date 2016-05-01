@@ -195,8 +195,8 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
 
     
  
-    override func entryPoint() -> String {
-        return "http://cfp.devoxx.fr/api/conferences/DevoxxFR2016/speakers"
+    override func entryPoint() -> [String] {
+        return ["http://cfp.devoxx.fr/api/conferences/DevoxxFR2016/speakers"]
     }
 
     
