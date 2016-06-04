@@ -115,13 +115,14 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         if tab.count > 0 {
             json["details"] = JSON(tab)
         }
-        json["rating"] = JSON(nbStar!.getSelectedStars())
-        //json["talkId"] = JSON(rateObject.getIdentifier())
-        json["talkId"] = "MSB-2893"
+        else {
+            json["rating"] = JSON(nbStar!.getSelectedStars())
+        }
+        json["talkId"] = JSON(rateObject.getIdentifier())
         json["user"] = JSON(APIManager.getQrCode()!)
         
     
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://cfp.devoxx.fr/api/voting/v1/vote")!)
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://cfp.devoxx.co.uk/api/voting/v1/vote")!)
         let session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

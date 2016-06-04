@@ -16,8 +16,8 @@ class HuntlyManagerService {
     
     static let sharedInstance = HuntlyManagerService()
 
-    //let API = "https://srv.huntlyapp.com:9023"
-    let API = "https://huntly-test.scalac.io"
+    let API = "https://srv.huntlyapp.com:9023"
+    //let API = "https://huntly-test.scalac.io"
     let TOKEN_STRING = "huntlyToken"
     let QUEST_COMPLETED = "questCompleted"
     let ACTIVITY_COMPLETED = "activityCompleted"
