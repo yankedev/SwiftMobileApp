@@ -169,8 +169,26 @@ class CfpService : AbstractService {
     
     func getDayUrl(index : Int) -> String? {
         let cfp = self.privateManagedObjectContext.objectWithID(getCfp()) as? Cfp
-        let day = cfp?.days.objectAtIndex(index) as? Day
-        return day?.url
+        
+        var okDays = [String]()
+        
+        if cfp?.days != nil {
+            
+            for singleDay in (cfp?.days)! {
+                if let singleRealDay = singleDay as? Day {
+                    if singleRealDay.url.containsString("schedule") {
+                        okDays.append(singleRealDay.url)
+                    }
+                }
+            }
+            
+        }
+        
+        if okDays.count > index {
+            return okDays[index]
+        }
+        
+        return ""
     }
 
     override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
