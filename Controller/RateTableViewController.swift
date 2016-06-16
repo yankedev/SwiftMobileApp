@@ -122,7 +122,7 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         json["user"] = JSON(APIManager.getQrCode()!)
         
     
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://cfp.devoxx.co.uk/api/voting/v1/vote")!)
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://cfp.devoxx.pl/api/voting/v1/vote")!)
         let session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -138,7 +138,26 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
                 self.alertFailure()
                 return
             }
-            self.alertSucess()
+            if let httpResponse = response as? NSHTTPURLResponse {
+                if httpResponse.statusCode == 201 {
+                    self.alertSucess()
+                }
+                else if httpResponse.statusCode == 202 {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        
+                        let alert = UIAlertController(title: VoteSuccessAlertString.title, message: VoteSuccessAlertString.content, preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: VoteSuccessAlertString.okButton, style: UIAlertActionStyle.Default, handler: nil))
+                        
+                        self.parentViewController?.presentViewController(alert, animated: true, completion:  nil)
+                        
+                    })
+                }
+                else {
+                    self.alertFailure()
+                    return
+                }
+            }
+            
         }
         
         task.resume()
