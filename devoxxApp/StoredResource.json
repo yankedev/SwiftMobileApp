@@ -150,7 +150,47 @@
  }
  
  
+,
  
+ 
+ 
+ {
+ "url": "http://cfp.devoxx.pl/api/conferences/DevoxxPL2016/tracks",
+ "etag": "1370925856",
+ "fallback": "DevoxxPL2016-tracks.json"
+ },
+ 
+ 
+ {
+ "url": "http://cfp.devoxx.pl/api/conferences/DevoxxPL2016/proposalTypes",
+ "etag": "-1196935546",
+ "fallback": "DevoxxPL2016-proposalTypes.json"
+ },
+ 
+ 
+ 
+ 
+ {
+ "url": "http://cfp.devoxx.pl/api/conferences/DevoxxPL2016/schedules",
+ "etag": "1565948479",
+ "fallback": "DevoxxPL2016-conferences.json"
+ },
+ 
+ 
+ 
+ {
+ "url": "http://cfp.devoxx.pl/api/conferences/DevoxxPL2016/fileTalks",
+ "etag": "v2_-1385439971______",
+ "fallback": "DevoxxPL2016-talks.json"
+ },
+ {
+ "url": "http://cfp.devoxx.pl/api/conferences/DevoxxPL2016/speakers",
+ "etag": "1834998537______",
+ "fallback": "DevoxxPL2016-speaker.json"
+ }
+ 
+ 
+
  
  
  
