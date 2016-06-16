@@ -126,6 +126,8 @@ class CfpService : AbstractService {
                 fetchRequest.includesSubentities = true
                 fetchRequest.returnsObjectsAsFaults = false
                 fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+                //@TODO quick fix
+                fetchRequest.predicate = NSPredicate(format: "id != %@", "DevoxxPL2015")
                 
                 
                 let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Cfp]
