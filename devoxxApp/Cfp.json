@@ -68,7 +68,7 @@
   "integration_id":"devoxx_uk"
   },
   {
-  "id": "DevoxxPL2015",
+  "id": "DevoxxPL2016",
   "confType": "Devoxx",
   "confDescription": "Devoxx Poland 2016",
   "confIcon": "https://s3-eu-west-1.amazonaws.com/cfpdevoxx/poland/splash_btn_krakow.png",
@@ -99,7 +99,7 @@
   "talkURL": "http://cfp.devoxx.pl/2016/talk/",
   "votingURL": "http://cfp.devoxx.pl/",
   "votingEnabled": "true",
-  "votingImageName": "vodka",
+  "votingImageName": "star",
   "cfpEndpoint": "http://cfp.devoxx.pl/api",
   "cfpVersion": "1.0",
   "youTubeURL": "https://www.youtube.com/c/devoxx2015",
