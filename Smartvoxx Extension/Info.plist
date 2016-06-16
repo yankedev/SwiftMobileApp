@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>115</string>
+	<string>116</string>
 	<key>CFP_URL</key>
 	<string>https://s3-eu-west-1.amazonaws.com/cfpdevoxx/cfp.json</string>
 	<key>NSAppTransportSecurity</key>
