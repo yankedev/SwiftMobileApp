@@ -42,17 +42,15 @@
         
         
         class func createResource(url : String, completionHandler : (msg: CallbackProtocol) -> Void) {
-            let httpsUrl = url.stringByReplacingOccurrencesOfString("http:", withString: "https:")
-            let helper = StoredResourceHelper(url: httpsUrl, etag: "", fallback: "")
+            let helper = StoredResourceHelper(url: url, etag: "", fallback: "")
             let storedResource = StoredResourceService.sharedInstance
             storedResource.updateWithHelper([helper], completionHandler: completion)
         }
         
         
         class func findResource(url : String) -> StoredResource? {
-            let httpsUrl = url.stringByReplacingOccurrencesOfString("http:", withString: "https:")
             let storedResource = StoredResourceService.sharedInstance
-            return storedResource.findByUrl(httpsUrl)
+            return storedResource.findByUrl(url)
         }
         
         
