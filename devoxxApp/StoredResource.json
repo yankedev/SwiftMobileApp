@@ -231,6 +231,50 @@
  
 
  
+ ,
+ 
+ 
+ 
+ 
+ 
+ 
+ {
+ "url": "https://cfp.devoxx.ma/api/conferences/DevoxxMA2016/tracks",
+ "etag": "1370925856--",
+ "fallback": "DevoxxMA2016-tracks.json"
+ },
+ 
+ 
+ {
+ "url": "https://cfp.devoxx.ma/api/conferences/DevoxxMA2016/proposalTypes",
+ "etag": "-11-96935546",
+ "fallback": "DevoxxMA2016-proposalTypes.json"
+ },
+ 
+ 
+ 
+ 
+ {
+ "url": "https://cfp.devoxx.ma/api/conferences/DevoxxMA2016/schedules",
+ "etag": "1565948479",
+ "fallback": "DevoxxMA2016-conferences.json"
+ },
+ 
+ 
+ 
+ {
+ "url": "https://cfp.devoxx.ma/api/conferences/DevoxxMA2016/fileTalks",
+ "etag": "v2_-1385439971_______",
+ "fallback": "DevoxxMA2016-talks.json"
+ },
+ {
+ "url": "https://cfp.devoxx.ma/api/conferences/DevoxxMA2016/speakers",
+ "etag": "1834998537______",
+ "fallback": "DevoxxMA2016-speakers.json"
+ }
+ 
+
+ 
 
  
  

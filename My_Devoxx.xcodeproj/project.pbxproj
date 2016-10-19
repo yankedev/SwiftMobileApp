@@ -64,6 +64,11 @@
 		E14B8B681DB828C8008B572C /* DV16-speakers.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B671DB828C8008B572C /* DV16-speakers.json */; };
 		E14B8B6A1DB828D6008B572C /* DV16-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B691DB828D6008B572C /* DV16-tracks.json */; };
 		E14B8B6C1DB828E6008B572C /* DV16-talks.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B6B1DB828E6008B572C /* DV16-talks.json */; };
+		E14B8B6F1DB833FA008B572C /* DevoxxMA2016-conferences.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B6E1DB833FA008B572C /* DevoxxMA2016-conferences.json */; };
+		E14B8B711DB8340E008B572C /* DevoxxMA2016-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B701DB8340E008B572C /* DevoxxMA2016-proposalTypes.json */; };
+		E14B8B731DB8341D008B572C /* DevoxxMA2016-speakers.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B721DB8341D008B572C /* DevoxxMA2016-speakers.json */; };
+		E14B8B751DB8342F008B572C /* DevoxxMA2016-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B741DB8342F008B572C /* DevoxxMA2016-tracks.json */; };
+		E14B8B771DB83439008B572C /* DevoxxMA2016-talks.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B761DB83439008B572C /* DevoxxMA2016-talks.json */; };
 		E14E94B31C980971006B6D8E /* HelperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14E94B21C980971006B6D8E /* HelperManager.swift */; };
 		E15D04131CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D040D1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png */; };
 		E15D04141CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D040E1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png */; };
@@ -395,6 +400,11 @@
 		E14B8B671DB828C8008B572C /* DV16-speakers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV16-speakers.json"; sourceTree = "<group>"; };
 		E14B8B691DB828D6008B572C /* DV16-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV16-tracks.json"; sourceTree = "<group>"; };
 		E14B8B6B1DB828E6008B572C /* DV16-talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV16-talks.json"; sourceTree = "<group>"; };
+		E14B8B6E1DB833FA008B572C /* DevoxxMA2016-conferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxMA2016-conferences.json"; sourceTree = "<group>"; };
+		E14B8B701DB8340E008B572C /* DevoxxMA2016-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxMA2016-proposalTypes.json"; sourceTree = "<group>"; };
+		E14B8B721DB8341D008B572C /* DevoxxMA2016-speakers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxMA2016-speakers.json"; sourceTree = "<group>"; };
+		E14B8B741DB8342F008B572C /* DevoxxMA2016-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxMA2016-tracks.json"; sourceTree = "<group>"; };
+		E14B8B761DB83439008B572C /* DevoxxMA2016-talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxMA2016-talks.json"; sourceTree = "<group>"; };
 		E14E94B21C980971006B6D8E /* HelperManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperManager.swift; sourceTree = "<group>"; };
 		E15D040D1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevoxxHuntlyIntegrationIcon.png; sourceTree = "<group>"; };
 		E15D040E1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "DevoxxHuntlyIntegrationIcon@2x.png"; sourceTree = "<group>"; };
@@ -960,6 +970,18 @@
 			name = DV16;
 			sourceTree = "<group>";
 		};
+		E14B8B6D1DB833E6008B572C /* DevoxxMA2016 */ = {
+			isa = PBXGroup;
+			children = (
+				E14B8B6E1DB833FA008B572C /* DevoxxMA2016-conferences.json */,
+				E14B8B701DB8340E008B572C /* DevoxxMA2016-proposalTypes.json */,
+				E14B8B721DB8341D008B572C /* DevoxxMA2016-speakers.json */,
+				E14B8B741DB8342F008B572C /* DevoxxMA2016-tracks.json */,
+				E14B8B761DB83439008B572C /* DevoxxMA2016-talks.json */,
+			);
+			name = DevoxxMA2016;
+			sourceTree = "<group>";
+		};
 		E15D040C1CB1A000003301C8 /* Huntly */ = {
 			isa = PBXGroup;
 			children = (
@@ -1153,6 +1175,7 @@
 		E175F2741C49B18E00D7AC0A /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				E14B8B6D1DB833E6008B572C /* DevoxxMA2016 */,
 				E14B8B621DB82872008B572C /* DV16 */,
 				E11BB7C31D135F2800D38332 /* PL2016 */,
 				E15D04271CB730FD003301C8 /* DevoxxUK2016 */,
@@ -1455,6 +1478,7 @@
 				E1863EEC1CBB04FC00EA5DDA /* icon_bd.png in Resources */,
 				E175E8221C963E4F002A262A /* icon_agTest.png in Resources */,
 				E1863EED1CBB04FC00EA5DDA /* icon_cld.png in Resources */,
+				E14B8B711DB8340E008B572C /* DevoxxMA2016-proposalTypes.json in Resources */,
 				E175E8531C963E67002A262A /* ic_time@2x.png in Resources */,
 				E11BB7CB1D135F7A00D38332 /* DevoxxPL2016-conferences.json in Resources */,
 				E175E8241C963E4F002A262A /* icon_bigd.png in Resources */,
@@ -1504,8 +1528,10 @@
 				E17050E01CA560F700818E79 /* ic_wine@2x.png in Resources */,
 				E17050DF1CA560F700818E79 /* ic_beer@2x.png in Resources */,
 				E175E8801C963E9B002A262A /* DevoxxFR2016-conferences.json in Resources */,
+				E14B8B751DB8342F008B572C /* DevoxxMA2016-tracks.json in Resources */,
 				E175E7EC1C963E1F002A262A /* splash_btn_DevoxxFR2016@2x.png in Resources */,
 				E15D04161CB1A016003301C8 /* LogoDevoxxHuntly@1x.png in Resources */,
+				E14B8B6F1DB833FA008B572C /* DevoxxMA2016-conferences.json in Resources */,
 				E15D04171CB1A016003301C8 /* LogoDevoxxHuntly@2x.png in Resources */,
 				E175E84E1C963E67002A262A /* ic_filter_inactive@2x.png in Resources */,
 				E175E8611C963E7B002A262A /* devoxxExhibitionFloorPhone.jpg in Resources */,
@@ -1515,6 +1541,7 @@
 				E175E8101C963E3E002A262A /* icon_other.png in Resources */,
 				E175E8841C963E9B002A262A /* DevoxxFR2016-speaker.json in Resources */,
 				E15D04131CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png in Resources */,
+				E14B8B731DB8341D008B572C /* DevoxxMA2016-speakers.json in Resources */,
 				E175E7E41C963E17002A262A /* logo.png in Resources */,
 				E175E80C1C963E3E002A262A /* icon_conf.png in Resources */,
 				E175E88C1C963EA6002A262A /* StoredResource.json in Resources */,
@@ -1522,6 +1549,7 @@
 				E175E8571C963E67002A262A /* star@2x.png in Resources */,
 				E175E8131C963E3E002A262A /* icon_tia.png in Resources */,
 				E175E8111C963E3E002A262A /* icon_quick.png in Resources */,
+				E14B8B771DB83439008B572C /* DevoxxMA2016-talks.json in Resources */,
 				E14B8B681DB828C8008B572C /* DV16-speakers.json in Resources */,
 				E175E8501C963E67002A262A /* ic_place@2x.png in Resources */,
 				E15D04341CB732F3003301C8 /* DevoxxUK2016-tracks.json in Resources */,

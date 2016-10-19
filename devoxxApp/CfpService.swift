@@ -125,7 +125,7 @@ class CfpService : AbstractService {
                 let fetchRequest = NSFetchRequest(entityName: "Cfp")
                 fetchRequest.includesSubentities = true
                 fetchRequest.returnsObjectsAsFaults = false
-                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: false)]
                 //@TODO quick fix
                 fetchRequest.predicate = NSPredicate(format: "id != %@", "DevoxxPL2015")
                 
