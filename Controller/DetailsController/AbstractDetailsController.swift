@@ -66,10 +66,15 @@ public class AbstractDetailsController : UIViewController {
         actionButtonView1.tintColor = UIColor.whiteColor()
         actionButtonView1.setup(true)
         
-        let image2 = UIImage(named: CfpService.sharedInstance.getVotingImage())?.imageWithRenderingMode(.AlwaysTemplate)
-        actionButtonView2.button.setImage(image2, forState: .Normal)
-        actionButtonView2.tintColor = UIColor.whiteColor()
-        actionButtonView2.setup(true)
+        if CfpService.sharedInstance.getVotingImage() == "ic_thee" {
+            actionButtonView2.hidden = true
+        }
+        else {
+            let image2 = UIImage(named: CfpService.sharedInstance.getVotingImage())?.imageWithRenderingMode(.AlwaysTemplate)
+            actionButtonView2.button.setImage(image2, forState: .Normal)
+            actionButtonView2.tintColor = UIColor.whiteColor()
+            actionButtonView2.setup(true)
+        }
         
         actionButtonViewBack.button.addTarget(self, action: #selector(AbstractDetailsController.back), forControlEvents: .TouchUpInside)
         

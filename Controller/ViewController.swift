@@ -301,7 +301,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         wheelView.click(0)
         globeView = wheelView.globe
         
-        shouldByPass()
+        //shouldByPass()
     }
     
     func shouldByPass() {
@@ -325,7 +325,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             }
        
             
-            wheelView.click(idx)
+            wheelView.click(0)
             showStaticView(true)
             prepareNext()
         }
