@@ -87,6 +87,7 @@
                 urlToFetch = ""
             }
             
+            print(urlToFetch)
            
             let config = NSURLSessionConfiguration.defaultSessionConfiguration()
 

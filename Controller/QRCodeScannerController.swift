@@ -120,7 +120,7 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
             if metadataObj.stringValue != nil {
-                var qrCodeId = metadataObj.stringValue.characters.split{$0 == "::"}.map(String.init)
+                var qrCodeId = metadataObj.stringValue.characters.split{$0 == ":"}.map(String.init)
                 APIManager.setQrCode(qrCodeId[0])
                 dismissViewControllerAnimated(true, completion: completionOnceScanned)
             }

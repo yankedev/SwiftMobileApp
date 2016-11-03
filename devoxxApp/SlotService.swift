@@ -121,6 +121,7 @@ class SlotService : AbstractService {
                             
                             let items = try self.privateManagedObjectContext.executeFetchRequest(fetch)
                             let nsm = subCoreDataObject as? Talk
+                            nsm?.mutableSetValueForKey("speakers").removeAllObjects()
                             nsm?.mutableSetValueForKey("speakers").addObjectsFromArray(items)
                         }
                     }
