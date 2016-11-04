@@ -14,8 +14,10 @@
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Your camera is used only to scan your badge QRCode</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.4</string>
+	<string>1.7</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -30,7 +32,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>116</string>
+	<string>123</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>

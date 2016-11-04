@@ -54,7 +54,9 @@ class SpeakerDetailService : AbstractService {
                     
                     let fetchRequest = NSFetchRequest(entityName: "SpeakerDetail")
                     let predicate = NSPredicate(format: "uuid = %@", singleHelper.getMainId())
-                    fetchRequest.predicate = predicate
+                    let predicateEvent = NSPredicate(format: "speaker.cfp.id = %@", CfpService.sharedInstance.getCfpId())
+                    fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, predicateEvent])
+              
                     let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as? [SpeakerDetail]
                     
                     if items!.count > 0 {

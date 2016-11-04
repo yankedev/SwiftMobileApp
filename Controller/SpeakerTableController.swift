@@ -261,7 +261,7 @@ public class SpeakerTableController: UITableViewController, NSFetchedResultsCont
     
     
     public func fetchUpdate() {
-        //print("goto : \(fetchUrl())")
+        print("goto : \(fetchUrl())")
         APIReloadManager.fetchUpdate(fetchUrl(), service: SpeakerService.sharedInstance, completedAction: fetchCompleted)
     }
     

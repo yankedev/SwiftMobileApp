@@ -33,6 +33,7 @@ class LeftIconView : UIView {
         
         imageView.frame = CGRectInset(frame, 8, 8);
         imageView.image = UIImage(named: "icon_archisec.png")
+        imageView.center =  CGPointMake(25, 25)
         
     }
     

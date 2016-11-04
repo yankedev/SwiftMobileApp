@@ -133,7 +133,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
             cell!.leftIconView.imageView.image = relatedObject.getPrimaryImage()
             
-            cell!.rightTextView.topTitleView.talkTrackName.text = relatedObject.getDetailInfoWithIndex(2)
+            cell!.rightTextView.topTitleView.talkTrackName.text = "\(relatedObject.getDetailInfoWithIndex(4)?.capitalizedString ?? "") - \(relatedObject.getDetailInfoWithIndex(2) ?? "")"
             cell!.rightTextView.topTitleView.talkTitle.text = relatedObject.getTitle()
             
             cell!.rightTextView.locationView.label.text = relatedObject.getDetailInfoWithIndex(0)

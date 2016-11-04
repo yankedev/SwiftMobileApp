@@ -47,7 +47,8 @@ class SpeakerService : AbstractService, ImageServiceProtocol {
                     
                     let fetchRequest = NSFetchRequest(entityName: "Speaker")
                     let predicate = NSPredicate(format: "uuid = %@", singleHelper.getMainId())
-                    fetchRequest.predicate = predicate
+                    let predicateEvent = NSPredicate(format: "cfp.id = %@", CfpService.sharedInstance.getCfpId())
+                    fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, predicateEvent])
                     let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
                     
                     if items.count == 0 {

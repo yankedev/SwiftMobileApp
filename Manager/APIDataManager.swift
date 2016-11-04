@@ -87,6 +87,7 @@
                 urlToFetch = ""
             }
             
+            print(urlToFetch)
            
             let config = NSURLSessionConfiguration.defaultSessionConfiguration()
 
@@ -94,7 +95,7 @@
             
             let session = NSURLSession(configuration: config)
             
-        
+            print(urlToFetch)
             let task = session.dataTaskWithURL(NSURL(string: urlToFetch)!) {
                 data, response1, error in
                 
@@ -103,7 +104,7 @@
                 
                 
                 if let _ = error {
-                    
+                    print(error)
                     if loadFromFile {
                        
                         let data = APIManager.getFallBackData(storedResource)
