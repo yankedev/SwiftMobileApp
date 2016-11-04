@@ -29,11 +29,12 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
     var speakerListTwitter : String?
     var speakersId : [NSManagedObjectID]?
     var relatedObjects: [DataHelperProtocol]?
+    var day : String?
     
     init() {
     }
     
-    init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?, isBreak: Bool, roomName:String?, friendlyTime : String?, speakerList : String?, speakerListTwitter : String?, speakersId : [NSManagedObjectID], objectID : NSManagedObjectID?, isFav : Bool) {
+    init(title: String?, lang: String?, trackId: String?, talkType: String?, track: String?, id: String?, summary: String?, isBreak: Bool, roomName:String?, friendlyTime : String?, speakerList : String?, speakerListTwitter : String?, speakersId : [NSManagedObjectID], objectID : NSManagedObjectID?, isFav : Bool, day : String) {
         self.title = title ?? ""
         self.lang = lang ?? ""
         self.trackId = trackId ?? ""
@@ -49,6 +50,7 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
         self.speakerListTwitter = speakerListTwitter ?? ""
         self.speakersId = speakersId ?? [NSManagedObjectID]()
         self.isFav = isFav ?? false
+        self.day = day ?? ""
     }
     
     func getMainId() -> String {
@@ -126,7 +128,7 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
 
     
     func detailInfos() -> [String] {
-        return [roomName!, HelperManager.getShortTalkTypeName(talkType!), friendlyTime!, speakerList!]
+        return [roomName!, HelperManager.getShortTalkTypeName(talkType!), friendlyTime!, speakerList!, day!]
     }
     
     func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol? {
