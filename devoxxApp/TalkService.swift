@@ -150,6 +150,7 @@ class TalkService : AbstractService {
         }
         
         andPredicate.append(NSCompoundPredicate(andPredicateWithSubpredicates: attributeOrPredicate))
+        andPredicate.append(NSPredicate(format: "title != %@", ""))
         return NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
     }
     

@@ -179,7 +179,7 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
     }
     
     func isMatching(str : String) -> Bool {
-        return getFirstInformation().lowercaseString.containsString(str.lowercaseString)
+        return getFirstInformation().lowercaseString.containsString(str.lowercaseString) || getFriendlySpeaker("", useTwitter: false).lowercaseString.containsString(str.lowercaseString)
     }
     
     
