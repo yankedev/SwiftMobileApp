@@ -44,6 +44,10 @@ class SlotService : AbstractService {
                 fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
                 fetchRequest.propertiesToFetch = ["date"]
                 fetchRequest.predicate = predicateEvent
+                fetchRequest.shouldRefreshRefetchedObjects = true
+                fetchRequest.includesSubentities = true
+                fetchRequest.includesPendingChanges = true
+                
                 
                 let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
                 

@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8985D88EA997D39C857767DA /* Pods_My_Devoxx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47CEF9376C5B292EF5D1A9B0 /* Pods_My_Devoxx.framework */; };
+		65DB808E02588A89B486B1E0 /* Pods_Smartvoxx_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6F299A3489A00B89420624 /* Pods_Smartvoxx_Extension.framework */; };
+		AB2D9E99FA548BB174065574 /* Pods_My_Devoxx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D17CC949E1270F6873BB059 /* Pods_My_Devoxx.framework */; };
 		B904E26C1CB9B65700330EC0 /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B904E26B1CB9B65700330EC0 /* WatchConnectivity.framework */; };
 		B9520A631CB9719C00AF60F3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9520A621CB9719C00AF60F3 /* CoreData.framework */; };
 		B95C581D1CB96EF9007BD5A3 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B95C581B1CB96EF9007BD5A3 /* Interface.storyboard */; };
@@ -51,27 +52,13 @@
 		E10E7ACD1C18BF7100F6220B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACC1C18BF7100F6220B /* Images.xcassets */; };
 		E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10E7ACE1C18BF7100F6220B /* LaunchScreen.xib */; };
 		E10E7ADC1C18BF7100F6220B /* devoxxAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */; };
-		E11BB7C51D135F4F00D38332 /* DevoxxPL2016-speaker.json in Resources */ = {isa = PBXBuildFile; fileRef = E11BB7C41D135F4F00D38332 /* DevoxxPL2016-speaker.json */; };
-		E11BB7C71D135F6400D38332 /* DevoxxPL2016-talks.json in Resources */ = {isa = PBXBuildFile; fileRef = E11BB7C61D135F6400D38332 /* DevoxxPL2016-talks.json */; };
-		E11BB7C91D135F6F00D38332 /* DevoxxPL2016-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = E11BB7C81D135F6F00D38332 /* DevoxxPL2016-tracks.json */; };
-		E11BB7CB1D135F7A00D38332 /* DevoxxPL2016-conferences.json in Resources */ = {isa = PBXBuildFile; fileRef = E11BB7CA1D135F7A00D38332 /* DevoxxPL2016-conferences.json */; };
-		E11BB7CD1D135F8A00D38332 /* DevoxxPL2016-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = E11BB7CC1D135F8A00D38332 /* DevoxxPL2016-proposalTypes.json */; };
 		E11BB7CF1D1363BF00D38332 /* splash_btn_DevoxxPL2015@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E11BB7CE1D1363BF00D38332 /* splash_btn_DevoxxPL2015@2x.png */; };
 		E14B8B5F1DB8282E008B572C /* splash_btn_DV16@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B5E1DB8282E008B572C /* splash_btn_DV16@2x.png */; };
 		E14B8B611DB82853008B572C /* splash_btn_DevoxxMA2016@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B601DB82853008B572C /* splash_btn_DevoxxMA2016@2x.png */; };
-		E14B8B641DB82890008B572C /* DV16-conferences.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B631DB82890008B572C /* DV16-conferences.json */; };
-		E14B8B661DB828AC008B572C /* DV16-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B651DB828AC008B572C /* DV16-proposalTypes.json */; };
-		E14B8B681DB828C8008B572C /* DV16-speakers.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B671DB828C8008B572C /* DV16-speakers.json */; };
-		E14B8B6A1DB828D6008B572C /* DV16-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B691DB828D6008B572C /* DV16-tracks.json */; };
-		E14B8B6C1DB828E6008B572C /* DV16-talks.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B6B1DB828E6008B572C /* DV16-talks.json */; };
-		E14B8B6F1DB833FA008B572C /* DevoxxMA2016-conferences.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B6E1DB833FA008B572C /* DevoxxMA2016-conferences.json */; };
-		E14B8B711DB8340E008B572C /* DevoxxMA2016-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B701DB8340E008B572C /* DevoxxMA2016-proposalTypes.json */; };
-		E14B8B731DB8341D008B572C /* DevoxxMA2016-speakers.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B721DB8341D008B572C /* DevoxxMA2016-speakers.json */; };
-		E14B8B751DB8342F008B572C /* DevoxxMA2016-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B741DB8342F008B572C /* DevoxxMA2016-tracks.json */; };
-		E14B8B771DB83439008B572C /* DevoxxMA2016-talks.json in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B761DB83439008B572C /* DevoxxMA2016-talks.json */; };
 		E14B8B791DB83789008B572C /* splash_btn_DevoxxUS2017@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B781DB83789008B572C /* splash_btn_DevoxxUS2017@2x.png */; };
 		E14B8B7B1DB837CC008B572C /* DevoxxUSHomePage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E14B8B7A1DB837CC008B572C /* DevoxxUSHomePage.jpg */; };
 		E14E94B31C980971006B6D8E /* HelperManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14E94B21C980971006B6D8E /* HelperManager.swift */; };
+		E14FBFF79E2343705B08F2D7 /* Pods_My_DevoxxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E65B3116ED0E2D629F329E5 /* Pods_My_DevoxxTests.framework */; };
 		E15D04131CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D040D1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png */; };
 		E15D04141CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D040E1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png */; };
 		E15D04151CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D040F1CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@3x.png */; };
@@ -83,11 +70,6 @@
 		E15D041E1CB1AD59003301C8 /* tickets@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D041D1CB1AD59003301C8 /* tickets@2x.png */; };
 		E15D04201CB1AD5E003301C8 /* tickets@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E15D041F1CB1AD5E003301C8 /* tickets@3x.png */; };
 		E15D04261CB5B3FA003301C8 /* HuntlyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15D04251CB5B3FA003301C8 /* HuntlyNavigationController.swift */; };
-		E15D042F1CB732F3003301C8 /* DevoxxUK2016-conferences.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D04281CB732F3003301C8 /* DevoxxUK2016-conferences.json */; };
-		E15D04311CB732F3003301C8 /* DevoxxUK2016-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D042A1CB732F3003301C8 /* DevoxxUK2016-proposalTypes.json */; };
-		E15D04321CB732F3003301C8 /* DevoxxUK2016-speaker.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D042B1CB732F3003301C8 /* DevoxxUK2016-speaker.json */; };
-		E15D04331CB732F3003301C8 /* DevoxxUK2016-talks.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D042C1CB732F3003301C8 /* DevoxxUK2016-talks.json */; };
-		E15D04341CB732F3003301C8 /* DevoxxUK2016-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = E15D042D1CB732F3003301C8 /* DevoxxUK2016-tracks.json */; };
 		E17050DF1CA560F700818E79 /* ic_beer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17050DD1CA560F700818E79 /* ic_beer@2x.png */; };
 		E17050E01CA560F700818E79 /* ic_wine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E17050DE1CA560F700818E79 /* ic_wine@2x.png */; };
 		E175E6161C9638A2002A262A /* ActionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E5FC1C9638A2002A262A /* ActionButtonView.swift */; };
@@ -221,18 +203,6 @@
 		E175E8621C963E7B002A262A /* devoxxExhibitionFloorTablet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E175E85C1C963E7B002A262A /* devoxxExhibitionFloorTablet.jpg */; };
 		E175E8631C963E7B002A262A /* DevoxxFRExhibitionPhone.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E175E85D1C963E7B002A262A /* DevoxxFRExhibitionPhone.jpg */; };
 		E175E8641C963E7B002A262A /* DevoxxFRExhibitionTablet.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E175E85E1C963E7B002A262A /* DevoxxFRExhibitionTablet.jpg */; };
-		E175E86E1C963E91002A262A /* DV15-conferences.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8651C963E91002A262A /* DV15-conferences.json */; };
-		E175E8711C963E91002A262A /* DV15-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8681C963E91002A262A /* DV15-proposalTypes.json */; };
-		E175E8721C963E91002A262A /* DV15-speakers.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8691C963E91002A262A /* DV15-speakers.json */; };
-		E175E8741C963E91002A262A /* DV15-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E86B1C963E91002A262A /* DV15-tracks.json */; };
-		E175E8761C963E91002A262A /* DV15-talks.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E86D1C963E91002A262A /* DV15-talks.json */; };
-		E175E8801C963E9B002A262A /* DevoxxFR2016-conferences.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8771C963E9B002A262A /* DevoxxFR2016-conferences.json */; };
-		E175E8811C963E9B002A262A /* DevoxxFR2016-talks.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8781C963E9B002A262A /* DevoxxFR2016-talks.json */; };
-		E175E8831C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87A1C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json */; };
-		E175E8841C963E9B002A262A /* DevoxxFR2016-speaker.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87B1C963E9B002A262A /* DevoxxFR2016-speaker.json */; };
-		E175E8861C963E9B002A262A /* DEVOXXFR2016-tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E87D1C963E9B002A262A /* DEVOXXFR2016-tracks.json */; };
-		E175E88B1C963EA6002A262A /* Cfp.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E8891C963EA6002A262A /* Cfp.json */; };
-		E175E88C1C963EA6002A262A /* StoredResource.json in Resources */ = {isa = PBXBuildFile; fileRef = E175E88A1C963EA6002A262A /* StoredResource.json */; };
 		E175E89B1C963EB4002A262A /* AttributeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E88D1C963EB4002A262A /* AttributeHelper.swift */; };
 		E175E89C1C963EB4002A262A /* CfpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E88E1C963EB4002A262A /* CfpHelper.swift */; };
 		E175E89D1C963EB4002A262A /* DataHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E175E88F1C963EB4002A262A /* DataHelperProtocol.swift */; };
@@ -284,16 +254,15 @@
 		E1E9E51D1C979BA800EC347D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E51F1C979BA800EC347D /* InfoPlist.strings */; };
 		E1E9E5221C979BA800EC347D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E5241C979BA800EC347D /* InfoPlist.strings */; };
 		E1E9E5271C979BA800EC347D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1E9E5291C979BA800EC347D /* Localizable.strings */; };
+		EB5FEF1C1E366F04006CF6D2 /* StoredResource.json in Resources */ = {isa = PBXBuildFile; fileRef = EB5FEF1B1E366F04006CF6D2 /* StoredResource.json */; };
+		EB5FEF1E1E366FF3006CF6D2 /* Cfp.json in Resources */ = {isa = PBXBuildFile; fileRef = EB5FEF1D1E366FF3006CF6D2 /* Cfp.json */; };
+		EB5FEF201E36838F006CF6D2 /* splash_btn_VDZ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB5FEF1F1E36838F006CF6D2 /* splash_btn_VDZ@2x.png */; };
+		EB839D071E3A6F3F008E3703 /* voxxed-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = EB839D061E3A6F3F008E3703 /* voxxed-logo.png */; };
+		EBC776261E40E61300CDA886 /* splash_btn_VDT@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EBC776251E40E61300CDA886 /* splash_btn_VDT@2x.png */; };
+		FE4C17ACAC983109864FECB7 /* Pods_Smartvoxx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E8E26FB3597E339FED9DB1 /* Pods_Smartvoxx.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B95C58271CB96EF9007BD5A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E10E7AB51C18BF7100F6220B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B95C58241CB96EF9007BD5A3;
-			remoteInfo = "Smartvoxx Extension";
-		};
 		B95C58391CB96EF9007BD5A3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E10E7AB51C18BF7100F6220B /* Project object */;
@@ -307,6 +276,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = E10E7ABC1C18BF7100F6220B;
 			remoteInfo = devoxxApp;
+		};
+		EBB15D0D1E24050D001FE2D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E10E7AB51C18BF7100F6220B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B95C58241CB96EF9007BD5A3;
+			remoteInfo = "Smartvoxx Extension";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -336,9 +312,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0FB185179EB1A53D28BD306A /* Pods-My_Devoxx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Devoxx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My_Devoxx/Pods-My_Devoxx.debug.xcconfig"; sourceTree = "<group>"; };
-		47CEF9376C5B292EF5D1A9B0 /* Pods_My_Devoxx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Devoxx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6174ADBC7F4F4EA4AF5CA638 /* Pods-My_Devoxx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Devoxx.release.xcconfig"; path = "Pods/Target Support Files/Pods-My_Devoxx/Pods-My_Devoxx.release.xcconfig"; sourceTree = "<group>"; };
+		1D17CC949E1270F6873BB059 /* Pods_My_Devoxx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_Devoxx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3179F8C29C1F28596721C062 /* Pods-My_DevoxxTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_DevoxxTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-My_DevoxxTests/Pods-My_DevoxxTests.release.xcconfig"; sourceTree = "<group>"; };
+		545862E151C918076A63519A /* Pods-Smartvoxx Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smartvoxx Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smartvoxx Extension/Pods-Smartvoxx Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		554BB179BDB4DD810A836C54 /* Pods-My_DevoxxTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_DevoxxTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My_DevoxxTests/Pods-My_DevoxxTests.debug.xcconfig"; sourceTree = "<group>"; };
+		57C10331F61D13F7185DB40A /* Pods-My_Devoxx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Devoxx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-My_Devoxx/Pods-My_Devoxx.debug.xcconfig"; sourceTree = "<group>"; };
+		5A32637F6CAA44CD119FD9B2 /* Pods-Smartvoxx Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smartvoxx Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smartvoxx Extension/Pods-Smartvoxx Extension.release.xcconfig"; sourceTree = "<group>"; };
+		63E8E26FB3597E339FED9DB1 /* Pods_Smartvoxx.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smartvoxx.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E65B3116ED0E2D629F329E5 /* Pods_My_DevoxxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_My_DevoxxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8360CCEFE0D44059A6A09CBA /* Pods-Smartvoxx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smartvoxx.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smartvoxx/Pods-Smartvoxx.release.xcconfig"; sourceTree = "<group>"; };
+		B2E0FC1E7519E2A713510E84 /* Pods-My_Devoxx.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-My_Devoxx.release.xcconfig"; path = "Pods/Target Support Files/Pods-My_Devoxx/Pods-My_Devoxx.release.xcconfig"; sourceTree = "<group>"; };
 		B904E26B1CB9B65700330EC0 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 		B9520A621CB9719C00AF60F3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.2.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		B95C58191CB96EF9007BD5A3 /* Smartvoxx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Smartvoxx.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -389,24 +372,9 @@
 		E10E7AD51C18BF7100F6220B /* My_DevoxxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = My_DevoxxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10E7ADA1C18BF7100F6220B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E10E7ADB1C18BF7100F6220B /* devoxxAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = devoxxAppTests.swift; sourceTree = "<group>"; };
-		E11BB7C41D135F4F00D38332 /* DevoxxPL2016-speaker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxPL2016-speaker.json"; sourceTree = "<group>"; };
-		E11BB7C61D135F6400D38332 /* DevoxxPL2016-talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxPL2016-talks.json"; sourceTree = "<group>"; };
-		E11BB7C81D135F6F00D38332 /* DevoxxPL2016-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxPL2016-tracks.json"; sourceTree = "<group>"; };
-		E11BB7CA1D135F7A00D38332 /* DevoxxPL2016-conferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxPL2016-conferences.json"; sourceTree = "<group>"; };
-		E11BB7CC1D135F8A00D38332 /* DevoxxPL2016-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxPL2016-proposalTypes.json"; sourceTree = "<group>"; };
 		E11BB7CE1D1363BF00D38332 /* splash_btn_DevoxxPL2015@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_btn_DevoxxPL2015@2x.png"; sourceTree = "<group>"; };
 		E14B8B5E1DB8282E008B572C /* splash_btn_DV16@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_btn_DV16@2x.png"; sourceTree = "<group>"; };
 		E14B8B601DB82853008B572C /* splash_btn_DevoxxMA2016@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_btn_DevoxxMA2016@2x.png"; sourceTree = "<group>"; };
-		E14B8B631DB82890008B572C /* DV16-conferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV16-conferences.json"; sourceTree = "<group>"; };
-		E14B8B651DB828AC008B572C /* DV16-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV16-proposalTypes.json"; sourceTree = "<group>"; };
-		E14B8B671DB828C8008B572C /* DV16-speakers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV16-speakers.json"; sourceTree = "<group>"; };
-		E14B8B691DB828D6008B572C /* DV16-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV16-tracks.json"; sourceTree = "<group>"; };
-		E14B8B6B1DB828E6008B572C /* DV16-talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV16-talks.json"; sourceTree = "<group>"; };
-		E14B8B6E1DB833FA008B572C /* DevoxxMA2016-conferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxMA2016-conferences.json"; sourceTree = "<group>"; };
-		E14B8B701DB8340E008B572C /* DevoxxMA2016-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxMA2016-proposalTypes.json"; sourceTree = "<group>"; };
-		E14B8B721DB8341D008B572C /* DevoxxMA2016-speakers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxMA2016-speakers.json"; sourceTree = "<group>"; };
-		E14B8B741DB8342F008B572C /* DevoxxMA2016-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxMA2016-tracks.json"; sourceTree = "<group>"; };
-		E14B8B761DB83439008B572C /* DevoxxMA2016-talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxMA2016-talks.json"; sourceTree = "<group>"; };
 		E14B8B781DB83789008B572C /* splash_btn_DevoxxUS2017@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_btn_DevoxxUS2017@2x.png"; sourceTree = "<group>"; };
 		E14B8B7A1DB837CC008B572C /* DevoxxUSHomePage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxUSHomePage.jpg; sourceTree = "<group>"; };
 		E14E94B21C980971006B6D8E /* HelperManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperManager.swift; sourceTree = "<group>"; };
@@ -421,11 +389,6 @@
 		E15D041D1CB1AD59003301C8 /* tickets@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tickets@2x.png"; sourceTree = "<group>"; };
 		E15D041F1CB1AD5E003301C8 /* tickets@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tickets@3x.png"; sourceTree = "<group>"; };
 		E15D04251CB5B3FA003301C8 /* HuntlyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntlyNavigationController.swift; sourceTree = "<group>"; };
-		E15D04281CB732F3003301C8 /* DevoxxUK2016-conferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-conferences.json"; sourceTree = "<group>"; };
-		E15D042A1CB732F3003301C8 /* DevoxxUK2016-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-proposalTypes.json"; sourceTree = "<group>"; };
-		E15D042B1CB732F3003301C8 /* DevoxxUK2016-speaker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-speaker.json"; sourceTree = "<group>"; };
-		E15D042C1CB732F3003301C8 /* DevoxxUK2016-talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-talks.json"; sourceTree = "<group>"; };
-		E15D042D1CB732F3003301C8 /* DevoxxUK2016-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxUK2016-tracks.json"; sourceTree = "<group>"; };
 		E15D04361CB788BB003301C8 /* My Devoxx.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "My Devoxx.entitlements"; sourceTree = "<group>"; };
 		E17050DD1CA560F700818E79 /* ic_beer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_beer@2x.png"; sourceTree = "<group>"; };
 		E17050DE1CA560F700818E79 /* ic_wine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_wine@2x.png"; sourceTree = "<group>"; };
@@ -562,18 +525,6 @@
 		E175E85C1C963E7B002A262A /* devoxxExhibitionFloorTablet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = devoxxExhibitionFloorTablet.jpg; sourceTree = "<group>"; };
 		E175E85D1C963E7B002A262A /* DevoxxFRExhibitionPhone.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxFRExhibitionPhone.jpg; sourceTree = "<group>"; };
 		E175E85E1C963E7B002A262A /* DevoxxFRExhibitionTablet.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = DevoxxFRExhibitionTablet.jpg; sourceTree = "<group>"; };
-		E175E8651C963E91002A262A /* DV15-conferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-conferences.json"; sourceTree = "<group>"; };
-		E175E8681C963E91002A262A /* DV15-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-proposalTypes.json"; sourceTree = "<group>"; };
-		E175E8691C963E91002A262A /* DV15-speakers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-speakers.json"; sourceTree = "<group>"; };
-		E175E86B1C963E91002A262A /* DV15-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-tracks.json"; sourceTree = "<group>"; };
-		E175E86D1C963E91002A262A /* DV15-talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DV15-talks.json"; sourceTree = "<group>"; };
-		E175E8771C963E9B002A262A /* DevoxxFR2016-conferences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-conferences.json"; sourceTree = "<group>"; };
-		E175E8781C963E9B002A262A /* DevoxxFR2016-talks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-talks.json"; sourceTree = "<group>"; };
-		E175E87A1C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DEVOXXFR2016-proposalTypes.json"; sourceTree = "<group>"; };
-		E175E87B1C963E9B002A262A /* DevoxxFR2016-speaker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DevoxxFR2016-speaker.json"; sourceTree = "<group>"; };
-		E175E87D1C963E9B002A262A /* DEVOXXFR2016-tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "DEVOXXFR2016-tracks.json"; sourceTree = "<group>"; };
-		E175E8891C963EA6002A262A /* Cfp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cfp.json; sourceTree = "<group>"; };
-		E175E88A1C963EA6002A262A /* StoredResource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StoredResource.json; sourceTree = "<group>"; };
 		E175E88D1C963EB4002A262A /* AttributeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributeHelper.swift; sourceTree = "<group>"; };
 		E175E88E1C963EB4002A262A /* CfpHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CfpHelper.swift; sourceTree = "<group>"; };
 		E175E88F1C963EB4002A262A /* DataHelperProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelperProtocol.swift; sourceTree = "<group>"; };
@@ -624,7 +575,14 @@
 		E1E9E51E1C979BA800EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E1E9E5231C979BA800EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E1E9E5281C979BA800EC347D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EB5FEF1B1E366F04006CF6D2 /* StoredResource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = StoredResource.json; path = devoxxApp/StoredResource.json; sourceTree = "<group>"; };
+		EB5FEF1D1E366FF3006CF6D2 /* Cfp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Cfp.json; path = devoxxApp/Cfp.json; sourceTree = "<group>"; };
+		EB5FEF1F1E36838F006CF6D2 /* splash_btn_VDZ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash_btn_VDZ@2x.png"; path = "Image/Wheel/splash_btn_VDZ@2x.png"; sourceTree = SOURCE_ROOT; };
+		EB839D061E3A6F3F008E3703 /* voxxed-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "voxxed-logo.png"; path = "Image/Logo/voxxed-logo.png"; sourceTree = SOURCE_ROOT; };
+		EBC776251E40E61300CDA886 /* splash_btn_VDT@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "splash_btn_VDT@2x.png"; path = "Image/Wheel/splash_btn_VDT@2x.png"; sourceTree = SOURCE_ROOT; };
+		EEAC83D185A33A9B2EEE3C27 /* Pods-Smartvoxx.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smartvoxx.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smartvoxx/Pods-Smartvoxx.debug.xcconfig"; sourceTree = "<group>"; };
 		F3ECDBE21D69151AF0720F57 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE6F299A3489A00B89420624 /* Pods_Smartvoxx_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Smartvoxx_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -633,6 +591,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9520A631CB9719C00AF60F3 /* CoreData.framework in Frameworks */,
+				65DB808E02588A89B486B1E0 /* Pods_Smartvoxx_Extension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D935B101196C28CDA569D442 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE4C17ACAC983109864FECB7 /* Pods_Smartvoxx.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -643,7 +610,7 @@
 				B904E26C1CB9B65700330EC0 /* WatchConnectivity.framework in Frameworks */,
 				E1E9E4FD1C97807D00EC347D /* Crashlytics.framework in Frameworks */,
 				E1E9E4FE1C97807D00EC347D /* Fabric.framework in Frameworks */,
-				8985D88EA997D39C857767DA /* Pods_My_Devoxx.framework in Frameworks */,
+				AB2D9E99FA548BB174065574 /* Pods_My_Devoxx.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,12 +618,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E14FBFF79E2343705B08F2D7 /* Pods_My_DevoxxTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44A30E0FC6EB7F35BD55A7C2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				57C10331F61D13F7185DB40A /* Pods-My_Devoxx.debug.xcconfig */,
+				B2E0FC1E7519E2A713510E84 /* Pods-My_Devoxx.release.xcconfig */,
+				554BB179BDB4DD810A836C54 /* Pods-My_DevoxxTests.debug.xcconfig */,
+				3179F8C29C1F28596721C062 /* Pods-My_DevoxxTests.release.xcconfig */,
+				EEAC83D185A33A9B2EEE3C27 /* Pods-Smartvoxx.debug.xcconfig */,
+				8360CCEFE0D44059A6A09CBA /* Pods-Smartvoxx.release.xcconfig */,
+				545862E151C918076A63519A /* Pods-Smartvoxx Extension.debug.xcconfig */,
+				5A32637F6CAA44CD119FD9B2 /* Pods-Smartvoxx Extension.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		580B78881C7A07A100060C00 /* Image */ = {
 			isa = PBXGroup;
 			children = (
@@ -734,6 +717,7 @@
 			children = (
 				E175E7E11C963E17002A262A /* devoxx.svg.png */,
 				E175E7E21C963E17002A262A /* logo.png */,
+				EB839D061E3A6F3F008E3703 /* voxxed-logo.png */,
 			);
 			name = Logo;
 			sourceTree = "<group>";
@@ -741,6 +725,8 @@
 		587797461C82067F00A1A7D5 /* Wheel */ = {
 			isa = PBXGroup;
 			children = (
+				EB5FEF1F1E36838F006CF6D2 /* splash_btn_VDZ@2x.png */,
+				EBC776251E40E61300CDA886 /* splash_btn_VDT@2x.png */,
 				E14B8B781DB83789008B572C /* splash_btn_DevoxxUS2017@2x.png */,
 				E14B8B5E1DB8282E008B572C /* splash_btn_DV16@2x.png */,
 				E175E7E51C963E1F002A262A /* globe.png */,
@@ -785,7 +771,10 @@
 				B904E26B1CB9B65700330EC0 /* WatchConnectivity.framework */,
 				B9520A621CB9719C00AF60F3 /* CoreData.framework */,
 				F3ECDBE21D69151AF0720F57 /* Pods.framework */,
-				47CEF9376C5B292EF5D1A9B0 /* Pods_My_Devoxx.framework */,
+				1D17CC949E1270F6873BB059 /* Pods_My_Devoxx.framework */,
+				7E65B3116ED0E2D629F329E5 /* Pods_My_DevoxxTests.framework */,
+				63E8E26FB3597E339FED9DB1 /* Pods_Smartvoxx.framework */,
+				FE6F299A3489A00B89420624 /* Pods_Smartvoxx_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -866,15 +855,6 @@
 			name = ManagedObjects;
 			sourceTree = "<group>";
 		};
-		C14F5424D9A9A4C738A22A11 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0FB185179EB1A53D28BD306A /* Pods-My_Devoxx.debug.xcconfig */,
-				6174ADBC7F4F4EA4AF5CA638 /* Pods-My_Devoxx.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		E10E7AB41C18BF7100F6220B = {
 			isa = PBXGroup;
 			children = (
@@ -885,20 +865,20 @@
 				E175E5F61C962295002A262A /* View */,
 				E175E5F41C962257002A262A /* Controller */,
 				E175E5F71C9624A3002A262A /* Manager */,
+				EB5FEF1A1E366E9E006CF6D2 /* Mock */,
 				E175F26F1C49AF4200D7AC0A /* Protocol */,
 				587797481C8206C200A1A7D5 /* Font */,
 				E175E5D71C93BF37002A262A /* Service */,
 				E1FA9BE91C1BE59A0077C09A /* ThirdParty */,
 				580B78881C7A07A100060C00 /* Image */,
-				E175F2741C49B18E00D7AC0A /* Mock */,
 				E1FA9C401C1BFD2D0077C09A /* Model */,
 				E10E7ABF1C18BF7100F6220B /* devoxxApp */,
 				E10E7AD81C18BF7100F6220B /* devoxxAppTests */,
 				B95C581A1CB96EF9007BD5A3 /* Smartvoxx */,
 				B95C58291CB96EF9007BD5A3 /* Smartvoxx Extension */,
 				E10E7ABE1C18BF7100F6220B /* Products */,
-				C14F5424D9A9A4C738A22A11 /* Pods */,
 				62ACD2D20B977D6D51F3C490 /* Frameworks */,
+				44A30E0FC6EB7F35BD55A7C2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -952,42 +932,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E11BB7C31D135F2800D38332 /* PL2016 */ = {
-			isa = PBXGroup;
-			children = (
-				E11BB7C41D135F4F00D38332 /* DevoxxPL2016-speaker.json */,
-				E11BB7C61D135F6400D38332 /* DevoxxPL2016-talks.json */,
-				E11BB7C81D135F6F00D38332 /* DevoxxPL2016-tracks.json */,
-				E11BB7CA1D135F7A00D38332 /* DevoxxPL2016-conferences.json */,
-				E11BB7CC1D135F8A00D38332 /* DevoxxPL2016-proposalTypes.json */,
-			);
-			name = PL2016;
-			sourceTree = "<group>";
-		};
-		E14B8B621DB82872008B572C /* DV16 */ = {
-			isa = PBXGroup;
-			children = (
-				E14B8B631DB82890008B572C /* DV16-conferences.json */,
-				E14B8B651DB828AC008B572C /* DV16-proposalTypes.json */,
-				E14B8B671DB828C8008B572C /* DV16-speakers.json */,
-				E14B8B691DB828D6008B572C /* DV16-tracks.json */,
-				E14B8B6B1DB828E6008B572C /* DV16-talks.json */,
-			);
-			name = DV16;
-			sourceTree = "<group>";
-		};
-		E14B8B6D1DB833E6008B572C /* DevoxxMA2016 */ = {
-			isa = PBXGroup;
-			children = (
-				E14B8B6E1DB833FA008B572C /* DevoxxMA2016-conferences.json */,
-				E14B8B701DB8340E008B572C /* DevoxxMA2016-proposalTypes.json */,
-				E14B8B721DB8341D008B572C /* DevoxxMA2016-speakers.json */,
-				E14B8B741DB8342F008B572C /* DevoxxMA2016-tracks.json */,
-				E14B8B761DB83439008B572C /* DevoxxMA2016-talks.json */,
-			);
-			name = DevoxxMA2016;
-			sourceTree = "<group>";
-		};
 		E15D040C1CB1A000003301C8 /* Huntly */ = {
 			isa = PBXGroup;
 			children = (
@@ -1006,18 +950,6 @@
 				E15D04251CB5B3FA003301C8 /* HuntlyNavigationController.swift */,
 			);
 			name = Huntly;
-			sourceTree = "<group>";
-		};
-		E15D04271CB730FD003301C8 /* DevoxxUK2016 */ = {
-			isa = PBXGroup;
-			children = (
-				E15D04281CB732F3003301C8 /* DevoxxUK2016-conferences.json */,
-				E15D042A1CB732F3003301C8 /* DevoxxUK2016-proposalTypes.json */,
-				E15D042B1CB732F3003301C8 /* DevoxxUK2016-speaker.json */,
-				E15D042C1CB732F3003301C8 /* DevoxxUK2016-talks.json */,
-				E15D042D1CB732F3003301C8 /* DevoxxUK2016-tracks.json */,
-			);
-			name = DevoxxUK2016;
 			sourceTree = "<group>";
 		};
 		E175E5D71C93BF37002A262A /* Service */ = {
@@ -1126,30 +1058,6 @@
 			name = Scheduler;
 			sourceTree = "<group>";
 		};
-		E175E5F91C962586002A262A /* DV15 */ = {
-			isa = PBXGroup;
-			children = (
-				E175E8651C963E91002A262A /* DV15-conferences.json */,
-				E175E8681C963E91002A262A /* DV15-proposalTypes.json */,
-				E175E8691C963E91002A262A /* DV15-speakers.json */,
-				E175E86B1C963E91002A262A /* DV15-tracks.json */,
-				E175E86D1C963E91002A262A /* DV15-talks.json */,
-			);
-			name = DV15;
-			sourceTree = "<group>";
-		};
-		E175E5FA1C962597002A262A /* DEVOXXFR2016 */ = {
-			isa = PBXGroup;
-			children = (
-				E175E8771C963E9B002A262A /* DevoxxFR2016-conferences.json */,
-				E175E8781C963E9B002A262A /* DevoxxFR2016-talks.json */,
-				E175E87A1C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json */,
-				E175E87B1C963E9B002A262A /* DevoxxFR2016-speaker.json */,
-				E175E87D1C963E9B002A262A /* DEVOXXFR2016-tracks.json */,
-			);
-			name = DEVOXXFR2016;
-			sourceTree = "<group>";
-		};
 		E175F26D1C49ACEF00D7AC0A /* Checkbox */ = {
 			isa = PBXGroup;
 			children = (
@@ -1175,22 +1083,6 @@
 				E1DF81131C985501002194C9 /* CallbackProtocol.swift */,
 			);
 			name = Protocol;
-			path = devoxxApp;
-			sourceTree = "<group>";
-		};
-		E175F2741C49B18E00D7AC0A /* Mock */ = {
-			isa = PBXGroup;
-			children = (
-				E14B8B6D1DB833E6008B572C /* DevoxxMA2016 */,
-				E14B8B621DB82872008B572C /* DV16 */,
-				E11BB7C31D135F2800D38332 /* PL2016 */,
-				E15D04271CB730FD003301C8 /* DevoxxUK2016 */,
-				E175E8891C963EA6002A262A /* Cfp.json */,
-				E175E88A1C963EA6002A262A /* StoredResource.json */,
-				E175E5FA1C962597002A262A /* DEVOXXFR2016 */,
-				E175E5F91C962586002A262A /* DV15 */,
-			);
-			name = Mock;
 			path = devoxxApp;
 			sourceTree = "<group>";
 		};
@@ -1303,6 +1195,15 @@
 			name = Helper;
 			sourceTree = "<group>";
 		};
+		EB5FEF1A1E366E9E006CF6D2 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				EB5FEF1D1E366FF3006CF6D2 /* Cfp.json */,
+				EB5FEF1B1E366F04006CF6D2 /* StoredResource.json */,
+			);
+			name = Mock;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1310,13 +1211,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B95C58421CB96EF9007BD5A3 /* Build configuration list for PBXNativeTarget "Smartvoxx" */;
 			buildPhases = (
+				F495D0542A37B55F3837636F /* [CP] Check Pods Manifest.lock */,
 				B95C58171CB96EF9007BD5A3 /* Resources */,
 				B95C58411CB96EF9007BD5A3 /* Embed App Extensions */,
+				D935B101196C28CDA569D442 /* Frameworks */,
+				76CDEC3A44D9B4DA354F8DE3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				B95C58281CB96EF9007BD5A3 /* PBXTargetDependency */,
+				EBB15D0E1E24050D001FE2D6 /* PBXTargetDependency */,
 			);
 			name = Smartvoxx;
 			productName = Smartvoxx;
@@ -1327,9 +1231,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B95C58401CB96EF9007BD5A3 /* Build configuration list for PBXNativeTarget "Smartvoxx Extension" */;
 			buildPhases = (
+				3D11CB8304FD877485C8C301 /* [CP] Check Pods Manifest.lock */,
 				B95C58211CB96EF9007BD5A3 /* Sources */,
 				B95C58221CB96EF9007BD5A3 /* Frameworks */,
 				B95C58231CB96EF9007BD5A3 /* Resources */,
+				7F836DEBEECCCB0EA8E6D147 /* [CP] Embed Pods Frameworks */,
+				A6137E17DF290DEAD11E6561 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1344,15 +1251,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E10E7ADF1C18BF7100F6220B /* Build configuration list for PBXNativeTarget "My_Devoxx" */;
 			buildPhases = (
-				66A2C4919FD08DBF1851017E /* Check Pods Manifest.lock */,
+				3746F28EE7A46F9771A24412 /* [CP] Check Pods Manifest.lock */,
 				E10E7AB91C18BF7100F6220B /* Sources */,
 				E10E7ABA1C18BF7100F6220B /* Frameworks */,
 				E10E7ABB1C18BF7100F6220B /* Resources */,
 				E1E9E4F61C977C3D00EC347D /* ShellScript */,
-				111378D7DE6CB3595BD72DFC /* Embed Pods Frameworks */,
-				6C0E30A7E4114E2121ABBEAD /* Copy Pods Resources */,
 				B95C58431CB96EF9007BD5A3 /* Embed Watch Content */,
 				E103FB1E1CBAC924001036FC /* ShellScript */,
+				7D19FD959000C1D226C12F97 /* [CP] Embed Pods Frameworks */,
+				81E880AD3174A5F13FA20718 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1368,9 +1275,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E10E7AE21C18BF7100F6220B /* Build configuration list for PBXNativeTarget "My_DevoxxTests" */;
 			buildPhases = (
+				2FCCC0D8C2148D2F7407A52A /* [CP] Check Pods Manifest.lock */,
 				E10E7AD11C18BF7100F6220B /* Sources */,
 				E10E7AD21C18BF7100F6220B /* Frameworks */,
 				E10E7AD31C18BF7100F6220B /* Resources */,
+				8C8D582DA6FC8234720885AA /* [CP] Embed Pods Frameworks */,
+				5DD1767A8E3A9BD9E3049912 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1395,18 +1305,21 @@
 				TargetAttributes = {
 					B95C58181CB96EF9007BD5A3 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 7F9RT8TS76;
+						DevelopmentTeam = JQTBK2WA78;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					B95C58241CB96EF9007BD5A3 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 7F9RT8TS76;
+						DevelopmentTeam = JQTBK2WA78;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 					};
 					E10E7ABC1C18BF7100F6220B = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 7F9RT8TS76;
+						DevelopmentTeam = JQTBK2WA78;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -1415,6 +1328,7 @@
 					};
 					E10E7AD41C18BF7100F6220B = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = JQTBK2WA78;
 						LastSwiftMigration = 0800;
 					};
 				};
@@ -1468,39 +1382,31 @@
 				E175E8D41C964172002A262A /* Roboto-Regular.ttf in Resources */,
 				E11BB7CF1D1363BF00D38332 /* splash_btn_DevoxxPL2015@2x.png in Resources */,
 				E175E8231C963E4F002A262A /* icon_archisec.png in Resources */,
-				E14B8B6C1DB828E6008B572C /* DV16-talks.json in Resources */,
 				E15D04201CB1AD5E003301C8 /* tickets@3x.png in Resources */,
 				E175E8001C963E32002A262A /* checkboxOn.png in Resources */,
 				E175E7FF1C963E32002A262A /* checkboxOff.png in Resources */,
 				E14B8B611DB82853008B572C /* splash_btn_DevoxxMA2016@2x.png in Resources */,
 				E175E8341C963E5C002A262A /* tabIconMap@2x.png in Resources */,
-				E15D042F1CB732F3003301C8 /* DevoxxUK2016-conferences.json in Resources */,
 				E175E8371C963E5C002A262A /* tabIconSpeaker@2x.png in Resources */,
 				E175E84F1C963E67002A262A /* ic_microphone@2x.png in Resources */,
 				E175E7FA1C963E29002A262A /* DevoxxPolandHomePage.jpg in Resources */,
-				E175E8831C963E9B002A262A /* DEVOXXFR2016-proposalTypes.json in Resources */,
-				E11BB7C51D135F4F00D38332 /* DevoxxPL2016-speaker.json in Resources */,
 				E175E8141C963E3E002A262A /* icon_uni.png in Resources */,
 				E1863EEC1CBB04FC00EA5DDA /* icon_bd.png in Resources */,
 				E175E8221C963E4F002A262A /* icon_agTest.png in Resources */,
 				E1863EED1CBB04FC00EA5DDA /* icon_cld.png in Resources */,
-				E14B8B711DB8340E008B572C /* DevoxxMA2016-proposalTypes.json in Resources */,
 				E175E8531C963E67002A262A /* ic_time@2x.png in Resources */,
-				E11BB7CB1D135F7A00D38332 /* DevoxxPL2016-conferences.json in Resources */,
 				E175E8241C963E4F002A262A /* icon_bigd.png in Resources */,
 				E175E85F1C963E7B002A262A /* devoxxCinameFloorPhone.jpg in Resources */,
 				E175E8521C963E67002A262A /* ic_star@2x.png in Resources */,
+				EB5FEF1C1E366F04006CF6D2 /* StoredResource.json in Resources */,
 				E175E8621C963E7B002A262A /* devoxxExhibitionFloorTablet.jpg in Resources */,
 				E175E80D1C963E3E002A262A /* icon_ignite.png in Resources */,
-				E175E8721C963E91002A262A /* DV15-speakers.json in Resources */,
 				E175E84C1C963E67002A262A /* ic_back@2x.png in Resources */,
 				E175E84B1C963E67002A262A /* event.png in Resources */,
-				E11BB7C91D135F6F00D38332 /* DevoxxPL2016-tracks.json in Resources */,
-				E11BB7CD1D135F8A00D38332 /* DevoxxPL2016-proposalTypes.json in Resources */,
+				EB839D071E3A6F3F008E3703 /* voxxed-logo.png in Resources */,
 				E175E82D1C963E4F002A262A /* icon_startup.png in Resources */,
 				E1C9E1681CB16B1900796D02 /* Huntly.storyboard in Resources */,
 				E1E9E5271C979BA800EC347D /* Localizable.strings in Resources */,
-				E14B8B641DB82890008B572C /* DV16-conferences.json in Resources */,
 				E175E7FC1C963E29002A262A /* talk_background.png in Resources */,
 				E10E7AD01C18BF7100F6220B /* LaunchScreen.xib in Resources */,
 				E175E7E31C963E17002A262A /* devoxx.svg.png in Resources */,
@@ -1517,28 +1423,21 @@
 				E1863EE71CBAFFA300EA5DDA /* icon_wm.png in Resources */,
 				E175E8271C963E4F002A262A /* icon_future.png in Resources */,
 				E175E8251C963E4F002A262A /* icon_cldops.png in Resources */,
-				E175E8711C963E91002A262A /* DV15-proposalTypes.json in Resources */,
 				E14B8B5F1DB8282E008B572C /* splash_btn_DV16@2x.png in Resources */,
 				E10E7ACD1C18BF7100F6220B /* Images.xcassets in Resources */,
-				E11BB7C71D135F6400D38332 /* DevoxxPL2016-talks.json in Resources */,
 				E175E7F81C963E29002A262A /* DevoxxFranceHomePage.jpg in Resources */,
 				E175E80E1C963E3E002A262A /* icon_key.png in Resources */,
 				E175E8561C963E67002A262A /* micro@2x.png in Resources */,
-				E175E8761C963E91002A262A /* DV15-talks.json in Resources */,
 				E1863EEE1CBB04FC00EA5DDA /* icon_m.png in Resources */,
 				E175E80B1C963E3E002A262A /* icon_bof.png in Resources */,
 				E15D04141CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@2x.png in Resources */,
-				E15D04321CB732F3003301C8 /* DevoxxUK2016-speaker.json in Resources */,
 				E175E7EB1C963E1F002A262A /* globe.png in Resources */,
 				E175E82B1C963E4F002A262A /* icon_mobile.png in Resources */,
 				E175E80F1C963E3E002A262A /* icon_lab.png in Resources */,
 				E17050E01CA560F700818E79 /* ic_wine@2x.png in Resources */,
 				E17050DF1CA560F700818E79 /* ic_beer@2x.png in Resources */,
-				E175E8801C963E9B002A262A /* DevoxxFR2016-conferences.json in Resources */,
-				E14B8B751DB8342F008B572C /* DevoxxMA2016-tracks.json in Resources */,
 				E175E7EC1C963E1F002A262A /* splash_btn_DevoxxFR2016@2x.png in Resources */,
 				E15D04161CB1A016003301C8 /* LogoDevoxxHuntly@1x.png in Resources */,
-				E14B8B6F1DB833FA008B572C /* DevoxxMA2016-conferences.json in Resources */,
 				E15D04171CB1A016003301C8 /* LogoDevoxxHuntly@2x.png in Resources */,
 				E175E84E1C963E67002A262A /* ic_filter_inactive@2x.png in Resources */,
 				E175E8611C963E7B002A262A /* devoxxExhibitionFloorPhone.jpg in Resources */,
@@ -1546,21 +1445,15 @@
 				E175E8581C963E67002A262A /* up@2x.png in Resources */,
 				E175E8261C963E4F002A262A /* icon_cloud.png in Resources */,
 				E175E8101C963E3E002A262A /* icon_other.png in Resources */,
-				E175E8841C963E9B002A262A /* DevoxxFR2016-speaker.json in Resources */,
 				E15D04131CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon.png in Resources */,
-				E14B8B731DB8341D008B572C /* DevoxxMA2016-speakers.json in Resources */,
 				E175E7E41C963E17002A262A /* logo.png in Resources */,
 				E175E80C1C963E3E002A262A /* icon_conf.png in Resources */,
-				E175E88C1C963EA6002A262A /* StoredResource.json in Resources */,
 				E1863EF11CBB051600EA5DDA /* icon_jse.png in Resources */,
 				E175E8571C963E67002A262A /* star@2x.png in Resources */,
+				EB5FEF201E36838F006CF6D2 /* splash_btn_VDZ@2x.png in Resources */,
 				E175E8131C963E3E002A262A /* icon_tia.png in Resources */,
 				E175E8111C963E3E002A262A /* icon_quick.png in Resources */,
-				E14B8B771DB83439008B572C /* DevoxxMA2016-talks.json in Resources */,
-				E14B8B681DB828C8008B572C /* DV16-speakers.json in Resources */,
 				E175E8501C963E67002A262A /* ic_place@2x.png in Resources */,
-				E15D04341CB732F3003301C8 /* DevoxxUK2016-tracks.json in Resources */,
-				E15D04311CB732F3003301C8 /* DevoxxUK2016-proposalTypes.json in Resources */,
 				E175E8291C963E4F002A262A /* icon_lang.png in Resources */,
 				E175E82A1C963E4F002A262A /* icon_methodevops.png in Resources */,
 				E175E84A1C963E67002A262A /* down@2x.png in Resources */,
@@ -1570,26 +1463,20 @@
 				E175E8641C963E7B002A262A /* DevoxxFRExhibitionTablet.jpg in Resources */,
 				E15D04181CB1A016003301C8 /* LogoDevoxxHuntly@3x.png in Resources */,
 				E175E82E1C963E4F002A262A /* icon_web.png in Resources */,
-				E175E8811C963E9B002A262A /* DevoxxFR2016-talks.json in Resources */,
 				E175E8121C963E3E002A262A /* icon_start.png in Resources */,
 				E15D04151CB1A016003301C8 /* DevoxxHuntlyIntegrationIcon@3x.png in Resources */,
-				E175E8741C963E91002A262A /* DV15-tracks.json in Resources */,
 				E175E82C1C963E4F002A262A /* icon_ssj.png in Resources */,
-				E175E86E1C963E91002A262A /* DV15-conferences.json in Resources */,
-				E15D04331CB732F3003301C8 /* DevoxxUK2016-talks.json in Resources */,
 				E175E7F91C963E29002A262A /* DevoxxMoroccoHomePage.jpg in Resources */,
 				E175E8541C963E67002A262A /* ic_twitter@2x.png in Resources */,
 				E175E8381C963E5C002A262A /* tabIconTracks@2x.png in Resources */,
+				EB5FEF1E1E366FF3006CF6D2 /* Cfp.json in Resources */,
 				E15D041E1CB1AD59003301C8 /* tickets@2x.png in Resources */,
-				E14B8B6A1DB828D6008B572C /* DV16-tracks.json in Resources */,
+				EBC776261E40E61300CDA886 /* splash_btn_VDT@2x.png in Resources */,
 				E175E8351C963E5C002A262A /* tabIconSchedule@2x.png in Resources */,
 				E175E7F01C963E1F002A262A /* splash_btn_DV15@2x.png in Resources */,
 				E175E8281C963E4F002A262A /* icon_java.png in Resources */,
 				E175E84D1C963E67002A262A /* ic_filter_active@2x.png in Resources */,
-				E175E88B1C963EA6002A262A /* Cfp.json in Resources */,
 				E14B8B791DB83789008B572C /* splash_btn_DevoxxUS2017@2x.png in Resources */,
-				E14B8B661DB828AC008B572C /* DV16-proposalTypes.json in Resources */,
-				E175E8861C963E9B002A262A /* DEVOXXFR2016-tracks.json in Resources */,
 				E175E8631C963E7B002A262A /* DevoxxFRExhibitionPhone.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1605,14 +1492,89 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		111378D7DE6CB3595BD72DFC /* Embed Pods Frameworks */ = {
+		2FCCC0D8C2148D2F7407A52A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3746F28EE7A46F9771A24412 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3D11CB8304FD877485C8C301 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5DD1767A8E3A9BD9E3049912 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-My_DevoxxTests/Pods-My_DevoxxTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76CDEC3A44D9B4DA354F8DE3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Smartvoxx/Pods-Smartvoxx-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7D19FD959000C1D226C12F97 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1620,34 +1582,64 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-My_Devoxx/Pods-My_Devoxx-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		66A2C4919FD08DBF1851017E /* Check Pods Manifest.lock */ = {
+		7F836DEBEECCCB0EA8E6D147 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Smartvoxx Extension/Pods-Smartvoxx Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6C0E30A7E4114E2121ABBEAD /* Copy Pods Resources */ = {
+		81E880AD3174A5F13FA20718 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-My_Devoxx/Pods-My_Devoxx-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C8D582DA6FC8234720885AA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-My_DevoxxTests/Pods-My_DevoxxTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A6137E17DF290DEAD11E6561 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Smartvoxx Extension/Pods-Smartvoxx Extension-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E103FB1E1CBAC924001036FC /* ShellScript */ = {
@@ -1675,6 +1667,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./ThirdParty/Fabric.framework/run a6ede11e280e265f7ecbc6e5fc2b2d2e984b73e6 f2b6eee201760230a1aceaa9985a46d1024eb87431422f0bde832b928900f2d5";
+		};
+		F495D0542A37B55F3837636F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1841,11 +1848,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B95C58281CB96EF9007BD5A3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B95C58241CB96EF9007BD5A3 /* Smartvoxx Extension */;
-			targetProxy = B95C58271CB96EF9007BD5A3 /* PBXContainerItemProxy */;
-		};
 		B95C583A1CB96EF9007BD5A3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B95C58181CB96EF9007BD5A3 /* Smartvoxx */;
@@ -1855,6 +1857,11 @@
 			isa = PBXTargetDependency;
 			target = E10E7ABC1C18BF7100F6220B /* My_Devoxx */;
 			targetProxy = E10E7AD61C18BF7100F6220B /* PBXContainerItemProxy */;
+		};
+		EBB15D0E1E24050D001FE2D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B95C58241CB96EF9007BD5A3 /* Smartvoxx Extension */;
+			targetProxy = EBB15D0D1E24050D001FE2D6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1905,19 +1912,22 @@
 /* Begin XCBuildConfiguration section */
 		B95C583C1CB96EF9007BD5A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEAC83D185A33A9B2EEE3C27 /* Pods-Smartvoxx.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Emilia Ciardi (772QE92SXP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Emilia Ciardi (772QE92SXP)";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer: Emilia Ciardi (772QE92SXP)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = JQTBK2WA78;
 				IBSC_MODULE = Smartvoxx_Extension;
 				INFOPLIST_FILE = Smartvoxx/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sparklinglabs.voxxed.swift.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "2af7af75-481f-468e-b680-7c768b89ae6d";
+				PROVISIONING_PROFILE_SPECIFIER = "My Voxxed Watch Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 2.3;
@@ -1928,18 +1938,21 @@
 		};
 		B95C583D1CB96EF9007BD5A3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8360CCEFE0D44059A6A09CBA /* Pods-Smartvoxx.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Emilia Ciardi (JQTBK2WA78)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Emilia Ciardi (JQTBK2WA78)";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution: Emilia Ciardi (JQTBK2WA78)";
+				DEVELOPMENT_TEAM = JQTBK2WA78;
 				IBSC_MODULE = Smartvoxx_Extension;
 				INFOPLIST_FILE = Smartvoxx/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sparklinglabs.voxxed.swift.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "6e082c95-b831-421d-8321-55d2498570a0";
+				PROVISIONING_PROFILE_SPECIFIER = "My Voxxed Watch Distr Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 2.3;
@@ -1950,17 +1963,20 @@
 		};
 		B95C583E1CB96EF9007BD5A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 545862E151C918076A63519A /* Pods-Smartvoxx Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = "";
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Emilia Ciardi (772QE92SXP)";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer: Emilia Ciardi (772QE92SXP)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = JQTBK2WA78;
 				INFOPLIST_FILE = "Smartvoxx Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sparklinglabs.voxxed.swift.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "aa2d3c20-6c2d-4752-a503-4e104dc62339";
+				PROVISIONING_PROFILE_SPECIFIER = "My Voxxed WK Extension Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 2.3;
@@ -1971,16 +1987,19 @@
 		};
 		B95C583F1CB96EF9007BD5A3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A32637F6CAA44CD119FD9B2 /* Pods-Smartvoxx Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = "";
 				CLANG_ANALYZER_NONNULL = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Emilia Ciardi (JQTBK2WA78)";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution: Emilia Ciardi (JQTBK2WA78)";
+				DEVELOPMENT_TEAM = JQTBK2WA78;
 				INFOPLIST_FILE = "Smartvoxx Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sparklinglabs.voxxed.swift.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "791200c9-cb3f-48de-97cf-1660d6afdb58";
+				PROVISIONING_PROFILE_SPECIFIER = "My Voxxed WK Extension profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 2.3;
@@ -2009,9 +2028,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Emilia Ciardi (JQTBK2WA78)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Emilia Ciardi (JQTBK2WA78)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = JQTBK2WA78;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2032,7 +2053,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "3e0c3b1d-4a3e-4f62-bbdc-f984c5bbf521";
+				PROVISIONING_PROFILE = "4b892925-8c32-4586-845a-ed866b6ee968";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2059,9 +2080,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Java Community BVBA (7F9RT8TS76)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Emilia Ciardi (JQTBK2WA78)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Emilia Ciardi (JQTBK2WA78)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = JQTBK2WA78;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2074,7 +2097,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "3e0c3b1d-4a3e-4f62-bbdc-f984c5bbf521";
+				PROVISIONING_PROFILE = "4b892925-8c32-4586-845a-ed866b6ee968";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2084,15 +2107,16 @@
 		};
 		E10E7AE01C18BF7100F6220B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0FB185179EB1A53D28BD306A /* Pods-My_Devoxx.debug.xcconfig */;
+			baseConfigurationReference = 57C10331F61D13F7185DB40A /* Pods-My_Devoxx.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "My Devoxx.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Emilia Ciardi (772QE92SXP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Emilia Ciardi (772QE92SXP)";
+				DEVELOPMENT_TEAM = JQTBK2WA78;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/devoxxApp",
@@ -2100,9 +2124,10 @@
 				INFOPLIST_FILE = devoxxApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sparklinglabs.voxxed.swift;
 				PRODUCT_NAME = "My Devoxx";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "627608ba-1e67-4ba6-8f8a-759e60b5f9ea";
+				PROVISIONING_PROFILE_SPECIFIER = "My Voxxed Dev profile";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2111,15 +2136,16 @@
 		};
 		E10E7AE11C18BF7100F6220B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6174ADBC7F4F4EA4AF5CA638 /* Pods-My_Devoxx.release.xcconfig */;
+			baseConfigurationReference = B2E0FC1E7519E2A713510E84 /* Pods-My_Devoxx.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "My Devoxx.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Emilia Ciardi (JQTBK2WA78)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Emilia Ciardi (JQTBK2WA78)";
+				DEVELOPMENT_TEAM = JQTBK2WA78;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/devoxxApp",
@@ -2127,9 +2153,10 @@
 				INFOPLIST_FILE = devoxxApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.devoxx.mydevoxx.swift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sparklinglabs.voxxed.swift;
 				PRODUCT_NAME = "My Devoxx";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4b892925-8c32-4586-845a-ed866b6ee968";
+				PROVISIONING_PROFILE_SPECIFIER = "My Voxxed Distribution profile";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2137,7 +2164,9 @@
 		};
 		E10E7AE31C18BF7100F6220B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 554BB179BDB4DD810A836C54 /* Pods-My_DevoxxTests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = JQTBK2WA78;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -2156,7 +2185,10 @@
 		};
 		E10E7AE41C18BF7100F6220B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3179F8C29C1F28596721C062 /* Pods-My_DevoxxTests.release.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = JQTBK2WA78;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

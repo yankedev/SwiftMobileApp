@@ -20,13 +20,13 @@ class ColorManager {
     static var birdOfAFatherColor = UIColor(red: 243/255, green: 44/255, blue: 44/255, alpha: 1)
     static var toolsInActionColor = UIColor(red: 245/255, green: 215/255, blue: 51/255, alpha: 1)
     static var universityColor = UIColor(red: 168/255, green: 80/255, blue: 161/255, alpha: 1)
-    static var homeFontColor = UIColor(red: 248/255, green: 185/255, blue: 17/255, alpha: 1)
+    static var homeFontColor = UIColor(red: 80/255, green: 206/255, blue: 237/255, alpha: 1)
     
     static var huntlyOrangeColor = UIColor(red: 225/255, green: 91/255, blue: 41/255, alpha: 1)
     
     static var defaultColor = UIColor.clearColor()
     
-    static var topNavigationBarColor = UIColor(red: 246/255, green: 174/255, blue: 53/255, alpha: 1)
+    static var topNavigationBarColor = UIColor(red: 80/255, green: 206/255, blue: 237/255, alpha: 1)
     
     static var bottomDotsPageController = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1)
     
@@ -38,9 +38,9 @@ class ColorManager {
     
     static var grayImageColor = UIColor(red: 67/255, green: 67/255, blue: 67/255, alpha: 1)
     
-    static var centerWheelColor = UIColor(red: 255/255, green: 152/255, blue: 0/255, alpha: 1)
+    static var centerWheelColor = UIColor(red: 80/255, green: 206/255, blue: 237/255, alpha: 1)
     
-    static var darkOrangeColor = UIColor(red: 219/255, green: 71/255, blue: 0/255, alpha: 1)
+    static var darkOrangeColor = UIColor(red: 80/255, green: 206/255, blue: 237/255, alpha: 1)
     
     static var starColor = UIColor(red: 22/255, green: 160/255, blue: 133/255, alpha: 1)
     

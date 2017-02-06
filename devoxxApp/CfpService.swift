@@ -126,12 +126,7 @@ class CfpService : AbstractService {
                 fetchRequest.includesSubentities = true
                 fetchRequest.returnsObjectsAsFaults = false
                 fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
-                //@TODO quick fix
-                let pred1 = NSPredicate(format: "id != %@", "DevoxxPL2015")
-                let pred2 = NSPredicate(format: "id != %@", "DevoxxMA2015")
-                let pred3 = NSPredicate(format: "id != %@", "DV15")
-                
-                fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [pred1, pred2, pred3])
+
                 
                 let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Cfp]
                 
@@ -171,7 +166,7 @@ class CfpService : AbstractService {
     
     func getEntryPoint() -> String {
         let cfp = self.privateManagedObjectContext.objectWithID(getCfp()) as! Cfp
-        return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/schedules"
+        return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/schedules/"
     }
     
     func getDayUrl(index : Int) -> String? {

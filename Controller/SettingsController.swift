@@ -34,6 +34,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             static let title = NSLocalizedString("Credits", comment: "")
             static let iosCredits = NSLocalizedString("App by Maxime David\n@xouuox", comment: "")
             static let watchCredits = NSLocalizedString("Apple Watch App by Sébastien Arbogast\n@sarbogast", comment: "")
+            static let voxxedCredits = NSLocalizedString("Voxxed Days adaptation by Pasquale Granato\n@sparklinglabs", comment: "")
             static let fullCredits = NSLocalizedString("View full credits", comment: "")
         }
     }
@@ -80,7 +81,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             return 2
         }
         if(section == KindOfSection.CREDITS.hashValue)  {
-            return 3
+            return 4
         }
         return 0
     }
@@ -117,7 +118,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         
         if indexPath.section == KindOfSection.CREDITS.hashValue {
             
-            if indexPath.row == 2 {
+            if indexPath.row == 3 {
                 let url = CfpService.sharedInstance.getCreditUrl()
                 UIApplication.sharedApplication().openURL(NSURL(string: url)!)
             }
@@ -172,6 +173,11 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             }
             
             if(indexPath.row == 2) {
+                cell!.textLabel!.text = SectionNameString.Credits.voxxedCredits
+                cell!.textLabel!.numberOfLines = 2
+            }
+            
+            if(indexPath.row == 3) {
                 cell!.textLabel!.text = SectionNameString.Credits.fullCredits
             }
         }
@@ -181,8 +187,8 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
     
 
     func reportIssue() {
-        let email = "got2bex@gmail.com"
-        let subject = "My%20Devoxx%20-%20Issue%20-%20\(getVersion())"
+        let email = "info@exteso.com"
+        let subject = "My%20Voxxed%20-%20Issue%20-%20\(getVersion())"
         let url = NSURL(string: "mailto:\(email)?subject=\(subject)")
         if url != nil {
             UIApplication.sharedApplication().openURL(url!)

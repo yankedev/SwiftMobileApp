@@ -19,7 +19,7 @@ class HomeHeaderView : UIView {
         
         
         let title = UIImageView()
-        title.image = UIImage(named: "logo.png")
+        title.image = UIImage(named: "voxxed-logo.png")
         addSubview(title)
         
         

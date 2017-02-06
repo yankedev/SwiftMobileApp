@@ -148,6 +148,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = false
+        feedDate()
     }
     
     

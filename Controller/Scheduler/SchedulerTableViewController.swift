@@ -78,7 +78,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = false
-        fetchAll()
+        fetchUpdate()
         self.schedulerTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         //sync with watch

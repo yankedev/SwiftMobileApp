@@ -110,7 +110,7 @@ class SelectionWheel: UIView {
             
             
             
-            let imgV = UIImageView(frame : CGRectMake(0,0, 159/2, 191/2))
+            let imgV = UIImageView(frame : CGRectMake(0,0, 159/3, 191/3))
             imgV.image = image
             
             
@@ -183,7 +183,7 @@ class SelectionWheel: UIView {
         addSubview(globe)
         
         
-        for i in 0...4 {
+        for i in 0...0 {
             
             
             
@@ -197,7 +197,7 @@ class SelectionWheel: UIView {
             
             
             
-            layer.addSublayer(createEventCircle(firstPoint, radius: CGFloat(191/4), color : UIColor.greenColor(), angle : a*b*c, index: i))
+            layer.addSublayer(createEventCircle(firstPoint, radius: CGFloat(151/4), color : UIColor.greenColor(), angle : a*b*c, index: i))
             
         }
         

@@ -74,7 +74,7 @@
             
             for singleUrl in urls! {
                 if let singleUrlString = singleUrl as? Day {
-                    loadDataFromURL(singleUrlString.url, service: SlotService.sharedInstance, helper : SlotHelper(), loadFromFile: true, onSuccess: onSuccess, onError: onError)
+                    loadDataFromURL(singleUrlString.url, service: SlotService.sharedInstance, helper : SlotHelper(), loadFromFile: false, onSuccess: onSuccess, onError: onError)
                 }
             }
             
@@ -87,15 +87,14 @@
                 urlToFetch = ""
             }
             
-            print(urlToFetch)
+            print("makeRequest "+urlToFetch)
            
             let config = NSURLSessionConfiguration.defaultSessionConfiguration()
 
             config.timeoutIntervalForResource = 15
             
             let session = NSURLSession(configuration: config)
-            
-            print(urlToFetch)
+
             let task = session.dataTaskWithURL(NSURL(string: urlToFetch)!) {
                 data, response1, error in
                 

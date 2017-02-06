@@ -21,9 +21,9 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>123</string>
+	<string>126</string>
 	<key>CFP_URL</key>
-	<string>https://s3-eu-west-1.amazonaws.com/cfpdevoxx/cfp.json</string>
+	<string>https://s3.amazonaws.com/elasticbeanstalk-us-east-1-387778880482/voxxed/cfp.json</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -34,7 +34,7 @@
 		<key>NSExtensionAttributes</key>
 		<dict>
 			<key>WKAppBundleIdentifier</key>
-			<string>com.devoxx.mydevoxx.swift.watchkitapp</string>
+			<string>com.sparklinglabs.voxxed.swift.watchkitapp</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.watchkit</string>
