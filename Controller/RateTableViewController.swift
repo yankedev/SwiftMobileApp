@@ -122,7 +122,7 @@ public class RateTableViewController : UITableViewController, UIAlertViewDelegat
         json["user"] = JSON(APIManager.getQrCode()!)
         
     
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://cfp-vdz.exteso.com/api/voting/v1/vote")!)
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://cfp-vdt.exteso.com/api/voting/v1/vote")!)
         let session = NSURLSession.sharedSession()
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")

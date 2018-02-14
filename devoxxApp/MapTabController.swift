@@ -121,10 +121,26 @@ public class MapTabController : UIViewController {
             let currentFloor = floors[sender.selectedSegmentIndex - 1]
             
             currentView?.removeFromSuperview()
+            
+            /*
             let v = UIImageView(frame: CGRectMake(0, 0, accessView.frame.width, accessView.frame.height))
             v.image = UIImage(data: currentFloor.imgData)
             currentView = v
             accessView.addSubview(currentView!)
+            */
+            
+            
+            let imageView = UIImageView(image: UIImage(data: currentFloor.imgData))
+            
+            let scrollView = UIScrollView(frame: view.bounds)
+            scrollView.backgroundColor = UIColor.blackColor()
+            scrollView.contentSize = imageView.bounds.size
+            scrollView.autoresizingMask = UIViewAutoresizing.FlexibleWidth
+            
+            scrollView.addSubview(imageView)
+            currentView = scrollView
+            accessView.addSubview(currentView!)
+            
         }
     }
     
