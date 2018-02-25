@@ -18,14 +18,14 @@ class ColoredHeaderView : UIImageView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentMode = .ScaleAspectFill
+        contentMode = .scaleAspectFill
         clipsToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
         
         
         talkTitle = UILabel()
-        talkTitle.textAlignment = .Justified
-        talkTitle.textColor = UIColor.whiteColor()
+        talkTitle.textAlignment = .justified
+        talkTitle.textColor = UIColor.white
         //talkTitle.backgroundColor = UIColor.redColor()
         talkTitle.font = UIFont(name: "Roboto", size: 20)
         talkTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -33,8 +33,8 @@ class ColoredHeaderView : UIImageView {
         
         
         talkTrack = UILabel()
-        talkTrack.textAlignment = .Justified
-        talkTrack.textColor = UIColor.whiteColor()
+        talkTrack.textAlignment = .justified
+        talkTrack.textColor = UIColor.white
         //talkTrack.backgroundColor = UIColor.greenColor()
         talkTrack.font = UIFont(name: "Roboto", size: 17)
         talkTrack.translatesAutoresizingMaskIntoConstraints = false
@@ -51,18 +51,18 @@ class ColoredHeaderView : UIImageView {
         
         
         let talkTitleHeight = NSLayoutConstraint(item: talkTitle,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 0.5,
             constant: 0)
         
         let talkTitleTop = NSLayoutConstraint(item: talkTitle,
-            attribute: NSLayoutAttribute.Top,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.top,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Bottom,
+            attribute: NSLayoutAttribute.bottom,
             multiplier: 0.3,
             constant: 0)
         
@@ -70,18 +70,18 @@ class ColoredHeaderView : UIImageView {
         addConstraint(talkTitleTop)
         
         let talkTrackHeight = NSLayoutConstraint(item: talkTrack,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 0.2,
             constant: 0)
         
         let talkTrackTop = NSLayoutConstraint(item: talkTrack,
-            attribute: NSLayoutAttribute.Top,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.top,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Bottom,
+            attribute: NSLayoutAttribute.bottom,
             multiplier: 0.8,
             constant: 0)
         
@@ -98,8 +98,8 @@ class ColoredHeaderView : UIImageView {
         let views = ["talkTitle" : talkTitle, "talkTrack" : talkTrack]
         
         
-        let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkTitle]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        let constH1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkTrack]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH0 = NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[talkTitle]-10-|", options: .alignAllCenterX, metrics: nil, views: views)
+        let constH1 = NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[talkTrack]-10-|", options: .alignAllCenterX, metrics: nil, views: views)
         
         
         
@@ -111,34 +111,34 @@ class ColoredHeaderView : UIImageView {
         
         
         let imgViewHeight = NSLayoutConstraint(item: imageView,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 0,
             constant: 70)
         
         let imgViewWidth = NSLayoutConstraint(item: imageView,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.width,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Width,
+            attribute: NSLayoutAttribute.width,
             multiplier: 0,
             constant: 70)
         
         let imgViewTop = NSLayoutConstraint(item: imageView,
-            attribute: NSLayoutAttribute.Top,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.top,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Top,
+            attribute: NSLayoutAttribute.top,
             multiplier: 1,
             constant: 20)
         
         let imgViewRight = NSLayoutConstraint(item: imageView,
-            attribute: NSLayoutAttribute.Right,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.right,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Right,
+            attribute: NSLayoutAttribute.right,
             multiplier: 1,
             constant: -20)
         

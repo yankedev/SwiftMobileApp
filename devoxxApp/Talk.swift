@@ -11,20 +11,20 @@ import CoreData
 import UIKit
 
 public protocol DetailableProtocol {
-    func getTitle() -> String?
+    func getTitleD() -> String?
     func getSubTitle() -> String?
     func getSummary() -> String?
     func detailInfos() -> [String]
     func getRelatedDetailsCount() -> Int
-    func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol?
-    func getDetailInfoWithIndex(idx : Int) -> String?
+    func getRelatedDetailWithIndex(_ idx : Int) -> DetailableProtocol?
+    func getDetailInfoWithIndex(_ idx : Int) -> String?
     func getFullLink() -> String?
     func getImageFullLink() -> String?
     func getPrimaryImage() -> UIImage?
     func getTwitter() -> String?
     func getHeaderTitle() -> String?
     func getRelatedIds() -> [NSManagedObjectID]
-    func setRelated(data : [DataHelperProtocol])
+    func setRelated(_ data : [DataHelperProtocol])
     func getObjectID() -> NSManagedObjectID?
     func isFavorited() -> Bool
 }
@@ -65,7 +65,7 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
         return nil
     }
     
-    func resetId(id: NSManagedObject?) {
+    func resetId(_ id: NSManagedObject?) {
     }
     
     func getIdentifier() -> String {
@@ -73,7 +73,7 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
     }
     
     
-    func getFriendlySpeaker(delimiter : String, useTwitter : Bool) -> String {
+    func getFriendlySpeaker(_ delimiter : String, useTwitter : Bool) -> String {
         var returnString = ""
         var isFirst = true
         for spk in speakers {
@@ -123,7 +123,7 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
   
     
     
-    func feedHelper(helper: DataHelperProtocol) -> Void {
+    func feedHelper(_ helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? TalkHelper  {
             id = castHelper.id ?? ""
             lang = castHelper.lang ?? ""
@@ -139,7 +139,7 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
     func invertFavorite() {
         isFavorited = !isFavorited
         
-        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.updateFavoriteStatus(isFavorited, forTalkWithId: self.getIdentifier(), inConferenceWithId: self.slot.cfp!.identifier())
             appDelegate.unscheduleLocalNotificationForTalkWithId(self.getIdentifier())
             if isFavorited {
@@ -157,7 +157,7 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
     
     
     
-    func getForthInformation(useTwitter : Bool) -> String {
+    func getForthInformation(_ useTwitter : Bool) -> String {
         return getFriendlySpeaker(", ", useTwitter : useTwitter)
     }
     
@@ -178,8 +178,8 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
         return track
     }
     
-    func isMatching(str : String) -> Bool {
-        return getFirstInformation().lowercaseString.containsString(str.lowercaseString) || getFriendlySpeaker("", useTwitter: false).lowercaseString.containsString(str.lowercaseString)
+    func isMatching(_ str : String) -> Bool {
+        return getFirstInformation().lowercased().contains(str.lowercased()) || getFriendlySpeaker("", useTwitter: false).lowercased().contains(str.lowercased())
     }
     
     
@@ -207,7 +207,7 @@ class Talk: NSManagedObject, FavoriteProtocol, CellDataPrococol, SearchableItemP
         
         var speakerHelpers = [NSManagedObjectID]()
         for singleSpeaker in speakers {
-            speakerHelpers.append(singleSpeaker.getObjectID())
+            speakerHelpers.append((singleSpeaker as AnyObject).getObjectID())
         }
         
         return TalkHelper(title: title, lang: lang, trackId: trackId, talkType: talkType, track: track, id: id, summary: summary, isBreak: isBreak, roomName: slot.roomName, friendlyTime: slot.getFriendlyTime(), speakerList : getFriendlySpeaker(", ", useTwitter : false), speakerListTwitter : getFriendlySpeaker(", ", useTwitter : true), speakersId : speakerHelpers, objectID : objectID, isFav : isFavorited, day : slot.day)

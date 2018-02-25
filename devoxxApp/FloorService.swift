@@ -10,13 +10,13 @@ import Foundation
 import CoreData
 
 
-public enum FloorStoreError: Equatable, ErrorType {
-    case CannotFetch(String)
+public enum FloorStoreError: Equatable, Error {
+    case cannotFetch(String)
 }
 
 public func ==(lhs: FloorStoreError, rhs: FloorStoreError) -> Bool {
     switch (lhs, rhs) {
-    case (.CannotFetch(let a), .CannotFetch(let b)) where a == b: return true
+    case (.cannotFetch(let a), .cannotFetch(let b)) where a == b: return true
     default: return false
     }
 }
@@ -29,23 +29,23 @@ class FloorService : AbstractService, ImageServiceProtocol {
         super.init()
     }
     
-    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
+     override func updateWithHelper(_ helper : [DataHelperProtocol], completionHandler : @escaping (_ msg: CallbackProtocol) -> Void) {
         
-        privateManagedObjectContext.performBlock {
+        privateManagedObjectContext.perform {
             
             for singleHelper in helper {
                 
                 do {
                     
-                    let fetchRequest = NSFetchRequest(entityName: "Floor")
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Floor")
                     let predicate = NSPredicate(format: "id = %@", singleHelper.getMainId())
                     fetchRequest.predicate = predicate
-                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+                    let items = try self.privateManagedObjectContext.fetch(fetchRequest)
                     
                     if items.count == 0 {
                         
-                        let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
-                        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                        let entity = NSEntityDescription.entity(forEntityName: singleHelper.entityName(), in: self.privateManagedObjectContext)
+                        let coreDataObject = NSManagedObject(entity: entity!, insertInto: self.privateManagedObjectContext)
                         
                         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
                             coreDataObjectCast.feedHelper(singleHelper)
@@ -73,13 +73,13 @@ class FloorService : AbstractService, ImageServiceProtocol {
     }
 
     
-    func fetchFloors(completionHandler: (floors: [Floor], error: FloorStoreError?) -> Void) {
-        privateManagedObjectContext.performBlock {
+    func fetchFloors(_ completionHandler: @escaping (_ floors: [Floor], _ error: FloorStoreError?) -> Void) {
+        privateManagedObjectContext.perform {
             do {
-                let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+                let cfp = self.privateManagedObjectContext.object(with: CfpService.sharedInstance.getCfp()) as! Cfp
                 let predicateEvent = NSPredicate(format: "id = %@", cfp.id!)
                 let predicateDevice = NSPredicate(format: "target = %@", APIManager.getStringDevice())
-                let fetchRequest = NSFetchRequest(entityName: "Floor")
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Floor")
                 fetchRequest.includesSubentities = true
                 fetchRequest.returnsObjectsAsFaults = false
                 fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateEvent, predicateDevice])
@@ -87,14 +87,14 @@ class FloorService : AbstractService, ImageServiceProtocol {
                 fetchRequest.sortDescriptors = [tabpos]
                 
                 
-                let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Floor]
+                let results = try self.privateManagedObjectContext.fetch(fetchRequest) as! [Floor]
                 
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(floors: results, error: nil)
+                DispatchQueue.main.async(execute: {
+                    completionHandler(results, nil)
                 })
             } catch {
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(floors: [], error: FloorStoreError.CannotFetch("Cannot fetch floors"))
+                DispatchQueue.main.async(execute: {
+                    completionHandler([], FloorStoreError.cannotFetch("Cannot fetch floors"))
                 })
                 
             }
@@ -103,9 +103,9 @@ class FloorService : AbstractService, ImageServiceProtocol {
 
    
     
-    func updateImageForId(id : NSManagedObjectID, withData data: NSData, completionHandler : ((msg: CallbackProtocol) -> Void)?) {
+    func updateImageForId(_ id : NSManagedObjectID, withData data: Data, completionHandler : ((_ msg: CallbackProtocol) -> Void)?) {
         
-        privateManagedObjectContext.performBlock {
+        privateManagedObjectContext.perform {
             
             if let obj:ImageFeedable = APIDataManager.findEntityFromId(id, inContext: self.privateManagedObjectContext) {
                 obj.feedImageData(data)

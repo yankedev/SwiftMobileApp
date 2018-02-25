@@ -10,13 +10,13 @@ import Foundation
 import CoreData
 
 
-public enum DayStoreError: Equatable, ErrorType {
-    case CannotFetch(String)
+public enum DayStoreError: Equatable, Error {
+    case cannotFetch(String)
 }
 
 public func ==(lhs: DayStoreError, rhs: DayStoreError) -> Bool {
     switch (lhs, rhs) {
-    case (.CannotFetch(let a), .CannotFetch(let b)) where a == b: return true
+    case (.cannotFetch(let a), .cannotFetch(let b)) where a == b: return true
     default: return false
     }
 }
@@ -32,29 +32,29 @@ class DayService : AbstractService {
     
   
     
-    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
+     override func updateWithHelper(_ helper : [DataHelperProtocol], completionHandler : @escaping (_ msg: CallbackProtocol) -> Void) {
         
-        privateManagedObjectContext.performBlock {
+        privateManagedObjectContext.perform {
             
    
-            let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+            let cfp = self.privateManagedObjectContext.object(with: CfpService.sharedInstance.getCfp()) as! Cfp
             
             for singleHelper in helper {
                 do {
                     
-                    let fetchRequest = NSFetchRequest(entityName: "Day")
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
                     
                     //print("main id = \(singleHelper.getMainId())")
                     let predicate = NSPredicate(format: "url = %@", singleHelper.getMainId())
                     fetchRequest.predicate = predicate
-                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+                    let items = try self.privateManagedObjectContext.fetch(fetchRequest)
                     
                     if items.count == 0 {
                         
                         
                         
-                        let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
-                        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                        let entity = NSEntityDescription.entity(forEntityName: singleHelper.entityName(), in: self.privateManagedObjectContext)
+                        let coreDataObject = NSManagedObject(entity: entity!, insertInto: self.privateManagedObjectContext)
                         
                         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
                             coreDataObjectCast.feedHelper(singleHelper)
@@ -96,10 +96,10 @@ class DayService : AbstractService {
     
     override func hasBeenAlreadyFed() -> Bool {
         do {
-            let fetchRequest = NSFetchRequest(entityName: "Day")
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Day")
             let predicateEvent = NSPredicate(format: "cfp.id = %@", super.getCfpId())
             fetchRequest.predicate = predicateEvent
-            let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+            let results = try self.privateManagedObjectContext.fetch(fetchRequest)
             return results.count > 0
         }
         catch {

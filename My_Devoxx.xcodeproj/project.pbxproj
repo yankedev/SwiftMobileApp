@@ -1306,19 +1306,19 @@
 					B95C58181CB96EF9007BD5A3 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = JQTBK2WA78;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 					};
 					B95C58241CB96EF9007BD5A3 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = JQTBK2WA78;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 					};
 					E10E7ABC1C18BF7100F6220B = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = JQTBK2WA78;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -1329,7 +1329,7 @@
 					E10E7AD41C18BF7100F6220B = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = JQTBK2WA78;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -1930,7 +1930,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "My Voxxed Watch Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -1955,7 +1955,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "My Voxxed Watch Distr Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -1979,7 +1979,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "My Voxxed WK Extension Dev Profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -2002,7 +2002,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "My Voxxed WK Extension profile";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -2129,7 +2129,7 @@
 				PROVISIONING_PROFILE = "627608ba-1e67-4ba6-8f8a-759e60b5f9ea";
 				PROVISIONING_PROFILE_SPECIFIER = "My Voxxed Dev profile";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2157,7 +2157,7 @@
 				PRODUCT_NAME = "My Devoxx";
 				PROVISIONING_PROFILE = "4b892925-8c32-4586-845a-ed866b6ee968";
 				PROVISIONING_PROFILE_SPECIFIER = "My Voxxed Distribution profile";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2179,7 +2179,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "maximedavid.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = My_DevoxxTests;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -2197,7 +2197,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "maximedavid.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = My_DevoxxTests;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

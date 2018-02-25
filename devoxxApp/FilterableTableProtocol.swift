@@ -14,7 +14,7 @@ protocol FilterableTableProtocol {
     var currentFilters:[String : [FilterableProtocol]]! {get set}
     
     func clearFilter()
-    func buildFilter(filters : [String: [FilterableProtocol]])
+    func buildFilter(_ filters : [String: [FilterableProtocol]])
     func filter()
     func getCurrentFilters() -> [String : [FilterableProtocol]]?
 }

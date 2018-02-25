@@ -14,9 +14,9 @@ class Image: NSManagedObject, FeedableProtocol {
     
     @NSManaged var img: String
     @NSManaged var etag: String
-    @NSManaged var data: NSData
+    @NSManaged var data: Data
     
-    func feedHelper(helper: DataHelperProtocol) -> Void {
+    func feedHelper(_ helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? ImageHelper  {
             img = castHelper.imgName ?? ""
             etag = castHelper.etag ?? ""
@@ -27,7 +27,7 @@ class Image: NSManagedObject, FeedableProtocol {
     func getId() -> NSManagedObject? {
         return nil
     }
-    func resetId(id: NSManagedObject?) {
+    func resetId(_ id: NSManagedObject?) {
     }
     
     

@@ -22,11 +22,11 @@ class HuntlyPopup : UIViewController {
     @IBOutlet var promoLabel: UILabel!
     
     override func viewDidLoad() {
-        okBtn.addTarget(self, action: #selector(self.okBtnSelector), forControlEvents: .TouchUpInside)
-        playMoreBtn.addTarget(self, action: #selector(self.playMoreBtnSelector), forControlEvents: .TouchUpInside)
+        okBtn.addTarget(self, action: #selector(self.okBtnSelector), for: .touchUpInside)
+        playMoreBtn.addTarget(self, action: #selector(self.playMoreBtnSelector), for: .touchUpInside)
         
-        okBtn.setTitle("OK", forState: .Normal)
-        playMoreBtn.setTitle("Play more", forState: .Normal)
+        okBtn.setTitle("OK", for: UIControlState())
+        playMoreBtn.setTitle("Play more", for: UIControlState())
         titleBonus.text = ""
         pointLbl.text = ""
         pointValueLbl.text = ""
@@ -37,11 +37,11 @@ class HuntlyPopup : UIViewController {
     }
     
     func okBtnSelector() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     func playMoreBtnSelector() {
-        self.dismissViewControllerAnimated(true, completion: {
+        self.dismiss(animated: true, completion: {
             HuntlyManagerService.sharedInstance.goDeepLink()
             }
         )

@@ -24,7 +24,7 @@ class ColorManager {
     
     static var huntlyOrangeColor = UIColor(red: 225/255, green: 91/255, blue: 41/255, alpha: 1)
     
-    static var defaultColor = UIColor.clearColor()
+    static var defaultColor = UIColor.clear
     
     static var topNavigationBarColor = UIColor(red: 80/255, green: 206/255, blue: 237/255, alpha: 1)
     
@@ -46,7 +46,7 @@ class ColorManager {
     
     
     
-    class func getColorFromTalkType(talkType : String) -> UIColor {
+    class func getColorFromTalkType(_ talkType : String) -> UIColor {
         if(talkType == "Ignite Sessions") {
             return igniteColor
         }
@@ -75,7 +75,7 @@ class ColorManager {
     }
     
     
-    class func getColorFromTrackTitle(trackTitle : String) -> UIColor {
+    class func getColorFromTrackTitle(_ trackTitle : String) -> UIColor {
         if(trackTitle == "Ignite Sessions") {
             return igniteColor
         }

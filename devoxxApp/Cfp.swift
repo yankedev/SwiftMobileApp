@@ -17,7 +17,7 @@ public protocol EventProtocol  {
     func capacityCount() -> String
     func sessionsCount() -> String
     func daysLeft() -> String
-    func backgroundImage() -> NSData
+    func backgroundImage() -> Data
     func identifier() -> String
 }
 
@@ -41,7 +41,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     @NSManaged var votingImageName: String?
     @NSManaged var cfpEndpoint: String?
     @NSManaged var regURL: String?
-    @NSManaged var backgroundImageData: NSData?
+    @NSManaged var backgroundImageData: Data?
     @NSManaged var floors: NSSet
     @NSManaged var days: NSOrderedSet
     @NSManaged var attributes: NSSet
@@ -50,7 +50,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     func getId() -> NSManagedObject? {
         return nil
     }
-    func resetId(id: NSManagedObject?) {
+    func resetId(_ id: NSManagedObject?) {
     }
     
     func identifier() -> String {
@@ -58,7 +58,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     }
     
     
-    func feedHelper(helper: DataHelperProtocol) -> Void {
+    func feedHelper(_ helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? CfpHelper  {
             
             id = castHelper.id
@@ -82,8 +82,8 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
             
             let splashImgUrlLastComponent = APIManager.getLastFromUrl(splashImgURL!)
             
-            if let path = NSBundle.mainBundle().pathForResource(splashImgUrlLastComponent, ofType: "") {
-                if let data = NSData(contentsOfFile: path) {
+            if let path = Bundle.main.path(forResource: splashImgUrlLastComponent, ofType: "") {
+                if let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
                     backgroundImageData = data
                 }
             }
@@ -95,10 +95,10 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
         
         
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        let date = dateFormatter.dateFromString(fromDate!)
-        let now = NSDate()
+        let date = dateFormatter.date(from: fromDate!)
+        let now = Date()
         
         let string = "\(differenceInDaysWithDate(now, secondDate: date!))"
         
@@ -109,19 +109,19 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
     }
     
     
-    func differenceInDaysWithDate(firstDate : NSDate, secondDate: NSDate) -> Int {
+    func differenceInDaysWithDate(_ firstDate : Date, secondDate: Date) -> Int {
         
         if firstDate.timeIntervalSince1970 >= secondDate.timeIntervalSince1970 {
             return 0
         }
         
-        let calendar: NSCalendar = NSCalendar.currentCalendar()
+        let calendar: Calendar = Calendar.current
         
-        let date1 = calendar.startOfDayForDate(firstDate)
-        let date2 = calendar.startOfDayForDate(secondDate)
+        let date1 = calendar.startOfDay(for: firstDate)
+        let date2 = calendar.startOfDay(for: secondDate)
         
-        let components = calendar.components(.Day, fromDate: date1, toDate: date2, options: [])
-        return components.day
+        let components = (calendar as NSCalendar).components(.day, from: date1, to: date2, options: [])
+        return components.day!
     }
     
     
@@ -151,7 +151,7 @@ class Cfp: NSManagedObject, FeedableProtocol, EventProtocol {
         return [10, 20, 30]
     }
     
-    func backgroundImage() -> NSData {
+    func backgroundImage() -> Data {
         return backgroundImageData!
     }
     

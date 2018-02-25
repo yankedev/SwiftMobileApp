@@ -9,11 +9,11 @@
 import Foundation
 import CoreData
 
-public class AttributeHelper {
+open class AttributeHelper {
     
-    public var id: String?
-    public var label: String?
-    public var attributeDescription: String?
-    public var type:String?
+    open var id: String?
+    open var label: String?
+    open var attributeDescription: String?
+    open var type:String?
     
 }

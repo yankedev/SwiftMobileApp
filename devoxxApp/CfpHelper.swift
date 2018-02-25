@@ -65,7 +65,7 @@ class CfpHelper: DataHelperProtocol {
         return id!
     }
     
-    func feed(data: JSON) {
+    func feed(_ data: JSON) {
         
         id = data["id"].string
         integration_id = data["integration_id"].string
@@ -105,7 +105,7 @@ class CfpHelper: DataHelperProtocol {
         return "Cfp"
     }
     
-    func prepareArray(json: JSON) -> [JSON]? {
+    func prepareArray(_ json: JSON) -> [JSON]? {
         return json.array
     }
     

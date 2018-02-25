@@ -10,13 +10,13 @@ import Foundation
 import CoreData
 
 
-public enum StoredResourceStoreError: Equatable, ErrorType {
-    case CannotFetch(String)
+public enum StoredResourceStoreError: Equatable, Error {
+    case cannotFetch(String)
 }
 
 public func ==(lhs: StoredResourceStoreError, rhs: StoredResourceStoreError) -> Bool {
     switch (lhs, rhs) {
-    case (.CannotFetch(let a), .CannotFetch(let b)) where a == b: return true
+    case (.cannotFetch(let a), .cannotFetch(let b)) where a == b: return true
     default: return false
     }
 }
@@ -35,22 +35,22 @@ class StoredResourceService : AbstractService {
         return StoredResourceHelper()
     }
    
-    func findByUrl(url : String) -> StoredResource {
+    func findByUrl(_ url : String) -> StoredResource {
     
             do {
-                let fetchRequest = NSFetchRequest(entityName: "StoredResource")
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "StoredResource")
                 let predicateEvent = NSPredicate(format: "url = %@", url)
                 fetchRequest.returnsDistinctResults = true
                 fetchRequest.predicate = predicateEvent
                 
-                let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [StoredResource]
+                let items = try self.privateManagedObjectContext.fetch(fetchRequest) as! [StoredResource]
                 
                 if items.count > 0 {
                     return items[0]
                 }
                 
-                let entity = NSEntityDescription.entityForName("StoredResource", inManagedObjectContext: self.privateManagedObjectContext)
-                let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                let entity = NSEntityDescription.entity(forEntityName: "StoredResource", in: self.privateManagedObjectContext)
+                let coreDataObject = NSManagedObject(entity: entity!, insertInto: self.privateManagedObjectContext)
                 coreDataObject.setValue(url, forKey: "url")
                 
                 return coreDataObject as! StoredResource
@@ -58,8 +58,8 @@ class StoredResourceService : AbstractService {
             }
             catch {
                 
-                let entity = NSEntityDescription.entityForName("StoredResource", inManagedObjectContext: self.privateManagedObjectContext)
-                let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                let entity = NSEntityDescription.entity(forEntityName: "StoredResource", in: self.privateManagedObjectContext)
+                let coreDataObject = NSManagedObject(entity: entity!, insertInto: self.privateManagedObjectContext)
                 coreDataObject.setValue(url, forKey: "url")
                 
                 return coreDataObject as! StoredResource
@@ -69,14 +69,14 @@ class StoredResourceService : AbstractService {
 
     }
 
-    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
+     override func updateWithHelper(_ helper : [DataHelperProtocol], completionHandler : @escaping (_ msg: CallbackProtocol) -> Void) {
         
-        privateManagedObjectContext.performBlock {
+        privateManagedObjectContext.perform {
             
             for singleHelper in helper {
                
-                let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
-                let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                let entity = NSEntityDescription.entity(forEntityName: singleHelper.entityName(), in: self.privateManagedObjectContext)
+                let coreDataObject = NSManagedObject(entity: entity!, insertInto: self.privateManagedObjectContext)
                     
                 if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
                     coreDataObjectCast.feedHelper(singleHelper)

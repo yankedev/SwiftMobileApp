@@ -18,7 +18,7 @@ import Foundation
 import UIKit
 
 
-public class TrackController<T : ScrollableDateProtocol> : HuntlyNavigationController, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
+open class TrackController<T : ScrollableDateProtocol> : HuntlyNavigationController, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
     
     
     
@@ -46,7 +46,7 @@ public class TrackController<T : ScrollableDateProtocol> : HuntlyNavigationContr
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         
         super.viewDidLoad()
         
@@ -60,9 +60,9 @@ public class TrackController<T : ScrollableDateProtocol> : HuntlyNavigationContr
         self.scrollableDateTableDelegate = self
         
         
-        self.navigationBar.translucent = false
+        self.navigationBar.isTranslucent = false
         
-        pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
+        pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.horizontal, options: nil)
         
         pageViewController?.dataSource = self
         pageViewController?.delegate = self
@@ -79,7 +79,7 @@ public class TrackController<T : ScrollableDateProtocol> : HuntlyNavigationContr
     
     
     
-    public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    open func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         var currentIndex = 0
         if let demoController = viewController as? T {
@@ -95,7 +95,7 @@ public class TrackController<T : ScrollableDateProtocol> : HuntlyNavigationContr
         return viewControllerAtIndex(currentIndex)
     }
     
-    public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    open func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         var currentIndex = 0
         if let demoController = viewController as? T {
@@ -113,7 +113,7 @@ public class TrackController<T : ScrollableDateProtocol> : HuntlyNavigationContr
     }
     
     
-    public func viewControllerAtIndex(index : NSInteger) -> UIViewController {
+    open func viewControllerAtIndex(_ index : NSInteger) -> UIViewController {
         
         let scheduleTableController = T()
         scheduleTableController.index = index
@@ -125,19 +125,19 @@ public class TrackController<T : ScrollableDateProtocol> : HuntlyNavigationContr
     }
     
     
-    public func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    open func presentationCount(for pageViewController: UIPageViewController) -> Int {
         if let tracks = self.scrollableDateTableDatasource?.allTracks {
             return tracks.count
         }
         return 0
     }
     
-    public func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    open func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
     }
     
     
-    public func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    open func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
     }
     
     func updateTitle() {
@@ -149,13 +149,13 @@ public class TrackController<T : ScrollableDateProtocol> : HuntlyNavigationContr
         }
     }
     
-    func callBack(attributes : [Attribute], error : AttributeStoreError?) {
+    func callBack(_ attributes : [Attribute], error : AttributeStoreError?) {
         allTracks = attributes
         updateTitle()
         
         let demo = viewControllerAtIndex(0)
         let controls = [demo]
-        pageViewController?.setViewControllers(controls, direction: .Forward, animated: false, completion: nil)
+        pageViewController?.setViewControllers(controls, direction: .forward, animated: false, completion: nil)
         pushViewController(pageViewController!, animated: false)
         
     }
@@ -167,10 +167,10 @@ public class TrackController<T : ScrollableDateProtocol> : HuntlyNavigationContr
     
     
     
-    func humanReadableDateFromNSDate(date : NSDate) -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .LongStyle
-        return dateFormatter.stringFromDate(date)
+    func humanReadableDateFromNSDate(_ date : Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        return dateFormatter.string(from: date)
     }
     
     

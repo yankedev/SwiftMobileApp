@@ -11,9 +11,9 @@ import UIKit
 
 class SchedulerTableView : UITableView {
     
-    var searchBar = UISearchBar(frame: CGRectMake(0,0,44,44))
+    var searchBar = UISearchBar(frame: CGRect(x: 0,y: 0,width: 44,height: 44))
     
-    func updateHeaderView(show : Bool) {
+    func updateHeaderView(_ show : Bool) {
         if show {
             tableHeaderView = searchBar
         }
@@ -28,7 +28,7 @@ class SchedulerTableView : UITableView {
     }
     
     convenience init() {
-        self.init(frame: CGRectZero, style : .Plain)
+        self.init(frame: CGRect.zero, style : .plain)
         self.initialize()
     }
     
@@ -44,9 +44,9 @@ class SchedulerTableView : UITableView {
     func setupConstraints() {
         let viewDictionnary = ["tableView": self]
         
-        let verticalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|[tableView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionnary)
+        let verticalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "V:|[tableView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionnary)
         
-        let horizontalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|[tableView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionnary)
+        let horizontalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "H:|[tableView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewDictionnary)
         
         superview?.addConstraints(horizontalContraint)
         superview?.addConstraints(verticalContraint)

@@ -25,7 +25,7 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
     
     
     func cancel() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     
@@ -34,7 +34,7 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
         
         
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title:  NSLocalizedString("Cancel", comment: ""), style: .Plain, target: self, action: #selector(self.cancel))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title:  NSLocalizedString("Cancel", comment: ""), style: .plain, target: self, action: #selector(self.cancel))
         
         scan()
         
@@ -45,7 +45,7 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
     func scan() {
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video
         // as the media type parameter.
-        let captureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         
         do {
             // Get an instance of the AVCaptureDeviceInput class using the previous device object.
@@ -61,7 +61,7 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
             captureSession?.addOutput(captureMetadataOutput)
             
             // Set delegate and use the default dispatch queue to execute the call back
-            captureMetadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+            captureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             
             // Detect all the supported bar code
             captureMetadataOutput.metadataObjectTypes = supportedBarCodes
@@ -80,10 +80,10 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
             qrCodeFrameView = UIView()
             
             if let qrCodeFrameView = qrCodeFrameView {
-                qrCodeFrameView.layer.borderColor = UIColor.greenColor().CGColor
+                qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
                 qrCodeFrameView.layer.borderWidth = 2
                 view.addSubview(qrCodeFrameView)
-                view.bringSubviewToFront(qrCodeFrameView)
+                view.bringSubview(toFront: qrCodeFrameView)
             }
             
         } catch {
@@ -99,11 +99,11 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
         // Dispose of any resources that can be recreated.
     }
     
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         
         // Check if the metadataObjects array is not nil and it contains at least one object.
         if metadataObjects == nil || metadataObjects.count == 0 {
-            qrCodeFrameView?.frame = CGRectZero
+            qrCodeFrameView?.frame = CGRect.zero
             return
         }
         
@@ -116,13 +116,13 @@ class QRCodeScannerController: UIViewController, AVCaptureMetadataOutputObjectsD
         if supportedBarCodes.contains(metadataObj.type) {
             //        if metadataObj.type == AVMetadataObjectTypeQRCode {
             // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
-            let barCodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj)
+            let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
             if metadataObj.stringValue != nil {
                 var qrCodeId = metadataObj.stringValue.characters.split{$0 == ":"}.map(String.init)
                 APIManager.setQrCode(qrCodeId[0])
-                dismissViewControllerAnimated(true, completion: completionOnceScanned)
+                dismiss(animated: true, completion: completionOnceScanned)
             }
         }
     }

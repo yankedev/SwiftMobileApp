@@ -10,7 +10,7 @@ import Foundation
 
 class HelperManager {
 
-    class func getShortTalkTypeName(talkType : String) -> String {
+    class func getShortTalkTypeName(_ talkType : String) -> String {
         if(talkType == "Ignite Sessions") {
             return "Ignite"
         }

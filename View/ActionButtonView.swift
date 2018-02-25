@@ -17,7 +17,7 @@ class ActionButtonView : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentMode = .ScaleAspectFill
+        contentMode = .scaleAspectFill
         clipsToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -27,7 +27,7 @@ class ActionButtonView : UIView {
         addSubview(button)
     }
     
-    func setup(background : Bool) {
+    func setup(_ background : Bool) {
         
         if background {
             backgroundColor = ColorManager.topNavigationBarColor
@@ -35,7 +35,7 @@ class ActionButtonView : UIView {
         }
         
         
-        button.frame = CGRectMake(0, 0, frame.size.width, frame.size.height)
+        button.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
         button.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
         
     }

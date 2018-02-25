@@ -9,5 +9,5 @@
 import Foundation
 
 protocol SearchableItemProtocol {
-    func isMatching(str : String) -> Bool
+    func isMatching(_ str : String) -> Bool
 }

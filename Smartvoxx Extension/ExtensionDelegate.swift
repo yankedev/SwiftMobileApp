@@ -10,7 +10,7 @@ import WatchKit
 import WatchConnectivity
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
-    private var session:WCSession?
+    fileprivate var session:WCSession?
 
     func applicationDidFinishLaunching() {
         initWatchConnectivity()
@@ -30,35 +30,35 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 extension ExtensionDelegate:WCSessionDelegate {
     func initWatchConnectivity() {
         if WCSession.isSupported() {
-            session = WCSession.defaultSession()
+            session = WCSession.default()
             session?.delegate = self
-            session?.activateSession()
+            session?.activate()
         }
     }
     
-    func session(session: WCSession, activationDidCompleteWithState activationState: WCSessionActivationState, error: NSError?) {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         print("OK")
     }
     
-    func session(session: WCSession, didReceiveMessage message: [String : AnyObject], replyHandler: ([String : AnyObject]) -> Void) {
-        processMessage(message)
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
+        processMessage(message as [String : AnyObject])
     }
     
-    func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
-        processMessage(userInfo)
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any]) {
+        processMessage(userInfo as [String : AnyObject])
     }
     
-    private func processMessage(message:[String:AnyObject]) {
+    fileprivate func processMessage(_ message:[String:AnyObject]) {
         if let favorite = message["favorite"] as? [String:AnyObject] {
-            if let value = favorite["value"] as? Bool, talkId = favorite["talkId"] as? String, conferenceId = favorite["conferenceId"] as? String {
+            if let value = favorite["value"] as? Bool, let talkId = favorite["talkId"] as? String, let conferenceId = favorite["conferenceId"] as? String {
                 DataController.sharedInstance.setFavorite(value, forTalkWithId:talkId, inConferenceWithId:conferenceId) { (talkSlot:TalkSlot) in
-                    NSNotificationCenter.defaultCenter().postNotificationName("talkFavoriteStatusChanged", object: nil, userInfo: ["talkSlot":talkSlot])
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "talkFavoriteStatusChanged"), object: nil, userInfo: ["talkSlot":talkSlot])
                 }
             }
         }
     }
     
-    func updateFavoriteStatusForTalkSlot(talkSlot:TalkSlot) {
+    func updateFavoriteStatusForTalkSlot(_ talkSlot:TalkSlot) {
          let talkSlotMessage = [
             "title":talkSlot.title!,
             "room":talkSlot.roomName!,
@@ -69,12 +69,12 @@ extension ExtensionDelegate:WCSessionDelegate {
             "fromTimeMillis":talkSlot.fromTimeMillis!,
             "fromTime":talkSlot.fromTime!,
             "toTime":talkSlot.toTime!
-         ]
+         ] as [String : Any]
          
-         if let session = self.session where session.reachable {
-            session.sendMessage(["favorite" : talkSlotMessage], replyHandler: { (reply:[String : AnyObject]) -> Void in
+         if let session = self.session, session.isReachable {
+            session.sendMessage(["favorite" : talkSlotMessage], replyHandler: { (reply:[String : Any]) -> Void in
          
-                }, errorHandler: { (error:NSError) -> Void in
+                }, errorHandler: { (error:Error) -> Void in
                     print(error)
             })
          } else {

@@ -8,6 +8,30 @@
 
 import WatchKit
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 
 class GlanceController: WKInterfaceController {
@@ -20,8 +44,8 @@ class GlanceController: WKInterfaceController {
     
     var nextFavoriteSlots:[TalkSlot]?
     
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         
         self.headerLabel.setText(NSLocalizedString("Next", comment: ""))
     }
@@ -29,9 +53,9 @@ class GlanceController: WKInterfaceController {
     override func willActivate() {
         super.willActivate()
         
-        self.nextFavoriteSlots = DataController.sharedInstance.getFavoriteTalksAfterDate(NSDate())
-        if let nextFavoriteSlots = self.nextFavoriteSlots where nextFavoriteSlots.count > 0 {
-            let now = NSDate()
+        self.nextFavoriteSlots = DataController.sharedInstance.getFavoriteTalksAfterDate(Date())
+        if let nextFavoriteSlots = self.nextFavoriteSlots, nextFavoriteSlots.count > 0 {
+            let now = Date()
             var nextFavoriteSlot:TalkSlot?
             for talkSlot in nextFavoriteSlots {
                 if talkSlot.fromTimeMillis?.doubleValue > now.timeIntervalSince1970 * 1000 {
@@ -47,11 +71,11 @@ class GlanceController: WKInterfaceController {
                 self.dateLabel.setHidden(false)
                 self.roomLabel.setText(nextFavoriteSlot.roomName)
                 
-                let startDate = NSDate(timeIntervalSince1970: nextFavoriteSlot.fromTimeMillis!.doubleValue / 1000)
-                let formatter = NSDateFormatter()
-                formatter.dateStyle = NSDateFormatterStyle.LongStyle
-                formatter.timeStyle = NSDateFormatterStyle.NoStyle
-                let day = formatter.stringFromDate(startDate)
+                let startDate = Date(timeIntervalSince1970: nextFavoriteSlot.fromTimeMillis!.doubleValue / 1000)
+                let formatter = DateFormatter()
+                formatter.dateStyle = DateFormatter.Style.long
+                formatter.timeStyle = DateFormatter.Style.none
+                let day = formatter.string(from: startDate)
                 self.dateLabel.setText("\(day), \(nextFavoriteSlot.timeRange)")
             } else {
                 self.subtitleLabel.setText("")

@@ -10,24 +10,24 @@ import Foundation
 
 class ResourceFetcherManager {
     
-    static var map = Dictionary<String, NSDate>()
+    static var map = Dictionary<String, Date>()
     
-    class func isAllowedToFetch(url : String?) -> Bool {
+    class func isAllowedToFetch(_ url : String?) -> Bool {
         
         if url == nil {
             return false
         }
         
-        if NSURL(string: url!) == nil {
+        if URL(string: url!) == nil {
             return false
         }
         if map[url!] == nil {
-            map[url!] = NSDate()
+            map[url!] = Date()
             return true
         }
         
         if abs(map[url!]!.timeIntervalSinceNow) > 1 {
-            map[url!] = NSDate()
+            map[url!] = Date()
             return true
         }
         

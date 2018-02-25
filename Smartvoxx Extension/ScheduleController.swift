@@ -15,10 +15,10 @@ class ScheduleController: WKInterfaceController {
     @IBOutlet var table: WKInterfaceTable!
     var schedule: Schedule?
     var dataSource = [AnyObject]()
-    private var notificationObserver:AnyObject?
+    fileprivate var notificationObserver:AnyObject?
 
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
 
         self.activityIndicator.setImageNamed("Activity")
 
@@ -29,17 +29,17 @@ class ScheduleController: WKInterfaceController {
 
     override func willActivate() {
         super.willActivate()
-        self.notificationObserver = NSNotificationCenter.defaultCenter().addObserverForName("talkFavoriteStatusChanged", object: nil, queue: nil) { (notification:NSNotification) in
+        self.notificationObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "talkFavoriteStatusChanged"), object: nil, queue: nil) { (notification:Notification) in
             self.reloadData()
         }
         reloadData()
     }
 
-    private func reloadData() {
+    fileprivate func reloadData() {
         if let schedule = self.schedule {
             self.setTitle(schedule.purgedTitle)
             self.activityIndicator.setHidden(false)
-            self.activityIndicator.startAnimatingWithImagesInRange(NSMakeRange(0, 30), duration: 1.0, repeatCount: 0)
+            self.activityIndicator.startAnimatingWithImages(in: NSMakeRange(0, 30), duration: 1.0, repeatCount: 0)
             
             DataController.sharedInstance.getSlotsForSchedule(schedule) {
                 (slots: [Slot]) -> (Void) in
@@ -54,7 +54,7 @@ class ScheduleController: WKInterfaceController {
                     if !timeRanges.contains(slot.timeRange) {
                         timeRanges.append(slot.timeRange)
                         rowTypes.append("timerange")
-                        self.dataSource.append(slot.timeRange)
+                        self.dataSource.append(slot.timeRange as AnyObject)
                     }
                     
                     rowTypes.append("slot")
@@ -64,27 +64,27 @@ class ScheduleController: WKInterfaceController {
                 
                 var index = 0
                 for item in self.dataSource {
-                    if let timeRangeRowController = self.table.rowControllerAtIndex(index) as? TimeRangeRowController {
+                    if let timeRangeRowController = self.table.rowController(at: index) as? TimeRangeRowController {
                         if let timeRange = item as? String {
                             timeRangeRowController.label.setText(timeRange)
                         }
-                    } else if let slotRowController = self.table.rowControllerAtIndex(index) as? SlotRowController {
+                    } else if let slotRowController = self.table.rowController(at: index) as? SlotRowController {
                         if let slot = item as? Slot {
                             slotRowController.roomLabel.setText(slot.roomName!)
                             
                             if let breakSlot = item as? BreakSlot {
                                 slotRowController.titleLabel.setText(breakSlot.nameEN!)
-                                slotRowController.trackSeparator.setBackgroundColor(UIColor.clearColor())
+                                slotRowController.trackSeparator.setBackgroundColor(UIColor.clear)
                                 slotRowController.favoriteImage.setHidden(true)
                             } else if let talkSlot = item as? TalkSlot {
                                 slotRowController.titleLabel.setText(talkSlot.title!)
                                 if talkSlot.track != nil {
                                     slotRowController.trackSeparator.setBackgroundColor(UIColor(rgba: talkSlot.track!.color!))
                                 } else {
-                                    slotRowController.trackSeparator.setBackgroundColor(UIColor.clearColor())
+                                    slotRowController.trackSeparator.setBackgroundColor(UIColor.clear)
                                 }
                                 
-                                if let favorite = talkSlot.favorite?.boolValue where favorite {
+                                if let favorite = talkSlot.favorite?.boolValue, favorite {
                                     slotRowController.favoriteImage.setHidden(false)
                                     slotRowController.favoriteImage.setImageNamed("FavoriteOn")
                                 } else {
@@ -106,12 +106,12 @@ class ScheduleController: WKInterfaceController {
             DataController.sharedInstance.cancelSlotsForSchedule(schedule)
         }
         if let notificationObserver = self.notificationObserver {
-            NSNotificationCenter.defaultCenter().removeObserver(notificationObserver)
+            NotificationCenter.default.removeObserver(notificationObserver)
         }
         super.didDeactivate()
     }
 
-    override func contextForSegueWithIdentifier(segueIdentifier: String, inTable table: WKInterfaceTable, rowIndex: Int) -> AnyObject? {
+    override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
         return self.dataSource[rowIndex]
     }
 }

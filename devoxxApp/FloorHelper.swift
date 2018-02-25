@@ -32,7 +32,7 @@ class FloorHelper: DataHelperProtocol {
         self.target = target ?? ""
     }
     
-    func feed(data: JSON) {
+    func feed(_ data: JSON) {
         img = data["img"].string
         title = data["title"].string
         tabpos = data["tabpos"].string
@@ -43,7 +43,7 @@ class FloorHelper: DataHelperProtocol {
         return "Floor"
     }
     
-    func prepareArray(json: JSON) -> [JSON]? {
+    func prepareArray(_ json: JSON) -> [JSON]? {
         return json.array
     }
     

@@ -9,8 +9,8 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'My_Devoxx' do
-    pod 'Alamofire', '~> 3.5.1'
-    pod 'KeychainAccess', '~> 2.4.0'
+    pod 'Alamofire', '~> 4.6.0'
+    pod 'KeychainAccess', '~> 3.1.0'
 end
 
 target 'My_DevoxxTests' do

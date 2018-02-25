@@ -18,8 +18,8 @@ class SpeakerController: WKInterfaceController {
     @IBOutlet var activityIndicator: WKInterfaceImage!
     var speaker:Speaker?
 
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
 
         self.activityIndicator.setImageNamed("Activity")
 
@@ -33,7 +33,7 @@ class SpeakerController: WKInterfaceController {
 
         if let speaker = self.speaker {
             self.activityIndicator.setHidden(false)
-            self.activityIndicator.startAnimatingWithImagesInRange(NSMakeRange(0, 30), duration: 1.0, repeatCount: 0)
+            self.activityIndicator.startAnimatingWithImages(in: NSMakeRange(0, 30), duration: 1.0, repeatCount: 0)
 
             DataController.sharedInstance.getSpeaker(speaker) {
                 (speaker: Speaker) -> (Void) in
@@ -51,8 +51,8 @@ class SpeakerController: WKInterfaceController {
                 self.avatarImage.startAnimating()
 
                 DataController.sharedInstance.getAvatarForSpeaker(speaker) {
-                    (data: NSData) -> (Void) in
-                    dispatch_async(dispatch_get_main_queue(), {
+                    (data: Data) -> (Void) in
+                    DispatchQueue.main.async(execute: {
                         () -> Void in
                         self.avatarImage.stopAnimating()
                         self.avatarImage.setImageData(data)

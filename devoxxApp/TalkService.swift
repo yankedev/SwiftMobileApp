@@ -8,15 +8,39 @@
 
 import Foundation
 import CoreData
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
 
 
-public enum TalksStoreError: Equatable, ErrorType {
-    case CannotFetch(String)
+
+public enum TalksStoreError: Equatable, Error {
+    case cannotFetch(String)
 }
 
 public func ==(lhs: TalksStoreError, rhs: TalksStoreError) -> Bool {
     switch (lhs, rhs) {
-    case (.CannotFetch(let a), .CannotFetch(let b)) where a == b: return true
+    case (.cannotFetch(let a), .cannotFetch(let b)) where a == b: return true
     default: return false
     }
 }
@@ -30,34 +54,23 @@ class TalkService : AbstractService {
         super.init()
     }
     
-    func fetchTalksByDate(currentDate : NSDate, searchPredicates : [String : [NSPredicate]]?, completionHandler: (_: NSFetchedResultsController?, error: TalksStoreError?) -> Void) {
-       
-        fetchTalks(currentDate, searchPredicates : searchPredicates, sortByDate : true, completionHandler : completionHandler)
-    }
     
-    func fetchTalksByTrackId(currentTrack : NSManagedObjectID, completionHandler: (_: NSFetchedResultsController?, error: TalksStoreError?) -> Void) {
-        
-        let attribute = self.privateManagedObjectContext.objectWithID(currentTrack) as! Attribute
-        
-        fetchTalks(attribute.label!, searchPredicates : nil, sortByDate : false, completionHandler : completionHandler)
-    }
-    
-    func fetchTalks<T>(criterion : T, searchPredicates : [String : [NSPredicate]]?, sortByDate : Bool, completionHandler: (_: NSFetchedResultsController?, error: TalksStoreError?) -> Void) {
-        privateManagedObjectContext.performBlock {
+    func fetchTalksE<T>(_ criterion : T, searchPredicates : [String : [NSPredicate]]?, sortByDate : Bool, completionHandler: @escaping (_: NSFetchedResultsController<NSFetchRequestResult>?, _ error: TalksStoreError?) -> Void) {
+        privateManagedObjectContext.perform {
             do {
-                let fetchRequest = NSFetchRequest(entityName: "Talk")
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Talk")
                 let sortTime = NSSortDescriptor(key: "slot.fromTime", ascending: true)
                 let sortAlpha = NSSortDescriptor(key: "slot.roomName", ascending: true)
                 let sortFavorite = NSSortDescriptor(key: "isFavorited", ascending: false)
                 
-               
+                
                 
                 var sectionNameKeyPath:String
                 var predicate:NSPredicate
                 
                 if sortByDate {
                     sectionNameKeyPath = "slot.fromTime"
-                    predicate = NSPredicate(format: "slot.date = %@", criterion as! NSDate)
+                    predicate = NSPredicate(format: "slot.date = %@", criterion as! Date as CVarArg)
                     fetchRequest.sortDescriptors = [sortTime, sortFavorite, sortAlpha]
                 }
                 else {
@@ -76,28 +89,45 @@ class TalkService : AbstractService {
                 
                 
                 try frc.performFetch()
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(frc, error: nil)
+                DispatchQueue.main.async(execute: {
+                    completionHandler(frc, nil)
                 })
             } catch {
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(nil, error: TalksStoreError.CannotFetch("Cannot fetch talks"))
+                DispatchQueue.main.async(execute: {
+                    completionHandler(nil, TalksStoreError.cannotFetch("Cannot fetch talks"))
                 })
-               
+                
             }
         }
     }
+ 
+    
+    func fetchTalksByDate(_ currentDate : Date, searchPredicates : [String : [NSPredicate]]?, completionHandler: @escaping (_: NSFetchedResultsController<NSFetchRequestResult>?, _ error: TalksStoreError?) -> Void) {
+       
+        fetchTalksE(currentDate, searchPredicates : searchPredicates, sortByDate : true, completionHandler : completionHandler)
+        
+        
+    }
+    
+    func fetchTalksByTrackId(_ currentTrack : NSManagedObjectID, completionHandler: @escaping (_: NSFetchedResultsController<NSFetchRequestResult>?, _ error: TalksStoreError?) -> Void) {
+        
+        let attribute = self.privateManagedObjectContext.object(with: currentTrack) as! Attribute
+        
+        fetchTalksE(attribute.label!, searchPredicates : nil, sortByDate : false, completionHandler : completionHandler)
+    }
     
     
-    func setFavoriteStatus(fav:Bool, forTalkWithId talkId:String, completion : (_: CallbackProtocol) -> Void) {
-        privateManagedObjectContext.performBlock {
+    
+    
+    func setFavoriteStatus(_ fav:Bool, forTalkWithId talkId:String, completion : @escaping (_: CallbackProtocol) -> Void) {
+        privateManagedObjectContext.perform {
             do {
                 
-                let fetchRequest = NSFetchRequest(entityName: "Talk")
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Talk")
                 let predicate = NSPredicate(format: "id = %@", talkId)
                 fetchRequest.predicate = predicate
                 
-                let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+                let items = try self.privateManagedObjectContext.fetch(fetchRequest)
                 
                 if items.count > 0 {
                     let talk = items[0] as! Talk
@@ -112,15 +142,15 @@ class TalkService : AbstractService {
 
     }
     
-    func fetchTalks(ids : [NSManagedObjectID], completionHandler: (_: [DataHelperProtocol], error: TalksStoreError?) -> Void) {
-        privateManagedObjectContext.performBlock {
+    func fetchTalks(_ ids : [NSManagedObjectID], completionHandler: @escaping (_: [DataHelperProtocol], _ error: TalksStoreError?) -> Void) {
+        privateManagedObjectContext.perform {
             
         
             
             var talksArray = [DataHelperProtocol]()
             
             for singleId in ids {
-                let obj = self.privateManagedObjectContext.objectWithID(singleId)
+                let obj = self.privateManagedObjectContext.object(with: singleId)
                 
                 if let objCast = obj as? HelperableProtocol {
                     talksArray.append(objCast.toHelper())
@@ -128,8 +158,8 @@ class TalkService : AbstractService {
                 
             }
             
-            dispatch_async(dispatch_get_main_queue(), {
-                completionHandler(talksArray, error: nil)
+            DispatchQueue.main.async(execute: {
+                completionHandler(talksArray, nil)
             })
         
         
@@ -137,7 +167,7 @@ class TalkService : AbstractService {
     }
 
     
-    private func computePredicate(predicate : NSPredicate, searchPredicates : [String : [NSPredicate]]?) -> NSPredicate {
+    fileprivate func computePredicate(_ predicate : NSPredicate, searchPredicates : [String : [NSPredicate]]?) -> NSPredicate {
 
         var andPredicate = [NSPredicate]()
         andPredicate.append(predicate)
@@ -154,8 +184,8 @@ class TalkService : AbstractService {
         return NSCompoundPredicate(andPredicateWithSubpredicates: andPredicate)
     }
     
-    func getTalkUrl(talkId : String) -> String {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+    func getTalkUrl(_ talkId : String) -> String {
+        let cfp = self.privateManagedObjectContext.object(with: CfpService.sharedInstance.getCfp()) as! Cfp
         return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/talks/\(talkId)"
     }
     

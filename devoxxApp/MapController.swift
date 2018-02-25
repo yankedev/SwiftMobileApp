@@ -10,20 +10,20 @@ import Foundation
 import UIKit
 import MapKit
 
-public class MapController : UIViewController, MKMapViewDelegate {
+open class MapController : UIViewController, MKMapViewDelegate {
     
-    public var index:Int = 0
+    open var index:Int = 0
     
     var mapView:MKMapView!
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         self.title = "Map"
     }
     
     func reset() {
         
         mapView = MKMapView(frame: view.frame)
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor.white
         
         view.addSubview(mapView)
         

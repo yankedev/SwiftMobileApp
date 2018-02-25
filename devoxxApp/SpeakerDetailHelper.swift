@@ -40,7 +40,7 @@ class SpeakerDetailHelper: DataHelperProtocol {
         self.speaker = speaker
     }
     
-    func feed(data: JSON) {
+    func feed(_ data: JSON) {
         uuid = data["uuid"].string
         bio = data["bio"].string
         bioAsHtml = data["bioAsHtml"].string
@@ -52,7 +52,7 @@ class SpeakerDetailHelper: DataHelperProtocol {
         return "SpeakerDetail"
     }
     
-    func prepareArray(json: JSON) -> [JSON]? {
+    func prepareArray(_ json: JSON) -> [JSON]? {
         var array = [JSON]()
         array.append(json)
         return array

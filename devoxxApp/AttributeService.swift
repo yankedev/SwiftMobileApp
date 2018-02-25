@@ -10,13 +10,13 @@ import Foundation
 import CoreData
 
 
-public enum AttributeStoreError: Equatable, ErrorType {
-    case CannotFetch(String)
+public enum AttributeStoreError: Equatable, Error {
+    case cannotFetch(String)
 }
 
 public func ==(lhs: AttributeStoreError, rhs: AttributeStoreError) -> Bool {
     switch (lhs, rhs) {
-    case (.CannotFetch(let a), .CannotFetch(let b)) where a == b: return true
+    case (.cannotFetch(let a), .cannotFetch(let b)) where a == b: return true
     default: return false
     }
 }
@@ -32,11 +32,11 @@ class AttributeService : AbstractService {
     
     
     
-    func fetchFilters(completionHandler: (filters: NSFetchedResultsController?, error: AttributeStoreError?) -> Void) {
-        privateManagedObjectContext.performBlock {
+    func fetchFilters(_ completionHandler: @escaping (_ filters: NSFetchedResultsController<NSFetchRequestResult>?, _ error: AttributeStoreError?) -> Void) {
+        privateManagedObjectContext.perform {
             do {
         
-                let fetchRequest = NSFetchRequest(entityName: "Attribute")
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Attribute")
                 let sortSection = NSSortDescriptor(key: "type", ascending: true)
                 let sortAlpha = NSSortDescriptor(key: "label", ascending: true)
                 
@@ -54,12 +54,12 @@ class AttributeService : AbstractService {
                     cacheName: nil)
                 
                 try frc.performFetch()
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(filters: frc, error: nil)
+                DispatchQueue.main.async(execute: {
+                    completionHandler(frc, nil)
                 })
             } catch {
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(filters: nil, error: AttributeStoreError.CannotFetch("Cannot fetch attributes"))
+                DispatchQueue.main.async(execute: {
+                    completionHandler(nil, AttributeStoreError.cannotFetch("Cannot fetch attributes"))
                 })
                 
             }
@@ -67,45 +67,45 @@ class AttributeService : AbstractService {
     }
 
     
-    func fetchTracks(completionHandler: (attributes: [Attribute], error: AttributeStoreError?) -> Void) {
-        privateManagedObjectContext.performBlock {
+    func fetchTracks(_ completionHandler: @escaping (_ attributes: [Attribute], _ error: AttributeStoreError?) -> Void) {
+        privateManagedObjectContext.perform {
             do {
                 
                 
                 let predicateEvent = NSPredicate(format: "cfp.id = %@", self.getCfpId())
-                let fetchRequest = NSFetchRequest(entityName: "Attribute")
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Attribute")
                 let predicateType = NSPredicate(format: "type = %@", "Track")
                 fetchRequest.returnsDistinctResults = true
                 fetchRequest.sortDescriptors = [NSSortDescriptor(key: "label", ascending: true)]
                 
                 fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateEvent, predicateType])
                 
-                let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as! [Attribute]
+                let items = try self.privateManagedObjectContext.fetch(fetchRequest) as! [Attribute]
                 
                 //let's check that this track contains at least one talk, otherwise we should not return it
                 var res = [Attribute]()
 
                 for it in items  {
                     
-                    let fetchRequestSlot = NSFetchRequest(entityName: "Slot")
+                    let fetchRequestSlot = NSFetchRequest<NSFetchRequestResult>(entityName: "Slot")
                     fetchRequestSlot.fetchBatchSize = 20
                     fetchRequestSlot.returnsObjectsAsFaults = false
                     
                     let predicateTrack = NSPredicate(format: "talk.track = %@", it.label!)
                     fetchRequestSlot.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateEvent, predicateTrack])
-                    let itemsRes = try self.privateManagedObjectContext.executeFetchRequest(fetchRequestSlot)
+                    let itemsRes = try self.privateManagedObjectContext.fetch(fetchRequestSlot)
   
                     if itemsRes.count > 0 {
                         res.append(it)
                     }
                 }
                 
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(attributes: res, error: nil)
+                DispatchQueue.main.async(execute: {
+                    completionHandler(res, nil)
                 })
             } catch {
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(attributes: [], error: AttributeStoreError.CannotFetch("Cannot fetch attributes"))
+                DispatchQueue.main.async(execute: {
+                    completionHandler([], AttributeStoreError.cannotFetch("Cannot fetch attributes"))
                 })
                 
             }
@@ -113,25 +113,25 @@ class AttributeService : AbstractService {
     }
     
     
-    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
+     override func updateWithHelper(_ helper : [DataHelperProtocol], completionHandler : @escaping (_ msg: CallbackProtocol) -> Void) {
         
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        let cfp = self.privateManagedObjectContext.object(with: CfpService.sharedInstance.getCfp()) as! Cfp
         
-        privateManagedObjectContext.performBlock {
+        privateManagedObjectContext.perform {
             
             for singleHelper in helper {
                 do {
                     
-                    let fetchRequest = NSFetchRequest(entityName: "Attribute")
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Attribute")
                     let predicate = NSPredicate(format: "id = %@", singleHelper.getMainId())
                     fetchRequest.predicate = predicate
-                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+                    let items = try self.privateManagedObjectContext.fetch(fetchRequest)
                     
                     if items.count == 0 {
                         
                         
-                        let entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
-                        let coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                        let entity = NSEntityDescription.entity(forEntityName: singleHelper.entityName(), in: self.privateManagedObjectContext)
+                        let coreDataObject = NSManagedObject(entity: entity!, insertInto: self.privateManagedObjectContext)
                         
                         if let coreDataObjectCast = coreDataObject as? FeedableProtocol {
                             coreDataObjectCast.feedHelper(singleHelper)
@@ -161,12 +161,12 @@ class AttributeService : AbstractService {
 
     
     func getTracksUrl() -> String {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        let cfp = self.privateManagedObjectContext.object(with: CfpService.sharedInstance.getCfp()) as! Cfp
         return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/tracks"
     }
     
     func getTalkTypeUrl() -> String {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        let cfp = self.privateManagedObjectContext.object(with: CfpService.sharedInstance.getCfp()) as! Cfp
         return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/proposalTypes"
     }
 

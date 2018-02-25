@@ -27,7 +27,7 @@ class ImageHelper: DataHelperProtocol {
         self.etag = etag ?? ""
     }
     
-    func feed(data: JSON) {
+    func feed(_ data: JSON) {
         imgName = data["img"].string
         etag = data["etag"].string
     }
@@ -36,7 +36,7 @@ class ImageHelper: DataHelperProtocol {
         return "Image"
     }
     
-    func prepareArray(json: JSON) -> [JSON]? {
+    func prepareArray(_ json: JSON) -> [JSON]? {
         return json.array
     }
     

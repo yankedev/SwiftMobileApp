@@ -14,7 +14,7 @@ class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
         return id!
     }
     
-    func feed(data: JSON) {
+    func feed(_ data: JSON) {
         super.label = data["label"].string
         super.id = data["id"].string
         super.attributeDescription = data["description"].string
@@ -29,7 +29,7 @@ class TalkTypeHelper: AttributeHelper, DataHelperProtocol {
         return "TalkType"
     }
     
-    func prepareArray(json : JSON) -> [JSON]? {
+    func prepareArray(_ json : JSON) -> [JSON]? {
         return json["proposalTypes"].array
     }
     

@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 
 
-public class SchedulerTableViewController<T : CellDataPrococol>:
+open class SchedulerTableViewController<T : CellDataPrococol>:
     UIViewController,
     FavoritableProtocol,
     FilterableTableProtocol,
@@ -25,11 +25,11 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     
     
     //ScrollableDateProtocol
-    public var index:Int = 0
-    public var currentTrack:NSManagedObjectID!
-    public var currentDate:NSDate!
+    open var index:Int = 0
+    open var currentTrack:NSManagedObjectID!
+    open var currentDate:Date!
     
-    public func getNavigationItem() -> UINavigationItem {
+    open func getNavigationItem() -> UINavigationItem {
         return (self.navigationController?.navigationItem)!
     }
     
@@ -55,13 +55,17 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     var schedulerTableView = SchedulerTableView()
     
     
-    var savedFetchedResult : NSFetchedResultsController?
+    var savedFetchedResult : NSFetchedResultsController<NSFetchRequestResult>?
     
     public required init() {
         super.init(nibName: nil, bundle: nil)
     }
+
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         fetchUpdate()
@@ -75,24 +79,24 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         schedulerTableView.setupConstraints()
     }
     
-    override public func viewWillAppear(animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         fetchUpdate()
-        self.schedulerTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        self.schedulerTableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         //sync with watch
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleNotification(_:)), name:"UpdateFavorite", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleNotification(_:)), name:NSNotification.Name(rawValue: "UpdateFavorite"), object: nil)
     }
     
-    public override func viewWillDisappear(animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateFavorite", object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "UpdateFavorite"), object: nil)
     }
     
     
     
-    public func callBack(fetchedResult :NSFetchedResultsController?, error :TalksStoreError?) {
+    open func callBack(_ fetchedResult :NSFetchedResultsController<NSFetchRequestResult>?, error :TalksStoreError?) {
         savedFetchedResult = fetchedResult
         if let sections = fetchedResult!.sections {
             for _ in sections {
@@ -103,15 +107,15 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     }
     
     
-    public func fetchAll() {
+    open func fetchAll() {
         TalkService.sharedInstance.fetchTalksByDate(self.currentDate, searchPredicates : self.searchPredicates, completionHandler: self.callBack)
     }
     
-    public func resetSearch() {
+    open func resetSearch() {
         searchingString = ""
     }
     
-    public func performSwitch() {
+    open func performSwitch() {
         resetSearch()
         fetchAll()
     }
@@ -121,7 +125,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     
     //TableView
     
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let slot = getCell(indexPath) as? HelperableProtocol {
     
@@ -155,42 +159,42 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     
     
     
-    func getCell(indexPath : NSIndexPath) -> CellDataPrococol? {
+    func getCell(_ indexPath : IndexPath) -> CellDataPrococol? {
         var cellDataTry:CellDataPrococol?
         
         if !searchingString.isEmpty {
             
             let curent = searchedSections[indexPath.section]
             let obj = (curent.objects)!
-            cellDataTry = filterSearchArray(obj)[indexPath.row] as? CellDataPrococol
+            cellDataTry = filterSearchArray(obj as [AnyObject])[indexPath.row] as? CellDataPrococol
             return cellDataTry
         }
             
         else {
-            return savedFetchedResult?.objectAtIndexPath(indexPath) as? CellDataPrococol
+            return savedFetchedResult?.object(at: indexPath) as? CellDataPrococol
         }
         
     }
     
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)-> UITableViewCell {
         
         let cellData = getCell(indexPath)
         
         if cellData?.isSpecial() == true {
             
-            var cell = tableView.dequeueReusableCellWithIdentifier("BREAK_CELL") as? ScheduleBreakCell
+            var cell = tableView.dequeueReusableCell(withIdentifier: "BREAK_CELL") as? ScheduleBreakCell
             
             if cell == nil {
-                cell = ScheduleBreakCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "BREAK_CELL")
+                cell = ScheduleBreakCell(style: UITableViewCellStyle.value1, reuseIdentifier: "BREAK_CELL")
             }
             
             cell?.rightTextView.text = cellData?.getFirstInformation()
             
             cell?.leftIconView.setup()
             
-            cell?.leftIconView.imageView.frame = CGRectInset(CGRectMake(0, 5, 50, 60), 8, 8);
-            cell?.leftIconView.imageView.contentMode = .ScaleAspectFit
+            cell?.leftIconView.imageView.frame = CGRect(x: 0, y: 5, width: 50, height: 60).insetBy(dx: 8, dy: 8);
+            cell?.leftIconView.imageView.contentMode = .scaleAspectFit
             
             cell?.leftIconView.imageView.image = UIImage(named: "cofeeCup.png")
             
@@ -202,10 +206,10 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         }
         else {
             
-            var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? ScheduleCellView
+            var cell = tableView.dequeueReusableCell(withIdentifier: "CELL_10") as? ScheduleCellView
             
             if cell == nil {
-                cell = ScheduleCellView(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
+                cell = ScheduleCellView(style: UITableViewCellStyle.value1, reuseIdentifier: "CELL_10")
             }
             
             
@@ -242,7 +246,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         
     
     
-    func filterSearchArray(currentArray : [AnyObject]) -> [AnyObject] {
+    func filterSearchArray(_ currentArray : [AnyObject]) -> [AnyObject] {
         
         let filteredArray = currentArray.filter() {
             if let type = $0 as? SearchableItemProtocol {
@@ -257,7 +261,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         
     }
     
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    open func numberOfSections(in tableView: UITableView) -> Int {
         
         if let sections = savedFetchedResult?.sections {
             
@@ -277,7 +281,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     }
     
     
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = savedFetchedResult?.sections {
             
             
@@ -296,7 +300,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
                 
                 let obj = (curent.objects)!
                 
-                return filterSearchArray(obj).count
+                return filterSearchArray(obj as [AnyObject]).count
             }
             
             
@@ -312,7 +316,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         return 0
     }
     
-    public func getSection(section: Int) -> NSFetchedResultsSectionInfo? {
+    open func getSection(_ section: Int) -> NSFetchedResultsSectionInfo? {
         if let sections = savedFetchedResult?.sections {
             
             if !searchingString.isEmpty {
@@ -327,14 +331,14 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     
     
     
-    public func updateSectionForSearch() {
+    open func updateSectionForSearch() {
         
         searchedSections = (savedFetchedResult?.sections)!
         
         if let sections = savedFetchedResult?.sections {
             for section in sections {
                 
-                let filteredArray = filterSearchArray(section.objects!)
+                let filteredArray = filterSearchArray(section.objects! as [AnyObject])
                 if filteredArray.count == 0 {
                     searchedSections.removeObject(section)
                 }
@@ -348,12 +352,12 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     
     
     
-    public func favorite(id : NSManagedObjectID) -> Bool {
+    open func favorite(_ id : NSManagedObjectID) -> Bool {
         return TalkService.sharedInstance.invertFavorite(id)
     }
     
     
-    public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    open func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchingString = searchText
         schedulerTableView.reloadData()
     }
@@ -368,7 +372,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     }
     
     
-    func buildFilter(filters: [String : [FilterableProtocol]]) {
+    func buildFilter(_ filters: [String : [FilterableProtocol]]) {
         currentFilters = filters
         for key in filters.keys {
             searchPredicates[key] = [NSPredicate]()
@@ -388,7 +392,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     }
     
     
-    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         /*if let sections = frc?.sections {
         let currentSection = sections[section]
@@ -401,7 +405,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         
     }
     
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         
         let cellData = getCell(indexPath)
@@ -416,7 +420,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     }
     
     
-    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         var title = ""
         var nbTalks = 0
@@ -428,7 +432,7 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         
         var obj = currentSection.objects!
         if !searchingString.isEmpty {
-            obj = filterSearchArray(obj)
+            obj = filterSearchArray(obj as [AnyObject])
         }
         
         if let talk = obj[0] as? Talk {
@@ -445,18 +449,18 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
         
         let breakSlot = (set.count == 1 && set.first == "")
         
-        let headerView = HeaderView(frame: CGRectMake(0,0,schedulerTableView.frame.width, 50))
+        let headerView = HeaderView(frame: CGRect(x: 0,y: 0,width: schedulerTableView.frame.width, height: 50))
         headerView.headerString.text = title
         
         
         headerView.tag = section
         headerView.upDown.tag = section
-        headerView.upDown.addTarget(self, action: #selector(self.openCloseButton(_:)), forControlEvents: .TouchUpInside)
-        headerView.upDown.selected = openedSections[section]
+        headerView.upDown.addTarget(self, action: #selector(self.openCloseButton(_:)), for: .touchUpInside)
+        headerView.upDown.isSelected = openedSections[section]
         
         if breakSlot {
-            headerView.upDown.hidden = breakSlot
-            headerView.eventImg.hidden = breakSlot
+            headerView.upDown.isHidden = breakSlot
+            headerView.eventImg.isHidden = breakSlot
             headerView.numberOfTalkString.text = ""
             headerView.backgroundColor = ColorManager.breakColor
         }
@@ -475,56 +479,56 @@ public class SchedulerTableViewController<T : CellDataPrococol>:
     }
     
     
-    func openCloseButton(sender: UIButton) {
-        let indexPath : NSIndexPath = NSIndexPath(forRow: 0, inSection:(sender.tag as Int!)!)
+    func openCloseButton(_ sender: UIButton) {
+        let indexPath : IndexPath = IndexPath(row: 0, section:(sender.tag as Int!)!)
         if (indexPath.row == 0) {
             
             openedSections[indexPath.section] =  !openedSections[indexPath.section]
             
             let range = NSMakeRange(indexPath.section, 1)
-            let sectionToReload = NSIndexSet(indexesInRange: range)
-            self.schedulerTableView .reloadSections(sectionToReload, withRowAnimation:UITableViewRowAnimation.Fade)
+            let sectionToReload = IndexSet(integersIn: range.toRange() ?? 0..<0)
+            self.schedulerTableView .reloadSections(sectionToReload, with:UITableViewRowAnimation.fade)
         }
-        sender.selected = !sender.selected
+        sender.isSelected = !sender.isSelected
     }
     
     
-    func openCloseView(sender: UITapGestureRecognizer) {
-        let indexPath : NSIndexPath = NSIndexPath(forRow: 0, inSection:(sender.view!.tag as Int!)!)
+    func openCloseView(_ sender: UITapGestureRecognizer) {
+        let indexPath : IndexPath = IndexPath(row: 0, section:(sender.view!.tag as Int!)!)
         if (indexPath.row == 0) {
             
             openedSections[indexPath.section] =  !openedSections[indexPath.section]
             
             let range = NSMakeRange(indexPath.section, 1)
-            let sectionToReload = NSIndexSet(indexesInRange: range)
-            self.schedulerTableView .reloadSections(sectionToReload, withRowAnimation:UITableViewRowAnimation.Fade)
+            let sectionToReload = IndexSet(integersIn: range.toRange() ?? 0..<0)
+            self.schedulerTableView .reloadSections(sectionToReload, with:UITableViewRowAnimation.fade)
         }
         
         if let view = sender.view as? HeaderView {
-            view.upDown.selected = !view.upDown.selected
+            view.upDown.isSelected = !view.upDown.isSelected
         }
         
     }
     
-    public func fetchUpdate() {
+    open func fetchUpdate() {
         APIReloadManager.fetchUpdate(fetchUrl(), service: SlotService.sharedInstance, completedAction: fetchCompleted)
     }
     
-    public func fetchCompleted(newHelper : CallbackProtocol) -> Void {
+    open func fetchCompleted(_ newHelper : CallbackProtocol) -> Void {
         fetchAll()
     }
 
     
-    public func fetchUrl() -> String? {
+    open func fetchUrl() -> String? {
         return CfpService.sharedInstance.getDayUrl(index)
     }
     
-    public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         schedulerTableView.searchBar.resignFirstResponder()
     }
     
     
-    func handleNotification(notification: NSNotification){
+    func handleNotification(_ notification: Notification){
         schedulerTableView.reloadData()
     }
     

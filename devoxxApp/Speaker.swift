@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 import UIKit
 
-public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, ImageFeedable, HelperableProtocol {
+open class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, FavoriteProtocol, ImageFeedable, HelperableProtocol {
     
     @NSManaged var uuid: String?
     @NSManaged var firstName: String?
@@ -21,59 +21,59 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
     @NSManaged var isFavorited: Bool
     @NSManaged var speakerDetail: SpeakerDetail
     @NSManaged var talks: NSSet
-    @NSManaged var imgData: NSData
+    @NSManaged var imgData: Data
     
-    public func getObjectID() -> NSManagedObjectID {
+    open func getObjectID() -> NSManagedObjectID {
         return objectID
     }
     
-    func feedImageData(data: NSData) {
+    func feedImageData(_ data: Data) {
         imgData = data
     }
     
-    public func getFirstInformation() -> String {
-        return "\(firstName!.capitalizedString) \(lastName!.capitalizedString)"
+    open func getFirstInformation() -> String {
+        return "\(firstName!.capitalized) \(lastName!.capitalized)"
     }
     
-    public func getId() -> NSManagedObject? {
+    open func getId() -> NSManagedObject? {
         return nil
     }
-    public func resetId(id: NSManagedObject?) {
+    open func resetId(_ id: NSManagedObject?) {
     }
     
-    public func getUrl() -> String? {
+    open func getUrl() -> String? {
        return avatarUrl
     }
     
     
-    public func getSecondInformation() -> String {
+    open func getSecondInformation() -> String {
         return ""
     }
     
-    public  func getForthInformation(useTwitter : Bool) -> String {
+    open  func getForthInformation(_ useTwitter : Bool) -> String {
         return ""
     }
     
-    public  func getThirdInformation() -> String  {
+    open  func getThirdInformation() -> String  {
         return ""
     }
     
-    public  func getPrimaryImage() -> UIImage? {
+    open  func getPrimaryImage() -> UIImage? {
         return UIImage(data: imgData)
     }
-    public  func getColor() -> UIColor? {
+    open  func getColor() -> UIColor? {
         return nil
     }
     
-    public  func isSpecial() -> Bool {
+    open  func isSpecial() -> Bool {
         return false
     }
     
-    public func getElement() -> NSManagedObject {
+    open func getElement() -> NSManagedObject {
         return self
     }
     
-    public func feedHelper(help: DataHelperProtocol) {
+    open func feedHelper(_ help: DataHelperProtocol) {
         if let castHelper = help as? SpeakerHelper  {
             uuid = castHelper.uuid
             firstName = castHelper.firstName
@@ -83,15 +83,15 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
         }
     }
     
-    public func getIdentifier() -> String {
+    open func getIdentifier() -> String {
         return uuid!
     }
     
-    public func invertFavorite() {
+    open func invertFavorite() {
         isFavorited = !isFavorited
     }
     
-    public func isFav() -> Bool {
+    open func isFav() -> Bool {
         return isFavorited
     }
     
@@ -105,7 +105,7 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
         return "\(firstName!) \(lastName!)"
     }
     
-    public func getHeaderTitle() -> String {
+    open func getHeaderTitle() -> String {
         return "Talks"
     }
     
@@ -116,7 +116,7 @@ public class Speaker: NSManagedObject, CellDataPrococol, FeedableProtocol, Favor
         var talksId = [NSManagedObjectID]()
        
         for singleTalk in Array(talks) {
-            talksId.append(singleTalk.getObjectID())
+            talksId.append((singleTalk as AnyObject).getObjectID())
         }
 
         return SpeakerHelper(uuid: uuid, lastName: lastName, firstName: firstName, avatarUrl: avatarUrl, objectID : objectID, href: href, bio : speakerDetail.bio , company: speakerDetail.company, twitter : speakerDetail.twitter, isFavorite: isFavorited, talksId: talksId, imgData: imgData)

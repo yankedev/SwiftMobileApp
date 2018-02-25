@@ -10,13 +10,13 @@ import Foundation
 import CoreData
 
 
-public enum SpeakerDetailStoreError: Equatable, ErrorType {
-    case CannotFetch(String)
+public enum SpeakerDetailStoreError: Equatable, Error {
+    case cannotFetch(String)
 }
 
 public func ==(lhs: SpeakerDetailStoreError, rhs: SpeakerDetailStoreError) -> Bool {
     switch (lhs, rhs) {
-    case (.CannotFetch(let a), .CannotFetch(let b)) where a == b: return true
+    case (.cannotFetch(let a), .cannotFetch(let b)) where a == b: return true
     default: return false
     }
 }
@@ -30,10 +30,10 @@ class SpeakerDetailService : AbstractService {
         super.init()
     }
     
-    func getSpeakerFromId(id : NSManagedObjectID, completionHandler : (Speaker) -> Void)  {
+    func getSpeakerFromId(_ id : NSManagedObjectID, completionHandler : @escaping (Speaker) -> Void)  {
         
-        dispatch_async(dispatch_get_main_queue(),{
-            let spk = self.privateManagedObjectContext.objectWithID(id) as! Speaker
+        DispatchQueue.main.async(execute: {
+            let spk = self.privateManagedObjectContext.object(with: id) as! Speaker
             completionHandler(spk)
         })
         
@@ -43,21 +43,21 @@ class SpeakerDetailService : AbstractService {
         return SpeakerDetailHelper()
     }
     
-    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
+     override func updateWithHelper(_ helper : [DataHelperProtocol], completionHandler : @escaping (_ msg: CallbackProtocol) -> Void) {
         
         var foundSpeaker : NSManagedObject!
-        privateManagedObjectContext.performBlock {
+        privateManagedObjectContext.perform {
             
             for singleHelper in helper {
                 do {
                     
                     
-                    let fetchRequest = NSFetchRequest(entityName: "SpeakerDetail")
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SpeakerDetail")
                     let predicate = NSPredicate(format: "uuid = %@", singleHelper.getMainId())
                     let predicateEvent = NSPredicate(format: "speaker.cfp.id = %@", CfpService.sharedInstance.getCfpId())
                     fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, predicateEvent])
               
-                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest) as? [SpeakerDetail]
+                    let items = try self.privateManagedObjectContext.fetch(fetchRequest) as? [SpeakerDetail]
                     
                     if items!.count > 0 {
                         let found = items![0]
@@ -89,7 +89,7 @@ class SpeakerDetailService : AbstractService {
   
     
     func getSpeakerUrl() -> String {
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        let cfp = self.privateManagedObjectContext.object(with: CfpService.sharedInstance.getCfp()) as! Cfp
         return "\(cfp.cfpEndpoint!)/conferences/\(cfp.id!)/speakers"
     }
     

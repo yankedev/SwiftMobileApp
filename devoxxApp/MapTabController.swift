@@ -10,7 +10,7 @@
 import Foundation
 import UIKit
 
-public class MapTabController : UIViewController {
+open class MapTabController : UIViewController {
     
     var seg:UISegmentedControl!
     var currentView : UIView?
@@ -25,20 +25,20 @@ public class MapTabController : UIViewController {
     }
     
     
-    func callBack(floors : [Floor], error : FloorStoreError?) {
+    func callBack(_ floors : [Floor], error : FloorStoreError?) {
         self.floors = floors
         for floor in floors {
-            seg.insertSegmentWithTitle(floor.title, atIndex: seg.numberOfSegments, animated: false)
+            seg.insertSegment(withTitle: floor.title, at: seg.numberOfSegments, animated: false)
             APIReloadManager.fetchImg(floor.img, id: floor.objectID, service : floorService, completedAction: completed)
         }
     }
     
-    func completed(callBack :CallbackProtocol) {
+    func completed(_ callBack :CallbackProtocol) {
         //print("fetch img")
         change(seg)
     }
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         
         super.viewDidLoad()
         if let nav = self.navigationController as? HuntlyNavigationController {
@@ -47,13 +47,13 @@ public class MapTabController : UIViewController {
         
         seg = UISegmentedControl()
         seg.translatesAutoresizingMaskIntoConstraints = false
-        seg.insertSegmentWithTitle("Venue map", atIndex: 0, animated: false)
+        seg.insertSegment(withTitle: "Venue map", at: 0, animated: false)
         
-        navigationController?.navigationBar.translucent = false
+        navigationController?.navigationBar.isTranslucent = false
         
         setupSegments()
         
-        seg.addTarget(self, action: #selector(self.change(_:)), forControlEvents: .ValueChanged)
+        seg.addTarget(self, action: #selector(self.change(_:)), for: .valueChanged)
         
         seg.tintColor = ColorManager.topNavigationBarColor
         
@@ -82,11 +82,11 @@ public class MapTabController : UIViewController {
         let viewDictionary = ["seg":seg, "accessView":accessView]
         let layout = NSLayoutFormatOptions(rawValue: 0)
         
-        let horizontalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[seg]-10-|", options: layout, metrics: nil, views: viewDictionary)
+        let horizontalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[seg]-10-|", options: layout, metrics: nil, views: viewDictionary)
         
-        let horizontalContraint1:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[accessView]-0-|", options: layout, metrics: nil, views: viewDictionary)
+        let horizontalContraint1:[NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[accessView]-0-|", options: layout, metrics: nil, views: viewDictionary)
         
-        let verticalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[seg(30)]-10-[accessView]-0-|", options: layout, metrics: nil, views: viewDictionary)
+        let verticalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[seg(30)]-10-[accessView]-0-|", options: layout, metrics: nil, views: viewDictionary)
         
         
         view.addConstraints(horizontalContraint0)
@@ -109,7 +109,7 @@ public class MapTabController : UIViewController {
         
     }
     
-    func change(sender : UISegmentedControl) {
+    func change(_ sender : UISegmentedControl) {
         
         
         if(sender.selectedSegmentIndex == 0) {
@@ -130,12 +130,12 @@ public class MapTabController : UIViewController {
             */
             
             
-            let imageView = UIImageView(image: UIImage(data: currentFloor.imgData))
+            let imageView = UIImageView(image: UIImage(data: currentFloor.imgData as Data))
             
             let scrollView = UIScrollView(frame: view.bounds)
-            scrollView.backgroundColor = UIColor.blackColor()
+            scrollView.backgroundColor = UIColor.black
             scrollView.contentSize = imageView.bounds.size
-            scrollView.autoresizingMask = UIViewAutoresizing.FlexibleWidth
+            scrollView.autoresizingMask = UIViewAutoresizing.flexibleWidth
             
             scrollView.addSubview(imageView)
             currentView = scrollView
@@ -148,7 +148,7 @@ public class MapTabController : UIViewController {
     func segZero() {
         currentView?.removeFromSuperview()
         let controller = MapController()
-        controller.view.frame = CGRectMake(0, 0, accessView.frame.width, accessView.frame.height)
+        controller.view.frame = CGRect(x: 0, y: 0, width: accessView.frame.width, height: accessView.frame.height)
         currentView = controller.view
         controller.reset()
         accessView.addSubview(currentView!)

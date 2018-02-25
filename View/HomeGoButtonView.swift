@@ -18,7 +18,7 @@ class HomeGoButtonView : UIView {
         translatesAutoresizingMaskIntoConstraints = false
         
         goButton.backgroundColor = ColorManager.homeFontColor
-        goButton.setTitle("GO !", forState: .Normal)
+        goButton.setTitle("GO !", for: UIControlState())
         goButton.titleLabel?.font = UIFont(name: "Pirulen", size: 25)!
         addSubview(goButton)
         
@@ -28,12 +28,12 @@ class HomeGoButtonView : UIView {
         goButton.translatesAutoresizingMaskIntoConstraints = false
         
         
-        let widthLogo = NSLayoutConstraint(item: goButton, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Width, multiplier: 0.9, constant: 0)
-        let heightLogo = NSLayoutConstraint(item: goButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Height, multiplier:0.6, constant: 0)
-        let centerXLogo = NSLayoutConstraint(item: goButton, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+        let widthLogo = NSLayoutConstraint(item: goButton, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.width, multiplier: 0.9, constant: 0)
+        let heightLogo = NSLayoutConstraint(item: goButton, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.height, multiplier:0.6, constant: 0)
+        let centerXLogo = NSLayoutConstraint(item: goButton, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
         
         
-        let centerYLogo = NSLayoutConstraint(item: goButton, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0)
+        let centerYLogo = NSLayoutConstraint(item: goButton, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
         
         
         

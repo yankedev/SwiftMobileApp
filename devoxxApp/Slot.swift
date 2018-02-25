@@ -17,7 +17,7 @@ class Slot: NSManagedObject, FeedableProtocol {
     @NSManaged var fromTime: String
     @NSManaged var toTime: String
     @NSManaged var day: String
-    @NSManaged var date: NSDate
+    @NSManaged var date: Date
     @NSManaged var fromTimeMillis: NSNumber
     @NSManaged var cfp: Cfp?
     
@@ -31,7 +31,7 @@ class Slot: NSManagedObject, FeedableProtocol {
     
     
     
-    func resetId(id: NSManagedObject?) {
+    func resetId(_ id: NSManagedObject?) {
     }
     
     func getFriendlyTime() -> String {
@@ -42,7 +42,7 @@ class Slot: NSManagedObject, FeedableProtocol {
     
     
     
-    func feedHelper(helper: DataHelperProtocol) -> Void {
+    func feedHelper(_ helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? SlotHelper  {
             roomName = castHelper.roomName!
             slotId = castHelper.slotId!
@@ -51,14 +51,14 @@ class Slot: NSManagedObject, FeedableProtocol {
             day = castHelper.day!
             fromTimeMillis = castHelper.fromTimeMillis!
             //millis -> sec
-            let savedDate =  NSDate(timeIntervalSince1970: fromTimeMillis.doubleValue/1000)
-            let calendar = NSCalendar.currentCalendar()
-            let components = calendar.components([.Year, .Month, .Day], fromDate:  savedDate)
+            let savedDate =  Date(timeIntervalSince1970: fromTimeMillis.doubleValue/1000)
+            let calendar = Calendar.current
+            let components = (calendar as NSCalendar).components([.year, .month, .day], from:  savedDate)
             
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            date = dateFormatter.dateFromString("\(components.year)-\(components.month)-\(components.day) 08:00:00")!
+            date = dateFormatter.date(from: "\(components.year)-\(components.month)-\(components.day) 08:00:00")!
             
             
             

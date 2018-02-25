@@ -12,14 +12,14 @@ import CoreData
 
 
 protocol ImageFeedable {
-    func feedImageData(data : NSData)
+    func feedImageData(_ data : Data)
 }
 
 class APIReloadManager {
     
     
        
-    class func fetchUpdate(url : String?, service : AbstractService, completedAction : (newHelper: CallbackProtocol) -> Void) {
+    class func fetchUpdate(_ url : String?, service : AbstractService, completedAction : @escaping (_ newHelper: CallbackProtocol) -> Void) {
         
         if ResourceFetcherManager.isAllowedToFetch(url) {
             
@@ -29,13 +29,13 @@ class APIReloadManager {
             
         }
         else {
-            completedAction(newHelper: CompletionMessage(msg : "not allowed"))
+            completedAction(CompletionMessage(msg : "not allowed"))
         }
     }
     
  
     
-    class func fetchImg(url : String?, id : NSManagedObjectID?, service : ImageServiceProtocol, completedAction : (CallbackProtocol) -> Void) {
+    class func fetchImg(_ url : String?, id : NSManagedObjectID?, service : ImageServiceProtocol, completedAction : @escaping (CallbackProtocol) -> Void) {
         
         if id == nil {
             completedAction(CompletionMessage(msg : "id is null"))
@@ -43,11 +43,11 @@ class APIReloadManager {
  
         if ResourceFetcherManager.isAllowedToFetch(url) {
             
-            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+            let config = URLSessionConfiguration.default
             
-            let session = NSURLSession(configuration: config)
+            let session = URLSession(configuration: config)
             
-            let task = session.dataTaskWithURL(NSURL(string: url!)!) {
+            let task = session.dataTask(with: URL(string: url!)!, completionHandler: {
                 data, response1, error in
                 
                 if let _ = error {
@@ -60,7 +60,7 @@ class APIReloadManager {
                     
                     
                 }
-            }
+            }) 
             task.resume()
             
         }
@@ -72,7 +72,7 @@ class APIReloadManager {
         
     
     
-    class func onError(value : String) -> Void {
+    class func onError(_ value : String) -> Void {
         // print("ERROR")
     }
     

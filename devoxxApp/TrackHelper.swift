@@ -14,7 +14,7 @@ class TrackHelper: AttributeHelper, DataHelperProtocol {
         return id!
     }
     
-    func feed(data: JSON) {
+    func feed(_ data: JSON) {
         super.label = data["title"].string
         super.id = data["id"].string
         super.attributeDescription = data["trackDescription"].string
@@ -30,7 +30,7 @@ class TrackHelper: AttributeHelper, DataHelperProtocol {
         return "Track"
     }
     
-    func prepareArray(json : JSON) -> [JSON]? {
+    func prepareArray(_ json : JSON) -> [JSON]? {
         return json["tracks"].array
     }
     

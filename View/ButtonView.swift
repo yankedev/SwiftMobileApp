@@ -18,10 +18,10 @@ class ButtonView : UIView {
         super.init(frame: frame)
         
         let sepView = UIView()
-        cancelBtn.setTitle("Cancel", forState: .Normal)
+        cancelBtn.setTitle("Cancel", for: UIControlState())
         cancelBtn.backgroundColor = ColorManager.starColor
         
-        voteBtn.setTitle("Vote!", forState: .Normal)
+        voteBtn.setTitle("Vote!", for: UIControlState())
         voteBtn.backgroundColor = ColorManager.starColor
         
         addSubview(cancelBtn)
@@ -34,10 +34,10 @@ class ButtonView : UIView {
         
         let views = ["cancelBtn" : cancelBtn, "voteBtn" : voteBtn, "sepView" : sepView]
         
-        let constV0 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[cancelBtn]-10-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let constV1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[voteBtn]-10-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let constV0 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[cancelBtn]-10-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let constV1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[voteBtn]-10-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         
-        let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[cancelBtn(80)]-0-[sepView]-0-[voteBtn(80)]-10-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let constH0 = NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[cancelBtn(80)]-0-[sepView]-0-[voteBtn(80)]-10-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         
         
         

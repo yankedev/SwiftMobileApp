@@ -17,7 +17,7 @@ class FilterTableView : UITableView {
     }
     
     convenience init() {
-        self.init(frame: CGRectZero, style : .Plain)
+        self.init(frame: CGRect.zero, style : .plain)
         self.initialize()
     }
     
@@ -27,19 +27,19 @@ class FilterTableView : UITableView {
     
     func initialize() {
         translatesAutoresizingMaskIntoConstraints = false
-        separatorStyle = .None
+        separatorStyle = .none
         backgroundColor = ColorManager.filterBackgroundColor
     }
     
-    func setupConstraints(referenceView referenceView : UIView) {
+    func setupConstraints(referenceView : UIView) {
         
-        let widthConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: referenceView, attribute: NSLayoutAttribute.Width, multiplier: 0.5, constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: referenceView, attribute: NSLayoutAttribute.width, multiplier: 0.5, constant: 0)
         
-        let heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: referenceView, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0)
+        let heightConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: referenceView, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 0)
         
-        let topConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: referenceView, attribute: NSLayoutAttribute.Top, multiplier: 0.5, constant: 0)
+        let topConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: referenceView, attribute: NSLayoutAttribute.top, multiplier: 0.5, constant: 0)
         
-        let leftConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: referenceView, attribute: NSLayoutAttribute.Right, multiplier: 0.5, constant: 0)
+        let leftConstraint = NSLayoutConstraint(item: self, attribute: NSLayoutAttribute.left, relatedBy: NSLayoutRelation.equal, toItem: referenceView, attribute: NSLayoutAttribute.right, multiplier: 0.5, constant: 0)
         
         referenceView.addConstraint(widthConstraint)
         referenceView.addConstraint(heightConstraint)

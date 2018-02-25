@@ -9,6 +9,19 @@
 import Foundation
 import CoreData
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayPrococol, FavoriteProtocol, SearchableItemProtocol {
     
@@ -21,7 +34,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
     var bio : String?
     var company : String?
     var isFavorite : Bool?
-    var imgData : NSData?
+    var imgData : Data?
     var talksId : [NSManagedObjectID]?
     var relatedObjects: [DataHelperProtocol]?
     var twitter : String?
@@ -33,7 +46,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
     init() {
     }
     
-    init(uuid: String?, lastName: String?, firstName: String?, avatarUrl: String?, objectID : NSManagedObjectID, href: String?, bio: String?, company: String?, twitter : String?, isFavorite: Bool, talksId : [NSManagedObjectID]?, imgData : NSData?) {
+    init(uuid: String?, lastName: String?, firstName: String?, avatarUrl: String?, objectID : NSManagedObjectID, href: String?, bio: String?, company: String?, twitter : String?, isFavorite: Bool, talksId : [NSManagedObjectID]?, imgData : Data?) {
         self.uuid = uuid ?? ""
         self.lastName = lastName ?? ""
         self.firstName = firstName ?? ""
@@ -48,10 +61,10 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
         self.imgData = imgData
     }
     
-    func feed(data: JSON) {
+    func feed(_ data: JSON) {
         uuid = data["uuid"].string
-        lastName = data["lastName"].string?.capitalizedString
-        firstName = data["firstName"].string?.capitalizedString
+        lastName = data["lastName"].string?.capitalized
+        firstName = data["firstName"].string?.capitalized
         avatarUrl = data["avatarURL"].string
         href = data["links"][0]["href"].string
     }
@@ -64,7 +77,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
         return "Speaker"
     }
     
-    func prepareArray(json : JSON) -> [JSON]? {
+    func prepareArray(_ json : JSON) -> [JSON]? {
         return json.array
     }
     
@@ -76,7 +89,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
         if twitter != nil && twitter != "" {
             return twitter!
         }
-        return getTitle()!
+        return getTitleD()!
     }
     
     
@@ -86,7 +99,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
         return "\(hashtag) \(displayTwitter())"
     }
     
-    func getTitle() -> String? {
+    func getTitleD() -> String? {
         return "\(firstName!) \(lastName!)"
     }
     
@@ -102,7 +115,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
         return []
     }
     
-    func getDetailInfoWithIndex(idx: Int) -> String? {
+    func getDetailInfoWithIndex(_ idx: Int) -> String? {
         if idx < detailInfos().count {
             return detailInfos()[idx]
         }
@@ -113,7 +126,7 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
         return objectID
     }
     
-    func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol? {
+    func getRelatedDetailWithIndex(_ idx : Int) -> DetailableProtocol? {
         if idx < relatedObjects?.count {
             return relatedObjects?[idx] as? DetailableProtocol
         }
@@ -158,13 +171,13 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
         return objectID
     }
     
-    func setRelated(data : [DataHelperProtocol]){
+    func setRelated(_ data : [DataHelperProtocol]){
         relatedObjects = data
     }
     
     
     func getFirstInformation() -> String? {
-        return getTitle()
+        return getTitleD()
     }
     
     func getUrl() -> String? {
@@ -174,8 +187,8 @@ class SpeakerHelper: DataHelperProtocol, DetailableProtocol, CellDataDisplayProc
         return isFavorite!
     }
     
-    func isMatching(str : String) -> Bool {
-        return getTitle()!.lowercaseString.containsString(str.lowercaseString)
+    func isMatching(_ str : String) -> Bool {
+        return getTitleD()!.lowercased().contains(str.lowercased())
     }
     
     func invertFavorite() {

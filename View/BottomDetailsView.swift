@@ -50,60 +50,60 @@ class BottomDetailsView : UIView {
         //addConstraints(constH0)
         
         let imageHeight = NSLayoutConstraint(item: image,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 1,
             constant: 0)
         
         let imageTop = NSLayoutConstraint(item: image,
-            attribute: NSLayoutAttribute.Top,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.top,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Top,
+            attribute: NSLayoutAttribute.top,
             multiplier: 1,
             constant: 0)
         
         let imageLeft = NSLayoutConstraint(item: image,
-            attribute: NSLayoutAttribute.Left,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.left,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Left,
+            attribute: NSLayoutAttribute.left,
             multiplier: 1,
             constant: 0)
         
         
         let labelLeft = NSLayoutConstraint(item: label,
-            attribute: NSLayoutAttribute.Left,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.left,
+            relatedBy: NSLayoutRelation.equal,
             toItem: image,
-            attribute: NSLayoutAttribute.Right,
+            attribute: NSLayoutAttribute.right,
             multiplier: 1,
             constant: 0)
         
         let labelTop = NSLayoutConstraint(item: label,
-            attribute: NSLayoutAttribute.Top,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.top,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Top,
+            attribute: NSLayoutAttribute.top,
             multiplier: 1,
             constant: 0)
         
         
         let labelHeight = NSLayoutConstraint(item: label,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 1,
             constant: 0)
         
         let imageWidth = NSLayoutConstraint(item: image,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.width,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 1,
             constant: 0)
         

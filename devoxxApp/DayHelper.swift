@@ -31,7 +31,7 @@ class DayHelper: DataHelperProtocol {
         return entityName()
     }
     
-    func feed(data: JSON) {
+    func feed(_ data: JSON) {
         url = data["href"].string
     }
     
@@ -39,7 +39,7 @@ class DayHelper: DataHelperProtocol {
         return "Day"
     }
     
-    func prepareArray(json: JSON) -> [JSON]? {
+    func prepareArray(_ json: JSON) -> [JSON]? {
         return json["links"].array
     }
     

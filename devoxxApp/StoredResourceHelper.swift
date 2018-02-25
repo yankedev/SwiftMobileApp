@@ -31,7 +31,7 @@ class StoredResourceHelper: DataHelperProtocol {
         return ""
     }
     
-    func feed(data: JSON) {
+    func feed(_ data: JSON) {
         url = data["url"].string
         etag = data["etag"].string
         fallback = data["fallback"].string
@@ -41,7 +41,7 @@ class StoredResourceHelper: DataHelperProtocol {
         return "StoredResource"
     }
     
-    func prepareArray(json: JSON) -> [JSON]? {
+    func prepareArray(_ json: JSON) -> [JSON]? {
         return json.array
     }
     

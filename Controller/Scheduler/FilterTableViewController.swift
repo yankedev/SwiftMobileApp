@@ -10,20 +10,44 @@ import Foundation
 import CoreData
 import UIKit
 import QuartzCore
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 
 protocol DevoxxAppFilter : NSObjectProtocol {
-    func filter(filterName : [String : [FilterableProtocol]]) -> Void
+    func filter(_ filterName : [String : [FilterableProtocol]]) -> Void
 }
 
 
 
 extension Array {
     
-    mutating func removeObject<U: AnyObject>(object: U) -> Element? {
+    mutating func removeObject<U: AnyObject>(_ object: U) -> Element? {
         if count > 0 {
             for index in startIndex ..< endIndex {
-                if (self[index] as! U) === object { return self.removeAtIndex(index) }
+                if (self[index] as! U) === object { return self.remove(at: index) }
             }
         }
         return nil
@@ -31,7 +55,7 @@ extension Array {
 }
 
 
-public class FilterTableViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate {
+open class FilterTableViewController: UIViewController, NSFetchedResultsControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
     
     var filterTableView = FilterTableView()
@@ -40,15 +64,15 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
     
     var devoxxAppFilterDelegate:DevoxxAppFilter?
     
-    var savedFetchedResult:NSFetchedResultsController!
+    var savedFetchedResult:NSFetchedResultsController<NSFetchRequestResult>!
     
-    public func callBack(fetchedResult :NSFetchedResultsController?, error :AttributeStoreError?) {
+    open func callBack(_ fetchedResult :NSFetchedResultsController<NSFetchRequestResult>?, error :AttributeStoreError?) {
         savedFetchedResult = fetchedResult
         filterTableView.reloadData()
     }
     
     
-    public func fetchAll() {
+    open func fetchAll() {
         AttributeService.sharedInstance.fetchFilters(self.callBack)
     }
 
@@ -56,7 +80,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
     
     
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         
@@ -72,7 +96,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
     }
     
     
-    func isFilterSelected(attribute : FilterableProtocol) -> Bool {
+    func isFilterSelected(_ attribute : FilterableProtocol) -> Bool {
         if selected[attribute.filterPredicateLeftValue()] == nil  {
             return false
         }
@@ -94,42 +118,42 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
     
     
     
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let track = savedFetchedResult.objectAtIndexPath(indexPath) as? Attribute {
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as! FilterViewCell
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let track = savedFetchedResult.object(at: indexPath) as? Attribute {
+            let cell = tableView.cellForRow(at: indexPath) as! FilterViewCell
             
             
             
-            cell.userInteractionEnabled = false
+            cell.isUserInteractionEnabled = false
             
             
-            UIView.animateWithDuration(0.1, delay: 0.0, options: .CurveEaseOut, animations: {
+            UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveEaseOut, animations: {
                 
-                let scale = CGAffineTransformMakeScale(0.1, 0.1)
-                let rotate = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
+                let scale = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                let rotate = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
                 
                 
                 
-                cell.tickedImg.transform = CGAffineTransformConcat(rotate, scale)
+                cell.tickedImg.transform = rotate.concatenating(scale)
                 }, completion: { finished in
                     
                     
                     let imageToUse = (self.isFilterSelected(track)) ? "checkboxOn" : "checkboxOff"
                     
                     cell.tickedImg.image = UIImage(named: imageToUse)
-                    let scale = CGAffineTransformMakeScale(0.1, 0.1)
-                    let rotate = CGAffineTransformMakeRotation(CGFloat(M_PI_2))
-                    cell.tickedImg.transform = CGAffineTransformConcat(rotate, scale)
+                    let scale = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                    let rotate = CGAffineTransform(rotationAngle: CGFloat(M_PI_2))
+                    cell.tickedImg.transform = rotate.concatenating(scale)
                     
                     
-                    UIView.animateWithDuration(0.1, delay: 0, options: .CurveEaseOut, animations: {
+                    UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseOut, animations: {
                         
-                        let scale = CGAffineTransformMakeScale(1, 1)
-                        let rotate = CGAffineTransformMakeRotation(CGFloat(0))
+                        let scale = CGAffineTransform(scaleX: 1, y: 1)
+                        let rotate = CGAffineTransform(rotationAngle: CGFloat(0))
                         
-                        CGAffineTransformConcat(rotate, scale)
+                        rotate.concatenating(scale)
                         
-                        cell.tickedImg.transform = CGAffineTransformConcat(rotate, scale)
+                        cell.tickedImg.transform = rotate.concatenating(scale)
                         }, completion: { finished in
                             
                             
@@ -149,7 +173,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
                                 if contains {
                                     self.selected[key]!.removeObject(track)
                                     if self.selected[key]!.count == 0 {
-                                        self.selected.removeValueForKey(key)
+                                        self.selected.removeValue(forKey: key)
                                     }
                                     cell.backgroundColor = ColorManager.defaultColor
                                 }
@@ -164,7 +188,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
                                 self.selected[key] = attributeArray
                             }
                             
-                            cell.userInteractionEnabled = true
+                            cell.isUserInteractionEnabled = true
                             
                             self.devoxxAppFilterDelegate?.filter(self.selected)
                             
@@ -189,18 +213,18 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
     
     
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)-> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_1") as? FilterViewCell
+        var cell = tableView.dequeueReusableCell(withIdentifier: "CELL_1") as? FilterViewCell
         
         
         if cell == nil {
-            cell = FilterViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
-            cell?.selectionStyle = .None
+            cell = FilterViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "CELL_1")
+            cell?.selectionStyle = .none
             cell?.configureCell()
         }
         
-        if let attribute = savedFetchedResult?.objectAtIndexPath(indexPath) as? Attribute {
+        if let attribute = savedFetchedResult?.object(at: indexPath) as? Attribute {
             cell?.attributeTitle.text = attribute.label
             cell?.attributeImage.image = attribute.filterMiniIcon()
             
@@ -217,7 +241,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
         return cell!
     }
     
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    open func numberOfSections(in tableView: UITableView) -> Int {
         if let sections = savedFetchedResult?.sections {
             return sections.count
         }
@@ -225,7 +249,7 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
         return 0
     }
     
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = savedFetchedResult?.sections {
             let currentSection = sections[section]
             return currentSection.numberOfObjects
@@ -234,12 +258,12 @@ public class FilterTableViewController: UIViewController, NSFetchedResultsContro
     }
     
     
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
     
     
-    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    open func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = savedFetchedResult?.sections {
             let currentSection = sections[section]
             if currentSection.objects?.count > 0 {

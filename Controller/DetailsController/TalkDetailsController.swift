@@ -11,33 +11,33 @@ import UIKit
 import AVFoundation
 import CoreData
 
-public class TalkDetailsController : AbstractDetailsController, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol, FavoritableProtocol {
+open class TalkDetailsController : AbstractDetailsController, UITableViewDataSource, UITableViewDelegate, HotReloadProtocol, FavoritableProtocol {
     
     
     var txtField : UITextField!
     let details = GobalDetailView()
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         
         super.viewDidLoad()
         
         if let rateDetails = detailObject as? RatableProtocol {
             if !rateDetails.isEnabled() {
-                actionButtonView2.hidden = true
+                actionButtonView2.isHidden = true
             }
         }
         
         details.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(details)
         
-        let views = ["header": header, "scroll" : scroll, "details" : details]
+        let views = ["header": header, "scroll" : scroll, "details" : details] as [String : Any]
         
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[header]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[header]-0-|", options: .alignAllCenterX, metrics: nil, views: views)
+        let constH2 = NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[scroll]-10-|", options: .alignAllCenterX, metrics: nil, views: views)
         
-        let constH5 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[details]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH5 = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[details]-0-|", options: .alignAllCenterX, metrics: nil, views: views)
         
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(150)]-[details(150)]-[scroll]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constV = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[header(150)]-[details(150)]-[scroll]-0-|", options: .alignAllCenterX, metrics: nil, views: views)
         
         view.addConstraints(constH)
         view.addConstraints(constH2)
@@ -46,7 +46,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         view.addConstraints(constV)
         
         
-        header.talkTitle.text = detailObject.getTitle()
+        header.talkTitle.text = detailObject.getTitleD()
         header.talkTrack.text = detailObject.getSubTitle()
         scroll.text = detailObject.getSummary()
         
@@ -89,7 +89,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
   
     
-    func callBack(speakers : [DataHelperProtocol], error : SpeakerStoreError?) {
+    func callBack(_ speakers : [DataHelperProtocol], error : SpeakerStoreError?) {
         detailObject.setRelated(speakers)
         self.details.right.reloadData()
     }
@@ -100,29 +100,29 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     
     
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: {
             SpeakerService.sharedInstance.fetchSpeakers(self.detailObject.getRelatedIds(), completionHandler:self.callBack)
         })
         
         
-        header.imageView.hidden = true
+        header.imageView.isHidden = true
         
         //sync with watch
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleNotification(_:)), name:"UpdateFavorite", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleNotification(_:)), name:NSNotification.Name(rawValue: "UpdateFavorite"), object: nil)
     }
     
     
-    public override func viewWillDisappear(animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateFavorite", object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "UpdateFavorite"), object: nil)
     }
     
     
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let speaker = detailObject.getRelatedDetailWithIndex(indexPath.row) {
             
@@ -149,29 +149,29 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
    
     
     
-    public override func twitter() {
+    open override func twitter() {
         
         let originalString = detailObject.getTwitter()
  
         
-        let escapedString = originalString?.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+        let escapedString = originalString?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         
         let url = "https://twitter.com/intent/tweet?text=\(escapedString!)"
         
-        UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+        UIApplication.shared.openURL(URL(string: url)!)
     }
     
     
     
    
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)-> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10")
+        var cell = tableView.dequeueReusableCell(withIdentifier: "CELL_10")
         
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
-            cell?.selectionStyle = .None
+            cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "CELL_10")
+            cell?.selectionStyle = .none
         }
         
         
@@ -180,9 +180,9 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
         
         cell?.textLabel?.font = UIFont(name: "Roboto", size: 15)
-        cell?.textLabel?.text = detailObject.getRelatedDetailWithIndex(indexPath.row)?.getTitle()
+        cell?.textLabel?.text = detailObject.getRelatedDetailWithIndex(indexPath.row)?.getTitleD()
         
-        cell?.accessoryType = .DisclosureIndicator
+        cell?.accessoryType = .disclosureIndicator
         
         return cell!
         
@@ -193,48 +193,48 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     
     
     
-    public override func viewDidAppear(animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         fetchUpdate()
     }
     
     
     func checkCamera() {
-        AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-        let authStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        let authStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
         switch authStatus {
-        case .Authorized:
+        case .authorized:
             scan()
             break // Do you stuffer here i.e. allowScanning()
-        case .Denied: enterManually()
+        case .denied: enterManually()
         default: break;
         }
     }
     
     
-    public func fetchUpdate() {
+    open func fetchUpdate() {
         
         APIReloadManager.fetchUpdate(fetchUrl(), service: SlotService.sharedInstance, completedAction: fetchCompleted)
         
     }
     
-    public func fetchCompleted(msg : CallbackProtocol) -> Void {
+    open func fetchCompleted(_ msg : CallbackProtocol) -> Void {
         
     }
     
    
-    public func favorite(id : NSManagedObjectID) -> Bool {
+    open func favorite(_ id : NSManagedObjectID) -> Bool {
         return TalkService.sharedInstance.invertFavorite(id)
     }
     
-    public func scan() {
+    open func scan() {
         let qrCodeScannerController = QRCodeScannerController()
         qrCodeScannerController.completionOnceScanned = rate
         let qrCodeNavigationController = UINavigationController(rootViewController: qrCodeScannerController)
-        presentViewController(qrCodeNavigationController, animated: true, completion: nil)
+        present(qrCodeNavigationController, animated: true, completion: nil)
     }
     
-    func configurationTextField(textField: UITextField!) {
+    func configurationTextField(_ textField: UITextField!) {
         
         if let tField = textField {
             txtField = tField
@@ -246,39 +246,39 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         tryToRate()
     }
     
-    public func enterManually() {
+    open func enterManually() {
         
-        let alert = UIAlertController(title: "QRCode", message: "Enter the code :", preferredStyle: .Alert)
+        let alert = UIAlertController(title: "QRCode", message: "Enter the code :", preferredStyle: .alert)
         
-        alert.addTextFieldWithConfigurationHandler(configurationTextField)
+        alert.addTextField(configurationHandler: configurationTextField)
         
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.validateQrCode()}))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in self.validateQrCode()}))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
         
         
     }
     
-    public func hasBeenGranted(isGranted : Bool) {
-        dispatch_async(dispatch_get_main_queue(), {
+    open func hasBeenGranted(_ isGranted : Bool) {
+        DispatchQueue.main.async(execute: {
             self.checkCamera()
         })
     }
     
-    public func triggerRequestAccess() {
-        AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: hasBeenGranted)
+    open func triggerRequestAccess() {
+        AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: hasBeenGranted)
     }
     
     
     
-    public func rate() {
+    open func rate() {
         
         if let rateObj = detailObject as? RatableProtocol {
             
             let rateController = RateTableViewController()
             rateController.rateObject = rateObj
             let rateNavigationController = UINavigationController(rootViewController: rateController)
-            presentViewController(rateNavigationController, animated: true, completion: nil)
+            present(rateNavigationController, animated: true, completion: nil)
             
         }
         
@@ -287,17 +287,17 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
         
     }
     
-    public override func tryToRate() {
+    open override func tryToRate() {
         
         if APIManager.qrCodeAlreadyScanned() {
             rate()
         }
         else {
-            let alert = UIAlertController(title: "QRCode", message: "Please scan your badge QRCode or enter the code on your badge to authenticate yourself for presentation voting", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "Scan", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.triggerRequestAccess()}))
-            alert.addAction(UIAlertAction(title: "Enter manually", style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in self.enterManually()}))
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler:nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "QRCode", message: "Please scan your badge QRCode or enter the code on your badge to authenticate yourself for presentation voting", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Scan", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in self.triggerRequestAccess()}))
+            alert.addAction(UIAlertAction(title: "Enter manually", style: UIAlertActionStyle.default, handler: {(alert: UIAlertAction!) in self.enterManually()}))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler:nil))
+            self.present(alert, animated: true, completion: nil)
         }
         
         
@@ -305,7 +305,7 @@ public class TalkDetailsController : AbstractDetailsController, UITableViewDataS
     }
     
     
-    func handleNotification(notification: NSNotification){
+    func handleNotification(_ notification: Notification){
         invertColor()
     }
     

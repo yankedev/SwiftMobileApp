@@ -38,14 +38,14 @@ class SlotHelper: DataHelperProtocol {
         return entityName()
     }
     
-    func feed(data: JSON) {
+    func feed(_ data: JSON) {
         
         roomName = data["roomName"].string
         slotId = data["slotId"].string
         fromTime = data["fromTime"].string
         toTime = data["toTime"].string
         day = data["day"].string
-        fromTimeMillis = data["fromTimeMillis"].doubleValue
+        fromTimeMillis = data["fromTimeMillis"].doubleValue as NSNumber
         
         let talkHelper = TalkHelper()
         
@@ -63,7 +63,7 @@ class SlotHelper: DataHelperProtocol {
         return entityName()
     }
     
-    func prepareArray(json : JSON) -> [JSON]? {
+    func prepareArray(_ json : JSON) -> [JSON]? {
         return json["slots"].array
     }
     

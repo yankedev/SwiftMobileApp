@@ -23,7 +23,7 @@ extension Speaker {
     @NSManaged var href: String?
     @NSManaged var uuid: String?
     @NSManaged var bioAsHtml: String?
-    @NSManaged var avatar: NSData?
+    @NSManaged var avatar: Data?
     @NSManaged var talks: NSSet?
 
 }

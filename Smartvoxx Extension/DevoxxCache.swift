@@ -9,21 +9,21 @@
 import CoreData
 
 class DevoxxCache: NSObject {
-    lazy var applicationDocumentsDirectory: NSURL = {
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+    lazy var applicationDocumentsDirectory: URL = {
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count - 1]
     }()
     
     lazy var managedObjectModel: NSManagedObjectModel = {
-        return NSManagedObjectModel.mergedModelFromBundles(nil)!
+        return NSManagedObjectModel.mergedModel(from: nil)!
     }()
     
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent("Smartvoxx.sqlite")
+        let url = self.applicationDocumentsDirectory.appendingPathComponent("Smartvoxx.sqlite")
         do {
             print(url)
-            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
         } catch {
             print(error)
         }
@@ -32,14 +32,14 @@ class DevoxxCache: NSObject {
     }()
     
     lazy var mainObjectContext: NSManagedObjectContext = {
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = self.persistentStoreCoordinator
         return managedObjectContext
     }()
     
     lazy var privateObjectContext: NSManagedObjectContext = {
-        var privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
-        privateContext.parentContext = self.mainObjectContext
+        var privateContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        privateContext.parent = self.mainObjectContext
         return privateContext
     }()
     
@@ -47,10 +47,10 @@ class DevoxxCache: NSObject {
         
     }
     
-    func saveContext(context: NSManagedObjectContext) {
+    func saveContext(_ context: NSManagedObjectContext) {
         do {
             try context.save()
-            if let parentContext = context.parentContext {
+            if let parentContext = context.parent {
                 try parentContext.save()
             }
         } catch {
@@ -63,17 +63,17 @@ class DevoxxCache: NSObject {
         return self.getConferences(fromContext: self.mainObjectContext)
     }
     
-    func saveConferencesFromData(data:NSData) {
+    func saveConferencesFromData(_ data:Data) {
         self.saveConferencesFromData(data, inContext:self.privateObjectContext)
     }
     
-    private func getConferences(fromContext context:NSManagedObjectContext) -> [Conference] {
+    fileprivate func getConferences(fromContext context:NSManagedObjectContext) -> [Conference] {
         var conferences = [Conference]()
         
-        context.performBlockAndWait { 
-            let request = NSFetchRequest(entityName: "Conference")
+        context.performAndWait { 
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Conference")
             do {
-                let results = try context.executeFetchRequest(request)
+                let results = try context.fetch(request)
                 if results.count > 0 {
                     conferences = results as! [Conference]
                 }
@@ -85,12 +85,12 @@ class DevoxxCache: NSObject {
         return conferences
     }
     
-    private func saveConferencesFromData(data:NSData, inContext context:NSManagedObjectContext) {
-        context.performBlockAndWait {
+    fileprivate func saveConferencesFromData(_ data:Data, inContext context:NSManagedObjectContext) {
+        context.performAndWait {
             () -> Void in
-            if data.length > 0 {
+            if data.count > 0 {
                 do {
-                    let conferencesDict = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                    let conferencesDict = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                     if let conferencesDict = conferencesDict as? [NSDictionary] {
                         for conferenceDict in conferencesDict {
                             guard let conference = self.getOrCreateConferenceForId(conferenceDict["id"] as! String, inContext:context) else {
@@ -117,7 +117,7 @@ class DevoxxCache: NSObject {
                             conference.cfpUrl = conferenceDict["cfpURL"] as? String
                             conference.talkUrl = conferenceDict["talkURL"] as? String
                             conference.votingUrl = conferenceDict["votingURL"] as? String
-                            conference.votingEnabled = (conferenceDict["votingEnabled"] as? String == "true")
+                            conference.votingEnabled = ((conferenceDict["votingEnabled"] as! String == "true" )as NSNumber)
                             conference.votingImageName = conferenceDict["votingImageName"] as? String
                             conference.cfpEndpointUrl = conferenceDict["cfpEndpoint"] as? String
                             conference.cfpVersion = conferenceDict["cfpVersion"] as? String
@@ -133,18 +133,18 @@ class DevoxxCache: NSObject {
         }
     }
     
-    private func getOrCreateConferenceForId(id:String, inContext context:NSManagedObjectContext) -> Conference? {
-        let request = NSFetchRequest(entityName: "Conference")
+    fileprivate func getOrCreateConferenceForId(_ id:String, inContext context:NSManagedObjectContext) -> Conference? {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Conference")
         request.predicate = NSPredicate(format: "conferenceId=%@", id)
         var conference: Conference?
         
-        context.performBlockAndWait {
+        context.performAndWait {
             do {
-                let results = try context.executeFetchRequest(request)
+                let results = try context.fetch(request)
                 if results.count > 0 {
                     conference = results[0] as? Conference
                 } else {
-                    conference = NSEntityDescription.insertNewObjectForEntityForName("Conference", inManagedObjectContext: context) as? Conference
+                    conference = NSEntityDescription.insertNewObject(forEntityName: "Conference", into: context) as? Conference
                     conference?.conferenceId = id
                     self.saveContext(context)
                 }
@@ -156,25 +156,25 @@ class DevoxxCache: NSObject {
         return conference
     }
     
-    func getSchedulesForConferenceWithId(conferenceId:String) -> [Schedule] {
+    func getSchedulesForConferenceWithId(_ conferenceId:String) -> [Schedule] {
         return self.getSchedulesForConferenceWithId(conferenceId, fromContext: self.mainObjectContext)
     }
     
-    func saveSchedulesFromData(data: NSData, forConferenceWithId conferenceId:String) {
+    func saveSchedulesFromData(_ data: Data, forConferenceWithId conferenceId:String) {
         self.saveSchedulesFromData(data, forConferenceWithId:conferenceId, inContext: self.privateObjectContext)
     }
     
-    private func getSchedulesForConferenceWithId(conferenceId:String, fromContext context: NSManagedObjectContext) -> [Schedule] {
+    fileprivate func getSchedulesForConferenceWithId(_ conferenceId:String, fromContext context: NSManagedObjectContext) -> [Schedule] {
         var schedules = [Schedule]()
         
-        context.performBlockAndWait {
+        context.performAndWait {
             () -> Void in
-            let request = NSFetchRequest(entityName: "Conference")
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Conference")
             request.predicate = NSPredicate(format: "conferenceId=%@", conferenceId)
             do {
-                let results = try context.executeFetchRequest(request)
+                let results = try context.fetch(request)
                 if results.count > 0 {
-                    guard let conference = results[0] as? Conference, scheduleSet = conference.schedules, scheduleArray = scheduleSet.array as? [Schedule] else {
+                    guard let conference = results[0] as? Conference, let scheduleSet = conference.schedules, let scheduleArray = scheduleSet.array as? [Schedule] else {
                         schedules = [Schedule]()
                         return
                     }
@@ -188,18 +188,18 @@ class DevoxxCache: NSObject {
         return schedules
     }
     
-    private func getOrCreateScheduleForHref(href: String, inContext context: NSManagedObjectContext) -> Schedule? {
+    fileprivate func getOrCreateScheduleForHref(_ href: String, inContext context: NSManagedObjectContext) -> Schedule? {
         var schedule: Schedule?
-        context.performBlockAndWait {
+        context.performAndWait {
             () -> Void in
-            let request = NSFetchRequest(entityName: "Schedule")
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Schedule")
             request.predicate = NSPredicate(format: "href=%@", href)
             do {
-                let results = try context.executeFetchRequest(request)
+                let results = try context.fetch(request)
                 if results.count > 0 {
                     schedule = results[0] as? Schedule
                 } else {
-                    schedule = NSEntityDescription.insertNewObjectForEntityForName("Schedule", inManagedObjectContext: context) as? Schedule
+                    schedule = NSEntityDescription.insertNewObject(forEntityName: "Schedule", into: context) as? Schedule
                     schedule!.href = href
                     self.saveContext(context)
                 }
@@ -210,13 +210,13 @@ class DevoxxCache: NSObject {
         return schedule
     }
     
-    private func saveSchedulesFromData(data: NSData, forConferenceWithId conferenceId:String, inContext context: NSManagedObjectContext) {
-        context.performBlockAndWait {
+    fileprivate func saveSchedulesFromData(_ data: Data, forConferenceWithId conferenceId:String, inContext context: NSManagedObjectContext) {
+        context.performAndWait {
             () -> Void in
-            if data.length > 0 {
+            if data.count > 0 {
                 do {
-                    let schedulesDict = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                    if let schedulesDict = schedulesDict as? NSDictionary, schedulesArray = schedulesDict["links"] as? NSArray {
+                    let schedulesDict = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                    if let schedulesDict = schedulesDict as? NSDictionary, let schedulesArray = schedulesDict["links"] as? NSArray {
                         guard let devoxx15 = self.getOrCreateConferenceForId(conferenceId, inContext: context) else {
                             print("Could not retrieve Devoxx15 conference")
                             return
@@ -245,19 +245,19 @@ class DevoxxCache: NSObject {
         }
     }
     
-    func getSlotsForScheduleWithHref(href: String) -> [Slot] {
+    func getSlotsForScheduleWithHref(_ href: String) -> [Slot] {
         return self.getSlotsForScheduleWithHref(href, fromContext: self.mainObjectContext)
     }
     
-    private func getSlotsForScheduleWithHref(href: String, fromContext context: NSManagedObjectContext) -> [Slot] {
+    fileprivate func getSlotsForScheduleWithHref(_ href: String, fromContext context: NSManagedObjectContext) -> [Slot] {
         var slots = [Slot]()
         
-        context.performBlockAndWait {
+        context.performAndWait {
             () -> Void in
-            let request = NSFetchRequest(entityName: "Schedule")
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Schedule")
             request.predicate = NSPredicate(format: "href=%@", href)
             do {
-                let results = try context.executeFetchRequest(request)
+                let results = try context.fetch(request)
                 if results.count > 0 {
                     if let schedule = results[0] as? Schedule {
                         slots = schedule.slots!.array as! [Slot]
@@ -271,11 +271,11 @@ class DevoxxCache: NSObject {
         return slots
     }
     
-    func saveSlotsFromData(data: NSData, forScheduleWithHref href: String) {
+    func saveSlotsFromData(_ data: Data, forScheduleWithHref href: String) {
         self.saveSlotsFromData(data, forScheduleWithHref: href, inContext: self.privateObjectContext)
     }
     
-    private func configureSlot(slot: Slot, withData slotDict: NSDictionary, inSchedule schedule: Schedule) {
+    fileprivate func configureSlot(_ slot: Slot, withData slotDict: NSDictionary, inSchedule schedule: Schedule) {
         slot.slotId = slotDict["slotId"] as? String
         slot.roomId = slotDict["roomId"] as? String
         slot.roomName = slotDict["roomName"] as? String
@@ -287,20 +287,20 @@ class DevoxxCache: NSObject {
         slot.schedule = schedule
     }
     
-    private func getOrCreateBreakSlotWithBreakId(breakId: String, inContext context: NSManagedObjectContext) -> BreakSlot? {
+    fileprivate func getOrCreateBreakSlotWithBreakId(_ breakId: String, inContext context: NSManagedObjectContext) -> BreakSlot? {
         var breakSlot: BreakSlot?
-        context.performBlockAndWait {
+        context.performAndWait {
             () -> Void in
-            let request = NSFetchRequest(entityName: "BreakSlot")
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "BreakSlot")
             request.predicate = NSPredicate(format: "breakId=%@", breakId)
             do {
-                let results = try context.executeFetchRequest(request)
+                let results = try context.fetch(request)
                 if results.count > 0 {
                     if let slot = results[0] as? BreakSlot {
                         breakSlot = slot
                     }
                 } else {
-                    breakSlot = NSEntityDescription.insertNewObjectForEntityForName("BreakSlot", inManagedObjectContext: context) as? BreakSlot
+                    breakSlot = NSEntityDescription.insertNewObject(forEntityName: "BreakSlot", into: context) as? BreakSlot
                     breakSlot?.breakId = breakId
                     self.saveContext(context)
                 }
@@ -311,20 +311,20 @@ class DevoxxCache: NSObject {
         return breakSlot
     }
     
-    private func getOrCreateTalkSlotWithTalkId(talkId: String, inContext context: NSManagedObjectContext) -> TalkSlot? {
+    fileprivate func getOrCreateTalkSlotWithTalkId(_ talkId: String, inContext context: NSManagedObjectContext) -> TalkSlot? {
         var talkSlot: TalkSlot?
-        context.performBlockAndWait {
+        context.performAndWait {
             () -> Void in
-            let request = NSFetchRequest(entityName: "TalkSlot")
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TalkSlot")
             request.predicate = NSPredicate(format: "talkId=%@", talkId)
             do {
-                let results = try context.executeFetchRequest(request)
+                let results = try context.fetch(request)
                 if results.count > 0 {
                     if let slot = results[0] as? TalkSlot {
                         talkSlot = slot
                     }
                 } else {
-                    talkSlot = NSEntityDescription.insertNewObjectForEntityForName("TalkSlot", inManagedObjectContext: context) as? TalkSlot
+                    talkSlot = NSEntityDescription.insertNewObject(forEntityName: "TalkSlot", into: context) as? TalkSlot
                     talkSlot?.talkId = talkId
                     self.saveContext(context)
                 }
@@ -335,20 +335,20 @@ class DevoxxCache: NSObject {
         return talkSlot
     }
     
-    private func getOrCreateSlotWithSlotId(slotId: String, inContext context: NSManagedObjectContext) -> Slot? {
+    fileprivate func getOrCreateSlotWithSlotId(_ slotId: String, inContext context: NSManagedObjectContext) -> Slot? {
         var slot: Slot?
-        context.performBlockAndWait {
+        context.performAndWait {
             () -> Void in
-            let request = NSFetchRequest(entityName: "Slot")
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Slot")
             request.predicate = NSPredicate(format: "slotId=%@", slotId)
             do {
-                let results = try context.executeFetchRequest(request)
+                let results = try context.fetch(request)
                 if results.count > 0 {
                     if let result = results[0] as? Slot {
                         slot = result
                     }
                 } else {
-                    slot = NSEntityDescription.insertNewObjectForEntityForName("Slot", inManagedObjectContext: context) as? Slot
+                    slot = NSEntityDescription.insertNewObject(forEntityName: "Slot", into: context) as? Slot
                     slot?.slotId = slotId
                     self.saveContext(context)
                 }
@@ -359,23 +359,23 @@ class DevoxxCache: NSObject {
         return slot
     }
     
-    private func getOrCreateTrackWithName(name: String, inContext context: NSManagedObjectContext) -> Track? {
+    fileprivate func getOrCreateTrackWithName(_ name: String, inContext context: NSManagedObjectContext) -> Track? {
         var track: Track?
-        context.performBlockAndWait {
+        context.performAndWait {
             () -> Void in
-            let request = NSFetchRequest(entityName: "Track")
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Track")
             request.predicate = NSPredicate(format: "name=%@", name)
             do {
-                let results = try context.executeFetchRequest(request)
+                let results = try context.fetch(request)
                 if results.count > 0 {
                     if let result = results[0] as? Track {
                         track = result
                     }
                 } else {
                     request.predicate = nil
-                    let count = try context.countForFetchRequest(request)
+                    let count = try context.count(for: request)
                     
-                    track = NSEntityDescription.insertNewObjectForEntityForName("Track", inManagedObjectContext: context) as? Track
+                    track = NSEntityDescription.insertNewObject(forEntityName: "Track", into: context) as? Track
                     track?.name = name
                     track?.color = DataController.flatUiColors[count % DataController.flatUiColors.count]
                     self.saveContext(context)
@@ -387,21 +387,21 @@ class DevoxxCache: NSObject {
         return track
     }
     
-    private func getOrCreateSpeakerWithHref(href: String, inContext context: NSManagedObjectContext) -> Speaker? {
+    fileprivate func getOrCreateSpeakerWithHref(_ href: String, inContext context: NSManagedObjectContext) -> Speaker? {
         var speaker: Speaker?
         
-        context.performBlockAndWait {
+        context.performAndWait {
             () -> Void in
-            let request = NSFetchRequest(entityName: "Speaker")
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Speaker")
             request.predicate = NSPredicate(format: "href=%@", href)
             do {
-                let results = try context.executeFetchRequest(request)
+                let results = try context.fetch(request)
                 if results.count > 0 {
                     if let result = results[0] as? Speaker {
                         speaker = result
                     }
                 } else {
-                    speaker = NSEntityDescription.insertNewObjectForEntityForName("Speaker", inManagedObjectContext: context) as? Speaker
+                    speaker = NSEntityDescription.insertNewObject(forEntityName: "Speaker", into: context) as? Speaker
                     speaker?.href = href
                     self.saveContext(context)
                 }
@@ -413,15 +413,15 @@ class DevoxxCache: NSObject {
         return speaker
     }
     
-    private func saveSlotsFromData(data: NSData, forScheduleWithHref href: String, inContext context: NSManagedObjectContext) {
-        context.performBlockAndWait {
+    fileprivate func saveSlotsFromData(_ data: Data, forScheduleWithHref href: String, inContext context: NSManagedObjectContext) {
+        context.performAndWait {
             () -> Void in
-            if data.length > 0 {
+            if data.count > 0 {
                 guard let schedule = self.getOrCreateScheduleForHref(href, inContext: context) else {
                     return
                 }
                 do {
-                    let scheduleDict = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                    let scheduleDict = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                     if let scheduleDict = scheduleDict as? NSDictionary {
                         if let slotsArray = scheduleDict["slots"] as? NSArray {
                             var slots = [Slot]()
@@ -451,7 +451,7 @@ class DevoxxCache: NSObject {
                                         
                                         for speaker in NSArray(array: slot!.speakers!.allObjects) {
                                             if let speaker = speaker as? Speaker {
-                                                speaker.mutableSetValueForKey("talks").removeObject(slot!)
+                                                speaker.mutableSetValue(forKey: "talks").remove(slot!)
                                             }
                                         }
                                         slot!.setValue(nil, forKey: "speakers")
@@ -464,8 +464,8 @@ class DevoxxCache: NSObject {
                                                             if let speaker = self.getOrCreateSpeakerWithHref(href, inContext: context) {
                                                                 speaker.name = speakerDict["name"] as? String
                                                                 speaker.href = href
-                                                                speaker.mutableSetValueForKey("talks").addObject(slot!)
-                                                                slot!.mutableSetValueForKey("speakers").addObject(speaker)
+                                                                speaker.mutableSetValue(forKey: "talks").add(slot!)
+                                                                slot!.mutableSetValue(forKey: "speakers").add(speaker)
                                                             }
                                                         }
                                                     }
@@ -481,7 +481,7 @@ class DevoxxCache: NSObject {
                                     }
                                 }
                             }
-                            let sortedSlots = NSArray(array: slots).sortedArrayUsingDescriptors([
+                            let sortedSlots = NSArray(array: slots).sortedArray(using: [
                                 NSSortDescriptor(key: "timeRange", ascending: true),
                                 NSSortDescriptor(key: "roomName", ascending: true)
                             ])
@@ -496,49 +496,49 @@ class DevoxxCache: NSObject {
         }
     }
     
-    func swapFavoriteStatusForTalkSlotWithTalkId(talkId:String) {
+    func swapFavoriteStatusForTalkSlotWithTalkId(_ talkId:String) {
         self.swapFavoriteStatusForTalkSlotWithTalkId(talkId, inContext:self.privateObjectContext)
     }
     
-    func setFavorite(favorite:Bool, forTalkSlotWithId talkId:String) {
+    func setFavorite(_ favorite:Bool, forTalkSlotWithId talkId:String) {
         self.setFavorite(favorite, forTalkSlotWithId: talkId, inContext:self.privateObjectContext)
     }
     
-    private func swapFavoriteStatusForTalkSlotWithTalkId(talkId:String, inContext context:NSManagedObjectContext) {
-        context.performBlockAndWait { () -> Void in
+    fileprivate func swapFavoriteStatusForTalkSlotWithTalkId(_ talkId:String, inContext context:NSManagedObjectContext) {
+        context.performAndWait { () -> Void in
             if let talkSlot = self.getOrCreateTalkSlotWithTalkId(talkId, inContext: context) {
-                talkSlot.favorite = NSNumber(bool: !(talkSlot.favorite!.boolValue))
+                talkSlot.favorite = NSNumber(value: !(talkSlot.favorite!.boolValue) as Bool)
                 self.saveContext(context)
             }
         }
     }
     
-    private func setFavorite(favorite:Bool, forTalkSlotWithId talkId:String, inContext context:NSManagedObjectContext) {
-        context.performBlockAndWait { 
+    fileprivate func setFavorite(_ favorite:Bool, forTalkSlotWithId talkId:String, inContext context:NSManagedObjectContext) {
+        context.performAndWait { 
             if let talkSlot = self.getOrCreateTalkSlotWithTalkId(talkId, inContext: context) {
-                talkSlot.favorite = NSNumber(bool: favorite)
+                talkSlot.favorite = NSNumber(value: favorite as Bool)
                 self.saveContext(context)
             }
         }
     }
     
-    func getTalkSlotWithTalkId(talkId:String) -> TalkSlot? {
+    func getTalkSlotWithTalkId(_ talkId:String) -> TalkSlot? {
         return self.getOrCreateTalkSlotWithTalkId(talkId, inContext: self.mainObjectContext)
     }
     
-    func getSpeakerWithHref(href:String) -> Speaker? {
+    func getSpeakerWithHref(_ href:String) -> Speaker? {
         return self.getOrCreateSpeakerWithHref(href, inContext: self.mainObjectContext)
     }
     
-    func saveSpeakerFromData(data:NSData, forSpeakerWithHref href:String){
+    func saveSpeakerFromData(_ data:Data, forSpeakerWithHref href:String){
         self.saveSpeakerFromData(data, forSpeakerWithHref:href, inContext:self.privateObjectContext)
     }
     
-    private func saveSpeakerFromData(data:NSData, forSpeakerWithHref href:String, inContext context:NSManagedObjectContext) {
-        context.performBlockAndWait { () -> Void in
-            if data.length > 0 {
+    fileprivate func saveSpeakerFromData(_ data:Data, forSpeakerWithHref href:String, inContext context:NSManagedObjectContext) {
+        context.performAndWait { () -> Void in
+            if data.count > 0 {
                 do {
-                    let speakerDict = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                    let speakerDict = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
                     if let speakerDict = speakerDict as? NSDictionary {
                         if let speaker = self.getOrCreateSpeakerWithHref(href, inContext: context) {
                             speaker.uuid = speakerDict["uuid"] as? String
@@ -559,12 +559,12 @@ class DevoxxCache: NSObject {
         }
     }
     
-    func saveAvatarFromData(data:NSData, forSpeakerWithHref href:String) {
+    func saveAvatarFromData(_ data:Data, forSpeakerWithHref href:String) {
         self.saveAvatarFromData(data, forSpeakerWithHref: href, inContext:self.privateObjectContext)
     }
     
-    private func saveAvatarFromData(data:NSData, forSpeakerWithHref href:String, inContext context:NSManagedObjectContext) {
-        context.performBlockAndWait { () -> Void in
+    fileprivate func saveAvatarFromData(_ data:Data, forSpeakerWithHref href:String, inContext context:NSManagedObjectContext) {
+        context.performAndWait { () -> Void in
             if let speaker = self.getOrCreateSpeakerWithHref(href, inContext: context) {
                 speaker.avatar = data
                 self.saveContext(context)
@@ -572,22 +572,22 @@ class DevoxxCache: NSObject {
         }
     }
     
-    func getAvatarForSpeakerWithHref(href:String) -> NSData? {
+    func getAvatarForSpeakerWithHref(_ href:String) -> Data? {
         if let speaker = self.getSpeakerWithHref(href) {
-            return speaker.avatar
+            return speaker.avatar as! Data
         } else {
             return nil
         }
     }
     
-    func getFavoriteTalksAfterDate(date:NSDate) -> [TalkSlot] {
+    func getFavoriteTalksAfterDate(_ date:Date) -> [TalkSlot] {
         var favoriteTalks = [TalkSlot]()
-        self.mainObjectContext.performBlockAndWait { () -> Void in
-            let request = NSFetchRequest(entityName: "TalkSlot")
+        self.mainObjectContext.performAndWait { () -> Void in
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TalkSlot")
             request.predicate = NSPredicate(format: "favorite==1 and fromTimeMillis>%i", date.timeIntervalSince1970 * 1000)
             request.sortDescriptors = [NSSortDescriptor(key: "fromTimeMillis", ascending: true)]
             do {
-                let results = try self.mainObjectContext.executeFetchRequest(request)
+                let results = try self.mainObjectContext.fetch(request)
                 favoriteTalks = results as! [TalkSlot]
             } catch let error as NSError {
                 print(error)
@@ -596,14 +596,14 @@ class DevoxxCache: NSObject {
         return favoriteTalks
     }
     
-    func getFavoriteTalksBeforeDate(date:NSDate) -> [TalkSlot] {
+    func getFavoriteTalksBeforeDate(_ date:Date) -> [TalkSlot] {
         var favoriteTalks = [TalkSlot]()
-        self.mainObjectContext.performBlockAndWait { () -> Void in
-            let request = NSFetchRequest(entityName: "TalkSlot")
+        self.mainObjectContext.performAndWait { () -> Void in
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TalkSlot")
             request.predicate = NSPredicate(format: "favorite==1 and fromTimeMillis<%i", date.timeIntervalSince1970 * 1000)
             request.sortDescriptors = [NSSortDescriptor(key: "fromTimeMillis", ascending: true)]
             do {
-                let results = try self.mainObjectContext.executeFetchRequest(request)
+                let results = try self.mainObjectContext.fetch(request)
                 favoriteTalks = results as! [TalkSlot]
             } catch let error as NSError {
                 print(error)
@@ -614,11 +614,11 @@ class DevoxxCache: NSObject {
     
     func getFirstTalk() -> TalkSlot? {
         var firstTalk:TalkSlot?
-        self.mainObjectContext.performBlockAndWait { () -> Void in
-            let request = NSFetchRequest(entityName: "TalkSlot")
+        self.mainObjectContext.performAndWait { () -> Void in
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TalkSlot")
             request.sortDescriptors = [NSSortDescriptor(key: "fromTimeMillis", ascending: true)]
             do {
-                let results = try self.mainObjectContext.executeFetchRequest(request)
+                let results = try self.mainObjectContext.fetch(request)
                 if results.count > 0 {
                     firstTalk = results[0] as? TalkSlot
                 }
@@ -631,11 +631,11 @@ class DevoxxCache: NSObject {
     
     func getLastTalk() -> TalkSlot? {
         var lastTalk:TalkSlot?
-        self.mainObjectContext.performBlockAndWait { () -> Void in
-            let request = NSFetchRequest(entityName: "TalkSlot")
+        self.mainObjectContext.performAndWait { () -> Void in
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: "TalkSlot")
             request.sortDescriptors = [NSSortDescriptor(key: "toTimeMillis", ascending: false)]
             do {
-                let results = try self.mainObjectContext.executeFetchRequest(request)
+                let results = try self.mainObjectContext.fetch(request)
                 if results.count > 0 {
                     lastTalk = results[0] as? TalkSlot
                 }

@@ -15,7 +15,7 @@ class Day: NSManagedObject, FeedableProtocol {
     @NSManaged var url: String
     @NSManaged var cfp: Cfp
     
-    func feedHelper(helper: DataHelperProtocol) -> Void {
+    func feedHelper(_ helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? DayHelper  {
             url = castHelper.url ?? ""
         }
@@ -25,7 +25,7 @@ class Day: NSManagedObject, FeedableProtocol {
         return nil
     }
     
-    func resetId(id: NSManagedObject?) {
+    func resetId(_ id: NSManagedObject?) {
     }
     
     

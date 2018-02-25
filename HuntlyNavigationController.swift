@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-public class HuntlyNavigationController : UINavigationController {
+open class HuntlyNavigationController : UINavigationController {
 
     var huntlyLeftButton:UIBarButtonItem?
     //var huntlyPointLbl:UILabel!
 
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         
-        let huntlyPointView = UIImageView(frame : CGRectMake(0, 0, 30, 30))
+        let huntlyPointView = UIImageView(frame : CGRect(x: 0, y: 0, width: 30, height: 30))
         huntlyPointView.image = UIImage(named: "DevoxxHuntlyIntegrationIcon")
       
         
@@ -36,7 +36,7 @@ public class HuntlyNavigationController : UINavigationController {
  
     }
 
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         HuntlyManagerService.sharedInstance.feedEventId(updateScore, callbackFailure: updateScore)
     }
     

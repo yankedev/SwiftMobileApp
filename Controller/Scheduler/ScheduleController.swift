@@ -13,7 +13,7 @@ import CoreData
 
 public protocol ScrollableDateProtocol : NSObjectProtocol {
     var index:Int { get set }
-    var currentDate:NSDate!  { get set }
+    var currentDate:Date!  { get set }
     var currentTrack:NSManagedObjectID!  { get set }
     func getNavigationItem() -> UINavigationItem
     init()
@@ -21,7 +21,7 @@ public protocol ScrollableDateProtocol : NSObjectProtocol {
 
 
 
-public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
+open class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationController, DevoxxAppFilter, ScrollableDateTableDatasource, ScrollableDateTableDelegate {
     
     
     
@@ -49,7 +49,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         
         super.viewDidLoad()
         
@@ -68,14 +68,14 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
     
     
     
-    func filter(filters : [String: [FilterableProtocol]]) -> Void {
+    func filter(_ filters : [String: [FilterableProtocol]]) -> Void {
         
         
         if filters.count == 0 {
-            customView?.filterRightButton.image = UIImage(named: "ic_filter_inactive")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+            customView?.filterRightButton.image = UIImage(named: "ic_filter_inactive")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         }
         else {
-            customView?.filterRightButton.image = UIImage(named: "ic_filter_active")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+            customView?.filterRightButton.image = UIImage(named: "ic_filter_active")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         }
         
         
@@ -145,15 +145,15 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
     
     
     
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         feedDate()
     }
     
     
     
-    public func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    open func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         var currentIndex = 0
         if let demoController = viewController as? T {
@@ -169,7 +169,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
         return viewControllerAtIndex(currentIndex)
     }
     
-    public func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    open func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         var currentIndex = 0
         if let demoController = viewController as? T {
@@ -187,7 +187,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
     }
     
     
-    public func viewControllerAtIndex(index : NSInteger) -> UIViewController {
+    open func viewControllerAtIndex(_ index : NSInteger) -> UIViewController {
         
         let scheduleTableController:T = T()
         scheduleTableController.index = index
@@ -203,19 +203,19 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
     }
     
     
-    public func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    open func presentationCount(for pageViewController: UIPageViewController) -> Int {
         if let dates = self.scrollableDateTableDatasource?.allDates {
             return dates.count
         }
         return 0
     }
     
-    public func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+    open func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         return 0
     }
     
     
-    public func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+    open func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if completed {
             removeOverlay()
             if pageViewController.viewControllers != nil {
@@ -241,7 +241,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
         SlotService.sharedInstance.fetchCfpDay(callBack)
     }
     
-    func callBack(slots: NSArray, error: SlotStoreError?) {
+    func callBack(_ slots: NSArray, error: SlotStoreError?) {
         allDates = slots
         
         
@@ -251,9 +251,9 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
         self.scrollableDateTableDelegate = self
         
         
-        self.navigationBar.translucent = false
+        self.navigationBar.isTranslucent = false
         
-        pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.Horizontal, options: nil)
+        pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: UIPageViewControllerNavigationOrientation.horizontal, options: nil)
         
         self.pageViewController.navigationItem.leftBarButtonItem = huntlyLeftButton
         
@@ -264,7 +264,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
         
         let controls = [demo]
         
-        pageViewController?.setViewControllers(controls, direction: .Forward, animated: false, completion: nil)
+        pageViewController?.setViewControllers(controls, direction: .forward, animated: false, completion: nil)
         
         pushViewController(pageViewController!, animated: false)
         
@@ -278,7 +278,7 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
             self.pageViewController.navigationItem.title = "No data yet"
         }
         else {
-            self.pageViewController.navigationItem.title = humanReadableDateFromNSDate(allDates[0].objectForKey("date") as! NSDate)
+            self.pageViewController.navigationItem.title = humanReadableDateFromNSDate((allDates[0] as AnyObject).object(forKey: "date") as! Date)
         }
         
         self.view.addSubview(customView!)
@@ -286,10 +286,10 @@ public class ScheduleController<T : ScrollableDateProtocol> : HuntlyNavigationCo
         
     }
     
-    func humanReadableDateFromNSDate(date : NSDate) -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .LongStyle
-        return dateFormatter.stringFromDate(date)
+    func humanReadableDateFromNSDate(_ date : Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        return dateFormatter.string(from: date)
     }
     
   

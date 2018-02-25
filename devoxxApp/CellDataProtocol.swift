@@ -15,7 +15,7 @@ import UIKit
     func getFirstInformation() -> String
     func getSecondInformation() -> String
     func getThirdInformation() -> String
-    func getForthInformation(useTwitter : Bool) -> String
+    func getForthInformation(_ useTwitter : Bool) -> String
     func getPrimaryImage() -> UIImage?
     func getColor() -> UIColor?
     func getElement() -> NSManagedObject

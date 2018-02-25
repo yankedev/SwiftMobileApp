@@ -31,9 +31,9 @@ class LeftIconView : UIView {
     func setup() {
         layoutIfNeeded()
         
-        imageView.frame = CGRectInset(frame, 8, 8);
+        imageView.frame = frame.insetBy(dx: 8, dy: 8);
         imageView.image = UIImage(named: "icon_archisec.png")
-        imageView.center =  CGPointMake(25, 25)
+        imageView.center =  CGPoint(x: 25, y: 25)
         
     }
     

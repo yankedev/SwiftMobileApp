@@ -21,7 +21,7 @@ class HeaderView : UIView {
     override init(frame : CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.white
         
         
         //headerView.tag = section
@@ -39,8 +39,8 @@ class HeaderView : UIView {
         addSubview(numberOfTalkString)
         
         upDown = UIButton(frame: CGRect(x: 330, y: 17, width: 119/4, height: 62/4))
-        upDown.setImage(UIImage(named: "down.png"), forState: .Normal)
-        upDown.setImage(UIImage(named: "up.png"), forState: .Selected)
+        upDown.setImage(UIImage(named: "down.png"), for: UIControlState())
+        upDown.setImage(UIImage(named: "up.png"), for: .selected)
         
         
         addSubview(upDown)

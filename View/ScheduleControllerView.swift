@@ -20,10 +20,10 @@ class ScheduleControllerView : UIView, TopFilterableProtocol {
 
     init(target: AnyObject?, filterSelector:Selector) {
         
-        let img = UIImage(named: "ic_filter_inactive")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        filterRightButton = UIBarButtonItem(image: img, style: UIBarButtonItemStyle.Plain, target: target, action: filterSelector)
+        let img = UIImage(named: "ic_filter_inactive")!.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+        filterRightButton = UIBarButtonItem(image: img, style: UIBarButtonItemStyle.plain, target: target, action: filterSelector)
         
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         self.initialize()
     }
     

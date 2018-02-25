@@ -11,7 +11,7 @@ import UIKit
 import CoreData
 
 
-public class TrackTableViewController<T : CellDataPrococol>:
+open class TrackTableViewController<T : CellDataPrococol>:
     UIViewController,
     UITableViewDelegate,
     SearchableTableProtocol,
@@ -29,17 +29,21 @@ public class TrackTableViewController<T : CellDataPrococol>:
     var sortedSlot:[Slot]!
     
     //ScrollableDateProtocol
-    public var index:Int = 0
-    public var currentTrack:NSManagedObjectID!
-    public var currentDate:NSDate!
+    open var index:Int = 0
+    open var currentTrack:NSManagedObjectID!
+    open var currentDate:Date!
     
-    public func getNavigationItem() -> UINavigationItem {
+    open func getNavigationItem() -> UINavigationItem {
         return (self.navigationController?.navigationItem)!
     }
     
     
     public required init() {
         super.init(nibName: nil, bundle: nil)
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     var openedSections = [Bool]()
@@ -60,9 +64,9 @@ public class TrackTableViewController<T : CellDataPrococol>:
     var presort = Array<[Slot]>()
     
     let talkService = TalkService.sharedInstance
-    var savedFetchedResult : NSFetchedResultsController?
+    var savedFetchedResult : NSFetchedResultsController<NSFetchRequestResult>?
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         schedulerTableView.delegate = self
@@ -76,34 +80,34 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     
 
-    override public func viewWillAppear(animated: Bool) {
+    override open func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
         fetchAll()
         
         
         
-        self.schedulerTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell2")
+        self.schedulerTableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell2")
     
         //sync with watch
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.handleNotification(_:)), name:"UpdateFavorite", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleNotification(_:)), name:NSNotification.Name(rawValue: "UpdateFavorite"), object: nil)
     }
     
     
-    public override func viewWillDisappear(animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "UpdateFavorite", object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "UpdateFavorite"), object: nil)
     }
 
     
     
     
     
-    public func resetSearch() {
+    open func resetSearch() {
         searchingString = ""
     }
     
-    public func performSwitch() {
+    open func performSwitch() {
         resetSearch()
         fetchAll()
     }
@@ -112,7 +116,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     //TableView
     
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let detailObject = getCell(indexPath) as? HelperableProtocol {
             
@@ -136,7 +140,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     }
     
     
-    public func favorite(id : NSManagedObjectID) -> Bool {
+    open func favorite(_ id : NSManagedObjectID) -> Bool {
         return talkService.invertFavorite(id)
     }
     
@@ -144,7 +148,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     
     
-    func getCell(indexPath : NSIndexPath) -> CellDataPrococol? {
+    func getCell(_ indexPath : IndexPath) -> CellDataPrococol? {
         
         var cellDataTry:CellDataPrococol?
         
@@ -152,24 +156,24 @@ public class TrackTableViewController<T : CellDataPrococol>:
             
             let curent = searchedSections[indexPath.section]
             let obj = (curent.objects)!
-            cellDataTry = filterSearchArray(obj)[indexPath.row] as? CellDataPrococol
+            cellDataTry = filterSearchArray(obj as [AnyObject])[indexPath.row] as? CellDataPrococol
             return cellDataTry
         }
             
         else {
-            return savedFetchedResult?.objectAtIndexPath(indexPath) as? CellDataPrococol
+            return savedFetchedResult?.object(at: indexPath) as? CellDataPrococol
         }
         
     }
     
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)-> UITableViewCell {
         
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? ScheduleCellView
+        var cell = tableView.dequeueReusableCell(withIdentifier: "CELL_10") as? ScheduleCellView
         
         if cell == nil {
-            cell = ScheduleCellView(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
+            cell = ScheduleCellView(style: UITableViewCellStyle.value1, reuseIdentifier: "CELL_10")
         }
         
         if let cellData = getCell(indexPath) {
@@ -201,7 +205,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     
     
-    func filterSearchArray(currentArray : [AnyObject]) -> [AnyObject] {
+    func filterSearchArray(_ currentArray : [AnyObject]) -> [AnyObject] {
         
         let filteredArray = currentArray.filter() {
             if let type = $0 as? SearchableItemProtocol {
@@ -214,7 +218,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
         return filteredArray
     }
     
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    open func numberOfSections(in tableView: UITableView) -> Int {
         
         if let sections = savedFetchedResult?.sections {
             
@@ -234,7 +238,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
     }
     
     
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let sections = savedFetchedResult?.sections {
             
             
@@ -253,7 +257,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
                 
                 let obj = (curent.objects)!
                 
-                return filterSearchArray(obj).count
+                return filterSearchArray(obj as [AnyObject]).count
             }
             
             
@@ -269,7 +273,7 @@ public class TrackTableViewController<T : CellDataPrococol>:
         return 0
     }
     
-    public func getSection(section: Int) -> NSFetchedResultsSectionInfo? {
+    open func getSection(_ section: Int) -> NSFetchedResultsSectionInfo? {
         if let sections = savedFetchedResult?.sections {
             
             if !searchingString.isEmpty {
@@ -284,14 +288,14 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     
     
-    public func updateSectionForSearch() {
+    open func updateSectionForSearch() {
         
         searchedSections = (savedFetchedResult?.sections)!
         
         if let sections = savedFetchedResult?.sections {
             for section in sections {
                 
-                let filteredArray = filterSearchArray(section.objects!)
+                let filteredArray = filterSearchArray(section.objects! as [AnyObject])
                 if filteredArray.count == 0 {
                     searchedSections.removeObject(section)
                 }
@@ -304,17 +308,17 @@ public class TrackTableViewController<T : CellDataPrococol>:
     
     
     
-    public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    open func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchingString = searchText
         schedulerTableView.reloadData()
     }
     
-    public func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    open func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         schedulerTableView.searchBar.resignFirstResponder()
     }
     
     
-    public func callBack(fetchedResult :NSFetchedResultsController?, error :TalksStoreError?) {
+    open func callBack(_ fetchedResult :NSFetchedResultsController<NSFetchRequestResult>?, error :TalksStoreError?) {
         savedFetchedResult = fetchedResult
         if let sections = fetchedResult!.sections {
             for _ in sections {
@@ -325,27 +329,27 @@ public class TrackTableViewController<T : CellDataPrococol>:
     }
     
     
-    public func fetchAll() {
+    open func fetchAll() {
         talkService.fetchTalksByTrackId(self.currentTrack, completionHandler: self.callBack)
     }
     
     
     
-    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0
     }
     
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return 130
     }
     
     
-    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return UIView()
     }
     
-    func handleNotification(notification: NSNotification){
+    func handleNotification(_ notification: Notification){
         schedulerTableView.reloadData()
     }
     

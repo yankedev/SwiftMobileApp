@@ -17,9 +17,9 @@ class Floor: NSManagedObject, FeedableProtocol, ImageFeedable {
     @NSManaged var title: String
     @NSManaged var tabpos: String
     @NSManaged var target: String
-    @NSManaged var imgData: NSData
+    @NSManaged var imgData: Data
     
-    func feedHelper(helper: DataHelperProtocol) -> Void {
+    func feedHelper(_ helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? FloorHelper  {
             id = castHelper.id ?? ""
             img = castHelper.img ?? ""
@@ -29,14 +29,14 @@ class Floor: NSManagedObject, FeedableProtocol, ImageFeedable {
         }
     }
     
-    func feedImageData(data: NSData) {
+    func feedImageData(_ data: Data) {
         imgData = data
     }
     
     func getId() -> NSManagedObject? {
         return nil
     }
-    func resetId(id: NSManagedObject?) {
+    func resetId(_ id: NSManagedObject?) {
     }
     
     

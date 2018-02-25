@@ -26,7 +26,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     var eventLocation:UILabel!
     var rotating = false
     
-    private struct AlertString {
+    fileprivate struct AlertString {
         struct NoDataError {
             static let title = NSLocalizedString("No Data", comment: "")
             static let content = NSLocalizedString("Please select another event", comment: "")
@@ -34,7 +34,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         }
     }
     
-    private struct TabNameString {
+    fileprivate struct TabNameString {
         static let schedule = NSLocalizedString("Schedule", comment: "")
         static let tracks = NSLocalizedString("Tracks", comment: "")
         static let speakers = NSLocalizedString("Speakers", comment: "")
@@ -47,12 +47,12 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     
     
-    func run_on_background_thread(code: () -> Void) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), code)
+    func run_on_background_thread(_ code: @escaping () -> Void) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: code)
     }
     
-    func run_on_main_thread(code: () -> Void) {
-        dispatch_async(dispatch_get_main_queue(), code)
+    func run_on_main_thread(_ code: @escaping () -> Void) {
+        DispatchQueue.main.async(execute: code)
     }
     
     
@@ -64,21 +64,21 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
             return
         }
         
-        UIView.animateWithDuration(0.5,
+        UIView.animate(withDuration: 0.5,
             delay: 0.0,
-            options: .CurveLinear,
+            options: .curveLinear,
             animations: {
-                self.globeView.transform = CGAffineTransformRotate(self.globeView.transform, 3.1415926)
+                self.globeView.transform = self.globeView.transform.rotated(by: 3.1415926)
             },
             completion: {finished in self.rotateAgain()})
     }
     
     func rotateAgain() {
-        UIView.animateWithDuration(0.5,
+        UIView.animate(withDuration: 0.5,
             delay: 0.0,
-            options: .CurveLinear,
+            options: .curveLinear,
             animations: {
-                self.globeView.transform = CGAffineTransformRotate(self.globeView.transform, 3.1415926)
+                self.globeView.transform = self.globeView.transform.rotated(by: 3.1415926)
             },
             completion: {finished in if self.rotating { self.rotateOnce() }})
     }
@@ -119,8 +119,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         let mapNavigationController = HuntlyNavigationController(rootViewController: mapController)
         
         self.customTabController.viewControllers = [scheduleController, trackController, speakerNavigationController, mapNavigationController, settingsNavigationController]
-        self.customTabController.tabBar.translucent = false
-        self.customTabController.view.backgroundColor = UIColor.whiteColor()
+        self.customTabController.tabBar.isTranslucent = false
+        self.customTabController.view.backgroundColor = UIColor.white
         
         
         self.rotating = false
@@ -150,9 +150,9 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     func hunltyManager() {
 
-        if let viewController = UIStoryboard(name: "Huntly", bundle: nil).instantiateViewControllerWithIdentifier("HuntlyPopup") as? HuntlyPopup {
+        if let viewController = UIStoryboard(name: "Huntly", bundle: nil).instantiateViewController(withIdentifier: "HuntlyPopup") as? HuntlyPopup {
  
-            self.customTabController.presentViewController(viewController, animated: true, completion: {
+            self.customTabController.present(viewController, animated: true, completion: {
             
                 viewController.titleBonus.text = "Welcome bonus"
                 viewController.pointLbl.text = "Points"
@@ -169,8 +169,8 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         if let currentData = slicesData[currentSelectedIndex] as? EventProtocol {
             
             
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject(currentData.identifier(), forKey: "currentEvent")
+            let defaults = UserDefaults.standard
+            defaults.set(currentData.identifier(), forKey: "currentEvent")
             CfpService.sharedInstance.currentCfp = nil
             
             
@@ -189,16 +189,16 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     }
     
     
-    func showStaticView(show : Bool) {
-        self.wheelView.userInteractionEnabled = !show
-        self.goView.hidden = show
+    func showStaticView(_ show : Bool) {
+        self.wheelView.isUserInteractionEnabled = !show
+        self.goView.isHidden = show
     }
     
     func remove() {
         customTabController.view.removeFromSuperview()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
@@ -207,7 +207,7 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         super.viewDidLoad()
         
         imgView = UIImageView()
-        imgView.contentMode = .ScaleAspectFit
+        imgView.contentMode = .scaleAspectFit
         
         
         self.view.addSubview(imgView)
@@ -232,19 +232,19 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         let layout = NSLayoutFormatOptions(rawValue: 0)
         
-        let horizontalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[headerView]-0-|", options: layout, metrics: nil, views: viewsDictionary)
-        let horizontalContraint1:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[wheelView]-0-|", options: layout, metrics: nil, views: viewsDictionary)
-        let horizontalContraint2:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[goView]-0-|", options: layout, metrics: nil, views: viewsDictionary)
-        let horizontalContraint3:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[numberView]-0-|", options: layout, metrics: nil, views: viewsDictionary)
+        let horizontalContraint0:[NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[headerView]-0-|", options: layout, metrics: nil, views: viewsDictionary)
+        let horizontalContraint1:[NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[wheelView]-0-|", options: layout, metrics: nil, views: viewsDictionary)
+        let horizontalContraint2:[NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[goView]-0-|", options: layout, metrics: nil, views: viewsDictionary)
+        let horizontalContraint3:[NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[numberView]-0-|", options: layout, metrics: nil, views: viewsDictionary)
         
         
-        let v1 = NSLayoutConstraint(item: headerView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Height, multiplier: 0.15, constant: 0)
-        let v2 = NSLayoutConstraint(item: wheelView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Height, multiplier: 0.6, constant: 0)
-        let v3 = NSLayoutConstraint(item: goView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Height, multiplier: 0.1, constant: 0)
-        let v4 = NSLayoutConstraint(item: numberView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Height, multiplier: 0.15, constant: 0)
+        let v1 = NSLayoutConstraint(item: headerView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.height, multiplier: 0.15, constant: 0)
+        let v2 = NSLayoutConstraint(item: wheelView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.height, multiplier: 0.6, constant: 0)
+        let v3 = NSLayoutConstraint(item: goView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.height, multiplier: 0.1, constant: 0)
+        let v4 = NSLayoutConstraint(item: numberView, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.height, multiplier: 0.15, constant: 0)
         
         
-        let verticalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[headerView]-0-[wheelView]-0-[goView]-0-[numberView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
+        let verticalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[headerView]-0-[wheelView]-0-[goView]-0-[numberView]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
         
         
         self.view.addConstraints(horizontalContraint0)
@@ -280,19 +280,19 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
         
         
-        goView.goButton.addTarget(self, action: #selector(self.prepareNext), forControlEvents: .TouchUpInside)
+        goView.goButton.addTarget(self, action: #selector(self.prepareNext), for: .touchUpInside)
         
         
         APIManager.firstFeed(loadWheel, service: CfpService.sharedInstance)
         
     }
     
-    func loadWheel(msg : CallbackProtocol) {
+    func loadWheel(_ msg : CallbackProtocol) {
         CfpService.sharedInstance.fetchCfps(callBack)
     }
     
-    func callBack(cfps :[Cfp], error : CfpStoreError?) {
-        slicesData = cfps
+    func callBack(_ cfps :[Cfp], error : CfpStoreError?) {
+        slicesData = cfps as NSArray
         
         wheelView.datasource = self
         wheelView.delegate = self
@@ -359,40 +359,40 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     //Delegate
     //some sample messages when actions are triggered (open/close slices)
-    func didOpenSliceAtIndex(index: Int) {
+    func didOpenSliceAtIndex(_ index: Int) {
         
     }
     
-    func didCloseSliceAtIndex(index: Int) {
+    func didCloseSliceAtIndex(_ index: Int) {
         
     }
     
-    func willOpenSliceAtIndex(index: Int) {
+    func willOpenSliceAtIndex(_ index: Int) {
         
         
     }
     
-    func willCloseSliceAtIndex(index: Int) {
+    func willCloseSliceAtIndex(_ index: Int) {
         
     }
     
     //Datasource
-    func colorForSliceAtIndex(index:Int) -> UIColor {
+    func colorForSliceAtIndex(_ index:Int) -> UIColor {
         return color
     }
     
-    func valueForSliceAtIndex(index:Int) -> CGFloat {
+    func valueForSliceAtIndex(_ index:Int) -> CGFloat {
         return CGFloat(100/slicesData.count)
     }
     
-    func labelForSliceAtIndex(index:Int) -> String {
+    func labelForSliceAtIndex(_ index:Int) -> String {
         if let currentData = slicesData[index] as? EventProtocol {
             return currentData.title()
         }
         return ""
     }
     
-    func imageForSliceAtIndex(index:Int) -> UIImage {
+    func imageForSliceAtIndex(_ index:Int) -> UIImage {
         if let currentData = slicesData[index] as? EventProtocol {
             return UIImage(named: currentData.splashImageName())!
         }
@@ -409,10 +409,10 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         // Dispose of any resources that can be recreated.
     }
     
-    func updateIndex(index:Int) {
+    func updateIndex(_ index:Int) {
         currentSelectedIndex = index
         if let currentData = slicesData[index] as? EventProtocol {
-            let img = UIImage(data: currentData.backgroundImage())
+            let img = UIImage(data: currentData.backgroundImage() as Data)
             let tmpImageView = UIImageView(image: img)
             imgView.image = img
             imgView.frame = tmpImageView.frame
@@ -431,16 +431,16 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
     
     
     
-    func failure(msg : String) {
+    func failure(_ msg : String) {
         //print("FAILURE")
         self.showStaticView(false)
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject("", forKey: "currentEvent")
+        let defaults = UserDefaults.standard
+        defaults.set("", forKey: "currentEvent")
         CfpService.sharedInstance.cfp = nil
         self.rotating = false
-        let alert = UIAlertController(title: AlertString.NoDataError.title, message: AlertString.NoDataError.content, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: AlertString.NoDataError.okButton, style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: AlertString.NoDataError.title, message: AlertString.NoDataError.content, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: AlertString.NoDataError.okButton, style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     
@@ -451,13 +451,13 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         APIDataManager.loadDataFromURL(CfpService.sharedInstance.getEntryPoint(), service: DayService.sharedInstance, helper : DayHelper(), loadFromFile : false, onSuccess: self.fetchSpeakers, onError: self.failure)
     }
     
-    func fetchSpeakers(msg : CallbackProtocol) {
+    func fetchSpeakers(_ msg : CallbackProtocol) {
         APIDataManager.loadDataFromURL(SpeakerService.sharedInstance.getSpeakerUrl(), service: SpeakerService.sharedInstance, helper : SpeakerHelper(), loadFromFile : false, onSuccess: self.setupEvent, onError: self.failure)
     }
     
 
     
-    func setupEvent(msg : CallbackProtocol) {
+    func setupEvent(_ msg : CallbackProtocol) {
        // print("========setupEvent")
         
         
@@ -474,19 +474,19 @@ class ViewController: UIViewController, SelectionWheelDatasource, SelectionWheel
         
     }
     
-    func fetchTracks(msg : CallbackProtocol) {
+    func fetchTracks(_ msg : CallbackProtocol) {
         //print("========fetchTracks")
         APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTracksUrl(), service: TrackService.sharedInstance, helper : TrackHelper(), loadFromFile: false, onSuccess: self.fetchTalkType, onError: failure)
     }
     
     
     
-    func fetchTalkType(msg : CallbackProtocol) {
+    func fetchTalkType(_ msg : CallbackProtocol) {
         //print("========fetchTalkType")
         APIDataManager.loadDataFromURL(AttributeService.sharedInstance.getTalkTypeUrl(), service: TalkTypeService.sharedInstance, helper : TalkTypeHelper(), loadFromFile: false, onSuccess: self.finishFetching, onError: failure)
     }
     
-    func finishFetching(msg : CallbackProtocol) {
+    func finishFetching(_ msg : CallbackProtocol) {
         self.rotating = false
         self.showStaticView(false)
         self.loadIsFinihsed()

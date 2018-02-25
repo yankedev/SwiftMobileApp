@@ -14,10 +14,10 @@ class SpeakerListView : UITableView {
     
     
     override init(frame: CGRect, style: UITableViewStyle) {
-        super.init(frame: frame, style: .Grouped)
+        super.init(frame: frame, style: .grouped)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.separatorStyle = .None
-        backgroundColor = UIColor.whiteColor()
+        self.separatorStyle = .none
+        backgroundColor = UIColor.white
     }
     
     required init?(coder aDecoder: NSCoder) {

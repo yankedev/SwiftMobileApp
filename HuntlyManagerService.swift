@@ -40,7 +40,7 @@ class HuntlyManagerService {
     var EVENT_ID = -1
 
     
-    func feedEventId(callBack : () -> Void, callbackFailure : () -> Void) {
+    func feedEventId(_ callBack : @escaping () -> Void, callbackFailure : @escaping () -> Void) {
         
         if EVENT_ID != -1 {
             callBack()
@@ -51,6 +51,7 @@ class HuntlyManagerService {
             
             let headers = getHeaders()
         
+        /*
             Alamofire.request(.GET, "\(API)/deployments", headers : headers)
                 .responseJSON { response in
            
@@ -68,11 +69,12 @@ class HuntlyManagerService {
                 }
                 callbackFailure()
         }
+         */
             
         
     }
     
-    func setStoredId(str: String, value : Int) {
+    func setStoredId(_ str: String, value : Int) {
         if(str == FIRST_APP_RUN_QUEST) {
             FIRST_APP_RUN_QUEST_ID = value
         }
@@ -81,7 +83,7 @@ class HuntlyManagerService {
         }
     }
     
-    func setQuestPoints(str: String, value : Int) {
+    func setQuestPoints(_ str: String, value : Int) {
         if(str == FIRST_APP_RUN_QUEST) {
             FIRST_APP_RUN_QUEST_POINTS = value
         }
@@ -90,7 +92,7 @@ class HuntlyManagerService {
         }
     }
     
-    func getStoredId(str: String) -> Int {
+    func getStoredId(_ str: String) -> Int {
         if(str == FIRST_APP_RUN_QUEST) {
             return FIRST_APP_RUN_QUEST_ID
         }
@@ -107,39 +109,39 @@ class HuntlyManagerService {
         if let uuid = keychain["HuntlyService"] {
             return uuid
         }
-        let uuid = UIDevice.currentDevice().identifierForVendor?.UUIDString ?? ""
+        let uuid = UIDevice.current.identifierForVendor?.uuidString ?? ""
         keychain["HuntlyService"] = uuid
         return uuid
     }
 
     func getToken() -> String {
       
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let currentEventStr = defaults.objectForKey(TOKEN_STRING) as? String {
+        let defaults = UserDefaults.standard
+        if let currentEventStr = defaults.object(forKey: TOKEN_STRING) as? String {
             return currentEventStr
         }
         return ""
     }
     
-    func setToken(token : String?) {
+    func setToken(_ token : String?) {
         if token == nil {
             return
         }
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(token, forKey: TOKEN_STRING)
+        let defaults = UserDefaults.standard
+        defaults.set(token, forKey: TOKEN_STRING)
     }
     
-    func setHuntlyPoints(pts : String) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(pts, forKey: POINTS)
+    func setHuntlyPoints(_ pts : String) {
+        let defaults = UserDefaults.standard
+        defaults.set(pts, forKey: POINTS)
     }
     
     func getHuntlyPoints() -> String {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        return defaults.stringForKey(POINTS) ?? "0"
+        let defaults = UserDefaults.standard
+        return defaults.string(forKey: POINTS) ?? "0"
     }
     
-    func findQuestId(str : String, handlerSuccess : (() -> Void), handlerFailure : (() -> Void)) {
+    func findQuestId(_ str : String, handlerSuccess : @escaping (() -> Void), handlerFailure : @escaping (() -> Void)) {
         
         if getStoredId(str) != -1 {
             completeQuest(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
@@ -149,7 +151,7 @@ class HuntlyManagerService {
         
         let headers = getHeadersWithUserToken()
         
-        
+        /*
         Alamofire.request(.GET, "\(API)/deployments/\(EVENT_ID)/quests/activity/list", headers : headers)
             .responseJSON { response in
             
@@ -170,12 +172,13 @@ class HuntlyManagerService {
                 }
                 handlerFailure()
         }
+         */
         
     }
 
     
     
-    func completeQuest(str : String, handlerSuccess : (() -> Void), handlerFailure : (() -> Void)) {
+    func completeQuest(_ str : String, handlerSuccess : @escaping (() -> Void), handlerFailure : @escaping (() -> Void)) {
         
         if getStoredId(str) == -1 {
             findQuestId(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
@@ -186,12 +189,13 @@ class HuntlyManagerService {
 
         let headers = getHeadersWithUserToken()
         
+        /*
         Alamofire.upload(
             .POST,
             "\(API)/quests/activity/complete",
             headers: headers,
             multipartFormData: { multipartFormData in
-                multipartFormData.appendBodyPart(data: questIdValue.dataUsingEncoding(NSUTF8StringEncoding)!, name: "questId")
+                multipartFormData.appendBodyPart(data: questIdValue.dataUsingEncoding(String.Encoding.utf8)!, name: "questId")
             },
             encodingCompletion: { encodingResult in
                 switch encodingResult {
@@ -218,14 +222,16 @@ class HuntlyManagerService {
                 }
             }
         )
+         */
 
     
     }
 
-    func updateScore(handlerSuccess : (() -> Void)) {
+    func updateScore(_ handlerSuccess : @escaping (() -> Void)) {
         
         let headers = getHeadersWithUserToken()
         
+        /*
         Alamofire.request(.GET, "\(API)/deployments/\(EVENT_ID)/user", headers : headers)
             .responseJSON { response in
 
@@ -236,6 +242,7 @@ class HuntlyManagerService {
                     }
                 }
         }
+         */
     }
     
     
@@ -248,14 +255,14 @@ class HuntlyManagerService {
         
         let headers = getHeadersWithUserToken()
         
-        let config = NSURLSessionConfiguration.ephemeralSessionConfiguration()
+        let config = URLSessionConfiguration.ephemeral
         
        
-        config.HTTPAdditionalHeaders = headers
-        config.requestCachePolicy = .ReloadIgnoringLocalCacheData
+        config.httpAdditionalHeaders = headers
+        config.requestCachePolicy = .reloadIgnoringLocalCacheData
         config.timeoutIntervalForResource = 15
         
-        let session = NSURLSession(configuration: config)
+        let session = URLSession(configuration: config)
 
         
 
@@ -263,17 +270,17 @@ class HuntlyManagerService {
             "key" : "userId",
             "value" : APIManager.getQrCode()! ]
         
-        let url = NSURL(string:"\(API)/deployments/\(EVENT_ID)/profile/fill")
-        let request = NSMutableURLRequest(URL: url!)
+        let url = URL(string:"\(API)/deployments/\(EVENT_ID)/profile/fill")
+        let request = NSMutableURLRequest(url: url!)
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.HTTPMethod = "POST"
-        request.HTTPBody = try? NSJSONSerialization.dataWithJSONObject([params], options: NSJSONWritingOptions())
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject: [params], options: JSONSerialization.WritingOptions())
        
-        
-        let task = session.dataTaskWithRequest(request) {
+        /*
+        let task = session.dataTask(with: request, completionHandler: {
             data, response, error in
             
-            if let httpResponse = response as? NSHTTPURLResponse {
+            if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode != 200 {
                     return
                 }
@@ -281,11 +288,12 @@ class HuntlyManagerService {
             if (error != nil) {
                 return
             }
-        }
+        }) 
         task.resume()
+         */
     }
     
-    func storeToken(str : String, handlerSuccess : (Void) -> (), handlerFailure : (Void) -> ())  {
+    func storeToken(_ str : String, handlerSuccess : @escaping (Void) -> (), handlerFailure : @escaping (Void) -> ())  {
         
         if getToken() != "" {
             completeQuest(str, handlerSuccess: handlerSuccess, handlerFailure: handlerFailure)
@@ -296,6 +304,7 @@ class HuntlyManagerService {
         
         let headers = getHeaders()
         
+        /*
         Alamofire.upload(
             .POST,
             "\(API)/users/login/platform",
@@ -323,7 +332,7 @@ class HuntlyManagerService {
                 }
             }
         )
-        
+            */
     }
     
     func goDeepLink() {
@@ -331,7 +340,7 @@ class HuntlyManagerService {
         if APP_STORE_LINK == "" {
             
             let headers = getHeaders()
-            
+            /*
             Alamofire.request(.GET, "\(API)/deployments/\(EVENT_ID)/deeplink", headers : headers)
                 .responseJSON { response in
                     
@@ -344,6 +353,7 @@ class HuntlyManagerService {
                         }
                     }
             }
+            */
         }
         else {
             playMoreBtnSelector()
@@ -353,12 +363,12 @@ class HuntlyManagerService {
     
     func playMoreBtnSelector() {
     
-        let isInstalled = UIApplication.sharedApplication().canOpenURL(NSURL(string:SCHEME_URL)!)
+        let isInstalled = UIApplication.shared.canOpenURL(URL(string:SCHEME_URL)!)
         if isInstalled {
-            UIApplication.sharedApplication().openURL(NSURL(string:SCHEME_URL)!)
+            UIApplication.shared.openURL(URL(string:SCHEME_URL)!)
         }
         else {
-            UIApplication.sharedApplication().openURL(NSURL(string:APP_STORE_LINK)!)
+            UIApplication.shared.openURL(URL(string:APP_STORE_LINK)!)
         }
     }
     
@@ -381,7 +391,7 @@ class HuntlyManagerService {
     
     
     func getHuntlyToken() -> String {
-        return NSBundle.mainBundle().objectForInfoDictionaryKey("HuntlyAccessToken") as? String ?? ""
+        return Bundle.main.object(forInfoDictionaryKey: "HuntlyAccessToken") as? String ?? ""
     }
     
     func getHeaders() ->  [String : String] {

@@ -9,6 +9,19 @@
 import Foundation
 import CoreData
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
     
@@ -61,7 +74,7 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
         return entityName()
     }
     
-    func feed(data: JSON) {
+    func feed(_ data: JSON) {
         
         title = data["title"].string
         if(title == nil) {
@@ -88,7 +101,7 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
         return "Talk"
     }
     
-    func prepareArray(json: JSON) -> [JSON]? {
+    func prepareArray(_ json: JSON) -> [JSON]? {
         
         if(json["break"] != nil) {
             isBreak = true
@@ -101,7 +114,7 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
     
     
     //detailable
-    func getTitle() -> String? {
+    func getTitleD() -> String? {
         return title
     }
     
@@ -119,7 +132,7 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
     }
     
         
-    func getDetailInfoWithIndex(idx: Int) -> String? {
+    func getDetailInfoWithIndex(_ idx: Int) -> String? {
         if idx < detailInfos().count {
             return detailInfos()[idx]
         }
@@ -131,7 +144,7 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
         return [roomName!, HelperManager.getShortTalkTypeName(talkType!), friendlyTime!, speakerList!, day!]
     }
     
-    func getRelatedDetailWithIndex(idx : Int) -> DetailableProtocol? {
+    func getRelatedDetailWithIndex(_ idx : Int) -> DetailableProtocol? {
         if idx < relatedObjects?.count {
             return relatedObjects?[idx] as? DetailableProtocol
         }
@@ -172,7 +185,7 @@ class TalkHelper: DataHelperProtocol, DetailableProtocol, RatableProtocol{
         return speakersId!
     }
     
-    func setRelated(data: [DataHelperProtocol]) {
+    func setRelated(_ data: [DataHelperProtocol]) {
         relatedObjects = data
     }
     

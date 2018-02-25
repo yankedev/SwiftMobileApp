@@ -19,7 +19,7 @@ class SpeakerDetail: NSManagedObject, FeedableProtocol {
     @NSManaged var uuid: String
     @NSManaged var speaker : Speaker
     
-    func feedHelper(helper: DataHelperProtocol) -> Void {
+    func feedHelper(_ helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? SpeakerDetailHelper  {
             bio = castHelper.bio ?? ""
             bioAsHtml = castHelper.bioAsHtml ?? ""
@@ -36,7 +36,7 @@ class SpeakerDetail: NSManagedObject, FeedableProtocol {
         return speaker
     }
     
-    func resetId(id: NSManagedObject?) {
+    func resetId(_ id: NSManagedObject?) {
         self.speaker = id as! Speaker
     }
     

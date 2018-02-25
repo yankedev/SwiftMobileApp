@@ -16,8 +16,8 @@ class SchedulesController: WKInterfaceController {
     var conference: Conference?
     var schedules: [Schedule]?
     
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         
         self.activityIndicator.setImageNamed("Activity")
         
@@ -29,7 +29,7 @@ class SchedulesController: WKInterfaceController {
     override func willActivate() {
         super.willActivate()
         self.activityIndicator.setHidden(false)
-        self.activityIndicator.startAnimatingWithImagesInRange(NSMakeRange(0, 30), duration: 1.0, repeatCount: 0)
+        self.activityIndicator.startAnimatingWithImages(in: NSMakeRange(0, 30), duration: 1.0, repeatCount: 0)
         
         if let conference = self.conference {
             self.setTitle(conference.conferenceDescription)
@@ -40,8 +40,8 @@ class SchedulesController: WKInterfaceController {
                 self.activityIndicator.setHidden(true)
                 
                 self.table.setNumberOfRows(self.schedules!.count, withRowType: "schedule")
-                for (index,schedule) in self.schedules!.enumerate() {
-                    if let row = self.table.rowControllerAtIndex(index) as? ScheduleRowController {
+                for (index,schedule) in self.schedules!.enumerated() {
+                    if let row = self.table.rowController(at: index) as? ScheduleRowController {
                         row.label.setText(schedule.purgedTitle)
                     }
                 }
@@ -54,7 +54,7 @@ class SchedulesController: WKInterfaceController {
         DataController.sharedInstance.cancelSchedules()
     }
     
-    override func contextForSegueWithIdentifier(segueIdentifier: String, inTable table: WKInterfaceTable, rowIndex: Int) -> AnyObject? {
+    override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
         return self.schedules![rowIndex]
     }
 }

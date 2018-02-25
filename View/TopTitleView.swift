@@ -18,7 +18,7 @@ class TopTitleView : UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        contentMode = .ScaleAspectFill
+        contentMode = .scaleAspectFill
         clipsToBounds = true
         translatesAutoresizingMaskIntoConstraints = false
         
@@ -43,10 +43,10 @@ class TopTitleView : UIView {
         let views = ["talkTitle": talkTitle, "talkTrackName" : talkTrackName]
         
         
-        let constH0 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[talkTitle]-0-|", options: .AlignAllLastBaseline, metrics: nil, views: views)
-        let constH1 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[talkTrackName]-0-|", options: .AlignAllLastBaseline, metrics: nil, views: views)
+        let constH0 = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[talkTitle]-0-|", options: .alignAllLastBaseline, metrics: nil, views: views)
+        let constH1 = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[talkTrackName]-0-|", options: .alignAllLastBaseline, metrics: nil, views: views)
         
-        let constV0 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[talkTrackName]-0-[talkTitle]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constV0 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[talkTrackName]-0-[talkTitle]-0-|", options: .alignAllCenterX, metrics: nil, views: views)
         
         
         addConstraints(constH0)
@@ -55,19 +55,19 @@ class TopTitleView : UIView {
         
         
         let talkTrackNameHeight = NSLayoutConstraint(item: talkTrackName,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 0.3,
             constant: 0)
         
         
         let talkTitleHeight = NSLayoutConstraint(item: talkTitle,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 0.7,
             constant: 0)
         

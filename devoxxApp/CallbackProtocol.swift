@@ -11,7 +11,7 @@ import Foundation
 public protocol CallbackProtocol {
     
     func getHelper() -> DataHelperProtocol?
-    func getImg() -> NSData?
+    func getImg() -> Data?
     func debug() -> String
     func getMessage() -> String
 
@@ -20,7 +20,7 @@ public protocol CallbackProtocol {
 
 class CompletionMessage : CallbackProtocol {
     var msg : String = ""
-    var img : NSData?
+    var img : Data?
     var helper : DataHelperProtocol?
     
     init(msg : String) {
@@ -29,14 +29,14 @@ class CompletionMessage : CallbackProtocol {
     init(obj : DataHelperProtocol) {
         self.helper = obj
     }
-    init(img : NSData?) {
+    init(img : Data?) {
         self.img = img
     }
 
     func getHelper() -> DataHelperProtocol? {
         return helper
     }
-    func getImg() -> NSData? {
+    func getImg() -> Data? {
         return img
     }
     

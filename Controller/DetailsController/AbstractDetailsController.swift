@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-public class AbstractDetailsController : UIViewController {
+open class AbstractDetailsController : UIViewController {
     
     var scroll : UITextView!
     var detailObject : DetailableProtocol!
-    var header = ColoredHeaderView(frame: CGRectZero)
+    var header = ColoredHeaderView(frame: CGRect.zero)
     
     weak var delegate : FavoritableProtocol!
     
@@ -22,16 +22,16 @@ public class AbstractDetailsController : UIViewController {
     var actionButtonView0 = ActionButtonView()
     var actionButtonViewBack = ActionButtonView()
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         
         super.viewDidLoad()
         
         scroll = UITextView()
-        scroll.backgroundColor = UIColor.whiteColor()
+        scroll.backgroundColor = UIColor.white
         scroll.translatesAutoresizingMaskIntoConstraints = false
-        scroll.backgroundColor = UIColor.whiteColor()
+        scroll.backgroundColor = UIColor.white
         scroll.font = UIFont(name: "Roboto", size:  18)
-        scroll.editable = false
+        scroll.isEditable = false
         
         
         let inputImage = UIImage(named: "talk_background.png")
@@ -48,37 +48,37 @@ public class AbstractDetailsController : UIViewController {
         
         
         actionButtonViewBack.setup(false)
-        let imageBack = UIImage(named: "ic_back")?.imageWithRenderingMode(.AlwaysTemplate)
-        actionButtonViewBack.button.setImage(imageBack, forState: .Normal)
-        actionButtonViewBack.tintColor = UIColor.whiteColor()
+        let imageBack = UIImage(named: "ic_back")?.withRenderingMode(.alwaysTemplate)
+        actionButtonViewBack.button.setImage(imageBack, for: UIControlState())
+        actionButtonViewBack.tintColor = UIColor.white
         
         
         
-        let image0 = UIImage(named: "ic_twitter")?.imageWithRenderingMode(.AlwaysTemplate)
-        actionButtonView0.button.setImage(image0, forState: .Normal)
-        actionButtonView0.tintColor = UIColor.whiteColor()
+        let image0 = UIImage(named: "ic_twitter")?.withRenderingMode(.alwaysTemplate)
+        actionButtonView0.button.setImage(image0, for: UIControlState())
+        actionButtonView0.tintColor = UIColor.white
         actionButtonView0.setup(true)
         
         
         
-        let image1 = UIImage(named: "ic_time")?.imageWithRenderingMode(.AlwaysTemplate)
-        actionButtonView1.button.setImage(image1, forState: .Normal)
-        actionButtonView1.tintColor = UIColor.whiteColor()
+        let image1 = UIImage(named: "ic_time")?.withRenderingMode(.alwaysTemplate)
+        actionButtonView1.button.setImage(image1, for: UIControlState())
+        actionButtonView1.tintColor = UIColor.white
         actionButtonView1.setup(true)
         
         if CfpService.sharedInstance.getVotingImage() == "ic_thee" {
-            actionButtonView2.hidden = true
+            actionButtonView2.isHidden = true
         }
         else {
-            let image2 = UIImage(named: CfpService.sharedInstance.getVotingImage())?.imageWithRenderingMode(.AlwaysTemplate)
-            actionButtonView2.button.setImage(image2, forState: .Normal)
-            actionButtonView2.tintColor = UIColor.whiteColor()
+            let image2 = UIImage(named: CfpService.sharedInstance.getVotingImage())?.withRenderingMode(.alwaysTemplate)
+            actionButtonView2.button.setImage(image2, for: UIControlState())
+            actionButtonView2.tintColor = UIColor.white
             actionButtonView2.setup(true)
         }
         
-        actionButtonViewBack.button.addTarget(self, action: #selector(AbstractDetailsController.back), forControlEvents: .TouchUpInside)
+        actionButtonViewBack.button.addTarget(self, action: #selector(AbstractDetailsController.back), for: .touchUpInside)
         
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         
         
         
@@ -86,34 +86,34 @@ public class AbstractDetailsController : UIViewController {
         
         //
         let actionButtonViewHeight = NSLayoutConstraint(item: actionButtonView0,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self.view,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 0,
             constant: 45)
         
         let actionButtonViewWidth = NSLayoutConstraint(item: actionButtonView0,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.width,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self.view,
-            attribute: NSLayoutAttribute.Width,
+            attribute: NSLayoutAttribute.width,
             multiplier: 0,
             constant: 45)
         
         let actionButtonViewCenterX = NSLayoutConstraint(item: actionButtonView0,
-            attribute: NSLayoutAttribute.CenterX,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.centerX,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self.view,
-            attribute: NSLayoutAttribute.CenterX,
+            attribute: NSLayoutAttribute.centerX,
             multiplier: 2,
             constant: -95)
         
         let actionButtonViewCenterY = NSLayoutConstraint(item: actionButtonView0,
-            attribute: NSLayoutAttribute.CenterY,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.centerY,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self.view,
-            attribute: NSLayoutAttribute.Top,
+            attribute: NSLayoutAttribute.top,
             multiplier: 1,
             constant: 150)
         
@@ -125,34 +125,34 @@ public class AbstractDetailsController : UIViewController {
         
         
         let actionButtonViewHeight1 = NSLayoutConstraint(item: actionButtonView1,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self.view,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 0,
             constant: 45)
         
         let actionButtonViewWidth1 = NSLayoutConstraint(item: actionButtonView1,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.width,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self.view,
-            attribute: NSLayoutAttribute.Width,
+            attribute: NSLayoutAttribute.width,
             multiplier: 0,
             constant: 45)
         
         let actionButtonViewCenterX1 = NSLayoutConstraint(item: actionButtonView1,
-            attribute: NSLayoutAttribute.CenterX,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.centerX,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self.view,
-            attribute: NSLayoutAttribute.CenterX,
+            attribute: NSLayoutAttribute.centerX,
             multiplier: 2,
             constant: -40)
         
         let actionButtonViewCenterY1 = NSLayoutConstraint(item: actionButtonView1,
-            attribute: NSLayoutAttribute.CenterY,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.centerY,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self.view,
-            attribute: NSLayoutAttribute.Top,
+            attribute: NSLayoutAttribute.top,
             multiplier: 1,
             constant: 150)
         
@@ -165,34 +165,34 @@ public class AbstractDetailsController : UIViewController {
         
         
         let actionButtonViewHeight2 = NSLayoutConstraint(item: actionButtonView2,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self.view,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 0,
             constant: 45)
         
         let actionButtonViewWidth2 = NSLayoutConstraint(item: actionButtonView2,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.width,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self.view,
-            attribute: NSLayoutAttribute.Width,
+            attribute: NSLayoutAttribute.width,
             multiplier: 0,
             constant: 45)
         
         let actionButtonViewCenterX2 = NSLayoutConstraint(item: actionButtonView2,
-            attribute: NSLayoutAttribute.CenterX,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.centerX,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self.view,
-            attribute: NSLayoutAttribute.CenterX,
+            attribute: NSLayoutAttribute.centerX,
             multiplier: 2,
             constant: -150)
         
         let actionButtonViewCenterY2 = NSLayoutConstraint(item: actionButtonView2,
-            attribute: NSLayoutAttribute.CenterY,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.centerY,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self.view,
-            attribute: NSLayoutAttribute.Top,
+            attribute: NSLayoutAttribute.top,
             multiplier: 1,
             constant: 150)
         
@@ -208,26 +208,26 @@ public class AbstractDetailsController : UIViewController {
         
         
         let actionButtonViewBackHeight = NSLayoutConstraint(item: actionButtonViewBack,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self.view,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 0,
             constant: 60)
         
         let actionButtonViewBackWidth = NSLayoutConstraint(item: actionButtonViewBack,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.width,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self.view,
-            attribute: NSLayoutAttribute.Width,
+            attribute: NSLayoutAttribute.width,
             multiplier: 0,
             constant: 60)
         
         let actionButtonViewBackTop = NSLayoutConstraint(item: actionButtonViewBack,
-            attribute: NSLayoutAttribute.Top,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.top,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self.view,
-            attribute: NSLayoutAttribute.Top,
+            attribute: NSLayoutAttribute.top,
             multiplier: 1,
             constant: 10)
         
@@ -239,32 +239,32 @@ public class AbstractDetailsController : UIViewController {
         
         view.layoutIfNeeded()
         
-        actionButtonView1.button.addTarget(self, action: #selector(self.clicked), forControlEvents: .TouchUpInside)
+        actionButtonView1.button.addTarget(self, action: #selector(self.clicked), for: .touchUpInside)
         
         
     }
     
     
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
         header.imageView.image = detailObject?.getPrimaryImage()
     }
     
     
-    public func setColor(isFavorited: Bool) {
+    open func setColor(_ isFavorited: Bool) {
         if isFavorited {
             actionButtonView1.button.tintColor = ColorManager.grayImageColor
         }
         else {
-            actionButtonView1.button.tintColor = UIColor.whiteColor()
+            actionButtonView1.button.tintColor = UIColor.white
         }
     }
 
     
-    public func invertColor() {
+    open func invertColor() {
         if actionButtonView1.button.tintColor == ColorManager.grayImageColor {
-            actionButtonView1.button.tintColor = UIColor.whiteColor()
+            actionButtonView1.button.tintColor = UIColor.white
         }
         else {
             actionButtonView1.button.tintColor = ColorManager.grayImageColor
@@ -272,32 +272,32 @@ public class AbstractDetailsController : UIViewController {
     }
 
     
-    public func configure() {
+    open func configure() {
         
-        actionButtonView0.button.addTarget(self, action: #selector(AbstractDetailsController.twitter), forControlEvents: .TouchUpInside)
+        actionButtonView0.button.addTarget(self, action: #selector(AbstractDetailsController.twitter), for: .touchUpInside)
         
-        actionButtonView2.button.addTarget(self, action: #selector(AbstractDetailsController.tryToRate), forControlEvents: .TouchUpInside)
+        actionButtonView2.button.addTarget(self, action: #selector(AbstractDetailsController.tryToRate), for: .touchUpInside)
         
-        actionButtonViewBack.button.addTarget(self, action: #selector(self.back), forControlEvents: .TouchUpInside)
+        actionButtonViewBack.button.addTarget(self, action: #selector(self.back), for: .touchUpInside)
         
         actionButtonViewBack.setup(false)
         actionButtonView0.setup(true)
         actionButtonView1.setup(true)
         actionButtonView2.setup(true)
         
-        view.bringSubviewToFront(actionButtonViewBack)
-        view.bringSubviewToFront(actionButtonView0)
-        view.bringSubviewToFront(actionButtonView1)
-        view.bringSubviewToFront(actionButtonView2)
+        view.bringSubview(toFront: actionButtonViewBack)
+        view.bringSubview(toFront: actionButtonView0)
+        view.bringSubview(toFront: actionButtonView1)
+        view.bringSubview(toFront: actionButtonView2)
         
         
     }
     
-    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let label = UILabel(frame: CGRectMake(0,0,20,1000))
+        let label = UILabel(frame: CGRect(x: 0,y: 0,width: 20,height: 1000))
         label.font = UIFont(name: "Roboto", size: 15)
-        label.textColor = UIColor.lightGrayColor()
+        label.textColor = UIColor.lightGray
         label.text = detailObject.getHeaderTitle()
         return label
         
@@ -306,42 +306,42 @@ public class AbstractDetailsController : UIViewController {
 
     
     
-    public func clicked() {
+    open func clicked() {
         if delegate != nil {
             let response = delegate.favorite(detailObject.getObjectID()!)
             setColor(response)
         }
     }
     
-    public func back() {
-        self.navigationController?.navigationBarHidden = false
-        self.navigationController?.popViewControllerAnimated(true)
+    open func back() {
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.popViewController(animated: true)
     }
     
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    open func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         return 1
     }
     
     
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return detailObject.getRelatedDetailsCount()
     }
     
     
     
-    public func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20
     }
     
-    public func fetchUrl() -> String? {
+    open func fetchUrl() -> String? {
         //todo
         return ""
     }
     
-    public func twitter() {
+    open func twitter() {
     }
     
-    public func tryToRate() {
+    open func tryToRate() {
     }
     
    

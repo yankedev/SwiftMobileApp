@@ -28,14 +28,14 @@ class GobalDetailView : UIView {
         addSubview(left)
         addSubview(right)
         
-        let views = ["left": left, "right" : right]
+        let views = ["left": left, "right" : right] as [String : Any]
         
         
         let heightLeft = NSLayoutConstraint(item: left,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 1,
             constant: 0)
         
@@ -43,10 +43,10 @@ class GobalDetailView : UIView {
         
         
         let heightRight = NSLayoutConstraint(item: right,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 1,
             constant: 0)
         
@@ -54,10 +54,10 @@ class GobalDetailView : UIView {
         
         
         let widthLeft = NSLayoutConstraint(item: left,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.width,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Width,
+            attribute: NSLayoutAttribute.width,
             multiplier: 0.50,
             constant: 0)
         
@@ -76,9 +76,9 @@ class GobalDetailView : UIView {
         */
         
         
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[left]-0-[right]-10-|", options: .AlignAllLastBaseline, metrics: nil, views: views)
-        let constV0 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[left]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        let constV1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[right]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[left]-0-[right]-10-|", options: .alignAllLastBaseline, metrics: nil, views: views)
+        let constV0 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[left]-0-|", options: .alignAllCenterX, metrics: nil, views: views)
+        let constV1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[right]-0-|", options: .alignAllCenterX, metrics: nil, views: views)
         
         
         addConstraints(constH)

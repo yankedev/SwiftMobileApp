@@ -13,7 +13,7 @@ class Schedule: NSManagedObject {
 
     var purgedTitle:String {
         if let title = self.title {
-            return title.stringByReplacingOccurrencesOfString("Schedule for ", withString: "").stringByReplacingOccurrencesOfString("Journée du ", withString: "")
+            return title.replacingOccurrences(of: "Schedule for ", with: "").replacingOccurrences(of: "Journée du ", with: "")
         } else {
             return ""
         }

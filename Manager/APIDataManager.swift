@@ -16,9 +16,9 @@
         
         
         
-        class func findEntityFromId<T>(id : NSManagedObjectID, inContext context : NSManagedObjectContext) -> T? {
+        class func findEntityFromId<T>(_ id : NSManagedObjectID, inContext context : NSManagedObjectContext) -> T? {
             do {
-                if let object = try context.existingObjectWithID(id) as? T {
+                if let object = try context.existingObject(with: id) as? T {
                     return object
                 }
             } catch _ as NSError {
@@ -35,20 +35,20 @@
         
         
         
-        class func completion(msg : CallbackProtocol) {
+        class func completion(_ msg : CallbackProtocol) {
             //TODO
         }
         
         
         
-        class func createResource(url : String, completionHandler : (msg: CallbackProtocol) -> Void) {
+        class func createResource(_ url : String, completionHandler : (_ msg: CallbackProtocol) -> Void) {
             let helper = StoredResourceHelper(url: url, etag: "", fallback: "")
             let storedResource = StoredResourceService.sharedInstance
             storedResource.updateWithHelper([helper], completionHandler: completion)
         }
         
         
-        class func findResource(url : String) -> StoredResource? {
+        class func findResource(_ url : String) -> StoredResource? {
             let storedResource = StoredResourceService.sharedInstance
             return storedResource.findByUrl(url)
         }
@@ -60,7 +60,7 @@
         
         
         
-        class func loadDataFromURL(url: String, service : AbstractService, helper : DataHelperProtocol, loadFromFile : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
+        class func loadDataFromURL(_ url: String, service : AbstractService, helper : DataHelperProtocol, loadFromFile : Bool, onSuccess : @escaping (_ value:CallbackProtocol) -> Void, onError: @escaping (_ value:String)->Void) {
             
             return makeRequest(findResource(url)!, service : service, helper : service.getHelper(), loadFromFile : loadFromFile, onSuccess: onSuccess, onError: onError)
         }
@@ -69,7 +69,7 @@
         
         
         
-        class func loadDataFromURLS(urls: NSOrderedSet?, dataHelper : DataHelperProtocol, loadFromFile : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
+        class func loadDataFromURLS(_ urls: NSOrderedSet?, dataHelper : DataHelperProtocol, loadFromFile : Bool, onSuccess : @escaping (_ value:CallbackProtocol) -> Void, onError: @escaping (_ value:String)->Void) {
             
             
             for singleUrl in urls! {
@@ -80,7 +80,7 @@
             
         }
         
-        class func makeRequest(storedResource : StoredResource, service : AbstractService, helper : DataHelperProtocol, loadFromFile : Bool, onSuccess : (value:CallbackProtocol) -> Void, onError: (value:String)->Void) {
+        class func makeRequest(_ storedResource : StoredResource, service : AbstractService, helper : DataHelperProtocol, loadFromFile : Bool, onSuccess : @escaping (_ value:CallbackProtocol) -> Void, onError: @escaping (_ value:String)->Void) {
             
             var urlToFetch = storedResource.url
             if loadFromFile {
@@ -89,13 +89,13 @@
             
             print("makeRequest "+urlToFetch)
            
-            let config = NSURLSessionConfiguration.defaultSessionConfiguration()
+            let config = URLSessionConfiguration.default
 
             config.timeoutIntervalForResource = 15
             
-            let session = NSURLSession(configuration: config)
+            let session = URLSession(configuration: config)
 
-            let task = session.dataTaskWithURL(NSURL(string: urlToFetch)!) {
+            let task = session.dataTask(with: URL(string: urlToFetch)!, completionHandler: {
                 data, response1, error in
                 
                 
@@ -109,8 +109,8 @@
                         let data = APIManager.getFallBackData(storedResource)
                         
                         if data == nil {
-                            dispatch_async(dispatch_get_main_queue(),{
-                                onError(value: storedResource.url)
+                            DispatchQueue.main.async(execute: {
+                                onError(storedResource.url)
                             })
                         }
                         else {
@@ -120,11 +120,11 @@
                     }
                         
                     else {
-                        onSuccess(value: CompletionMessage(msg : ""))
+                        onSuccess(CompletionMessage(msg : ""))
                     }
                     
                     
-                } else if let httpResponse = response1 as? NSHTTPURLResponse {
+                } else if let httpResponse = response1 as? HTTPURLResponse {
                     if httpResponse.statusCode != 200 && httpResponse.statusCode != 304  {
                         
                         //print("Error code for \(storedResource.url)")
@@ -134,21 +134,21 @@
                         
                         if loadFromFile {
                             
-                            let testBundle = NSBundle.mainBundle()
-                            let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
-                            let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
+                            let testBundle = Bundle.main
+                            let filePath = testBundle.path(forResource: storedResource.fallback, ofType: "")
+                            let checkString = (try? NSString(contentsOfFile: filePath!, encoding: String.Encoding.utf8.rawValue)) as? String
                             if(checkString == nil) {
                                 //print("should not be empty", terminator: "")
                             }
                             
-                            let fallbackData = NSData(contentsOfFile: filePath!)!
+                            let fallbackData = try! Data(contentsOf: URL(fileURLWithPath: filePath!))
                             
                             APIManager.handleData(fallbackData, service: service, storedResource: storedResource, etag: nil, completionHandler: onSuccess)
                             
                         }
                         else {
-                            dispatch_async(dispatch_get_main_queue(),{
-                                onSuccess(value: CompletionMessage(msg : "not 200 nor 304, code = \(httpResponse.statusCode) url = \(storedResource.url)"))
+                            DispatchQueue.main.async(execute: {
+                                onSuccess(CompletionMessage(msg : "not 200 nor 304, code = \(httpResponse.statusCode) url = \(storedResource.url)"))
                             })
                         }
                         
@@ -166,8 +166,8 @@
                             let data = APIManager.getFallBackData(storedResource)
                             
                             if data == nil {
-                                dispatch_async(dispatch_get_main_queue(),{
-                                    onError(value: storedResource.url)
+                                DispatchQueue.main.async(execute: {
+                                    onError(storedResource.url)
                                 })
                             }
                             else {
@@ -178,8 +178,8 @@
                         }
                         else {
                             
-                            dispatch_async(dispatch_get_main_queue(),{
-                                onSuccess(value: CompletionMessage(msg : ""))
+                            DispatchQueue.main.async(execute: {
+                                onSuccess(CompletionMessage(msg : ""))
                             })
                         }
                         
@@ -193,7 +193,7 @@
                         APIManager.handleData(data!, service: service, storedResource: storedResource, etag : httpResponse.allHeaderFields["etag"] as? String, completionHandler: onSuccess)
                     }
                 }
-            }
+            }) 
             
             
             task.resume()

@@ -13,52 +13,52 @@ class DataController: NSObject {
     
     static var sharedInstance = DataController()
     
-    private var session:NSURLSession
-    private var cache:DevoxxCache
+    fileprivate var session:URLSession
+    fileprivate var cache:DevoxxCache
     
-    private var conferencesTask:NSURLSessionDataTask?
-    private var schedulesTask:NSURLSessionDataTask?
-    private var slotsTasks = [String:NSURLSessionDataTask]()
-    private var speakerTasks = [String:NSURLSessionDataTask]()
-    private var avatarTasks = [String:NSURLSessionDataTask]()
+    fileprivate var conferencesTask:URLSessionDataTask?
+    fileprivate var schedulesTask:URLSessionDataTask?
+    fileprivate var slotsTasks = [String:URLSessionDataTask]()
+    fileprivate var speakerTasks = [String:URLSessionDataTask]()
+    fileprivate var avatarTasks = [String:URLSessionDataTask]()
     
-    private override init() {
-        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.requestCachePolicy = .ReloadIgnoringLocalCacheData
-        session = NSURLSession(configuration: configuration)
+    fileprivate override init() {
+        let configuration = URLSessionConfiguration.default
+        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        session = URLSession(configuration: configuration)
         
         cache = DevoxxCache()
     }
     
-    private func cancelTask(task: NSURLSessionDataTask?) {
+    fileprivate func cancelTask(_ task: URLSessionDataTask?) {
         if let task = task {
-            if task.state == NSURLSessionTaskState.Running {
+            if task.state == URLSessionTask.State.running {
                 task.cancel()
             }
         }
     }
     
-    func getConferences(callback:([Conference] -> Void)) {
+    func getConferences(_ callback:@escaping (([Conference]) -> Void)) {
         let conferences = cache.getConferences()
         if conferences.count > 0 {
-            dispatch_async(dispatch_get_main_queue(), { 
+            DispatchQueue.main.async(execute: { 
                 callback(conferences)
             })
         }
         
-        let cfpUrl = NSBundle.mainBundle().infoDictionary!["CFP_URL"] as! String
-        let url = NSURL(string: cfpUrl)!
-        self.conferencesTask = self.session.dataTaskWithURL(url) { (data:NSData?, response:NSURLResponse?, error:NSError?) in
+        let cfpUrl = Bundle.main.infoDictionary!["CFP_URL"] as! String
+        let url = URL(string: cfpUrl)!
+        self.conferencesTask = self.session.dataTask(with: url, completionHandler: { (data:Data?, response:URLResponse?, error:NSError?) in
             guard let data = data else {
                 print(error)
                 return
             }
             
             self.cache.saveConferencesFromData(data)
-            dispatch_async(dispatch_get_main_queue(), { 
+            DispatchQueue.main.async(execute: { 
                 callback(self.cache.getConferences())
             })
-        }
+        } as! (Data?, URLResponse?, Error?) -> Void) 
         self.conferencesTask?.resume()
     }
     
@@ -66,33 +66,33 @@ class DataController: NSObject {
         self.cancelTask(self.conferencesTask)
     }
     
-    func getSchedulesForConference(conference: Conference, callback:([Schedule] -> Void)) {
+    func getSchedulesForConference(_ conference: Conference, callback:@escaping (([Schedule]) -> Void)) {
         guard let conferenceId = conference.conferenceId else {
-            dispatch_async(dispatch_get_main_queue(), { 
+            DispatchQueue.main.async(execute: { 
                 callback([Schedule]())
             })
             return
         }
         let schedules = cache.getSchedulesForConferenceWithId(conferenceId)
         if schedules.count > 0 {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 callback(schedules)
             })
         }
         
         let schedulesUrl = "\(conference.cfpEndpointUrl!)/conferences/\(conferenceId)/schedules/"
-        let url = (NSURL(string: schedulesUrl))!
-        self.schedulesTask = self.session.dataTaskWithURL(url) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+        let url = (URL(string: schedulesUrl))!
+        self.schedulesTask = self.session.dataTask(with: url, completionHandler: { (data:Data?, response:URLResponse?, error:NSError?) -> Void in
             
             guard let data = data else {
                 print(error)
                 return
             }
             self.cache.saveSchedulesFromData(data, forConferenceWithId: conferenceId)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 callback(self.cache.getSchedulesForConferenceWithId(conferenceId))
             })
-        }
+        } as! (Data?, URLResponse?, Error?) -> Void) 
         self.schedulesTask?.resume()
     }
     
@@ -100,114 +100,114 @@ class DataController: NSObject {
         cancelTask(self.schedulesTask)
     }
     
-    func getSlotsForSchedule(schedule:Schedule, callback:([Slot] -> Void)) {
+    func getSlotsForSchedule(_ schedule:Schedule, callback:@escaping (([Slot]) -> Void)) {
         let slots = cache.getSlotsForScheduleWithHref(schedule.href!)
         if slots.count > 0 {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 callback(slots)
             })
         }
         
-        let url = NSURL(string: schedule.href!)!
-        let task = self.session.dataTaskWithURL(url) { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+        let url = URL(string: schedule.href!)!
+        let task = self.session.dataTask(with: url, completionHandler: { (data:Data?, response:URLResponse?, error:NSError?) -> Void in
             
             guard let data = data else {
                 print(error)
                 return
             }
             self.cache.saveSlotsFromData(data, forScheduleWithHref:schedule.href!)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 callback(self.cache.getSlotsForScheduleWithHref(schedule.href!))
             })
-        }
+        } as! (Data?, URLResponse?, Error?) -> Void) 
         self.slotsTasks[schedule.href!] = task
         task.resume()
     }
     
-    func cancelSlotsForSchedule(schedule:Schedule) {
-        if let href = schedule.href, task = self.slotsTasks[href] {
+    func cancelSlotsForSchedule(_ schedule:Schedule) {
+        if let href = schedule.href, let task = self.slotsTasks[href] {
             self.cancelTask(task)
         }
     }
     
-    func swapFavoriteStatusForTalkSlot(talkSlot:TalkSlot, callback:(TalkSlot -> Void)){
+    func swapFavoriteStatusForTalkSlot(_ talkSlot:TalkSlot, callback:@escaping ((TalkSlot) -> Void)){
         cache.swapFavoriteStatusForTalkSlotWithTalkId(talkSlot.talkId!)
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+        DispatchQueue.main.async { () -> Void in
             if let talkSlot = self.cache.getTalkSlotWithTalkId(talkSlot.talkId!) {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     callback(talkSlot)
                 })
             }
         }
     }
 
-    func getSpeaker(speaker:Speaker, callback:(Speaker -> Void)){
-        if let speaker = cache.getSpeakerWithHref(speaker.href!), _ = speaker.firstName {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+    func getSpeaker(_ speaker:Speaker, callback:@escaping ((Speaker) -> Void)){
+        if let speaker = cache.getSpeakerWithHref(speaker.href!), let _ = speaker.firstName {
+            DispatchQueue.main.async(execute: { () -> Void in
                 callback(speaker)
             })
         }
         
-        let url = NSURL(string: speaker.href!)!
-        let task = self.session.dataTaskWithURL(url, completionHandler: { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
+        let url = URL(string: speaker.href!)!
+        let task = self.session.dataTask(with: url, completionHandler: { (data:Data?, response:URLResponse?, error:NSError?) -> Void in
             guard let data = data else {
                 print(error)
                 return
             }
             
             self.cache.saveSpeakerFromData(data, forSpeakerWithHref:speaker.href!)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 if let speaker = self.cache.getSpeakerWithHref(speaker.href!) {
                     callback(speaker)
                 }
             })
-        })
+        } as! (Data?, URLResponse?, Error?) -> Void)
         self.speakerTasks[speaker.href!] = task
         task.resume()
     }
     
-    func cancelSpeaker(speaker:Speaker){
+    func cancelSpeaker(_ speaker:Speaker){
         if let task = self.speakerTasks[speaker.href!] {
             self.cancelTask(task)
         }
     }
     
-    func getAvatarForSpeaker(speaker:Speaker, callback:(NSData -> Void)) {
-        if let speaker = cache.getSpeakerWithHref(speaker.href!), avatar = speaker.avatar where avatar.length > 0 {
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+    func getAvatarForSpeaker(_ speaker:Speaker, callback:@escaping ((Data) -> Void)) {
+        if let speaker = cache.getSpeakerWithHref(speaker.href!), let avatar = speaker.avatar, avatar.count > 0 {
+            DispatchQueue.main.async(execute: { () -> Void in
                 callback(avatar)
             })
         }
         
-        let url = NSURL(string: speaker.avatarURL!)!
-        let task = self.session.dataTaskWithURL(url, completionHandler: { (data:NSData?, response:NSURLResponse?, error:NSError?) -> Void in
-            guard let data = data where data.length > 0 else {
+        let url = URL(string: speaker.avatarURL!)!
+        let task = self.session.dataTask(with: url, completionHandler: { (data:Data?, response:URLResponse?, error:NSError?) -> Void in
+            guard let data = data, data.count > 0 else {
                 print(error)
                 return
             }
             
             self.cache.saveAvatarFromData(data, forSpeakerWithHref:speaker.href!)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            DispatchQueue.main.async(execute: { () -> Void in
                 if let avatarData = self.cache.getAvatarForSpeakerWithHref(speaker.href!) {
                     callback(avatarData)
                 }
             })
-        })
+        } as! (Data?, URLResponse?, Error?) -> Void)
         self.avatarTasks[speaker.avatarURL!] = task
         task.resume()
     }
     
-    func cancelAvatarForSpeaker(speaker:Speaker){
+    func cancelAvatarForSpeaker(_ speaker:Speaker){
         if let task = self.avatarTasks[speaker.href!] {
             self.cancelTask(task)
         }
     }
     
-    func getFavoriteTalksAfterDate(date: NSDate) -> [TalkSlot] {
+    func getFavoriteTalksAfterDate(_ date: Date) -> [TalkSlot] {
         return cache.getFavoriteTalksAfterDate(date)
     }
     
-    func getFavoriteTalksBeforeDate(date: NSDate) -> [TalkSlot] {
+    func getFavoriteTalksBeforeDate(_ date: Date) -> [TalkSlot] {
         return cache.getFavoriteTalksBeforeDate(date)
     }
     
@@ -219,9 +219,9 @@ class DataController: NSObject {
         return cache.getLastTalk()
     }
     
-    func setFavorite(favorite:Bool, forTalkWithId talkId:String, inConferenceWithId conferenceId:String, callback:(TalkSlot -> Void)) {
+    func setFavorite(_ favorite:Bool, forTalkWithId talkId:String, inConferenceWithId conferenceId:String, callback:@escaping ((TalkSlot) -> Void)) {
         cache.setFavorite(favorite, forTalkSlotWithId: talkId)
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             if let modifiedSlot = self.cache.getTalkSlotWithTalkId(talkId) {
                 callback(modifiedSlot)
             }

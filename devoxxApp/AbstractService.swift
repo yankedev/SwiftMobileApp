@@ -19,12 +19,12 @@ class AbstractService  {
   
     init() {
        
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         privateManagedObjectContext = appDelegate.coreDataHelper.backgroundThreadContext!
         
     }
     
-    func invertFavorite(id : NSManagedObjectID) -> Bool {
+    func invertFavorite(_ id : NSManagedObjectID) -> Bool {
         if let cellData:FavoriteProtocol = APIDataManager.findEntityFromId(id, inContext: self.privateManagedObjectContext) {
             cellData.invertFavorite()
             //TODO
@@ -35,75 +35,75 @@ class AbstractService  {
     }
     
     
-    func realSave(completionHandler : ((msg: CallbackProtocol) -> Void)?) {
+    func realSave(_ completionHandler : ((_ msg: CallbackProtocol) -> Void)?) {
         return realSave(completionHandler, obj : nil, img : nil)
     }
     
-    func realSave(completionHandler : ((msg: CallbackProtocol) -> Void)?, obj : DataHelperProtocol?) {
+    func realSave(_ completionHandler : ((_ msg: CallbackProtocol) -> Void)?, obj : DataHelperProtocol?) {
         return realSave(completionHandler, obj : obj, img : nil)
     }
     
-    func realSave(completionHandler : ((msg: CallbackProtocol) -> Void)?, img : NSData?) {
+    func realSave(_ completionHandler : ((_ msg: CallbackProtocol) -> Void)?, img : Data?) {
         return realSave(completionHandler, obj : nil, img : img)
     }
     
-    func realSave(completionHandler : ((msg: CallbackProtocol) -> Void)?, obj :DataHelperProtocol?, img : NSData?) {
+    func realSave(_ completionHandler : ((_ msg: CallbackProtocol) -> Void)?, obj :DataHelperProtocol?, img : Data?) {
 
         
         do {
             try privateManagedObjectContext.save()
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            appDelegate.coreDataHelper.mainThreadContext.performBlock {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.coreDataHelper.mainThreadContext.perform {
                 do {
                     try appDelegate.coreDataHelper.mainThreadContext.save()
                     
                         if obj != nil {
-                            completionHandler?(msg: CompletionMessage(obj : obj!))
+                            completionHandler?(CompletionMessage(obj : obj!))
                         }
                         else if img != nil {
-                            completionHandler?(msg: CompletionMessage(img : img))
+                            completionHandler?(CompletionMessage(img : img as! NSData as Data))
                         }
                         else {
-                            completionHandler?(msg: CompletionMessage(msg: "OK"))
+                            completionHandler?(CompletionMessage(msg: "OK"))
                             
                         }
                         
                     
                 } catch _ as NSError {
                     //print("Could not save main context: \(err.localizedDescription)")
-                    dispatch_async(dispatch_get_main_queue(),{
-                        completionHandler?(msg: CompletionMessage(msg: "KO"))
+                    DispatchQueue.main.async(execute: {
+                        completionHandler?(CompletionMessage(msg: "KO"))
                     })
                 }
             }
         } catch _ as NSError {
             //print("Could not save private context: \(err.localizedDescription)")
-            dispatch_async(dispatch_get_main_queue(),{
-                completionHandler?(msg: CompletionMessage(msg: "KO"))
+            DispatchQueue.main.async(execute: {
+                completionHandler?(CompletionMessage(msg: "KO"))
             })
         }
     }
 
-    func saveImage(completionHandler : ((data: NSData?) -> NSData)?) {
+    func saveImage(_ completionHandler : ((_ data: Data?) -> Data)?) {
         do {
             try privateManagedObjectContext.save()
-            let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            appDelegate.coreDataHelper.mainThreadContext.performBlock {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.coreDataHelper.mainThreadContext.perform {
                 do {
                     try appDelegate.coreDataHelper.mainThreadContext.save()
-                    dispatch_async(dispatch_get_main_queue(),{
-                        completionHandler?(data: nil)
+                    DispatchQueue.main.async(execute: {
+                        completionHandler?(nil)
                     })
                 } catch _ as NSError {
                     //print("Could not save main context: \(err.localizedDescription)")
-                    dispatch_async(dispatch_get_main_queue(),{
+                    DispatchQueue.main.async(execute: {
                         completionHandler
                     })
                 }
             }
         } catch _ as NSError {
             //print("Could not save private context: \(err.localizedDescription)")
-            dispatch_async(dispatch_get_main_queue(),{
+            DispatchQueue.main.async(execute: {
                 completionHandler
             })
         }
@@ -114,13 +114,13 @@ class AbstractService  {
         return SpeakerHelper()
     }
     
-    func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
+    func updateWithHelper(_ helper : [DataHelperProtocol], completionHandler : @escaping (_ msg: CallbackProtocol) -> Void) {
         
     }
     
     func getCfpId() -> String{
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let currentEventStr = defaults.objectForKey("currentEvent") as? String {
+        let defaults = UserDefaults.standard
+        if let currentEventStr = defaults.object(forKey: "currentEvent") as? String {
             return currentEventStr
         }
         return ""

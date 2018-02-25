@@ -10,13 +10,13 @@ import Foundation
 import CoreData
 
 
-public enum SlotStoreError: Equatable, ErrorType {
-    case CannotFetch(String)
+public enum SlotStoreError: Equatable, Error {
+    case cannotFetch(String)
 }
 
 public func ==(lhs: SlotStoreError, rhs: SlotStoreError) -> Bool {
     switch (lhs, rhs) {
-    case (.CannotFetch(let a), .CannotFetch(let b)) where a == b: return true
+    case (.cannotFetch(let a), .cannotFetch(let b)) where a == b: return true
     default: return false
     }
 }
@@ -33,13 +33,13 @@ class SlotService : AbstractService {
     
     
     
-    func fetchCfpDay(completionHandler: (_ : NSArray, error: SlotStoreError?) -> Void) {
-        privateManagedObjectContext.performBlock {
+    func fetchCfpDay(_ completionHandler: @escaping (_ : NSArray, _ error: SlotStoreError?) -> Void) {
+        privateManagedObjectContext.perform {
             do {
                 
-                let fetchRequest = NSFetchRequest(entityName: "Slot")
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Slot")
                 let predicateEvent = NSPredicate(format: "cfp.id = %@", super.getCfpId())
-                fetchRequest.resultType = .DictionaryResultType
+                fetchRequest.resultType = .dictionaryResultType
                 fetchRequest.returnsDistinctResults = true
                 fetchRequest.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
                 fetchRequest.propertiesToFetch = ["date"]
@@ -49,14 +49,14 @@ class SlotService : AbstractService {
                 fetchRequest.includesPendingChanges = true
                 
                 
-                let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+                let results = try self.privateManagedObjectContext.fetch(fetchRequest)
                 
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler(results, error: nil)
+                DispatchQueue.main.async(execute: {
+                    completionHandler(results as NSArray, nil)
                 })
             } catch {
-                dispatch_async(dispatch_get_main_queue(), {
-                    completionHandler([], error: SlotStoreError.CannotFetch("Cannot fetch slots days"))
+                DispatchQueue.main.async(execute: {
+                    completionHandler([], SlotStoreError.cannotFetch("Cannot fetch slots days"))
                 })
                 
             }
@@ -65,26 +65,26 @@ class SlotService : AbstractService {
     
     
     
-    private func feed() {
+    fileprivate func feed() {
     }
     
     
     
-    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (_: CallbackProtocol) -> Void) {
+     override func updateWithHelper(_ helper : [DataHelperProtocol], completionHandler : @escaping (_: CallbackProtocol) -> Void) {
         
         
-        let cfp = self.privateManagedObjectContext.objectWithID(CfpService.sharedInstance.getCfp()) as! Cfp
+        let cfp = self.privateManagedObjectContext.object(with: CfpService.sharedInstance.getCfp()) as! Cfp
         
-        privateManagedObjectContext.performBlock {
+        privateManagedObjectContext.perform {
             
             for singleHelper in helper {
                 
                 do {
                     
-                    let fetchRequest = NSFetchRequest(entityName: "Slot")
+                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Slot")
                     let predicate = NSPredicate(format: "slotId = %@", singleHelper.getMainId())
                     fetchRequest.predicate = predicate
-                    let items = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+                    let items = try self.privateManagedObjectContext.fetch(fetchRequest)
                     
                     var entity:NSEntityDescription?
                     var subEntity:NSEntityDescription?
@@ -93,11 +93,11 @@ class SlotService : AbstractService {
                     
                     if items.count == 0 {
                         
-                        entity = NSEntityDescription.entityForName(singleHelper.entityName(), inManagedObjectContext: self.privateManagedObjectContext)
-                        coreDataObject = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                        entity = NSEntityDescription.entity(forEntityName: singleHelper.entityName(), in: self.privateManagedObjectContext)
+                        coreDataObject = NSManagedObject(entity: entity!, insertInto: self.privateManagedObjectContext)
                         
-                        subEntity = NSEntityDescription.entityForName("Talk", inManagedObjectContext: self.privateManagedObjectContext)
-                        subCoreDataObject = NSManagedObject(entity: subEntity!, insertIntoManagedObjectContext: self.privateManagedObjectContext)
+                        subEntity = NSEntityDescription.entity(forEntityName: "Talk", in: self.privateManagedObjectContext)
+                        subCoreDataObject = NSManagedObject(entity: subEntity!, insertInto: self.privateManagedObjectContext)
                         
                     }
                     else {
@@ -118,15 +118,15 @@ class SlotService : AbstractService {
                         }
                         
                         if let array = helperSlot.talk!.speakerIds {
-                            let fetch = NSFetchRequest(entityName: "Speaker")
+                            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Speaker")
                             let predicate = NSPredicate(format: "href IN %@", array)
                             fetch.predicate = predicate
                             fetch.returnsObjectsAsFaults = false
                             
-                            let items = try self.privateManagedObjectContext.executeFetchRequest(fetch)
+                            let items = try self.privateManagedObjectContext.fetch(fetch)
                             let nsm = subCoreDataObject as? Talk
-                            nsm?.mutableSetValueForKey("speakers").removeAllObjects()
-                            nsm?.mutableSetValueForKey("speakers").addObjectsFromArray(items)
+                            nsm?.mutableSetValue(forKey: "speakers").removeAllObjects()
+                            nsm?.mutableSetValue(forKey: "speakers").addObjects(from: items)
                         }
                     }
                     
@@ -149,10 +149,10 @@ class SlotService : AbstractService {
     
     override func hasBeenAlreadyFed() -> Bool {
         do {
-            let fetchRequest = NSFetchRequest(entityName: "Slot")
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Slot")
             let predicateEvent = NSPredicate(format: "cfp.id = %@", super.getCfpId())
             fetchRequest.predicate = predicateEvent
-            let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+            let results = try self.privateManagedObjectContext.fetch(fetchRequest)
             return results.count > 0
         }
         catch {

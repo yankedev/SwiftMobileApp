@@ -14,7 +14,7 @@ import Crashlytics
 
 
 
-let commonUrl:[String : [String]] = ["StoredResource" : ["StoredResource"], "Cfp" : ["Cfp"]]
+let commonUrl:[String : [String]] = ["Cfp" : ["Cfp"], "StoredResource" : ["StoredResource"]]
 
 
 
@@ -22,46 +22,46 @@ class APIManager {
     
     
     class func getSelectedEvent() -> String {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let selectedEvent = defaults.objectForKey("currentEvent") as? String {
+        let defaults = UserDefaults.standard
+        if let selectedEvent = defaults.object(forKey: "currentEvent") as? String {
             return selectedEvent
         }
         return ""
     }
     
     class func qrCodeAlreadyScanned() -> Bool {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let _ = defaults.objectForKey("qrCode") as? String {
+        let defaults = UserDefaults.standard
+        if let _ = defaults.object(forKey: "qrCode") as? String {
             return true
         }
         return false
     }
     
     class func clearQrCode() {
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         defaults.setValue(nil, forKey: "qrCode")
     }
     
     
-    class func setQrCode(str : String) {
-        let defaults = NSUserDefaults.standardUserDefaults()
+    class func setQrCode(_ str : String) {
+        let defaults = UserDefaults.standard
         defaults.setValue(str, forKey: "qrCode")
     }
     
     class func getQrCode() -> String? {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        return defaults.valueForKey("qrCode") as? String
+        let defaults = UserDefaults.standard
+        return defaults.value(forKey: "qrCode") as? String
 
     }
     
     
     
-    class func getFallBackData(storedResource : StoredResource) -> NSData? {
-        let testBundle = NSBundle.mainBundle()
-        let filePath = testBundle.pathForResource(storedResource.fallback, ofType: "")
+    class func getFallBackData(_ storedResource : StoredResource) -> Data? {
+        let testBundle = Bundle.main
+        let filePath = testBundle.path(forResource: storedResource.fallback, ofType: "")
  
         if filePath != nil {
-            return NSData(contentsOfFile: filePath!)!
+            return (try! Data(contentsOf: URL(fileURLWithPath: filePath!)))
         }
         return nil
     }
@@ -70,23 +70,23 @@ class APIManager {
     
     
     
-    class func getDateFromIndex(index : NSInteger, array: NSArray) -> NSDate {
+    class func getDateFromIndex(_ index : NSInteger, array: NSArray) -> Date {
 
         if index < array.count  {
-            if let dict = array.objectAtIndex(index) as? NSDictionary {
-                return (dict.objectForKey("date") as? NSDate)!
+            if let dict = array.object(at: index) as? NSDictionary {
+                return (dict.object(forKey: "date") as? Date)!
             }
         }
         //error
-        return NSDate()
+        return Date()
     }
     
     
-    class func getTrackFromIndex(index : NSInteger, array: NSArray) -> String {
+    class func getTrackFromIndex(_ index : NSInteger, array: NSArray) -> String {
         
         if index < array.count  {
-            if let dict = array.objectAtIndex(index) as? NSDictionary {
-                return (dict.objectForKey("label") as? String)!
+            if let dict = array.object(at: index) as? NSDictionary {
+                return (dict.object(forKey: "label") as? String)!
             }
         }
         //error
@@ -95,13 +95,13 @@ class APIManager {
     
     
 
-    class func handleData(inputData : NSData, service: AbstractService, storedResource : StoredResource?, etag : String?,completionHandler : (msg: CallbackProtocol) -> Void) {
+    class func handleData(_ inputData : Data, service: AbstractService, storedResource : StoredResource?, etag : String?,completionHandler : @escaping (_ msg: CallbackProtocol) -> Void) {
         
         
    
         
-        let json = JSON(data: inputData)
-        let arrayToParse = service.getHelper().prepareArray(json)
+        let json = try? JSON(data: inputData)
+        let arrayToParse = service.getHelper().prepareArray(json!)
         var arrayHelper = [DataHelperProtocol]()
         
         
@@ -126,12 +126,12 @@ class APIManager {
     }
     
     
-    class func ok(msg:String) {
+    class func ok(_ msg:String) {
         //print("OK")
     }
     
     
-    class func firstFeed(completionHandler: (msg: CallbackProtocol) -> Void, service : AbstractService) {
+    class func firstFeed(_ completionHandler: @escaping (_ msg: CallbackProtocol) -> Void, service : AbstractService) {
         singleCommonFeed(completionHandler, service : service)
     }
     
@@ -145,20 +145,20 @@ class APIManager {
     }
 
     
-    class func singleCommonFeed(completionHandler: (msg: CallbackProtocol) -> Void, service : AbstractService) {
+    class func singleCommonFeed(_ completionHandler: @escaping (_ msg: CallbackProtocol) -> Void, service : AbstractService) {
 
         let url = commonUrl[service.getHelper().entityName()]
         
-        let testBundle = NSBundle.mainBundle()
+        let testBundle = Bundle.main
         
         for singleUrl in url! {
             
-            let filePath = testBundle.pathForResource(singleUrl, ofType: "json")
-            let checkString = (try? NSString(contentsOfFile: filePath!, encoding: NSUTF8StringEncoding)) as? String
+            let filePath = testBundle.path(forResource: singleUrl, ofType: "json")
+            let checkString = (try? NSString(contentsOfFile: filePath!, encoding: String.Encoding.utf8.rawValue)) as? String
             if(checkString == nil) {
                 // print("should not be empty", terminator: "")
             }
-            let data = NSData(contentsOfFile: filePath!)!
+            let data = try! Data(contentsOf: URL(fileURLWithPath: filePath!))
             
             
             self.handleData(data, service: service, storedResource: nil, etag: nil, completionHandler: completionHandler)
@@ -175,7 +175,7 @@ class APIManager {
     
     
     
-    class func dataFromImage(imageName : String) -> NSData? {
+    class func dataFromImage(_ imageName : String) -> Data? {
         let image = UIImage(named: imageName)
         let nsData = UIImageJPEGRepresentation(image!, 1.0)
         return nsData
@@ -183,17 +183,17 @@ class APIManager {
     
     
     class func getStringDevice() -> String{
-        switch UIDevice.currentDevice().userInterfaceIdiom {
-        case .Phone:
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
             return "phone"
-        case .Pad:
+        case .pad:
             return "tablet"
         default :
             return ""
         }
     }
     
-    class func getLastFromUrl(url : String) -> String {
+    class func getLastFromUrl(_ url : String) -> String {
         let lastPartImageName = url.characters.split{$0 == "/"}.map(String.init)
         
         //check if well formed URL

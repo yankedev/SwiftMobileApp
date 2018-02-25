@@ -15,33 +15,33 @@ class CoreDataHelper: NSObject{
     let mainManager: MainManager!
     
     override init(){
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.mainManager = appDelegate.mainManager
         super.init()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.contextDidSaveContext(_:)), name: NSManagedObjectContextDidSaveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.contextDidSaveContext(_:)), name: NSNotification.Name.NSManagedObjectContextDidSave, object: nil)
     }
     
     deinit{
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     lazy var mainThreadContext: NSManagedObjectContext = {
         let coordinator = self.mainManager.persistentStoreCoordinator
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
         return managedObjectContext
     }()
     
     lazy var backgroundThreadContext: NSManagedObjectContext? = {
         let coordinator = self.mainManager.persistentStoreCoordinator
-        var backgroundContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
+        var backgroundContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         backgroundContext.persistentStoreCoordinator = coordinator
         return backgroundContext
     }()
     
     
-    func saveContext (context: NSManagedObjectContext) {
+    func saveContext (_ context: NSManagedObjectContext) {
         var error: NSError? = nil
         if context.hasChanges {
             do {
@@ -61,22 +61,22 @@ class CoreDataHelper: NSObject{
     }
     
 
-    func contextDidSaveContext(notification: NSNotification) {
+    func contextDidSaveContext(_ notification: Notification) {
         let sender = notification.object as! NSManagedObjectContext
         if sender === self.mainThreadContext {
-            self.backgroundThreadContext!.performBlock {
-                self.backgroundThreadContext!.mergeChangesFromContextDidSaveNotification(notification)
+            self.backgroundThreadContext!.perform {
+                self.backgroundThreadContext!.mergeChanges(fromContextDidSave: notification)
             }
         } else if sender === self.backgroundThreadContext {
-            self.mainThreadContext.performBlock {
-                self.mainThreadContext.mergeChangesFromContextDidSaveNotification(notification)
+            self.mainThreadContext.perform {
+                self.mainThreadContext.mergeChanges(fromContextDidSave: notification)
             }
         } else {
-            self.backgroundThreadContext!.performBlock {
-                self.backgroundThreadContext!.mergeChangesFromContextDidSaveNotification(notification)
+            self.backgroundThreadContext!.perform {
+                self.backgroundThreadContext!.mergeChanges(fromContextDidSave: notification)
             }
-            self.mainThreadContext.performBlock {
-                self.mainThreadContext.mergeChangesFromContextDidSaveNotification(notification)
+            self.mainThreadContext.perform {
+                self.mainThreadContext.mergeChanges(fromContextDidSave: notification)
             }
         }
     }

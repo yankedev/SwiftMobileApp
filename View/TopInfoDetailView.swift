@@ -21,9 +21,9 @@ class TopInfoDetailView : UIView {
         
         
         firstInfo.font = UIFont(name: "Roboto", size: 14)
-        firstInfo.textColor = UIColor.lightGrayColor()
+        firstInfo.textColor = UIColor.lightGray
         secondInfo.font = UIFont(name: "Roboto", size: 15)
-        secondInfo.textColor = UIColor.darkGrayColor()
+        secondInfo.textColor = UIColor.darkGray
         
         
         
@@ -34,8 +34,8 @@ class TopInfoDetailView : UIView {
         secondInfo.translatesAutoresizingMaskIntoConstraints = false
         //secondInfo.backgroundColor = UIColor.grayColor()
         secondInfo.textContainer.lineFragmentPadding = 0;
-        secondInfo.editable = false
-        secondInfo.textContainerInset = UIEdgeInsetsZero
+        secondInfo.isEditable = false
+        secondInfo.textContainerInset = UIEdgeInsets.zero
         
         
         
@@ -44,30 +44,30 @@ class TopInfoDetailView : UIView {
         
         
         let firstViewHeight = NSLayoutConstraint(item: firstInfo,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 0.5,
             constant: 0)
         
         let secondViewHeight = NSLayoutConstraint(item: secondInfo,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 0.5,
             constant: 0)
         
         self.addConstraint(firstViewHeight)
         self.addConstraint(secondViewHeight)
         
-        let innerViews = ["firstInfo": firstInfo, "secondInfo" : secondInfo]
+        let innerViews = ["firstInfo": firstInfo, "secondInfo" : secondInfo] as [String : Any]
         
         
-        let constH11 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[firstInfo]-0-|", options: .AlignAllLastBaseline, metrics: nil, views: innerViews)
-        let constH12 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[secondInfo]-0-|", options: .AlignAllLastBaseline, metrics: nil, views: innerViews)
-        let constV11 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[firstInfo]-0-[secondInfo]-0-|", options: .AlignAllCenterX, metrics: nil, views: innerViews)
+        let constH11 = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[firstInfo]-0-|", options: .alignAllLastBaseline, metrics: nil, views: innerViews)
+        let constH12 = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[secondInfo]-0-|", options: .alignAllLastBaseline, metrics: nil, views: innerViews)
+        let constV11 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[firstInfo]-0-[secondInfo]-0-|", options: .alignAllCenterX, metrics: nil, views: innerViews)
         
         
         

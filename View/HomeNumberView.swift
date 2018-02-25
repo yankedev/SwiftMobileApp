@@ -24,18 +24,18 @@ class HomeNumberView : UIView {
         translatesAutoresizingMaskIntoConstraints = false
         
         number1.font = UIFont(name: "Pirulen", size: 24)!
-        number1.textColor = UIColor.whiteColor()
-        number1.textAlignment = .Center
+        number1.textColor = UIColor.white
+        number1.textAlignment = .center
         number1.translatesAutoresizingMaskIntoConstraints = false
         
         number2.font = UIFont(name: "Pirulen", size: 24)!
-        number2.textColor = UIColor.whiteColor()
-        number2.textAlignment = .Center
+        number2.textColor = UIColor.white
+        number2.textAlignment = .center
         number2.translatesAutoresizingMaskIntoConstraints = false
         
         number3.font = UIFont(name: "Pirulen", size: 24)!
-        number3.textColor = UIColor.whiteColor()
-        number3.textAlignment = .Center
+        number3.textColor = UIColor.white
+        number3.textAlignment = .center
         number3.translatesAutoresizingMaskIntoConstraints = false
         
         
@@ -46,20 +46,20 @@ class HomeNumberView : UIView {
         
         label1.text = "DAYS LEFT"
         label1.font = UIFont(name: "Pirulen", size: 8)!
-        label1.textColor = UIColor.whiteColor()
-        label1.textAlignment = .Center
+        label1.textColor = UIColor.white
+        label1.textAlignment = .center
         label1.translatesAutoresizingMaskIntoConstraints = false
         
         label2.text = "TALKS"
         label2.font = UIFont(name: "Pirulen", size: 8)!
-        label2.textColor = UIColor.whiteColor()
-        label2.textAlignment = .Center
+        label2.textColor = UIColor.white
+        label2.textAlignment = .center
         label2.translatesAutoresizingMaskIntoConstraints = false
         
         label3.text = "CAPACITY"
         label3.font = UIFont(name: "Pirulen", size: 8)!
-        label3.textColor = UIColor.whiteColor()
-        label3.textAlignment = .Center
+        label3.textColor = UIColor.white
+        label3.textAlignment = .center
         label3.translatesAutoresizingMaskIntoConstraints = false
         
         
@@ -81,37 +81,37 @@ class HomeNumberView : UIView {
     
     
     
-    func createConstraint(label : UILabel, centerXFactor : CGFloat, centerYConstant : CGFloat)  {
+    func createConstraint(_ label : UILabel, centerXFactor : CGFloat, centerYConstant : CGFloat)  {
         
         let number2Height = NSLayoutConstraint(item: label,
-            attribute: NSLayoutAttribute.Height,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.height,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Height,
+            attribute: NSLayoutAttribute.height,
             multiplier: 0,
             constant: 60)
         
         let number2Width = NSLayoutConstraint(item: label,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.width,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Width,
+            attribute: NSLayoutAttribute.width,
             multiplier: 5/19,
             constant: 0)
         
         let number2CenterX = NSLayoutConstraint(item: label,
-            attribute: NSLayoutAttribute.CenterX,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.centerX,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.CenterX,
+            attribute: NSLayoutAttribute.centerX,
             multiplier: centerXFactor,
             constant: 0)
         
         let number2CenterY = NSLayoutConstraint(item: label,
-            attribute: NSLayoutAttribute.CenterY,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.centerY,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Top,
+            attribute: NSLayoutAttribute.top,
             multiplier: 1,
             constant: centerYConstant)
         

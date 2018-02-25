@@ -42,10 +42,10 @@ class StarView : UITableViewCell {
         let views = ["star0": star0, "star1" : star1, "star2" : star2, "star3" : star3, "star4" : star4]
         
         let width = NSLayoutConstraint(item: star0,
-            attribute: NSLayoutAttribute.Width,
-            relatedBy: NSLayoutRelation.Equal,
+            attribute: NSLayoutAttribute.width,
+            relatedBy: NSLayoutRelation.equal,
             toItem: self,
-            attribute: NSLayoutAttribute.Width,
+            attribute: NSLayoutAttribute.width,
             multiplier: 0.2,
             constant: 0)
         
@@ -53,13 +53,13 @@ class StarView : UITableViewCell {
         
         
         
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[star0]-0-[star1(==star0)]-0-[star2(==star0)]-0-[star3(==star0)]-0-[star4]-0-|", options: .AlignAllLastBaseline, metrics: nil, views: views)
+        let constH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[star0]-0-[star1(==star0)]-0-[star2(==star0)]-0-[star3(==star0)]-0-[star4]-0-|", options: .alignAllLastBaseline, metrics: nil, views: views)
         
-        let constV0 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[star0]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let constV1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[star1]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let constV2 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[star2]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let constV3 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[star3]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
-        let constV4 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[star4]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let constV0 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[star0]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let constV1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[star1]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let constV2 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[star2]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let constV3 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[star3]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
+        let constV4 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[star4]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views)
         
         addConstraints(constH)
         addConstraints(constV0)
@@ -78,22 +78,22 @@ class StarView : UITableViewCell {
         
     }
     
-    func constructStar(btn : UIButton) {
-        let image0 = UIImage(named: "ic_star")?.imageWithRenderingMode(.AlwaysTemplate)
-        btn.setImage(image0, forState: .Normal)
-        btn.tintColor = UIColor.whiteColor()
-        btn.addTarget(self, action: #selector(self.clickStar(_:)), forControlEvents: .TouchUpInside)
+    func constructStar(_ btn : UIButton) {
+        let image0 = UIImage(named: "ic_star")?.withRenderingMode(.alwaysTemplate)
+        btn.setImage(image0, for: UIControlState())
+        btn.tintColor = UIColor.white
+        btn.addTarget(self, action: #selector(self.clickStar(_:)), for: .touchUpInside)
         btn.tag = 0
     }
     
     func reset() {
         for btn in starArray {
             btn.tag = 0
-            btn.tintColor = UIColor.lightGrayColor()
+            btn.tintColor = UIColor.lightGray
         }
     }
     
-    func clickStar(btn : UIButton) {
+    func clickStar(_ btn : UIButton) {
         self.superview?.endEditing(true)
         reset()
         btn.tag = (btn.tag+1) % 2
@@ -117,7 +117,7 @@ class StarView : UITableViewCell {
             btn.tintColor = ColorManager.topNavigationBarColor
         }
         else {
-            btn.tintColor = UIColor.lightGrayColor()
+            btn.tintColor = UIColor.lightGray
         }
         
         

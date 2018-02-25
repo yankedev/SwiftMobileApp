@@ -10,15 +10,15 @@
 import Foundation
 import UIKit
 
-public class SettingsController : UITableViewController, UIAlertViewDelegate {
+open class SettingsController : UITableViewController, UIAlertViewDelegate {
     
     enum KindOfSection : Equatable {
-        case QUICK_ACCESS
-        case SETTINGS
-        case CREDITS
+        case quick_ACCESS
+        case settings
+        case credits
     }
     
-    private struct SectionNameString {
+    fileprivate struct SectionNameString {
         struct QuickAccess {
             static let title = NSLocalizedString("Quick access", comment: "")
             static let purchaseTicket = NSLocalizedString("Purchase a ticket", comment: "")
@@ -39,58 +39,58 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
         }
     }
     
-    private struct AlertQRCodeString {
+    fileprivate struct AlertQRCodeString {
         static let title = NSLocalizedString("Success", comment: "")
         static let content = NSLocalizedString("QRCode has successfully been cleared", comment: "")
         static let okButton = NSLocalizedString("Ok !", comment: "")
     }
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         if let nav = self.navigationController as? HuntlyNavigationController {
             self.navigationItem.leftBarButtonItem = nav.huntlyLeftButton
         }
-        self.view.backgroundColor = UIColor.lightGrayColor()
-        self.tableView = UITableView(frame: self.tableView.frame, style: .Grouped)
+        self.view.backgroundColor = UIColor.lightGray
+        self.tableView = UITableView(frame: self.tableView.frame, style: .grouped)
         self.navigationItem.title = NSLocalizedString("Settings", comment: "")
     }
     
     
-    public override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if(section == KindOfSection.QUICK_ACCESS.hashValue) {
+    open override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if(section == KindOfSection.quick_ACCESS.hashValue) {
             return SectionNameString.QuickAccess.title
         }
-        if(section == KindOfSection.SETTINGS.hashValue) {
+        if(section == KindOfSection.settings.hashValue) {
             return SectionNameString.Settings.title
         }
-        if(section == KindOfSection.CREDITS.hashValue) {
+        if(section == KindOfSection.credits.hashValue) {
             return SectionNameString.Credits.title
         }
         return nil
     }
     
-    public override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    open override func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
-    public override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(section == KindOfSection.QUICK_ACCESS.hashValue) {
+    open override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(section == KindOfSection.quick_ACCESS.hashValue) {
             return 2
         }
-        if(section == KindOfSection.SETTINGS.hashValue)  {
+        if(section == KindOfSection.settings.hashValue)  {
             return 2
         }
-        if(section == KindOfSection.CREDITS.hashValue)  {
+        if(section == KindOfSection.credits.hashValue)  {
             return 4
         }
         return 0
     }
     
-    override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == KindOfSection.QUICK_ACCESS.hashValue {
+    override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == KindOfSection.quick_ACCESS.hashValue {
             if indexPath.row == 0 {
                 let url = CfpService.sharedInstance.getRegUrl()
-                UIApplication.sharedApplication().openURL(NSURL(string: url!)!)
+                UIApplication.shared.openURL(URL(string: url!)!)
             }
             if indexPath.row == 1 {
                 reportIssue()
@@ -98,46 +98,46 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
     
         }
         
-        if indexPath.section == KindOfSection.SETTINGS.hashValue {
+        if indexPath.section == KindOfSection.settings.hashValue {
             if indexPath.row == 0 {
-                let defaults = NSUserDefaults.standardUserDefaults()
-                defaults.setObject("", forKey: "currentEvent")
+                let defaults = UserDefaults.standard
+                defaults.set("", forKey: "currentEvent")
                 CfpService.sharedInstance.cfp = nil
                 HuntlyManagerService.sharedInstance.reset()
                 //CfpService.sharedInstance.clearAll()
-                self.parentViewController!.parentViewController?.view!.removeFromSuperview()
-                self.parentViewController?.parentViewController?.removeFromParentViewController()
+                self.parent!.parent?.view!.removeFromSuperview()
+                self.parent?.parent?.removeFromParentViewController()
             }
             if indexPath.row == 1 {
                 APIManager.clearQrCode()
-                let alert = UIAlertController(title: AlertQRCodeString.title, message: AlertQRCodeString.content, preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: AlertQRCodeString.okButton, style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alert, animated: true, completion: nil)
+                let alert = UIAlertController(title: AlertQRCodeString.title, message: AlertQRCodeString.content, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: AlertQRCodeString.okButton, style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
         }
         
-        if indexPath.section == KindOfSection.CREDITS.hashValue {
+        if indexPath.section == KindOfSection.credits.hashValue {
             
             if indexPath.row == 3 {
                 let url = CfpService.sharedInstance.getCreditUrl()
-                UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+                UIApplication.shared.openURL(URL(string: url)!)
             }
             
         }
         
     }
     
-    override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
+    override open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)-> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_1")
+        var cell = tableView.dequeueReusableCell(withIdentifier: "CELL_1")
         
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_1")
+            cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "CELL_1")
         }
         
         cell!.textLabel!.font = UIFont(name: "Arial", size: 14)
         
-        if(indexPath.section == KindOfSection.QUICK_ACCESS.hashValue) {
+        if(indexPath.section == KindOfSection.quick_ACCESS.hashValue) {
             
             if(indexPath.row == 0) {
                 cell!.textLabel!.text = SectionNameString.QuickAccess.purchaseTicket
@@ -149,7 +149,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             
         }
         
-        if (indexPath.section == KindOfSection.SETTINGS.hashValue) {
+        if (indexPath.section == KindOfSection.settings.hashValue) {
             
             if(indexPath.row == 0) {
                 cell!.textLabel!.text = SectionNameString.Settings.changeConference
@@ -160,7 +160,7 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
             }
         }
         
-        if (indexPath.section == KindOfSection.CREDITS.hashValue) {
+        if (indexPath.section == KindOfSection.credits.hashValue) {
             
             if(indexPath.row == 0) {
                 cell!.textLabel!.text = SectionNameString.Credits.iosCredits
@@ -189,23 +189,23 @@ public class SettingsController : UITableViewController, UIAlertViewDelegate {
     func reportIssue() {
         let email = "info@exteso.com"
         let subject = "My%20Voxxed%20-%20Issue%20-%20\(getVersion())"
-        let url = NSURL(string: "mailto:\(email)?subject=\(subject)")
+        let url = URL(string: "mailto:\(email)?subject=\(subject)")
         if url != nil {
-            UIApplication.sharedApplication().openURL(url!)
+            UIApplication.shared.openURL(url!)
         }
         
     }
     
     func getVersion() -> String {
-        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String
-        let buildNumber = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as? String
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+        let buildNumber = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
         return "\(version ?? "").\(buildNumber ?? "")"
     }
     
     
-    public override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    open override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if (indexPath.section == KindOfSection.CREDITS.hashValue) {
+        if (indexPath.section == KindOfSection.credits.hashValue) {
             
             if(indexPath.row == 0 || indexPath.row == 1) {
                 return 60

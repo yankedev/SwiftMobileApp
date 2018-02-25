@@ -21,7 +21,7 @@ class SimpleDetailView : UIView {
         
         
         iconView.translatesAutoresizingMaskIntoConstraints = false
-        iconView.contentMode = .Top
+        iconView.contentMode = .top
         iconView.tintColor = ColorManager.grayImageColor
         
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,12 +37,12 @@ class SimpleDetailView : UIView {
         
         
         
-        let views = ["iconView": iconView, "textView" : textView]
+        let views = ["iconView": iconView, "textView" : textView] as [String : Any]
         
         
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[iconView(50)]-0-[textView]-0-|", options: .AlignAllCenterY, metrics: nil, views: views)
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[iconView]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        let constV1 = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[textView]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[iconView(50)]-0-[textView]-0-|", options: .alignAllCenterY, metrics: nil, views: views)
+        let constV = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[iconView]-0-|", options: .alignAllCenterX, metrics: nil, views: views)
+        let constV1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[textView]-0-|", options: .alignAllCenterX, metrics: nil, views: views)
         
         addConstraints(constH)
         addConstraints(constV)

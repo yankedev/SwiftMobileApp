@@ -17,17 +17,17 @@ class TrackService : AbstractService {
         return TrackHelper()
     }
     
-    override func updateWithHelper(helper : [DataHelperProtocol], completionHandler : (msg: CallbackProtocol) -> Void) {
+    override func updateWithHelper(_ helper : [DataHelperProtocol], completionHandler : @escaping (_ msg: CallbackProtocol) -> Void) {
         AttributeService.sharedInstance.updateWithHelper(helper, completionHandler: completionHandler)
     }
     
     override func hasBeenAlreadyFed() -> Bool {
         do {
-            let fetchRequest = NSFetchRequest(entityName: "Attribute")
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Attribute")
             let predicateEvent = NSPredicate(format: "cfp.id = %@", super.getCfpId())
             let predicateType = NSPredicate(format: "type = %@", "Track")
             fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateEvent, predicateType])
-            let results = try self.privateManagedObjectContext.executeFetchRequest(fetchRequest)
+            let results = try self.privateManagedObjectContext.fetch(fetchRequest)
             return results.count > 0
         }
         catch {

@@ -16,8 +16,8 @@ class ConferencesController: WKInterfaceController {
     
     var conferences: [Conference]?
     
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         
         self.activityIndicator.setImageNamed("Activity")
         self.setTitle(NSLocalizedString("Conferences", comment:""))
@@ -27,7 +27,7 @@ class ConferencesController: WKInterfaceController {
         super.willActivate()
         
         self.activityIndicator.setHidden(false)
-        self.activityIndicator.startAnimatingWithImagesInRange(NSMakeRange(0, 30), duration: 1.0, repeatCount: 0)
+        self.activityIndicator.startAnimatingWithImages(in: NSMakeRange(0, 30), duration: 1.0, repeatCount: 0)
         
         DataController.sharedInstance.getConferences { (conferences:[Conference]) -> (Void) in
             self.conferences = conferences
@@ -35,8 +35,8 @@ class ConferencesController: WKInterfaceController {
             self.activityIndicator.setHidden(true)
             
             self.table.setNumberOfRows(self.conferences!.count, withRowType: "conference")
-            for (index,conference) in self.conferences!.enumerate() {
-                if let row = self.table.rowControllerAtIndex(index) as? ConferenceRowController {
+            for (index,conference) in self.conferences!.enumerated() {
+                if let row = self.table.rowController(at: index) as? ConferenceRowController {
                     row.label.setText(conference.conferenceDescription!)
                 }
             }
@@ -48,7 +48,7 @@ class ConferencesController: WKInterfaceController {
         DataController.sharedInstance.cancelConferences()
     }
     
-    override func contextForSegueWithIdentifier(segueIdentifier: String, inTable table: WKInterfaceTable, rowIndex: Int) -> AnyObject? {
+    override func contextForSegue(withIdentifier segueIdentifier: String, in table: WKInterfaceTable, rowIndex: Int) -> Any? {
         return self.conferences![rowIndex]
     }
 

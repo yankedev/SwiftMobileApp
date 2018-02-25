@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 import CoreData
 
-public class SpeakerDetailsController : AbstractDetailsController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol, FavoritableProtocol {
+open class SpeakerDetailsController : AbstractDetailsController, UITableViewDelegate, UITableViewDataSource, HotReloadProtocol, FavoritableProtocol {
     
 
-    var talkList = SpeakerListView(frame: CGRectZero, style: .Grouped)
+    var talkList = SpeakerListView(frame: CGRect.zero, style: .grouped)
     
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         
         super.viewDidLoad()
         
@@ -32,18 +32,18 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
         
         
-        let views = ["header": header, "scroll" : scroll, "talkList" : talkList]
+        let views = ["header": header, "scroll" : scroll, "talkList" : talkList] as [String : Any]
         
         
-        let constH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[header]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        let constH2 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[scroll]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        let constH = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[header]-0-|", options: .alignAllCenterX, metrics: nil, views: views)
+        let constH2 = NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[scroll]-10-|", options: .alignAllCenterX, metrics: nil, views: views)
         
-        let constH3 = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[talkList]-10-|", options: .AlignAllCenterX, metrics: nil, views: views)
-        
-        
+        let constH3 = NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[talkList]-10-|", options: .alignAllCenterX, metrics: nil, views: views)
         
         
-        let constV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[header(150)]-[scroll]-[talkList(200)]-0-|", options: .AlignAllCenterX, metrics: nil, views: views)
+        
+        
+        let constV = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[header(150)]-[scroll]-[talkList(200)]-0-|", options: .alignAllCenterX, metrics: nil, views: views)
         
         
         
@@ -60,7 +60,7 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
         
         
-        header.talkTitle.text = detailObject.getTitle()
+        header.talkTitle.text = detailObject.getTitleD()
         header.talkTrack.text = detailObject.getSubTitle()
         scroll.contentInset = UIEdgeInsetsMake(20, 0, 0, 0)
         scroll.text = detailObject.getSummary()
@@ -69,14 +69,14 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
         configure()
         
-        actionButtonView2.hidden = true
+        actionButtonView2.isHidden = true
         
         TalkService.sharedInstance.fetchTalks(detailObject.getRelatedIds(), completionHandler: callBack)
     }
     
     
     
-    func callBack(talks : [DataHelperProtocol], error : TalksStoreError?) {
+    func callBack(_ talks : [DataHelperProtocol], error : TalksStoreError?) {
         detailObject.setRelated(talks)
         talkList.reloadData()
     }
@@ -96,16 +96,16 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     
     
-    public override func twitter() {
+    open override func twitter() {
         
         let originalString = detailObject.getTwitter()
      
         
-        let escapedString = originalString?.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())
+        let escapedString = originalString?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
         
         let url = "https://twitter.com/intent/tweet?text=\(escapedString!)"
         
-        UIApplication.sharedApplication().openURL(NSURL(string: url)!)
+        UIApplication.shared.openURL(URL(string: url)!)
     }
     
     
@@ -117,12 +117,12 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
    
     
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath)-> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath)-> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("CELL_10") as? ScheduleCellView
+        var cell = tableView.dequeueReusableCell(withIdentifier: "CELL_10") as? ScheduleCellView
         
         if cell == nil {
-            cell = ScheduleCellView(style: UITableViewCellStyle.Value1, reuseIdentifier: "CELL_10")
+            cell = ScheduleCellView(style: UITableViewCellStyle.value1, reuseIdentifier: "CELL_10")
             
         }
         
@@ -133,8 +133,8 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
             cell!.leftIconView.imageView.image = relatedObject.getPrimaryImage()
             
-            cell!.rightTextView.topTitleView.talkTrackName.text = "\(relatedObject.getDetailInfoWithIndex(4)?.capitalizedString ?? "") - \(relatedObject.getDetailInfoWithIndex(2) ?? "")"
-            cell!.rightTextView.topTitleView.talkTitle.text = relatedObject.getTitle()
+            cell!.rightTextView.topTitleView.talkTrackName.text = "\(relatedObject.getDetailInfoWithIndex(4)?.capitalized ?? "") - \(relatedObject.getDetailInfoWithIndex(2) ?? "")"
+            cell!.rightTextView.topTitleView.talkTitle.text = relatedObject.getTitleD()
             
             cell!.rightTextView.locationView.label.text = relatedObject.getDetailInfoWithIndex(0)
             cell!.rightTextView.speakerView.label.text = relatedObject.getDetailInfoWithIndex(3)
@@ -152,24 +152,24 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         
         
         
-        cell?.accessoryType = .DisclosureIndicator
+        cell?.accessoryType = .disclosureIndicator
         
         return cell!
     }
     
   
-    public func favorite(id : NSManagedObjectID) -> Bool {
+    open func favorite(_ id : NSManagedObjectID) -> Bool {
         return SpeakerService.sharedInstance.invertFavorite(id)
     }
     
     
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
     
     
     
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
         if let talk = detailObject.getRelatedDetailWithIndex(indexPath.row) {
@@ -190,27 +190,27 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
     
     
     
-    func callBackTalks(talks : [DataHelperProtocol], error : TalksStoreError?) {
+    func callBackTalks(_ talks : [DataHelperProtocol], error : TalksStoreError?) {
         detailObject.setRelated(talks)
         talkList.reloadData()
     }
     
 
 
-    public override func viewDidAppear(animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         fetchUpdate()
         talkList.reloadData()
     }
     
 
-    public func fetchUpdate() {
+    open func fetchUpdate() {
         APIReloadManager.fetchUpdate(detailObject.getFullLink(), service: SpeakerDetailService.sharedInstance, completedAction: fetchCompleted)
         
         APIReloadManager.fetchImg(detailObject.getImageFullLink(), id : detailObject.getObjectID(), service:SpeakerService.sharedInstance, completedAction: callbackImg)
     }
    
-    public func fetchCompleted(newHelper : CallbackProtocol) -> Void {
+    open func fetchCompleted(_ newHelper : CallbackProtocol) -> Void {
     
         
         if let newDetailObject = newHelper.getHelper() as? DetailableProtocol {
@@ -219,14 +219,14 @@ public class SpeakerDetailsController : AbstractDetailsController, UITableViewDe
         scroll.text = detailObject.getSummary()
         header.talkTrack.text = detailObject.getSubTitle()
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async(execute: {
             TalkService.sharedInstance.fetchTalks(self.detailObject.getRelatedIds(), completionHandler:self.callBackTalks)
         })
    }
     
-    public func callbackImg(newHelper : CallbackProtocol) {
+    open func callbackImg(_ newHelper : CallbackProtocol) {
         if let newDetailObjectData = newHelper.getImg() {
-            header.imageView.image = UIImage(data: newDetailObjectData)
+            header.imageView.image = UIImage(data: newDetailObjectData as Data)
         }
     }
     

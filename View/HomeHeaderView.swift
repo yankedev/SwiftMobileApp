@@ -23,7 +23,7 @@ class HomeHeaderView : UIView {
         addSubview(title)
         
         
-        eventLocation.textAlignment = .Center
+        eventLocation.textAlignment = .center
         eventLocation.font = UIFont(name: "Pirulen", size: 25)
         eventLocation.textColor = ColorManager.homeFontColor
         addSubview(eventLocation)
@@ -44,13 +44,13 @@ class HomeHeaderView : UIView {
         
         
         
-        let topLogo = NSLayoutConstraint(item: title, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 20)
+        let topLogo = NSLayoutConstraint(item: title, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 20)
         
-        let widthLogo = NSLayoutConstraint(item: title, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Width, multiplier: 0.6, constant: 0)
+        let widthLogo = NSLayoutConstraint(item: title, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.width, multiplier: 0.6, constant: 0)
         
-        let heightLogo = NSLayoutConstraint(item: title, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Width, multiplier:0.6/ratio, constant: 0)
+        let heightLogo = NSLayoutConstraint(item: title, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.width, multiplier:0.6/ratio, constant: 0)
         
-        let centerXLogo = NSLayoutConstraint(item: title, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+        let centerXLogo = NSLayoutConstraint(item: title, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
         
         
         
@@ -74,13 +74,13 @@ class HomeHeaderView : UIView {
         
         
         
-        let topLocation = NSLayoutConstraint(item: eventLocation, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: title, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0)
+        let topLocation = NSLayoutConstraint(item: eventLocation, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: title, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
         
-        let widthLocation = NSLayoutConstraint(item: eventLocation, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Width, multiplier: 0.8, constant: 0)
+        let widthLocation = NSLayoutConstraint(item: eventLocation, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.width, multiplier: 0.8, constant: 0)
         
-        let heightLocation = NSLayoutConstraint(item: eventLocation, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Width, multiplier: 1/ratio, constant: 0)
+        let heightLocation = NSLayoutConstraint(item: eventLocation, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.width, multiplier: 1/ratio, constant: 0)
         
-        let centerXLocation = NSLayoutConstraint(item: eventLocation, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+        let centerXLocation = NSLayoutConstraint(item: eventLocation, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0)
         
         
         

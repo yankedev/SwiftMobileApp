@@ -17,7 +17,7 @@ class StoredResource: NSManagedObject, FeedableProtocol {
     @NSManaged var etag: String
     @NSManaged var fallback: String
     
-    func feedHelper(helper: DataHelperProtocol) -> Void {
+    func feedHelper(_ helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? StoredResourceHelper  {
             url = castHelper.url ?? ""
             etag = castHelper.etag ?? ""
@@ -29,7 +29,7 @@ class StoredResource: NSManagedObject, FeedableProtocol {
         return nil
     }
     
-    func resetId(id: NSManagedObject?) {
+    func resetId(_ id: NSManagedObject?) {
     }
     
     

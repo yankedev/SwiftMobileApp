@@ -20,7 +20,7 @@ class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
     @NSManaged var cfp: Cfp?
     
     
-    func feedHelper(helper: DataHelperProtocol) -> Void {
+    func feedHelper(_ helper: DataHelperProtocol) -> Void {
         if let castHelper = helper as? AttributeHelper  {
             id = castHelper.id
             label = castHelper.label
@@ -58,7 +58,7 @@ class Attribute: NSManagedObject, FeedableProtocol, FilterableProtocol {
         return nil
     }
     
-    func resetId(id: NSManagedObject?) {
+    func resetId(_ id: NSManagedObject?) {
     }
     
     

@@ -35,24 +35,24 @@ class FilterViewCell: UITableViewCell {
         
     }
     
-    func updateBackgroundColor(isFavorited : Bool) {
+    func updateBackgroundColor(_ isFavorited : Bool) {
         if(isFavorited) {
             backgroundColor = ColorManager.favoriteBackgroundColor
         }
         else {
-            backgroundColor = UIColor.whiteColor()
+            backgroundColor = UIColor.white
         }
     }
     
-    private func setupConstraints() {
-        let viewsDictionary = ["attributeImage":attributeImage,"attributeTitle":attributeTitle, "tickedImg":tickedImg]
+    fileprivate func setupConstraints() {
+        let viewsDictionary = ["attributeImage":attributeImage,"attributeTitle":attributeTitle, "tickedImg":tickedImg] as [String : Any]
         
         let layout = NSLayoutFormatOptions(rawValue: 0)
         
-        let horizontalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("H:|-5-[attributeImage(20)]-5-[attributeTitle]-5-[tickedImg(16)]-7-|", options: layout, metrics: nil, views: viewsDictionary)
-        let verticalContraint_1:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-12-[attributeImage]-12-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
-        let verticalContraint_2:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[attributeTitle]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
-        let verticalContraint_3:[NSLayoutConstraint] = NSLayoutConstraint.constraintsWithVisualFormat("V:|-14-[tickedImg]-14-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
+        let horizontalContraint:[NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[attributeImage(20)]-5-[attributeTitle]-5-[tickedImg(16)]-7-|", options: layout, metrics: nil, views: viewsDictionary)
+        let verticalContraint_1:[NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "V:|-12-[attributeImage]-12-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
+        let verticalContraint_2:[NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[attributeTitle]-0-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
+        let verticalContraint_3:[NSLayoutConstraint] = NSLayoutConstraint.constraints(withVisualFormat: "V:|-14-[tickedImg]-14-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDictionary)
         
         self.addConstraints(verticalContraint_1)
         self.addConstraints(verticalContraint_2)
