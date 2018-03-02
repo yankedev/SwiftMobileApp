@@ -52,14 +52,13 @@ class Slot: NSManagedObject, FeedableProtocol {
             fromTimeMillis = castHelper.fromTimeMillis!
             //millis -> sec
             let savedDate =  Date(timeIntervalSince1970: fromTimeMillis.doubleValue/1000)
-            let calendar = Calendar.current
-            let components = (calendar as NSCalendar).components([.year, .month, .day], from:  savedDate)
+            //let calendar = Calendar.current
+            //let components = (calendar as NSCalendar).components([.year, .month, .day], from:  savedDate)
             
-            let dateFormatter = DateFormatter()
-            dateFormatter
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            date = dateFormatter.date(from: "\(components.year)-\(components.month)-\(components.day) 08:00:00")!
-            
+            //let dateFormatter = DateFormatter()
+            //dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            //date = dateFormatter.date(from: "\(components.year)-\(components.month)-\(components.day) 08:00:00")!
+            date = savedDate;
             
             
             
